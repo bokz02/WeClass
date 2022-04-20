@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawerHome"
+            android:title="Dashboard"
+            android:icon="@drawable/icondrawer"/>
+
+        <item
+            android:id="@+id/drawerSubject"
+            android:title="Subjects"
+            android:icon="@drawable/icontabs"/>
+
+        <item
+            android:id="@+id/drawerSched"
+            android:title="Schedules"
+            android:icon="@drawable/iconcalendar"/>
+
+        <item
+            android:id="@+id/drawerReminder"
+            android:title="Reminders"
+            android:icon="@drawable/iconbell"/>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawerSettings"
+            android:title="Settings"
+            android:icon="@drawable/iconsettings"/>
+
+    </group>
+
+</menu>
