@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".BottomNavi"
+            android:exported="false" />
+        <activity
             android:name=".Subject"
             android:exported="false" />
         <activity
