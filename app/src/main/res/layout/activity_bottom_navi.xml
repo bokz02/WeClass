@@ -4,8 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BottomNavi"
-    android:background="@drawable/bg_navi">
+    tools:context=".BottomNavi">
+
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </FrameLayout>
 
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -13,24 +21,21 @@
         android:layout_height="80dp"
         android:layout_gravity="bottom"
         android:id="@+id/bottomAppbar"
-        app:fabCradleMargin="10dp"
+        app:fabCradleMargin="20dp"
         app:fabCradleVerticalOffset="10dp"
         app:fabCradleRoundedCornerRadius="20dp"
-        app:backgroundTint="@color/lightText"
+        app:backgroundTint="@color/white"
+        app:titleMargin="10dp"
       >
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/btm_navih"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:menu="@menu/subject_menu"
             app:itemTextColor="@color/navigation_text_color"
-            android:layout_marginRight="16dp"
             app:itemIconSize="30dp"
-            android:layout_marginLeft="16dp"
             android:background="@drawable/transparent_bg"
-
             />
-
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,6 +43,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/fab"
         android:src="@drawable/ic_baseline_add_24"
-        app:layout_anchor="@id/bottomAppbar"/>
+        app:layout_anchor="@id/bottomAppbar"
+        app:backgroundTint="@color/lightText"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

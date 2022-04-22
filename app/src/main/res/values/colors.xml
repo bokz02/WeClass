@@ -13,4 +13,6 @@
     <color name="navigation_text_color">#618f8c</color>
 
     <color name="lightText">#59bdb3</color>
+    <color name="darkText">#567975</color>
+    <color name="btmNaviColor">#a2e1db</color>
 </resources>

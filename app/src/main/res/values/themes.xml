@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.WeClass" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Theme.WeClass" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#567975</item>
-        <item name="colorPrimaryVariant">#59bdb3</item>
+        <item name="colorPrimary">@color/lightText</item>
+        <item name="colorPrimaryVariant">@color/darkText</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
