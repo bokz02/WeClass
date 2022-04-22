@@ -12,6 +12,5 @@
     <color name="text_main_second_color">#545454</color>
     <color name="navigation_text_color">#618f8c</color>
 
-    <color name="light">#59bdb3</color>
-    <color name="dark">#567975</color>
+    <color name="lightText">#59bdb3</color>
 </resources>
