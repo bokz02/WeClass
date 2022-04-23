@@ -9,7 +9,6 @@
     android:background="@color/main_background"
     android:fitsSystemWindows="true"
     >
-<!--    tools:openDrawer="start"-->
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
@@ -24,6 +23,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="5dp"
         android:background="@color/main_background">
 
         <com.google.android.material.appbar.MaterialToolbar
