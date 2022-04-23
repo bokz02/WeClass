@@ -81,6 +81,7 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         dateTimeDisplay.setText(date);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
