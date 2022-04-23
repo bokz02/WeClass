@@ -225,10 +225,11 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView3"
-            android:layout_width="140dp"
+            android:layout_width="130dp"
             android:layout_height="130dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
+            app:contentPadding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.852"
@@ -239,11 +240,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="20dp"
-                android:paddingTop="15dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="15dp">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/event2"
@@ -256,10 +253,10 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.466"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.122" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/event_location2"
@@ -299,10 +296,11 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView2"
-            android:layout_width="140dp"
+            android:layout_width="130dp"
             android:layout_height="130dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
+            app:contentPadding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.177"
@@ -313,10 +311,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="20dp"
-                android:paddingTop="15dp"
-                android:paddingRight="20dp">
+                android:layout_height="match_parent">
+
 
                 <TextView
                     android:id="@+id/event1"
@@ -329,10 +325,10 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.466"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.122" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/event_location1"
@@ -362,10 +358,11 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.533"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/event_location1"
-                    app:layout_constraintVertical_bias="0.234" />
+                    app:layout_constraintVertical_bias="1.0" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
