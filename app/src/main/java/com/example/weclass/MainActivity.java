@@ -7,8 +7,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +27,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    Button subject;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +37,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.navView);
         toolbar = findViewById(R.id.toolbar);
 
-        //Navigation Drawer
 
-        setSupportActionBar(toolbar);
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();     // Show navigation drawer when clicked
-
+        navigationOpen(); // Navigation Drawer Open
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
-
-        navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
-
 
     }
 
@@ -69,12 +60,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .setNegativeButton("No", null)
                     .show();                    // Exit pop up when back button is pressed if navigation drawer is not open
         }
-
-
     }
 
+        public void navigationOpen() {
+            setSupportActionBar(toolbar);
+            navigationView.bringToFront();
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawerLayout.addDrawerListener(toggle);
+            toggle.syncState();     // Show navigation drawer when clicked
+            navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
+        }
+
+
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.drawerSubject:
+                break;
+            case R.id.drawerSched:
+                Intent intent = new Intent(MainActivity.this,ScheduleActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
         return true;
     }
 }
