@@ -89,9 +89,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.drawerSubject:
+                Intent intent = new Intent(this,Subject.class);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.drawerSched:
-                Intent intent = new Intent(MainActivity.this,ScheduleActivity.class);
+                 intent = new Intent(MainActivity.this,ScheduleActivity.class);
                 startActivity(intent);
                 finish();
                 break;

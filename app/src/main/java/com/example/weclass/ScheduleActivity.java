@@ -92,6 +92,11 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
             case R.id.drawerSched:
 
                 break;
+            case R.id.drawerSubject:
+                intent = new Intent(this,Subject.class);
+                startActivity(intent);
+                finish();
+                break;
         }
         return true;
     }
