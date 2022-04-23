@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/naviReport"
-        android:title="Subjects"
+        android:title="Reports"
         android:icon="@drawable/iconfolder"/>
 
     <item
@@ -18,11 +18,11 @@
 
     <item
         android:id="@+id/naviAttendance"
-        android:title="Schedules"
+        android:title="Attendance"
         android:icon="@drawable/iconprofile"/>
 
     <item
         android:id="@+id/naviRanking"
-        android:title="Reminders"
+        android:title="Rankings"
         android:icon="@drawable/iconbargraph"/>
 </menu>

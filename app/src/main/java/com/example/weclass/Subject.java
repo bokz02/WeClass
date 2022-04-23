@@ -12,7 +12,9 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -23,6 +25,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
         init();
         navigationOpen();
+        moveToFragment();
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
@@ -59,6 +63,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout = findViewById(R.id.drawerSubject);
         navigationView = findViewById(R.id.navSubject);
         toolbar = findViewById(R.id.toolbarSubject);
+        button = findViewById(R.id.buttonToFragment);
     }
 
     public void navigationOpen() {
@@ -86,5 +91,16 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 break;
         }
         return true;
+    }
+
+    public void moveToFragment(){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Subject.this, BottomNavi.class);
+                startActivity(intent);
+
+            }
+        });
     }
 }

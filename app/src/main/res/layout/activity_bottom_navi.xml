@@ -8,10 +8,9 @@
 
 
     <FrameLayout
-        android:id="@+id/frame"
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
     </FrameLayout>
 
@@ -28,7 +27,7 @@
         app:titleMargin="10dp"
       >
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/btm_navih"
+            android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:menu="@menu/subject_menu"
