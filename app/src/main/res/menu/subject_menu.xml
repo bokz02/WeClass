@@ -13,10 +13,6 @@
         android:icon="@drawable/iconfolder"/>
 
     <item
-        android:id="@+id/navAdd"
-        android:title="" />
-
-    <item
         android:id="@+id/naviAttendance"
         android:title="Attendance"
         android:icon="@drawable/iconprofile"/>
