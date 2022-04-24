@@ -4,16 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BottomNavi">
+    tools:context=".BottomNavi"
+    android:id="@+id/main_container">
 
 
-    <FrameLayout
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-    </FrameLayout>
 
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -28,7 +22,7 @@
         app:titleMargin="10dp"
       >
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/btm_navih"
+            android:id="@+id/bottomNavi"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:menu="@menu/subject_menu"

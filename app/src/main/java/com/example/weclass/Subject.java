@@ -12,7 +12,9 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,6 +22,7 @@ import java.util.Objects;
 
 public class Subject extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    Button button;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -36,6 +39,17 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
+
+        button = findViewById(R.id.btn1);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (Subject.this,BottomNavi.class);
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
