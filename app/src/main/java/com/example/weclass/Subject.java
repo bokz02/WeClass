@@ -22,10 +22,10 @@ import java.util.Objects;
 
 public class Subject extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    Button button;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
+
+
     }
 
     @Override

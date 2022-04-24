@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/main_background"
     android:fitsSystemWindows="true"
+    android:background="@drawable/bg"
     >
 
     <com.google.android.material.navigation.NavigationView
@@ -18,23 +18,22 @@
         app:menu="@menu/main_menu"
         app:itemTextColor="@color/navigation_text_color"
         app:itemIconTint="@color/navigation_text_color"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        >
     </com.google.android.material.navigation.NavigationView>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp"
-        android:background="@color/main_background">
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
+            android:layout_width="41dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintHorizontal_bias="0.18"
+            app:layout_constraintHorizontal_bias="0.089"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_iconsort1_svg" />
@@ -43,31 +42,30 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:text="Top performers"
-            android:textColor="@color/text_main_second_color"
+            android:textColor="@color/darkText"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginStart="10dp"
-            app:layout_constraintHorizontal_bias="0.14"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:text="Upcoming Event"
-            android:textColor="@color/text_main_second_color"
+            android:textColor="@color/darkText"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintHorizontal_bias="0.142"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
 
         <TextView
             android:id="@+id/textView6"
@@ -75,86 +73,97 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
             android:text="Your Schedule"
-            android:textColor="@color/text_main_second_color"
+            android:textColor="@color/darkText"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.172"
+            app:layout_constraintHorizontal_bias="0.091"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
-            app:layout_constraintVertical_bias="0.206" />
+            app:layout_constraintVertical_bias="0.148" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="20dp"
             android:text="By Section"
-            android:textColor="@color/text_main_second_color"
-            android:textSize="14sp"
-            android:textStyle="normal" android:layout_marginBottom="20dp"
+            android:textColor="@color/lightText"
+            android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.115"
+            app:layout_constraintHorizontal_bias="0.046"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintVertical_bias="0.0" />
-
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="24dp"
             android:text="Next Event"
-            android:textColor="@color/text_main_second_color"
-            android:textSize="14sp"
-            android:textStyle="normal"
+            android:textColor="@color/lightText"
+            android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.107"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             app:layout_constraintVertical_bias="0.0" />
+
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="220dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="4dp"
             android:text="Dashboard"
             android:textColor="@color/navigation_text_color"
-            android:textSize="25sp"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.906"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.021" />
+            app:layout_constraintVertical_bias="0.028" />
 
-        <com.google.android.material.card.MaterialCardView
+        <RelativeLayout
             android:id="@+id/materialCardView"
             android:layout_width="316dp"
             android:layout_height="203dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/round_corner"
             app:cardCornerRadius="10dp"
-
             app:cardElevation="15dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3">
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="20dp">
+
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:id="@+id/subject_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
                     android:text="THESIS 1"
                     android:textAllCaps="true"
                     android:textColor="@color/darkText"
@@ -169,8 +178,15 @@
                 <TextView
                     android:id="@+id/section"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="18dp"
+                    android:layout_below="@+id/subject_code"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="-1dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="126dp"
                     android:text="BSIT 3-A"
                     android:textColor="@color/lightText"
                     android:textSize="12dp"
@@ -183,15 +199,20 @@
 
                 <Button
                     android:id="@+id/preview"
-                    android:layout_width="53dp"
-                    android:layout_height="20dp"
+                    android:layout_width="69dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentStart="true"
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="207dp"
                     android:background="@drawable/transparent_bg"
                     android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"
                     android:drawableTint="#959595"
                     android:text="Preview"
                     android:textAllCaps="false"
                     android:textColor="#959595"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -201,41 +222,45 @@
 
                 <Button
                     android:id="@+id/next"
-                    android:layout_width="46dp"
-                    android:layout_height="22dp"
+                    android:layout_width="54dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+
+                    android:layout_marginStart="134dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
                     android:background="@drawable/transparent_bg"
                     android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_24"
                     android:drawableTint="#959595"
-                    android:paddingRight="10dp"
                     android:text="Back"
                     android:textAllCaps="false"
                     android:textColor="#959595"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/section"
                     app:layout_constraintVertical_bias="1.0" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
 
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView3"
-            android:layout_width="130dp"
+            android:layout_width="145dp"
             android:layout_height="130dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             app:contentPadding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.852"
+            app:layout_constraintHorizontal_bias="0.895"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.069">
+            app:layout_constraintVertical_bias="0.07">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -296,24 +321,19 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView2"
-            android:layout_width="130dp"
+            android:layout_width="145dp"
             android:layout_height="130dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             app:contentPadding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.177"
+            app:layout_constraintEnd_toStartOf="@+id/materialCardView3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.069">
-
-
+            app:layout_constraintVertical_bias="0.07">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-
                 <TextView
                     android:id="@+id/event1"
                     android:layout_width="match_parent"
@@ -368,6 +388,123 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+
+        <RelativeLayout
+            android:id="@+id/materialCardView4"
+            android:layout_width="72dp"
+            android:layout_height="63dp"
+            app:cardCornerRadius="10dp"
+            android:elevation="10dp"
+            app:contentPadding="20dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/materialCardView5"
+            app:layout_constraintHorizontal_bias="0.703"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.129"
+            android:background="@drawable/round_corner">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/sched_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"
+                    android:text="26"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/lightText"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.032" />
+
+                <TextView
+                    android:id="@+id/sched_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="19dp"
+                    android:text="mon"
+                    android:textAlignment="center"
+                    android:textColor="@color/lightText"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sched_date"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/materialCardView5"
+            android:layout_width="233dp"
+            android:layout_height="63dp"
+            android:background="@drawable/round_corner"
+            android:backgroundTint="@color/lightText"
+            android:elevation="10dp"
+            android:paddingTop="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp"
+            app:cardCornerRadius="10dp"
+            app:contentPadding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.823"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.129">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/sched_subj"
+                    android:layout_width="61dp"
+                    android:layout_height="wrap_content"
+                    android:text="Thesis"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.039"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.037" />
+
+                <TextView
+                    android:id="@+id/sched_time"
+                    android:layout_width="61dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/sched_subj"
+
+                    android:text="8:00 am"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.039"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sched_subj"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
