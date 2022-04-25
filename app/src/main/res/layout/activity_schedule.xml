@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ScheduleActivity"
-    android:fitsSystemWindows="true"
-    android:background="@drawable/bg1">
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navViewSchedule"
@@ -22,21 +21,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_background"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="-47dp"
         android:padding="5dp">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarSchedule"
-            android:layout_width="41dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/scheduleText"
-            app:layout_constraintHorizontal_bias="0.089"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_iconsort1_svg"  />
 
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
         <TextView
             android:id="@+id/upcomingEventText"
@@ -57,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="28dp"
             android:text="Upcoming Schedule"
             android:textColor="@color/darkText"
             android:textSize="20sp"
@@ -82,24 +90,21 @@
             app:layout_constraintTop_toBottomOf="@+id/scheduleText"
             app:layout_constraintVertical_bias="0.002" />
 
-        <TextView
-            android:id="@+id/scheduleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="4dp"
-            android:text="Schedule"
-            android:textColor="@color/navigation_text_color"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.028"  />
+                <TextView
+                    android:id="@+id/scheduleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="Schedule"
+                    android:textColor="@color/navigation_text_color"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
+                <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="350dp"
@@ -206,7 +211,7 @@
             app:contentPaddingLeft="20dp"
             app:contentPaddingRight="20dp"
             app:contentPaddingTop="10dp"
-            app:cardElevation="10dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
@@ -218,8 +223,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="8dp"
-                >
+                android:padding="8dp">
                 <TextView
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
@@ -263,8 +267,102 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView12"
                     app:layout_constraintVertical_bias="0.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </com.google.android.material.card.MaterialCardView>
 
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/upcomingEventsCardview3"
+                    android:layout_width="318dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="15dp"
+                    app:contentPaddingBottom="10dp"
+                    app:contentPaddingLeft="20dp"
+                    app:contentPaddingRight="20dp"
+                    app:contentPaddingTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/upcomingEventsCardview2">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="26 June"
+                            android:textColor="@color/darkText"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SOFTENG2"
+                            android:textColor="@color/darkText"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.140"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView14"
+                            app:layout_constraintVertical_bias="0.133" />
+
+                        <TextView
+                            android:id="@+id/textView16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3:00 pm - 5:30 pm"
+                            android:textColor="@color/lightText"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.161"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView15"
+                            app:layout_constraintVertical_bias="0.0" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbarSchedule"
+                android:layout_width="41dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_iconsort1_svg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
