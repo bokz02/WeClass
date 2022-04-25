@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ScheduleActivity"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@drawable/bg1">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navViewSchedule"
@@ -21,7 +22,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_background"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="-47dp"
         android:padding="5dp">
@@ -206,6 +206,7 @@
             app:contentPaddingLeft="20dp"
             app:contentPaddingRight="20dp"
             app:contentPaddingTop="10dp"
+            app:cardElevation="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
