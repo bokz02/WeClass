@@ -30,23 +30,11 @@
             android:layout_width="41dp"
             android:layout_height="48dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
+            android:layout_marginStart="20dp"
             app:layout_constraintHorizontal_bias="0.089"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_iconsort1_svg" />
-
-        <Button
-            android:id="@+id/buttonToFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fab"
-            app:layout_constraintHorizontal_bias="0.26"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView3"
-            app:layout_constraintVertical_bias="0.857" />
 
         <TextView
             android:id="@+id/textView"
@@ -119,6 +107,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
             app:layout_constraintVertical_bias="0.056">
+
+            <ImageButton
+                android:id="@+id/subSubject"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/transparent_bg"/>
 
 
             <RelativeLayout
@@ -215,7 +209,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:text="CSTHESI1"
+                    android:text="GEUNDETS"
                     android:textAllCaps="true"
 
                     android:textColor="@color/darkText"
@@ -239,7 +233,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="-1dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Thesis 1"
+                    android:text="Understanding the Self"
                     android:textAllCaps="true"
                     android:textColor="@color/darkText"
                     android:textSize="14dp" />
@@ -255,7 +249,7 @@
                     android:drawableLeft="@drawable/ic_baseline_access_time_24"
                     android:drawablePadding="5dp"
                     android:drawableTint="@color/darkText"
-                    android:text="Tuesday, 7:00 am"
+                    android:text="Wednesday, 7:00 am"
                     android:textColor="@color/darkText"
                     android:textSize="14dp" />
 
@@ -293,7 +287,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:text="CSTHESI1"
+                    android:text="PARACOMP"
                     android:textAllCaps="true"
 
                     android:textColor="@color/darkText"
@@ -317,7 +311,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="-1dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Thesis 1"
+                    android:text="Parallel Computing"
                     android:textAllCaps="true"
                     android:textColor="@color/darkText"
                     android:textSize="14dp" />
@@ -333,7 +327,7 @@
                     android:drawableLeft="@drawable/ic_baseline_access_time_24"
                     android:drawablePadding="5dp"
                     android:drawableTint="@color/darkText"
-                    android:text="Tuesday, 7:00 am"
+                    android:text="Friday, 7:00 am"
                     android:textColor="@color/darkText"
                     android:textSize="14dp" />
 

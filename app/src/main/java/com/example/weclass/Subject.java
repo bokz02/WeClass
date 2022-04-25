@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -22,10 +23,10 @@ import java.util.Objects;
 
 public class Subject extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    Button button;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    ImageButton imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout = findViewById(R.id.drawerSubject);
         navigationView = findViewById(R.id.navSubject);
         toolbar = findViewById(R.id.toolbarSubject);
-        button = findViewById(R.id.buttonToFragment);
+        imageButton = findViewById(R.id.subSubject);
     }
 
     public void navigationOpen() {
@@ -96,7 +97,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     }
 
     public void moveToFragment(){
-        button.setOnClickListener(new View.OnClickListener() {
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Subject.this, BottomNavi.class);

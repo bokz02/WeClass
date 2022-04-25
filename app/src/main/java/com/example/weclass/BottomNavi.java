@@ -7,7 +7,12 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -25,6 +30,10 @@ public class BottomNavi extends AppCompatActivity {
         fragmentLoader(new StudentList());
         hideActionBarInFragment();
         moveFragment();
+        backButton();
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
     }
 
@@ -34,6 +43,16 @@ public class BottomNavi extends AppCompatActivity {
                 .replace(R.id.fragmentContainer, fragment)
                 .commit();
     }//FRAGMENT LOADER
+
+    public void backButton(){
+        ImageButton imageButton = (ImageButton) findViewById(R.id.backListOfStudents);
+         imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
 
     public void hideActionBarInFragment() {
         ActionBar supportActionBar = ((AppCompatActivity) this).getSupportActionBar();
