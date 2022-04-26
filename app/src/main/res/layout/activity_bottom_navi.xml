@@ -48,14 +48,15 @@
 
     <ImageButton
         android:id="@+id/backListOfStudents"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="24dp"
         android:layout_marginStart="20dp"
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/iconback2"/>
+        android:background="@drawable/iconback2"
+        android:backgroundTint="@color/white"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

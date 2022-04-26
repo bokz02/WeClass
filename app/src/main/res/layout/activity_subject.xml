@@ -134,7 +134,6 @@
                     android:textAllCaps="true"
 
                     android:textColor="@color/white"
-                    android:textSize="16dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -157,7 +156,7 @@
                     android:text="Thesis 1"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="14dp" />
+                   />
 
                 <TextView
                     android:id="@+id/subject_time1"
@@ -167,12 +166,11 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginEnd="0dp"
                     android:layout_marginBottom="0dp"
-                    android:drawableTint="@color/white"
                     android:drawableLeft="@drawable/ic_baseline_access_time_24"
                     android:drawablePadding="5dp"
+                    android:drawableTint="@color/white"
                     android:text="Tuesday, 7:00 am"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
+                    android:textColor="@color/white" />
 
             </RelativeLayout>
 
@@ -213,7 +211,6 @@
                     android:textAllCaps="true"
 
                     android:textColor="@color/darkText"
-                    android:textSize="16dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -235,8 +232,7 @@
                     android:layout_marginBottom="30dp"
                     android:text="Understanding the Self"
                     android:textAllCaps="true"
-                    android:textColor="@color/darkText"
-                    android:textSize="14dp" />
+                    android:textColor="@color/darkText" />
 
                 <TextView
                     android:id="@+id/subject_time"
@@ -250,8 +246,7 @@
                     android:drawablePadding="5dp"
                     android:drawableTint="@color/darkText"
                     android:text="Wednesday, 7:00 am"
-                    android:textColor="@color/darkText"
-                    android:textSize="14dp" />
+                    android:textColor="@color/darkText" />
 
             </RelativeLayout>
 
@@ -291,7 +286,6 @@
                     android:textAllCaps="true"
 
                     android:textColor="@color/darkText"
-                    android:textSize="16dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -313,8 +307,7 @@
                     android:layout_marginBottom="30dp"
                     android:text="Parallel Computing"
                     android:textAllCaps="true"
-                    android:textColor="@color/darkText"
-                    android:textSize="14dp" />
+                    android:textColor="@color/darkText" />
 
                 <TextView
                     android:id="@+id/subject_time3"
@@ -328,8 +321,7 @@
                     android:drawablePadding="5dp"
                     android:drawableTint="@color/darkText"
                     android:text="Friday, 7:00 am"
-                    android:textColor="@color/darkText"
-                    android:textSize="14dp" />
+                    android:textColor="@color/darkText" />
 
             </RelativeLayout>
 
