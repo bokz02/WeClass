@@ -17,69 +17,213 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Student Record"
+            android:text="CTHESI1"
             android:textColor="@color/darkText"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:layout_marginEnd="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.842"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.05" />
+            app:layout_constraintVertical_bias="0.049" />
 
         <TextView
             android:id="@+id/rec_section"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Section"
+            android:layout_marginEnd="50dp"
+            android:text="Reports"
             android:textAllCaps="true"
             android:textColor="@color/darkText"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.893"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
-            android:id="@+id/rec_sub_code"
+            android:id="@+id/activityText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Subject Code"
-            android:textAllCaps="true"
+            android:layout_marginTop="150dp"
+            android:layout_marginStart="40dp"
+            android:text="Activity"
             android:textColor="@color/darkText"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.14"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rec_section"
-            app:layout_constraintVertical_bias="0.075" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-      <!--  <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
+        <TextView
+            android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/view_pager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rec_sub_code"
-            app:tabIndicator="@drawable/tab_indicator"
-            app:tabIndicatorAnimationMode="elastic"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/white" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="150dp"
+            android:text="Seatwork"
+            android:textColor="@color/darkText"
+            app:layout_constraintStart_toEndOf="@+id/activityText"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="150dp"
+            android:text="Quiz"
+            android:textColor="@color/darkText"
+            app:layout_constraintStart_toEndOf="@+id/textView17"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView7"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            app:cardCornerRadius="5dp"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="@color/darkText"
+            android:layout_marginTop="150dp"
+            app:layout_constraintStart_toEndOf="@+id/textView18"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:paddingHorizontal="5dp"
+                android:text="Assignment"
+                app:layout_constraintStart_toEndOf="@+id/textView18"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="40dp"
+            android:text="Exam"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/materialCardView7"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardView2"
+            android:layout_width="350dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="15dp"
+            app:contentPadding="15dp"
+            android:backgroundTint="@color/darkText"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />-->
+            app:layout_constraintTop_toBottomOf="@+id/textView18">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Assignment 1"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Each member will prepare a logo for their\napplication and submit it."
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="THESIS1"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="100/100"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="15dp"
+            app:contentPadding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/ass2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Assignment 2"
+                    android:textColor="@color/darkText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Each member will prepare and submit at least\nfive (5) proposed topics."
+                    android:textColor="@color/darkText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ass2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkText"
+                    android:text="THESIS1"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkText"
+                    android:text="100/100"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
