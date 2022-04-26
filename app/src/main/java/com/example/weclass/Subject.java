@@ -92,6 +92,11 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 startActivity(intent);
                 finish();
                 break;
+            case R.id.drawerSettings:
+                intent = new Intent(this,Settings.class);
+                startActivity(intent);
+                finish();
+                break;
         }
         return true;
     }

@@ -94,7 +94,7 @@
         </androidx.cardview.widget.CardView>
 
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
             android:layout_width="300dp"
             android:layout_height="120dp"
@@ -176,7 +176,7 @@
 
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
         <androidx.cardview.widget.CardView

@@ -7,45 +7,36 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Objects;
+public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class ScheduleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule);
+        setContentView(R.layout.activity_settings);
 
-        drawerLayout = findViewById(R.id.drawerLayoutSchedule);
-        navigationView = findViewById(R.id.navViewSchedule);
-        toolbar = findViewById(R.id.toolbarSchedule);
-
+        initialize();
         navigationOpen();
-
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
+    }
 
-        displayDate();
-
+    public void initialize(){
+        toolbar = findViewById(R.id.toolbarSettings);
+        navigationView = findViewById(R.id.navigationViewSettings);
+        drawerLayout = findViewById(R.id.drawerSettings);
     }
 
     public void navigationOpen() {
@@ -73,33 +64,21 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         }
     }
 
-    public void displayDate(){
-        TextView dateTimeDisplay = (TextView) findViewById(R.id.dateText);
-        Calendar calendar = Calendar.getInstance();
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
-        String date = dateFormat.format(calendar.getTime());
-        dateTimeDisplay.setText(date);
-    }
-
-    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.drawerHome:
-                Intent intent = new Intent(ScheduleActivity.this,MainActivity.class);
+                Intent intent = new Intent(this,MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;
             case R.id.drawerSched:
-
-                break;
-            case R.id.drawerSubject:
-                intent = new Intent(this,Subject.class);
+                intent = new Intent(this, ScheduleActivity.class);
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.drawerSettings:
-                intent = new Intent(this,Settings.class);
+            case R.id.drawerSubject:
+                intent = new Intent(this, Subject.class);
                 startActivity(intent);
                 finish();
                 break;

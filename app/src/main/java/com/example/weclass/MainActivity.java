@@ -91,6 +91,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 finish();
                 break;
+            case R.id.drawerSettings:
+                intent = new Intent(MainActivity.this,Settings.class);
+                startActivity(intent);
+                finish();
+                break;
         }
         return true;
     }

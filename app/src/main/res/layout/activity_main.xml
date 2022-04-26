@@ -18,8 +18,7 @@
         app:menu="@menu/main_menu"
         app:itemTextColor="@color/navigation_text_color"
         app:itemIconTint="@color/navigation_text_color"
-        android:layout_gravity="start"
-        >
+        android:layout_gravity="start">
     </com.google.android.material.navigation.NavigationView>
 
 
@@ -156,6 +155,54 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Michael Jacob Bugarin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/materialCardView14"
+                        android:layout_width="180dp"
+                        android:layout_height="10dp"
+                        android:backgroundTint="@color/darkText"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView24">
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Marco Batoon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialCardView14" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/materialCardView15"
+                        android:layout_width="140dp"
+                        android:layout_height="10dp"
+                        android:backgroundTint="@color/lightText"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView25">
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/subject_code"
