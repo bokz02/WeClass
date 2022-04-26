@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
-            android:name=".Profilee"
+            android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".Settings"
