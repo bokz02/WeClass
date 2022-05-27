@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
@@ -27,6 +28,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     NavigationView navigationView;
     Toolbar toolbar;
     ImageButton imageButton;
+    FloatingActionButton addSubject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         init();
         navigationOpen();
         moveToFragment();
+        addSubject();
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
@@ -108,6 +111,17 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 Intent intent = new Intent(Subject.this, BottomNavi.class);
                 startActivity(intent);
 
+            }
+        });
+    }
+
+    public void addSubject(){
+        addSubject = findViewById(R.id.addSubject);
+        addSubject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Subject.this, AddSubjectActivity.class);
+                startActivity(intent);
             }
         });
     }

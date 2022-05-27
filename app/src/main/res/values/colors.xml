@@ -11,8 +11,10 @@
     <color name="text_main_color">#567975</color>
     <color name="text_main_second_color">#545454</color>
     <color name="navigation_text_color">#618f8c</color>
-
+    <color name="navigation_text_color_pressed">#385150</color>
     <color name="lightText">#59bdb3</color>
     <color name="darkText">#567975</color>
     <color name="btmNaviColor">#a2e1db</color>
+    <color name="cancelButtonPressed">#7A7A7A</color>
+    <color name="cancelButtonNotPressed">#DBDBDB</color>
 </resources>
