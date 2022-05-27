@@ -19,8 +19,8 @@
 
         <item
             android:id="@+id/drawerReminder"
-            android:title="Reminders"
-            android:icon="@drawable/iconbell"/>
+            android:title="Archive"
+            android:icon="@drawable/iconpapers"/>
 
     </group>
 
