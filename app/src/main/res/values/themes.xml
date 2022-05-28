@@ -23,4 +23,10 @@
         <item name="colorPrimary">@color/navigation_text_color</item>
     </style>
 
+    <style name="Theme.TimeDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorAccent">@color/navigation_text_color</item>
+
+    </style>
+
+
 </resources>

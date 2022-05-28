@@ -1,20 +1,39 @@
 package com.example.weclass;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.timepicker.MaterialTimePicker;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 
 public class AddSubjectActivity extends AppCompatActivity {
 
-    Button cancelButton, okButton;
+    Button cancelButton, createButton;
+    TextView course, subjectName, subjectCode, dateTextView, timeTextView;
+    int t1Hour, t1Minute;
+    ImageButton timeButton, dateButton;
+    CharSequence[] dayOfWeek;
+    String selectedDay;
 
 
     @Override
@@ -24,10 +43,70 @@ public class AddSubjectActivity extends AppCompatActivity {
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
-        backButton();
-        okButton();
 
+        initialize();
+        pickTime();
+        createButton();
+        cancelButton();
+        backButton();
+        pickDate();
     }
+
+    public void pickDate(){
+        final String[] dayOfWeek = new String[]{
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+        };
+
+        selectedDay = dayOfWeek[0];
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
+                builder.setTitle("Select day");
+                builder.setSingleChoiceItems(dayOfWeek, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedDay = dayOfWeek[i];
+                        dateTextView.setText(selectedDay);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    // Open time picker when clicked
+    public void pickTime(){
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AddSubjectActivity.this,R.style.Theme_TimeDialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                       t1Hour = hourOfDay;
+                       t1Minute = minutes;
+                       Calendar calendar = Calendar.getInstance();
+                       calendar.set(0,0,0,t1Hour,t1Minute);
+                       SimpleDateFormat format = new SimpleDateFormat("h:mm aa");
+                       String time = format.format(calendar.getTime());
+                       timeTextView.setText(time);
+
+                    }
+                }, 12, 0 ,false
+                );
+                timePickerDialog.updateTime(t1Hour,t1Minute);
+                timePickerDialog.show();
+            }
+        });
+    }
+
 
     public void backButton(){
         ImageButton imageButton = (ImageButton) findViewById(R.id.backButtonSubject);
@@ -37,32 +116,94 @@ public class AddSubjectActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }       // Back button
+
+    //Initialize all the textview and button
+    public void initialize(){
+        dateButton = findViewById(R.id.dateImageButton);
+        timeButton = findViewById(R.id.timeImageButton);
+        createButton = findViewById(R.id.createButtonSubject);
+        course = findViewById(R.id.courseNameText);
+        subjectCode = findViewById(R.id.subjectCodeText);
+        subjectName = findViewById(R.id.subjectNameText);
+        dateTextView = findViewById(R.id.dayAddSubject);
+        timeTextView = findViewById(R.id.timeAddSubject);
+        cancelButton = findViewById(R.id.cancelButtonSubject);
     }
 
-    public void okButton(){
-        okButton = findViewById(R.id.createButtonSubject);
 
-        okButton.setOnClickListener(new View.OnClickListener() {
+
+    // Show dialog box when create button is pressed
+    public void createButton(){
+
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(course.getText().toString().isEmpty() || subjectName.getText().toString().isEmpty() || subjectCode.getText().toString().isEmpty()) {
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
+                    builder.setTitle("Error");
+                    builder.setIcon(R.drawable.ic_baseline_warning_24);
+                    builder.setMessage("Don't leave empty fields!");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
+                    builder.setTitle("Please confirm");
+                    builder.setIcon(R.drawable.ic_baseline_warning_24);
+                    builder.setMessage("Are you sure all the information are correct?");
+                    builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            Snackbar.make(createButton, "Subject successfully created!", Snackbar.LENGTH_LONG).show();
+
+                            course.setText("");
+                            subjectCode.setText("");
+                            subjectName.setText("");
+                            dateTextView.setText("");
+                            timeTextView.setText("");
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+    }
+
+
+    // Show dialog box when cancel button is pressed
+    public void cancelButton(){
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
-                builder.setTitle("Please confirm");
+                builder.setTitle("Confirm exit");
                 builder.setIcon(R.drawable.ic_baseline_warning_24);
-                builder.setMessage("Are you sure all the information are correct?");
-                builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                builder.setMessage("All the fields will not be saved!");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Snackbar.make(okButton, "Subject successfully created!", Snackbar.LENGTH_LONG).show();
+                        finish();
 
                     }
                 });
 
+                builder.setTitle("Confirm exit");
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                builder.setMessage("All the fields will not be saved!");
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 });
+
                 builder.show();
             }
         });
