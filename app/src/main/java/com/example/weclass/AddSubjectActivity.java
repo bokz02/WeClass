@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.timepicker.MaterialTimePicker;
@@ -32,7 +33,6 @@ public class AddSubjectActivity extends AppCompatActivity {
     TextView course, subjectName, subjectCode, dateTextView, timeTextView;
     int t1Hour, t1Minute;
     ImageButton timeButton, dateButton;
-    CharSequence[] dayOfWeek;
     String selectedDay;
 
 
@@ -52,6 +52,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         pickDate();
     }
 
+    // DAY PICKER WILL OPEN WHEN PRESSED
     public void pickDate(){
         final String[] dayOfWeek = new String[]{
                 "Sunday",
@@ -82,7 +83,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         });
     }
 
-    // Open time picker when clicked
+    // Open time picker when PRESSED
     public void pickTime(){
         timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,11 +148,12 @@ public class AddSubjectActivity extends AppCompatActivity {
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
                         }
                     });
                     builder.show();
                 }
+
+                //IF FIELDS ARE FILLED, IT WILL ADD TO DATABASE
                 else {
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
                     builder.setTitle("Please confirm");
@@ -160,6 +162,13 @@ public class AddSubjectActivity extends AppCompatActivity {
                     builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+
+                            DataBaseHelper dbh = new DataBaseHelper(AddSubjectActivity.this);
+                            dbh.addSubject(course.getText().toString().trim(),
+                                    subjectCode.getText().toString().trim(),
+                                    subjectName.getText().toString().trim(),
+                                    dateTextView.getText().toString().trim(),
+                                    timeTextView.getText().toString().trim());
 
                             Snackbar.make(createButton, "Subject successfully created!", Snackbar.LENGTH_LONG).show();
 

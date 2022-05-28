@@ -37,7 +37,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
         init();
         navigationOpen();
-        moveToFragment();
+        //moveToFragment();
         addSubject();
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -69,7 +69,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout = findViewById(R.id.drawerSubject);
         navigationView = findViewById(R.id.navSubject);
         toolbar = findViewById(R.id.toolbarSubject);
-        imageButton = findViewById(R.id.subSubject);
+        //imageButton = findViewById(R.id.subSubject);
     }
 
     public void navigationOpen() {

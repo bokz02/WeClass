@@ -24,6 +24,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewAddSubject"
+            android:layout_marginTop="10dp"
+            android:layout_width="350dp"
+            android:layout_height="400dp"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarSubject"
             android:layout_width="41dp"
@@ -93,237 +105,237 @@
         </androidx.cardview.widget.CardView>
 
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            app:cardBackgroundColor="@color/darkText"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.526"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:layout_constraintVertical_bias="0.056">
+<!--        <com.google.android.material.card.MaterialCardView-->
+<!--            android:id="@+id/materialCardView"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            app:cardBackgroundColor="@color/darkText"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="15dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.526"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/cardView"-->
+<!--            app:layout_constraintVertical_bias="0.056">-->
 
-            <ImageButton
-                android:id="@+id/subSubject"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/transparent_bg" />
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp">
-
-                <TextView
-                    android:id="@+id/subject_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:text="CSTHESI1"
-                    android:textAllCaps="true"
-
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/subSubject"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/transparent_bg" />-->
 
 
-                <TextView
-                    android:id="@+id/subject_des1"
-                    android:layout_width="277dp"
-                    android:layout_height="21dp"
-                    android:layout_below="@+id/subject_code"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="-1dp"
-                    android:layout_marginBottom="30dp"
-                    android:text="Thesis 1"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white" />
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:layout_marginBottom="20dp">-->
 
-                <TextView
-                    android:id="@+id/subject_time1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="0dp"
-                    android:drawableLeft="@drawable/ic_baseline_access_time_24"
-                    android:drawablePadding="5dp"
-                    android:drawableTint="@color/white"
-                    android:text="Tuesday, 7:00 am"
-                    android:textColor="@color/white" />
+<!--                <TextView-->
+<!--                    android:id="@+id/subject_code"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:text="CSTHESI1"-->
+<!--                    android:textAllCaps="true"-->
 
-            </RelativeLayout>
-
-        </com.google.android.material.card.MaterialCardView>
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.0"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0" />-->
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/materialCardView1"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.526"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-            app:layout_constraintVertical_bias="0.02">
+<!--                <TextView-->
+<!--                    android:id="@+id/subject_des1"-->
+<!--                    android:layout_width="277dp"-->
+<!--                    android:layout_height="21dp"-->
+<!--                    android:layout_below="@+id/subject_code"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginEnd="-1dp"-->
+<!--                    android:layout_marginBottom="30dp"-->
+<!--                    android:text="Thesis 1"-->
+<!--                    android:textAllCaps="true"-->
+<!--                    android:textColor="@color/white" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/subject_time1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_marginEnd="0dp"-->
+<!--                    android:layout_marginBottom="0dp"-->
+<!--                    android:drawableLeft="@drawable/ic_baseline_access_time_24"-->
+<!--                    android:drawablePadding="5dp"-->
+<!--                    android:drawableTint="@color/white"-->
+<!--                    android:text="Tuesday, 7:00 am"-->
+<!--                    android:textColor="@color/white" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--        </com.google.android.material.card.MaterialCardView>-->
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp">
-
-                <TextView
-                    android:id="@+id/subject_code1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:text="GEUNDETS"
-                    android:textAllCaps="true"
-
-                    android:textColor="@color/darkText"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/materialCardView1"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            app:cardBackgroundColor="@color/white"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="15dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.526"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/materialCardView"-->
+<!--            app:layout_constraintVertical_bias="0.02">-->
 
 
-                <TextView
-                    android:id="@+id/subject_des"
-                    android:layout_width="275dp"
-                    android:layout_height="21dp"
-                    android:layout_below="@+id/subject_code1"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="-1dp"
-                    android:layout_marginBottom="30dp"
-                    android:text="Understanding the Self"
-                    android:textAllCaps="true"
-                    android:textColor="@color/darkText" />
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:layout_marginBottom="20dp">-->
 
-                <TextView
-                    android:id="@+id/subject_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="-1dp"
-                    android:layout_marginBottom="2dp"
-                    android:drawableLeft="@drawable/ic_baseline_access_time_24"
-                    android:drawablePadding="5dp"
-                    android:drawableTint="@color/darkText"
-                    android:text="Wednesday, 7:00 am"
-                    android:textColor="@color/darkText" />
+<!--                <TextView-->
+<!--                    android:id="@+id/subject_code1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:text="GEUNDETS"-->
+<!--                    android:textAllCaps="true"-->
 
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/materialCardView3"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.526"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView1"
-            app:layout_constraintVertical_bias="0.039">
+<!--                    android:textColor="@color/darkText"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.0"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0" />-->
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp">
+<!--                <TextView-->
+<!--                    android:id="@+id/subject_des"-->
+<!--                    android:layout_width="275dp"-->
+<!--                    android:layout_height="21dp"-->
+<!--                    android:layout_below="@+id/subject_code1"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginEnd="-1dp"-->
+<!--                    android:layout_marginBottom="30dp"-->
+<!--                    android:text="Understanding the Self"-->
+<!--                    android:textAllCaps="true"-->
+<!--                    android:textColor="@color/darkText" />-->
 
-                <TextView
-                    android:id="@+id/subject_code3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:text="PARACOMP"
-                    android:textAllCaps="true"
+<!--                <TextView-->
+<!--                    android:id="@+id/subject_time"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_marginEnd="-1dp"-->
+<!--                    android:layout_marginBottom="2dp"-->
+<!--                    android:drawableLeft="@drawable/ic_baseline_access_time_24"-->
+<!--                    android:drawablePadding="5dp"-->
+<!--                    android:drawableTint="@color/darkText"-->
+<!--                    android:text="Wednesday, 7:00 am"-->
+<!--                    android:textColor="@color/darkText" />-->
 
-                    android:textColor="@color/darkText"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+<!--            </RelativeLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/materialCardView3"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            app:cardBackgroundColor="@color/white"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="15dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.526"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/materialCardView1"-->
+<!--            app:layout_constraintVertical_bias="0.039">-->
 
 
-                <TextView
-                    android:id="@+id/subject_des3"
-                    android:layout_width="275dp"
-                    android:layout_height="21dp"
-                    android:layout_below="@+id/subject_code3"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="-1dp"
-                    android:layout_marginBottom="30dp"
-                    android:text="Parallel Computing"
-                    android:textAllCaps="true"
-                    android:textColor="@color/darkText" />
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:layout_marginBottom="20dp">-->
 
-                <TextView
-                    android:id="@+id/subject_time3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="-1dp"
-                    android:layout_marginBottom="2dp"
-                    android:drawableLeft="@drawable/ic_baseline_access_time_24"
-                    android:drawablePadding="5dp"
-                    android:drawableTint="@color/darkText"
-                    android:text="Friday, 7:00 am"
-                    android:textColor="@color/darkText" />
+<!--                <TextView-->
+<!--                    android:id="@+id/subject_code3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:text="PARACOMP"-->
+<!--                    android:textAllCaps="true"-->
 
-            </RelativeLayout>
+<!--                    android:textColor="@color/darkText"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.0"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0" />-->
 
-        </androidx.cardview.widget.CardView>
+
+<!--                <TextView-->
+<!--                    android:id="@+id/subject_des3"-->
+<!--                    android:layout_width="275dp"-->
+<!--                    android:layout_height="21dp"-->
+<!--                    android:layout_below="@+id/subject_code3"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginEnd="-1dp"-->
+<!--                    android:layout_marginBottom="30dp"-->
+<!--                    android:text="Parallel Computing"-->
+<!--                    android:textAllCaps="true"-->
+<!--                    android:textColor="@color/darkText" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/subject_time3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_marginEnd="-1dp"-->
+<!--                    android:layout_marginBottom="2dp"-->
+<!--                    android:drawableLeft="@drawable/ic_baseline_access_time_24"-->
+<!--                    android:drawablePadding="5dp"-->
+<!--                    android:drawableTint="@color/darkText"-->
+<!--                    android:text="Friday, 7:00 am"-->
+<!--                    android:textColor="@color/darkText" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
