@@ -10,11 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".EditSubjectActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Dialog"
+            android:exported="false" />
+        <activity
             android:name=".AddSubjectActivity"
+            android:exported="false"
             android:label="Add Subject"
             android:parentActivityName=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".Profile"
             android:exported="false" />

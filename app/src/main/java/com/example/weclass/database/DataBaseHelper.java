@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.snackbar.Snackbar;
+
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -50,6 +52,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
+    // ADD QUERY TO DATABASE
     public void addSubject(String course, String subjectCode, String subjectName, String day, String time){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -62,19 +65,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, contentValues);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void deleteSubject(int row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result =  db.delete(TABLE_NAME, "id_number=?", new String[]{ String.valueOf(row_id)});
+
+        if (result == -1){
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Delete successfully", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public Cursor readAllData(){
-        String query = "SELECT * FROM " + TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = null;
-        if(db != null){
-            cursor = db.rawQuery(query, null);
-        }
-        return cursor;
-    }
+
 }

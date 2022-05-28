@@ -1,13 +1,19 @@
 package com.example.weclass;
 
 import android.content.Context;
-import android.database.Cursor;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,58 +21,153 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weclass.database.DataBaseHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHolder> {
-    private Context context;
-    private ArrayList courseName, subjectCode, subjectName, date, time;
+public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHolder> implements Filterable {
+    private final ArrayList<SubjectItems> subjectItems;
+    private ArrayList<SubjectItems> subjectItemsFull;
+    private ArrayList idNumber;
+    private final Context context;
+    private OnNoteListener mOnNoteListener;
+    SQLiteDatabase sqLiteDatabase;
+    String id;
 
-    SubjectAdapter(Context context, ArrayList courseName, ArrayList subjectCode,
-                   ArrayList subjectName, ArrayList date, ArrayList time){
+
+
+     public SubjectAdapter(Context context, ArrayList<SubjectItems> subjectItems, OnNoteListener onNoteListener){
         this.context = context;
-        this.courseName = courseName;
-        this.subjectCode = subjectCode;
-        this.subjectName = subjectName;
-        this.date = date;
-        this.time = time;
+        this.subjectItems = subjectItems;
+        this.mOnNoteListener = onNoteListener;
+        subjectItemsFull = new ArrayList<>(subjectItems);
 
     }
+
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.subject_recyclerview_style, parent,false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, mOnNoteListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.courseNameTxt.setText(String.valueOf(courseName.get(position)));
-        holder.subjectCodeTxt.setText(String.valueOf(subjectCode.get(position)));
-        holder.subjectTitleTxt.setText(String.valueOf(subjectName.get(position)));
-        holder.dateTxt.setText(String.valueOf(date.get(position)));
-        holder.timeTxt.setText(String.valueOf(time.get(position)));
+         final SubjectItems item = subjectItems.get(position);
+         holder.id.setText(String.valueOf(subjectItems.get(position).getId()));
+        holder.courseNameTxt.setText(String.valueOf(subjectItems.get(position).getCourse()));
+        holder.subjectCodeTxt.setText(String.valueOf(subjectItems.get(position).getSubjectCode()));
+        holder.subjectTitleTxt.setText(String.valueOf(subjectItems.get(position).getSubjectName()));
+        holder.dateTxt.setText(String.valueOf(subjectItems.get(position).getDaySubject()));
+        holder.timeTxt.setText(String.valueOf(subjectItems.get(position).getTimeSubject()));
+
+
+        holder.optionSubject.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(context, holder.optionSubject);
+                popupMenu.inflate(R.menu.option_subject_menu);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.edit_subject:
+                                Intent intent = new Intent(context, EditSubjectActivity.class);
+                                context.startActivity(intent);
+                                break;
+                            case R.id.delete_subject:
+                                DataBaseHelper db = new DataBaseHelper(context);
+                                db.deleteSubject(item.getId());
+
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return courseName.size();
+        return subjectItems.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public Filter getFilter() {
+        return subjectFilter;
+    }
 
-        TextView courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt;
+    private final Filter subjectFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<SubjectItems> filteredList = new ArrayList<>();
 
-        public MyViewHolder(@NonNull View itemView) {
+            if(charSequence == null || charSequence.length() == 0){
+                filteredList.addAll(subjectItemsFull);
+            }else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for (SubjectItems subjectItems: subjectItemsFull){
+                    if (subjectItems.getCourse().toLowerCase().contains(filterPattern) ||
+                    subjectItems.getSubjectCode().toLowerCase().contains(filterPattern) ||
+                    subjectItems.getSubjectName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(subjectItems);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            subjectItems.clear();
+            subjectItems.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+
+        }
+    };
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        TextView id,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt;
+        OnNoteListener onNoteListener;
+        ImageButton optionSubject;
+
+        public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
+            id = itemView.findViewById(R.id.positionNumber);
             courseNameTxt = itemView.findViewById(R.id.courseNameRecView);
             subjectCodeTxt = itemView.findViewById(R.id.subjectCodeRecView);
             subjectTitleTxt = itemView.findViewById(R.id.subjectTitleRecView);
             dateTxt = itemView.findViewById(R.id.dateTextViewRecView);
             timeTxt = itemView.findViewById(R.id.timeTextViewRecView);
+            optionSubject = itemView.findViewById(R.id.optionButtonSubject);
+            this.onNoteListener = onNoteListener;
+
+            itemView.setOnClickListener(this);
 
         }
+
+        @Override
+        public void onClick(View view) {
+            onNoteListener.onNoteClick(getAdapterPosition());
+
+        }
+
     }
+
+    public interface OnNoteListener{
+        void onNoteClick(int position);
+    }
+
+
 
 
 }

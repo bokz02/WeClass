@@ -54,7 +54,7 @@ public class AddSubjectActivity extends AppCompatActivity {
     }
 
     // DAY PICKER WILL OPEN WHEN PRESSED
-    public void pickDate(){
+    public void pickDate() {
         final String[] dayOfWeek = new String[]{
                 "Sunday",
                 "Monday",
@@ -85,32 +85,32 @@ public class AddSubjectActivity extends AppCompatActivity {
     }
 
     // Open time picker when PRESSED
-    public void pickTime(){
+    public void pickTime() {
         timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(AddSubjectActivity.this,R.style.Theme_TimeDialog, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AddSubjectActivity.this, R.style.Theme_TimeDialog, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
-                       t1Hour = hourOfDay;
-                       t1Minute = minutes;
-                       Calendar calendar = Calendar.getInstance();
-                       calendar.set(0,0,0,t1Hour,t1Minute);
-                       SimpleDateFormat format = new SimpleDateFormat("h:mm aa");
-                       String time = format.format(calendar.getTime());
-                       timeTextView.setText(time);
+                        t1Hour = hourOfDay;
+                        t1Minute = minutes;
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(0, 0, 0, t1Hour, t1Minute);
+                        SimpleDateFormat format = new SimpleDateFormat("h:mm aa");
+                        String time = format.format(calendar.getTime());
+                        timeTextView.setText(time);
 
                     }
-                }, 12, 0 ,false
+                }, 12, 0, false
                 );
-                timePickerDialog.updateTime(t1Hour,t1Minute);
+                timePickerDialog.updateTime(t1Hour, t1Minute);
                 timePickerDialog.show();
             }
         });
     }
 
 
-    public void backButton(){
+    public void backButton() {
         ImageButton imageButton = (ImageButton) findViewById(R.id.backButtonSubject);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +122,7 @@ public class AddSubjectActivity extends AppCompatActivity {
     }       // Back button
 
     //Initialize all the textview and button
-    public void initialize(){
+    public void initialize() {
         dateButton = findViewById(R.id.dateImageButton);
         timeButton = findViewById(R.id.timeImageButton);
         createButton = findViewById(R.id.createButtonSubject);
@@ -135,14 +135,13 @@ public class AddSubjectActivity extends AppCompatActivity {
     }
 
 
-
     // Show dialog box when create button is pressed
-    public void createButton(){
+    public void createButton() {
 
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(course.getText().toString().isEmpty() || subjectName.getText().toString().isEmpty() || subjectCode.getText().toString().isEmpty()) {
+                if (course.getText().toString().isEmpty() || subjectName.getText().toString().isEmpty() || subjectCode.getText().toString().isEmpty()) {
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
                     builder.setTitle("Error");
                     builder.setIcon(R.drawable.ic_baseline_warning_24);
@@ -189,7 +188,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
 
     // Show dialog box when cancel button is pressed
-    public void cancelButton(){
+    public void cancelButton() {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -13,7 +13,10 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -28,7 +31,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Subject extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Subject extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SubjectAdapter.OnNoteListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -37,7 +40,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     FloatingActionButton addSubject;
     RecyclerView recyclerView;
     DataBaseHelper dataBaseHelper;
-    ArrayList<String> _id, courseName, subjectCode, subjectTitle, subjectDate, subjectTime;
+    ArrayList<SubjectItems> subjectItems, id;
     SubjectAdapter subjectAdapter;
     EditText searchEditText;
 
@@ -49,10 +52,10 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         init();             // INITIALIZE ALL VIEWS
         navigationOpen();   //NAVIGATION DRAWER
         addSubject();       //FLOATING ACTION BUTTON
-        initializeDB();     // INITIALIZE DATABASE
-        displayDataOnArray();   // DISPLAY DATA ON RECYCLERVIEW
+        display();          // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
+        textListener();     // FILTER SEARCH IN SUBJECT ACTIVITY
 
-        subjectAdapter = new SubjectAdapter(Subject.this, courseName, subjectCode, subjectTitle, subjectDate, subjectTime);
+        subjectAdapter = new SubjectAdapter(Subject.this, subjectItems, this);
         recyclerView.setAdapter(subjectAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Subject.this));
 
@@ -62,33 +65,57 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
     }
 
-    public void initializeDB(){
-        dataBaseHelper = new DataBaseHelper(Subject.this);
-        _id = new ArrayList<>();
-        courseName = new ArrayList<>();
-        subjectCode = new ArrayList<>();
-        subjectTitle = new ArrayList<>();
-        subjectDate = new ArrayList<>();
-        subjectTime = new ArrayList<>();
-    }
+    public void textListener(){
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-    // DISPLAY DATA ON RECYCLERVIEW
-    public void displayDataOnArray(){
-        Cursor cursor = dataBaseHelper.readAllData();
-        if(cursor.getCount() == 0){
-                Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
-        }else {
-            while (cursor.moveToNext()){
-                _id.add(cursor.getString(0));
-                courseName.add(cursor.getString(1));
-                subjectCode.add(cursor.getString(2));
-                subjectTitle.add(cursor.getString(3));
-                subjectDate.add(cursor.getString(4));
-                subjectTime.add(cursor.getString(5));
             }
-        }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                subjectAdapter.getFilter().filter(editable);
+
+            }
+        });
+    }
+
+    // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
+    public void display(){
+        id = new ArrayList<>();
+        subjectItems = new ArrayList<>();
+        dataBaseHelper = new DataBaseHelper(this);
+        subjectItems = displayData();
 
     }
+
+
+    // GET THE DATA IN THE DATABASE
+    private ArrayList<SubjectItems> displayData(){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_NAME, null);
+        ArrayList<SubjectItems> subjectItems = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                subjectItems.add(new SubjectItems (
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return subjectItems;
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -170,4 +197,12 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
             }
         });
     }
+
+    @Override
+    public void onNoteClick(int position) {
+        Intent intent = new Intent(this, BottomNavi.class);
+        startActivity(intent);
+    }
+
+
 }

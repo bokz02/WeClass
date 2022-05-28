@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddSubjectActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_nnavi"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="Edit Subject"
+        android:textColor="@color/text_main_color"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consParent"
+        android:layout_width="350dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp" />
+
+        <EditText
+            android:id="@+id/courseNameText2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Course"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/subjectNameText2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Subject name"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/courseNameText2"
+            app:layout_constraintStart_toStartOf="@+id/courseNameText2"
+            app:layout_constraintTop_toBottomOf="@+id/courseNameText2" />
+
+        <EditText
+            android:id="@+id/subjectCodeText2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Subject code"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/subjectNameText2"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="@+id/subjectNameText2"
+            app:layout_constraintTop_toBottomOf="@+id/subjectNameText2" />
+
+        <EditText
+            android:id="@+id/timeAddSubject2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:enabled="false"
+            android:hint="Time"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/timeImageButton2"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeText2" />
+
+        <EditText
+            android:id="@+id/dayAddSubject2"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:enabled="false"
+            android:hint="Date"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/subjectCodeText2"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeText2" />
+
+        <ImageButton
+            android:id="@+id/timeImageButton2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_baseline_access_time_24"
+            app:layout_constraintEnd_toEndOf="@+id/subjectCodeText2"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeText2" />
+
+        <ImageButton
+            android:id="@+id/dateImageButton2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_baseline_calendar_today_24"
+            app:layout_constraintStart_toEndOf="@+id/dayAddSubject2"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeText2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/createButtonSubject"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:backgroundTint="@color/navigation_text_color_pressed"
+        app:cornerRadius="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/consParent"
+        app:layout_constraintTop_toBottomOf="@+id/consParent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancelButtonSubject"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:text="Cancel"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:backgroundTint="@color/cancelButtonNotPressed"
+        app:layout_constraintStart_toStartOf="@+id/consParent"
+        app:layout_constraintTop_toBottomOf="@+id/consParent" />
+
+    <ImageButton
+        android:id="@+id/backButtonSubject"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/iconback2"
+        android:backgroundTint="@color/white"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
