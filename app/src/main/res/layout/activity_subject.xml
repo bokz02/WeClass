@@ -30,7 +30,7 @@
             android:id="@+id/recyclerViewAddSubject"
             android:layout_marginTop="10dp"
             android:layout_width="350dp"
-            android:layout_height="400dp"
+            android:layout_height="500dp"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +83,7 @@
                 android:layout_height="match_parent">
 
                 <EditText
+                    android:id="@+id/searchEditTextSubject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"

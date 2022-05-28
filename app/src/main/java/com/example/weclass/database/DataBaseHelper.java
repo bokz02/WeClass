@@ -1,6 +1,7 @@
 package com.example.weclass.database;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -14,9 +15,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Subjects.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "my_subjects";
-    private static final String COLUMN_ID = "id_number";
-    private static final String COLUMN_COURSE = "course";
+    public static final String TABLE_NAME = "my_subjects";
+    public static final String COLUMN_ID = "id_number";
+    public static final String COLUMN_COURSE = "course";
     private static final String COLUMN_SUBJECT_CODE = "subject_code";
     private static final String COLUMN_SUBJECT_NAME = "subject_name";
     private static final String COLUMN_TIME = "subject_time";
@@ -64,5 +65,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         } else {
             Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public Cursor readAllData(){
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
     }
 }

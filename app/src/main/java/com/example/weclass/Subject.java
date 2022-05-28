@@ -6,20 +6,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Subject extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,22 +35,58 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     Toolbar toolbar;
     ImageButton imageButton;
     FloatingActionButton addSubject;
+    RecyclerView recyclerView;
+    DataBaseHelper dataBaseHelper;
+    ArrayList<String> _id, courseName, subjectCode, subjectTitle, subjectDate, subjectTime;
+    SubjectAdapter subjectAdapter;
+    EditText searchEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
 
-        init();
-        navigationOpen();
-        //moveToFragment();
-        addSubject();
+        init();             // INITIALIZE ALL VIEWS
+        navigationOpen();   //NAVIGATION DRAWER
+        addSubject();       //FLOATING ACTION BUTTON
+        initializeDB();     // INITIALIZE DATABASE
+        displayDataOnArray();   // DISPLAY DATA ON RECYCLERVIEW
+
+        subjectAdapter = new SubjectAdapter(Subject.this, courseName, subjectCode, subjectTitle, subjectDate, subjectTime);
+        recyclerView.setAdapter(subjectAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Subject.this));
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
+    }
 
+    public void initializeDB(){
+        dataBaseHelper = new DataBaseHelper(Subject.this);
+        _id = new ArrayList<>();
+        courseName = new ArrayList<>();
+        subjectCode = new ArrayList<>();
+        subjectTitle = new ArrayList<>();
+        subjectDate = new ArrayList<>();
+        subjectTime = new ArrayList<>();
+    }
+
+    // DISPLAY DATA ON RECYCLERVIEW
+    public void displayDataOnArray(){
+        Cursor cursor = dataBaseHelper.readAllData();
+        if(cursor.getCount() == 0){
+                Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
+        }else {
+            while (cursor.moveToNext()){
+                _id.add(cursor.getString(0));
+                courseName.add(cursor.getString(1));
+                subjectCode.add(cursor.getString(2));
+                subjectTitle.add(cursor.getString(3));
+                subjectDate.add(cursor.getString(4));
+                subjectTime.add(cursor.getString(5));
+            }
+        }
 
     }
 
@@ -64,12 +106,15 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         }
     }
 
+
+
     public void init(){
 
+        searchEditText = findViewById(R.id.searchEditTextSubject);
+        recyclerView = findViewById(R.id.recyclerViewAddSubject);
         drawerLayout = findViewById(R.id.drawerSubject);
         navigationView = findViewById(R.id.navSubject);
         toolbar = findViewById(R.id.toolbarSubject);
-        //imageButton = findViewById(R.id.subSubject);
     }
 
     public void navigationOpen() {
