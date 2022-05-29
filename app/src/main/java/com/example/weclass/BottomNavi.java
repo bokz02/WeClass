@@ -15,10 +15,11 @@ import android.widget.ImageButton;
 import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class BottomNavi extends AppCompatActivity {
-
+    FloatingActionButton floatingActionButton;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -61,6 +62,7 @@ public class BottomNavi extends AppCompatActivity {
     }
 
     public void initialize(){
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigation);
     }
 
