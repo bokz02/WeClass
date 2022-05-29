@@ -70,6 +70,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void updateData(String id,String course, String subjectCode, String subjectName, String day, String time){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_COURSE, course);
+        contentValues.put(COLUMN_SUBJECT_CODE, subjectCode);
+        contentValues.put(COLUMN_SUBJECT_NAME, subjectName);
+        contentValues.put(COLUMN_DAY, day);
+        contentValues.put(COLUMN_TIME, time);
+        long result = db.update(TABLE_NAME, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void deleteSubject(int row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result =  db.delete(TABLE_NAME, "id_number=?", new String[]{ String.valueOf(row_id)});

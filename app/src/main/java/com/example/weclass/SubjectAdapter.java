@@ -74,12 +74,18 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()){
                             case R.id.edit_subject:
+                                Intent intent = new Intent(context, EditSubjectActivity.class);
 
                                 Bundle bundle = new Bundle();
+                                bundle.putString("id", String.valueOf(item.getId()));
+                                bundle.putString("course", item.getCourse());
+                                bundle.putString("subject_code", item.getSubjectCode());
+                                bundle.putString("subject_name", item.getSubjectName());
+                                bundle.putString("day", item.getDaySubject());
+                                bundle.putString("time", item.getTimeSubject());
 
 
-
-                                Intent intent = new Intent(context, EditSubjectActivity.class);
+                                intent.putExtra("Userdata", bundle);
                                 context.startActivity(intent);
 
 

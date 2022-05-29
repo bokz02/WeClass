@@ -121,6 +121,14 @@ public class AddSubjectActivity extends AppCompatActivity {
         });
     }       // Back button
 
+
+    // BACK BUTTON OF THE PHONE
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AddSubjectActivity.this, Subject.class);
+        startActivity(intent);
+    }
+
     //Initialize all the textview and button
     public void initialize() {
         dateButton = findViewById(R.id.dateImageButton);
