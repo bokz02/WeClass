@@ -8,10 +8,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.weclass.SubjectAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 
 public class DataBaseHelper extends SQLiteOpenHelper {
+
 
     private Context context;
     private static final String DATABASE_NAME = "Subjects.db";
@@ -75,7 +77,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Delete successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+
         }
     }
 

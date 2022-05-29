@@ -36,7 +36,6 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    ImageButton imageButton;
     FloatingActionButton addSubject;
     RecyclerView recyclerView;
     DataBaseHelper dataBaseHelper;
@@ -54,16 +53,22 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         addSubject();       //FLOATING ACTION BUTTON
         display();          // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
         textListener();     // FILTER SEARCH IN SUBJECT ACTIVITY
+        initializeAdapter(); // INITIALIZE ADAPTER
 
-        subjectAdapter = new SubjectAdapter(Subject.this, subjectItems, this);
-        recyclerView.setAdapter(subjectAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Subject.this));
+
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
     }
+
+    public void initializeAdapter(){
+        subjectAdapter = new SubjectAdapter(Subject.this, subjectItems, this);
+        recyclerView.setAdapter(subjectAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Subject.this));
+    }
+
 
     public void textListener(){
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -176,16 +181,6 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         return true;
     }
 
-    public void moveToFragment(){
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Subject.this, BottomNavi.class);
-                startActivity(intent);
-
-            }
-        });
-    }
 
     public void addSubject(){
         addSubject = findViewById(R.id.addSubject);

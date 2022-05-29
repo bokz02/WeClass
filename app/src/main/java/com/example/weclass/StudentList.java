@@ -28,26 +28,13 @@ public class StudentList extends Fragment {
     v = inflater.inflate(R.layout.fragment_student_list, container, false);
 
     initialize();
-    moveFromFragmentToActivity();
+    //moveFromFragmentToActivity();
 
         return v;
     }
 
     public void initialize(){
-        imageButton = v.findViewById(R.id.buttonClaudia);
+
     }
-
-    public void moveFromFragmentToActivity(){
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), Profile.class);
-                startActivity(i);
-                //((Activity) getActivity()).overridePendingTransition(0, 0);  //Animation in transition
-            }
-        });
-    }
-
-
 
 }

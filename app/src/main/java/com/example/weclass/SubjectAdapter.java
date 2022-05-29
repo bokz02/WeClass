@@ -1,8 +1,10 @@
 package com.example.weclass;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.database.DataBaseHelper;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +29,8 @@ import java.util.List;
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHolder> implements Filterable {
     private final ArrayList<SubjectItems> subjectItems;
     private ArrayList<SubjectItems> subjectItemsFull;
-    private ArrayList idNumber;
     private final Context context;
     private OnNoteListener mOnNoteListener;
-    SQLiteDatabase sqLiteDatabase;
-    String id;
 
 
 
@@ -53,7 +53,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-         final SubjectItems item = subjectItems.get(position);
+         SubjectItems item = subjectItems.get(position);
          holder.id.setText(String.valueOf(subjectItems.get(position).getId()));
         holder.courseNameTxt.setText(String.valueOf(subjectItems.get(position).getCourse()));
         holder.subjectCodeTxt.setText(String.valueOf(subjectItems.get(position).getSubjectCode()));
@@ -62,10 +62,11 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         holder.timeTxt.setText(String.valueOf(subjectItems.get(position).getTimeSubject()));
 
 
+        // NAVIGATE TO EDIT ACTIVITY, OR DELETE A SUBJECT
         holder.optionSubject.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
+
                 PopupMenu popupMenu = new PopupMenu(context, holder.optionSubject);
                 popupMenu.inflate(R.menu.option_subject_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -73,12 +74,47 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()){
                             case R.id.edit_subject:
+
+                                Bundle bundle = new Bundle();
+
+
+
                                 Intent intent = new Intent(context, EditSubjectActivity.class);
                                 context.startActivity(intent);
+
+
                                 break;
                             case R.id.delete_subject:
-                                DataBaseHelper db = new DataBaseHelper(context);
-                                db.deleteSubject(item.getId());
+                                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
+                                builder.setTitle("Delete");
+                                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                                builder.setMessage("Are you sure do you want to delete this?");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        DataBaseHelper db = new DataBaseHelper(context);
+                                        db.deleteSubject(item.getId());
+
+                                        int a = holder.getAdapterPosition();
+                                        subjectItems.remove(a);
+                                        notifyItemRemoved(a);
+                                    }
+                                });
+
+                                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+
+
+
+                                builder.show();
+
+
+
 
                                 break;
                         }
@@ -165,7 +201,10 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
     public interface OnNoteListener{
         void onNoteClick(int position);
+
     }
+
+
 
 
 

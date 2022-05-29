@@ -141,7 +141,8 @@ public class AddSubjectActivity extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (course.getText().toString().isEmpty() || subjectName.getText().toString().isEmpty() || subjectCode.getText().toString().isEmpty()) {
+                if (course.getText().toString().isEmpty() || subjectName.getText().toString().isEmpty() || subjectCode.getText().toString().isEmpty()
+                        || dateTextView.getText().toString().isEmpty() || timeTextView.getText().toString().isEmpty())  {
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
                     builder.setTitle("Error");
                     builder.setIcon(R.drawable.ic_baseline_warning_24);
@@ -204,9 +205,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                     }
                 });
 
-                builder.setTitle("Confirm exit");
-                builder.setIcon(R.drawable.ic_baseline_warning_24);
-                builder.setMessage("All the fields will not be saved!");
+
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
