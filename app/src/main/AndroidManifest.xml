@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
-            android:name=".EditSubjectActivity"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.Dialog"
+            android:name=".studentlist.AddStudent"
             android:exported="false" />
+        <activity
+            android:name=".EditSubjectActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".AddSubjectActivity"
             android:exported="false"
