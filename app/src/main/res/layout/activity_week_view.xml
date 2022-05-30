@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ScheduleActivity">
+    tools:context=".schedule.WeekViewActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,7 +74,7 @@
             android:textColor="@color/darkText"
             android:textStyle="bold"
             android:onClick="previousWeekAction"
-            />
+           />
 
         <TextView
             android:id="@+id/monthYearTV"
@@ -86,7 +86,7 @@
             android:textSize="16sp"
             android:textAlignment="center"
             android:textColor="@color/darkText"
-            android:onClick="weeklyAction"/>
+            android:onClick="monthView"/>
 
         <Button
             android:layout_width="0dp"
@@ -99,8 +99,6 @@
             android:onClick="nextWeekAction" />
 
     </LinearLayout>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -178,7 +176,40 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight=".4"/>
+
+    <Button
+        android:layout_width="127dp"
+        android:layout_height="35dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        android:drawableRight="@drawable/ic_baseline_add_24"
+        android:drawableTint="@color/darkText"
+        android:onClick="newEventAction"
+        android:text="Add New Event"
+        android:textAllCaps="false"
+        android:textColor="@color/darkText"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upcoming Event"
+        android:textColor="@color/darkText"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginStart="15dp"/>
+
+    <ListView
+        android:id="@+id/eventListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:divider="@null"
+        android:layout_weight="5"/>
+
+
 </LinearLayout>
 
 
