@@ -74,17 +74,16 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         });
     }
 
+    //Back button of the phone
 
-
-    // BACK BUTTON OF THE PHONE
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(EditSubjectActivity.this, Subject.class);
         startActivity(intent);
     }
 
+    //ToDo: FIXED THE BACK BUTTON, IT SHOULDN'T BE INTENT. IT SHOULD BE startActivityForResult BASED ON STACKOVERFLOW
     public void backButton() {
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

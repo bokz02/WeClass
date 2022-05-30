@@ -154,6 +154,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                         }
+
                     });
                     builder.show();
                 }

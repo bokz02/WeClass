@@ -15,8 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="-29dp" />
 
-
-
+    <!-- TODO PUT ERROR TRAPPING IN EVERY TEXT VIEWS LIKE MAX INPUT -->
 
     <androidx.cardview.widget.CardView
         android:layout_width="325dp"

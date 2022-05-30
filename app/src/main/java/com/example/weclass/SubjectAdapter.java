@@ -115,12 +115,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                     }
                                 });
 
-
-
                                 builder.show();
-
-
-
 
                                 break;
                         }
