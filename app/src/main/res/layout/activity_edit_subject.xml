@@ -146,7 +146,7 @@
         app:layout_constraintTop_toBottomOf="@+id/consParent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/backButtonEditSubject"
+        android:id="@+id/cancelButtonEditSubject"
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.weclass.database.DataBaseHelper;
@@ -23,7 +24,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
 
     EditText _course, _subjectCode, _subjectName, _day, _time;
     TextView  _id;
-    Button updateButton, backButton;
+    Button updateButton;
+    ImageButton backButton;
     SubjectAdapter subjectAdapter;
     ArrayList<SubjectItems> subjectItemsA = new ArrayList<>();
     RecyclerView recyclerView;
@@ -44,8 +46,6 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
     }
 
     public void initializeAdapter(){
-
-
 
     }
 
@@ -96,7 +96,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         _day = findViewById(R.id.dayAddSubject2);
         _time = findViewById(R.id.timeAddSubject2);
         updateButton = findViewById(R.id.updateButtonSubject);
-        backButton = findViewById(R.id.backButtonEditSubject);
+        backButton = findViewById(R.id.backButtonSubject);
     }
 
     public void displayData(){
