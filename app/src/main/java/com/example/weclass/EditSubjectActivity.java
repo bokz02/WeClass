@@ -1,11 +1,8 @@
 package com.example.weclass;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,15 +25,12 @@ import java.util.Calendar;
 
 public class EditSubjectActivity extends AppCompatActivity implements SubjectAdapter.OnNoteListener{
 
-    EditText _course, _subjectCode, _subjectName, _dayEditText, _timeEditText;
-    TextView  _id;
+    EditText _course, _subjectCode, _subjectName;
+    TextView  _id, dayTextView, timeTextView;
     Button updateButton, cancelEditButton;
     int t1Hour, t1Minute;
-    ImageButton _time, _day, backButton;
+    ImageButton backButton;
     String selectedDay;
-    SubjectAdapter subjectAdapter;
-    ArrayList<SubjectItems> subjectItemsA = new ArrayList<>();
-    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +51,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
 
     // Open time picker when PRESSED
     public void pickTime() {
-        _time.setOnClickListener(new View.OnClickListener() {
+        timeTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(EditSubjectActivity.this, R.style.Theme_TimeDialog, new TimePickerDialog.OnTimeSetListener() {
@@ -69,7 +63,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
                         calendar.set(0, 0, 0, t1Hour, t1Minute);
                         SimpleDateFormat format = new SimpleDateFormat("h:mm aa");
                         String time = format.format(calendar.getTime());
-                        _timeEditText.setText(time);
+                        timeTextView.setText(time);
 
                     }
                 }, 12, 0, false
@@ -110,10 +104,10 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
                         _course.getText().toString().trim(),
                         _subjectCode.getText().toString().trim(),
                         _subjectName.getText().toString().trim(),
-                        _dayEditText.getText().toString().trim(),
-                        _timeEditText.getText().toString().trim());
+                        dayTextView.getText().toString().trim(),
+                        timeTextView.getText().toString().trim());
 
-                Snackbar.make(updateButton, "Subject successfully created!", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(updateButton, "Subject successfully updated!", Snackbar.LENGTH_LONG).show();
 
             }
         });
@@ -132,7 +126,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         };
 
         selectedDay = dayOfWeek[0];
-        _day.setOnClickListener(new View.OnClickListener() {
+        dayTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
@@ -141,7 +135,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectedDay = dayOfWeek[i];
-                        _dayEditText.setText(selectedDay);
+                        dayTextView.setText(selectedDay);
                         dialogInterface.dismiss();
                     }
                 });
@@ -156,10 +150,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         _course = findViewById(R.id.courseNameText2);
         _subjectCode = findViewById(R.id.subjectCodeText2);
         _subjectName = findViewById(R.id.subjectNameText2);
-        _dayEditText = findViewById(R.id.dayTextViewEditSubject);
-        _timeEditText = findViewById(R.id.timeTextViewEditSubject);
-        _day = findViewById(R.id.dateImageButton2);
-        _time = findViewById(R.id.timeImageButton2);
+        dayTextView = findViewById(R.id.dayTextViewEditSubject);
+        timeTextView = findViewById(R.id.timeTextViewEditSubject);
         updateButton = findViewById(R.id.updateButtonSubject);
         cancelEditButton = findViewById(R.id.cancelButtonEditSubject);
         backButton = findViewById(R.id.backButtonEditSubject);
@@ -174,8 +166,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
             _course.setText(bundle.getString("course"));
             _subjectCode.setText(bundle.getString("subject_code"));
             _subjectName.setText(bundle.getString("subject_name"));
-            _dayEditText.setText(bundle.getString("day"));
-            _timeEditText.setText(bundle.getString("time"));
+            dayTextView.setText(bundle.getString("day"));
+            timeTextView.setText(bundle.getString("time"));
         }
     }
 

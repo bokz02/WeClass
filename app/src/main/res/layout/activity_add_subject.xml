@@ -202,26 +202,32 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.346" />
 
-            <EditText
+            <TextView
                 android:id="@+id/timeAddSubject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="196dp"
                 android:background="@drawable/transparent_bg"
-                android:enabled="false"
+                android:enabled="true"
+                android:focusable="true"
+                android:clickable="true"
+                android:gravity="center"
                 android:hint="Select Time"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/dayAddSubject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="236dp"
                 android:background="@drawable/transparent_bg"
-                android:enabled="false"
+                android:enabled="true"
+                android:focusable="true"
+                android:clickable="true"
+                android:gravity="center"
                 android:hint="Select Date"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"

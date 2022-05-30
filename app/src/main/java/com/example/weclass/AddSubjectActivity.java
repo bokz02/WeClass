@@ -1,6 +1,5 @@
 package com.example.weclass;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
@@ -10,28 +9,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.timepicker.MaterialTimePicker;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.SimpleTimeZone;
-import java.util.TimeZone;
 
 public class AddSubjectActivity extends AppCompatActivity {
 
     Button cancelButton, createButton;
-    TextView course, subjectName, subjectCode, dateTextView, timeTextView;
+    EditText courseEditText, subjectNameEditText, subjectCodeEditText;
+    TextView dayTextView, timeTextView;
     int t1Hour, t1Minute;
     ImageButton timeButton, dateButton, backButton;
     String selectedDay;
@@ -66,7 +60,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         };
 
         selectedDay = dayOfWeek[0];
-        dateButton.setOnClickListener(new View.OnClickListener() {
+        dayTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
@@ -75,7 +69,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectedDay = dayOfWeek[i];
-                        dateTextView.setText(selectedDay);
+                        dayTextView.setText(selectedDay);
                         dialogInterface.dismiss();
                     }
                 });
@@ -86,7 +80,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
     // Open time picker when PRESSED
     public void pickTime() {
-        timeButton.setOnClickListener(new View.OnClickListener() {
+        timeTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(AddSubjectActivity.this, R.style.Theme_TimeDialog, new TimePickerDialog.OnTimeSetListener() {
@@ -134,10 +128,10 @@ public class AddSubjectActivity extends AppCompatActivity {
         dateButton = findViewById(R.id.dateImageButton);
         timeButton = findViewById(R.id.timeImageButton);
         createButton = findViewById(R.id.createButtonSubject);
-        course = findViewById(R.id.courseNameText);
-        subjectCode = findViewById(R.id.subjectCodeText);
-        subjectName = findViewById(R.id.subjectNameText);
-        dateTextView = findViewById(R.id.dayAddSubject);
+        courseEditText = findViewById(R.id.courseNameText);
+        subjectCodeEditText = findViewById(R.id.subjectCodeText);
+        subjectNameEditText = findViewById(R.id.subjectNameText);
+        dayTextView = findViewById(R.id.dayAddSubject);
         timeTextView = findViewById(R.id.timeAddSubject);
         cancelButton = findViewById(R.id.cancelButtonSubject);
         backButton = findViewById(R.id.backButtonSubject);
@@ -150,8 +144,8 @@ public class AddSubjectActivity extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (course.getText().toString().isEmpty() || subjectName.getText().toString().isEmpty() || subjectCode.getText().toString().isEmpty()
-                        || dateTextView.getText().toString().isEmpty() || timeTextView.getText().toString().isEmpty())  {
+                if (courseEditText.getText().toString().isEmpty() || subjectNameEditText.getText().toString().isEmpty() || subjectCodeEditText.getText().toString().isEmpty()
+                        || dayTextView.getText().toString().isEmpty() || timeTextView.getText().toString().isEmpty())  {
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
                     builder.setTitle("Error");
                     builder.setIcon(R.drawable.ic_baseline_warning_24);
@@ -175,18 +169,18 @@ public class AddSubjectActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
 
                             DataBaseHelper dbh = new DataBaseHelper(AddSubjectActivity.this);
-                            dbh.addSubject(course.getText().toString().trim(),
-                                    subjectCode.getText().toString().trim(),
-                                    subjectName.getText().toString().trim(),
-                                    dateTextView.getText().toString().trim(),
+                            dbh.addSubject(courseEditText.getText().toString().trim(),
+                                    subjectCodeEditText.getText().toString().trim(),
+                                    subjectNameEditText.getText().toString().trim(),
+                                    dayTextView.getText().toString().trim(),
                                     timeTextView.getText().toString().trim());
 
                             Snackbar.make(createButton, "Subject successfully created!", Snackbar.LENGTH_LONG).show();
 
-                            course.setText("");
-                            subjectCode.setText("");
-                            subjectName.setText("");
-                            dateTextView.setText("");
+                            courseEditText.setText("");
+                            subjectCodeEditText.setText("");
+                            subjectNameEditText.setText("");
+                            dayTextView.setText("");
                             timeTextView.setText("");
                         }
                     });

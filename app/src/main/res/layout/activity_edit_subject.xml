@@ -18,11 +18,11 @@
         android:id="@+id/idNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:text="ID number"
         android:textSize="16sp"
         android:textStyle="bold"
         android:visibility="invisible"
-        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,258 +52,262 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="448dp">
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/updateButtonSubject"
-            android:layout_width="159dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="132dp"
-            android:background="@drawable/transparent_bg"
-            android:text="Update"
-            android:textAllCaps="false"
-            android:textColor="@color/darkText"
-            android:textSize="14sp"
-            app:backgroundTint="@color/navigation_text_color_pressed"
-            app:cornerRadius="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="60dp"
-
-            android:layout_marginBottom="124dp"
-            android:background="#ECECEC"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/cancelButtonEditSubject"
-            android:layout_width="160dp"
-            android:layout_height="49dp"
-            android:layout_marginBottom="132dp"
-            android:background="@drawable/transparent_bg"
-            android:text="Cancel"
-            android:textAllCaps="false"
-            android:textColor="@color/darkText"
-            android:textSize="14sp"
-            app:backgroundTint="@color/cancelButtonNotPressed"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-
-
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Edit Subject"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Subject Information"
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <EditText
-            android:id="@+id/courseNameText2"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="69dp"
-            android:background="@drawable/transparent_bg"
-            android:gravity="center"
-            android:hint="Course"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-
-            android:layout_marginTop="28dp"
-            android:background="#ECECEC"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView26" />
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="match_parent"
-
-            android:layout_height="1dp"
-            android:layout_marginTop="68dp"
-            android:background="#ECECEC"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView26" />
-
-        <View
-            android:id="@+id/view5"
-
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="108dp"
-            android:background="#ECECEC"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+            android:layout_height="448dp">
 
 
-
-        <EditText
-            android:id="@+id/subjectNameText2"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginBottom="309dp"
-            android:background="@drawable/transparent_bg"
-            android:gravity="center"
-            android:hint="Subject name"
-            android:textSize="16sp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/courseNameText2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"/>
-        <EditText
-            android:id="@+id/subjectCodeText2"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@drawable/transparent_bg"
-            android:gravity="center"
-            android:hint="Subject code"
-            android:textSize="16sp"
-
-            android:layout_marginTop="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/subjectNameText2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/subjectNameText2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.346"/>
-        <EditText
-            android:id="@+id/timeTextViewEditSubject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="196dp"
-            android:background="@drawable/transparent_bg"
-            android:enabled="false"
-            android:hint="Select Time"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-        <EditText
-            android:id="@+id/dayTextViewEditSubject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="236dp"
-            android:background="@drawable/transparent_bg"
-            android:enabled="false"
-            android:hint="Select Date"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <View
-            android:id="@+id/view6"
-            android:layout_width="match_parent"
-
-            android:layout_height="1dp"
-            android:layout_marginTop="184dp"
-            android:background="#ECECEC"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/updateButtonSubject"
+                android:layout_width="159dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="132dp"
+                android:background="@drawable/transparent_bg"
+                android:text="Update"
+                android:textAllCaps="false"
+                android:textColor="@color/darkText"
+                android:textSize="14sp"
+                app:backgroundTint="@color/navigation_text_color_pressed"
+                app:cornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
-        <View
-            android:id="@+id/view4"
-            android:layout_width="match_parent"
+            <View
+                android:layout_width="1dp"
+                android:layout_height="60dp"
 
-            android:layout_height="1dp"
-            android:layout_marginTop="228dp"
-            android:background="#ECECEC"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+                android:layout_marginBottom="124dp"
+                android:background="#ECECEC"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-
-            android:layout_marginTop="145dp"
-            android:background="#ECECEC"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView26" />
-
-
-        <ImageButton
-            android:id="@+id/timeImageButton2"
-            android:layout_width="24dp"
-            android:layout_height="22dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="210dp"
-            android:background="@drawable/ic_baseline_access_time_24"
-            android:backgroundTint="#AEADAD"
-            app:layout_constraintEnd_toEndOf="@+id/subjectCodeText2"
-            app:layout_constraintTop_toBottomOf="@+id/subjectCodeText2" />
-
-        <ImageButton
-            android:id="@+id/dateImageButton2"
-            android:layout_width="24dp"
-            android:layout_height="22dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/ic_baseline_calendar_today_24"
-            android:backgroundTint="#AEADAD"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.302"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subjectCodeText2" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancelButtonEditSubject"
+                android:layout_width="160dp"
+                android:layout_height="49dp"
+                android:layout_marginBottom="132dp"
+                android:background="@drawable/transparent_bg"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/darkText"
+                android:textSize="14sp"
+                app:backgroundTint="@color/cancelButtonNotPressed"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Edit Subject"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="Subject Information"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/courseNameText2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="69dp"
+                android:background="@drawable/transparent_bg"
+                android:gravity="center"
+                android:hint="Course"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:layout_marginTop="28dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+
+                android:layout_height="1dp"
+                android:layout_marginTop="68dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+            <View
+                android:id="@+id/view5"
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="108dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+
+            <EditText
+                android:id="@+id/subjectNameText2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginBottom="309dp"
+                android:background="@drawable/transparent_bg"
+                android:gravity="center"
+                android:hint="Subject name"
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/courseNameText2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/subjectCodeText2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/transparent_bg"
+                android:gravity="center"
+                android:hint="Subject code"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/subjectNameText2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/subjectNameText2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.346" />
+
+            <TextView
+                android:id="@+id/timeTextViewEditSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="196dp"
+                android:background="@drawable/transparent_bg"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:hint="Select Time"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/dayTextViewEditSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="236dp"
+                android:background="@drawable/transparent_bg"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:hint="Select Date"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="match_parent"
+
+                android:layout_height="1dp"
+                android:layout_marginTop="184dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+
+                android:layout_height="1dp"
+                android:layout_marginTop="228dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:layout_marginTop="145dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+
+            <ImageButton
+                android:id="@+id/timeImageButton2"
+                android:layout_width="24dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="210dp"
+                android:background="@drawable/ic_baseline_access_time_24"
+                android:backgroundTint="#AEADAD"
+                app:layout_constraintEnd_toEndOf="@+id/subjectCodeText2"
+                app:layout_constraintTop_toBottomOf="@+id/subjectCodeText2" />
+
+            <ImageButton
+                android:id="@+id/dateImageButton2"
+                android:layout_width="24dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/ic_baseline_calendar_today_24"
+                android:backgroundTint="#AEADAD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.302"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subjectCodeText2" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
