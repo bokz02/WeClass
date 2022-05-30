@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.example.weclass.schedule.WeekViewActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

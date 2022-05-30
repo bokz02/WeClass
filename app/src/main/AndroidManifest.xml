@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".schedule.EventEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".studentlist.AddStudent"
             android:exported="false" />
         <activity
@@ -37,6 +40,9 @@
             android:exported="false" />
         <activity
             android:name=".Subject"
+            android:exported="false" />
+        <activity
+            android:name=".schedule.WeekViewActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
