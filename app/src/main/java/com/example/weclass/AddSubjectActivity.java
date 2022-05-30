@@ -33,7 +33,7 @@ public class AddSubjectActivity extends AppCompatActivity {
     Button cancelButton, createButton;
     TextView course, subjectName, subjectCode, dateTextView, timeTextView;
     int t1Hour, t1Minute;
-    ImageButton timeButton, dateButton;
+    ImageButton timeButton, dateButton, backButton;
     String selectedDay;
 
 
@@ -111,8 +111,8 @@ public class AddSubjectActivity extends AppCompatActivity {
 
 
     public void backButton() {
-        ImageButton imageButton = (ImageButton) findViewById(R.id.backButtonSubject);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddSubjectActivity.this, Subject.class);
@@ -140,6 +140,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         dateTextView = findViewById(R.id.dayAddSubject);
         timeTextView = findViewById(R.id.timeAddSubject);
         cancelButton = findViewById(R.id.cancelButtonSubject);
+        backButton = findViewById(R.id.backButtonSubject);
     }
 
 
