@@ -16,14 +16,14 @@ import java.util.ArrayList;
 
 import static com.example.weclass.schedule.CalendarUtils.daysInMonthArray;
 import static com.example.weclass.schedule.CalendarUtils.daysInWeekArray;
-import static com.example.weclass.schedule.CalendarUtils.monthYearFromDate;
+import static com.example.weclass.schedule.CalendarUtils.weeklyYearFromDate;
 
 import com.example.weclass.R;
 import com.example.weclass.ScheduleActivity;
 
 public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
-    private TextView monthYearText;
+    private TextView monthYearText, weeklyYearText;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
 
@@ -33,19 +33,20 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week_view);
         initWidgets();
+        CalendarUtils.selectedDate = LocalDate.now();
         setWeekView();
     }
 
     private void initWidgets()
     {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
-        monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
+        weeklyYearText = findViewById(R.id.weeklyYearTV);
     }
 
     private void setWeekView()
     {
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
+        weeklyYearText.setText(weeklyYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> days = daysInWeekArray(CalendarUtils.selectedDate);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(days, this);

@@ -1,7 +1,8 @@
 package com.example.weclass;
 
 import static com.example.weclass.schedule.CalendarUtils.daysInMonthArray;
-import static com.example.weclass.schedule.CalendarUtils.monthYearFromDate;
+import static com.example.weclass.schedule.CalendarUtils.monthlyYearFromDate;
+import static com.example.weclass.schedule.CalendarUtils.weeklyYearFromDate;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -41,7 +42,7 @@ public class ScheduleActivity extends AppCompatActivity implements CalendarAdapt
     NavigationView navigationView;
     Toolbar toolbar;
 
-    private TextView monthYearText;
+    private TextView monthYearText, weeklyYearText;
     private RecyclerView calendarRecyclerView;
 
     @Override
@@ -69,11 +70,12 @@ public class ScheduleActivity extends AppCompatActivity implements CalendarAdapt
     {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
+        weeklyYearText = findViewById(R.id.weeklyYearTV);
     }
 
     private void setMonthView()
     {
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
+        monthYearText.setText(monthlyYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> daysInMonth = daysInMonthArray(CalendarUtils.selectedDate);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);

@@ -20,15 +20,23 @@ public class CalendarUtils
 
     public static String formattedTime(LocalTime time)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         return time.format(formatter);
     }
 
-    public static String monthYearFromDate(LocalDate date)
+
+    public static String monthlyYearFromDate(LocalDate date)
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd yyyy");
         return date.format(formatter);
     }
+
+    public static String weeklyYearFromDate(LocalDate date)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd yyyy");
+        return date.format(formatter);
+    }
+
 
     public static ArrayList<LocalDate> daysInMonthArray(LocalDate date)
     {

@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 break;
             case R.id.drawerSched:
-                 intent = new Intent(MainActivity.this, ScheduleActivity.class);
+                 intent = new Intent(MainActivity.this, WeekViewActivity.class);
                 startActivity(intent);
                 finish();
                 break;
