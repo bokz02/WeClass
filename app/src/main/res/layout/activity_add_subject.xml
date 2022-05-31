@@ -30,22 +30,19 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="448dp"
-            >
+            android:layout_height="448dp">
 
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/createButtonSubject"
-                android:layout_width="159dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="132dp"
-                android:background="@drawable/transparent_bg"
+                android:layout_width="165dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="128dp"
                 android:text="Create"
+                android:background="@color/transparent"
                 android:textAllCaps="false"
                 android:textColor="@color/darkText"
                 android:textSize="14sp"
-                app:backgroundTint="@color/navigation_text_color_pressed"
                 app:cornerRadius="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -54,7 +51,6 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="60dp"
-
                 android:layout_marginBottom="124dp"
                 android:background="#ECECEC"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -151,7 +147,7 @@
                 android:gravity="center"
                 android:hint="Course"
                 android:textSize="16sp"
-
+                android:maxLength="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -166,7 +162,7 @@
                 android:gravity="center"
                 android:hint="Subject name"
                 android:textSize="16sp"
-
+                android:maxLength="30"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/courseNameText"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -193,7 +189,7 @@
                 android:gravity="center"
                 android:hint="Subject code"
                 android:textSize="16sp"
-
+                android:maxLength="10"
                 android:layout_marginTop="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/subjectNameText"

@@ -17,4 +17,5 @@
     <color name="btmNaviColor">#a2e1db</color>
     <color name="cancelButtonPressed">#7A7A7A</color>
     <color name="cancelButtonNotPressed">#DBDBDB</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

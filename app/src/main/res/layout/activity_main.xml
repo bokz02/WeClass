@@ -41,28 +41,24 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:text="Top performers"
             android:textColor="@color/darkText"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:text="Upcoming Event"
             android:textColor="@color/darkText"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/materialCardView"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
 
@@ -70,50 +66,37 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
             android:text="Your Schedule"
             android:textColor="@color/darkText"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.091"
+            android:layout_marginTop="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
-            app:layout_constraintVertical_bias="0.148" />
+            app:layout_constraintStart_toStartOf="@+id/materialCardView2"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="20dp"
             android:text="By Section"
             android:textColor="@color/lightText"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.046"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toStartOf="@+id/materialCardView"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:text="Next Event"
             android:textColor="@color/lightText"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
         <TextView
@@ -141,6 +124,7 @@
             android:background="@drawable/round_corner"
             app:cardCornerRadius="10dp"
             android:elevation="15dp"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
@@ -299,13 +283,11 @@
             android:layout_height="130dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
+            android:layout_marginTop="12dp"
             app:contentPadding="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.895"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.07">
+            app:layout_constraintBottom_toBottomOf="@+id/materialCardView2"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -368,17 +350,17 @@
             android:id="@+id/materialCardView2"
             android:layout_width="145dp"
             android:layout_height="130dp"
+            android:layout_marginTop="12dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             app:contentPadding="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/materialCardView3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.07">
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/event1"
                     android:layout_width="match_parent"
@@ -438,18 +420,16 @@
             android:id="@+id/materialCardView4"
             android:layout_width="72dp"
             android:layout_height="63dp"
-            app:cardCornerRadius="10dp"
+            android:background="@drawable/round_corner"
             android:elevation="10dp"
-            app:contentPadding="20dp"
             android:paddingTop="8dp"
             android:paddingBottom="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/materialCardView5"
+            android:layout_marginTop="12dp"
+            app:cardCornerRadius="10dp"
+            app:contentPadding="20dp"
             app:layout_constraintHorizontal_bias="0.703"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
-            app:layout_constraintVertical_bias="0.129"
-            android:background="@drawable/round_corner">
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -495,21 +475,20 @@
             android:id="@+id/materialCardView5"
             android:layout_width="233dp"
             android:layout_height="63dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/round_corner"
             android:backgroundTint="@color/lightText"
             android:elevation="10dp"
-            android:paddingTop="10dp"
             android:paddingStart="20dp"
+            android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
             app:cardCornerRadius="10dp"
             app:contentPadding="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView3"
             app:layout_constraintHorizontal_bias="0.823"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
-            app:layout_constraintVertical_bias="0.129">
+            app:layout_constraintStart_toEndOf="@+id/materialCardView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
