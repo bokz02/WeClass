@@ -41,7 +41,8 @@
         <activity
             android:name=".Subject"
             android:exported="false"
-            android:theme="@style/Theme.Dialog" />
+            android:theme="@style/Theme.Dialog"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".schedule.WeekViewActivity"
             android:exported="false" />
