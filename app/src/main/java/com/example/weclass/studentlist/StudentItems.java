@@ -1,13 +1,13 @@
 package com.example.weclass.studentlist;
 
 public class StudentItems {
-    String lastname, middlename, firstname, gender;
+    String lastname, middleName, firstname, gender;
     private int id;
 
-    public StudentItems (int id, String lastname, String middlename, String firstname, String gender){
+    public StudentItems (int id, String lastname, String middleName, String firstname, String gender){
         this.id = id;
         this.lastname = lastname;
-        this.middlename = middlename;
+        this.middleName = middleName;
         this.firstname = firstname;
         this.gender = gender;
     }
@@ -36,12 +36,12 @@ public class StudentItems {
         this.firstname = firstname;
     }
 
-    public String getMiddlename (){
-        return middlename;
+    public String getMiddleName(){
+        return middleName;
     }
 
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getGender() {

@@ -2,37 +2,61 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="130dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="5dp">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".05"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".95"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".03"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".97"/>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/materialCardView2"
-        android:layout_width="301dp"
-        android:layout_height="92dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:paddingBottom="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506">
+        app:layout_constraintBottom_toBottomOf="@id/guide2"
+        app:layout_constraintEnd_toEndOf="@id/guide4"
+        app:layout_constraintStart_toStartOf="@id/guide3"
+        app:layout_constraintTop_toTopOf="@id/guide1">
 
         <TextView
             android:id="@+id/StudPosNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:text="ID"
+            android:visibility="invisible"
             android:textSize="16sp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center_horizontal" />
 
         <RelativeLayout
             android:id="@+id/rl2"
@@ -45,15 +69,14 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/studentPfpRecView"
+                android:id="@+id/studentImageRecView"
                 android:layout_width="54dp"
-                android:layout_height="48dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
+                android:layout_height="54dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="222dp"
-                android:layout_marginBottom="9dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/pm3"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1dp" />
@@ -61,15 +84,12 @@
 
             <TextView
                 android:id="@+id/studentLastnameRecView"
-                android:layout_width="137dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="85dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="67dp"
-                android:layout_marginBottom="49dp"
+                android:layout_above="@id/studentFirstnameRecView"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/studentImageRecView"
                 android:text="Lastname"
                 android:textColor="@color/darkText"
                 android:textSize="18dp"
@@ -77,15 +97,11 @@
 
             <TextView
                 android:id="@+id/studentFirstnameRecView"
-                android:layout_width="137dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="85dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="67dp"
-                android:layout_marginBottom="29dp"
+                android:layout_marginStart="20dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/studentImageRecView"
                 android:text="Firstname"
                 android:textColor="@color/darkText"
                 android:textSize="15dp" />
@@ -94,12 +110,10 @@
                 android:id="@+id/studentSexRecView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="85dp"
-                android:layout_marginEnd="159dp"
-                android:layout_marginBottom="9dp"
+                android:layout_below="@id/studentFirstnameRecView"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@id/studentImageRecView"
                 android:text="Male"
                 android:textColor="@color/darkText" />
 
@@ -108,12 +122,10 @@
                 android:id="@+id/studentMiddleRecView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="159dp"
-                android:layout_marginEnd="85dp"
-                android:layout_marginBottom="8dp"
+                android:layout_below="@id/studentLastnameRecView"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/studentFirstnameRecView"
                 android:text="Middle"
                 android:textColor="@color/darkText" />
 
@@ -122,9 +134,8 @@
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="17dp"
                 android:background="@drawable/transparent_bg"
                 android:src="@drawable/ic_baseline_arrow_circle_right_24" />
         </RelativeLayout>

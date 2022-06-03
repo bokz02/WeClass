@@ -4,13 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StudentList"
-    android:background="@drawable/bg_navi">
+    android:background="@drawable/bg_navi"
+    tools:context=".StudentList">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".91" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".07" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".93" />
 
 
         <TextView
@@ -18,25 +46,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginEnd="40dp"
             android:text="List of Students"
             android:textColor="@color/navigation_text_color"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/studList_section"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
             android:fontFamily="sans-serif"
             android:text="BSCS 3"
             android:textAllCaps="true"
             android:textColor="@color/darkText"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 
@@ -44,47 +70,53 @@
             android:id="@+id/studList_subCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="Subject Code"
             android:textAllCaps="true"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/studList_sORT"
-            app:layout_constraintHorizontal_bias="0.194"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/studList_section"
-            app:layout_constraintVertical_bias="0.075" />
+            app:layout_constraintBottom_toBottomOf="@id/guide1"
+            app:layout_constraintStart_toStartOf="@+id/recyclerViewAddStudent" />
 
 
         <TextView
             android:id="@+id/studList_sORT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_baseline_arrow_drop_down_circle_24"
+            android:layout_marginBottom="10dp"
             android:drawablePadding="10dp"
             android:text="Sort"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.871"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/studList_section"
-            app:layout_constraintVertical_bias="0.075" />
+            app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_circle_24"
+            app:layout_constraintBottom_toBottomOf="@id/guide1"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerViewAddStudent"
+            app:layout_constraintHorizontal_bias="0.871" />
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewAddtStudent"
-            android:layout_width="350dp"
-            android:layout_height="500dp"
+            android:id="@+id/recyclerViewAddStudent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/guide2"
+            app:layout_constraintEnd_toEndOf="@id/guide4"
+            app:layout_constraintStart_toStartOf="@id/guide3"
+            app:layout_constraintTop_toTopOf="@id/guide1" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_24"
+            android:layout_marginBottom="70dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:backgroundTint="@color/lightText"
+            app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/studList_subCode"
-            app:layout_constraintVertical_bias="0.109" />
+            android:contentDescription="@string/addStudent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

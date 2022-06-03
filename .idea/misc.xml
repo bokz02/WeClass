@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ic_launcher_background.xml" value="0.263" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ic_subject_option.xml" value="0.262" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_add_student.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_add_subject.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_bottom_navi.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_edit_subject.xml" value="0.36666666666666664" />
@@ -22,6 +23,7 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/fragment_student.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/fragment_student_list.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/header.xml" value="0.36666666666666664" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studenlist_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/subject_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/subject_menu.xml" value="0.36666666666666664" />

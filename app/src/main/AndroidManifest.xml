@@ -14,7 +14,8 @@
             android:exported="false" />
         <activity
             android:name=".studentlist.AddStudent"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog"/>
         <activity
             android:name=".EditSubjectActivity"
             android:exported="false"

@@ -33,7 +33,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //THIS IS SQLITE DABATASE SCHEME
+    //THIS IS SQLITE DATABASE SCHEME
     // FATA EXCEPTION WILL OCCUR IF SPACES IS NOT WELL ARRANGED
     @Override
     public void onCreate(SQLiteDatabase db) {

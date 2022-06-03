@@ -1,26 +1,19 @@
 package com.example.weclass.studentlist;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weclass.EditSubjectActivity;
 import com.example.weclass.R;
-import com.example.weclass.SubjectAdapter;
-import com.example.weclass.SubjectItems;
-import com.example.weclass.database.DataBaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +54,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                 for (StudentItems studentItems: studentItemsFull){
                     if (studentItems.getLastname().toLowerCase().contains(filterPattern) ||
                             studentItems.getFirstname().toLowerCase().contains(filterPattern) ||
-                            studentItems.getMiddlename().toLowerCase().contains(filterPattern) ||
+                            studentItems.getMiddleName().toLowerCase().contains(filterPattern) ||
                             studentItems.getGender().toLowerCase().contains(filterPattern)
                     ){
                         filteredList.add(studentItems);
@@ -96,7 +89,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
 
         holder.id.setText(String.valueOf(studentItems.get(position).getId()));
         holder.LastnameTxt.setText(String.valueOf(studentItems.get(position).getLastname()));
-        holder.MiddlenameTxt.setText(String.valueOf(studentItems.get(position).getMiddlename()));
+        holder.MiddlenameTxt.setText(String.valueOf(studentItems.get(position).getMiddleName()));
         holder.FirstnameTxt.setText(String.valueOf(studentItems.get(position).getFirstname()));
         holder.GenderTxt.setText(String.valueOf(studentItems.get(position).getGender()));
         holder.button.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +105,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         return studentItems.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView id,LastnameTxt, MiddlenameTxt, FirstnameTxt, GenderTxt;
         ImageButton button;
         StudentAdapter.OnNoteListener onNoteListener;
