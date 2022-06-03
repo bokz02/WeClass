@@ -21,11 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.schedule.WeekViewActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,7 +34,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    FloatingActionButton addSubject;
+    FloatingActionButton floatActionButton;
     RecyclerView recyclerView;
     DataBaseHelper dataBaseHelper;
     ArrayList<SubjectItems> subjectItems, id;
@@ -55,13 +52,33 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         display();          // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
         textListener();     // FILTER SEARCH IN SUBJECT ACTIVITY
         initializeAdapter(); // INITIALIZE ADAPTER
-
+        showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
 
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
+    }
+    
+    public void showHideFloatingActionButton(){
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    floatActionButton.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if(dy > 0 || dy < 0 && floatActionButton.isShown()){
+                    floatActionButton.hide();
+                }
+            }
+        });
     }
 
     public void initializeAdapter(){
@@ -184,8 +201,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
 
     public void addSubject(){
-        addSubject = findViewById(R.id.addSubject);
-        addSubject.setOnClickListener(new View.OnClickListener() {
+        floatActionButton = findViewById(R.id.addSubject);
+        floatActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Subject.this, AddSubjectActivity.class);
