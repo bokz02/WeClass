@@ -50,11 +50,11 @@
         app:layout_constraintTop_toTopOf="@id/guide1">
 
         <TextView
-            android:id="@+id/StudPosNumber"
+            android:id="@+id/positionNUmberStudentList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ID"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:textSize="16sp"
             android:layout_gravity="center_horizontal" />
 

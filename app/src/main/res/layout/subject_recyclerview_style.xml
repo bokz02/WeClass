@@ -43,6 +43,8 @@
         android:layout_height="120dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="@id/guide4"
         app:layout_constraintEnd_toEndOf="@id/guide2"
         app:layout_constraintStart_toStartOf="@id/guide1"
@@ -62,7 +64,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
 
             <ImageButton
                 android:id="@+id/optionButtonSubject"

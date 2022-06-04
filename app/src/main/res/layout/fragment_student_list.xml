@@ -40,6 +40,17 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".93" />
 
+        <TextView
+            android:id="@+id/parentID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="Parent ID number"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/textView7"
@@ -110,13 +121,13 @@
             android:id="@+id/fabAddStudent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_add_24"
             android:layout_marginBottom="70dp"
-            android:focusable="true"
-            android:clickable="true"
             android:backgroundTint="@color/lightText"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
+            android:clickable="true"
+            android:contentDescription="@string/addStudent"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="@string/addStudent" />
+            app:layout_constraintEnd_toEndOf="@id/guide4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

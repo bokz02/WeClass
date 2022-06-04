@@ -20,13 +20,11 @@ import java.util.List;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHolder> implements Filterable {
 
-    private ArrayList<StudentItems> studentItems;
-    private ArrayList<StudentItems> studentItemsFull;
-    private ArrayList idNumber;
-    private Context context;
-    private StudentAdapter.OnNoteListener mOnNoteListener;
-    SQLiteDatabase sqLiteDatabase;
-    String id;
+    private final ArrayList<StudentItems> studentItems;
+    private final ArrayList<StudentItems> studentItemsFull;
+    private final Context context;
+    private final StudentAdapter.OnNoteListener mOnNoteListener;
+
 
     public StudentAdapter(Context context, ArrayList<StudentItems> studentItems, StudentAdapter.OnNoteListener onNoteListener){
         this.context = context;
@@ -80,7 +78,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.studenlist_recyclerview_style, parent,false);
+        View view = inflater.inflate(R.layout.studentlist_recyclerview_style, parent,false);
         return new MyViewHolder(view, mOnNoteListener);
     }
 
@@ -88,10 +86,10 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         holder.id.setText(String.valueOf(studentItems.get(position).getId()));
-        holder.LastnameTxt.setText(String.valueOf(studentItems.get(position).getLastname()));
-        holder.MiddlenameTxt.setText(String.valueOf(studentItems.get(position).getMiddleName()));
-        holder.FirstnameTxt.setText(String.valueOf(studentItems.get(position).getFirstname()));
-        holder.GenderTxt.setText(String.valueOf(studentItems.get(position).getGender()));
+        holder.lastNameText.setText(String.valueOf(studentItems.get(position).getLastname()));
+        holder.middleNameText.setText(String.valueOf(studentItems.get(position).getMiddleName()));
+        holder.firstNameText.setText(String.valueOf(studentItems.get(position).getFirstname()));
+        holder.genderText.setText(String.valueOf(studentItems.get(position).getGender()));
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,20 +104,20 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView id,LastnameTxt, MiddlenameTxt, FirstnameTxt, GenderTxt;
+        TextView id,parent_id, lastNameText, middleNameText, firstNameText, genderText;
         ImageButton button;
         StudentAdapter.OnNoteListener onNoteListener;
         public MyViewHolder(@NonNull View itemView, OnNoteListener mOnNoteListener) {
             super(itemView);
 
-            id = itemView.findViewById(R.id.StudPosNumber);
-            LastnameTxt = itemView.findViewById(R.id.studentLastnameRecView);
-            MiddlenameTxt = itemView.findViewById(R.id.studentMiddleRecView);
-            FirstnameTxt = itemView.findViewById(R.id.studentFirstnameRecView);
-            GenderTxt = itemView.findViewById(R.id.studentSexRecView);
+            id = itemView.findViewById(R.id.positionNUmberStudentList);
+            lastNameText = itemView.findViewById(R.id.studentLastnameRecView);
+            middleNameText = itemView.findViewById(R.id.studentMiddleRecView);
+            firstNameText = itemView.findViewById(R.id.studentFirstnameRecView);
+            genderText = itemView.findViewById(R.id.studentSexRecView);
             button = itemView.findViewById(R.id.studentBtnRecView);
 
-            this.onNoteListener = onNoteListener;
+            this.onNoteListener = mOnNoteListener;
 
             itemView.setOnClickListener(this);
 

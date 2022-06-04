@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import com.example.weclass.studentlist.AddStudent;
@@ -20,6 +21,8 @@ public class StudentList extends Fragment {
     RecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
     View view;
+    String a;
+    TextView parentID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,7 +31,8 @@ public class StudentList extends Fragment {
 
     initialize();
     addStudent();
-    //moveFromFragmentToActivity();
+    getDataFromActivity();
+
 
         return view;
     }
@@ -36,6 +40,7 @@ public class StudentList extends Fragment {
     public void initialize(){
         recyclerView = view.findViewById(R.id.recyclerViewAddSubject);
         floatingActionButton = view.findViewById(R.id.fabAddStudent);
+        parentID = view.findViewById(R.id.parentID);
     }
 
     public void addStudent(){
@@ -47,9 +52,13 @@ public class StudentList extends Fragment {
                 startActivity(intent);
             }
         });
-
     }
 
+    public void getDataFromActivity() {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            parentID.setText(bundle.getString("IDParent"));
+        }
 
-
+    }
 }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.weclass.AddSubjectActivity;
 import com.example.weclass.R;
+import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class AddStudent extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class AddStudent extends AppCompatActivity {
         initialized();          //INITIALIZED ALL VIEWS
         createStudent();    // CREATE STUDENT BUTTON
         chooseGender();     // GENDER BUTTON
+        cancelButton();     // CANCEL BUTTON, BACK TO STUDENT LIST
 
     }
     public void initialized (){
@@ -40,7 +42,7 @@ public class AddStudent extends AppCompatActivity {
         firstName = findViewById(R.id.studFirstname);
         genderTextview = findViewById(R.id.studGender);
         createButton = findViewById(R.id.createButtonStudent);
-        cancelButton = findViewById(R.id.cancelButtonSubject); }
+        cancelButton = findViewById(R.id.cancelButtonStudent); }
 
     public void chooseGender(){
         final String[] gender = new String[]{
@@ -60,6 +62,33 @@ public class AddStudent extends AppCompatActivity {
                         selectedGender = gender[i];
                         genderTextview.setText(selectedGender);
                         dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    public void cancelButton() {
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddStudent.this);
+                builder.setTitle("Confirm exit");
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                builder.setMessage("All the fields will not be saved!");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
                     }
                 });
                 builder.show();
@@ -94,12 +123,15 @@ public class AddStudent extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
+                            DataBaseHelper dbh = new DataBaseHelper(AddStudent.this);
+
 
 
                         }
                     });
-
+                    builder.show();
             };
+
         };
     }
     );

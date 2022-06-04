@@ -3,13 +3,23 @@ package com.example.weclass.studentlist;
 public class StudentItems {
     String lastname, middleName, firstname, gender;
     private int id;
+    private int parent_id;
 
-    public StudentItems (int id, String lastname, String middleName, String firstname, String gender){
+    public StudentItems (int id, int parent_ID, String lastname, String middleName, String firstname, String gender){
         this.id = id;
+        this.parent_id = parent_ID;
         this.lastname = lastname;
         this.middleName = middleName;
         this.firstname = firstname;
         this.gender = gender;
+    }
+
+    public int getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(int parent_id) {
+        this.parent_id = parent_id;
     }
 
     public int getId(){

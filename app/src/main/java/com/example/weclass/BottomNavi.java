@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,6 +23,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class BottomNavi extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     BottomNavigationView bottomNavigationView;
+    TextView parentID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,22 +31,41 @@ public class BottomNavi extends AppCompatActivity {
         setContentView(R.layout.activity_bottom_navi);
 
         initialize();
-        fragmentLoader(new StudentList());
         hideActionBarInFragment();
         moveFragment();  //SWITCHING DIFFERENT FRAGMENTS
         backButton();
+        displayData();
+        fragmentLoader();
+        //passDataToFragment();
+
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
     }
 
-    public void fragmentLoader(Fragment fragment) {
+    public void displayData(){
+        if (getIntent().getBundleExtra("ParentID") != null) {
+            Bundle bundle = getIntent().getBundleExtra("ParentID");
+
+            parentID.setText(bundle.getString("id"));
+        }
+    }
+
+
+    // Load fragment
+    public void fragmentLoader() {
+        StudentList studentList = new StudentList();
+        Bundle bundle = new Bundle();
+        bundle.putString("IDParent", parentID.getText().toString());
+        //bundle.putString("IDParent", String.valueOf(parentID));
+
+        studentList.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentContainer, fragment)
+                .replace(R.id.fragmentContainer, studentList)
                 .commit();
-    }//FRAGMENT LOADER
+    }
 
     public void backButton(){
         ImageButton imageButton = (ImageButton) findViewById(R.id.backListOfStudents);
@@ -64,6 +85,7 @@ public class BottomNavi extends AppCompatActivity {
 
     public void initialize(){
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigation);
+        parentID = findViewById(R.id.parentIDBottomNavi);
     }
 
 
@@ -78,16 +100,16 @@ public class BottomNavi extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.naviStudents:
-                        fragmentLoader(new StudentList());
+                        //fragmentLoader(new StudentList());
                         break;
                     case R.id.naviReport:
-                        fragmentLoader(new Record());
+                        //fragmentLoader(new Record());
                         break;
                     case R.id.naviAttendance:
-                        fragmentLoader(new Attendance());
+                        //fragmentLoader(new Attendance());
                         break;
                     case R.id.naviRanking:
-                        fragmentLoader(new Ranking());
+                        //fragmentLoader(new Ranking());
                         break;
 
 

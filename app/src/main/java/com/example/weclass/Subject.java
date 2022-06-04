@@ -213,8 +213,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     public void onNoteClick(int position) {
-        Intent intent = new Intent(this, BottomNavi.class);
-        startActivity(intent);
+
+
     }
 
 
