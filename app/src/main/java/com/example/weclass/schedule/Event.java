@@ -24,9 +24,9 @@ public class Event
 
     private String name;
     private LocalDate date;
-    private LocalTime time;
+    private String time;
 
-    public Event(String name, LocalDate date, LocalTime time)
+    public Event(String name, LocalDate date, String time)
     {
         this.name = name;
         this.date = date;
@@ -53,12 +53,12 @@ public class Event
         this.date = date;
     }
 
-    public LocalTime getTime()
+    public String getTime()
     {
         return time;
     }
 
-    public void setTime(LocalTime time)
+    public void setTime(String time)
     {
         this.time = time;
     }

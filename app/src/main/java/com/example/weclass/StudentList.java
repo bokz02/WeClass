@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     ArrayList<StudentItems> studentItems, id, parent_id;
     StudentAdapter studentAdapter;
     EditText searchStudent;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,6 +88,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         cursor.close();
         return studentItems;
     }
+
 
     public void initialize(){
         recyclerView = view.findViewById(R.id.recyclerViewStudentList);

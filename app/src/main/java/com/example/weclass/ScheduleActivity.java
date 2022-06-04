@@ -86,6 +86,11 @@ public class ScheduleActivity extends AppCompatActivity implements CalendarAdapt
 
 
     @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
+    }
+
+    @Override
     public void onItemClick(int position, LocalDate date)
     {
         if(date != null)

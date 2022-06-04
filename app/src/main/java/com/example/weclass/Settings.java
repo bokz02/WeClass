@@ -11,9 +11,12 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.example.weclass.schedule.WeekViewActivity;
+import com.example.weclass.studentlist.AddStudent;
 import com.google.android.material.navigation.NavigationView;
 
 public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,6 +24,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    ImageView button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +33,29 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
         initialize();
         navigationOpen();
+
+        terms();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
+    }
+
+
+    public void terms (){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, TermsAndCondition.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void initialize(){
         toolbar = findViewById(R.id.toolbarSettings);
         navigationView = findViewById(R.id.navigationViewSettings);
         drawerLayout = findViewById(R.id.drawerSettings);
+        button = findViewById(R.id.buttonNotification);
     }
 
     public void navigationOpen() {

@@ -1,7 +1,9 @@
 package com.example.weclass.schedule;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -63,6 +65,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 
     public interface  OnItemListener
     {
+        @SuppressLint("NonConstantResourceId")
+        boolean onNavigationItemSelected(@NonNull MenuItem item);
+
         void onItemClick(int position, LocalDate date);
     }
 }

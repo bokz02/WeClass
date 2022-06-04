@@ -36,6 +36,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_GENDER = "gender";
 
 
+    public static final String TABLE_NAME3 = "my_schedule";
+    public static final String COLUMN_ID3 = "id_number";
+    public static final String COLUMN_EVENT_TITLE = "event_title";
+    private static final String COLUMN_SCHED_TIME= "sched_ime";
+    private static final String COLUMN_SCHED_DAY = "sched_date";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -63,6 +68,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_MIDDLE_NAME + " TEXT, " +
                 COLUMN_GENDER + " TEXT);";
 
+        String query3 = "CREATE TABLE " + TABLE_NAME3 +
+                " (" + COLUMN_ID3 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_EVENT_TITLE+ " TEXT, " +
+                COLUMN_SCHED_TIME + " TEXT, " +
+                COLUMN_SCHED_DAY + " TEXT);";
+
+        db.execSQL(query3);
         db.execSQL(query2);
         db.execSQL(query);
     }
@@ -71,7 +83,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME3);
         onCreate(db);
+    }
+
+
+    public void addSchedule(String eventTitle, String eventTime, String eventDay){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_EVENT_TITLE, eventTitle);
+        cv.put(COLUMN_SCHED_TIME, eventTime);
+        cv.put(COLUMN_SCHED_DAY, eventDay);
+
+        long result = db.insert(TABLE_NAME2, null, cv);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

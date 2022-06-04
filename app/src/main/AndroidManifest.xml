@@ -13,8 +13,12 @@
             android:name=".studentlist.EditStudent"
             android:exported="false" />
         <activity
-            android:name=".schedule.EventEditActivity"
+            android:name=".TermsAndCondition"
             android:exported="false" />
+        <activity
+            android:name=".schedule.EventEditActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Dialog"/>
         <activity
             android:name=".studentlist.AddStudent"
             android:exported="false"
