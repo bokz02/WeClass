@@ -16,7 +16,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     private Context context;
-    private static final String DATABASE_NAME = "Subjects.db";
+    private static final String DATABASE_NAME = "weClass.db";
     private static final int DATABASE_VERSION = 1;
     public static final String TABLE_NAME = "my_subjects";
     public static final String COLUMN_ID = "id_number";
@@ -56,7 +56,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         COLUMN_TIME + " TEXT);";
 
         String query2 = "CREATE TABLE " + TABLE_NAME2 +
-                " (" + COLUMN_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " (" + COLUMN_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PARENT_ID + " TEXT, " +
                 COLUMN_LAST_NAME + " TEXT, " +
                 COLUMN_FIRST_NAME + " TEXT, " +
@@ -71,7 +71,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
+        onCreate(db);
+    }
 
+
+    public void addStudent(String parentID, String lastName, String firstName, String middleName, String gender){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_PARENT_ID, parentID);
+        cv.put(COLUMN_LAST_NAME, lastName);
+        cv.put(COLUMN_FIRST_NAME, firstName);
+        cv.put(COLUMN_MIDDLE_NAME, middleName);
+        cv.put(COLUMN_GENDER, gender);
+
+        long result = db.insert(TABLE_NAME2, null, cv);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // ADD QUERY TO SUBJECT DATABASE
@@ -119,20 +136,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void addStudent(String parentID, String lastName, String firstName, String middleName, String gender){
+    // DELETE A SUBJECT
+    public void deleteStudent(int row_id){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
+        long result =  db.delete(TABLE_NAME2, "id_number=?", new String[]{ String.valueOf(row_id)});
 
-        cv.put(COLUMN_PARENT_ID, parentID);
-        cv.put(COLUMN_LAST_NAME, lastName);
-        cv.put(COLUMN_FIRST_NAME, firstName);
-        cv.put(COLUMN_MIDDLE_NAME, middleName);
-        cv.put(COLUMN_GENDER, gender);
+        if (result == -1){
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
 
-        long result = db.insert(TABLE_NAME2, null, cv);
-        if(result == -1){
-            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
 }

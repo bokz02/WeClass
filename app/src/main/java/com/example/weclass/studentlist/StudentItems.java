@@ -5,12 +5,12 @@ public class StudentItems {
     private int id;
     private int parent_id;
 
-    public StudentItems (int id, int parent_ID, String lastname, String middleName, String firstname, String gender){
+    public StudentItems (int id, int parent_ID, String lastname, String firstname, String middleName, String gender){
         this.id = id;
         this.parent_id = parent_ID;
         this.lastname = lastname;
-        this.middleName = middleName;
         this.firstname = firstname;
+        this.middleName = middleName;
         this.gender = gender;
     }
 

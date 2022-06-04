@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="130dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="5dp">
 
@@ -12,31 +12,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".05"/>
+        app:layout_constraintGuide_percent=".05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".95"/>
+        app:layout_constraintGuide_percent=".95" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".03"/>
+        app:layout_constraintGuide_percent=".03" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".97"/>
+        app:layout_constraintGuide_percent=".97" />
 
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -44,6 +44,9 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="15dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:rippleColor="@color/lightText"
         app:layout_constraintBottom_toBottomOf="@id/guide2"
         app:layout_constraintEnd_toEndOf="@id/guide4"
         app:layout_constraintStart_toStartOf="@id/guide3"
@@ -53,10 +56,18 @@
             android:id="@+id/positionNUmberStudentList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="ID"
-            android:visibility="visible"
             android:textSize="16sp"
-            android:layout_gravity="center_horizontal" />
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/parentIDStudentList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parent iD"
+            android:textSize="16sp"
+            android:visibility="visible" />
 
         <RelativeLayout
             android:id="@+id/rl2"
@@ -66,6 +77,16 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp">
+
+            <ImageButton
+                android:id="@+id/optionButtonSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/ic_subject_option" />
 
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -99,8 +120,8 @@
                 android:id="@+id/studentFirstnameRecView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/studentImageRecView"
                 android:text="Firstname"
                 android:textColor="@color/darkText"
@@ -140,6 +161,6 @@
                 android:src="@drawable/ic_baseline_arrow_circle_right_24" />
         </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

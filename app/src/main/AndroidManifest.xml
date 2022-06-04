@@ -10,12 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".studentlist.EditStudent"
+            android:exported="false" />
+        <activity
             android:name=".schedule.EventEditActivity"
             android:exported="false" />
         <activity
             android:name=".studentlist.AddStudent"
             android:exported="false"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".EditSubjectActivity"
             android:exported="false"
@@ -38,12 +41,14 @@
             android:exported="false" />
         <activity
             android:name=".BottomNavi"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing"
+            android:theme="@style/Theme.Dialog"/>
         <activity
             android:name=".Subject"
             android:exported="false"
             android:theme="@style/Theme.Dialog"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".schedule.WeekViewActivity"
             android:exported="false" />

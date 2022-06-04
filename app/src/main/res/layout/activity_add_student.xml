@@ -8,7 +8,7 @@
     android:background="@drawable/bg_nnavi">
 
     <TextView
-        android:id="@+id/studentID"
+        android:id="@+id/parentIDAddStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ID"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/backButtonSubject"
+        android:id="@+id/backButtonAddStudent"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"

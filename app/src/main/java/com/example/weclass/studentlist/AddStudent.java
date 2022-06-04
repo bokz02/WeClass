@@ -3,22 +3,26 @@ package com.example.weclass.studentlist;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.weclass.AddSubjectActivity;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 
 public class AddStudent extends AppCompatActivity {
 
     Button cancelButton, createButton;
-    TextView genderTextview;
+    ImageButton backButton;
+    TextView genderTextview, parentID;
     EditText lastName, firstName, middleName;
     String selectedGender;
 
@@ -34,7 +38,14 @@ public class AddStudent extends AppCompatActivity {
         createStudent();    // CREATE STUDENT BUTTON
         chooseGender();     // GENDER BUTTON
         cancelButton();     // CANCEL BUTTON, BACK TO STUDENT LIST
+        backToStudentList();    // BACK TO STUDENT LIST ACTIVITY
+        getDataFromStudentListFragment();
+    }
 
+    public void getDataFromStudentListFragment(){
+        Intent intent = getIntent();
+        String a = intent.getStringExtra("id");
+        parentID.setText(a);
     }
     public void initialized (){
         lastName = findViewById(R.id.studLastname);
@@ -42,7 +53,19 @@ public class AddStudent extends AppCompatActivity {
         firstName = findViewById(R.id.studFirstname);
         genderTextview = findViewById(R.id.studGender);
         createButton = findViewById(R.id.createButtonStudent);
-        cancelButton = findViewById(R.id.cancelButtonStudent); }
+        cancelButton = findViewById(R.id.cancelButtonStudent);
+        backButton = findViewById(R.id.backButtonAddStudent);
+        parentID = findViewById(R.id.parentIDAddStudent);
+    }
+
+    public void backToStudentList(){
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
 
     public void chooseGender(){
         final String[] gender = new String[]{
@@ -124,8 +147,17 @@ public class AddStudent extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
 
                             DataBaseHelper dbh = new DataBaseHelper(AddStudent.this);
+                            dbh.addStudent(parentID.getText().toString().trim(),
+                                    lastName.getText().toString().trim(),
+                                    firstName.getText().toString().trim(),
+                                    middleName.getText().toString().trim(),
+                                    genderTextview.getText().toString().trim());
 
-
+                            Snackbar.make(createButton, "Student successfully added!", Snackbar.LENGTH_LONG).show();
+                            lastName.setText("");
+                            firstName.setText("");
+                            middleName.setText("");
+                            genderTextview.setText("");
 
                         }
                     });
