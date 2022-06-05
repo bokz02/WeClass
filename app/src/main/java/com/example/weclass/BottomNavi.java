@@ -6,15 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,20 +20,19 @@ import com.google.android.material.navigation.NavigationBarView;
 public class BottomNavi extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     BottomNavigationView bottomNavigationView;
-    TextView parentID;
+    TextView parentID, subjectCode, courseName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navi);
 
-        initialize();
-        hideActionBarInFragment();
+        initialize();   // INITIALIZE ALL VIEWS
+        hideActionBarInFragment();  // HIDE ACTIONBAR IN FRAGMENTS
         moveFragment();  //SWITCHING DIFFERENT FRAGMENTS
-        backButton();
-        displayData();
-        fragmentLoader();
-        //passDataToFragment();
+        backButton();   // BACK BUTTON
+        displayData();  // GET DATA FROM SUBJECT ADAPTER (RECYCLERVIEW ITEM CLICK)
+        fragmentStudentList();   // GET THE VALUES OF STRING IN displayData() method to PASS THE DATA WE GOT FROM SUBJECT ADAPTER TO STUDENT LIST FRAGMENT
 
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -44,29 +40,63 @@ public class BottomNavi extends AppCompatActivity {
 
     }
 
+    // GET DATA FROM SUBJECT ADAPTER (RECYCLERVIEW ITEM CLICK)
     public void displayData(){
         if (getIntent().getBundleExtra("ParentID") != null) {
             Bundle bundle = getIntent().getBundleExtra("ParentID");
 
+
             parentID.setText(bundle.getString("id"));
+            subjectCode.setText(bundle.getString("subject_code"));
+            courseName.setText(bundle.getString("course"));
         }
     }
 
 
-    // Load fragment
-    public void fragmentLoader() {
-        StudentList studentList = new StudentList();
-        Bundle bundle = new Bundle();
-        bundle.putString("IDParent", parentID.getText().toString());
-        //bundle.putString("IDParent", String.valueOf(parentID));
-
-        studentList.setArguments(bundle);
+    // FRAGMENT TRANSACTION
+    public void fragmentLoader(Fragment fragment){
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentContainer, studentList)
+                .replace(R.id.fragmentContainer,fragment)
                 .commit();
     }
 
+    // GET THE VALUES OF STRING IN displayData() method to PASS THE DATA WE GOT FROM SUBJECT ADAPTER TO STUDENT LIST FRAGMENT
+    public void fragmentStudentList() {
+        StudentList studentList = new StudentList();
+        Bundle bundle = new Bundle();
+        bundle.putString("IDParent", parentID.getText().toString());
+        bundle.putString("SubjectCode", subjectCode.getText().toString());
+        bundle.putString("CourseCode", courseName.getText().toString());
+
+        studentList.setArguments(bundle);
+        fragmentLoader(studentList);
+    }
+
+    // PASS THE DATA WE GOT FROM SUBJECT ADAPTER TO STUDENT RECORD FRAGMENT
+    public void fragmentRecord(){
+        Record record = new Record();
+        Bundle bundle = new Bundle();
+        bundle.putString("IDParent", parentID.getText().toString());
+        bundle.putString("SubjectCode", subjectCode.getText().toString());
+
+        record.setArguments(bundle);
+        fragmentLoader(record);
+    }
+
+    // OPEN ATTENDANCE FRAGMENT FUNCTION
+    public void fragmentAttendance(){
+        Attendance attendance = new Attendance();
+        fragmentLoader(attendance);
+    }
+
+    // OPEN ATTENDANCE FRAGMENT FUNCTION
+    public void fragmentRanks(){
+        Ranking ranking = new Ranking();
+        fragmentLoader(ranking);
+    }
+
+    // BACK BUTTON
     public void backButton(){
         ImageButton imageButton = (ImageButton) findViewById(R.id.backListOfStudents);
          imageButton.setOnClickListener(new View.OnClickListener() {
@@ -77,19 +107,22 @@ public class BottomNavi extends AppCompatActivity {
         });
     }
 
+    // HIDE ACTIONBAR IN FRAGMENTS
     public void hideActionBarInFragment() {
         ActionBar supportActionBar = ((AppCompatActivity) this).getSupportActionBar();
         if (supportActionBar != null)
             supportActionBar.hide();
     }
 
+    // INITIALIZE ALL VIEWS
     public void initialize(){
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigation);
         parentID = findViewById(R.id.parentIDBottomNavi);
+        subjectCode = findViewById(R.id.subjectCodeBottomNavi);
+        courseName = findViewById(R.id.courseNameBottomNavi);
     }
 
-
-
+    //SWITCHING DIFFERENT FRAGMENTS
     public void moveFragment(){
         //SWITCHING DIFFERENT FRAGMENTS
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -100,19 +133,17 @@ public class BottomNavi extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.naviStudents:
-                        //fragmentLoader(new StudentList());
+                        fragmentStudentList();
                         break;
                     case R.id.naviReport:
-                        //fragmentLoader(new Record());
+                        fragmentRecord();
                         break;
                     case R.id.naviAttendance:
-                        //fragmentLoader(new Attendance());
+                        fragmentAttendance();
                         break;
                     case R.id.naviRanking:
-                        //fragmentLoader(new Ranking());
+                        fragmentRanks();
                         break;
-
-
                 }
                 return true;
             }

@@ -62,12 +62,16 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         holder.dateTxt.setText(String.valueOf(subjectItems.get(position).getDaySubject()));
         holder.timeTxt.setText(String.valueOf(subjectItems.get(position).getTimeSubject()));
 
+        // PASS DATA FROM RECYCLERVIEW CLICK TO BOTTOM NAVI ACTIVITY
         holder.subjectClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, BottomNavi.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("id", String.valueOf(item.getId()));
+                bundle.putString("subject_code", String.valueOf(item.getSubjectCode()));
+                bundle.putString("course", String.valueOf(item.getCourse()));
+
                 intent.putExtra("ParentID", bundle);
                 context.startActivity(intent);
             }
@@ -145,6 +149,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         return subjectItems.size();
     }
 
+
+    // FILTER WHEN SEARCHING SUBJECTS
     @Override
     public Filter getFilter() {
         return subjectFilter;

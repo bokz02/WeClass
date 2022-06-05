@@ -39,12 +39,12 @@ public class AddSubjectActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
-        initialize();
-        pickTime();
-        createButton();
-        cancelButton();
-        backButton();
-        pickDate();
+        initialize(); // INITIALIZE ALL VIEWS
+        pickTime();     // TIME PICKER POP AFTER BUTTON CLICKED
+        createButton(); // CREATE SUBJECT FUNCTION
+        cancelButton(); // CANCEL BUTTON FUNCTION
+        backButton();   // BACK BUTTON FUNCTION OF THE PHONE
+        pickDate();     // DATE PICKER POP UP AFTER BUTTON CLICKED
     }
 
     // DAY PICKER WILL OPEN WHEN PRESSED
@@ -103,7 +103,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         });
     }
 
-
+    // BACK BUTTON FUNCTION OF THE PHONE
     public void backButton() {
 
         backButton.setOnClickListener(new View.OnClickListener() {

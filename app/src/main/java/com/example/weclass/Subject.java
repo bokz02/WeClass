@@ -48,10 +48,10 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
         init();             // INITIALIZE ALL VIEWS
         navigationOpen();   //NAVIGATION DRAWER
-        addSubject();       //FLOATING ACTION BUTTON
+        addSubject();       //FLOATING ACTION BUTTON FOR ADDING SUBJECT
         display();          // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
         textListener();     // FILTER SEARCH IN SUBJECT ACTIVITY
-        initializeAdapter(); // INITIALIZE ADAPTER
+        initializeAdapter(); // INITIALIZE ADAPTER FOR RECYCLERVIEW
         showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
 
 
@@ -61,6 +61,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
     }
 
+    // RESUME ALL FUNCTION FROM BEING HIDE
     @Override
     public void onResume() {
         init();             // INITIALIZE ALL VIEWS
@@ -72,7 +73,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
         super.onResume();
     }
-    
+    // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
     public void showHideFloatingActionButton(){
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -93,13 +94,14 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         });
     }
 
+    // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
         subjectAdapter = new SubjectAdapter(Subject.this, subjectItems, this);
         recyclerView.setAdapter(subjectAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Subject.this));
     }
 
-
+    // FILTER SEARCH IN SUBJECT ACTIVITY
     public void textListener(){
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -151,7 +153,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         return subjectItems;
     }
 
-
+    // BACK BUTTON FUNCTION OF THE PHONE
     @Override
     public void onBackPressed() {
 
@@ -168,8 +170,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         }
     }
 
-
-
+    // INITIALIZE ALL VIEWS
     public void init(){
 
         searchEditText = findViewById(R.id.searchEditTextSubject);
@@ -179,6 +180,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         toolbar = findViewById(R.id.toolbarSubject);
     }
 
+    //NAVIGATION DRAWER
     public void navigationOpen() {
         setSupportActionBar(toolbar);
         navigationView.bringToFront();
@@ -211,7 +213,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         return true;
     }
 
-
+    //FLOATING ACTION BUTTON FOR ADDING SUBJECT
     public void addSubject(){
         floatActionButton = findViewById(R.id.addSubject);
         floatActionButton.setOnClickListener(new View.OnClickListener() {

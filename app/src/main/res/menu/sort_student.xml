@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+            <item
+                android:title="A to Z"
+                android:id="@+id/sortAtoZ"
+                android:icon="@drawable/ic_down_popup_menu" />
+            <item
+                android:title="Z to A"
+                android:id="@+id/sortZtoA"
+                android:icon="@drawable/ic_up_arrow_popup_menu" />
+
+
+
+
+</menu>

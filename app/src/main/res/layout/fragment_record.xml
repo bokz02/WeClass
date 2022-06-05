@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Record"
-    android:background="@drawable/bg_navi">
+    android:background="@drawable/bg_navi"
+    tools:context=".Record">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/parentIDRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="70dp"
+            android:text="parent id"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/subjectCodeRecords"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
             android:text="CTHESI1"
             android:textColor="@color/darkText"
             android:textSize="25sp"
@@ -34,14 +45,14 @@
             android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
         <TextView
             android:id="@+id/activityText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
             android:layout_marginStart="40dp"
+            android:layout_marginTop="150dp"
             android:text="Activity"
             android:textColor="@color/darkText"
             android:textSize="14sp"
@@ -75,10 +86,10 @@
             android:id="@+id/materialCardView7"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            app:cardCornerRadius="5dp"
             android:layout_marginStart="20dp"
-            android:backgroundTint="@color/darkText"
             android:layout_marginTop="150dp"
+            android:backgroundTint="@color/darkText"
+            app:cardCornerRadius="5dp"
             app:layout_constraintStart_toEndOf="@+id/textView18"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -86,10 +97,10 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:paddingHorizontal="5dp"
                 android:text="Assignment"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/textView18"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,9 +122,9 @@
             android:layout_width="318dp"
             android:layout_height="120dp"
             android:layout_marginTop="15dp"
-            app:contentPadding="15dp"
             android:backgroundTint="@color/darkText"
             app:cardCornerRadius="20dp"
+            app:contentPadding="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18">
@@ -136,16 +147,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:text="Each member will prepare a logo for their\napplication and submit it."
+                    android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:text="THESIS1"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -153,14 +164,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:text="100/100"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
         </com.google.android.material.card.MaterialCardView>
@@ -168,8 +177,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="318dp"
             android:layout_height="120dp"
-            app:cardCornerRadius="20dp"
             android:layout_marginTop="15dp"
+            app:cardCornerRadius="20dp"
             app:contentPadding="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.508"
@@ -202,8 +211,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/darkText"
                     android:text="THESIS1"
+                    android:textColor="@color/darkText"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -211,8 +220,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/darkText"
                     android:text="100/100"
+                    android:textColor="@color/darkText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 

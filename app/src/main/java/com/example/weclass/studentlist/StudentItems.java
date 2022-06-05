@@ -1,5 +1,7 @@
 package com.example.weclass.studentlist;
 
+import java.util.Comparator;
+
 public class StudentItems {
     String lastname, middleName, firstname, gender;
     private int id;
@@ -61,4 +63,20 @@ public class StudentItems {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public static Comparator<StudentItems> sortAtoZComparator = new Comparator<StudentItems>() {
+        @Override
+        public int compare(StudentItems studentItems, StudentItems t1) {
+            return studentItems.getLastname().compareTo(t1.getLastname());
+        }
+    };
+
+    public static Comparator<StudentItems> sortZtoAComparator = new Comparator<StudentItems>() {
+        @Override
+        public int compare(StudentItems studentItems, StudentItems t1) {
+            return t1.getLastname().compareTo(studentItems.getLastname());
+        }
+    };
+
+
 }
