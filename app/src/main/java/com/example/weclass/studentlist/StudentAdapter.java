@@ -120,16 +120,17 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()){
                             case R.id.edit_subject:
-//                                Intent intent = new Intent(context, EditStudent.class);
-//                                Bundle bundle = new Bundle();
-//                                bundle.putString("id", String.valueOf(item.getId()));
-//                                bundle.putString("parent_id", String.valueOf(item.getParent_id()));
-//                                bundle.putString("last_name", String.valueOf(item.getLastname()));
-//                                bundle.putString("first_name", String.valueOf(item.getFirstname()));
-//                                bundle.putString("middle_name", String.valueOf(item.getMiddleName()));
-//                                bundle.putString("gender", String.valueOf(item.getGender()));
-//                                intent.putExtra("Student", bundle);
-//                                context.startActivity(intent);
+
+                                Intent intent = new Intent(context, EditStudent.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("id", String.valueOf(item.getId()));
+                                bundle.putString("parent_id", String.valueOf(item.getParent_id()));
+                                bundle.putString("last_name", String.valueOf(item.getLastname()));
+                                bundle.putString("first_name", String.valueOf(item.getFirstname()));
+                                bundle.putString("middle_name", String.valueOf(item.getMiddleName()));
+                                bundle.putString("gender", String.valueOf(item.getGender()));
+                                intent.putExtra("Student", bundle);
+                                context.startActivity(intent);
 
 
                                 break;

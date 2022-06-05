@@ -60,6 +60,18 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
     }
+
+    @Override
+    public void onResume() {
+        init();             // INITIALIZE ALL VIEWS
+        navigationOpen();   //NAVIGATION DRAWER
+        addSubject();       //FLOATING ACTION BUTTON
+        display();          // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
+        textListener();     // FILTER SEARCH IN SUBJECT ACTIVITY
+        initializeAdapter(); // INITIALIZE ADAPTER
+        showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
+        super.onResume();
+    }
     
     public void showHideFloatingActionButton(){
 

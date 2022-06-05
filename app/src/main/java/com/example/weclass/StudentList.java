@@ -52,8 +52,22 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     initializeAdapter();     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     textListener();         // SEARCH BAR FOR LIST OF STUDENTS
 
+
         return view;
     }
+
+    @Override
+    public void onResume() {
+        initialize();       // INITIALIZE ALL VIEWS
+        addStudent();       // ADD STUDENT BUTTON
+        getDataFromActivity(); // GET PARENT ID FROM SUBJECT ACTIVITY
+        display();              // DATA TO BE DISPLAY IN RECYCLERVIEW
+        initializeAdapter();     // INITIALIZE ADAPTER FOR RECYCLERVIEW
+        textListener();         // SEARCH BAR FOR LIST OF STUDENTS
+        super.onResume();
+    }
+
+
 
     public void initializeAdapter(){
         studentAdapter = new StudentAdapter(getContext(), studentItems, this);

@@ -11,7 +11,8 @@
         android:theme="@style/Theme.WeClass">
         <activity
             android:name=".studentlist.EditStudent"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog"/>
         <activity
             android:name=".TermsAndCondition"
             android:exported="false" />
@@ -26,13 +27,13 @@
         <activity
             android:name=".EditSubjectActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Subject"
             android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".AddSubjectActivity"
             android:exported="false"
             android:label="Add Subject"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Subject"
             android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".Profile"
@@ -47,7 +48,8 @@
             android:name=".BottomNavi"
             android:exported="false"
             android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog"
+            android:parentActivityName=".Subject"/>
         <activity
             android:name=".Subject"
             android:exported="false"

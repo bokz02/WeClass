@@ -135,7 +135,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // UPDATE DATE OF SUBJECT DATABASE
+    // UPDATE DATA OF SUBJECT DATABASE
     public void updateData(String id,String course, String subjectCode, String subjectName, String day, String time){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -146,6 +146,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_DAY, day);
         contentValues.put(COLUMN_TIME, time);
         long result = db.update(TABLE_NAME, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // UPDATE DATA OF STUDENT DATABASE
+    public void updateData(String id, String lastName,String firstName, String middleName, String gender){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_LAST_NAME, lastName);
+        contentValues.put(COLUMN_FIRST_NAME, firstName);
+        contentValues.put(COLUMN_MIDDLE_NAME, middleName);
+        contentValues.put(COLUMN_GENDER, gender);
+
+        long result = db.update(TABLE_NAME2, contentValues, "id_number=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }

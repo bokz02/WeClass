@@ -31,6 +31,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
     int t1Hour, t1Minute;
     ImageButton backButton;
     String selectedDay;
+    ArrayList<StudentList> studentLists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +83,12 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         startActivity(intent);
     }
 
-    //ToDo: FIXED THE BACK BUTTON, IT SHOULDN'T BE INTENT. IT SHOULD BE startActivityForResult BASED ON STACKOVERFLOW
+
     public void backButton() {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EditSubjectActivity.this, Subject.class);
-                startActivity(intent);
+                finish();
             }
         });
     }       // Back button
@@ -107,6 +107,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
                         timeTextView.getText().toString().trim());
 
                 Snackbar.make(updateButton, "Subject successfully updated!", Snackbar.LENGTH_LONG).show();
+
 
             }
         });
