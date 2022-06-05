@@ -7,36 +7,48 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static com.example.weclass.schedule.CalendarUtils.daysInMonthArray;
 import static com.example.weclass.schedule.CalendarUtils.daysInWeekArray;
 import static com.example.weclass.schedule.CalendarUtils.weeklyYearFromDate;
 
-import com.example.weclass.MainActivity;
+import com.example.weclass.AddSubjectActivity;
 import com.example.weclass.R;
 import com.example.weclass.ScheduleActivity;
 import com.example.weclass.Settings;
 import com.example.weclass.Subject;
+import com.example.weclass.database.DataBaseHelper;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
-public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, NavigationView.OnNavigationItemSelectedListener {
-    private TextView monthYearText, weeklyYearText;
+public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, NavigationView.OnNavigationItemSelectedListener, EventAdapter.OnNoteListener {
+    private TextView monthYearText, weeklyYearText, eventDay, eventTime;
+    private EditText eventTitle;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
+    private Button createEvent;
+    ArrayList<EventItem> eventItems, id;
+    EventAdapter eventAdapter;
+    RecyclerView recyclerView;
+    DataBaseHelper dataBaseHelper;
 
 
     DrawerLayout drawerLayout;
@@ -52,9 +64,50 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         CalendarUtils.selectedDate = LocalDate.now();
         setWeekView();
         navigationOpen();
+
+        display();
+        initializeAdapter();
+    }
+
+    public void initializeAdapter(){
+        eventAdapter = new EventAdapter(WeekViewActivity.this, eventItems, this);
+        recyclerView.setAdapter(eventAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(WeekViewActivity.this));
+    }
+
+    // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
+    public void display(){
+        id = new ArrayList<>();
+        eventItems = new ArrayList<>();
+        dataBaseHelper = new DataBaseHelper(this);
+        eventItems = displayData();
+
     }
 
 
+    // GET THE DATA IN THE DATABASE
+    private ArrayList<EventItem> displayData(){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_NAME3, null);
+        ArrayList<EventItem> eventItems= new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                eventItems.add(new EventItem (
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return eventItems;
+    }
+
+
+
+
+    //OnBackPressed
     @Override
     public void onBackPressed() {
 
@@ -72,6 +125,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     }
 
 
+    //Navigation Open
     public void navigationOpen() {
         setSupportActionBar(toolbar);
         navigationView.bringToFront();
@@ -81,6 +135,8 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
 
+
+    //Navigation Item Selected
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -104,6 +160,8 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         return true;
     }
 
+
+    //Initialization
     private void initWidgets()
     {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
@@ -112,8 +170,11 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         drawerLayout = findViewById(R.id.drawerLayout1);
         navigationView = findViewById(R.id.navView1);
         toolbar = findViewById(R.id.toolbarSchedule);
+        recyclerView = findViewById(R.id.eventRecycler);
+
     }
 
+    //SetWeekView Calendar
     private void setWeekView()
     {
         weeklyYearText.setText(weeklyYearFromDate(CalendarUtils.selectedDate));
@@ -123,22 +184,26 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
-        setEventAdpater();
+//        setEventAdpater();
     }
 
 
+    //Calendar Back Button
     public void previousWeekAction(View view)
     {
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
         setWeekView();
     }
 
+
+    //Calendar Next Button
     public void nextWeekAction(View view)
     {
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
         setWeekView();
     }
 
+    //Selected Date Click
     @Override
     public void onItemClick(int position, LocalDate date)
     {
@@ -150,21 +215,16 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     protected void onResume()
     {
         super.onResume();
-        setEventAdpater();
+//        setEventAdpater();
     }
 
-    private void setEventAdpater()
-    {
-        ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
-        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
-        eventListView.setAdapter(eventAdapter);
-    }
-
+    //Add New Button
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));
     }
 
+    //Month View Button
     public void monthView(View view) {
         startActivity(new Intent(this, ScheduleActivity.class));
     }
@@ -172,5 +232,10 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+
     }
 }
