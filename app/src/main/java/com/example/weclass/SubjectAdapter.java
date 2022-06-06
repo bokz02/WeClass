@@ -22,6 +22,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.schedule.EventAdapter;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
     private ArrayList<SubjectItems> subjectItemsFull;
     private final Context context;
     private final OnNoteListener mOnNoteListener;
-
 
 
      public SubjectAdapter(Context context, ArrayList<SubjectItems> subjectItems, OnNoteListener onNoteListener){
@@ -224,10 +224,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         void onNoteClick(int position);
 
     }
-
-
-
-
 
 
 }

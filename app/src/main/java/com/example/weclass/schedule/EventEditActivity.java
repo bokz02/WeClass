@@ -2,31 +2,43 @@ package com.example.weclass.schedule;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.weclass.AddSubjectActivity;
 import com.example.weclass.R;
+import com.example.weclass.Subject;
+import com.example.weclass.SubjectAdapter;
+import com.example.weclass.SubjectItems;
+import com.example.weclass.database.DataBaseHelper;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 
-public class EventEditActivity extends AppCompatActivity
-{
+public class EventEditActivity extends AppCompatActivity implements EventAdapter.OnNoteListener {
+    private Button createEvent, cancelEvent;
     private EditText eventNameET;
     private TextView eventDateTV, eventTimeTV;
     int t1Hour, t1Minute;
     private LocalTime time;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_edit);
         initWidgets();
@@ -34,6 +46,9 @@ public class EventEditActivity extends AppCompatActivity
         eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
 //        eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
         pickTime();
+        createEvent();
+        cancelEvent();
+
     }
 
     public void pickTime() {
@@ -61,20 +76,95 @@ public class EventEditActivity extends AppCompatActivity
     }
 
 
+    private void initWidgets() {
+        eventNameET = findViewById(R.id.eventNameText);
+        eventDateTV = findViewById(R.id.eventDateText);
+        eventTimeTV = findViewById(R.id.eventTimeText);
+        createEvent = findViewById(R.id.createEvent);
+        cancelEvent = findViewById(R.id.cancelButtonEvent);
 
-    private void initWidgets()
-    {
-        eventNameET = findViewById(R.id.eventNameET);
-        eventDateTV = findViewById(R.id.eventDateTV);
-        eventTimeTV = findViewById(R.id.eventTimeTV);
     }
 
-    public void saveEventAction(View view)
+
+    public void createEvent() {
+
+        createEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (eventNameET.getText().toString().isEmpty() || eventDateTV.getText().toString().isEmpty() || eventTimeTV.getText().toString().isEmpty()) {
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EventEditActivity.this);
+                    builder.setTitle("Error");
+                    builder.setIcon(R.drawable.ic_baseline_warning_24);
+                    builder.setMessage("Don't leave empty fields!");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+
+                    });
+                    builder.show();
+                } else {
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EventEditActivity.this);
+                    builder.setTitle("Please confirm");
+                    builder.setIcon(R.drawable.ic_baseline_warning_24);
+                    builder.setMessage("Are you sure all the information are correct?");
+                    builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            DataBaseHelper dbh = new DataBaseHelper(EventEditActivity.this);
+                            dbh.addSchedule(eventNameET.getText().toString().trim(),
+                                    eventTimeTV.getText().toString().trim(),
+                                    eventDateTV.getText().toString().trim());
+                            Snackbar.make(createEvent, "Subject successfully created!", Snackbar.LENGTH_LONG).show();
+                            eventNameET.setText("");
+                            eventTimeTV.setText("");
+                            eventDateTV.setText("");
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+
+
+        });
+
+    }
+
+    public void cancelEvent()
     {
-        String eventName = eventNameET.getText().toString();
-        String eventTime = eventTimeTV.getText().toString();
-        Event newEvent = new Event(eventName, CalendarUtils.selectedDate, eventTime);
-        Event.eventsList.add(newEvent);
-        finish();
+        cancelEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EventEditActivity.this);
+                builder.setTitle("Confirm exit");
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                builder.setMessage("All the fields will not be saved!");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+
+                    }
+                });
+
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                builder.show();
+            }
+        });
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+
     }
 }

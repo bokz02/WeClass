@@ -1,48 +1,84 @@
 package com.example.weclass.schedule;
 
-import static com.example.weclass.schedule.CalendarUtils.formattedTime;
-
 import android.content.Context;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
+import com.example.weclass.SubjectAdapter;
+import com.example.weclass.SubjectItems;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class EventAdapter extends ArrayAdapter<Event>
-{
-    public EventAdapter(@NonNull Context context, List<Event> events)
-    {
-        super(context, 0, events);
+public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
+
+    private final ArrayList<EventItem> eventItems;
+    private ArrayList<EventItem> eventItemsFull;
+    private final Context context;
+    private final OnNoteListener mOnNoteListener;
+
+
+    public EventAdapter(Context context, ArrayList<EventItem> eventItems, OnNoteListener mOnNoteListener) {
+        this.context = context;
+        this.eventItems = eventItems;
+        this.mOnNoteListener = mOnNoteListener;
+
     }
 
-    @NonNull
+    public MyViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType)
+    {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.event_cell, parent, false);
+        return  new EventAdapter.MyViewHolder(view, mOnNoteListener);
+    }
+
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
-    {
-
-        Event event = getItem(position);
-
-        if (convertView == null)
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell, parent, false);
-
-        TextView eventCellTV = convertView.findViewById(R.id.eventCellTV);
-        TextView eventCelltime = convertView.findViewById(R.id.eventCellTime);
-        TextView eventCellDay = convertView.findViewById(R.id.eventCellDay);
-
-        String eventTime = event.getTime();
-        String eventTitle = event.getName();
-        String eventDay = CalendarUtils.formattedDate(event.getDate());
-        eventCellTV.setText(eventTitle);
-        eventCelltime.setText(eventTime);
-        eventCellDay.setText(eventDay);
-        return convertView;
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        
+        holder.eventTitle.setText(String.valueOf(eventItems.get(position).getName()));
+        holder.eventTime.setText(String.valueOf(eventItems.get(position).getTime()));
+        holder.eventDay.setText(String.valueOf(eventItems.get(position).getDate()));
     }
+
+    @Override
+    public int getItemCount() {
+//        return (eventItems == null) ? 0: eventItems.size();
+
+        return eventItems.size();
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView id, eventTitle, eventTime, eventDay;
+        OnNoteListener onNoteListener;
+
+        public MyViewHolder(View itemView, OnNoteListener OnNoteListener) {
+            super(itemView);
+
+            id = itemView.findViewById(R.id.eventID);
+            eventTitle = itemView.findViewById(R.id.eventCellTV);
+            eventDay = itemView.findViewById(R.id.eventCellDay);
+            eventTime = itemView.findViewById(R.id.eventCellTime);
+            this.onNoteListener = OnNoteListener;
+
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            onNoteListener.onNoteClick(getAdapterPosition());
+        }
+    }
+    public interface OnNoteListener{
+        void onNoteClick(int position);
+
+    }
+
 }
+

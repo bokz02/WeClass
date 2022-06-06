@@ -16,7 +16,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     private Context context;
-    private static final String DATABASE_NAME = "weClass.db";
+    private static final String DATABASE_NAME = "weClass1.db";
     private static final int DATABASE_VERSION = 1;
     public static final String TABLE_NAME = "my_subjects";
     public static final String COLUMN_ID = "id_number";
@@ -96,7 +96,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_SCHED_TIME, eventTime);
         cv.put(COLUMN_SCHED_DAY, eventDay);
 
-        long result = db.insert(TABLE_NAME2, null, cv);
+        long result = db.insert(TABLE_NAME3, null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }

@@ -26,12 +26,12 @@
 
 
             <Button
+                android:id="@+id/createEvent"
                 android:layout_width="159dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/transparent_bg"
-                android:onClick="saveEventAction"
                 android:text="Create"
                 android:textAllCaps="false"
                 android:textColor="@color/darkText"
@@ -50,7 +50,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/cancelButtonSubject"
+                android:id="@+id/cancelButtonEvent"
                 android:layout_width="162dp"
                 android:layout_height="47dp"
                 android:layout_marginBottom="12dp"
@@ -118,7 +118,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
             <EditText
-                android:id="@+id/eventNameET"
+                android:id="@+id/eventNameText"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="69dp"
@@ -134,7 +134,7 @@
 
 
             <TextView
-                android:id="@+id/eventTimeTV"
+                android:id="@+id/eventTimeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="112dp"
@@ -151,7 +151,7 @@
 
 
             <TextView
-                android:id="@+id/eventDateTV"
+                android:id="@+id/eventDateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="76dp"
