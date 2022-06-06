@@ -59,7 +59,7 @@
             android:layout_gravity="center_horizontal"
             android:text="ID"
             android:textSize="16sp"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/parentIDStudentList"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:text="Parent iD"
             android:textSize="16sp"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <RelativeLayout
             android:id="@+id/rl2"

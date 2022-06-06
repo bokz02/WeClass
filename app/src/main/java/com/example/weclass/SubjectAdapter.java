@@ -35,6 +35,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
     private final OnNoteListener mOnNoteListener;
 
 
+
      public SubjectAdapter(Context context, ArrayList<SubjectItems> subjectItems, OnNoteListener onNoteListener){
         this.context = context;
         this.subjectItems = subjectItems;

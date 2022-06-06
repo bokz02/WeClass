@@ -215,7 +215,6 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             _studentCode.setText(bundle.getString("SubjectCode"));
             _courseTitle.setText(bundle.getString("CourseCode"));
         }
-
     }
 
     @Override
