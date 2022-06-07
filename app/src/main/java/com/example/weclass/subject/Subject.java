@@ -1,4 +1,4 @@
-package com.example.weclass;
+package com.example.weclass.subject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -23,6 +23,11 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.weclass.ExtendedRecyclerView;
+import com.example.weclass.MainActivity;
+import com.example.weclass.R;
+import com.example.weclass.ScheduleActivity;
+import com.example.weclass.Settings;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -201,7 +206,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.drawerHome:
-                Intent intent = new Intent(this,MainActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;
@@ -211,7 +216,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 finish();
                 break;
             case R.id.drawerSettings:
-                intent = new Intent(this,Settings.class);
+                intent = new Intent(this, Settings.class);
                 startActivity(intent);
                 finish();
                 break;

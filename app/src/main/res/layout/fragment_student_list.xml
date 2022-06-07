@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_navi"
-    tools:context=".StudentList">
+    tools:context=".studentlist.StudentList">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -148,6 +148,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/lightText"
             android:clickable="true"
+            app:rippleColor="@color/rippleFAB"
             android:tooltipText="Add student"
             android:contentDescription="@string/addStudent"
             android:focusable="true"

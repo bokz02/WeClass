@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tasks.AddTask">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_nnavi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-29dp" />
+
+    <ImageButton
+        android:id="@+id/backButtonAddTasks"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/iconback2"
+        android:backgroundTint="@color/white"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".9" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/guide2"
+        app:layout_constraintEnd_toEndOf="@id/guide4"
+        app:layout_constraintStart_toStartOf="@id/guide3"
+        app:layout_constraintTop_toTopOf="@id/guide1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@id/guide5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@id/guide6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".95" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".5" />
+
+            <TextView
+                android:id="@+id/headingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Add tasks"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Task information"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/headingTitle" />
+
+            <EditText
+                android:id="@+id/descriptionEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/input_text_style"
+                android:drawableStart="@drawable/ic_create"
+                android:drawablePadding="5dp"
+                android:hint="Description"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="1000"
+                android:maxLines="9"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/guide6"
+                app:layout_constraintStart_toStartOf="@id/guide5"
+                app:layout_constraintTop_toBottomOf="@+id/dateTextViewTask" />
+
+            <EditText
+                android:id="@+id/scoreEditText"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/input_text_style"
+                android:drawableStart="@drawable/ic_score"
+                android:gravity="center"
+                android:hint="Score"
+                android:inputType="textCapSentences|textMultiLine|number|numberSigned"
+                android:maxLength="7"
+                android:paddingStart="5dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/guide6"
+                app:layout_constraintTop_toBottomOf="@+id/caption" />
+
+            <TextView
+                android:id="@+id/taskTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:drawablePadding="5dp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:hint="Select task type"
+                android:inputType="textCapSentences|textMultiLine"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_folder"
+                app:layout_constraintStart_toStartOf="@id/guide5"
+                app:layout_constraintTop_toBottomOf="@+id/caption" />
+
+            <TextView
+                android:id="@+id/dateTextViewTask"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:drawablePadding="5dp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:hint="Deadline"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_calendar"
+                app:layout_constraintStart_toStartOf="@id/guide5"
+                app:layout_constraintTop_toBottomOf="@+id/taskTypeTextView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/createButtonTask"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Create"
+                android:textColor="@color/createAndcancelButtonColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guide6"
+                app:layout_constraintStart_toStartOf="@id/guide7" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancelButtonTask"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Cancel"
+                android:textColor="@color/createAndcancelButtonColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guide7"
+                app:layout_constraintStart_toStartOf="@id/guide5"
+                app:strokeColor="@color/lightText" />
+
+            <ImageView
+                android:id="@+id/horizontalLine"
+                android:layout_width="0dp"
+                android:layout_height=".75dp"
+                android:background="@color/createAndcancelButtonColor"
+                app:layout_constraintBottom_toTopOf="@+id/cancelButtonTask"
+                app:layout_constraintEnd_toEndOf="@id/guide6"
+                app:layout_constraintStart_toStartOf="@id/guide5" />
+
+            <ImageView
+                android:layout_width=".2dp"
+                android:layout_height="40dp"
+                android:background="@color/createAndcancelButtonColor"
+                app:layout_constraintEnd_toEndOf="@id/guide7"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

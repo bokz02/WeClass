@@ -15,8 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.example.weclass.schedule.WeekViewActivity;
-import com.example.weclass.studentlist.AddStudent;
+import com.example.weclass.subject.Subject;
 import com.google.android.material.navigation.NavigationView;
 
 public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

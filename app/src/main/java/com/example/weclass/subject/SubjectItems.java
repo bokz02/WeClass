@@ -1,4 +1,4 @@
-package com.example.weclass;
+package com.example.weclass.subject;
 
 public class SubjectItems {
     String course, subjectCode, subjectName, daySubject, timeSubject;

@@ -18,4 +18,6 @@
     <color name="cancelButtonPressed">#7A7A7A</color>
     <color name="cancelButtonNotPressed">#DBDBDB</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="rippleFAB">#1F6C64</color>
+    <color name="createAndcancelButtonColor">#5A5959</color>
 </resources>

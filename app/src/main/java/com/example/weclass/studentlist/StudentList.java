@@ -1,4 +1,4 @@
-package com.example.weclass;
+package com.example.weclass.studentlist;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,6 +22,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 
+import com.example.weclass.ExtendedRecyclerView;
+import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.AddStudent;
 import com.example.weclass.studentlist.StudentAdapter;

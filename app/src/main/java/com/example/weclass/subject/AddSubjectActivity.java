@@ -1,4 +1,4 @@
-package com.example.weclass;
+package com.example.weclass.subject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,7 +28,7 @@ public class AddSubjectActivity extends AppCompatActivity {
     EditText courseEditText, subjectNameEditText, subjectCodeEditText;
     TextView dayTextView, timeTextView;
     int t1Hour, t1Minute;
-    ImageButton timeButton, dateButton, backButton;
+    ImageButton backButton;
     String selectedDay;
 
 
@@ -124,8 +125,6 @@ public class AddSubjectActivity extends AppCompatActivity {
 
     //Initialize all the textview and button
     public void initialize() {
-        dateButton = findViewById(R.id.dateImageButton);
-        timeButton = findViewById(R.id.timeImageButton);
         createButton = findViewById(R.id.createButtonSubject);
         courseEditText = findViewById(R.id.courseNameText);
         subjectCodeEditText = findViewById(R.id.subjectCodeText);

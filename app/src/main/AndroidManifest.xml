@@ -10,30 +10,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".tasks.AddTask"
+            android:exported="false"
+            android:theme="@style/Theme.Dialog"
+            android:windowSoftInputMode="adjustNothing"
+            android:parentActivityName=".BottomNavi"/>
+        <activity
             android:name=".studentlist.EditStudent"
             android:exported="false"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".TermsAndCondition"
             android:exported="false" />
         <activity
             android:name=".schedule.EventEditActivity"
             android:exported="false"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".studentlist.AddStudent"
             android:exported="false"
             android:theme="@style/Theme.Dialog" />
         <activity
-            android:name=".EditSubjectActivity"
+            android:name=".subject.EditSubjectActivity"
             android:exported="false"
-            android:parentActivityName=".Subject"
+            android:parentActivityName=".subject.Subject"
             android:theme="@style/Theme.Dialog" />
         <activity
-            android:name=".AddSubjectActivity"
+            android:name=".subject.AddSubjectActivity"
             android:exported="false"
             android:label="Add Subject"
-            android:parentActivityName=".Subject"
+            android:parentActivityName=".subject.Subject"
             android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".Profile"
@@ -47,11 +53,11 @@
         <activity
             android:name=".BottomNavi"
             android:exported="false"
-            android:windowSoftInputMode="adjustNothing"
+            android:parentActivityName=".subject.Subject"
             android:theme="@style/Theme.Dialog"
-            android:parentActivityName=".Subject"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".Subject"
+            android:name=".subject.Subject"
             android:exported="false"
             android:theme="@style/Theme.Dialog"
             android:windowSoftInputMode="adjustNothing" />

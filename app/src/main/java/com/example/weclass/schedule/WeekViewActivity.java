@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,13 +29,11 @@ import java.util.ArrayList;
 import static com.example.weclass.schedule.CalendarUtils.daysInWeekArray;
 import static com.example.weclass.schedule.CalendarUtils.weeklyYearFromDate;
 
-import com.example.weclass.AddSubjectActivity;
 import com.example.weclass.R;
 import com.example.weclass.ScheduleActivity;
 import com.example.weclass.Settings;
-import com.example.weclass.Subject;
+import com.example.weclass.subject.Subject;
 import com.example.weclass.database.DataBaseHelper;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
 public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, NavigationView.OnNavigationItemSelectedListener, EventAdapter.OnNoteListener {

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:fitsSystemWindows="true"
-    tools:context=".Subject">
+    tools:context=".subject.Subject">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navSubject"

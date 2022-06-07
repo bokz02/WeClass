@@ -1,7 +1,6 @@
-package com.example.weclass;
+package com.example.weclass.subject;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -15,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.weclass.R;
+import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -23,7 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class EditSubjectActivity extends AppCompatActivity implements SubjectAdapter.OnNoteListener{
+public class EditSubjectActivity extends AppCompatActivity implements SubjectAdapter.OnNoteListener {
 
     EditText _course, _subjectCode, _subjectName;
     TextView  _id, dayTextView, timeTextView;

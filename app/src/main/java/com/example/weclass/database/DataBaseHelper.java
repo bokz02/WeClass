@@ -1,15 +1,11 @@
 package com.example.weclass.database;
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
-import com.example.weclass.SubjectAdapter;
-import com.google.android.material.snackbar.Snackbar;
 
 
 public class DataBaseHelper extends SQLiteOpenHelper {
@@ -42,6 +38,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_SCHED_TIME= "sched_ime";
     private static final String COLUMN_SCHED_DAY = "sched_date";
 
+    public static final String TABLE_NAME4 = "my_tasks";
+    public static final String COLUMN_ID4 = "id_number";
+    public static final String COLUMN_PARENT_ID_SUBJECT = "parent_id";
+    public static final String COLUMN_TASK_TYPE = "task_type";
+    public static final String COLUMN_DUE_DATE = "due_date";
+    public static final String COLUMN_SCORE = "task_score";
+    public static final String COLUMN_DESCRIPTION = "task_description";
+
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
@@ -70,10 +74,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         String query3 = "CREATE TABLE " + TABLE_NAME3 +
                 " (" + COLUMN_ID3 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_EVENT_TITLE+ " TEXT, " +
+                COLUMN_EVENT_TITLE + " TEXT, " +
                 COLUMN_SCHED_TIME + " TEXT, " +
                 COLUMN_SCHED_DAY + " TEXT);";
 
+        String query4 = "CREATE TABLE " + TABLE_NAME4 +
+                " (" + COLUMN_ID4 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_PARENT_ID_SUBJECT + " TEXT, " +
+                COLUMN_TASK_TYPE + " TEXT, " +
+                COLUMN_DUE_DATE + " TEXT, " +
+                COLUMN_SCORE + " TEXT, " +
+                COLUMN_DESCRIPTION + " TEXT);";
+
+        db.execSQL(query4);
         db.execSQL(query3);
         db.execSQL(query2);
         db.execSQL(query);
@@ -84,6 +97,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME3);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME4);
         onCreate(db);
     }
 
