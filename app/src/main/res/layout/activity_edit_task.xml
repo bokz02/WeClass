@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".tasks.AddTask">
+    tools:context=".tasks.EditTask">
 
     <ImageView
         android:id="@+id/imageView"
@@ -16,18 +16,19 @@
         tools:layout_editor_absoluteY="-29dp" />
 
     <ImageButton
-        android:id="@+id/backButtonAddTasks"
+        android:id="@+id/backButtonAddTasksEdit"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/iconback2"
         android:backgroundTint="@color/white"
+        app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/parentIDTask"
+        android:id="@+id/parentIDTaskEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -104,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Add tasks"
+                android:text="Edit task"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -158,21 +159,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/caption" />
 
             <TextView
-                android:id="@+id/progressTaskEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="5dp"
-                android:text="Progress"
-                android:hint="Progress"
-                app:drawableStartCompat="@drawable/ic_hourglass"
-                android:gravity="center"
-                android:paddingEnd="5dp"
-                android:paddingStart="5dp"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/guide6"
-                app:layout_constraintTop_toBottomOf="@+id/scoreEditTextEdit" />
-
-            <TextView
                 android:id="@+id/taskTypeTextViewEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
@@ -181,8 +167,8 @@
                 android:drawablePadding="5dp"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:text="Select task type"
                 android:hint="Select task type"
+                android:inputType="textCapSentences|textMultiLine"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_folder"
                 app:layout_constraintStart_toStartOf="@id/guide5"
@@ -192,12 +178,10 @@
                 android:id="@+id/dateTextViewTaskEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginTop="5dp"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:text="Deadline"
                 android:hint="Deadline"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_calendar"
@@ -247,6 +231,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

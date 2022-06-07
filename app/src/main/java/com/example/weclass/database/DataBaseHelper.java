@@ -13,7 +13,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     public static final String TABLE_NAME = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -45,6 +45,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DUE_DATE = "due_date";
     public static final String COLUMN_SCORE = "task_score";
     public static final String COLUMN_DESCRIPTION = "task_description";
+    public static final String COLUMN_PROGRESS = "task_progress";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -84,7 +85,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_TASK_TYPE + " TEXT, " +
                 COLUMN_DUE_DATE + " TEXT, " +
                 COLUMN_SCORE + " TEXT, " +
-                COLUMN_DESCRIPTION + " TEXT);";
+                COLUMN_DESCRIPTION + " TEXT, " +
+                COLUMN_PROGRESS + " TEXT);";
 
         db.execSQL(query4);
         db.execSQL(query3);
@@ -133,7 +135,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void addTask(String parentID, String taskType, String dueDate, String score, String description){
+    public void addTask(String parentID, String taskType, String dueDate, String score, String description, String progress){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -142,6 +144,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DUE_DATE, dueDate);
         cv.put(COLUMN_SCORE, score);
         cv.put(COLUMN_DESCRIPTION, description);
+        cv.put(COLUMN_PROGRESS, progress);
 
         long result = db.insert(TABLE_NAME4, null, cv);
         if(result == -1){

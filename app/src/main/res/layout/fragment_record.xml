@@ -19,12 +19,12 @@
             android:textColor="@color/cancelButtonPressed"
             android:textSize="16sp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@id/noFileTaskView"
-            app:layout_constraintEnd_toEndOf="@+id/noFileTaskView"
-            app:layout_constraintStart_toStartOf="@+id/noFileTaskView" />
+            app:layout_constraintBottom_toTopOf="@id/noScheduleView"
+            app:layout_constraintEnd_toEndOf="@+id/noScheduleView"
+            app:layout_constraintStart_toStartOf="@+id/noScheduleView" />
 
         <View
-            android:id="@+id/noFileTaskView"
+            android:id="@+id/noScheduleView"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/ic_no_file"
@@ -62,12 +62,27 @@
             app:layout_constraintGuide_percent=".93" />
 
         <TextView
+            android:id="@+id/taskSubjectTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Subject Code"
+            android:textAllCaps="true"
+            android:textColor="@color/darkText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/guide3" />
+
+        <TextView
             android:id="@+id/parentIDRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:text="parent id"
             android:textSize="16sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -77,25 +92,26 @@
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="40dp"
-            android:text="CTHESI1"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="Tasks"
             android:textColor="@color/darkText"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/rec_section"
+            android:id="@+id/courseTextViewTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:text="Reports"
+            android:layout_marginEnd="10dp"
+            android:text="BSCS 3"
             android:textColor="@color/darkText"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddTask"

@@ -2,16 +2,19 @@ package com.example.weclass.tasks;
 
 public class TaskItems {
 
-    String taskType, dueDate, score, taskDescription;
+    String taskType, dueDate, score, taskDescription, progress;
     private int taskID, parentID;
 
-    public TaskItems(int taskID,int parentID, String taskType, String dueDate, String score, String taskDescription) {
+
+
+    public TaskItems(int taskID, int parentID, String taskType, String dueDate, String score, String taskDescription, String progress) {
         this.taskType = taskType;
         this.dueDate = dueDate;
         this.score = score;
         this.taskDescription = taskDescription;
         this.taskID = taskID;
         this.parentID = parentID;
+        this.progress = progress;
     }
 
     public String getTaskType() {
@@ -60,5 +63,13 @@ public class TaskItems {
 
     public void setParentID(int parentID) {
         this.parentID = parentID;
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 }

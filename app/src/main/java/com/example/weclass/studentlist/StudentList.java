@@ -44,7 +44,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     ArrayList<StudentItems> studentItems, id, parent_id;
     StudentAdapter studentAdapter;
     EditText searchStudent;
-    View noFile;
+    View noFile_;
 
 
     @Override
@@ -136,7 +136,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         studentAdapter = new StudentAdapter(getContext(), studentItems, this);
         recyclerView.setAdapter(studentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setEmptyView(noFile, noStudentTextView);
+        recyclerView.setEmptyView(noFile_, noStudentTextView);
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
@@ -178,6 +178,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         searchStudent = view.findViewById(R.id.searchEditTextStudent);
         _studentCode = view.findViewById(R.id.studentListSubjectCode);
         _courseTitle = view.findViewById(R.id.courseTitleStudentList);
+        noFile_ = view.findViewById(R.id.noStudentTaskView);
+        noStudentTextView = view.findViewById(R.id.noStudentTextView);
 
     }
 

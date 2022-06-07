@@ -1,7 +1,6 @@
 package com.example.weclass.schedule;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
-import com.example.weclass.ScheduleActivity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

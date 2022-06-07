@@ -26,9 +26,10 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.MainActivity;
 import com.example.weclass.R;
-import com.example.weclass.ScheduleActivity;
+import com.example.weclass.schedule.ScheduleActivity;
 import com.example.weclass.Settings;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.schedule.WeekViewActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -211,7 +212,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 finish();
                 break;
             case R.id.drawerSched:
-                intent = new Intent(this, ScheduleActivity.class);
+                intent = new Intent(this, WeekViewActivity.class);
                 startActivity(intent);
                 finish();
                 break;

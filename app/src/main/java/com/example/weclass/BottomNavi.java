@@ -81,6 +81,7 @@ public class BottomNavi extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("IDParent", parentID.getText().toString());
         bundle.putString("SubjectCode", subjectCode.getText().toString());
+        bundle.putString("CourseCode", courseName.getText().toString());
 
         record.setArguments(bundle);
         fragmentLoader(record);

@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -23,20 +25,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.EditStudent;
+import com.example.weclass.subject.SubjectItems;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> {
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> implements Filterable {
 
     private final ArrayList<TaskItems> taskItems;
     private final Context context;
     private final OnNoteListener mOnNoteListener;
+    private final ArrayList<TaskItems> taskItemsFull;
 
     public TaskAdapter(Context context, ArrayList<TaskItems> taskItems,OnNoteListener onNoteListener) {
         this.context = context;
         this.taskItems = taskItems;
         this.mOnNoteListener = onNoteListener;
+        taskItemsFull = new ArrayList<>(taskItems);
 
     }
 
@@ -162,5 +168,43 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     public interface OnNoteListener{
         void onNoteClick(int position);
     }
+
+    @Override
+    public Filter getFilter() {
+        return taskFilter;
+    }
+
+    private final Filter taskFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<TaskItems> filteredList = new ArrayList<>();
+
+            if(charSequence == null || charSequence.length() == 0){
+                filteredList.addAll(taskItemsFull);
+            }else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for (TaskItems taskItems: taskItemsFull){
+                    if (taskItems.getTaskType().toLowerCase().contains(filterPattern) ||
+                            taskItems.getDueDate().toLowerCase().contains(filterPattern) ||
+                            taskItems.getTaskDescription().toLowerCase().contains(filterPattern)){
+                        filteredList.add(taskItems);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            taskItems.clear();
+            taskItems.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+
+        }
+    };
 
 }

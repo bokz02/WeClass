@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +32,7 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
     FloatingActionButton floatingActionButton;
     ExtendedRecyclerView extendedRecyclerView;
     TaskAdapter taskAdapter;
-    TextView parentID, subjectCode, noFileTextView;
+    TextView parentID, subjectCode, noFileTextView, _taskSubjectCode, _course;
     EditText searchEditText;
     View view;
     View _noFile;
@@ -45,8 +47,9 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
         showHideFloatingActionButton(); // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
         getDataFromBottomNaviActivity(); // GET DATA FROM BOTTOM NAVI THE NEEDS to DISPLAY SPECIFIC DATA FROM EACH REPORTS
         moveToAddTask(); // MOVE TO ADD TASK ACTIVITY
-        display();
-        initializeAdapter();
+        display();      // DATA TO BE DISPLAY IN RECYCLERVIEW
+        initializeAdapter();        // INITIALIZE ADAPTER FOR RECYCLERVIEW
+        textListener();     // SEARCH FUNCTION FOR LIST OF STUDENTS
 
 
         return view;
@@ -59,8 +62,11 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
         floatingActionButton = view.findViewById(R.id.fabAddTask);
         extendedRecyclerView = view.findViewById(R.id.recyclerViewTaskList);
         noFileTextView = view.findViewById(R.id.noTaskTextView);
-        _noFile = view.findViewById(R.id.noFileTaskView);
+        _noFile = view.findViewById(R.id.noScheduleView);
         extendedRecyclerView.setEmptyView(_noFile,noFileTextView);
+        _taskSubjectCode = view.findViewById(R.id.taskSubjectTextView);
+        _course = view.findViewById(R.id.courseTextViewTask);
+        searchEditText = view.findViewById(R.id.searchEditTextTask);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
@@ -78,6 +84,18 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
         taskItems = new ArrayList<>();
         dataBaseHelper = new DataBaseHelper(getContext());
         taskItems = displayData();
+    }
+
+
+    @Override
+    public void onResume() {
+        initialize();       // INITIALIZE ALL VIEWS
+        moveToAddTask();       // ADD STUDENT BUTTON
+        getDataFromBottomNaviActivity(); // GET PARENT ID FROM SUBJECT ACTIVITY
+        display();              // DATA TO BE DISPLAY IN RECYCLERVIEW
+        initializeAdapter();     // INITIALIZE ADAPTER FOR RECYCLERVIEW
+        textListener();
+        super.onResume();
     }
 
     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
@@ -115,7 +133,8 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
                         cursor.getString(2),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getString(5)));
+                        cursor.getString(5),
+                        cursor.getString(6)));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -127,6 +146,8 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
         Bundle bundle = getArguments();
         if (bundle != null) {
             parentID.setText(bundle.getString("IDParent"));
+            _taskSubjectCode.setText(bundle.getString("SubjectCode"));
+            _course.setText(bundle.getString("CourseCode"));
 
         }
     }
@@ -139,6 +160,27 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
                 Intent intent = new Intent(getContext(),AddTask.class);
                 intent.putExtra("id", parentID.getText().toString());
                 startActivity(intent);
+            }
+        });
+    }
+
+    // SEARCH FUNCTION FOR LIST OF STUDENTS
+    public void textListener(){
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                taskAdapter.getFilter().filter(editable);
+
             }
         });
     }

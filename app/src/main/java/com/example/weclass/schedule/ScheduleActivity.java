@@ -1,4 +1,4 @@
-package com.example.weclass;
+package com.example.weclass.schedule;
 
 import static com.example.weclass.schedule.CalendarUtils.daysInMonthArray;
 import static com.example.weclass.schedule.CalendarUtils.monthlyYearFromDate;
@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.weclass.R;
 import com.example.weclass.schedule.CalendarAdapter;
 import com.example.weclass.schedule.CalendarUtils;
 import com.example.weclass.schedule.WeekViewActivity;
@@ -38,27 +40,22 @@ import java.util.Objects;
 
 public class ScheduleActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
 
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
 
     private TextView monthYearText, weeklyYearText;
     private RecyclerView calendarRecyclerView;
+    ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-//        drawerLayout = findViewById(R.id.drawerLayoutSchedule);
-//        navigationView = findViewById(R.id.navViewSchedule);
-//        toolbar = findViewById(R.id.toolbarSchedule);
-
 
         //Schedule
         initWidgets();
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
+        backButton();
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
@@ -71,6 +68,7 @@ public class ScheduleActivity extends AppCompatActivity implements CalendarAdapt
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         weeklyYearText = findViewById(R.id.weeklyYearTV);
+        backButton = findViewById(R.id.backButtonAddSchedule);
     }
 
     private void setMonthView()
@@ -113,5 +111,14 @@ public class ScheduleActivity extends AppCompatActivity implements CalendarAdapt
     public void nextWeekAction(View view) {
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
         setMonthView();
+    }
+
+    public void backButton(){
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

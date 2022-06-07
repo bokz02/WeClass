@@ -36,7 +36,7 @@ public class ExtendedRecyclerView extends RecyclerView {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setEmptyView(View emptyView, TextView textView){
+    public  void setEmptyView(View emptyView, TextView textView){
         emptyView1 = emptyView;
         emptyTextView1 = textView;
     }

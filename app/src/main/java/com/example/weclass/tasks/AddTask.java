@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.example.weclass.DatePickerFragment;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.AddStudent;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -28,10 +27,10 @@ import java.util.Calendar;
 public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     ImageButton backButton;
-    TextView taskType, _date, parentID;
+    TextView taskType, _date, parentID, _progress;
     EditText _score, _description;
     Button _cancel, _create;
-    String selectedTask;
+    String selectedTask, selectedProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         backToTasks();  //  BACK TO RECORD ACTIVITY
         pickTask();     // TASK PICKER BUTTON
         setDate();      // DATE PICKER
+        pickProgress(); // CHOOSE PROGRESS
         cancelButton(); // CANCEL BUTTON
         getDataFromStudentListFragment(); // SET THE ID FOR PARENT ID TEXT
         createStudent();
@@ -55,13 +55,14 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     // INITIALIZE ALL VIEWS
     public void initialize(){
         backButton = findViewById(R.id.backButtonAddTasks);
-        taskType = findViewById(R.id.taskTypeTextView);
-        _score = findViewById(R.id.scoreEditText);
-        _description = findViewById(R.id.descriptionEditText);
-        _cancel = findViewById(R.id.cancelButtonTask);
-        _create = findViewById(R.id.createButtonTask);
-        _date = findViewById(R.id.dateTextViewTask);
+        taskType = findViewById(R.id.taskTypeTextViewEdit);
+        _score = findViewById(R.id.scoreEditTextEdit);
+        _description = findViewById(R.id.descriptionEditTextEdit);
+        _cancel = findViewById(R.id.cancelButtonTaskEdit);
+        _create = findViewById(R.id.updateButtonTaskEdit);
+        _date = findViewById(R.id.dateTextViewTaskEdit);
         parentID = findViewById(R.id.parentIDTask);
+        _progress = findViewById(R.id.progressTaskEditText);
     }
 
     public void createStudent (){
@@ -97,13 +98,15 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                                                                taskType.getText().toString().trim(),
                                                                _date.getText().toString().trim(),
                                                                _score.getText().toString().trim(),
-                                                               _description.getText().toString().trim());
+                                                               _description.getText().toString().trim(),
+                                                               _progress.getText().toString().trim());
 
                                                        Snackbar.make(_create, "Student successfully added!", Snackbar.LENGTH_LONG).show();
                                                        taskType.setText("");
                                                        _date.setText("");
                                                        _score.setText("");
                                                        _description.setText("");
+                                                       _progress.setText("");
 
                                                    }
                                                });
@@ -153,6 +156,32 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectedTask = tasks[i];
                         taskType.setText(selectedTask);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    // CHOOSE PROGRESS
+    public void pickProgress() {
+        final String[] progress = new String[]{
+                "To-Do",
+                "Done",
+        };
+
+        selectedProgress = progress[0];
+        _progress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
+                builder.setTitle("Choose progress");
+                builder.setSingleChoiceItems(progress, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedProgress = progress[i];
+                        _progress.setText(selectedProgress);
                         dialogInterface.dismiss();
                     }
                 });

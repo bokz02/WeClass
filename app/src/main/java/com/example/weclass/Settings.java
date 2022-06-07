@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.example.weclass.schedule.ScheduleActivity;
+import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.subject.Subject;
 import com.google.android.material.navigation.NavigationView;
 
@@ -91,7 +93,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                 finish();
                 break;
             case R.id.drawerSched:
-                intent = new Intent(this, ScheduleActivity.class);
+                intent = new Intent(this, WeekViewActivity.class);
                 startActivity(intent);
                 finish();
                 break;
