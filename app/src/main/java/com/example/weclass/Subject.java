@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,11 +36,13 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     NavigationView navigationView;
     Toolbar toolbar;
     FloatingActionButton floatActionButton;
-    RecyclerView recyclerView;
+    ExtendedRecyclerView recyclerView;
     DataBaseHelper dataBaseHelper;
     ArrayList<SubjectItems> subjectItems, id;
     SubjectAdapter subjectAdapter;
     EditText searchEditText;
+    View noFile;
+    TextView noSubject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         subjectAdapter = new SubjectAdapter(Subject.this, subjectItems, this);
         recyclerView.setAdapter(subjectAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Subject.this));
+        recyclerView.setEmptyView(noFile, noSubject);
     }
 
     // FILTER SEARCH IN SUBJECT ACTIVITY
@@ -178,6 +182,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout = findViewById(R.id.drawerSubject);
         navigationView = findViewById(R.id.navSubject);
         toolbar = findViewById(R.id.toolbarSubject);
+        noFile = findViewById(R.id.noFileSubject);
+        noSubject = findViewById(R.id.noSubjectTextView);
     }
 
     //NAVIGATION DRAWER

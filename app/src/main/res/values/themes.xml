@@ -27,6 +27,10 @@
         <item name="colorAccent">@color/navigation_text_color</item>
     </style>
 
+    <style name="FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="colorAccent">@color/navigation_text_color</item>
+    </style>
+
 
 
 

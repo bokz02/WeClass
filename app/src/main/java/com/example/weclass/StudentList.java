@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -33,14 +34,15 @@ import java.util.Collections;
 
 public class StudentList extends Fragment implements StudentAdapter.OnNoteListener{
 
-    RecyclerView recyclerView;
+    ExtendedRecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
     View view;
-    TextView parentID, _studentCode, _sort, _courseTitle;
+    TextView parentID, _studentCode, _sort, _courseTitle, noStudentTextView;
     DataBaseHelper dataBaseHelper;
     ArrayList<StudentItems> studentItems, id, parent_id;
     StudentAdapter studentAdapter;
     EditText searchStudent;
+    View noFile;
 
 
     @Override
@@ -60,6 +62,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
         return view;
     }
+
+
 
     // RESUME ALL FUNCTION FROM BEING HIDE
     @Override
@@ -130,6 +134,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         studentAdapter = new StudentAdapter(getContext(), studentItems, this);
         recyclerView.setAdapter(studentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setEmptyView(noFile, noStudentTextView);
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
@@ -171,6 +176,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         searchStudent = view.findViewById(R.id.searchEditTextStudent);
         _studentCode = view.findViewById(R.id.studentListSubjectCode);
         _courseTitle = view.findViewById(R.id.courseTitleStudentList);
+        noFile = view.findViewById(R.id.noFile);
+        noStudentTextView = view.findViewById(R.id.noStudentTextView);
     }
 
     // SEARCH FUNCTION FOR LIST OF STUDENTS
