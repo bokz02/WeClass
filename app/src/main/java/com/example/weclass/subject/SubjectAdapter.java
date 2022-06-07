@@ -197,7 +197,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
             id = itemView.findViewById(R.id.positionNumber);
-            courseNameTxt = itemView.findViewById(R.id.courseNameRecView);
+            courseNameTxt = itemView.findViewById(R.id.taskTypeRecView);
             subjectCodeTxt = itemView.findViewById(R.id.subjectCodeRecView);
             subjectTitleTxt = itemView.findViewById(R.id.subjectTitleRecView);
             dateTxt = itemView.findViewById(R.id.dateTextViewRecView);

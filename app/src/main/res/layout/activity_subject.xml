@@ -28,23 +28,23 @@
             android:id="@+id/noSubjectTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="No subject to display, create one."
+            android:textColor="@color/cancelButtonPressed"
             android:textSize="16sp"
             android:textStyle="italic"
-            android:textColor="@color/cancelButtonPressed"
-            android:text="No subject to display, create one."
             app:layout_constraintBottom_toTopOf="@id/noFileSubject"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintEnd_toEndOf="@+id/noFileSubject"
+            app:layout_constraintStart_toStartOf="@+id/noFileSubject" />
 
         <View
             android:id="@+id/noFileSubject"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/ic_no_file"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/guide2"
+            app:layout_constraintEnd_toEndOf="@id/guide4"
+            app:layout_constraintStart_toStartOf="@id/guide3"
+            app:layout_constraintTop_toTopOf="@id/guide1" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide1"

@@ -16,7 +16,7 @@ public class ExtendedRecyclerView extends RecyclerView {
     private View emptyView1;
     private TextView emptyTextView1;
 
-    private AdapterDataObserver adapterDataObserver = new AdapterDataObserver() {
+    private final AdapterDataObserver adapterDataObserver = new AdapterDataObserver() {
         @Override
         public void onChanged() {
             super.onChanged();
@@ -54,7 +54,7 @@ public class ExtendedRecyclerView extends RecyclerView {
     }
 
     private void updateEmptyView(){
-        if (emptyView1 != null && emptyTextView1 != null &&getAdapter() != null){
+        if (emptyView1 != null && emptyTextView1 != null && getAdapter() != null){
             boolean showEmptyView = getAdapter().getItemCount() == 0;
             emptyView1.setVisibility(showEmptyView ? VISIBLE : GONE);
             emptyTextView1.setVisibility(showEmptyView ? VISIBLE : GONE);

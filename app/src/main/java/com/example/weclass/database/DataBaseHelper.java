@@ -12,8 +12,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     private Context context;
-    private static final String DATABASE_NAME = "weClass1.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "weClass.db";
+    private static final int DATABASE_VERSION = 2;
     public static final String TABLE_NAME = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -133,6 +133,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void addTask(String parentID, String taskType, String dueDate, String score, String description){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_PARENT_ID, parentID);
+        cv.put(COLUMN_TASK_TYPE, taskType);
+        cv.put(COLUMN_DUE_DATE, dueDate);
+        cv.put(COLUMN_SCORE, score);
+        cv.put(COLUMN_DESCRIPTION, description);
+
+        long result = db.insert(TABLE_NAME4, null, cv);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     // ADD QUERY TO SUBJECT DATABASE
     public void addSubject(String course, String subjectCode, String subjectName, String day, String time){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -198,6 +214,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void deleteStudent(int row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result =  db.delete(TABLE_NAME2, "id_number=?", new String[]{ String.valueOf(row_id)});
+
+        if (result == -1){
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    // DELETE A TASK
+    public void deleteTask(int row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result =  db.delete(TABLE_NAME4, "id_number=?", new String[]{ String.valueOf(row_id)});
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();

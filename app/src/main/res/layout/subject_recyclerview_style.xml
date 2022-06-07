@@ -76,7 +76,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/courseNameRecView"
+                android:id="@+id/taskTypeRecView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Course"
@@ -92,7 +92,7 @@
                 android:text="Subject code"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/courseNameRecView" />
+                app:layout_constraintTop_toBottomOf="@+id/taskTypeRecView" />
 
             <TextView
                 android:id="@+id/subjectTitleRecView"

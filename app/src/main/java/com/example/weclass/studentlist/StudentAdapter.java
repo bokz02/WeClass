@@ -177,11 +177,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView id,parent_id, lastNameText, firstNameText, middleNameText, genderText;
         ImageButton button, optionStudent;
-        StudentAdapter.OnNoteListener onNoteListener;
+        OnNoteListener onNoteListener;
         public MyViewHolder(@NonNull View itemView, OnNoteListener mOnNoteListener) {
             super(itemView);
 
-            id = itemView.findViewById(R.id.positionNUmberStudentList);
+            id = itemView.findViewById(R.id.iDNumberStudentList);
             parent_id = itemView.findViewById(R.id.parentIDStudentList);
             lastNameText = itemView.findViewById(R.id.studentLastnameRecView);
             middleNameText = itemView.findViewById(R.id.studentMiddleRecView);

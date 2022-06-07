@@ -178,8 +178,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         searchStudent = view.findViewById(R.id.searchEditTextStudent);
         _studentCode = view.findViewById(R.id.studentListSubjectCode);
         _courseTitle = view.findViewById(R.id.courseTitleStudentList);
-        noFile = view.findViewById(R.id.noFile);
-        noStudentTextView = view.findViewById(R.id.noStudentTextView);
+
     }
 
     // SEARCH FUNCTION FOR LIST OF STUDENTS
