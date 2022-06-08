@@ -26,6 +26,7 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_subject.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_terms_and_condition.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_week_view.xml" value="0.33" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/attendance_recyclerview_style.xml" value="0.365625" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/calendar_cell.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/event_cell.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/fragment_attendance.xml" value="0.36666666666666664" />
@@ -38,7 +39,7 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studenlist_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studentlist_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/subject_recyclerview_style.xml" value="0.36666666666666664" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/task_recyclerview_style.xml" value="0.33" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/task_recyclerview_style.xml" value="0.5" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/option_subject_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/sort_student.xml" value="0.365625" />

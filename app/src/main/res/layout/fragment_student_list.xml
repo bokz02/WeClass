@@ -113,7 +113,7 @@
             android:id="@+id/noStudentTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No task to display, create one."
+            android:text="Currently you don't have student, add one."
             android:textColor="@color/cancelButtonPressed"
             android:textSize="16sp"
             android:textStyle="italic"

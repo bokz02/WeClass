@@ -11,7 +11,8 @@
         android:theme="@style/Theme.WeClass">
         <activity
             android:name=".tasks.EditTask"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog"/>
         <activity
             android:name=".tasks.AddTask"
             android:exported="false"

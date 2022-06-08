@@ -99,7 +99,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
             @Override
             public void onClick(View view) {
                 DataBaseHelper dbh = new DataBaseHelper(EditSubjectActivity.this);
-                dbh.updateData(
+                dbh.updateSubject(
                         _id.getText().toString().trim(),
                         _course.getText().toString().trim(),
                         _subjectCode.getText().toString().trim(),

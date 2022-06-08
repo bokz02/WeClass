@@ -28,11 +28,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/parentIDTaskEdit"
+        android:id="@+id/idTaskEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="parent id"
+        android:text="id"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,14 +43,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".2" />
+        app:layout_constraintGuide_percent=".17" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".8" />
+        app:layout_constraintGuide_percent=".83" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide3"
@@ -159,7 +160,54 @@
                 app:layout_constraintTop_toBottomOf="@+id/caption" />
 
             <TextView
+                android:id="@+id/progressEditTextEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:hint="Progress"
+                android:paddingStart="5dp"
+                android:layout_marginTop="5dp"
+                android:paddingEnd="5dp"
+                android:text="Progress"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_hourglass"
+                app:layout_constraintEnd_toStartOf="@+id/guide6"
+                app:layout_constraintTop_toBottomOf="@+id/scoreEditTextEdit" />
+
+            <EditText
+                android:id="@+id/taskNumberEditTextEdit"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/input_text_style"
+                android:gravity="center"
+                android:hint="#"
+                android:layout_marginStart="5dp"
+                android:inputType="textCapSentences|textMultiLine|number|numberSigned"
+                android:maxLength="3"
+                android:paddingHorizontal="5dp"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/taskNumberTextView"
+                app:layout_constraintTop_toTopOf="@+id/taskNumberTextView" />
+
+            <TextView
                 android:id="@+id/taskTypeTextViewEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:drawablePadding="5dp"
+                android:layout_marginTop="5dp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:hint="Select task type"
+                android:text="Select task type"
+                android:inputType="textCapSentences|textMultiLine"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_folder"
+                app:layout_constraintStart_toStartOf="@id/guide5"
+                app:layout_constraintTop_toBottomOf="@+id/taskNumberTextView" />
+
+            <TextView
+                android:id="@+id/taskNumberTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
@@ -167,10 +215,10 @@
                 android:drawablePadding="5dp"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:hint="Select task type"
+                android:text="Task number:"
                 android:inputType="textCapSentences|textMultiLine"
                 android:textSize="16sp"
-                app:drawableStartCompat="@drawable/ic_folder"
+                app:drawableStartCompat="@drawable/ic_number_list"
                 app:layout_constraintStart_toStartOf="@id/guide5"
                 app:layout_constraintTop_toBottomOf="@+id/caption" />
 
@@ -182,7 +230,9 @@
                 android:drawablePadding="5dp"
                 android:focusable="true"
                 android:gravity="center_vertical"
+                android:layout_marginTop="5dp"
                 android:hint="Deadline"
+                android:text="Deadline"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_calendar"
                 app:layout_constraintStart_toStartOf="@id/guide5"
@@ -194,7 +244,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:text="Create"
+                android:text="Update"
                 android:textColor="@color/createAndcancelButtonColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guide6"

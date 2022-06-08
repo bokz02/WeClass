@@ -13,7 +13,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     public static final String TABLE_NAME = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -46,6 +46,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SCORE = "task_score";
     public static final String COLUMN_DESCRIPTION = "task_description";
     public static final String COLUMN_PROGRESS = "task_progress";
+    public static final String COLUMN_TASK_NUMBER = "task_number";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -86,7 +87,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_DUE_DATE + " TEXT, " +
                 COLUMN_SCORE + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_PROGRESS + " TEXT);";
+                COLUMN_PROGRESS + " TEXT, " +
+                COLUMN_TASK_NUMBER + " TEXT);";
 
         db.execSQL(query4);
         db.execSQL(query3);
@@ -135,7 +137,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void addTask(String parentID, String taskType, String dueDate, String score, String description, String progress){
+    public void addTask(String parentID, String taskType, String dueDate, String score, String description, String progress, String taskNumber){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -145,6 +147,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_SCORE, score);
         cv.put(COLUMN_DESCRIPTION, description);
         cv.put(COLUMN_PROGRESS, progress);
+        cv.put(COLUMN_TASK_NUMBER, taskNumber);
 
         long result = db.insert(TABLE_NAME4, null, cv);
         if(result == -1){
@@ -169,7 +172,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // UPDATE DATA OF SUBJECT DATABASE
-    public void updateData(String id,String course, String subjectCode, String subjectName, String day, String time){
+    public void updateSubject(String id, String course, String subjectCode, String subjectName, String day, String time){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -185,7 +188,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // UPDATE DATA OF STUDENT DATABASE
-    public void updateData(String id, String lastName,String firstName, String middleName, String gender){
+    public void updateStudent(String id, String lastName, String firstName, String middleName, String gender){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -195,6 +198,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_GENDER, gender);
 
         long result = db.update(TABLE_NAME2, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // UPDATE DATA OF STUDENT DATABASE
+    public void updateTask(String id, String taskType, String dueDate, String score, String description, String progress, String taskNumber){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_TASK_TYPE, taskType);
+        contentValues.put(COLUMN_DUE_DATE, dueDate);
+        contentValues.put(COLUMN_SCORE, score);
+        contentValues.put(COLUMN_DESCRIPTION, description);
+        contentValues.put(COLUMN_PROGRESS, progress);
+        contentValues.put(COLUMN_TASK_NUMBER, taskNumber);
+
+        long result = db.update(TABLE_NAME4, contentValues, "id_number=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }

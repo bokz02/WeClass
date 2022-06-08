@@ -33,20 +33,21 @@ public class EditStudent extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
-        initialize();
-        chooseGender();
-        displayData();
-        backToStudentList();
-        cancelButton();
-        updateData();
+        initialize();   // INITIALIZE ALL VIEWS
+        chooseGender(); // GENDER PICKER
+        displayData();  // RECEIVE THA DATA FROM ADAPTER THAT PASS HERE, AND DISPLAY IN ALL VIEWS
+        backToStudentList();    // BACK BUTTON
+        cancelButton();     // CANCEL BUTTON
+        updateData();   // GET ALL DATA IN VIES AND INSERT TO DATABASE
     }
 
+    // GET ALL DATA IN VIES AND INSERT TO DATABASE
     public void updateData(){
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DataBaseHelper dbh = new DataBaseHelper(EditStudent.this);
-                dbh.updateData(
+                dbh.updateStudent(
                         _id.getText().toString().trim(),
                         _lastName.getText().toString().trim(),
                         _firstName.getText().toString().trim(),
@@ -55,12 +56,11 @@ public class EditStudent extends AppCompatActivity {
 
                 Snackbar.make(updateButton, "Student information successfully updated!", Snackbar.LENGTH_LONG).show();
 
-
-
             }
         });
     }
 
+    // INITIALIZE ALL VIEWS
     public void initialize(){
         _gender = findViewById(R.id.editStudGender);
         _id = findViewById(R.id.idEditStudent);
@@ -107,6 +107,7 @@ public class EditStudent extends AppCompatActivity {
         });
     }
 
+    //  GET THE DATA THAT PASS TO HERE, FROM THE ADAPTER
     public void displayData(){
         if (getIntent().getBundleExtra("Student") != null){
             Bundle bundle = getIntent().getBundleExtra("Student");
@@ -121,6 +122,7 @@ public class EditStudent extends AppCompatActivity {
         }
     }
 
+    // GENDER PICKER
     public void chooseGender(){
         final String[] gender = new String[]{
                 "Male",

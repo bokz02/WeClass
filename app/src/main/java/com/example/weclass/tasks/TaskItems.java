@@ -3,11 +3,12 @@ package com.example.weclass.tasks;
 public class TaskItems {
 
     String taskType, dueDate, score, taskDescription, progress;
-    private int taskID, parentID;
+    private int taskID, parentID, taskNumber;
 
 
 
-    public TaskItems(int taskID, int parentID, String taskType, String dueDate, String score, String taskDescription, String progress) {
+
+    public TaskItems(int taskID, int parentID, String taskType, String dueDate, String score, String taskDescription, String progress, int taskNumber) {
         this.taskType = taskType;
         this.dueDate = dueDate;
         this.score = score;
@@ -15,6 +16,7 @@ public class TaskItems {
         this.taskID = taskID;
         this.parentID = parentID;
         this.progress = progress;
+        this.taskNumber = taskNumber;
     }
 
     public String getTaskType() {
@@ -71,5 +73,9 @@ public class TaskItems {
 
     public void setProgress(String progress) {
         this.progress = progress;
+    }
+
+    public int getTaskNumber() {
+        return taskNumber;
     }
 }

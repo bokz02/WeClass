@@ -4,6 +4,7 @@ import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
@@ -48,9 +50,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView _id, _parentTD, _taskType, _dueDate, _score, _description;
+        TextView _id, _parentTD, _taskType, _dueDate, _score, _description,_progress;
         ImageButton _optionTask, _expand;
-        ConstraintLayout expandableCardView;
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
@@ -63,6 +64,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             _optionTask = itemView.findViewById(R.id.optionButtonTaskRecView);
             _expand = itemView.findViewById(R.id.expandRecyclerView);
             _parentTD = itemView.findViewById(R.id.parentIDTaskRecView);
+            _progress = itemView.findViewById(R.id.progressTextView);
+
 
 
         }
@@ -84,13 +87,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull TaskAdapter.MyViewHolder holder, int position) {
         TaskItems itemsTask = taskItems.get(position);
-        holder._id.setText(String.valueOf(taskItems.get(position).getTaskID()));
+
         holder._parentTD.setText(String.valueOf(taskItems.get(position).getParentID()));
         holder._taskType.setText(String.valueOf(taskItems.get(position).getTaskType()));
         holder._dueDate.setText(String.valueOf(taskItems.get(position).getDueDate()));
         holder._score.setText(String.valueOf(taskItems.get(position).getScore()));
         holder._description.setText(String.valueOf(taskItems.get(position).getTaskDescription()));
+        holder._progress.setText(String.valueOf(taskItems.get(position).getProgress()));
+        holder._id.setText(String.valueOf(taskItems.get(position).getTaskNumber()));
 
+        if(holder._progress.getText().toString().equals("Done")){
+            holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.progressColorDone));
+        }else{
+            holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.progressColorToDo));
+        }
+        // EXPAND CARD VIEW WHEN CLICKED
         holder._expand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +118,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             }
         });
 
+        // POPUP OPTION MENU WHEN CLICKED THE 3 DOT BUTTON
         holder._optionTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,7 +130,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()){
                             case R.id.edit_subject:
+                                Intent intent = new Intent(context, EditTask.class);
+                                Bundle bundle = new Bundle();
 
+                                bundle.putString("task_id", String.valueOf(itemsTask.getTaskID()));
+                                bundle.putString("task_number", String.valueOf(itemsTask.getTaskNumber()));
+                                bundle.putString("task_type", String.valueOf(itemsTask.getTaskType()));
+                                bundle.putString("task_progress", String.valueOf(itemsTask.getProgress()));
+                                bundle.putString("task_date", String.valueOf(itemsTask.getDueDate()));
+                                bundle.putString("task_score", String.valueOf(itemsTask.getScore()));
+                                bundle.putString("task_description", String.valueOf(itemsTask.getTaskDescription()));
+
+                                intent.putExtra("Task", bundle);
+                                context.startActivity(intent);
 
 
                                 break;

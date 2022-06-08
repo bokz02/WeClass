@@ -134,7 +134,8 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
                         cursor.getString(3),
                         cursor.getString(4),
                         cursor.getString(5),
-                        cursor.getString(6)));
+                        cursor.getString(6),
+                        cursor.getInt(7)));
             }while (cursor.moveToNext());
         }
         cursor.close();
