@@ -1,56 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/materialCardView2"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:orientation="vertical"
-    android:paddingHorizontal="5dp">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="15dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:rippleColor="@color/lightText">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".05" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".95" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".03" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".97" />
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingBottom="5dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="15dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:rippleColor="@color/lightText"
-        app:layout_constraintBottom_toBottomOf="@id/guide2"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintTop_toTopOf="@id/guide1">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/iDNumberStudentList"
@@ -59,7 +25,10 @@
             android:layout_gravity="center_horizontal"
             android:text="ID"
             android:textSize="16sp"
-            android:visibility="visible" />
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/parentIDStudentList"
@@ -67,100 +36,105 @@
             android:layout_height="wrap_content"
             android:text="Parent iD"
             android:textSize="16sp"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/iDNumberStudentList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <RelativeLayout
-            android:id="@+id/rl2"
+
+        <ImageButton
+            android:id="@+id/optionButtonSubject"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp">
-
-            <ImageButton
-                android:id="@+id/optionButtonSubject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/ic_subject_option" />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_subject_option"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/studentImageRecView"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/pm3"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
+        <ImageView
+            android:id="@+id/studentImageRecView"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginVertical="15dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_no_image"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/studentLastnameRecView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/studentFirstnameRecView"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@id/studentImageRecView"
-                android:text="Lastname"
-                android:textColor="@color/darkText"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/studentLastnameRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/studentFirstnameRecView"
+            android:layout_toEndOf="@id/studentImageRecView"
+            android:text="Lastname"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/darkText"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/studentImageRecView"
+            app:layout_constraintTop_toTopOf="@+id/studentImageRecView" />
 
-            <TextView
-                android:id="@+id/studentFirstnameRecView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@id/studentImageRecView"
-                android:text="Firstname"
-                android:textColor="@color/darkText"
-                android:textSize="15dp" />
+        <TextView
+            android:id="@+id/studentFirstnameRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/studentImageRecView"
+            android:text="Firstname"
+            android:textColor="@color/darkText"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/studentLastnameRecView"
+            app:layout_constraintTop_toBottomOf="@+id/studentLastnameRecView" />
 
-            <TextView
-                android:id="@+id/studentSexRecView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/studentFirstnameRecView"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_toEndOf="@id/studentImageRecView"
-                android:text="Male"
-                android:textColor="@color/darkText" />
+        <TextView
+            android:id="@+id/studentSexRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/studentFirstnameRecView"
+            android:layout_toEndOf="@id/studentImageRecView"
+            android:text="Male"
+            android:visibility="invisible"
+            android:textColor="@color/darkText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iDNumberStudentList" />
 
 
-            <TextView
-                android:id="@+id/studentMiddleRecView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/studentLastnameRecView"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/studentFirstnameRecView"
-                android:text="Middle"
-                android:textColor="@color/darkText" />
+        <TextView
+            android:id="@+id/studentMiddleRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/studentLastnameRecView"
+            android:layout_marginStart="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/studentFirstnameRecView"
+            android:text="Middle"
+            android:textColor="@color/darkText"
+            app:layout_constraintBottom_toBottomOf="@+id/studentFirstnameRecView"
+            app:layout_constraintStart_toEndOf="@+id/studentFirstnameRecView" />
 
-            <ImageButton
-                android:id="@+id/studentBtnRecView"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/transparent_bg"
-                android:src="@drawable/ic_baseline_arrow_circle_right_24" />
-        </RelativeLayout>
+        <ImageButton
+            android:id="@+id/studentBtnRecView"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/transparent_bg"
+            android:src="@drawable/ic_baseline_arrow_circle_right_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

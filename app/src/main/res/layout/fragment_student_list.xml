@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_navi"
+    android:background="@color/cleanMainBackground"
     tools:context=".studentlist.StudentList">
 
 
@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.28" />
+            app:layout_constraintGuide_percent="0.25" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide2"
@@ -136,7 +136,6 @@
             android:id="@+id/recyclerViewStudentList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
@@ -160,7 +159,6 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"

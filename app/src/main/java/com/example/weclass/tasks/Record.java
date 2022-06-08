@@ -62,8 +62,7 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
         floatingActionButton = view.findViewById(R.id.fabAddTask);
         extendedRecyclerView = view.findViewById(R.id.recyclerViewTaskList);
         noFileTextView = view.findViewById(R.id.noTaskTextView);
-        _noFile = view.findViewById(R.id.noScheduleView);
-        extendedRecyclerView.setEmptyView(_noFile,noFileTextView);
+        _noFile = view.findViewById(R.id.noAttendanceView);
         _taskSubjectCode = view.findViewById(R.id.taskSubjectTextView);
         _course = view.findViewById(R.id.courseTextViewTask);
         searchEditText = view.findViewById(R.id.searchEditTextTask);
@@ -149,7 +148,6 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
             parentID.setText(bundle.getString("IDParent"));
             _taskSubjectCode.setText(bundle.getString("SubjectCode"));
             _course.setText(bundle.getString("CourseCode"));
-
         }
     }
 

@@ -4,18 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="10dp">
+    android:clickable="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:rippleColor="@color/lightText">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/lastNameAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="5dp"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:text="Last"
             android:textSize="16sp"
@@ -28,22 +31,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="5dp"
-            android:layout_marginStart="5dp"
             android:text="First"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/lastNameAttendanceRecView"
-            app:layout_constraintTop_toTopOf="@+id/lastNameAttendanceRecView" />
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lastNameAttendanceRecView"
+            app:layout_constraintStart_toEndOf="@+id/lastNameAttendanceRecView" />
 
         <TextView
             android:id="@+id/idAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="5dp"
-            android:layout_marginStart="5dp"
             android:text="ID"
+            android:visibility="invisible"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/firstNameAttendanceRecView"
-            app:layout_constraintTop_toTopOf="@+id/firstNameAttendanceRecView" />
+            app:layout_constraintBottom_toTopOf="@+id/parentIdAttendanceRecView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/parentIdAttendanceRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:text="parent id"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/absentAttendanceRecView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/genderAttendanceRecView"
@@ -51,7 +66,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="5dp"
             android:layout_marginTop="5dp"
-            android:text="First"
+            android:text="Gender"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/lastNameAttendanceRecView"
             app:layout_constraintTop_toBottomOf="@+id/lastNameAttendanceRecView" />
@@ -59,32 +74,31 @@
         <ImageView
             android:id="@+id/pictureAttendanceRecView"
             android:layout_width="65dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="10dp"
             android:layout_height="65dp"
-            android:layout_marginVertical="25dp"
+            android:layout_marginVertical="5dp"
             android:src="@drawable/ic_no_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/presentAttendanceRecView"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginVertical="30dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_green_check"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginVertical="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_green_check"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/absentAttendanceRecView"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginVertical="30dp"
-            android:src="@drawable/ic_x_red"
-            android:layout_marginEnd="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_x_red"
+            android:layout_marginEnd="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/presentAttendanceRecView"
             app:layout_constraintTop_toTopOf="parent" />

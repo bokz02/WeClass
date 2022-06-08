@@ -175,7 +175,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         toolbar = findViewById(R.id.toolbarSchedule);
         recyclerView = findViewById(R.id.eventRecycler);
         _noScheduleTextView = findViewById(R.id.noScheduleTextView);
-        _noScheduleView = findViewById(R.id.noScheduleView);
+        _noScheduleView = findViewById(R.id.noAttendanceView);
 
     }
 

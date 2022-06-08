@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_navi"
+    android:background="@color/cleanMainBackground"
     tools:context=".tasks.Record">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,12 +19,12 @@
             android:textColor="@color/cancelButtonPressed"
             android:textSize="16sp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@id/noScheduleView"
-            app:layout_constraintEnd_toEndOf="@+id/noScheduleView"
-            app:layout_constraintStart_toStartOf="@+id/noScheduleView" />
+            app:layout_constraintBottom_toTopOf="@id/noAttendanceView"
+            app:layout_constraintEnd_toEndOf="@+id/noAttendanceView"
+            app:layout_constraintStart_toStartOf="@+id/noAttendanceView" />
 
         <View
-            android:id="@+id/noScheduleView"
+            android:id="@+id/noAttendanceView"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/ic_no_file"
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.28" />
+            app:layout_constraintGuide_percent="0.25" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide2"
@@ -105,11 +105,10 @@
             android:id="@+id/courseTextViewTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
             android:text="BSCS 3"
             android:textColor="@color/darkText"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
+            app:layout_constraintEnd_toEndOf="@+id/subjectCodeRecords"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
 
@@ -131,7 +130,6 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
@@ -171,9 +169,6 @@
             android:id="@+id/recyclerViewTaskList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingTop="5dp"
-            android:paddingHorizontal="5dp"
-            android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"

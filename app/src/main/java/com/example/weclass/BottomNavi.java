@@ -91,12 +91,20 @@ public class BottomNavi extends AppCompatActivity {
     // OPEN ATTENDANCE FRAGMENT FUNCTION
     public void fragmentAttendance(){
         Attendance attendance = new Attendance();
+        Bundle bundle = new Bundle();
+        bundle.putString("IDParent", parentID.getText().toString());
+
+        attendance.setArguments(bundle);
         fragmentLoader(attendance);
     }
 
     // OPEN ATTENDANCE FRAGMENT FUNCTION
     public void fragmentRanks(){
         Ranking ranking = new Ranking();
+        Bundle bundle = new Bundle();
+        bundle.putString("IDParent", parentID.getText().toString());
+
+        ranking.setArguments(bundle);
         fragmentLoader(ranking);
     }
 

@@ -5,7 +5,7 @@
     android:id="@+id/drawerSubject"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@color/cleanMainBackground"
     android:fitsSystemWindows="true"
     tools:context=".subject.Subject">
 
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Subject"
-            android:textColor="@color/navigation_text_color"
+            android:textColor="@color/darkText"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guide4"

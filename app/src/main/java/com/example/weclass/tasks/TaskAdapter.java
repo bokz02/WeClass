@@ -52,6 +52,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
         TextView _id, _parentTD, _taskType, _dueDate, _score, _description,_progress;
         ImageButton _optionTask, _expand;
+        OnNoteListener onNoteListener;
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
@@ -65,6 +66,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             _expand = itemView.findViewById(R.id.expandRecyclerView);
             _parentTD = itemView.findViewById(R.id.parentIDTaskRecView);
             _progress = itemView.findViewById(R.id.progressTextView);
+            this.onNoteListener = onNoteListener;
 
 
 
@@ -72,20 +74,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
         @Override
         public void onClick(View view) {
+            onNoteListener.onNoteClick(getAdapterPosition());
 
         }
     }
 
     @NonNull
     @Override
-    public TaskAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.task_recyclerview_style, parent, false);
         return new MyViewHolder(view, mOnNoteListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TaskAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         TaskItems itemsTask = taskItems.get(position);
 
         holder._parentTD.setText(String.valueOf(taskItems.get(position).getParentID()));

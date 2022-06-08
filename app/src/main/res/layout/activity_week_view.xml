@@ -253,12 +253,12 @@
             android:textColor="@color/cancelButtonPressed"
             android:textSize="16sp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@id/noScheduleView"
-            app:layout_constraintEnd_toEndOf="@+id/noScheduleView"
-            app:layout_constraintStart_toStartOf="@+id/noScheduleView" />
+            app:layout_constraintBottom_toTopOf="@id/noAttendanceView"
+            app:layout_constraintEnd_toEndOf="@+id/noAttendanceView"
+            app:layout_constraintStart_toStartOf="@+id/noAttendanceView" />
 
         <View
-            android:id="@+id/noScheduleView"
+            android:id="@+id/noAttendanceView"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/ic_no_file"

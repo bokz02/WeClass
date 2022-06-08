@@ -3,13 +3,15 @@ package com.example.weclass.attendance;
 public class AttendanceItems {
 
     String lastName, firstName, gender;
-    int id;
+    int id, parentID;
 
-    public AttendanceItems(String lastName, String firstName, String gender, int id) {
+
+    public AttendanceItems(int id, int parentID, String lastName, String firstName, String gender) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.gender = gender;
         this.id = id;
+        this.parentID = parentID;
     }
 
     public String getLastName() {
@@ -26,5 +28,9 @@ public class AttendanceItems {
 
     public int getId() {
         return id;
+    }
+
+    public int getParentID() {
+        return parentID;
     }
 }
