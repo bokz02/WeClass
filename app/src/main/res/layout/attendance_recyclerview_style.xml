@@ -18,7 +18,7 @@
             android:id="@+id/lastNameAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
+            android:paddingStart="5dp"
             android:layout_marginTop="10dp"
             android:text="Last"
             android:textSize="16sp"
@@ -30,8 +30,17 @@
             android:id="@+id/firstNameAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
             android:text="First"
+            android:textSize="14sp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lastNameAttendanceRecView"
+            app:layout_constraintStart_toEndOf="@+id/commaAttendanceRecView" />
+
+        <TextView
+            android:id="@+id/commaAttendanceRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=","
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/lastNameAttendanceRecView"
             app:layout_constraintStart_toEndOf="@+id/lastNameAttendanceRecView" />
@@ -56,9 +65,31 @@
             android:text="parent id"
             android:textSize="16sp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/absentAttendanceRecView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/presentTextViewAttendanceRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:text="present"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/parentIdAttendanceRecView" />
+
+        <TextView
+            android:id="@+id/absentTextViewAttendanceRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:text="absent"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/presentTextViewAttendanceRecView"
+            app:layout_constraintStart_toEndOf="@+id/parentIdAttendanceRecView" />
 
         <TextView
             android:id="@+id/genderAttendanceRecView"

@@ -21,7 +21,7 @@ public class AddStudent extends AppCompatActivity {
 
     Button cancelButton, createButton;
     ImageButton backButton;
-    TextView genderTextview, parentID;
+    TextView genderTextview, parentID, _present, _absent;
     EditText lastName, firstName, middleName;
     String selectedGender;
 
@@ -46,6 +46,7 @@ public class AddStudent extends AppCompatActivity {
         String a = intent.getStringExtra("id");
         parentID.setText(a);
     }
+
     public void initialized (){
         lastName = findViewById(R.id.studLastname);
         middleName = findViewById(R.id.studMidname);
@@ -55,6 +56,8 @@ public class AddStudent extends AppCompatActivity {
         cancelButton = findViewById(R.id.cancelButtonStudent);
         backButton = findViewById(R.id.backButtonAddStudent);
         parentID = findViewById(R.id.parentIDAddStudent);
+        _absent = findViewById(R.id.absentIDAddStudent);
+        _present = findViewById(R.id.presentIDAddStudent);
     }
 
     public void backToStudentList(){
@@ -150,7 +153,9 @@ public class AddStudent extends AppCompatActivity {
                                     lastName.getText().toString().trim(),
                                     firstName.getText().toString().trim(),
                                     middleName.getText().toString().trim(),
-                                    genderTextview.getText().toString().trim());
+                                    genderTextview.getText().toString().trim(),
+                                    _present.getText().toString().trim(),
+                                    _absent.getText().toString().trim());
 
                             Snackbar.make(createButton, "Student successfully added!", Snackbar.LENGTH_LONG).show();
                             lastName.setText("");

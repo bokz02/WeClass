@@ -162,7 +162,9 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
                         cursor.getString(2),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getString(5)));
+                        cursor.getString(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7)));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -229,6 +231,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     @Override
     public void onNoteClick(int position) {
-
+        Intent intent = new Intent(getContext(), StudentInformation.class);
+        intent.putExtra("Student", studentItems.get(position));
+        startActivity(intent);
     }
 }

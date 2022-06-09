@@ -1,5 +1,6 @@
 package com.example.weclass.attendance;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,10 +20,13 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.studentlist.StudentInformation;
 import com.example.weclass.tasks.TaskAdapter;
 import com.example.weclass.tasks.TaskItems;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Attendance extends Fragment implements AttendanceAdapter.OnNoteListener{
 
@@ -30,10 +34,14 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     ArrayList<AttendanceItems> attendanceItems, id, parentID;
     AttendanceAdapter attendanceAdapter;
     DataBaseHelper dataBaseHelper;
-    TextView _noStudentsTextView, _id, _parentID;
+    TextView _noStudentsTextView, _id, _parentID, dateTimeDisplay;
     View view;
     View _noStudentsView;
     EditText _search;
+
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+    private String date;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +53,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         display();
         initializeAdapter();
         textListener();
+        displayDate();
 
         return view;
     }
@@ -60,6 +69,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     }
 
     public void initialize(){
+        dateTimeDisplay = view.findViewById(R.id.currentDateTextView);
         extendedRecyclerView = view.findViewById(R.id.attendanceRecyclerView);
         _noStudentsView = view.findViewById(R.id.noAttendanceView);
         _noStudentsTextView = view.findViewById(R.id.noAttendanceTextView);
@@ -98,11 +108,21 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                         cursor.getInt(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getString(5)));
+                        cursor.getString(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7)));
             }while (cursor.moveToNext());
         }
         cursor.close();
         return attendanceItems;
+    }
+
+    public void displayDate(){
+        calendar = Calendar.getInstance();
+
+        dateFormat = new SimpleDateFormat("EEEE - MMM d, yyyy");
+        date = dateFormat.format(calendar.getTime());
+        dateTimeDisplay.setText(date);
     }
 
     // GET DATA FROM BOTTOM NAVI THE NEEDS to DISPLAY SPECIFIC DATA FROM EACH SUBJECT

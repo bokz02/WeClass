@@ -90,6 +90,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent=".25" />
 
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide2"
             android:layout_width="wrap_content"
@@ -111,6 +112,39 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".93" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".275" />
+
+        <TextView
+            android:id="@+id/presentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:background="@drawable/transparent_bg"
+            android:text="Present"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guide5"
+            app:layout_constraintEnd_toEndOf="@id/guide4" />
+
+        <TextView
+            android:id="@+id/absentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:background="@drawable/transparent_bg"
+            android:text="Absent"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/progressColorToDo"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guide5"
+            app:layout_constraintEnd_toStartOf="@+id/presentTextView" />
+
 
         <com.example.weclass.ExtendedRecyclerView
             android:id="@+id/attendanceRecyclerView"
@@ -119,7 +153,7 @@
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toTopOf="@id/guide1" />
+            app:layout_constraintTop_toTopOf="@id/guide5" />
 
         <TextView
             android:id="@+id/subjectCodeRecords"
@@ -151,20 +185,19 @@
             android:layout_width="60dp"
             android:layout_height="22dp"
             android:background="@drawable/transparent_bg"
-            android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
             android:text="Sort"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:textAllCaps="false"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
-            app:layout_constraintEnd_toEndOf="@id/guide4" />
+            app:layout_constraintEnd_toEndOf="@id/guide4"
+            app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
         <TextView
-            android:id="@+id/rank_date_time"
-            android:layout_width="166dp"
+            android:id="@+id/currentDateTextView"
+            android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:text="Monday, Feb 15,2022"
             android:textAllCaps="false"

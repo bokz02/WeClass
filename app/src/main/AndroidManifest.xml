@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".studentlist.StudentInformation"
+            android:exported="false" />
+        <activity
             android:name=".tasks.EditTask"
             android:exported="false"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".tasks.AddTask"
             android:exported="false"
@@ -54,7 +57,7 @@
         <activity
             android:name=".schedule.ScheduleActivity"
             android:exported="false"
-            android:parentActivityName=".schedule.WeekViewActivity"/>
+            android:parentActivityName=".schedule.WeekViewActivity" />
         <activity
             android:name=".BottomNavi"
             android:exported="false"

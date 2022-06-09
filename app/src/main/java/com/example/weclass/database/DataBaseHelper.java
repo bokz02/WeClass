@@ -13,7 +13,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_NAME = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -30,6 +30,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_FIRST_NAME = "first_name";
     private static final String COLUMN_MIDDLE_NAME = "middle_name";
     private static final String COLUMN_GENDER = "gender";
+    private static final String COLUMN_PRESENT = "present";
+    private static final String COLUMN_ABSENT = "absent";
 
 
     public static final String TABLE_NAME3 = "my_schedule";
@@ -72,7 +74,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_LAST_NAME + " TEXT, " +
                 COLUMN_FIRST_NAME + " TEXT, " +
                 COLUMN_MIDDLE_NAME + " TEXT, " +
-                COLUMN_GENDER + " TEXT);";
+                COLUMN_GENDER + " TEXT, " +
+                COLUMN_PRESENT + " TEXT, " +
+                COLUMN_ABSENT + " TEXT);";
 
         String query3 = "CREATE TABLE " + TABLE_NAME3 +
                 " (" + COLUMN_ID3 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -121,7 +125,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void addStudent(String parentID, String lastName, String firstName, String middleName, String gender){
+    public void addStudent(String parentID, String lastName, String firstName, String middleName, String gender, String present, String absent){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -130,6 +134,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_FIRST_NAME, firstName);
         cv.put(COLUMN_MIDDLE_NAME, middleName);
         cv.put(COLUMN_GENDER, gender);
+        cv.put(COLUMN_PRESENT, present);
+        cv.put(COLUMN_ABSENT, absent);
 
         long result = db.insert(TABLE_NAME2, null, cv);
         if(result == -1){
@@ -196,6 +202,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_FIRST_NAME, firstName);
         contentValues.put(COLUMN_MIDDLE_NAME, middleName);
         contentValues.put(COLUMN_GENDER, gender);
+
+        long result = db.update(TABLE_NAME2, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // UPDATE DATA OF STUDENT DATABASE
+    public void updateStudentPresent(String id, String present){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_ID2, id);
+        contentValues.put(COLUMN_PRESENT, present);
 
         long result = db.update(TABLE_NAME2, contentValues, "id_number=" + id, null);
         if(result == -1){

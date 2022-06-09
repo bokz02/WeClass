@@ -11,11 +11,36 @@
         android:id="@+id/parentIDAddStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID"
+        android:text="parentID"
         android:textSize="16sp"
+        android:visibility="invisible"
         android:layout_marginTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/presentIDAddStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="0"
+        android:visibility="invisible"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/parentIDAddStudent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/absentIDAddStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="0"
+        android:visibility="invisible"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/parentIDAddStudent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -154,12 +179,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/studentPfp"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginBottom="244dp"
-                android:src="@drawable/pm3"
+                android:background="@drawable/ic_no_image"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"

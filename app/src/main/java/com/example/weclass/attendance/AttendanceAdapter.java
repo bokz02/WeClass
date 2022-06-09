@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
+import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.tasks.AddTask;
 import com.example.weclass.tasks.TaskAdapter;
 import com.example.weclass.tasks.TaskItems;
 import com.google.android.material.snackbar.Snackbar;
@@ -38,7 +40,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView lastName, firstName, gender, id;
+        TextView lastName, firstName, gender, id, _present, _absent;
         ImageButton absentButton, presentButton;
         OnNoteListener onNoteListener;
 
@@ -51,6 +53,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             id = itemView.findViewById(R.id.idAttendanceRecView);
             absentButton = itemView.findViewById(R.id.absentAttendanceRecView);
             presentButton = itemView.findViewById(R.id.presentAttendanceRecView);
+            _present = itemView.findViewById(R.id.presentTextViewAttendanceRecView);
+            _absent = itemView.findViewById(R.id.absentTextViewAttendanceRecView);
 
 
             this.onNoteListener = onNoteListener;
@@ -78,15 +82,30 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.lastName.setText(String.valueOf(attendanceItems.get(position).getLastName()));
         holder.firstName.setText(String.valueOf(attendanceItems.get(position).getFirstName()));
         holder.gender.setText(String.valueOf(attendanceItems.get(position).getGender()));
+        holder._present.setText(String.valueOf(attendanceItems.get(position).getPresent()));
+        holder._absent.setText(String.valueOf(attendanceItems.get(position).getAbsent()));
+
+
 
         // PRESENT BUTTON
         holder.presentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
+                int a = 1;
+                int b = Integer.parseInt(holder._present.getText().toString());
+                holder._present.setText(String.valueOf(a + b));
+
                 holder.presentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
                 holder.absentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
                 holder.absentButton.setEnabled(false);
                 Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + " " + holder.firstName.getText().toString() + " is present!", Snackbar.LENGTH_SHORT).show();
+
+                // UPDATE THE UPDATE FIELD OF A STUDENT
+                DataBaseHelper dbh = new DataBaseHelper(context);
+                dbh.updateStudentPresent(holder.id.getText().toString().trim(),
+                        holder._present.getText().toString().trim());
             }
         });
 
@@ -94,6 +113,12 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.absentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // INCREMENT ABSENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
+                int a = 1;
+                int b = Integer.parseInt(holder._absent.getText().toString());
+                holder._absent.setText(String.valueOf(a + b));
+
                 holder.presentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
                 holder.absentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
                 holder.absentButton.setEnabled(false);
