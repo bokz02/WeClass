@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -25,9 +24,6 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.AddStudent;
-import com.example.weclass.studentlist.StudentAdapter;
-import com.example.weclass.studentlist.StudentItems;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -231,7 +227,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     @Override
     public void onNoteClick(int position) {
-        Intent intent = new Intent(getContext(), StudentInformation.class);
+        Intent intent = new Intent(getContext(), StudentProfile.class);
         intent.putExtra("Student", studentItems.get(position));
         startActivity(intent);
     }

@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
-            android:name=".studentlist.StudentInformation"
-            android:exported="false" />
-        <activity
             android:name=".tasks.EditTask"
             android:exported="false"
             android:theme="@style/Theme.Dialog" />
@@ -49,7 +46,7 @@
             android:parentActivityName=".subject.Subject"
             android:theme="@style/Theme.Dialog" />
         <activity
-            android:name=".Profile"
+            android:name=".studentlist.StudentProfile"
             android:exported="false" />
         <activity
             android:name=".Settings"

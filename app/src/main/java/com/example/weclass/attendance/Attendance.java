@@ -1,6 +1,5 @@
 package com.example.weclass.attendance;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -14,15 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.StudentInformation;
-import com.example.weclass.tasks.TaskAdapter;
-import com.example.weclass.tasks.TaskItems;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

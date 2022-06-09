@@ -1,4 +1,4 @@
-package com.example.weclass;
+package com.example.weclass.studentlist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,9 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.Toolbar;
 
-public class Profile extends AppCompatActivity {
+import com.example.weclass.R;
+
+public class StudentProfile extends AppCompatActivity {
 
     ImageButton imageButton;
 
