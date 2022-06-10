@@ -103,7 +103,7 @@
         android:hint="task type"
         android:padding="5dp"
         android:textSize="12sp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/subjectIDTextViewRecViewGrade"
         app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
 
