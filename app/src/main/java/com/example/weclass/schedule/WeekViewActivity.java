@@ -168,7 +168,6 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     private void initWidgets()
     {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
-        eventListView = findViewById(R.id.eventListView);
         weeklyYearText = findViewById(R.id.weeklyYearTV);
         drawerLayout = findViewById(R.id.drawerLayout1);
         navigationView = findViewById(R.id.navView1);

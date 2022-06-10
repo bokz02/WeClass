@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Settings"
     android:fitsSystemWindows="true"
-    android:background="@drawable/bg"
+    android:background="@color/cleanMainBackground"
     android:id="@+id/drawerSettings">
 
 
@@ -42,54 +42,29 @@
             android:id="@+id/textView21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="108dp"
             android:text="Settings"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/guide2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Account"
             android:textColor="@color/darkText"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/guide3"
-            app:layout_constraintEnd_toStartOf="@+id/guide2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guide1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.935" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.124"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.13" />
+            app:layout_constraintGuide_percent="0.09" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.862" />
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.184" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.27" />
+            app:layout_constraintGuide_percent="0.91" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -97,151 +72,78 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.32" />
+            app:layout_constraintGuide_begin="154dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.39" />
+            app:layout_constraintGuide_percent="0.28" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_percent="0.29" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.47" />
+            app:layout_constraintGuide_percent="0.36" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.48" />
+            app:layout_constraintGuide_percent="0.37" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.55" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.56" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.63" />
+            app:layout_constraintGuide_percent="0.44" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.64" />
+            app:layout_constraintGuide_percent="0.45" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.71" />
+            app:layout_constraintGuide_percent="0.52" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.72" />
+            app:layout_constraintGuide_percent="0.53" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.8" />
-
-
+            app:layout_constraintGuide_percent="0.6" />
 
 
         //Account
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:padding="10dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/guide4"
-            app:layout_constraintEnd_toStartOf="@+id/guide2"
-            app:layout_constraintStart_toEndOf="@id/guide2"
-            app:layout_constraintStart_toStartOf="@id/guide1"
-            app:layout_constraintTop_toTopOf="@id/guide3">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="54dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/profile_pic_boy"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="25dp"
-                android:text="Thomas Shelby"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="45dp"
-                android:text="Personal information"
-                android:textSize="12sp" />
-
-            <ImageButton
-                android:id="@+id/nextButtonAccount"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/iconnext3"
-                android:scaleType="center" />
-
-        </com.google.android.material.card.MaterialCardView>
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Settings"
-            android:textColor="@color/darkText"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/guide2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guide1"
-            app:layout_constraintTop_toTopOf="@+id/guide4" />
 
         //NightMode
+
+        //Notification
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView9"
             android:layout_width="0dp"
@@ -250,10 +152,11 @@
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="@id/guide6"
             app:layout_constraintEnd_toStartOf="@+id/guide2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/guide2"
             app:layout_constraintStart_toStartOf="@id/guide1"
             app:layout_constraintTop_toTopOf="@id/guide5"
-            >
+            app:layout_constraintVertical_bias="0.0">
 
             <ImageView
                 android:layout_width="35dp"
@@ -286,143 +189,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        //Notification
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView10"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/guide8"
-            app:layout_constraintEnd_toStartOf="@+id/guide2"
-            app:layout_constraintStart_toEndOf="@id/guide2"
-            app:layout_constraintStart_toStartOf="@id/guide1"
-            app:layout_constraintTop_toTopOf="@id/guide7">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="15dp"
-                android:src="@drawable/iconbell"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
-                android:text="Notifications"
-                android:textSize="14dp"
-                android:textStyle="bold" />
-
-
-            <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/iconoff"
-                android:scaleType="center" />
-
-
-        </com.google.android.material.card.MaterialCardView>
-
-        //Terms and Condition
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView11"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/guide10"
-            app:layout_constraintEnd_toStartOf="@+id/guide2"
-            app:layout_constraintStart_toEndOf="@id/guide2"
-            app:layout_constraintStart_toStartOf="@id/guide1"
-            app:layout_constraintTop_toTopOf="@id/guide9">
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/transparent_bg" />
-
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="15dp"
-                android:src="@drawable/iconpapers"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
-                android:text="Terms and Condition"
-                android:textSize="14dp"
-                android:textStyle="bold" />
-
-
-            <ImageView
-                android:id="@+id/buttonNotification"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/iconnext3"
-                android:scaleType="center" />
-
-
-        </com.google.android.material.card.MaterialCardView>
-
-        //Privacy and policy
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView12"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/guide12"
-            app:layout_constraintEnd_toStartOf="@+id/guide2"
-            app:layout_constraintStart_toEndOf="@id/guide2"
-            app:layout_constraintStart_toStartOf="@id/guide1"
-            app:layout_constraintTop_toTopOf="@id/guide11">
-
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/transparent_bg" />
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="15dp"
-                android:src="@drawable/iconpapershield"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
-                android:text="Privacy and Policy"
-                android:textSize="14dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/iconnext3"
-                android:scaleType="center" />
-
-
-        </com.google.android.material.card.MaterialCardView>
-
-        //About us
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView13"
             android:layout_width="0dp"
@@ -430,9 +196,11 @@
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="@id/guide14"
             app:layout_constraintEnd_toStartOf="@+id/guide2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/guide2"
             app:layout_constraintStart_toStartOf="@id/guide1"
-            app:layout_constraintTop_toTopOf="@id/guide13">
+            app:layout_constraintTop_toTopOf="@id/guide13"
+            app:layout_constraintVertical_bias="0.0">
 
             <ImageButton
                 android:layout_width="match_parent"
@@ -458,6 +226,7 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:id="@+id/button1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end|center_vertical"
@@ -468,16 +237,17 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        //Help
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="@id/guide16"
             app:layout_constraintEnd_toStartOf="@+id/guide2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/guide2"
             app:layout_constraintStart_toStartOf="@id/guide1"
-            app:layout_constraintTop_toTopOf="@id/guide15">
+            app:layout_constraintTop_toTopOf="@id/guide15"
+            app:layout_constraintVertical_bias="0.0">
 
 
             <ImageButton
@@ -514,6 +284,107 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/guide10"
+            app:layout_constraintEnd_toStartOf="@+id/guide2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/guide2"
+            app:layout_constraintStart_toStartOf="@id/guide1"
+            app:layout_constraintTop_toTopOf="@id/guide9"
+            app:layout_constraintVertical_bias="0.0">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/transparent_bg" />
+
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/iconpapers"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="60dp"
+                android:text="Terms of Services"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/iconnext3"
+                android:scaleType="center" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/guide8"
+            app:layout_constraintEnd_toStartOf="@+id/guide2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/guide2"
+            app:layout_constraintStart_toStartOf="@id/guide1"
+            app:layout_constraintTop_toTopOf="@id/guide7"
+            app:layout_constraintVertical_bias="0.0">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/iconbell"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="60dp"
+                android:text="Notifications"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/iconoff"
+                android:scaleType="center" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        //Terms and Condition
+
+        //Privacy and policy
+
+        //About us
+
+        //Help
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
