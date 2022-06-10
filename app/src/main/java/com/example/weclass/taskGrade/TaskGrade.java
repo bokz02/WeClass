@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.tasks.TaskAdapter;
@@ -22,12 +23,13 @@ import java.util.ArrayList;
 
 public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnNoteListener {
 
-    RecyclerView recyclerView;
+    ExtendedRecyclerView recyclerView;
     ArrayList<TaskGradeItems> taskGradeItems, studentID, subjectID;
     TaskGradeAdapter taskGradeAdapter;
     DataBaseHelper dataBaseHelper;
     ImageView backButton;
-    TextView _progress, _deadline, _score, _description, _taskType, _taskNumber, _subjectID;
+    TextView _progress, _deadline, _score, _description, _taskType, _taskNumber, _subjectID , _noStudentToGradeTextView;
+    View _noStudentToGradeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +39,23 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
+
         initialize();
         getDataFromTaskRecView();
         display();
         initializeAdapter();
         backToTask();
 
+    }
+
+    @Override
+    public void onResume() {
+        initialize();
+        getDataFromTaskRecView();
+        display();
+        initializeAdapter();
+        backToTask();
+        super.onResume();
     }
 
     private void initialize() {
@@ -55,14 +68,18 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         _taskNumber = findViewById(R.id.taskNumberTextViewGrade);
         _subjectID = findViewById(R.id.subjectIDTextViewGrade);
         recyclerView = findViewById(R.id.taskGradeRecyclerView);
+        _noStudentToGradeTextView = findViewById(R.id.noStudentTextViewGrade);
+        _noStudentToGradeView = findViewById(R.id.noStudentViewGrade);
 
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
+
         taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, TaskGrade.this, this);
         recyclerView.setAdapter(taskGradeAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(TaskGrade.this));
+        recyclerView.setEmptyView(_noStudentToGradeView, _noStudentToGradeTextView);
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
@@ -77,21 +94,42 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
     private ArrayList<TaskGradeItems> displayData(){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_NAME2 + " WHERE " + DataBaseHelper.COLUMN_PARENT_ID + " = " + _subjectID.getText().toString(), null);
+
+        // MERGE 2 TABLES USING LEFT JOIN
+
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                        + DataBaseHelper.TABLE_NAME2 + " LEFT JOIN "
+                        + DataBaseHelper.TABLE_NAME4 + " ON "
+                        + DataBaseHelper.TABLE_NAME2 + "."
+                        + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                        + DataBaseHelper.TABLE_NAME4 + "."
+                        + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " WHERE "
+                        + DataBaseHelper.TABLE_NAME2 + "."
+                        + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                        + _subjectID.getText().toString() + " AND "
+                        + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                        + _taskType.getText().toString() + "' AND "
+                        + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
+                        + _taskNumber.getText().toString(), null);
+
         ArrayList<TaskGradeItems> taskGradeItems = new ArrayList<>();
 
         if (cursor.moveToFirst()){
             do {
                 taskGradeItems.add(new TaskGradeItems(
+                        cursor.getInt(0),
+                        cursor.getInt(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getInt(0),
-                        cursor.getInt(1)));
+                        cursor.getString(10),
+                        cursor.getInt(15)));
             }while (cursor.moveToNext());
         }
         cursor.close();
         return taskGradeItems;
     }
+
+
 
     private void backToTask(){
         backButton.setOnClickListener(new View.OnClickListener() {

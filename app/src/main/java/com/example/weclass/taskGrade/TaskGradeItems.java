@@ -2,14 +2,17 @@ package com.example.weclass.taskGrade;
 
 public class TaskGradeItems {
 
-    String lastName, firstName;
-    int studentID, subjectID;
+    String lastName, firstName, taskType;
+    int studentID, subjectID, taskNumber;
 
-    public TaskGradeItems(String lastName, String firstName, int studentID, int subjectID) {
+
+    public TaskGradeItems(int studentID, int subjectID, String lastName, String firstName, String taskType, int taskNumber) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.studentID = studentID;
         this.subjectID = subjectID;
+        this.taskType = taskType;
+        this.taskNumber = taskNumber;
     }
 
     public String getLastName() {
@@ -27,4 +30,13 @@ public class TaskGradeItems {
     public int getSubjectID() {
         return subjectID;
     }
+
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public int getTaskNumber() {
+        return taskNumber;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.weclass.database;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -13,7 +14,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 6;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 8;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_NAME = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -49,6 +50,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DESCRIPTION = "task_description";
     public static final String COLUMN_PROGRESS = "task_progress";
     public static final String COLUMN_TASK_NUMBER = "task_number";
+
+    public static final String TABLE_MY_GRADE = "my_grades";
+    public static final String COLUMN_ID_MY_GRADE = "id_number";
+    public static final String COLUMN_STUDENT_ID_MY_GRADE = "id_student";
+    public static final String COLUMN_PARENT_ID_MY_GRADE = "id_parent";
+    public static final String COLUMN_LAST_NAME_MY_GRADE = "last_name";
+    public static final String COLUMN_FIRST_NAME_MY_GRADE = "first_name";
+    public static final String COLUMN_TASK_TYPE_MY_GRADE = "task_type";
+    public static final String COLUMN_TASK_NUMBER_MY_GRADE = "task_number";
+    public static final String COLUMN_GRADE_MY_GRADE = "score";
+
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -94,10 +106,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_PROGRESS + " TEXT, " +
                 COLUMN_TASK_NUMBER + " TEXT);";
 
+        String query5 = "CREATE TABLE " + TABLE_MY_GRADE +
+                " (" + COLUMN_ID_MY_GRADE + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_STUDENT_ID_MY_GRADE + " TEXT, " +
+                COLUMN_PARENT_ID_MY_GRADE + " TEXT, " +
+                COLUMN_LAST_NAME_MY_GRADE + " TEXT, " +
+                COLUMN_FIRST_NAME_MY_GRADE + " TEXT, " +
+                COLUMN_TASK_TYPE_MY_GRADE + " TEXT, " +
+                COLUMN_TASK_NUMBER_MY_GRADE + " TEXT," +
+                COLUMN_GRADE_MY_GRADE + " TEXT);";
+
         db.execSQL(query4);
         db.execSQL(query3);
         db.execSQL(query2);
         db.execSQL(query);
+        db.execSQL(query5);
     }
 
     @Override
@@ -106,6 +129,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME3);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME4);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_GRADE);
         onCreate(db);
     }
 
@@ -143,6 +167,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // ADD QUERY TO MY_TASKS DATABASE
     public void addTask(String parentID, String taskType, String dueDate, String score, String description, String progress, String taskNumber){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -172,6 +197,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_DAY, day);
         contentValues.put(COLUMN_TIME, time);
         long result = db.insert(TABLE_NAME, null, contentValues);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // ADD QUERY TO my_grades DATABASE
+    public void addGrade(String idStudent, String idSubject, String lastName, String firstName, String taskType, String taskNumber, String grade){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+
+        contentValues.put(COLUMN_STUDENT_ID_MY_GRADE, idStudent);
+        contentValues.put(COLUMN_PARENT_ID_MY_GRADE, idSubject);
+        contentValues.put(COLUMN_LAST_NAME_MY_GRADE, lastName);
+        contentValues.put(COLUMN_FIRST_NAME_MY_GRADE, firstName);
+        contentValues.put(COLUMN_TASK_TYPE_MY_GRADE, taskType);
+        contentValues.put(COLUMN_TASK_NUMBER_MY_GRADE, taskNumber);
+        contentValues.put(COLUMN_GRADE_MY_GRADE, grade);
+
+        long result = db.insert(TABLE_MY_GRADE, null, contentValues);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -279,6 +324,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         }
     }
+
 
 
 

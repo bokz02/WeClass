@@ -38,14 +38,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".1"/>
+        app:layout_constraintGuide_percent=".06"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".9"/>
+        app:layout_constraintGuide_percent=".94"/>
+
+    <TextView
+        android:id="@+id/noStudentTextViewGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Currently you don't have student, add one."
+        android:textColor="@color/cancelButtonPressed"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@id/noStudentViewGrade"
+        app:layout_constraintEnd_toEndOf="@+id/noStudentViewGrade"
+        app:layout_constraintStart_toStartOf="@+id/noStudentViewGrade" />
+
+    <View
+        android:id="@+id/noStudentViewGrade"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_no_file"
+        app:layout_constraintBottom_toBottomOf="@id/guide2"
+        app:layout_constraintEnd_toEndOf="@id/guide4"
+        app:layout_constraintStart_toStartOf="@id/guide3"
+        app:layout_constraintTop_toTopOf="@id/guide1" />
 
 
 
