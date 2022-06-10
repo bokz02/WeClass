@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="1dp"
+    android:background="@color/white"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/lastNameRecViewGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:layout_marginStart="10dp"
+        android:text="Last"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/firstNameRecViewGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:layout_marginStart="5dp"
+        android:text="First"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/commaRecViewGrade"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/commaRecViewGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:text=","
+        app:layout_constraintBottom_toBottomOf="@+id/lastNameRecViewGrade"
+        app:layout_constraintStart_toEndOf="@+id/lastNameRecViewGrade"
+        app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
+
+    <EditText
+        android:id="@+id/gradeEditTextRecViewGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/input_text_style"
+        android:hint="Grade"
+        android:maxLength="5"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/submitButtonRecViewGrade"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/studentIDGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="student id"
+        android:maxLength="5"
+        android:padding="5dp"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subjectIDTextViewRecViewGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="subject id"
+        android:maxLength="5"
+        android:padding="5dp"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
+
+    <ImageButton
+        android:id="@+id/submitButtonRecViewGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/ic_green_check"
+        android:hint="Grade"
+        android:paddingHorizontal="5dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,7 +68,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             _progress = itemView.findViewById(R.id.progressTextView);
             this.onNoteListener = onNoteListener;
 
-
+            itemView.setOnClickListener(this);
 
         }
 

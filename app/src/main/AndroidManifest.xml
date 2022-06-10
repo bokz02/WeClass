@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".taskGrade.TaskGrade"
+            android:exported="false" />
+        <activity
             android:name=".tasks.EditTask"
             android:exported="false"
             android:theme="@style/Theme.Dialog" />
@@ -70,7 +73,7 @@
             android:name=".schedule.WeekViewActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".dashboard.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

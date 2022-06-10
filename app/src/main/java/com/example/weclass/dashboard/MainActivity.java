@@ -1,4 +1,4 @@
-package com.example.weclass;
+package com.example.weclass.dashboard;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -14,6 +15,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.example.weclass.R;
+import com.example.weclass.Settings;
 import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.subject.Subject;
 import com.google.android.material.navigation.NavigationView;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    ViewPager2 viewPager2;
 
 
     @Override
@@ -39,9 +43,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
         navigationOpen(); // open navigation drawer method
+        initialize();
 
 
+    }
 
+    public void initialize(){
+        viewPager2 = findViewById(R.id.viewPagerDashboard);
     }
 
 
@@ -86,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 break;
             case R.id.drawerSettings:
-                intent = new Intent(MainActivity.this,Settings.class);
+                intent = new Intent(MainActivity.this, Settings.class);
                 startActivity(intent);
                 finish();
                 break;

@@ -1,11 +1,12 @@
 package com.example.weclass.tasks;
 
-public class TaskItems {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class TaskItems implements Parcelable {
 
     String taskType, dueDate, score, taskDescription, progress;
     private int taskID, parentID, taskNumber;
-
-
 
 
     public TaskItems(int taskID, int parentID, String taskType, String dueDate, String score, String taskDescription, String progress, int taskNumber) {
@@ -18,6 +19,29 @@ public class TaskItems {
         this.progress = progress;
         this.taskNumber = taskNumber;
     }
+
+    protected TaskItems(Parcel in) {
+        taskType = in.readString();
+        dueDate = in.readString();
+        score = in.readString();
+        taskDescription = in.readString();
+        progress = in.readString();
+        taskID = in.readInt();
+        parentID = in.readInt();
+        taskNumber = in.readInt();
+    }
+
+    public static final Creator<TaskItems> CREATOR = new Creator<TaskItems>() {
+        @Override
+        public TaskItems createFromParcel(Parcel in) {
+            return new TaskItems(in);
+        }
+
+        @Override
+        public TaskItems[] newArray(int size) {
+            return new TaskItems[size];
+        }
+    };
 
     public String getTaskType() {
         return taskType;
@@ -77,5 +101,22 @@ public class TaskItems {
 
     public int getTaskNumber() {
         return taskNumber;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(taskType);
+        parcel.writeString(dueDate);
+        parcel.writeString(score);
+        parcel.writeString(taskDescription);
+        parcel.writeString(progress);
+        parcel.writeInt(taskID);
+        parcel.writeInt(parentID);
+        parcel.writeInt(taskNumber);
     }
 }

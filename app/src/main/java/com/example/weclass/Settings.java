@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.example.weclass.schedule.ScheduleActivity;
+import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.subject.Subject;
 import com.google.android.material.navigation.NavigationView;
@@ -88,7 +88,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.drawerHome:
-                Intent intent = new Intent(this,MainActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;

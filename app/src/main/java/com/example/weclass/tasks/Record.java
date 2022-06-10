@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.taskGrade.TaskGrade;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -186,6 +187,10 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
 
     @Override
     public void onNoteClick(int position) {
+        Intent intent = new Intent(getContext(), TaskGrade.class);
+        intent.putExtra("Task", taskItems.get(position));
+        intent.putExtra("id", parentID.getText().toString());
 
+        startActivity(intent);
     }
 }
