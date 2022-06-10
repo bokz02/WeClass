@@ -25,7 +25,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageView button;
+    ImageView button, button1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +36,20 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         navigationOpen();
 
         terms();
+        aboutUs();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
+    }
+
+    private void aboutUs() {
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, AboutUs.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -56,7 +67,8 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         toolbar = findViewById(R.id.toolbarSettings);
         navigationView = findViewById(R.id.navigationViewSettings);
         drawerLayout = findViewById(R.id.drawerSettings);
-        button = findViewById(R.id.buttonNotification);
+        button = findViewById(R.id.button);
+        button1 = findViewById(R.id.button1);
     }
 
     public void navigationOpen() {

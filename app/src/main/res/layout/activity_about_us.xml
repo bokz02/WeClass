@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUs"
+    android:background="@color/cleanMainBackground"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_simple_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:fadeScrollbars="false"
+        android:scrollbarStyle="insideInset"
+        android:scrollbarThumbVertical="@null"
+        android:scrollbarTrackVertical="@null">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About us"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/lightText"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightText"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="40dp"/>
+
+
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/about" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="10dp"
+                android:text="WeClass is a class record management application. You can easily keep track of your students' attendance, grades, and behavior as well as manage the class. It also adding impact to your work."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="10dp"
+                android:text="WeClass Class Record Application will provide efficiency in class record management, cater to all faculty/teachers with different mobile phones in different Android version, allow for easy application management, and is appropriate Higher Education Faculty, and corporate trainers."/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Features"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:textColor="@color/lightText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Manage Your Class"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_baseline_circle_24"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Manage Your Class"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_baseline_circle_24"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Monitor Student Attendance"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_baseline_circle_24"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Archive Deleted Data"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_baseline_circle_24"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:text="Acquire Reports"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_baseline_circle_24"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_baseline_circle_24"
+                android:text="Use Searching Tool"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:textColor="@color/lightText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:text="Teacher"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_baseline_circle_24"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:text="      Track students' attendance, records and grade"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meet Our Team"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:textColor="@color/lightText"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="150dp"
+                    android:layout_height="185dp"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="30dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/lightText"
+                    app:contentPadding="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/round_corner">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/ic_no_image"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/white"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yashmin Joy Guelas"
+                        android:layout_marginTop="110dp"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="150dp"
+                    android:layout_height="185dp"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="30dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/round_corner">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/ic_no_image"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Roland Ruales"
+                        android:layout_marginTop="110dp"
+                        android:textColor="@color/darkText"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="150dp"
+                    android:layout_height="185dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="30dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/round_corner">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/ic_no_image"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="April Joyce A. Falible"
+                        android:layout_marginTop="110dp"
+                        android:textColor="@color/darkText"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="150dp"
+                    android:layout_height="185dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="30dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/round_corner">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/ic_no_image"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jomar P. Montiman"
+                        android:layout_marginTop="110dp"
+                        android:textColor="@color/darkText"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="150dp"
+                    android:layout_height="185dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="30dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/round_corner">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/ic_no_image"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="110dp"
+                        android:text="Ron Sebastian A.Suarez"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/darkText" />
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="150dp"
+                    android:layout_height="185dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="30dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/round_corner">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/ic_no_image"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rhine V. Ocampo"
+                        android:layout_marginTop="110dp"
+                        android:textColor="@color/darkText"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

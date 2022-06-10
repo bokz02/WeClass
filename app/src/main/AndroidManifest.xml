@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".AboutUs"
+            android:exported="false" />
+        <activity
             android:name=".taskGrade.TaskGrade"
             android:exported="false" />
         <activity
@@ -28,7 +31,8 @@
             android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".TermsAndCondition"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Custom" />
         <activity
             android:name=".schedule.EventEditActivity"
             android:exported="false"
