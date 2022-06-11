@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -75,6 +76,7 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
         extendedRecyclerView.setAdapter(taskAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noFile,noFileTextView);
+
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW

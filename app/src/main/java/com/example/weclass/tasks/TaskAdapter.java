@@ -20,6 +20,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -111,16 +112,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             public void onClick(View view) {
 
                 ConstraintLayout layout = holder.itemView.findViewById(R.id.hiddenDescription);
-                TransitionManager.beginDelayedTransition(layout, new AutoTransition());
-                layout.setVisibility( layout.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
-                if(layout.getVisibility() == View.VISIBLE){
-                    holder._expand.setImageResource(R.drawable.ic_up);
+                CardView cardView = holder.itemView.findViewById(R.id.cardViewRecView);
+                //cardView.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 
+                if(layout.getVisibility() == View.GONE){
+                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                    layout.setVisibility(View.VISIBLE);
+                    holder._expand.setImageResource(R.drawable.ic_up);
                 }
                 else {
+
+                    layout.setVisibility(View.GONE);
                     holder._expand.setImageResource(R.drawable.ic_arrow_down1);
                 }
-                notifyDataSetChanged();
+                notifyItemChanged(taskItems.size());
             }
         });
 

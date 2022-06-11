@@ -172,7 +172,7 @@
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toTopOf="@id/guide1" />
+            app:layout_constraintTop_toTopOf="@id/guide1"/>
 
 
 

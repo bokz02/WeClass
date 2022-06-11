@@ -174,7 +174,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                                     dayTextView.getText().toString().trim(),
                                     timeTextView.getText().toString().trim());
 
-                            Snackbar.make(createButton, "Subject successfully created!", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
 
                             courseEditText.setText("");
                             subjectCodeEditText.setText("");

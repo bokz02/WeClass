@@ -1,179 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardViewRecView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
-    android:layout_margin="5dp"
-    app:rippleColor="@color/lightText">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/parentConstraint"
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardViewRecView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:padding="15dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="@color/lightText"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/idNumberTask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ID"
-            android:textSize="16sp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/parentIDTaskRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="parentID"
-            android:textSize="16sp"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@+id/idNumberTask"
-            app:layout_constraintTop_toBottomOf="@+id/idNumberTask" />
-
-        <ImageButton
-            android:id="@+id/optionButtonTaskRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_subject_option"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/expandRecyclerView"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/transparent"
-            android:src="@drawable/ic_arrow_down1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/taskTypeRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Task type"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/progressTextView" />
-
-        <TextView
-            android:id="@+id/progressTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Progress"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/taskNumberRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="number"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/taskTypeRecView"
-            app:layout_constraintTop_toTopOf="@+id/taskTypeRecView" />
-
-        <TextView
-            android:id="@+id/scoreTextViewRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:text="Score"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/scoreText"
-            app:layout_constraintTop_toBottomOf="@+id/deadlineTextView" />
-
-        <TextView
-            android:id="@+id/scoreText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Score:"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deadlineTextView" />
-
-
-        <TextView
-            android:id="@+id/deadlineTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Deadline:"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/taskTypeRecView"
-            app:layout_constraintTop_toBottomOf="@+id/taskTypeRecView" />
-
-
-        <TextView
-            android:id="@+id/deadLineRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:paddingHorizontal="5dp"
-            android:text="8:00 AM"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/deadlineTextView"
-            app:layout_constraintTop_toBottomOf="@+id/taskNumberRecView" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/hiddenDescription"
+            android:id="@+id/parentConstraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:orientation="vertical"
-            android:paddingHorizontal="5dp"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scoreTextViewRecView">
+            android:padding="15dp"
+            android:animateLayoutChanges="true">
 
             <TextView
-                android:id="@+id/descriptionTextView"
+                android:id="@+id/idNumberTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Description:"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:text="ID"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/descriptionHiddenTextView"
+                android:id="@+id/parentIDTaskRecView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="10"
+                android:text="parentID"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/idNumberTask"
+                app:layout_constraintTop_toBottomOf="@+id/idNumberTask" />
+
+            <ImageButton
+                android:id="@+id/optionButtonTaskRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_subject_option"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/expandRecyclerView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/ic_arrow_down1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/taskTypeRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Task type"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progressTextView" />
+
+            <TextView
+                android:id="@+id/progressTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Progress"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/taskNumberRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="number"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/taskTypeRecView"
+                app:layout_constraintTop_toTopOf="@+id/taskTypeRecView" />
+
+            <TextView
+                android:id="@+id/scoreTextViewRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:text="Score"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/scoreText"
+                app:layout_constraintTop_toBottomOf="@+id/deadlineTextView" />
+
+            <TextView
+                android:id="@+id/scoreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Score:"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deadlineTextView" />
+
+
+            <TextView
+                android:id="@+id/deadlineTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Deadline:"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/taskTypeRecView"
+                app:layout_constraintTop_toBottomOf="@+id/taskTypeRecView" />
+
+
+            <TextView
+                android:id="@+id/deadLineRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:paddingHorizontal="5dp"
-                android:text="Expandable"
-                app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+                android:text="8:00 AM"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/deadlineTextView"
+                app:layout_constraintTop_toBottomOf="@+id/taskNumberRecView" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/hiddenDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="5dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scoreTextViewRecView">
+
+                <TextView
+                    android:id="@+id/descriptionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Description:"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/descriptionHiddenTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="10"
+                    android:paddingHorizontal="5dp"
+                    android:text="Expandable"
+                    app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</com.google.android.material.card.MaterialCardView>
-
+    </com.google.android.material.card.MaterialCardView>
 

@@ -190,7 +190,7 @@ public class AddStudent extends AppCompatActivity {
                                         _present.getText().toString().trim(),
                                         _absent.getText().toString().trim());
 
-                                Snackbar.make(createButton, "Student successfully added!", Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
                                 lastName.setText("");
                                 firstName.setText("");
                                 middleName.setText("");

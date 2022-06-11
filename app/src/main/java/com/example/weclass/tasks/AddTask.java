@@ -51,7 +51,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         pickProgress(); // CHOOSE PROGRESS
         cancelButton(); // CANCEL BUTTON
         getDataFromStudentListFragment(); // SET THE ID FOR PARENT ID TEXT
-        createTask();
+        createTask();       // CREATE A TASK BUTTON
     }
 
 
@@ -70,14 +70,13 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     }
 
 
-
+    // CREATE A TASK METHOD
     public void createTask() {
         _create.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View v) {
 
-
-
+                                           // IF ANY OF THE FIELDS IS EMPTY, AN ERROR WILL POP UP
                                            if (taskType.getText().toString().isEmpty() || _date.getText().toString().isEmpty() || _score.getText().toString().isEmpty()
                                                    || _description.getText().toString().isEmpty()  || _taskNumber.getText().toString().isEmpty()) {
                                                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
@@ -109,7 +108,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                                                        + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
                                                        + _taskNumber.getText().toString(), null);
 
-
+                                               // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
                                                if (cursor.moveToFirst()) {
                                                    Snackbar.make(_create, "" + taskType.getText().toString() + " "
                                                            + _taskNumber.getText().toString() + " is already in tasks list!", Snackbar.LENGTH_SHORT).show();
@@ -117,7 +116,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
                                                }else {
 
-
+                                                   // DATA WILL SAVE TO DATABASE IF ALL FIELDS ARE CORRECT
                                                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
                                                    builder.setTitle("Please confirm");
                                                    builder.setIcon(R.drawable.ic_baseline_warning_24);
