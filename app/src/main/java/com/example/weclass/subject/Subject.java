@@ -63,6 +63,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
 
 
+
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
@@ -198,6 +199,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();     // Show navigation drawer when clicked
+
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,14 +10,12 @@
 
     <ImageButton
         android:id="@+id/backToTaskButton"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/ic_simple_back"
-        android:backgroundTint="@color/lightText"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/iconback2"
+        android:backgroundTint="@color/cardViewColor"
+        app:layout_constraintStart_toStartOf="@+id/guide3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -24,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".3"/>
+        app:layout_constraintGuide_percent="0.33" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide2"
@@ -34,18 +33,32 @@
         app:layout_constraintGuide_percent=".9"/>
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.29" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.13" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".06"/>
+        app:layout_constraintGuide_percent="0.09" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".94"/>
+        app:layout_constraintGuide_percent="0.91" />
 
     <TextView
         android:id="@+id/noStudentTextViewGrade"
@@ -70,109 +83,125 @@
         app:layout_constraintTop_toTopOf="@id/guide1" />
 
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintBottom_toBottomOf="@id/guide1"
-        app:layout_constraintTop_toTopOf="parent">
+        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/cardViewColor"
+        android:elevation="5dp"
 
-        <TextView
-            android:id="@+id/proressTextViewGrade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="70dp"
-            android:text="Progress"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/subjectIDTextViewGrade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="50dp"
-            android:text="Subject id"
-            android:textSize="14sp"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/taskTypeTextViewGrade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="Task type"
-            android:layout_marginTop="5dp"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/proressTextViewGrade" />
-
-        <TextView
-            android:id="@+id/descriptionText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="Description:"
-            android:layout_marginTop="5dp"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taskTypeTextViewGrade" />
-
-        <TextView
-            android:id="@+id/descriptionTextViewGrade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="lorem ipsum"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="5dp"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
-
-        <TextView
-            android:id="@+id/taskNumberTextViewGrade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="#"
-            android:textSize="14sp"
-            android:layout_marginStart="5dp"
-            app:layout_constraintStart_toEndOf="@+id/taskTypeTextViewGrade"
-            app:layout_constraintTop_toBottomOf="@+id/proressTextViewGrade" />
-
-        <TextView
-            android:id="@+id/deadLineTextViewGrade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="Deadline"
-            android:textSize="14sp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/scoreTextViewGrade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:text="Score"
-            android:textSize="14sp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deadLineTextViewGrade" />
+        app:layout_constraintBottom_toTopOf="@+id/guide6"
+        app:layout_constraintEnd_toStartOf="@+id/guide4"
+        app:layout_constraintStart_toStartOf="@+id/guide3"
+        app:layout_constraintTop_toTopOf="@+id/guide7">
 
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/proressTextViewGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:drawableStart="@drawable/ic_progress1"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/white"
+                android:text="Progress"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView15"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextViewGrade"
+                app:layout_constraintVertical_bias="0.111" />
+
+            <TextView
+                android:id="@+id/subjectIDTextViewGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:text="Subject id"
+                android:textSize="14sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.944"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/taskTypeTextViewGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:text="Task type"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/descriptionTextViewGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:text="lorem ipsum"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/taskTypeTextViewGrade" />
+
+            <TextView
+                android:id="@+id/taskNumberTextViewGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="#"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toEndOf="@+id/taskTypeTextViewGrade"
+                app:layout_constraintTop_toTopOf="@+id/taskTypeTextViewGrade" />
+
+            <TextView
+                android:id="@+id/scoreTextViewGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="16dp"
+                android:text="Score"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/proressTextViewGrade"
+                app:layout_constraintVertical_bias="0.166" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="Items:"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/scoreTextViewGrade"
+                app:layout_constraintTop_toTopOf="@+id/proressTextViewGrade"
+                app:layout_constraintVertical_bias="0.045" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <com.example.weclass.ExtendedRecyclerView
         android:id="@+id/taskGradeRecyclerView"
@@ -182,5 +211,21 @@
         app:layout_constraintBottom_toBottomOf="@+id/guide2"
         app:layout_constraintEnd_toEndOf="@+id/guide4"
         app:layout_constraintStart_toStartOf="@id/guide3"/>
+
+    <TextView
+        android:id="@+id/deadLineTextViewGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Deadline"
+        android:drawableStart="@drawable/ic_deadline1"
+        android:drawablePadding="5dp"
+        android:drawableTint="@color/darkText"
+        android:textColor="@color/darkText"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/guide7"
+        app:layout_constraintEnd_toStartOf="@+id/guide4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.868" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

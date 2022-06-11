@@ -1,123 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="70dp"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="1dp"
     android:background="@color/white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    android:layout_margin="5dp"
     android:padding="5dp">
 
-    <TextView
-        android:id="@+id/lastNameRecViewGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="15dp"
-        android:layout_marginStart="10dp"
-        android:text="Last"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/firstNameRecViewGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="15dp"
-        android:layout_marginStart="5dp"
-        android:text="First"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/commaRecViewGrade"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/commaRecViewGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="15dp"
-        android:text=","
-        app:layout_constraintBottom_toBottomOf="@+id/lastNameRecViewGrade"
-        app:layout_constraintStart_toEndOf="@+id/lastNameRecViewGrade"
-        app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
+        <TextView
+            android:id="@+id/lastNameRecViewGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:layout_marginStart="32dp"
+            android:text="Last"
+            android:textColor="@color/lightText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.229" />
 
-    <EditText
-        android:id="@+id/gradeEditTextRecViewGrade"
-        android:layout_width="55dp"
-        android:layout_height="26dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/input_text_style"
-        android:gravity="center_horizontal"
-        android:hint="Score"
-        android:inputType="number"
-        android:maxLength="3"
-        android:maxLines="1"
-        android:padding="5dp"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/submitButtonRecViewGrade"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/firstNameRecViewGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:layout_marginStart="32dp"
+            android:text="First"
+            android:textColor="@color/darkText"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.979" />
 
-    <TextView
-        android:id="@+id/studentIDGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="student id"
-        android:padding="5dp"
-        android:textSize="12sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/commaRecViewGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:text=","
+            android:textColor="@color/lightText"
+            app:layout_constraintBottom_toBottomOf="@+id/lastNameRecViewGrade"
+            app:layout_constraintStart_toEndOf="@+id/lastNameRecViewGrade"
+            app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
 
-    <TextView
-        android:id="@+id/taskNumberRecViewGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="task number"
-        android:padding="5dp"
-        android:textSize="12sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/studentIDGrade"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/gradeEditTextRecViewGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/transparent_bg"
+            android:gravity="center_horizontal"
+            android:hint="Add"
+            android:inputType="number"
+            android:maxLength="3"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/submitButtonRecViewGrade"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.522" />
 
-    <TextView
-        android:id="@+id/subjectIDTextViewRecViewGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="subject id"
-        android:padding="5dp"
-        android:textSize="12sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
+        <TextView
+            android:id="@+id/studentIDGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="student id"
+            android:padding="5dp"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/taskTypeTextViewRecViewGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="task type"
-        android:padding="5dp"
-        android:textSize="12sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/subjectIDTextViewRecViewGrade"
-        app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
+        <TextView
+            android:id="@+id/taskNumberRecViewGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="task number"
+            android:padding="5dp"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/studentIDGrade"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/submitButtonRecViewGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/ic_green_check"
-        android:hint="Grade"
-        android:paddingHorizontal="5dp"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/subjectIDTextViewRecViewGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="subject id"
+            android:padding="5dp"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/taskTypeTextViewRecViewGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="task type"
+            android:padding="5dp"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/subjectIDTextViewRecViewGrade"
+            app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
+
+        <ImageButton
+            android:id="@+id/submitButtonRecViewGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/ic_green_check"
+            android:backgroundTint="@color/darkText"
+            android:hint="Grade"
+            android:paddingHorizontal="5dp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

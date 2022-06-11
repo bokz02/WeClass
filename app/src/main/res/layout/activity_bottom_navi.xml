@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_navi"
     tools:context=".BottomNavi">
 
 
@@ -40,13 +41,13 @@
 
 
     <ImageButton
-        android:id="@+id/backListOfStudents"
+        android:id="@+id/backButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/ic_simple_back"
-        android:backgroundTint="@color/lightText"
+        android:background="@drawable/iconback2"
+        android:backgroundTint="@color/white"
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

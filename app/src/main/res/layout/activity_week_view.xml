@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg_navi"
     tools:context=".schedule.WeekViewActivity">
 
     <com.google.android.material.navigation.NavigationView
@@ -37,20 +37,6 @@
             app:navigationIcon="@drawable/ic_iconsort1_svg" />
 
 
-
-        <TextView
-            android:id="@+id/eventID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="96dp"
-            android:fontFamily="sans-serif"
-            android:text="Id"
-            android:textAllCaps="true"
-            android:textColor="@color/darkText"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
-
         <TextView
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
@@ -68,10 +54,10 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.136">
 
@@ -204,7 +190,7 @@
                 android:layout_width="127dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="16dp"
                 android:background="@null"
                 android:drawableRight="@drawable/ic_baseline_add_24"
                 android:drawableTint="@color/darkText"
@@ -220,6 +206,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
                 android:text="Upcoming Event"
                 android:textColor="@color/darkText"
                 android:textSize="18sp"

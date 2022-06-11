@@ -110,7 +110,7 @@ public class BottomNavi extends AppCompatActivity {
 
     // BACK BUTTON
     public void backButton(){
-        ImageButton imageButton = (ImageButton) findViewById(R.id.backListOfStudents);
+        ImageButton imageButton = (ImageButton) findViewById(R.id.backButton);
          imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +132,7 @@ public class BottomNavi extends AppCompatActivity {
         parentID = findViewById(R.id.parentIDBottomNavi);
         subjectCode = findViewById(R.id.subjectCodeBottomNavi);
         courseName = findViewById(R.id.courseNameBottomNavi);
+
     }
 
     //SWITCHING DIFFERENT FRAGMENTS

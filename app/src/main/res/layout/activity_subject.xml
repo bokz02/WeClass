@@ -5,8 +5,8 @@
     android:id="@+id/drawerSubject"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cleanMainBackground"
     android:fitsSystemWindows="true"
+    android:background="@drawable/bg_nnavi"
     tools:context=".subject.Subject">
 
     <com.google.android.material.navigation.NavigationView

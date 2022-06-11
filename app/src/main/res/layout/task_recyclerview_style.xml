@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardViewRecView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,6 +22,7 @@
             android:id="@+id/idNumberTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
             android:text="ID"
             android:textSize="16sp"
             android:visibility="invisible"
@@ -32,11 +34,13 @@
             android:id="@+id/parentIDTaskRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
             android:text="parentID"
             android:textSize="16sp"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/idNumberTask"
-            app:layout_constraintTop_toBottomOf="@+id/idNumberTask" />
+            app:layout_constraintTop_toBottomOf="@+id/progressTextView" />
 
         <ImageButton
             android:id="@+id/optionButtonTaskRecView"
@@ -44,6 +48,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_subject_option"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.304"
+            app:layout_constraintStart_toEndOf="@+id/progressTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
@@ -59,21 +65,22 @@
             android:id="@+id/taskTypeRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:text="Task type"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/progressTextView" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/progressTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_stroke"
             android:text="Progress"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

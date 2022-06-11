@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -69,7 +70,9 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         navigationOpen();
         display();
         initializeAdapter();
+
     }
+
 
     public void initializeAdapter(){
         eventAdapter = new EventAdapter(WeekViewActivity.this, eventItems, this);
