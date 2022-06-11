@@ -1,7 +1,8 @@
 package com.example.weclass.attendance;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.tasks.AddTask;
-import com.example.weclass.tasks.TaskAdapter;
-import com.example.weclass.tasks.TaskItems;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.MyViewHolder> implements Filterable {
@@ -40,9 +40,10 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView lastName, firstName, gender, id, _present, _absent;
+        TextView lastName, firstName, gender, id, _present, _absent, _subjectID, _date, _always1, _always0;
         ImageButton absentButton, presentButton;
         OnNoteListener onNoteListener;
+
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
@@ -55,7 +56,10 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             presentButton = itemView.findViewById(R.id.presentAttendanceRecView);
             _present = itemView.findViewById(R.id.presentTextViewAttendanceRecView);
             _absent = itemView.findViewById(R.id.absentTextViewAttendanceRecView);
-
+            _subjectID = itemView.findViewById(R.id.parentIdAttendanceRecView);
+            _date = itemView.findViewById(R.id.dateTextViewAttendanceRecView);
+            _always1 = itemView.findViewById(R.id.always1AttendanceRecView);
+            _always0 = itemView.findViewById(R.id.always0AttendanceRecView);
 
             this.onNoteListener = onNoteListener;
         }
@@ -84,47 +88,141 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.gender.setText(String.valueOf(attendanceItems.get(position).getGender()));
         holder._present.setText(String.valueOf(attendanceItems.get(position).getPresent()));
         holder._absent.setText(String.valueOf(attendanceItems.get(position).getAbsent()));
-
-
+        holder._subjectID.setText(String.valueOf(attendanceItems.get(position).getParentID()));
 
         // PRESENT BUTTON
         holder.presentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                // SET THE CURRENT DATE OF A THE TEXTVIEW BEFORE STORING TO DATABASE
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE - MMM d, yyyy");
+                String date = dateFormat.format(calendar.getTime());
+                holder._date.setText(date);
+
                 // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
                 int a = 1;
                 int b = Integer.parseInt(holder._present.getText().toString());
                 holder._present.setText(String.valueOf(a + b));
 
-                holder.presentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
-                holder.absentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
-                holder.absentButton.setEnabled(false);
-                Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + " " + holder.firstName.getText().toString() + " is present!", Snackbar.LENGTH_SHORT).show();
+                DataBaseHelper db = new DataBaseHelper(context);
+                SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
 
-                // UPDATE THE UPDATE FIELD OF A STUDENT
-                DataBaseHelper dbh = new DataBaseHelper(context);
-                dbh.updateStudentPresent(holder.id.getText().toString().trim(),
-                        holder._present.getText().toString().trim());
+                // CURSOR WILL CHECK DATABASE IF ALREADY HAVE DUPLICATE ENTRY
+                Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                        + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                        + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + " = "
+                        + holder.id.getText().toString() + " AND "
+                        + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
+                        + holder._subjectID.getText().toString() + " AND "
+                        + DataBaseHelper.COLUMN_DATE_ATTENDANCE + " = '"
+                        + holder._date.getText().toString() + "' AND "
+                        + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + " = "
+                        + holder._always1.getText().toString() + " OR "
+                        + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + " = "
+                        + holder._always1.getText().toString(), null);
+
+                // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
+                if (cursor.moveToFirst()) {
+                    Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ","
+                            + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT).show();
+                    cursor.close();
+
+                    // ELSE IT WILL STORE TO DATABASE
+                } else {
+                    holder.presentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
+                    holder.absentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
+                    holder.absentButton.setEnabled(false);
+                    Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + " "
+                            + holder.firstName.getText().toString() + " is present!", Snackbar.LENGTH_SHORT).show();
+
+                    // ADD ATTENDANCE TO ATTENDANCE DATABASE
+                    db.addAttendance(holder.id.getText().toString(),
+                            holder._subjectID.getText().toString(),
+                            holder.lastName.getText().toString(),
+                            holder._date.getText().toString(),
+                            holder._always1.getText().toString(),
+                            holder._always0.getText().toString());
+
+                    // UPDATE STUDENT'S ATTENDANCE COUNT
+                    db.updateStudentPresent(holder.id.getText().toString(),
+                            holder._subjectID.getText().toString(),
+                            holder._present.getText().toString());
+                }
             }
         });
 
-        // ABSENT BUTTON
+        // PRESENT BUTTON
         holder.absentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // INCREMENT ABSENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
+                // SET THE CURRENT DATE OF A THE TEXTVIEW BEFORE STORING TO DATABASE
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE - MMM d, yyyy");
+                String date = dateFormat.format(calendar.getTime());
+                holder._date.setText(date);
+
+                // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
                 int a = 1;
                 int b = Integer.parseInt(holder._absent.getText().toString());
                 holder._absent.setText(String.valueOf(a + b));
 
-                holder.presentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
-                holder.absentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
-                holder.absentButton.setEnabled(false);
-                Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + " " + holder.firstName.getText().toString() + " is absent!", Snackbar.LENGTH_SHORT).show();
+
+                DataBaseHelper db = new DataBaseHelper(context);
+                SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+
+                // CURSOR WILL CHECK DATABASE IF ALREADY HAVE DUPLICATE ENTRY
+                Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                        + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                        + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + " = "
+                        + holder.id.getText().toString() + " AND "
+                        + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
+                        + holder._subjectID.getText().toString() + " AND "
+                        + DataBaseHelper.COLUMN_DATE_ATTENDANCE + " = '"
+                        + holder._date.getText().toString() + "' AND "
+                        + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + " = "
+                        + holder._always1.getText().toString() + " OR "
+                        + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + " = "
+                        + holder._always1.getText().toString(), null);
+
+
+                // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
+                if (cursor.moveToFirst()) {
+                    Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + ","
+                            + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT).show();
+                    cursor.close();
+
+                    // ELSE IT WILL STORE TO DATABASE
+                } else {
+                    holder.presentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
+                    holder.absentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
+                    holder.absentButton.setEnabled(false);
+                    Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + " "
+                            + holder.firstName.getText().toString() + " is absent!", Snackbar.LENGTH_SHORT).show();
+
+                    // ADD ATTENDANCE TO ATTENDANCE DATABASE
+                    db.addAttendance(holder.id.getText().toString(),
+                            holder._subjectID.getText().toString(),
+                            holder.lastName.getText().toString(),
+                            holder._date.getText().toString(),
+                            holder._always1.getText().toString(),
+                            holder._always0.getText().toString());
+
+
+                    // UPDATE STUDENT'S ATTENDANCE COUNT
+                    db.updateStudentAbsent(holder.id.getText().toString(),
+                            holder._subjectID.getText().toString(),
+                            holder._absent.getText().toString());
+                }
             }
         });
+
+
+
+
+
 
     }
 

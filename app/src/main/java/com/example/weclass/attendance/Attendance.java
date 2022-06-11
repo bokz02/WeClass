@@ -93,7 +93,12 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
     private ArrayList<AttendanceItems> displayData(){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_NAME2 + " WHERE " + DataBaseHelper.COLUMN_PARENT_ID + " = " + _parentID.getText().toString(), null);
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                + DataBaseHelper.TABLE_NAME2 + " WHERE "
+                + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                + _parentID.getText().toString(), null);
+
+
         ArrayList<AttendanceItems> attendanceItems = new ArrayList<>();
 
         if (cursor.moveToFirst()){

@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/presentIDAddStudent"
         android:layout_width="wrap_content"
@@ -201,6 +202,8 @@
                 android:background="@drawable/transparent_bg"
                 android:gravity="center"
                 android:hint="Last name"
+                android:maxLines="1"
+                android:maxLength="30"
                 android:inputType="textCapSentences"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -218,6 +221,8 @@
                 android:hint="Middle name"
                 android:inputType="textCapSentences"
                 android:textSize="15sp"
+                android:maxLength="30"
+                android:maxLines="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -232,6 +237,8 @@
                 android:gravity="center"
                 android:hint="First name"
                 android:textSize="16sp"
+                android:maxLength="30"
+                android:maxLines="1"
                 android:inputType="textCapSentences"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

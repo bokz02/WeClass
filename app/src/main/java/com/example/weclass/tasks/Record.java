@@ -122,7 +122,11 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
     // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
     private ArrayList<TaskItems> displayData(){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_NAME4 + " WHERE " + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = " + parentID.getText().toString(), null);
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                + DataBaseHelper.TABLE_NAME4 + " WHERE "
+                + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
+                + parentID.getText().toString(), null);
+
         ArrayList<TaskItems> taskItems = new ArrayList<>();
 
         if (cursor.moveToFirst()){

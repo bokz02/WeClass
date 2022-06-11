@@ -101,7 +101,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                         + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                         + holder.subjectID.getText().toString() + " AND "
                         + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
-                        + holder.taskType.getText().toString() + "'AND "
+                        + holder.taskType.getText().toString() + "' AND "
                         + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
                         + holder.taskNumber.getText().toString(), null);
 

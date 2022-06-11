@@ -58,6 +58,30 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:id="@+id/always1AttendanceRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:text="1"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/idAttendanceRecView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/always0AttendanceRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:text="0"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/idAttendanceRecView"
+            app:layout_constraintEnd_toStartOf="@+id/always1AttendanceRecView" />
+
+
+        <TextView
             android:id="@+id/parentIdAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,6 +114,17 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/presentTextViewAttendanceRecView"
             app:layout_constraintStart_toEndOf="@+id/parentIdAttendanceRecView" />
+
+        <TextView
+            android:id="@+id/dateTextViewAttendanceRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:text="date"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/absentTextViewAttendanceRecView"
+            app:layout_constraintStart_toStartOf="@+id/absentTextViewAttendanceRecView" />
 
         <TextView
             android:id="@+id/genderAttendanceRecView"

@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.69" />
+        app:layout_constraintGuide_percent="0.79" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide3"
@@ -69,7 +69,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="@id/guide2"
@@ -184,6 +184,7 @@
                 app:layout_constraintStart_toEndOf="@+id/taskTypeTextViewEdit"
                 app:layout_constraintTop_toBottomOf="@+id/view9"
                 app:layout_constraintVertical_bias="0.888" />
+
             <View
                 android:id="@+id/view11"
                 android:layout_width="match_parent"
@@ -241,7 +242,8 @@
                 android:text="Select Category"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/guide5"
-                app:layout_constraintTop_toBottomOf="@+id/view9"  />
+                app:layout_constraintTop_toBottomOf="@+id/view9" />
+
             <View
                 android:id="@+id/view9"
                 android:layout_width="match_parent"
@@ -253,6 +255,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/taskNumberTextView" />
+
             <View
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
@@ -279,7 +282,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guide6"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guide5"
-                app:layout_constraintTop_toBottomOf="@+id/view2"  />
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
 
             <TextView
                 android:id="@+id/dateTextViewTaskEdit"
@@ -320,9 +323,9 @@
                 android:text="Update"
                 android:textAllCaps="false"
                 android:textColor="@color/createAndcancelButtonColor"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guide6"
-                app:layout_constraintStart_toStartOf="@id/guide7" />
+                app:layout_constraintStart_toStartOf="@id/guide7"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/cancelButtonTaskEdit"
@@ -333,9 +336,9 @@
                 android:text="Cancel"
                 android:textAllCaps="false"
                 android:textColor="@color/createAndcancelButtonColor"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guide7"
                 app:layout_constraintStart_toStartOf="@id/guide5"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine"
                 app:strokeColor="@color/lightText" />
 
             <ImageView
@@ -343,14 +346,16 @@
                 android:layout_width="0dp"
                 android:layout_height=".75dp"
                 android:background="#ECECEC"
-                app:layout_constraintBottom_toTopOf="@+id/cancelButtonTaskEdit"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descriptionEditTextEdit" />
 
             <ImageView
                 android:id="@+id/verticalLine"
                 android:layout_width=".2dp"
                 android:layout_height="50dp"
+
                 android:background="#ECECEC"
                 app:layout_constraintEnd_toEndOf="@id/guide7"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalLine" />
