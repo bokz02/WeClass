@@ -101,6 +101,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
         if(holder._progress.getText().toString().equals("Completed")){
             holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.progressColorDone));
+
         }else{
             holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.progressColorToDo));
         }
@@ -114,10 +115,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                 layout.setVisibility( layout.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
                 if(layout.getVisibility() == View.VISIBLE){
                     holder._expand.setImageResource(R.drawable.ic_up);
+
                 }
                 else {
                     holder._expand.setImageResource(R.drawable.ic_arrow_down1);
                 }
+                notifyDataSetChanged();
             }
         });
 

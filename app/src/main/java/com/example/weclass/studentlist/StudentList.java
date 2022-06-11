@@ -111,16 +111,18 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                    floatingActionButton.show();
-                }
+//                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+//                    floatingActionButton.show();
+//                }
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if(dy > 0 || dy < 0 && floatingActionButton.isShown()){
+                if(dy > 0){
                     floatingActionButton.hide();
+                }else if (dy < 0){
+                    floatingActionButton.show();
                 }
             }
         });

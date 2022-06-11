@@ -132,15 +132,6 @@ public class AddStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DataBaseHelper db = new DataBaseHelper(AddStudent.this);
-                SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
-
-                Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_NAME2 + " WHERE "
-                + DataBaseHelper.COLUMN_LAST_NAME + " = '"
-                + lastName.getText().toString().trim() + "' AND "
-                + DataBaseHelper.COLUMN_FIRST_NAME + " = '"
-                + firstName.getText().toString().trim() + "'", null);
 
 
                 if (lastName.getText().toString().isEmpty() || firstName.getText().toString().isEmpty() || genderTextview.getText().toString().isEmpty()){
@@ -166,13 +157,25 @@ public class AddStudent extends AppCompatActivity {
                     builder.setMessage("Are you sure all the information are correct?");
                     builder.setPositiveButton("ok",new DialogInterface.OnClickListener() {
 
-
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
+                            DataBaseHelper db = new DataBaseHelper(AddStudent.this);
+                            SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+
+                            Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                                    + DataBaseHelper.TABLE_NAME2 + " WHERE "
+                                    + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                                    + parentID.getText().toString().trim() + " AND "
+                                    + DataBaseHelper.COLUMN_LAST_NAME + " = '"
+                                    + lastName.getText().toString().trim() + "' AND "
+                                    + DataBaseHelper.COLUMN_FIRST_NAME + " = '"
+                                    + firstName.getText().toString().trim() + "'", null);
+
 
                             if(cursor.moveToFirst()){
-                                Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " is already added!", Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(createButton, "" + lastName.getText().toString() + ", "
+                                        + firstName.getText().toString() + " is already added in this subject.", Snackbar.LENGTH_SHORT).show();
                                 cursor.close();
 
 

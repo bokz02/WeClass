@@ -246,7 +246,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guide6"
                 app:layout_constraintHorizontal_bias="0.208"
                 app:layout_constraintStart_toEndOf="@+id/taskText"
-                app:layout_constraintTop_toTopOf="@+id/taskText"></EditText>
+                app:layout_constraintTop_toTopOf="@+id/taskText"/>
 
             <TextView
 
@@ -258,8 +258,7 @@
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/darkText"
 
-                android:hint="Progress"
-                android:text="Select Progress"
+                android:hint="Select Progress"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_progress1"
                 app:layout_constraintBottom_toTopOf="@+id/view11"
@@ -280,7 +279,6 @@
                 android:drawableTint="@color/darkText"
                 android:focusable="true"
                 android:hint="Select Category"
-                android:text="Select Category"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/guide5"
                 app:layout_constraintTop_toBottomOf="@+id/view9" />
@@ -309,7 +307,6 @@
                 android:focusable="true"
                 android:gravity="center_vertical"
                 android:hint="Deadline"
-                android:text="Deadline"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_deadline1"
                 app:layout_constraintStart_toStartOf="@id/guide5"
