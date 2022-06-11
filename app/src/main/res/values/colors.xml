@@ -20,7 +20,7 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="rippleFAB">#1F6C64</color>
     <color name="createAndcancelButtonColor">#5A5959</color>
-    <color name="progressColorDone">#04D304</color>
+    <color name="progressColorDone">#09C609</color>
     <color name="progressColorToDo">#C51C55</color>
     <color name="cleanMainBackground">#EDF4F3</color>
     <color name="buttonDisabled">#BBBBBB</color>

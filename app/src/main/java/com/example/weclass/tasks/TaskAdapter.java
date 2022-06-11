@@ -99,7 +99,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder._progress.setText(String.valueOf(taskItems.get(position).getProgress()));
         holder._id.setText(String.valueOf(taskItems.get(position).getTaskNumber()));
 
-        if(holder._progress.getText().toString().equals("Done")){
+        if(holder._progress.getText().toString().equals("Completed")){
             holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.progressColorDone));
         }else{
             holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.progressColorToDo));

@@ -8,7 +8,7 @@
     android:layout_margin="5dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
-    app:cardElevation="15dp"
+    app:cardElevation="5dp"
     android:clickable="true"
     android:focusable="true"
     app:rippleColor="@color/lightText">
@@ -79,7 +79,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"
             android:textColor="@color/darkText"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/studentImageRecView"
             app:layout_constraintTop_toTopOf="@+id/studentImageRecView" />
@@ -92,7 +92,7 @@
             android:layout_toEndOf="@id/studentImageRecView"
             android:text="Firstname"
             android:textColor="@color/darkText"
-            android:textSize="15dp"
+            android:textSize="14dp"
             app:layout_constraintStart_toStartOf="@+id/studentLastnameRecView"
             app:layout_constraintTop_toBottomOf="@+id/studentLastnameRecView" />
 
@@ -117,6 +117,7 @@
             android:layout_marginStart="5dp"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/studentFirstnameRecView"
+            android:textSize="14dp"
             android:text="Middle"
             android:textColor="@color/darkText"
             app:layout_constraintBottom_toBottomOf="@+id/studentFirstnameRecView"
@@ -128,11 +129,12 @@
             android:layout_height="34dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/transparent_bg"
-            android:src="@drawable/ic_baseline_arrow_circle_right_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.666" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

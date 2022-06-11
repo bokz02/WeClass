@@ -132,8 +132,8 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
     // CHOOSE PROGRESS
     public void pickProgress() {
         final String[] progress = new String[]{
-                "To-Do",
-                "Done",
+                "In-Progress",
+                "Completed",
         };
 
         selectedProgress = progress[0];
