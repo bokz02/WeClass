@@ -57,7 +57,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         public MyViewHolder(View itemView, OnNoteListener OnNoteListener) {
             super(itemView);
 
-            id = itemView.findViewById(R.id.eventID);
             eventTitle = itemView.findViewById(R.id.eventCellTV);
             eventDay = itemView.findViewById(R.id.eventCellDay);
             eventTime = itemView.findViewById(R.id.eventCellTime);

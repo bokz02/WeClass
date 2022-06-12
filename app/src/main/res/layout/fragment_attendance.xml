@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".attendance.Attendance"
-    android:background="@color/cleanMainBackground">
+    tools:context=".attendance.Attendance">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -128,7 +127,6 @@
             android:layout_marginEnd="5dp"
             android:textColor="@color/darkText"
             android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guide5"
             app:layout_constraintEnd_toEndOf="@id/guide4" />
 
@@ -141,7 +139,6 @@
             android:layout_marginEnd="5dp"
             android:textColor="@color/progressColorToDo"
             android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guide5"
             app:layout_constraintEnd_toStartOf="@+id/presentTextView" />
 
@@ -201,6 +198,7 @@
             android:layout_height="19dp"
             android:text="Monday, Feb 15,2022"
             android:textAllCaps="false"
+            android:textStyle="bold"
             android:textColor="@color/darkText"
             android:layout_marginBottom="10dp"
             android:layout_marginStart="10dp"

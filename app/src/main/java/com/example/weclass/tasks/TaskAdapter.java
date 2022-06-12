@@ -101,10 +101,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder._id.setText(String.valueOf(taskItems.get(position).getTaskNumber()));
 
         if(holder._progress.getText().toString().equals("Completed")){
-            holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.progressColorDone));
-
+            holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.lightText));
+            holder._progress.setBackgroundResource(R.drawable.rounded_stroke);
         }else{
             holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.progressColorToDo));
+            holder._progress.setBackgroundResource(R.drawable.rounded_stroke_red);
         }
         // EXPAND CARD VIEW WHEN CLICKED
         holder._expand.setOnClickListener(new View.OnClickListener() {

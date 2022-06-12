@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -41,6 +42,19 @@ public class EventEditActivity extends AppCompatActivity implements EventAdapter
         cancelEvent();
 
     }
+
+    // BACK BUTTON
+    public void backButton(){
+        ImageButton imageButton = (ImageButton) findViewById(R.id.backButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+
 
     public void pickTime() {
         eventTimeTV.setOnClickListener(new View.OnClickListener() {
