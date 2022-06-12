@@ -53,7 +53,6 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
         initializeAdapter();        // INITIALIZE ADAPTER FOR RECYCLERVIEW
         textListener();     // SEARCH FUNCTION FOR LIST OF STUDENTS
 
-
         return view;
     }
 
@@ -72,10 +71,12 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
+
         taskAdapter = new TaskAdapter(getContext(), taskItems, this);
         extendedRecyclerView.setAdapter(taskAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noFile,noFileTextView);
+
 
     }
 
@@ -199,6 +200,8 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
 
     @Override
     public void onNoteClick(int position) {
+
+
         Intent intent = new Intent(getContext(), TaskGrade.class);
         intent.putExtra("Task", taskItems.get(position));
         intent.putExtra("id", parentID.getText().toString());

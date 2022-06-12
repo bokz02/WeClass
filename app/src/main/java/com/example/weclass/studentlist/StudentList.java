@@ -35,7 +35,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     ExtendedRecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
     View view;
-    TextView parentID, _studentCode, _sort, _courseTitle, noStudentTextView;
+    TextView parentID, _studentCode, _sort, _courseTitle, noStudentTextView, _id;
     DataBaseHelper dataBaseHelper;
     ArrayList<StudentItems> studentItems, id, parent_id;
     StudentAdapter studentAdapter;
@@ -139,8 +139,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
     public void display(){
-        id = new ArrayList<>();
-        parent_id = new ArrayList<>();
+//        id = new ArrayList<>();
+//        parent_id = new ArrayList<>();
         studentItems = new ArrayList<>();
         dataBaseHelper = new DataBaseHelper(getContext());
         studentItems = displayData();
@@ -185,6 +185,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         _courseTitle = view.findViewById(R.id.courseTitleStudentList);
         noFile_ = view.findViewById(R.id.noStudentTaskView);
         noStudentTextView = view.findViewById(R.id.noStudentTextView);
+        _id = view.findViewById(R.id.iDNumberStudentList);
 
     }
 
@@ -236,6 +237,9 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     public void onNoteClick(int position) {
         Intent intent = new Intent(getContext(), StudentProfile.class);
         intent.putExtra("Student", studentItems.get(position));
+
+
+
         startActivity(intent);
     }
 }

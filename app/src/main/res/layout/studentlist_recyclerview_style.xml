@@ -95,18 +95,20 @@
             app:layout_constraintStart_toStartOf="@+id/studentLastnameRecView"
             app:layout_constraintTop_toBottomOf="@+id/studentLastnameRecView" />
 
+
         <TextView
             android:id="@+id/studentSexRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/studentFirstnameRecView"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="4dp"
             android:layout_toEndOf="@id/studentImageRecView"
             android:text="Male"
-            android:visibility="invisible"
             android:textColor="@color/darkText"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iDNumberStudentList" />
-
 
         <TextView
             android:id="@+id/studentMiddleRecView"
@@ -121,18 +123,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/studentFirstnameRecView"
             app:layout_constraintStart_toEndOf="@+id/studentFirstnameRecView" />
 
-        <ImageButton
-            android:id="@+id/studentBtnRecView"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/transparent_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.666" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

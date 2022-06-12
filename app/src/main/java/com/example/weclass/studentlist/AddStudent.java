@@ -19,9 +19,6 @@ import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 public class AddStudent extends AppCompatActivity {
 
     Button cancelButton, createButton;
@@ -53,9 +50,9 @@ public class AddStudent extends AppCompatActivity {
     }
 
     public void initialized (){
-        lastName = findViewById(R.id.studLastname);
+        lastName = findViewById(R.id.studLastnameProfile);
         middleName = findViewById(R.id.studMidname);
-        firstName = findViewById(R.id.studFirstname);
+        firstName = findViewById(R.id.studFirstnameProfile);
         genderTextview = findViewById(R.id.studGender);
         createButton = findViewById(R.id.createButtonStudent);
         cancelButton = findViewById(R.id.cancelButtonStudent);

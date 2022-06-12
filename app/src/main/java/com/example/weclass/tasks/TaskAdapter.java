@@ -54,6 +54,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         TextView _id, _parentTD, _taskType, _dueDate, _score, _description,_progress;
         ImageButton _optionTask, _expand;
         OnNoteListener onNoteListener;
+        ConstraintLayout constraintLayout;
+        CardView cardView;
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
@@ -67,8 +69,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             _expand = itemView.findViewById(R.id.expandRecyclerView);
             _parentTD = itemView.findViewById(R.id.parentIDTaskRecView);
             _progress = itemView.findViewById(R.id.progressTextView);
-            this.onNoteListener = onNoteListener;
+            constraintLayout = itemView.findViewById(R.id.hiddenDescription);
+            cardView = itemView.findViewById(R.id.cardViewRecView);
 
+
+            this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
 
         }
@@ -112,21 +117,23 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             @Override
             public void onClick(View view) {
 
-                ConstraintLayout layout = holder.itemView.findViewById(R.id.hiddenDescription);
-                CardView cardView = holder.itemView.findViewById(R.id.cardViewRecView);
+
+
                 //cardView.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 
-                if(layout.getVisibility() == View.GONE){
-                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-                    layout.setVisibility(View.VISIBLE);
+                if(holder.constraintLayout.getVisibility() == View.GONE){
+                    TransitionManager.beginDelayedTransition(holder.cardView, new AutoTransition());
+                    holder.constraintLayout.setVisibility(View.VISIBLE);
                     holder._expand.setImageResource(R.drawable.ic_up);
                 }
                 else {
 
-                    layout.setVisibility(View.GONE);
+                    holder.constraintLayout.setVisibility(View.GONE);
                     holder._expand.setImageResource(R.drawable.ic_arrow_down1);
                 }
-                notifyItemChanged(taskItems.size());
+                notifyDataSetChanged();
+
+
             }
         });
 

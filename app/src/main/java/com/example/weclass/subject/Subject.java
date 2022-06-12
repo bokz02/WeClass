@@ -190,7 +190,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout = findViewById(R.id.drawerSubject);
         navigationView = findViewById(R.id.navSubject);
         toolbar = findViewById(R.id.toolbarSubject);
-        noFile = findViewById(R.id.noFileSubject);
+        noFile = findViewById(R.id.noViewView);
         noSubject = findViewById(R.id.noSubjectTextView);
     }
 

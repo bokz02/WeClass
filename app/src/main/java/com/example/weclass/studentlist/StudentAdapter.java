@@ -98,13 +98,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         holder.middleNameText.setText(String.valueOf(studentItems.get(position).getMiddleName()));
         holder.genderText.setText(String.valueOf(studentItems.get(position).getGender()));
 
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         // NAVIGATE TO EDIT ACTIVITY, OR DELETE A SUBJECT
         holder.optionStudent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +180,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
             middleNameText = itemView.findViewById(R.id.studentMiddleRecView);
             firstNameText = itemView.findViewById(R.id.studentFirstnameRecView);
             genderText = itemView.findViewById(R.id.studentSexRecView);
-            button = itemView.findViewById(R.id.studentBtnRecView);
             optionStudent = itemView.findViewById(R.id.optionButtonSubject);
 
             this.onNoteListener = mOnNoteListener;

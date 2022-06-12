@@ -32,12 +32,12 @@
             android:textColor="@color/cancelButtonPressed"
             android:textSize="16sp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@id/noFileSubject"
-            app:layout_constraintEnd_toEndOf="@+id/noFileSubject"
-            app:layout_constraintStart_toStartOf="@+id/noFileSubject" />
+            app:layout_constraintBottom_toTopOf="@id/noViewView"
+            app:layout_constraintEnd_toEndOf="@+id/noViewView"
+            app:layout_constraintStart_toStartOf="@+id/noViewView" />
 
         <View
-            android:id="@+id/noFileSubject"
+            android:id="@+id/noViewView"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/ic_no_file"
