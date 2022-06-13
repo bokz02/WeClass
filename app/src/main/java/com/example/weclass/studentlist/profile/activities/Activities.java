@@ -1,4 +1,4 @@
-package com.example.weclass.profile;
+package com.example.weclass.studentlist.profile.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,14 +15,12 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.StudentAdapter;
-import com.example.weclass.studentlist.StudentItems;
 
 import java.util.ArrayList;
 
 public class Activities extends AppCompatActivity {
 
-    TextView _studentID, _subjectID, noText;
+    TextView _studentID, _subjectID, noText, _activity;
     ImageButton _backButton;
     ExtendedRecyclerView extendedRecyclerView;
     ActivitiesAdapter activitiesAdapter;
@@ -54,12 +52,13 @@ public class Activities extends AppCompatActivity {
 
     public void initialize(){
 
-        _studentID = findViewById(R.id.studentIDStudentActivities);
-        _subjectID = findViewById(R.id.subjectIDStudentActivities);
-        _backButton = findViewById(R.id.backButtonActivities);
-        extendedRecyclerView = findViewById(R.id.studentActivitiesRecView);
-        noView = findViewById(R.id.noViewView);
-        noText = findViewById(R.id.noTextTextView);
+        _studentID = findViewById(R.id.studentIDStudentActivity);
+        _subjectID = findViewById(R.id.subjectIDStudentActivity);
+        _backButton = findViewById(R.id.backButtonActivity);
+        extendedRecyclerView = findViewById(R.id.studentActivityRecView);
+        noView = findViewById(R.id.noViewViewActivity);
+        noText = findViewById(R.id.noTextTextViewActivity);
+        _activity = findViewById(R.id.activityStudentActivity);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
@@ -87,7 +86,9 @@ public class Activities extends AppCompatActivity {
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
                 + _studentID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
-                + _subjectID.getText().toString(), null);
+                + _subjectID.getText().toString() + " AND  "
+                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                + _activity.getText().toString() + "'", null);
 
         ArrayList<ActivitiesItems> activitiesItems = new ArrayList<>();
 

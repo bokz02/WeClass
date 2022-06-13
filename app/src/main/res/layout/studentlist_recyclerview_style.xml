@@ -57,9 +57,9 @@
 
         <ImageView
             android:id="@+id/studentImageRecView"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:layout_marginVertical="15dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginVertical="5dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/ic_no_image"
             app:civ_border_color="@color/white"
@@ -76,7 +76,7 @@
             android:layout_above="@id/studentFirstnameRecView"
             android:layout_toEndOf="@id/studentImageRecView"
             android:text="Lastname"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:textColor="@color/darkText"
             android:textSize="15dp"

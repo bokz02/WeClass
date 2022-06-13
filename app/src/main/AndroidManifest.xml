@@ -10,7 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
-            android:name=".profile.Activities"
+            android:name=".studentlist.profile.attendance.Absent"
+            android:exported="false" />
+        <activity
+            android:name=".studentlist.profile.attendance.Present"
+            android:exported="false" />
+        <activity
+            android:name=".studentlist.profile.seatwork.SeatWork"
+            android:exported="false" />
+        <activity
+            android:name=".studentlist.profile.quiz.Quiz"
+            android:exported="false" />
+        <activity
+            android:name=".studentlist.profile.assignments.Assignments"
+            android:exported="false" />
+        <activity
+            android:name=".studentlist.profile.activities.Activities"
             android:exported="false" />
         <activity
             android:name=".AboutUs"

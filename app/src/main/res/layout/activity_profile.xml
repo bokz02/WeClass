@@ -173,6 +173,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"
                     android:src="@drawable/iconnext1"
+                    android:focusable="true"
+                    android:clickable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.844"
                     app:layout_constraintTop_toBottomOf="@+id/assignmentButtonProfile" />
@@ -183,9 +185,36 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:src="@drawable/iconnext1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/seatWorkButtonProfile" />
+
+                <ImageView
+                    android:id="@+id/presentButtonProfile"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/iconnext1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quizButtonProfile" />
+
+                <ImageView
+                    android:id="@+id/absentButtonProfile"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/iconnext1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/presentButtonProfile" />
+
 
                 <ImageView
                     android:id="@+id/assignmentButtonProfile"
@@ -193,6 +222,8 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:src="@drawable/iconnext1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.826"
@@ -316,28 +347,26 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView8"
                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
-                <TextView
-                    android:id="@+id/absentGrade"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:text="00"
-                    android:textColor="@color/darkText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/presentGrade" />
 
                 <TextView
-                    android:id="@+id/presentGrade"
+                    android:id="@+id/presentTextViewProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
                     android:text="00"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginEnd="10dp"
                     android:textColor="@color/darkText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.835"
-                    app:layout_constraintTop_toBottomOf="@+id/quizButtonProfile" />
+                    app:layout_constraintEnd_toStartOf="@+id/presentButtonProfile"
+                    app:layout_constraintTop_toTopOf="@+id/presentButtonProfile" />
+
+                <TextView
+                    android:id="@+id/absentTextViewProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:text="00"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/darkText"
+                    app:layout_constraintEnd_toStartOf="@+id/absentButtonProfile"
+                    app:layout_constraintTop_toTopOf="@+id/absentButtonProfile" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

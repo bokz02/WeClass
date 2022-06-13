@@ -1,4 +1,4 @@
-package com.example.weclass.profile;
+package com.example.weclass.studentlist.profile.activities;
 
 public class ActivitiesItems {
 
