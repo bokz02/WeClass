@@ -36,6 +36,19 @@
         app:layout_constraintGuide_percent=".95"/>
 
     <TextView
+        android:id="@+id/textViewA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Assignments"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guide1"/>
+
+    <TextView
         android:id="@+id/noTextTextViewAssignments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

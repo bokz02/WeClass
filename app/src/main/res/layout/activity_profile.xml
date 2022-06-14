@@ -28,21 +28,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.11" />
+            app:layout_constraintGuide_percent="0.07" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.88" />
+            app:layout_constraintGuide_percent="0.93" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="191dp" />
+            app:layout_constraintGuide_percent=".2" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide6"
@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="student id"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="subject id"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/studentIDProfile" />
@@ -172,9 +172,9 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"
-                    android:src="@drawable/iconnext1"
-                    android:focusable="true"
                     android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/iconnext1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.844"
                     app:layout_constraintTop_toBottomOf="@+id/assignmentButtonProfile" />
@@ -195,8 +195,8 @@
                     android:id="@+id/presentButtonProfile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginEnd="24dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/iconnext1"
@@ -207,8 +207,8 @@
                     android:id="@+id/absentButtonProfile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginEnd="24dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/iconnext1"
@@ -339,11 +339,10 @@
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
-                    android:text="Absent"
+                    android:text="Absences"
                     android:textColor="@color/darkText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.053"
                     app:layout_constraintStart_toEndOf="@+id/imageView8"
                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -352,8 +351,8 @@
                     android:id="@+id/presentTextViewProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:text="00"
                     android:layout_marginEnd="10dp"
+                    android:text="0"
                     android:textColor="@color/darkText"
                     app:layout_constraintEnd_toStartOf="@+id/presentButtonProfile"
                     app:layout_constraintTop_toTopOf="@+id/presentButtonProfile" />
@@ -362,8 +361,8 @@
                     android:id="@+id/absentTextViewProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:text="00"
                     android:layout_marginEnd="10dp"
+                    android:text="0"
                     android:textColor="@color/darkText"
                     app:layout_constraintEnd_toStartOf="@+id/absentButtonProfile"
                     app:layout_constraintTop_toTopOf="@+id/absentButtonProfile" />
@@ -377,38 +376,51 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="116dp"
             android:text="Student Profile"
             android:textAllCaps="false"
-            android:textColor="@color/darkText"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/navigation_text_color"
             android:textSize="25sp"
+            android:layout_marginEnd="10dp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.24"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guide2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+
+            android:id="@+id/courseTextViewProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Section"
+            android:layout_marginBottom="10dp"
+            android:text="Course"
+            android:layout_marginEnd="10dp"
             android:textAllCaps="false"
             android:textColor="@color/darkText"
             android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.16"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guide2"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+
+            android:id="@+id/subjectTextViewProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Subject"
+            android:textAllCaps="false"
+            android:textColor="@color/darkText"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/guide2"
+            app:layout_constraintTop_toBottomOf="@+id/courseTextViewProfile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:id="@+id/backButtonProfile"
-        android:layout_width="39dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/iconback2"
         android:backgroundTint="@color/white"
         app:layout_constraintStart_toStartOf="parent"

@@ -35,9 +35,9 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     ExtendedRecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
     View view;
-    TextView parentID, _studentCode, _sort, _courseTitle, noStudentTextView, _id;
+    TextView parentID, _subjectCode, _sort, _courseTitle, noStudentTextView, _id;
     DataBaseHelper dataBaseHelper;
-    ArrayList<StudentItems> studentItems, id, parent_id;
+    ArrayList<StudentItems> studentItems;
     StudentAdapter studentAdapter;
     EditText searchStudent;
     View noFile_;
@@ -181,7 +181,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         floatingActionButton = view.findViewById(R.id.fabAddStudent);
         parentID = view.findViewById(R.id.parentID);
         searchStudent = view.findViewById(R.id.searchEditTextStudent);
-        _studentCode = view.findViewById(R.id.studentListSubjectCode);
+        _subjectCode = view.findViewById(R.id.studentListSubjectCode);
         _courseTitle = view.findViewById(R.id.courseTitleStudentList);
         noFile_ = view.findViewById(R.id.noStudentTaskView);
         noStudentTextView = view.findViewById(R.id.noStudentTextView);
@@ -228,7 +228,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         Bundle bundle = getArguments();
         if (bundle != null) {
             parentID.setText(bundle.getString("IDParent"));
-            _studentCode.setText(bundle.getString("SubjectCode"));
+            _subjectCode.setText(bundle.getString("SubjectCode"));
             _courseTitle.setText(bundle.getString("CourseCode"));
         }
     }
@@ -238,6 +238,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         Intent intent = new Intent(getContext(), StudentProfile.class);
         intent.putExtra("Student", studentItems.get(position));
 
+        intent.putExtra("course", _courseTitle.getText().toString());
+        intent.putExtra("subject", _subjectCode.getText().toString());
 
 
         startActivity(intent);

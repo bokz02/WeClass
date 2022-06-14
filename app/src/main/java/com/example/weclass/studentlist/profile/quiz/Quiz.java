@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -33,6 +34,9 @@ public class Quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
         initialize();
         backToStudentProfile();
@@ -86,7 +90,7 @@ public class Quiz extends AppCompatActivity {
                 + _studentID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + _quiz.getText().toString() + "'", null);
 
         ArrayList<ActivitiesItems> activitiesItems = new ArrayList<>();

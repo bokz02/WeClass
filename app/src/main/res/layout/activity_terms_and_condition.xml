@@ -9,8 +9,11 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/backButtonTos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/ic_simple_back"
         android:layout_marginTop="20dp"
         android:layout_marginStart="25dp"

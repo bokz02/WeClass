@@ -45,6 +45,7 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/fragment_student.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/fragment_student_list.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/header.xml" value="0.36666666666666664" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/present_absent_recyclerview_style.xml" value="0.3614583333333333" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/sample.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studenlist_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studentlist_recyclerview_style.xml" value="0.36666666666666664" />
@@ -56,6 +57,7 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/option_subject_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/sort_student.xml" value="0.365625" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/subject_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/drawable-nodpi/white_rounded_button.xml" value="0.1715" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/drawable-v24/round_corner.xml" value="0.1765" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/drawable-v24/round_corner_calcell.xml" value="0.1745" />

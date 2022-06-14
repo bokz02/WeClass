@@ -207,8 +207,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._subjectID.getText().toString(),
                             holder.lastName.getText().toString(),
                             holder._date.getText().toString(),
-                            holder._always1.getText().toString(),
-                            holder._always0.getText().toString());
+                            holder._always0.getText().toString(),
+                            holder._always1.getText().toString());
 
 
                     // UPDATE STUDENT'S ATTENDANCE COUNT
