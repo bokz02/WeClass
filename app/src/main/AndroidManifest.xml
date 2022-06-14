@@ -32,7 +32,8 @@
             android:exported="false" />
         <activity
             android:name=".taskGrade.TaskGrade"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".tasks.EditTask"
             android:exported="false"

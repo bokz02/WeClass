@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -28,11 +29,17 @@ public class EventEditActivity extends AppCompatActivity implements EventAdapter
     private TextView eventDateTV, eventTimeTV;
     int t1Hour, t1Minute;
     private LocalTime time;
+    ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_edit);
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
+
         initWidgets();
         time = LocalTime.now();
         eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
@@ -40,13 +47,14 @@ public class EventEditActivity extends AppCompatActivity implements EventAdapter
         pickTime();
         createEvent();
         cancelEvent();
+        backButton();
 
     }
 
     // BACK BUTTON
     public void backButton(){
-        ImageButton imageButton = (ImageButton) findViewById(R.id.backButton);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -87,6 +95,7 @@ public class EventEditActivity extends AppCompatActivity implements EventAdapter
         eventTimeTV = findViewById(R.id.eventTimeText);
         createEvent = findViewById(R.id.createEvent);
         cancelEvent = findViewById(R.id.cancelButtonEvent);
+        backButton = findViewById(R.id.backButtonEventEdit);
 
     }
 
@@ -167,6 +176,8 @@ public class EventEditActivity extends AppCompatActivity implements EventAdapter
             }
         });
     }
+
+
 
     @Override
     public void onNoteClick(int position) {

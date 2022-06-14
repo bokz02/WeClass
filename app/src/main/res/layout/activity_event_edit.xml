@@ -197,7 +197,7 @@
 
 
     <ImageButton
-        android:id="@+id/backButton"
+        android:id="@+id/backButtonEventEdit"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"

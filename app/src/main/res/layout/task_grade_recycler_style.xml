@@ -60,7 +60,7 @@
         <EditText
             android:id="@+id/gradeEditTextRecViewGrade"
             android:layout_width="wrap_content"
-            android:layout_height="26dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:background="@drawable/transparent_bg"
             android:gravity="center_horizontal"
@@ -110,6 +110,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
+
+        <TextView
+            android:id="@+id/scoreTExt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score:"
+            android:padding="5dp"
+            android:textSize="14sp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/gradeEditTextRecViewGrade"
+            app:layout_constraintTop_toTopOf="@+id/gradeEditTextRecViewGrade" />
 
         <TextView
             android:id="@+id/taskTypeTextViewRecViewGrade"
