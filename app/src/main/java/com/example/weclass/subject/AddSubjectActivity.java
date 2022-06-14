@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -168,19 +170,39 @@ public class AddSubjectActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
 
                             DataBaseHelper dbh = new DataBaseHelper(AddSubjectActivity.this);
-                            dbh.addSubject(courseEditText.getText().toString().trim(),
-                                    subjectCodeEditText.getText().toString().trim(),
-                                    subjectNameEditText.getText().toString().trim(),
-                                    dayTextView.getText().toString().trim(),
-                                    timeTextView.getText().toString().trim());
+                            SQLiteDatabase sqLiteDatabase = dbh.getWritableDatabase();
 
-                            Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
+                            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                                    + DataBaseHelper.TABLE_NAME + " WHERE "
+                                    + DataBaseHelper.COLUMN_SUBJECT_CODE + " = '"
+                                    + subjectCodeEditText.getText().toString().trim() + "' AND "
+                                    + DataBaseHelper.COLUMN_SUBJECT_NAME + " = '"
+                                    + subjectNameEditText.getText().toString().trim() + "' AND "
+                                    + DataBaseHelper.COLUMN_COURSE + " = '"
+                                    + courseEditText.getText().toString().trim() + "'",  null);
 
-                            courseEditText.setText("");
-                            subjectCodeEditText.setText("");
-                            subjectNameEditText.setText("");
-                            dayTextView.setText("");
-                            timeTextView.setText("");
+
+                            if(cursor.moveToFirst()){
+                                Snackbar.make(createButton, "" + courseEditText.getText().toString() + ", "
+                                        + subjectCodeEditText.getText().toString() + " is already in your subject list.", Snackbar.LENGTH_SHORT).show();
+                                cursor.close();
+                            }
+
+                            else {
+                                dbh.addSubject(courseEditText.getText().toString().trim(),
+                                        subjectCodeEditText.getText().toString().trim(),
+                                        subjectNameEditText.getText().toString().trim(),
+                                        dayTextView.getText().toString().trim(),
+                                        timeTextView.getText().toString().trim());
+
+                                Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
+
+                                courseEditText.setText("");
+                                subjectCodeEditText.setText("");
+                                subjectNameEditText.setText("");
+                                dayTextView.setText("");
+                                timeTextView.setText("");
+                            }
                         }
                     });
                     builder.show();
