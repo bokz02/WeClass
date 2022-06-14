@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -132,7 +131,7 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
     private ArrayList<TaskItems> displayData(){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_NAME4 + " WHERE "
+                + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
                 + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
                 + parentID.getText().toString(), null);
 

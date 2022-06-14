@@ -10,18 +10,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.studentlist.StudentItems;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 public class Attendance extends Fragment implements AttendanceAdapter.OnNoteListener{
 
@@ -29,7 +33,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     ArrayList<AttendanceItems> attendanceItems, id, parentID;
     AttendanceAdapter attendanceAdapter;
     DataBaseHelper dataBaseHelper;
-    TextView _noStudentsTextView, _id, _parentID, dateTimeDisplay;
+    TextView _noStudentsTextView, _id, _parentID, dateTimeDisplay, _sortAttendance;
     View view;
     View _noStudentsView;
     EditText _search;
@@ -49,6 +53,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         initializeAdapter();
         textListener();
         displayDate();
+        sortAttendance();
 
         return view;
     }
@@ -71,6 +76,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         _id = view.findViewById(R.id.idAttendanceRecView);
         _parentID = view.findViewById(R.id.parentIDAttendance);
         _search = view.findViewById(R.id.searchAttendanceEditText);
+        _sortAttendance = view.findViewById(R.id.sortAttendance);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
@@ -94,10 +100,9 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     private ArrayList<AttendanceItems> displayData(){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_NAME2 + " WHERE "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
                 + DataBaseHelper.COLUMN_PARENT_ID + " = "
                 + _parentID.getText().toString(), null);
-
 
         ArrayList<AttendanceItems> attendanceItems = new ArrayList<>();
 
@@ -130,9 +135,36 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         Bundle bundle = getArguments();
         if (bundle != null) {
             _parentID.setText(bundle.getString("IDParent"));
-//            _taskSubjectCode.setText(bundle.getString("SubjectCode"));
-//            _course.setText(bundle.getString("CourseCode"));
         }
+    }
+
+    public void sortAttendance(){
+        _sortAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(getContext(),view);
+                popupMenu.inflate(R.menu.sort_student);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.sortAtoZ:
+                                Collections.sort(attendanceItems, AttendanceItems.sortAtoZComparator);
+                                initializeAdapter();
+                                break;
+
+                            case R.id.sortZtoA:
+                                Collections.sort(attendanceItems, AttendanceItems.sortZtoAComparator);
+                                initializeAdapter();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
     }
 
 

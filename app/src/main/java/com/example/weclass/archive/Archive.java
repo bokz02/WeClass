@@ -1,0 +1,181 @@
+package com.example.weclass.archive;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.weclass.ExtendedRecyclerView;
+import com.example.weclass.R;
+import com.example.weclass.Settings;
+import com.example.weclass.dashboard.MainActivity;
+import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.schedule.WeekViewActivity;
+import com.example.weclass.subject.Subject;
+import com.example.weclass.subject.SubjectAdapter;
+import com.example.weclass.subject.SubjectItems;
+import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+
+public class Archive extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ArchiveAdapter.OnNoteListener {
+
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
+    ExtendedRecyclerView recyclerView;
+    DataBaseHelper dataBaseHelper;
+    ArrayList<ArchiveItems> archiveItems;
+    ArchiveAdapter archiveAdapter;
+    EditText searchEditText;
+    View noFile;
+    TextView noSubject;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_archive);
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
+        initialize();
+        display();
+        initializeAdapter();
+        navigationOpen();
+    }
+
+    private void initialize() {
+        drawerLayout = findViewById(R.id.drawerArchive);
+        navigationView = findViewById(R.id.navViewArchive);
+        toolbar = findViewById(R.id.toolbarArchive);
+        recyclerView = findViewById(R.id.recyclerViewArchive);
+        noFile = findViewById(R.id.noViewViewArchive);
+        noSubject = findViewById(R.id.noSubjectTextViewArchive);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        initialize();
+        display();
+        initializeAdapter();
+        navigationOpen();
+    }
+
+
+    // INITIALIZE ADAPTER FOR RECYCLERVIEW
+    public void initializeAdapter(){
+        archiveAdapter = new ArchiveAdapter( archiveItems,Archive.this, this);
+        recyclerView.setAdapter(archiveAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Archive.this));
+        recyclerView.setEmptyView(noFile, noSubject);
+    }
+
+    // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
+    public void display(){
+        archiveItems = new ArrayList<>();
+        dataBaseHelper = new DataBaseHelper(this);
+        archiveItems = displayData();
+
+    }
+
+    // GET THE DATA IN THE DATABASE
+    private ArrayList<ArchiveItems> displayData(){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_MY_ARCHIVE, null);
+        ArrayList<ArchiveItems> archiveItems = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                archiveItems.add(new ArchiveItems (
+                        cursor.getInt(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return archiveItems;
+    }
+
+    // BACK BUTTON FUNCTION OF THE PHONE
+    @Override
+    public void onBackPressed() {
+
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);  // When back button is pressed while navigation drawer is open, it will close the navigation drawer.
+        }
+        else {
+            new AlertDialog.Builder(this)
+                    .setMessage("Are you sure you want to exit?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", (dialog, id) -> finish())
+                    .setNegativeButton("No", null)
+                    .show();                    // Exit pop up when back button is pressed if navigation drawer is not open
+        }
+    }
+
+
+    //NAVIGATION DRAWER
+    public void navigationOpen() {
+        setSupportActionBar(toolbar);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();     // Show navigation drawer when clicked
+
+        navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.drawerHome:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerSched:
+                intent = new Intent(this, WeekViewActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerSettings:
+                intent = new Intent(this, Settings.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerSubject:
+                intent = new Intent(this, Subject.class);
+                startActivity(intent);
+                finish();
+                break;
+
+        }
+
+        return false;
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+
+    }
+}

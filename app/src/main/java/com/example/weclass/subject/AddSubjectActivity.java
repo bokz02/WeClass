@@ -173,7 +173,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                             SQLiteDatabase sqLiteDatabase = dbh.getWritableDatabase();
 
                             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-                                    + DataBaseHelper.TABLE_NAME + " WHERE "
+                                    + DataBaseHelper.TABLE_MY_SUBJECTS + " WHERE "
                                     + DataBaseHelper.COLUMN_SUBJECT_CODE + " = '"
                                     + subjectCodeEditText.getText().toString().trim() + "' AND "
                                     + DataBaseHelper.COLUMN_SUBJECT_NAME + " = '"

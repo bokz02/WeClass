@@ -100,7 +100,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                                                SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
 
                                                Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-                                                       + DataBaseHelper.TABLE_NAME4 + " WHERE "
+                                                       + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
                                                        + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = '"
                                                        + parentID.getText().toString() + "' AND "
                                                        + DataBaseHelper.COLUMN_TASK_TYPE + " = '"

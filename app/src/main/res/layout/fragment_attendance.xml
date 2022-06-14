@@ -82,6 +82,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/always0Attendance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/parentIDAttendance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide1"
             android:layout_width="wrap_content"
@@ -178,7 +189,7 @@
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
         <TextView
-            android:id="@+id/att_sort"
+            android:id="@+id/sortAttendance"
             android:layout_width="60dp"
             android:layout_height="22dp"
             android:background="@drawable/transparent_bg"

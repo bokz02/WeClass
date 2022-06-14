@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,6 +33,8 @@ import static com.example.weclass.schedule.CalendarUtils.weeklyYearFromDate;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
+import com.example.weclass.archive.Archive;
+import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.subject.Subject;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.navigation.NavigationView;
@@ -94,7 +95,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     // GET THE DATA IN THE DATABASE
     private ArrayList<EventItem> displayData(){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_NAME3, null);
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_MY_SCHEDULE, null);
         ArrayList<EventItem> eventItems= new ArrayList<>();
 
         if(cursor.moveToFirst()){
@@ -159,6 +160,11 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
                 break;
             case R.id.drawerSettings:
                 intent = new Intent(WeekViewActivity.this, Settings.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerArchive:
+                intent = new Intent(this, Archive.class);
                 startActivity(intent);
                 finish();
                 break;

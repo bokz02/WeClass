@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.weclass.ExtendedRecyclerView;
+import com.example.weclass.archive.Archive;
 import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
@@ -43,7 +44,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     FloatingActionButton floatActionButton;
     ExtendedRecyclerView recyclerView;
     DataBaseHelper dataBaseHelper;
-    ArrayList<SubjectItems> subjectItems, id;
+    ArrayList<SubjectItems> subjectItems;
     SubjectAdapter subjectAdapter;
     EditText searchEditText;
     View noFile;
@@ -136,7 +137,6 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
     // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
     public void display(){
-        id = new ArrayList<>();
         subjectItems = new ArrayList<>();
         dataBaseHelper = new DataBaseHelper(this);
         subjectItems = displayData();
@@ -147,7 +147,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     // GET THE DATA IN THE DATABASE
     private ArrayList<SubjectItems> displayData(){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_NAME, null);
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_MY_SUBJECTS, null);
         ArrayList<SubjectItems> subjectItems = new ArrayList<>();
 
         if(cursor.moveToFirst()){
@@ -221,6 +221,11 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case R.id.drawerSettings:
                 intent = new Intent(this, Settings.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerArchive:
+                intent = new Intent(this, Archive.class);
                 startActivity(intent);
                 finish();
                 break;

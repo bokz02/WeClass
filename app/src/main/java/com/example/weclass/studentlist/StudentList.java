@@ -151,7 +151,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_NAME2 + " WHERE "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
                 + DataBaseHelper.COLUMN_PARENT_ID + " = "
                 + parentID.getText().toString(), null);
 

@@ -7,7 +7,9 @@ import java.util.Comparator;
 
 public class StudentItems implements Parcelable {
     String lastname, middleName, firstname, gender;
-    private int id, present, absent;
+    private int id;
+    private final int present;
+    private final int absent;
     private int parent_id;
 
 

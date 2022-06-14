@@ -2,7 +2,6 @@ package com.example.weclass.taskGrade;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.tasks.TaskAdapter;
 import com.example.weclass.tasks.TaskItems;
 
 import java.util.ArrayList;
@@ -98,13 +96,13 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         // MERGE 2 TABLES USING LEFT JOIN
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                        + DataBaseHelper.TABLE_NAME2 + " LEFT JOIN "
-                        + DataBaseHelper.TABLE_NAME4 + " ON "
-                        + DataBaseHelper.TABLE_NAME2 + "."
+                        + DataBaseHelper.TABLE_MY_STUDENTS + " LEFT JOIN "
+                        + DataBaseHelper.TABLE_MY_TASKS + " ON "
+                        + DataBaseHelper.TABLE_MY_STUDENTS + "."
                         + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                        + DataBaseHelper.TABLE_NAME4 + "."
+                        + DataBaseHelper.TABLE_MY_TASKS + "."
                         + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " WHERE "
-                        + DataBaseHelper.TABLE_NAME2 + "."
+                        + DataBaseHelper.TABLE_MY_STUDENTS + "."
                         + DataBaseHelper.COLUMN_PARENT_ID + " = "
                         + _subjectID.getText().toString() + " AND "
                         + DataBaseHelper.COLUMN_TASK_TYPE + " = '"

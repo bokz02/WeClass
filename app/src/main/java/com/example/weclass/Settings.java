@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.example.weclass.archive.Archive;
 import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.subject.Subject;
@@ -111,6 +112,11 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                 break;
             case R.id.drawerSubject:
                 intent = new Intent(this, Subject.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerArchive:
+                intent = new Intent(this, Archive.class);
                 startActivity(intent);
                 finish();
                 break;

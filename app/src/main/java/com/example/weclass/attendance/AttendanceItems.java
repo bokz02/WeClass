@@ -1,5 +1,9 @@
 package com.example.weclass.attendance;
 
+import com.example.weclass.studentlist.StudentItems;
+
+import java.util.Comparator;
+
 public class AttendanceItems {
 
     String lastName, firstName, gender;
@@ -44,4 +48,18 @@ public class AttendanceItems {
     public int getAbsent() {
         return absent;
     }
+
+    public static Comparator<AttendanceItems> sortAtoZComparator = new Comparator<AttendanceItems>() {
+        @Override
+        public int compare(AttendanceItems attendanceItems, AttendanceItems t1) {
+            return attendanceItems.getLastName().compareTo(t1.getLastName());
+        }
+    };
+
+    public static Comparator<AttendanceItems> sortZtoAComparator = new Comparator<AttendanceItems>() {
+        @Override
+        public int compare(AttendanceItems attendanceItems, AttendanceItems t1) {
+            return t1.getLastName().compareTo(attendanceItems.getLastName());
+        }
+    };
 }

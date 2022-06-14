@@ -4,5 +4,7 @@
     android:id="@+id/edit_subject"/>
     <item android:title="Delete"
         android:id="@+id/delete_subject"/>
+    <item android:title="Archive"
+        android:id="@+id/archive_subject"/>
 
 </menu>

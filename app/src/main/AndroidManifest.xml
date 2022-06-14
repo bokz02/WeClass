@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".archive.Archive"
+            android:exported="false" />
+        <activity
             android:name=".studentlist.profile.attendance.Absent"
             android:exported="false" />
         <activity
@@ -33,7 +36,7 @@
         <activity
             android:name=".taskGrade.TaskGrade"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".tasks.EditTask"
             android:exported="false"

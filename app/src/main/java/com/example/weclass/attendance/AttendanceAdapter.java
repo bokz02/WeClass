@@ -125,6 +125,10 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                 // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
                 if (cursor.moveToFirst()) {
+                    holder.presentButton.setEnabled(false);
+                    holder.absentButton.setEnabled(false);
+                    holder.presentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
+                    holder.absentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
                     Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
                             + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT).show();
                     cursor.close();
@@ -190,6 +194,10 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                 // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
                 if (cursor.moveToFirst()) {
+                    holder.presentButton.setEnabled(false);
+                    holder.absentButton.setEnabled(false);
+                    holder.presentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
+                    holder.absentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
                     Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + ", "
                             + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT).show();
                     cursor.close();

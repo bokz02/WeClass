@@ -17,6 +17,7 @@ import android.view.WindowManager;
 
 import com.example.weclass.R;
 import com.example.weclass.Settings;
+import com.example.weclass.archive.Archive;
 import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.subject.Subject;
 import com.google.android.material.navigation.NavigationView;
@@ -95,6 +96,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.drawerSettings:
                 intent = new Intent(MainActivity.this, Settings.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerArchive:
+                intent = new Intent(MainActivity.this, Archive.class);
                 startActivity(intent);
                 finish();
                 break;

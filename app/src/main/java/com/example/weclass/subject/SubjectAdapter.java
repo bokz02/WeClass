@@ -3,6 +3,7 @@ package com.example.weclass.subject;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import com.example.weclass.BottomNavi;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,13 +110,54 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
                                 builder.setTitle("Delete");
                                 builder.setIcon(R.drawable.ic_baseline_warning_24);
-                                builder.setMessage("Are you sure do you want to delete this?");
+                                builder.setMessage("Are you sure you want to delete this? You can't undo this action.");
                                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
 
                                         DataBaseHelper db = new DataBaseHelper(context);
                                         db.deleteSubject(item.getId());
+
+                                        int a = holder.getAdapterPosition();
+                                        subjectItems.remove(a);
+                                        notifyItemRemoved(a);
+                                        Snackbar.make(holder.optionSubject, "" + holder.subjectCodeTxt.getText().toString() + " successfully deleted!", Snackbar.LENGTH_LONG).show();
+                                    }
+                                });
+
+                                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+
+                                builder.show();
+                                break;
+                            case R.id.archive_subject:
+                                builder = new MaterialAlertDialogBuilder(context);
+                                builder.setTitle("Archive");
+                                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                                builder.setMessage("Are you sure do you want to put this in archive? You can't undo this action.");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                                        DataBaseHelper db = new DataBaseHelper(context);
+
+                                        // ADD ATTENDANCE TO ATTENDANCE DATABASE
+                                        db.addToArchive(holder.id.getText().toString(),
+                                                holder.courseNameTxt.getText().toString(),
+                                                holder.subjectCodeTxt.getText().toString(),
+                                                holder.subjectTitleTxt.getText().toString(),
+                                                holder.dateTxt.getText().toString(),
+                                                holder.timeTxt.getText().toString());
+
+                                        db = new DataBaseHelper(context);
+                                        db.deleteSubject(item.getId());
+
+                                        Snackbar.make(holder.optionSubject, "" + holder.subjectCodeTxt.getText().toString() + " moved to archive.", Snackbar.LENGTH_LONG).show();
 
                                         int a = holder.getAdapterPosition();
                                         subjectItems.remove(a);
@@ -130,7 +173,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                 });
 
                                 builder.show();
-
                                 break;
                         }
                         return false;

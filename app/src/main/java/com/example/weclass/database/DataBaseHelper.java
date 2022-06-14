@@ -1,7 +1,6 @@
 package com.example.weclass.database;
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -14,8 +13,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 10;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
-    public static final String TABLE_NAME = "my_subjects";
+    private static final int DATABASE_VERSION = 12;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
     public static final String COLUMN_SUBJECT_CODE = "subject_code";
@@ -24,7 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DAY = "subject_day";
 
 
-    public static final String TABLE_NAME2 = "my_students";
+    public static final String TABLE_MY_STUDENTS = "my_students";
     public static final String COLUMN_ID2 = "id_number";
     public static final String COLUMN_PARENT_ID = "parent_id";
     public static final String COLUMN_LAST_NAME = "last_name";
@@ -35,13 +34,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ABSENT = "absent";
 
 
-    public static final String TABLE_NAME3 = "my_schedule";
+    public static final String TABLE_MY_SCHEDULE = "my_schedule";
     public static final String COLUMN_ID3 = "id_number";
     public static final String COLUMN_EVENT_TITLE = "event_title";
     public static final String COLUMN_SCHED_TIME= "sched_ime";
     public static final String COLUMN_SCHED_DAY = "sched_date";
 
-    public static final String TABLE_NAME4 = "my_tasks";
+    public static final String TABLE_MY_TASKS = "my_tasks";
     public static final String COLUMN_ID4 = "id_number";
     public static final String COLUMN_PARENT_ID_SUBJECT = "parent_id";
     public static final String COLUMN_TASK_TYPE = "task_type";
@@ -70,6 +69,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ABSENT_ATTENDANCE = "absent";
     public static final String COLUMN_DATE_ATTENDANCE = "date";
 
+    public static final String TABLE_MY_ARCHIVE = "my_archive";
+    public static final String COLUMN_ID_ARCHIVE = "id_number";
+    public static final String COLUMN_PARENT_ID_ARCHIVE = "id_parent";
+    public static final String COLUMN_COURSE_ARCHIVE = "course";
+    public static final String COLUMN_SUBJECT_CODE_ARCHIVE = "subject_code";
+    public static final String COLUMN_SUBJECT_NAME_ARCHIVE = "subject_name";
+    public static final String COLUMN_TIME_ARCHIVE = "subject_time";
+    public static final String COLUMN_DAY_ARCHIVE = "subject_day";
+
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -81,7 +89,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // FATA EXCEPTION WILL OCCUR IF SPACES IS NOT WELL ARRANGED
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + TABLE_NAME +
+        String query = "CREATE TABLE " + TABLE_MY_SUBJECTS +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_COURSE + " TEXT, " +
                         COLUMN_SUBJECT_CODE + " TEXT, " +
@@ -89,7 +97,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         COLUMN_DAY + " TEXT, " +
                         COLUMN_TIME + " TEXT);";
 
-        String query2 = "CREATE TABLE " + TABLE_NAME2 +
+        String query2 = "CREATE TABLE " + TABLE_MY_STUDENTS +
                 " (" + COLUMN_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PARENT_ID + " TEXT, " +
                 COLUMN_LAST_NAME + " TEXT, " +
@@ -99,13 +107,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_PRESENT + " TEXT, " +
                 COLUMN_ABSENT + " TEXT);";
 
-        String query3 = "CREATE TABLE " + TABLE_NAME3 +
+        String query3 = "CREATE TABLE " + TABLE_MY_SCHEDULE +
                 " (" + COLUMN_ID3 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_EVENT_TITLE + " TEXT, " +
                 COLUMN_SCHED_TIME + " TEXT, " +
                 COLUMN_SCHED_DAY + " TEXT);";
 
-        String query4 = "CREATE TABLE " + TABLE_NAME4 +
+        String query4 = "CREATE TABLE " + TABLE_MY_TASKS +
                 " (" + COLUMN_ID4 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PARENT_ID_SUBJECT + " TEXT, " +
                 COLUMN_TASK_TYPE + " TEXT, " +
@@ -134,22 +142,33 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_PRESENT_ATTENDANCE + " TEXT, " +
                 COLUMN_ABSENT_ATTENDANCE + " TEXT);";
 
+        String query7 = "CREATE TABLE " + TABLE_MY_ARCHIVE +
+                " (" + COLUMN_ID_ARCHIVE + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_PARENT_ID_ARCHIVE + " TEXT, " +
+                COLUMN_COURSE_ARCHIVE + " TEXT, " +
+                COLUMN_SUBJECT_CODE_ARCHIVE + " TEXT, " +
+                COLUMN_SUBJECT_NAME_ARCHIVE + " TEXT, " +
+                COLUMN_DAY_ARCHIVE + " TEXT, " +
+                COLUMN_TIME_ARCHIVE + " TEXT);";
+
         db.execSQL(query4);
         db.execSQL(query3);
         db.execSQL(query2);
         db.execSQL(query);
         db.execSQL(query5);
         db.execSQL(query6);
+        db.execSQL(query7);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME3);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME4);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_SUBJECTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_STUDENTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_SCHEDULE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_TASKS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_GRADE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTENDANCE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_ARCHIVE);
         onCreate(db);
     }
 
@@ -162,7 +181,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_SCHED_TIME, eventTime);
         cv.put(COLUMN_SCHED_DAY, eventDay);
 
-        long result = db.insert(TABLE_NAME3, null, cv);
+        long result = db.insert(TABLE_MY_SCHEDULE, null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -181,7 +200,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PRESENT, present);
         cv.put(COLUMN_ABSENT, absent);
 
-        long result = db.insert(TABLE_NAME2, null, cv);
+        long result = db.insert(TABLE_MY_STUDENTS, null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -200,7 +219,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PROGRESS, progress);
         cv.put(COLUMN_TASK_NUMBER, taskNumber);
 
-        long result = db.insert(TABLE_NAME4, null, cv);
+        long result = db.insert(TABLE_MY_TASKS, null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -216,7 +235,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SUBJECT_NAME, subjectName);
         contentValues.put(COLUMN_DAY, day);
         contentValues.put(COLUMN_TIME, time);
-        long result = db.insert(TABLE_NAME, null, contentValues);
+        long result = db.insert(TABLE_MY_SUBJECTS, null, contentValues);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -260,6 +279,25 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // ADD QUERY TO SUBJECT DATABASE
+    public void addToArchive(String idSubject,String course, String subjectCode, String subjectName, String day, String time){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_PARENT_ID_ARCHIVE, idSubject);
+        contentValues.put(COLUMN_COURSE_ARCHIVE, course);
+        contentValues.put(COLUMN_SUBJECT_CODE_ARCHIVE, subjectCode);
+        contentValues.put(COLUMN_SUBJECT_NAME_ARCHIVE, subjectName);
+        contentValues.put(COLUMN_DAY_ARCHIVE, day);
+        contentValues.put(COLUMN_TIME_ARCHIVE, time);
+        long result = db.insert(TABLE_MY_ARCHIVE, null, contentValues);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
     // UPDATE DATA OF SUBJECT DATABASE
     public void updateSubject(String id, String course, String subjectCode, String subjectName, String day, String time){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -270,7 +308,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SUBJECT_NAME, subjectName);
         contentValues.put(COLUMN_DAY, day);
         contentValues.put(COLUMN_TIME, time);
-        long result = db.update(TABLE_NAME, contentValues, "id_number=" + id, null);
+        long result = db.update(TABLE_MY_SUBJECTS, contentValues, "id_number=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -286,7 +324,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_MIDDLE_NAME, middleName);
         contentValues.put(COLUMN_GENDER, gender);
 
-        long result = db.update(TABLE_NAME2, contentValues, "id_number=" + id, null);
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -301,7 +339,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_PARENT_ID_SUBJECT, idSubject);
         contentValues.put(COLUMN_PRESENT, present);
 
-        long result = db.update(TABLE_NAME2, contentValues, "id_number=" + id, null);
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -316,7 +354,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_PARENT_ID_SUBJECT, idSubject);
         contentValues.put(COLUMN_ABSENT, absent);
 
-        long result = db.update(TABLE_NAME2, contentValues, "id_number=" + id, null);
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -334,7 +372,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_PROGRESS, progress);
         contentValues.put(COLUMN_TASK_NUMBER, taskNumber);
 
-        long result = db.update(TABLE_NAME4, contentValues, "id_number=" + id, null);
+        long result = db.update(TABLE_MY_TASKS, contentValues, "id_number=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -343,20 +381,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // DELETE A SUBJECT
     public void deleteSubject(int row_id){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result =  db.delete(TABLE_NAME, "id_number=?", new String[]{ String.valueOf(row_id)});
+        long result =  db.delete(TABLE_MY_SUBJECTS, "id_number=?", new String[]{ String.valueOf(row_id)});
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
-
         }
     }
 
     // DELETE A SUBJECT
     public void deleteStudent(int row_id){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result =  db.delete(TABLE_NAME2, "id_number=?", new String[]{ String.valueOf(row_id)});
+        long result =  db.delete(TABLE_MY_STUDENTS, "id_number=?", new String[]{ String.valueOf(row_id)});
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
@@ -369,7 +404,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // DELETE A TASK
     public void deleteTask(int row_id){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result =  db.delete(TABLE_NAME4, "id_number=?", new String[]{ String.valueOf(row_id)});
+        long result =  db.delete(TABLE_MY_TASKS, "id_number=?", new String[]{ String.valueOf(row_id)});
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();

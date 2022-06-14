@@ -161,7 +161,7 @@ public class AddStudent extends AppCompatActivity {
                             SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
 
                             Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                                    + DataBaseHelper.TABLE_NAME2 + " WHERE "
+                                    + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
                                     + DataBaseHelper.COLUMN_PARENT_ID + " = "
                                     + parentID.getText().toString().trim() + " AND "
                                     + DataBaseHelper.COLUMN_LAST_NAME + " = '"
