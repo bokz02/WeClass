@@ -32,13 +32,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.19" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,10 +58,10 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/guide2"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="@id/guide4"
         app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintTop_toTopOf="@id/guide1">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintParent"
@@ -257,7 +250,6 @@
                 android:layout_marginBottom="8dp"
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/darkText"
-
                 android:hint="Select Progress"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_progress1"

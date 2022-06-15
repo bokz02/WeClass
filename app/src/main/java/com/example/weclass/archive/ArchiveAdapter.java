@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,10 +15,12 @@ import com.example.weclass.R;
 import com.example.weclass.subject.SubjectItems;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.MyViewHolder> {
+public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.MyViewHolder> implements Filterable {
 
     private final ArrayList<ArchiveItems> archiveItems;
+    private final ArrayList<ArchiveItems> archiveItemsFull;
     private final Context context;
     private final OnNoteListener mOnNoteListener;
 
@@ -24,6 +28,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.MyViewHo
         this.archiveItems = archiveItems;
         this.context = context;
         this.mOnNoteListener = onNoteListener;
+        archiveItemsFull = new ArrayList<>(archiveItems);
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -81,6 +86,43 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.MyViewHo
 
     }
 
+    @Override
+    public Filter getFilter() {
+        return subjectFilter;
+    }
+
+    private final Filter subjectFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<ArchiveItems> filteredList = new ArrayList<>();
+
+            if(charSequence == null || charSequence.length() == 0){
+                filteredList.addAll(archiveItemsFull);
+            }else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for (ArchiveItems archiveItems: archiveItemsFull){
+                    if (archiveItems.getCourse().toLowerCase().contains(filterPattern) ||
+                            archiveItems.getSubjectCode().toLowerCase().contains(filterPattern) ||
+                            archiveItems.getSubjectName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(archiveItems);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            archiveItems.clear();
+            archiveItems.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+
+        }
+    };
 
 
 }

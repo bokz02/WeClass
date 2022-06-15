@@ -251,9 +251,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     public void onNoteClick(int position) {
         Intent intent = new Intent(this, BottomNavi.class);
         intent.putExtra("Subject", subjectItems.get(position));
-
-
         startActivity(intent);
+        overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
     }
 
 

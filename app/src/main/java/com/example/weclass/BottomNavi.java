@@ -147,7 +147,9 @@ public class BottomNavi extends AppCompatActivity {
          imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 finish();
+                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
             }
         });
     }
