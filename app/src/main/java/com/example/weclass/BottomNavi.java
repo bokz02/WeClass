@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,8 +14,10 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.weclass.archive.ArchiveItems;
 import com.example.weclass.attendance.Attendance;
 import com.example.weclass.studentlist.StudentList;
+import com.example.weclass.subject.SubjectItems;
 import com.example.weclass.tasks.Record;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -45,14 +48,44 @@ public class BottomNavi extends AppCompatActivity {
 
     // GET DATA FROM SUBJECT ADAPTER (RECYCLERVIEW ITEM CLICK)
     public void displayData(){
-        if (getIntent().getBundleExtra("ParentID") != null) {
-            Bundle bundle = getIntent().getBundleExtra("ParentID");
+//        if (getIntent().getBundleExtra("ParentID") != null) {
+//            Bundle bundle = getIntent().getBundleExtra("ParentID");
+//
+//
+//            parentID.setText(bundle.getString("id"));
+//            subjectCode.setText(bundle.getString("subject_code"));
+//            courseName.setText(bundle.getString("course"));
+//        }
 
+        if(getIntent().getParcelableExtra("Subject") != null){
 
-            parentID.setText(bundle.getString("id"));
-            subjectCode.setText(bundle.getString("subject_code"));
-            courseName.setText(bundle.getString("course"));
+            Intent intent = getIntent();
+            SubjectItems subjectItems = intent.getParcelableExtra("Subject");
+
+            int idParent = subjectItems.getId();
+            String codeSubject = subjectItems.getSubjectCode();
+            String nameCourse = subjectItems.getCourse();
+
+            parentID.setText(String.valueOf(idParent));
+            subjectCode.setText(codeSubject);
+            courseName.setText(nameCourse);
+
+        }else {
+            Intent intent = getIntent();
+            ArchiveItems archiveItems = intent.getParcelableExtra("Archive");
+
+            int idParent = archiveItems.getId_subject();
+            String codeSubject = archiveItems.getSubjectCode();
+            String nameCourse = archiveItems.getCourse();
+
+            parentID.setText(String.valueOf(idParent));
+            subjectCode.setText(codeSubject);
+            courseName.setText(nameCourse);
         }
+
+
+
+
     }
 
 

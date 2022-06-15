@@ -30,7 +30,7 @@ import java.util.List;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHolder> implements Filterable {
     private final ArrayList<SubjectItems> subjectItems;
-    private ArrayList<SubjectItems> subjectItemsFull;
+    private final ArrayList<SubjectItems> subjectItemsFull;
     private final Context context;
     private final OnNoteListener mOnNoteListener;
 
@@ -61,21 +61,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         holder.subjectTitleTxt.setText(String.valueOf(subjectItems.get(position).getSubjectName()));
         holder.dateTxt.setText(String.valueOf(subjectItems.get(position).getDaySubject()));
         holder.timeTxt.setText(String.valueOf(subjectItems.get(position).getTimeSubject()));
-
-        // PASS DATA FROM RECYCLERVIEW CLICK TO BOTTOM NAVI ACTIVITY
-        holder.subjectClick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, BottomNavi.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("id", String.valueOf(item.getId()));
-                bundle.putString("subject_code", String.valueOf(item.getSubjectCode()));
-                bundle.putString("course", String.valueOf(item.getCourse()));
-
-                intent.putExtra("ParentID", bundle);
-                context.startActivity(intent);
-            }
-        });
 
 
         // NAVIGATE TO EDIT ACTIVITY, OR DELETE A SUBJECT
@@ -246,8 +231,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
             timeTxt = itemView.findViewById(R.id.timeTextViewRecView);
             optionSubject = itemView.findViewById(R.id.optionButtonSubject);
             subjectClick = itemView.findViewById(R.id.cardViewRecView);
-            this.onNoteListener = onNoteListener;
 
+
+            this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
 
         }

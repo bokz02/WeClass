@@ -19,12 +19,14 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.weclass.BottomNavi;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.schedule.WeekViewActivity;
+import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.subject.Subject;
 import com.example.weclass.subject.SubjectAdapter;
 import com.example.weclass.subject.SubjectItems;
@@ -142,6 +144,7 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();     // Show navigation drawer when clicked
 
+
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
 
@@ -176,6 +179,9 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     public void onNoteClick(int position) {
+        Intent intent = new Intent(this, BottomNavi.class);
+        intent.putExtra("Archive", archiveItems.get(position));
 
+        startActivity(intent);
     }
 }

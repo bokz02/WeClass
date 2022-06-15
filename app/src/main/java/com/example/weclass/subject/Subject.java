@@ -23,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.weclass.BottomNavi;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.archive.Archive;
 import com.example.weclass.dashboard.MainActivity;
@@ -30,6 +31,7 @@ import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.schedule.WeekViewActivity;
+import com.example.weclass.studentlist.StudentProfile;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -247,8 +249,11 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     public void onNoteClick(int position) {
+        Intent intent = new Intent(this, BottomNavi.class);
+        intent.putExtra("Subject", subjectItems.get(position));
 
 
+        startActivity(intent);
     }
 
 
