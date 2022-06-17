@@ -230,7 +230,7 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:drawablePadding="5dp"
-                android:hint="Select Date"
+                android:hint="Select Day"
                 android:drawableStart="@drawable/ic_baseline_calendar_today_24"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"

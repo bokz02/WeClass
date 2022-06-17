@@ -239,7 +239,7 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:hint="Select Date"
+                android:hint="Select Day"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
