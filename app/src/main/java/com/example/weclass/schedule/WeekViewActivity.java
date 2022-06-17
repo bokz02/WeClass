@@ -40,7 +40,7 @@ import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.navigation.NavigationView;
 
 public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, NavigationView.OnNavigationItemSelectedListener, EventAdapter.OnNoteListener {
-    private TextView monthYearText, weeklyYearText, eventDay, eventTime;
+    private TextView monthYearText, weeklyYearText, eventDay, eventTime, storeText;
     private EditText eventTitle;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
@@ -71,6 +71,10 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         navigationOpen();
         display();
         initializeAdapter();
+
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("message_key");
+        weeklyYearText.setText(str);
 
     }
 
@@ -184,6 +188,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         recyclerView = findViewById(R.id.eventRecycler);
         _noScheduleTextView = findViewById(R.id.noScheduleTextView);
         _noScheduleView = findViewById(R.id.noAttendanceView);
+        storeText = weeklyYearText;
 
     }
 
@@ -197,7 +202,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
-//        setEventAdpater();
+
     }
 
 
@@ -220,8 +225,11 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     @Override
     public void onItemClick(int position, LocalDate date)
     {
-        CalendarUtils.selectedDate = date;
-        setWeekView();
+        if(date != null)
+        {
+            CalendarUtils.selectedDate = date;
+            setWeekView();
+        }
     }
 
     @Override

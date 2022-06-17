@@ -41,7 +41,7 @@ import java.util.Objects;
 public class ScheduleActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
 
 
-    private TextView monthYearText, weeklyYearText;
+    private TextView monthYearText, weeklyYearText, store;
     private RecyclerView calendarRecyclerView;
     ImageButton backButton;
 
@@ -61,6 +61,8 @@ public class ScheduleActivity extends AppCompatActivity implements CalendarAdapt
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
 
+
+
     }//End of Oncreate
 
     private void initWidgets()
@@ -69,6 +71,7 @@ public class ScheduleActivity extends AppCompatActivity implements CalendarAdapt
         monthYearText = findViewById(R.id.monthYearTV);
         weeklyYearText = findViewById(R.id.weeklyYearTV);
         backButton = findViewById(R.id.backButtonAddSchedule);
+        store = monthYearText;
     }
 
     private void setMonthView()
@@ -80,6 +83,7 @@ public class ScheduleActivity extends AppCompatActivity implements CalendarAdapt
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
+
     }
 
 
@@ -91,16 +95,22 @@ public class ScheduleActivity extends AppCompatActivity implements CalendarAdapt
     @Override
     public void onItemClick(int position, LocalDate date)
     {
-        if(date != null)
-        {
-            CalendarUtils.selectedDate = date;
-            setMonthView();
-        }
+//        if(date != null)
+//        {
+//            CalendarUtils.selectedDate = date;
+//            setMonthView();
+//        }
+        CalendarUtils.selectedDate = date;
+        setMonthView();
     }
 
     public void weeklyAction(View view)
     {
-        startActivity(new Intent(this, WeekViewActivity.class));
+        String str = monthYearText.getText().toString();
+//        startActivity(new Intent(this, WeekViewActivity.class));
+        Intent intent = new Intent(getApplicationContext(),WeekViewActivity.class);
+        intent.putExtra("message_key", str);
+        startActivity(intent);
     }
 
     public void previousWeekAction(View view) {
