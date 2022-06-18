@@ -93,6 +93,7 @@
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/layout/subject_recyclerview_style.xml" value="0.33" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/menu/main_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/menu/subject_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable/ic_user.xml" value="0.2115" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activities_recyclerview_layout.xml" value="0.153125" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_absent.xml" value="0.153125" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_activities.xml" value="0.153125" />
@@ -100,9 +101,11 @@
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_add_task.xml" value="0.153125" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_assignments.xml" value="0.153125" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_edit_subject.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_login.xml" value="0.18" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_present.xml" value="0.22" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_profile.xml" value="0.153125" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_quiz.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_register_account.xml" value="0.2" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_schedule.xml" value="0.153125" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_seatwork.xml" value="0.153125" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_week_view.xml" value="0.153125" />
@@ -120,7 +123,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.36666666666666664" />
+        <option name="scale" value="0.2" />
       </ProjectState>
     </option>
   </component>

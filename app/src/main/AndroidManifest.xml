@@ -9,10 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
+
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".login.RegisterAccountActivity"
+            android:exported="false" />
+
         <activity
             android:name=".archive.Archive"
             android:exported="false"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".studentlist.profile.attendance.Absent"
             android:exported="false" />
@@ -64,7 +73,7 @@
             android:name=".studentlist.AddStudent"
             android:exported="false"
             android:theme="@style/Theme.Dialog"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".subject.EditSubjectActivity"
             android:exported="false"
