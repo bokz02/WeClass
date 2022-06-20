@@ -13,7 +13,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 14;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 17;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -22,6 +22,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TIME = "subject_time";
     public static final String COLUMN_TIME_END = "subject_time_end";
     public static final String COLUMN_DAY = "subject_day";
+    public static final String COLUMN_SEMESTER = "subject_semester";
+    public static final String COLUMN_SCHOOL_YEAR = "subject_school_year";
 
 
     public static final String TABLE_MY_STUDENTS = "my_students";
@@ -79,6 +81,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TIME_ARCHIVE = "subject_time";
     public static final String COLUMN_TIME_END_ARCHIVE = "subject_time_end";
     public static final String COLUMN_DAY_ARCHIVE = "subject_day";
+    public static final String COLUMN_SEM_ARCHIVE = "semester";
+    public static final String COLUMN_SY_ARCHIVE = "school_year";
 
 
     public DataBaseHelper(@Nullable Context context) {
@@ -98,7 +102,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         COLUMN_SUBJECT_NAME + " TEXT, " +
                         COLUMN_DAY + " TEXT, " +
                         COLUMN_TIME + " TEXT, " +
-                        COLUMN_TIME_END + " TEXT);";
+                        COLUMN_TIME_END + " TEXT, " +
+                        COLUMN_SEMESTER + " TEXT, " +
+                        COLUMN_SCHOOL_YEAR + " TEXT);";
 
         String query2 = "CREATE TABLE " + TABLE_MY_STUDENTS +
                 " (" + COLUMN_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -153,7 +159,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_SUBJECT_NAME_ARCHIVE + " TEXT, " +
                 COLUMN_DAY_ARCHIVE + " TEXT, " +
                 COLUMN_TIME_ARCHIVE + " TEXT, " +
-                COLUMN_TIME_END_ARCHIVE + " TEXT);";
+                COLUMN_TIME_END_ARCHIVE + " TEXT, " +
+                COLUMN_SEM_ARCHIVE + " TEXT, " +
+                COLUMN_SY_ARCHIVE + " TEXT);";
 
         db.execSQL(query4);
         db.execSQL(query3);
@@ -230,7 +238,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO SUBJECT DATABASE
-    public void addSubject(String course, String subjectCode, String subjectName, String day, String time, String timeEnd){
+    public void addSubject(String course, String subjectCode, String subjectName, String day, String time, String timeEnd,String semester, String schoolYear){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -240,6 +248,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_DAY, day);
         contentValues.put(COLUMN_TIME, time);
         contentValues.put(COLUMN_TIME_END, timeEnd);
+        contentValues.put(COLUMN_SEMESTER, semester);
+        contentValues.put(COLUMN_SCHOOL_YEAR, schoolYear);
 
         long result = db.insert(TABLE_MY_SUBJECTS, null, contentValues);
         if(result == -1){
@@ -286,7 +296,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO SUBJECT DATABASE
-    public void addToArchive(String idSubject,String course, String subjectCode, String subjectName, String day, String time, String timeEnd){
+    public void addToArchive(String idSubject,String course, String subjectCode, String subjectName, String day, String time, String timeEnd, String sem, String sy){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -297,6 +307,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_DAY_ARCHIVE, day);
         contentValues.put(COLUMN_TIME_ARCHIVE, time);
         contentValues.put(COLUMN_TIME_END_ARCHIVE, timeEnd);
+        contentValues.put(COLUMN_SEM_ARCHIVE, sem);
+        contentValues.put(COLUMN_SY_ARCHIVE, sy);
 
 
         long result = db.insert(TABLE_MY_ARCHIVE, null, contentValues);
@@ -308,7 +320,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     // UPDATE DATA OF SUBJECT DATABASE
-    public void updateSubject(String id, String course, String subjectCode, String subjectName, String day, String time, String endTime){
+    public void updateSubject(String id, String course, String subjectCode, String subjectName, String day, String time, String endTime, String sem, String sy){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -318,6 +330,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_DAY, day);
         contentValues.put(COLUMN_TIME, time);
         contentValues.put(COLUMN_TIME_END, endTime);
+        contentValues.put(COLUMN_SEMESTER, sem);
+        contentValues.put(COLUMN_SCHOOL_YEAR, sy);
 
         long result = db.update(TABLE_MY_SUBJECTS, contentValues, "id_number=" + id, null);
         if(result == -1){

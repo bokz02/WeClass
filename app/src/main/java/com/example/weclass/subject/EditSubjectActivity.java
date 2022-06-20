@@ -27,12 +27,11 @@ import java.util.Calendar;
 public class EditSubjectActivity extends AppCompatActivity implements SubjectAdapter.OnNoteListener {
 
     EditText _course, _subjectCode, _subjectName;
-    TextView  _id, dayTextView, timeTextView, timeEndTextView;
+    TextView  _id, dayTextView, timeTextView, timeEndTextView, semesterTextView, schoolYearTextView;
     Button updateButton, cancelEditButton;
     int t1Hour, t1Minute;
     ImageButton backButton;
-    String selectedDay;
-    ArrayList<StudentList> studentLists;
+    String selectedDay, selectedSem, selectedSy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +49,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         pickEndTime();
         cancelButton();
         backButton();
+        pickSemester();
+        pickSchoolYear();
     }
 
     // Open time picker when PRESSED
@@ -107,7 +108,9 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
                         _subjectName.getText().toString().trim(),
                         dayTextView.getText().toString().trim(),
                         timeTextView.getText().toString().trim(),
-                        timeEndTextView.getText().toString().trim());
+                        timeEndTextView.getText().toString().trim(),
+                        semesterTextView.getText().toString().trim(),
+                        schoolYearTextView.getText().toString().trim());
 
                 Snackbar.make(updateButton, "Subject successfully updated!", Snackbar.LENGTH_LONG).show();
 
@@ -137,6 +140,66 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
                 );
                 timePickerDialog.updateTime(t1Hour, t1Minute);
                 timePickerDialog.show();
+            }
+        });
+    }
+
+    // SEMESTER PICKER WILL OPEN WHEN PRESSED
+    public void pickSemester() {
+        final String[] semester = new String[]{
+                "1st Semester",
+                "2nd Semester",
+
+        };
+
+        selectedSem = semester[0];
+        semesterTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
+                builder.setTitle("Select day");
+                builder.setSingleChoiceItems(semester, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedSem = semester[i];
+                        semesterTextView.setText(selectedSem);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    // SEMESTER PICKER WILL OPEN WHEN PRESSED
+    public void pickSchoolYear() {
+        final String[] schoolYear = new String[]{
+                "SY 2022 - 2023",
+                "SY 2023 - 2024",
+                "SY 2024 - 2025",
+                "SY 2025 - 2026",
+                "SY 2026 - 2027",
+                "SY 2027 - 2028",
+                "SY 2028 - 2029",
+                "SY 2029 - 2030",
+
+        };
+
+        selectedSy = schoolYear[0];
+        schoolYearTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
+                builder.setTitle("Select day");
+                builder.setSingleChoiceItems(schoolYear, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedSy = schoolYear[i];
+                        schoolYearTextView.setText(selectedSy);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
             }
         });
     }
@@ -183,6 +246,9 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         cancelEditButton = findViewById(R.id.cancelButtonEditSubject);
         backButton = findViewById(R.id.backButtonEditSubject);
         timeEndTextView = findViewById(R.id.timeEndTextViewEditSubject);
+        semesterTextView = findViewById(R.id.semesterTextViewEditSubject);
+        schoolYearTextView = findViewById(R.id.schoolYearTextViewEditSubject);
+
     }
 
     public void displayData(){
@@ -197,6 +263,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
             dayTextView.setText(bundle.getString("day"));
             timeTextView.setText(bundle.getString("time"));
             timeEndTextView.setText(bundle.getString("timeEnd"));
+            semesterTextView.setText(bundle.getString("sem"));
+            schoolYearTextView.setText(bundle.getString("sy"));
         }
     }
 

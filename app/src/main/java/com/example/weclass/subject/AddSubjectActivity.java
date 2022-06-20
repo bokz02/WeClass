@@ -87,8 +87,8 @@ public class AddSubjectActivity extends AppCompatActivity {
     // SEMESTER PICKER WILL OPEN WHEN PRESSED
     public void pickSemester() {
         final String[] semester = new String[]{
-                "First semester",
-                "Second semester",
+                "1st Semester",
+                "2nd Semester",
 
         };
 
@@ -114,14 +114,14 @@ public class AddSubjectActivity extends AppCompatActivity {
     // SEMESTER PICKER WILL OPEN WHEN PRESSED
     public void pickSchoolYear() {
         final String[] schoolYear = new String[]{
-                "2022 - 2023",
-                "2023 - 2024",
-                "2024 - 2025",
-                "2025 - 2026",
-                "2026 - 2027",
-                "2027 - 2028",
-                "2028 - 2029",
-                "2029 - 2030",
+                "SY 2022 - 2023",
+                "SY 2023 - 2024",
+                "SY 2024 - 2025",
+                "SY 2025 - 2026",
+                "SY 2026 - 2027",
+                "SY 2027 - 2028",
+                "SY 2028 - 2029",
+                "SY 2029 - 2030",
 
         };
 
@@ -236,7 +236,9 @@ public class AddSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (courseEditText.getText().toString().isEmpty() || subjectNameEditText.getText().toString().isEmpty() || subjectCodeEditText.getText().toString().isEmpty()
-                        || dayTextView.getText().toString().isEmpty() || timeTextView.getText().toString().isEmpty() || timeEndTextView.getText().toString().isEmpty())  {
+                        || dayTextView.getText().toString().isEmpty() || timeTextView.getText().toString().isEmpty() || timeEndTextView.getText().toString().isEmpty()
+                        || semesterTextView.getText().toString().isEmpty() || schoolYearTextView.getText().toString().isEmpty())  {
+
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
                     builder.setTitle("Error");
                     builder.setIcon(R.drawable.ic_baseline_warning_24);
@@ -285,7 +287,9 @@ public class AddSubjectActivity extends AppCompatActivity {
                                         subjectNameEditText.getText().toString().trim(),
                                         dayTextView.getText().toString().trim(),
                                         timeTextView.getText().toString().trim(),
-                                        timeEndTextView.getText().toString().trim());
+                                        timeEndTextView.getText().toString().trim(),
+                                        semesterTextView.getText().toString().trim(),
+                                        schoolYearTextView.getText().toString().trim());
 
                                 Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
 
@@ -295,6 +299,8 @@ public class AddSubjectActivity extends AppCompatActivity {
                                 dayTextView.setText("");
                                 timeTextView.setText("");
                                 timeEndTextView.setText("");
+                                semesterTextView.setText("");
+                                schoolYearTextView.setText("");
                             }
                         }
                     });

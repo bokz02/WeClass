@@ -126,6 +126,27 @@
             app:layout_constraintStart_toEndOf="@+id/dashSeparator"
             app:layout_constraintTop_toTopOf="@+id/dashSeparator" />
 
+        <TextView
+            android:id="@+id/semesterSubjectRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semester"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/optionButtonSubject"
+            app:layout_constraintTop_toTopOf="@+id/optionButtonSubject" />
+
+        <TextView
+            android:id="@+id/schoolYearSubjectRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="School year"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/semesterSubjectRecView"
+            app:layout_constraintTop_toBottomOf="@+id/semesterSubjectRecView" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

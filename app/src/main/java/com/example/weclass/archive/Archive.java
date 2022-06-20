@@ -112,7 +112,9 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
                         cursor.getString(4),
                         cursor.getString(5),
                         cursor.getString(6),
-                        cursor.getString(7)));
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getString(9)));
             }while (cursor.moveToNext());
         }
         cursor.close();

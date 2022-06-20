@@ -62,6 +62,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         holder.dateTxt.setText(String.valueOf(subjectItems.get(position).getDaySubject()));
         holder.timeTxt.setText(String.valueOf(subjectItems.get(position).getTimeSubject()));
         holder.timeEnd.setText(String.valueOf(subjectItems.get(position).getTimeEndSubject()));
+        holder.semester.setText(String.valueOf(subjectItems.get(position).getSemesterSubject()));
+        holder.schoolYear.setText(String.valueOf(subjectItems.get(position).getSchoolYearSubject()));
 
 
         // NAVIGATE TO EDIT ACTIVITY, OR DELETE A SUBJECT
@@ -86,6 +88,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                 bundle.putString("day", item.getDaySubject());
                                 bundle.putString("time", item.getTimeSubject());
                                 bundle.putString("timeEnd", item.getTimeEndSubject());
+                                bundle.putString("sem", item.getSemesterSubject());
+                                bundle.putString("sy", item.getSchoolYearSubject());
 
 
                                 intent.putExtra("Userdata", bundle);
@@ -140,7 +144,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                                 holder.subjectTitleTxt.getText().toString(),
                                                 holder.dateTxt.getText().toString(),
                                                 holder.timeTxt.getText().toString(),
-                                                holder.timeEnd.getText().toString());
+                                                holder.timeEnd.getText().toString(),
+                                                holder.semester.getText().toString(),
+                                                holder.schoolYear.getText().toString());
 
                                         db = new DataBaseHelper(context);
                                         db.deleteSubject(item.getId());
@@ -219,7 +225,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView id,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt, timeEnd;
+        TextView id,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt, timeEnd, semester, schoolYear;
         OnNoteListener onNoteListener;
         ImageButton optionSubject;
         CardView subjectClick;
@@ -235,6 +241,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
             optionSubject = itemView.findViewById(R.id.optionButtonSubject);
             subjectClick = itemView.findViewById(R.id.cardViewRecView);
             timeEnd = itemView.findViewById(R.id.timeEndTextViewRecView);
+            semester = itemView.findViewById(R.id.semesterSubjectRecView);
+            schoolYear = itemView.findViewById(R.id.schoolYearSubjectRecView);
 
 
             this.onNoteListener = onNoteListener;

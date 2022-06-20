@@ -5,10 +5,20 @@ import android.os.Parcelable;
 
 public class ArchiveItems implements Parcelable {
 
-    String course, subjectCode, subjectName, daySubject, timeSubject, timeEnd;
+    String course, subjectCode, subjectName, daySubject, timeSubject, timeEnd, sem, sy;
     private final int id_subject;
 
-    public ArchiveItems(int id_subject, String course, String subjectCode, String subjectName, String daySubject, String timeSubject, String timeEnd) {
+    public ArchiveItems(int id_subject,
+                        String course,
+                        String subjectCode,
+                        String subjectName,
+                        String daySubject,
+                        String timeSubject,
+                        String timeEnd,
+                        String sem,
+                        String sy) {
+
+
         this.course = course;
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;
@@ -16,6 +26,8 @@ public class ArchiveItems implements Parcelable {
         this.timeSubject = timeSubject;
         this.id_subject = id_subject;
         this.timeEnd = timeEnd;
+        this.sem = sem;
+        this.sy = sy;
     }
 
     protected ArchiveItems(Parcel in) {
@@ -65,6 +77,14 @@ public class ArchiveItems implements Parcelable {
 
     public int getId_subject() {
         return id_subject;
+    }
+
+    public String getSem() {
+        return sem;
+    }
+
+    public String getSchoolYear() {
+        return sy;
     }
 
     @Override

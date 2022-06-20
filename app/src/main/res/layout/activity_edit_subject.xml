@@ -257,6 +257,38 @@
                 app:layout_constraintTop_toBottomOf="@+id/view4" />
 
             <TextView
+                android:id="@+id/semesterTextViewEditSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawablePadding="5dp"
+                android:enabled="true"
+                android:focusable="true"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:hint="Select semester"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+            <TextView
+                android:id="@+id/schoolYearTextViewEditSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="5dp"
+                android:enabled="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:hint="Select school year"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+            <TextView
                 android:id="@+id/dayTextViewEditSubject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -299,7 +331,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/timeTextViewEditSubject" />
 
             <View
-                android:id="@+id/view55"
+                android:id="@+id/view16"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
@@ -308,6 +340,28 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/timeEndTextViewEditSubject" />
+
+            <View
+                android:id="@+id/view17"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/semesterTextViewEditSubject" />
+
+            <View
+                android:id="@+id/view55"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ECECEC"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/schoolYearTextViewEditSubject" />
 
             <View
                 android:id="@+id/view12"
