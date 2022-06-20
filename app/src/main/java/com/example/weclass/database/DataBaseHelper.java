@@ -308,7 +308,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     // UPDATE DATA OF SUBJECT DATABASE
-    public void updateSubject(String id, String course, String subjectCode, String subjectName, String day, String time){
+    public void updateSubject(String id, String course, String subjectCode, String subjectName, String day, String time, String endTime){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -317,6 +317,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SUBJECT_NAME, subjectName);
         contentValues.put(COLUMN_DAY, day);
         contentValues.put(COLUMN_TIME, time);
+        contentValues.put(COLUMN_TIME_END, endTime);
+
         long result = db.update(TABLE_MY_SUBJECTS, contentValues, "id_number=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();

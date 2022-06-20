@@ -85,6 +85,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                 bundle.putString("subject_name", item.getSubjectName());
                                 bundle.putString("day", item.getDaySubject());
                                 bundle.putString("time", item.getTimeSubject());
+                                bundle.putString("timeEnd", item.getTimeEndSubject());
 
 
                                 intent.putExtra("Userdata", bundle);

@@ -27,7 +27,7 @@ import java.util.Calendar;
 public class EditSubjectActivity extends AppCompatActivity implements SubjectAdapter.OnNoteListener {
 
     EditText _course, _subjectCode, _subjectName;
-    TextView  _id, dayTextView, timeTextView;
+    TextView  _id, dayTextView, timeTextView, timeEndTextView;
     Button updateButton, cancelEditButton;
     int t1Hour, t1Minute;
     ImageButton backButton;
@@ -47,6 +47,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         updateData();
         pickTime();
         pickDate();
+        pickEndTime();
         cancelButton();
         backButton();
     }
@@ -105,7 +106,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
                         _subjectCode.getText().toString().trim(),
                         _subjectName.getText().toString().trim(),
                         dayTextView.getText().toString().trim(),
-                        timeTextView.getText().toString().trim());
+                        timeTextView.getText().toString().trim(),
+                        timeEndTextView.getText().toString().trim());
 
                 Snackbar.make(updateButton, "Subject successfully updated!", Snackbar.LENGTH_LONG).show();
 
@@ -114,10 +116,34 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         });
     }
 
+    // Open time picker when PRESSED
+    public void pickEndTime() {
+        timeEndTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(EditSubjectActivity.this, R.style.Theme_TimeDialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        t1Hour = hourOfDay;
+                        t1Minute = minutes;
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(0, 0, 0, t1Hour, t1Minute);
+                        SimpleDateFormat format = new SimpleDateFormat("h:mm aa");
+                        String time = format.format(calendar.getTime());
+                        timeEndTextView.setText(time);
+
+                    }
+                }, 12, 0, false
+                );
+                timePickerDialog.updateTime(t1Hour, t1Minute);
+                timePickerDialog.show();
+            }
+        });
+    }
+
     // DAY PICKER WILL OPEN WHEN PRESSED
     public void pickDate() {
         final String[] dayOfWeek = new String[]{
-                "Sunday",
                 "Monday",
                 "Tuesday",
                 "Wednesday",
@@ -156,6 +182,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         updateButton = findViewById(R.id.updateButtonSubject);
         cancelEditButton = findViewById(R.id.cancelButtonEditSubject);
         backButton = findViewById(R.id.backButtonEditSubject);
+        timeEndTextView = findViewById(R.id.timeEndTextViewEditSubject);
     }
 
     public void displayData(){
@@ -169,6 +196,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
             _subjectName.setText(bundle.getString("subject_name"));
             dayTextView.setText(bundle.getString("day"));
             timeTextView.setText(bundle.getString("time"));
+            timeEndTextView.setText(bundle.getString("timeEnd"));
         }
     }
 

@@ -35,7 +35,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp">
 
 
             <com.google.android.material.button.MaterialButton
@@ -223,7 +224,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/transparent_bg"
                 android:clickable="true"
-                android:drawableStart="@drawable/ic_baseline_access_time_24"
                 android:drawablePadding="5dp"
                 android:layout_marginTop="5dp"
                 android:enabled="true"
@@ -233,16 +233,15 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
+                app:layout_constraintTop_toBottomOf="@+id/view4"
+                app:drawableStartCompat="@drawable/ic_baseline_access_time_24" />
 
             <TextView
                 android:id="@+id/dayAddSubject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="236dp"
                 android:background="@drawable/transparent_bg"
                 android:clickable="true"
-                android:drawableStart="@drawable/ic_baseline_calendar_today_24"
                 android:drawablePadding="5dp"
                 android:enabled="true"
                 android:layout_marginTop="5dp"
@@ -253,7 +252,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view7" />
+                app:layout_constraintTop_toBottomOf="@+id/view7"
+                app:drawableStartCompat="@drawable/ic_baseline_calendar_today_24" />
 
             <View
                 android:id="@+id/view6"
