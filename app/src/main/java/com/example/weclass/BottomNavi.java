@@ -18,7 +18,7 @@ import com.example.weclass.archive.ArchiveItems;
 import com.example.weclass.attendance.Attendance;
 import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.subject.SubjectItems;
-import com.example.weclass.tasks.Record;
+import com.example.weclass.tasks.Tasks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
@@ -111,7 +111,7 @@ public class BottomNavi extends AppCompatActivity {
 
     // PASS THE DATA WE GOT FROM SUBJECT ADAPTER TO STUDENT RECORD FRAGMENT
     public void fragmentRecord(){
-        Record record = new Record();
+        Tasks record = new Tasks();
         Bundle bundle = new Bundle();
         bundle.putString("IDParent", parentID.getText().toString());
         bundle.putString("SubjectCode", subjectCode.getText().toString());

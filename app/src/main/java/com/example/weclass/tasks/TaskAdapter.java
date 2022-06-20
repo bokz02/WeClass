@@ -51,7 +51,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView _id, _parentTD, _taskType, _dueDate, _score, _description,_progress;
+        TextView _id, _parentTD, _taskType, _dueDate, _score, _description,_progress, _gradingPeriod;
         ImageButton _optionTask, _expand;
         OnNoteListener onNoteListener;
         ConstraintLayout constraintLayout;
@@ -71,6 +71,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             _progress = itemView.findViewById(R.id.progressTextView);
             constraintLayout = itemView.findViewById(R.id.hiddenDescription);
             cardView = itemView.findViewById(R.id.cardViewRecView);
+            _gradingPeriod = itemView.findViewById(R.id.gradingPeriodTaskRecView);
 
 
             this.onNoteListener = onNoteListener;
@@ -104,6 +105,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder._description.setText(String.valueOf(taskItems.get(position).getTaskDescription()));
         holder._progress.setText(String.valueOf(taskItems.get(position).getProgress()));
         holder._id.setText(String.valueOf(taskItems.get(position).getTaskNumber()));
+        holder._gradingPeriod.setText(String.valueOf(taskItems.get(position).getGradingPeriod()));
 
         if(holder._progress.getText().toString().equals("Completed")){
             holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.lightText));
@@ -159,6 +161,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                                 bundle.putString("task_date", String.valueOf(itemsTask.getDueDate()));
                                 bundle.putString("task_score", String.valueOf(itemsTask.getScore()));
                                 bundle.putString("task_description", String.valueOf(itemsTask.getTaskDescription()));
+                                bundle.putString("period", String.valueOf(itemsTask.getGradingPeriod()));
 
                                 intent.putExtra("Task", bundle);
                                 context.startActivity(intent);
@@ -230,7 +233,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                 for (TaskItems taskItems: taskItemsFull){
                     if (taskItems.getTaskType().toLowerCase().contains(filterPattern) ||
                             taskItems.getDueDate().toLowerCase().contains(filterPattern) ||
-                            taskItems.getTaskDescription().toLowerCase().contains(filterPattern)){
+                            taskItems.getTaskDescription().toLowerCase().contains(filterPattern) ||
+                            taskItems.getGradingPeriod().toLowerCase().contains(filterPattern)){
                         filteredList.add(taskItems);
                     }
                 }

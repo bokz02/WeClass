@@ -1,5 +1,6 @@
 package com.example.weclass.tasks;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,12 +22,14 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.subject.AddSubjectActivity;
 import com.example.weclass.taskGrade.TaskGrade;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class Record extends Fragment implements TaskAdapter.OnNoteListener {
+public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
 
     DataBaseHelper dataBaseHelper;
     ArrayList<TaskItems> taskItems, id, _parentID;
@@ -37,7 +40,6 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
     EditText searchEditText;
     View view;
     View _noFile;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,7 +89,6 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
         dataBaseHelper = new DataBaseHelper(getContext());
         taskItems = displayData();
     }
-
 
     @Override
     public void onResume() {
@@ -147,7 +148,8 @@ public class Record extends Fragment implements TaskAdapter.OnNoteListener {
                         cursor.getString(4),
                         cursor.getString(5),
                         cursor.getString(6),
-                        cursor.getInt(7)));
+                        cursor.getInt(7),
+                        cursor.getString(8)));
             }while (cursor.moveToNext());
         }
         cursor.close();

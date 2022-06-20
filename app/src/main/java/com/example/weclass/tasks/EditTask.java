@@ -27,10 +27,11 @@ import java.util.Calendar;
 public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     EditText _score, _description, _taskNumber;
-    TextView _progress, _taskType, _dueDate, _idTask;
-    String selectedTask, selectedProgress;
+    TextView _progress, _taskType, _dueDate, _idTask, _gradingPeriod;
+    String selectedTask, selectedProgress, selectedPeriod;
     Button _cancel, _update;
     ImageButton _backButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         updateData();
         backButton();
         cancelButton();
+        pickGradingPeriod();
     }
 
     public void initialize(){
@@ -61,6 +63,7 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         _cancel = findViewById(R.id.cancelButtonTaskEdit);
         _update = findViewById(R.id.updateButtonTaskEdit);
         _backButton = findViewById(R.id.backButtonAddTasksEdit);
+        _gradingPeriod = findViewById(R.id.gradingPeriodTextViewTaskEdit);
     }
 
     // GET ALL DATA IN VIES AND INSERT TO DATABASE
@@ -76,7 +79,8 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
                         _score.getText().toString().trim(),
                         _description.getText().toString().trim(),
                         _progress.getText().toString().trim(),
-                        _taskNumber.getText().toString().trim());
+                        _taskNumber.getText().toString().trim(),
+                        _gradingPeriod.getText().toString().trim());
 
                 Snackbar.make(_update, "Task information successfully updated!", Snackbar.LENGTH_LONG).show();
 
@@ -96,8 +100,37 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
             _taskType.setText(bundle.getString("task_type"));
             _dueDate.setText(bundle.getString("task_date"));
             _progress.setText(bundle.getString("task_progress"));
+            _gradingPeriod.setText(bundle.getString("grading_period"));
 
         }
+    }
+
+
+    // SEMESTER PICKER WILL OPEN WHEN PRESSED
+    public void pickGradingPeriod() {
+        final String[] gradingPeriod = new String[]{
+                "Midterm",
+                "Finals",
+
+        };
+
+        selectedPeriod = gradingPeriod[0];
+        _gradingPeriod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditTask.this);
+                builder.setTitle("Select day");
+                builder.setSingleChoiceItems(gradingPeriod, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedPeriod = gradingPeriod[i];
+                        _gradingPeriod.setText(selectedPeriod);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
     }
 
     // TASK PICKER
@@ -107,6 +140,8 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
                 "Assignment",
                 "Seatwork",
                 "Quiz",
+                "Project",
+                "Exam",
 
         };
 

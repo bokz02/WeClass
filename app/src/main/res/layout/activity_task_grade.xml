@@ -104,8 +104,18 @@
                 android:text="Subject id"
                 android:textSize="14sp"
                 android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/textView15"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/gradingPeriodTextViewTaskGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Period"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.944"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -154,8 +164,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView15"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView15"
-                app:layout_constraintVertical_bias="0.166" />
+                app:layout_constraintTop_toTopOf="@+id/textView15" />
 
             <TextView
                 android:id="@+id/textView15"

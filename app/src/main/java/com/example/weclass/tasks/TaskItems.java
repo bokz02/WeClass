@@ -5,11 +5,23 @@ import android.os.Parcelable;
 
 public class TaskItems implements Parcelable {
 
-    String taskType, dueDate, score, taskDescription, progress;
-    private int taskID, parentID, taskNumber;
+    String taskType, dueDate, score, taskDescription, progress, gradingPeriod;
+    private int taskID;
+    private int parentID;
+    private final int taskNumber;
 
 
-    public TaskItems(int taskID, int parentID, String taskType, String dueDate, String score, String taskDescription, String progress, int taskNumber) {
+    public TaskItems(int taskID,
+                     int parentID,
+                     String taskType,
+                     String dueDate,
+                     String score,
+                     String taskDescription,
+                     String progress,
+                     int taskNumber,
+                     String gradingPeriod) {
+
+
         this.taskType = taskType;
         this.dueDate = dueDate;
         this.score = score;
@@ -18,6 +30,7 @@ public class TaskItems implements Parcelable {
         this.parentID = parentID;
         this.progress = progress;
         this.taskNumber = taskNumber;
+        this.gradingPeriod = gradingPeriod;
     }
 
     protected TaskItems(Parcel in) {
@@ -29,6 +42,7 @@ public class TaskItems implements Parcelable {
         taskID = in.readInt();
         parentID = in.readInt();
         taskNumber = in.readInt();
+        gradingPeriod = in.readString();
     }
 
     public static final Creator<TaskItems> CREATOR = new Creator<TaskItems>() {
@@ -103,6 +117,10 @@ public class TaskItems implements Parcelable {
         return taskNumber;
     }
 
+    public String getGradingPeriod() {
+        return gradingPeriod;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -118,5 +136,6 @@ public class TaskItems implements Parcelable {
         parcel.writeInt(taskID);
         parcel.writeInt(parentID);
         parcel.writeInt(taskNumber);
+        parcel.writeString(gradingPeriod);
     }
 }

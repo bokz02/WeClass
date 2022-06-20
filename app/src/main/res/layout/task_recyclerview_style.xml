@@ -27,7 +27,7 @@
             android:id="@+id/idNumberTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="24dp"
             android:text="ID"
             android:textSize="16sp"
             android:visibility="invisible"
@@ -35,17 +35,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/parentIDTaskRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:text="parentID"
-            android:textSize="16sp"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@+id/idNumberTask"
-            app:layout_constraintTop_toBottomOf="@+id/progressTextView" />
+            <TextView
+                android:id="@+id/parentIDTaskRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="parentID"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/idNumberTask"
+                app:layout_constraintTop_toTopOf="@+id/idNumberTask" />
+
+            <TextView
+                android:id="@+id/gradingPeriodTaskRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Period"
+                android:textSize="16sp"
+                android:layout_marginEnd="5dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/progressTextView"
+                app:layout_constraintEnd_toStartOf="@+id/progressTextView"
+                app:layout_constraintTop_toTopOf="@+id/progressTextView" />
 
         <ImageButton
             android:id="@+id/optionButtonTaskRecView"

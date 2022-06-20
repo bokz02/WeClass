@@ -26,7 +26,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     TaskGradeAdapter taskGradeAdapter;
     DataBaseHelper dataBaseHelper;
     ImageView backButton;
-    TextView _progress, _deadline, _score, _description, _taskType, _taskNumber, _subjectID , _noStudentToGradeTextView;
+    TextView _progress, _deadline, _score, _description, _taskType, _taskNumber, _subjectID , _noStudentToGradeTextView, _gradingPeriod;
     View _noStudentToGradeView;
 
     @Override
@@ -68,6 +68,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         recyclerView = findViewById(R.id.taskGradeRecyclerView);
         _noStudentToGradeTextView = findViewById(R.id.noStudentTextViewGrade);
         _noStudentToGradeView = findViewById(R.id.noStudentViewGrade);
+        _gradingPeriod = findViewById(R.id.gradingPeriodTextViewTaskGrade);
 
     }
 
@@ -149,6 +150,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         String score = taskItems.getScore();
         String description = taskItems.getTaskDescription();
         String taskType = taskItems.getTaskType();
+        String period = taskItems.getGradingPeriod();
         int taskNumber = taskItems.getTaskNumber();
 
         _progress.setText(progress);
@@ -158,6 +160,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         _taskType.setText(taskType);
         _taskNumber.setText(String.valueOf(taskNumber));
         _subjectID.setText(subjectID);
+        _gradingPeriod.setText(period);
 
 
     }

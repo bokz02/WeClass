@@ -13,7 +13,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 17;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 18;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -52,6 +52,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DESCRIPTION = "task_description";
     public static final String COLUMN_PROGRESS = "task_progress";
     public static final String COLUMN_TASK_NUMBER = "task_number";
+    public static final String COLUMN_GRADING_PERIOD_TASK = "grading_period";
 
     public static final String TABLE_MY_GRADE = "my_grades";
     public static final String COLUMN_ID_MY_GRADE = "id_number";
@@ -130,7 +131,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_SCORE + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
                 COLUMN_PROGRESS + " TEXT, " +
-                COLUMN_TASK_NUMBER + " TEXT);";
+                COLUMN_TASK_NUMBER + " TEXT, " +
+                COLUMN_GRADING_PERIOD_TASK + " TEXT);";
 
         String query5 = "CREATE TABLE " + TABLE_MY_GRADE +
                 " (" + COLUMN_ID_MY_GRADE + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -219,7 +221,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO MY_TASKS DATABASE
-    public void addTask(String parentID, String taskType, String dueDate, String score, String description, String progress, String taskNumber){
+    public void addTask(String parentID, String taskType, String dueDate, String score, String description, String progress, String taskNumber, String period){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -230,6 +232,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DESCRIPTION, description);
         cv.put(COLUMN_PROGRESS, progress);
         cv.put(COLUMN_TASK_NUMBER, taskNumber);
+        cv.put(COLUMN_GRADING_PERIOD_TASK, period);
 
         long result = db.insert(TABLE_MY_TASKS, null, cv);
         if(result == -1){
@@ -386,7 +389,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // UPDATE DATA OF STUDENT DATABASE
-    public void updateTask(String id, String taskType, String dueDate, String score, String description, String progress, String taskNumber){
+    public void updateTask(String id, String taskType, String dueDate, String score, String description, String progress, String taskNumber, String period){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -396,6 +399,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_DESCRIPTION, description);
         contentValues.put(COLUMN_PROGRESS, progress);
         contentValues.put(COLUMN_TASK_NUMBER, taskNumber);
+        contentValues.put(COLUMN_GRADING_PERIOD_TASK, period);
 
         long result = db.update(TABLE_MY_TASKS, contentValues, "id_number=" + id, null);
         if(result == -1){
