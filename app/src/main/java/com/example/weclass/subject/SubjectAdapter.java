@@ -61,6 +61,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         holder.subjectTitleTxt.setText(String.valueOf(subjectItems.get(position).getSubjectName()));
         holder.dateTxt.setText(String.valueOf(subjectItems.get(position).getDaySubject()));
         holder.timeTxt.setText(String.valueOf(subjectItems.get(position).getTimeSubject()));
+        holder.timeEnd.setText(String.valueOf(subjectItems.get(position).getTimeEndSubject()));
 
 
         // NAVIGATE TO EDIT ACTIVITY, OR DELETE A SUBJECT
@@ -137,7 +138,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                                 holder.subjectCodeTxt.getText().toString(),
                                                 holder.subjectTitleTxt.getText().toString(),
                                                 holder.dateTxt.getText().toString(),
-                                                holder.timeTxt.getText().toString());
+                                                holder.timeTxt.getText().toString(),
+                                                holder.timeEnd.getText().toString());
 
                                         db = new DataBaseHelper(context);
                                         db.deleteSubject(item.getId());
@@ -216,7 +218,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView id,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt;
+        TextView id,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt, timeEnd;
         OnNoteListener onNoteListener;
         ImageButton optionSubject;
         CardView subjectClick;
@@ -231,6 +233,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
             timeTxt = itemView.findViewById(R.id.timeTextViewRecView);
             optionSubject = itemView.findViewById(R.id.optionButtonSubject);
             subjectClick = itemView.findViewById(R.id.cardViewRecView);
+            timeEnd = itemView.findViewById(R.id.timeEndTextViewRecView);
 
 
             this.onNoteListener = onNoteListener;

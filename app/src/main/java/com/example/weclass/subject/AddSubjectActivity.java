@@ -28,7 +28,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
     Button cancelButton, createButton;
     EditText courseEditText, subjectNameEditText, subjectCodeEditText;
-    TextView dayTextView, timeTextView;
+    TextView dayTextView, timeTextView, timeEndTextView;
     int t1Hour, t1Minute;
     ImageButton backButton;
     String selectedDay;
@@ -44,6 +44,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
         initialize(); // INITIALIZE ALL VIEWS
         pickTime();     // TIME PICKER POP AFTER BUTTON CLICKED
+        pickEndTime();  // TIME PICKER POP AFTER BUTTON CLICKED
         createButton(); // CREATE SUBJECT FUNCTION
         cancelButton(); // CANCEL BUTTON FUNCTION
         backButton();   // BACK BUTTON FUNCTION OF THE PHONE
@@ -53,7 +54,6 @@ public class AddSubjectActivity extends AppCompatActivity {
     // DAY PICKER WILL OPEN WHEN PRESSED
     public void pickDate() {
         final String[] dayOfWeek = new String[]{
-                "Sunday",
                 "Monday",
                 "Tuesday",
                 "Wednesday",
@@ -106,6 +106,31 @@ public class AddSubjectActivity extends AppCompatActivity {
         });
     }
 
+    // Open time picker when PRESSED
+    public void pickEndTime() {
+        timeEndTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AddSubjectActivity.this, R.style.Theme_TimeDialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        t1Hour = hourOfDay;
+                        t1Minute = minutes;
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(0, 0, 0, t1Hour, t1Minute);
+                        SimpleDateFormat format = new SimpleDateFormat("h:mm aa");
+                        String time = format.format(calendar.getTime());
+                        timeEndTextView.setText(time);
+
+                    }
+                }, 12, 0, false
+                );
+                timePickerDialog.updateTime(t1Hour, t1Minute);
+                timePickerDialog.show();
+            }
+        });
+    }
+
     // BACK BUTTON FUNCTION OF THE PHONE
     public void backButton() {
 
@@ -135,6 +160,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         timeTextView = findViewById(R.id.timeAddSubject);
         cancelButton = findViewById(R.id.cancelButtonSubject);
         backButton = findViewById(R.id.backButtonSubject);
+        timeEndTextView = findViewById(R.id.timeEndAddSubject);
     }
 
 
@@ -145,7 +171,7 @@ public class AddSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (courseEditText.getText().toString().isEmpty() || subjectNameEditText.getText().toString().isEmpty() || subjectCodeEditText.getText().toString().isEmpty()
-                        || dayTextView.getText().toString().isEmpty() || timeTextView.getText().toString().isEmpty())  {
+                        || dayTextView.getText().toString().isEmpty() || timeTextView.getText().toString().isEmpty() || timeEndTextView.getText().toString().isEmpty())  {
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
                     builder.setTitle("Error");
                     builder.setIcon(R.drawable.ic_baseline_warning_24);
@@ -193,7 +219,8 @@ public class AddSubjectActivity extends AppCompatActivity {
                                         subjectCodeEditText.getText().toString().trim(),
                                         subjectNameEditText.getText().toString().trim(),
                                         dayTextView.getText().toString().trim(),
-                                        timeTextView.getText().toString().trim());
+                                        timeTextView.getText().toString().trim(),
+                                        timeEndTextView.getText().toString().trim());
 
                                 Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
 
@@ -202,6 +229,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                                 subjectNameEditText.setText("");
                                 dayTextView.setText("");
                                 timeTextView.setText("");
+                                timeEndTextView.setText("");
                             }
                         }
                     });

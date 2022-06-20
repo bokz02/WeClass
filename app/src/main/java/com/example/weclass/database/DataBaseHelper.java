@@ -13,13 +13,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 12;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 14;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
     public static final String COLUMN_SUBJECT_CODE = "subject_code";
     public static final String COLUMN_SUBJECT_NAME = "subject_name";
     public static final String COLUMN_TIME = "subject_time";
+    public static final String COLUMN_TIME_END = "subject_time_end";
     public static final String COLUMN_DAY = "subject_day";
 
 
@@ -76,6 +77,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SUBJECT_CODE_ARCHIVE = "subject_code";
     public static final String COLUMN_SUBJECT_NAME_ARCHIVE = "subject_name";
     public static final String COLUMN_TIME_ARCHIVE = "subject_time";
+    public static final String COLUMN_TIME_END_ARCHIVE = "subject_time_end";
     public static final String COLUMN_DAY_ARCHIVE = "subject_day";
 
 
@@ -95,7 +97,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         COLUMN_SUBJECT_CODE + " TEXT, " +
                         COLUMN_SUBJECT_NAME + " TEXT, " +
                         COLUMN_DAY + " TEXT, " +
-                        COLUMN_TIME + " TEXT);";
+                        COLUMN_TIME + " TEXT, " +
+                        COLUMN_TIME_END + " TEXT);";
 
         String query2 = "CREATE TABLE " + TABLE_MY_STUDENTS +
                 " (" + COLUMN_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -149,7 +152,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_SUBJECT_CODE_ARCHIVE + " TEXT, " +
                 COLUMN_SUBJECT_NAME_ARCHIVE + " TEXT, " +
                 COLUMN_DAY_ARCHIVE + " TEXT, " +
-                COLUMN_TIME_ARCHIVE + " TEXT);";
+                COLUMN_TIME_ARCHIVE + " TEXT, " +
+                COLUMN_TIME_END_ARCHIVE + " TEXT);";
 
         db.execSQL(query4);
         db.execSQL(query3);
@@ -226,7 +230,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO SUBJECT DATABASE
-    public void addSubject(String course, String subjectCode, String subjectName, String day, String time){
+    public void addSubject(String course, String subjectCode, String subjectName, String day, String time, String timeEnd){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -235,6 +239,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SUBJECT_NAME, subjectName);
         contentValues.put(COLUMN_DAY, day);
         contentValues.put(COLUMN_TIME, time);
+        contentValues.put(COLUMN_TIME_END, timeEnd);
+
         long result = db.insert(TABLE_MY_SUBJECTS, null, contentValues);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
@@ -280,7 +286,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO SUBJECT DATABASE
-    public void addToArchive(String idSubject,String course, String subjectCode, String subjectName, String day, String time){
+    public void addToArchive(String idSubject,String course, String subjectCode, String subjectName, String day, String time, String timeEnd){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -290,6 +296,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SUBJECT_NAME_ARCHIVE, subjectName);
         contentValues.put(COLUMN_DAY_ARCHIVE, day);
         contentValues.put(COLUMN_TIME_ARCHIVE, time);
+        contentValues.put(COLUMN_TIME_END_ARCHIVE, timeEnd);
+
+
         long result = db.insert(TABLE_MY_ARCHIVE, null, contentValues);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();

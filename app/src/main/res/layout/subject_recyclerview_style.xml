@@ -104,6 +104,28 @@
             app:layout_constraintStart_toEndOf="@+id/dateTextViewRecView"
             app:layout_constraintTop_toTopOf="@+id/dateTextViewRecView" />
 
+        <TextView
+            android:id="@+id/dashSeparator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="-"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/timeTextViewRecView"
+            app:layout_constraintTop_toTopOf="@+id/timeTextViewRecView" />
+
+        <TextView
+            android:id="@+id/timeEndTextViewRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="8:00 AM"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/dashSeparator"
+            app:layout_constraintTop_toTopOf="@+id/dashSeparator" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

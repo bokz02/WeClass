@@ -33,7 +33,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView idParent,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt;
+        TextView idParent,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt, timeEnd;
         OnNoteListener onNoteListener;
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
@@ -45,6 +45,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.MyViewHo
             subjectTitleTxt = itemView.findViewById(R.id.subjectTitleRecViewArchive);
             dateTxt = itemView.findViewById(R.id.dateTextViewRecViewArchive);
             timeTxt = itemView.findViewById(R.id.timeTextViewRecViewArchive);
+            timeEnd = itemView.findViewById(R.id.timeEndTextViewRecViewArchive);
 
             this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
@@ -73,6 +74,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.MyViewHo
         holder.subjectTitleTxt.setText(String.valueOf(archiveItems.get(position).getSubjectName()));
         holder.dateTxt.setText(String.valueOf(archiveItems.get(position).getDaySubject()));
         holder.timeTxt.setText(String.valueOf(archiveItems.get(position).getTimeSubject()));
+        holder.timeEnd.setText(String.valueOf(archiveItems.get(position).getTimeEndSubject()));
 
     }
 
