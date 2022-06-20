@@ -71,6 +71,7 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", _id.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
             }
         });
     }
@@ -83,6 +84,7 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", _id.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
             }
         });
     }
@@ -95,6 +97,7 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", _id.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
             }
         });
     }
@@ -107,6 +110,7 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", _id.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
             }
         });
     }
@@ -119,6 +123,7 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", _id.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
             }
         });
     }
@@ -131,6 +136,7 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", _id.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
             }
         });
     }

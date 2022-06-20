@@ -118,6 +118,7 @@ public class Activities extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
             }
         });
     }

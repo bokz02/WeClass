@@ -183,5 +183,6 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
         intent.putExtra("Archive", archiveItems.get(position));
 
         startActivity(intent);
+        overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
     }
 }
