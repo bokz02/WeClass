@@ -75,7 +75,8 @@
             android:exported="false"
             android:label="Add Subject"
             android:parentActivityName=".subject.Subject"
-            android:theme="@style/Theme.Dialog" />
+            android:theme="@style/Theme.Dialog"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".studentlist.StudentProfile"
             android:exported="false" />

@@ -28,10 +28,10 @@ public class AddSubjectActivity extends AppCompatActivity {
 
     Button cancelButton, createButton;
     EditText courseEditText, subjectNameEditText, subjectCodeEditText;
-    TextView dayTextView, timeTextView, timeEndTextView;
+    TextView dayTextView, timeTextView, timeEndTextView, schoolYearTextView, semesterTextView;
     int t1Hour, t1Minute;
     ImageButton backButton;
-    String selectedDay;
+    String selectedDay, selectedSem, selectedSchoolYear;
 
 
     @Override
@@ -49,6 +49,8 @@ public class AddSubjectActivity extends AppCompatActivity {
         cancelButton(); // CANCEL BUTTON FUNCTION
         backButton();   // BACK BUTTON FUNCTION OF THE PHONE
         pickDate();     // DATE PICKER POP UP AFTER BUTTON CLICKED
+        pickSemester();
+        pickSchoolYear();
     }
 
     // DAY PICKER WILL OPEN WHEN PRESSED
@@ -73,6 +75,67 @@ public class AddSubjectActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectedDay = dayOfWeek[i];
                         dayTextView.setText(selectedDay);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+
+    // SEMESTER PICKER WILL OPEN WHEN PRESSED
+    public void pickSemester() {
+        final String[] semester = new String[]{
+                "First semester",
+                "Second semester",
+
+        };
+
+        selectedSem = semester[0];
+        semesterTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
+                builder.setTitle("Select day");
+                builder.setSingleChoiceItems(semester, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedSem = semester[i];
+                        semesterTextView.setText(selectedSem);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    // SEMESTER PICKER WILL OPEN WHEN PRESSED
+    public void pickSchoolYear() {
+        final String[] schoolYear = new String[]{
+                "2022 - 2023",
+                "2023 - 2024",
+                "2024 - 2025",
+                "2025 - 2026",
+                "2026 - 2027",
+                "2027 - 2028",
+                "2028 - 2029",
+                "2029 - 2030",
+
+        };
+
+        selectedSchoolYear = schoolYear[0];
+        schoolYearTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
+                builder.setTitle("Select day");
+                builder.setSingleChoiceItems(schoolYear, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedSchoolYear = schoolYear[i];
+                        schoolYearTextView.setText(selectedSchoolYear);
                         dialogInterface.dismiss();
                     }
                 });
@@ -161,6 +224,8 @@ public class AddSubjectActivity extends AppCompatActivity {
         cancelButton = findViewById(R.id.cancelButtonSubject);
         backButton = findViewById(R.id.backButtonSubject);
         timeEndTextView = findViewById(R.id.timeEndAddSubject);
+        semesterTextView = findViewById(R.id.semesterAddSubject);
+        schoolYearTextView = findViewById(R.id.schoolYearAddSubject);
     }
 
 
