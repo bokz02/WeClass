@@ -237,6 +237,23 @@
                 app:drawableStartCompat="@drawable/ic_baseline_access_time_24" />
 
             <TextView
+                android:id="@+id/semesterAddSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/transparent_bg"
+                android:clickable="true"
+                android:drawablePadding="5dp"
+                android:enabled="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:hint="Select school year"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+            <TextView
                 android:id="@+id/dayAddSubject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -278,9 +295,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/timeAddSubject" />
 
-
             <View
-                android:id="@+id/view1"
+                android:id="@+id/view16"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
@@ -289,6 +305,18 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/timeEndAddSubject" />
+
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="5dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/semesterAddSubject" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
