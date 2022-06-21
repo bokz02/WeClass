@@ -10,34 +10,25 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/input_text_style.xml" value="0.262" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ripple_create_cancel_button.xml" value="0.262" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ripple_effect_pressed.xml" value="0.262" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activities_recyclerview_layout.xml" value="0.365625" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_about_us.xml" value="0.36666666666666664" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_absent.xml" value="0.36666666666666664" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_activities.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_add_student.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_add_subject.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_add_task.xml" value="0.33" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_archive.xml" value="0.36666666666666664" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_assignments.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_bottom_navi.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_edit_student.xml" value="0.33" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_edit_subject.xml" value="0.5" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_edit_subject.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_edit_task.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_event_edit.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_present.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_quiz.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_schedule.xml" value="0.33" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_seatwork.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_student_information.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_subject.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_task_grade.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_terms_and_condition.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_week_view.xml" value="0.33" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/archive_recyclerview_style.xml" value="0.365625" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/attendance_recyclerview_style.xml" value="0.365625" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/calendar_cell.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/event_cell.xml" value="0.36666666666666664" />
@@ -47,7 +38,6 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/fragment_student.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/fragment_student_list.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/header.xml" value="0.36666666666666664" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/present_absent_recyclerview_style.xml" value="0.3614583333333333" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/sample.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studenlist_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studentlist_recyclerview_style.xml" value="0.36666666666666664" />
@@ -59,7 +49,6 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/option_subject_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/sort_student.xml" value="0.365625" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/subject_menu.xml" value="0.36666666666666664" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/drawable-nodpi/white_rounded_button.xml" value="0.1715" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/drawable-v24/round_corner.xml" value="0.1765" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/drawable-v24/round_corner_calcell.xml" value="0.1745" />
@@ -104,6 +93,43 @@
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/layout/subject_recyclerview_style.xml" value="0.33" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/menu/main_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass/app/src/main/res/menu/subject_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable-v24/round_corner.xml" value="0.189" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable-v24/round_corner_calcell.xml" value="0.201" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable-v24/round_corner_gray.xml" value="0.201" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable-v24/round_top_corner.xml" value="0.189" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable/ic_acc.xml" value="0.1605" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1605" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable/ic_email.xml" value="0.148" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable/ic_forgotpass.xml" value="0.22" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable/ic_login.xml" value="0.2115" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable/ic_user.xml" value="0.2115" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/drawable/rounded_stroke_red.xml" value="0.201" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activities_recyclerview_layout.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_about_us.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_absent.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_activities.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_add_subject.xml" value="0.25" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_add_task.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_assignments.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_edit_student.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_edit_subject.xml" value="0.2" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_edit_task.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_forgot_password.xml" value="0.22" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_password_reset_link_suceed.xml" value="0.2" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_present.xml" value="0.22" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_profile.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_quiz.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_register_account.xml" value="0.18" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_schedule.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_seatwork.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_settings.xml" value="0.22" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/activity_week_view.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/attendance_recyclerview_style.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/present_absent_recyclerview_style.xml" value="0.22" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/sample.xml" value="0.25" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/layout/studentlist_recyclerview_style.xml" value="0.153125" />
+        <entry key="..\:/Users/nec laptop/AndroidStudioProjects/WeClass1/app/src/main/res/menu/main_menu.xml" value="0.153125" />
       </map>
     </option>
   </component>
@@ -112,12 +138,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.36666666666666664" />
-      </ProjectState>
-    </option>
   </component>
 </project>
