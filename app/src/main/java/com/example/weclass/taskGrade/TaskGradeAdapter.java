@@ -41,7 +41,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView lastName, firstName, studentID, subjectID, taskType, taskNumber;
+        TextView lastName, firstName, studentID, subjectID, taskType, taskNumber, gradingPeriod;
         ImageButton submitButtonGrade;
         EditText gradeEditText;
         OnNoteListener onNoteListener;
@@ -57,6 +57,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
             subjectID = itemView.findViewById(R.id.subjectIDTextViewRecViewGrade);
             taskType = itemView.findViewById(R.id.taskTypeTextViewRecViewGrade);
             taskNumber = itemView.findViewById(R.id.taskNumberRecViewGrade);
+            gradingPeriod = itemView.findViewById(R.id.gradingPeriodTextViewRecViewGrade);
 
             this.onNoteListener = onNoteListener;
 
@@ -87,6 +88,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         holder.subjectID.setText(String.valueOf(taskGradeItems.get(position).getSubjectID()));
         holder.taskType.setText(String.valueOf(taskGradeItems.get(position).getTaskType()));
         holder.taskNumber.setText(String.valueOf(taskGradeItems.get(position).getTaskNumber()));
+        holder.gradingPeriod.setText(String.valueOf(taskGradeItems.get(position).getGradingPeriod()));
 
         holder.submitButtonGrade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +105,9 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                         + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                         + holder.taskType.getText().toString() + "' AND "
                         + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
-                        + holder.taskNumber.getText().toString(), null);
+                        + holder.taskNumber.getText().toString() + " AND "
+                        + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
+                        + holder.gradingPeriod.getText().toString() + "'", null);
 
                 if(holder.gradeEditText.getText().toString().isEmpty()){
                     Snackbar.make(holder.submitButtonGrade, "Do not submit empty grade!", Snackbar.LENGTH_SHORT).show();
@@ -122,9 +126,10 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                             holder.firstName.getText().toString().trim(),
                             holder.taskType.getText().toString().trim(),
                             holder.taskNumber.getText().toString().trim(),
-                            holder.gradeEditText.getText().toString().trim());
+                            holder.gradeEditText.getText().toString().trim(),
+                            holder.gradingPeriod.getText().toString().trim());
 
-
+                    holder.submitButtonGrade.setEnabled(false);
                     holder.submitButtonGrade.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
                     Snackbar.make(holder.submitButtonGrade, "" + holder.lastName.getText().toString() +
                             ", " + holder.firstName.getText().toString() +

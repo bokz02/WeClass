@@ -109,7 +109,9 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
                         + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
                         + _taskType.getText().toString() + "' AND "
                         + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
-                        + _taskNumber.getText().toString(), null);
+                        + _taskNumber.getText().toString() + " AND "
+                        + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
+                        + _gradingPeriod.getText().toString() + "'", null);
 
         ArrayList<TaskGradeItems> taskGradeItems = new ArrayList<>();
 
@@ -121,7 +123,8 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
                         cursor.getString(2),
                         cursor.getString(3),
                         cursor.getString(10),
-                        cursor.getInt(15)));
+                        cursor.getInt(15),
+                        cursor.getString(16)));
             }while (cursor.moveToNext());
         }
         cursor.close();

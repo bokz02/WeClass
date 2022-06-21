@@ -15,9 +15,6 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.profile.activities.ActivitiesAdapter;
-import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
-import com.example.weclass.studentlist.profile.quiz.Quiz;
 
 import java.util.ArrayList;
 

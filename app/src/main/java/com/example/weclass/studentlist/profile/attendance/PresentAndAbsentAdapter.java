@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
-import com.example.weclass.studentlist.profile.activities.ActivitiesAdapter;
 
 import java.util.ArrayList;
 

@@ -20,13 +20,14 @@ import java.util.ArrayList;
 
 public class Activities extends AppCompatActivity {
 
-    TextView _studentID, _subjectID, noText, _activity;
+    TextView _studentID, _subjectID, noText, noText2, _activity, _midterm, _finals;
     ImageButton _backButton;
-    ExtendedRecyclerView extendedRecyclerView;
-    ActivitiesAdapter activitiesAdapter;
-    ArrayList<ActivitiesItems> activitiesItems;
+    ExtendedRecyclerView extendedRecyclerView, extendedRecyclerView2;
+    ActivitiesMidtermAdapter activitiesAdapter;
+    ActivitiesFinalsAdapter activitiesFinalsAdapter;
+    ArrayList<ActivitiesItems> activitiesItems, activitiesItems2;
     DataBaseHelper dataBaseHelper;
-    View noView;
+    View noView, noView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,10 @@ public class Activities extends AppCompatActivity {
         initialize();
         backToStudentProfile();
         getDataFromProfile();
-        display();
+        display();  // DISPLAY STUDENT MIDTERM ACTIVITY
         initializeAdapter();
+        display2(); // DISPLAY STUDENT FINALS ACTIVITY
+        initializeAdapter2();
     }
 
     @Override
@@ -48,6 +51,7 @@ public class Activities extends AppCompatActivity {
         super.onResume();
 
         initializeAdapter();
+        initializeAdapter2();
     }
 
     public void initialize(){
@@ -56,14 +60,19 @@ public class Activities extends AppCompatActivity {
         _subjectID = findViewById(R.id.subjectIDStudentActivity);
         _backButton = findViewById(R.id.backButtonActivity);
         extendedRecyclerView = findViewById(R.id.studentActivityRecView);
+        extendedRecyclerView2 = findViewById(R.id.studentActivityRecView2);
         noView = findViewById(R.id.noViewViewActivity);
+        noView2 = findViewById(R.id.noViewViewActivity2);
         noText = findViewById(R.id.noTextTextViewActivity);
+        noText2 = findViewById(R.id.noTextTextViewActivity2);
         _activity = findViewById(R.id.activityStudentActivity);
+        _midterm = findViewById(R.id.midtermTextViewStudentActivity);
+        _finals = findViewById(R.id.finalsTextViewStudentActivity);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
-        activitiesAdapter = new ActivitiesAdapter(Activities.this, activitiesItems);
+        activitiesAdapter = new ActivitiesMidtermAdapter(Activities.this, activitiesItems);
         extendedRecyclerView.setAdapter(activitiesAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(Activities.this));
         extendedRecyclerView.setEmptyView(noView, noText);
@@ -88,7 +97,8 @@ public class Activities extends AppCompatActivity {
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND  "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
-                + _activity.getText().toString() + "'", null);
+                + _activity.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Midterm%'", null);
 
         ArrayList<ActivitiesItems> activitiesItems = new ArrayList<>();
 
@@ -121,5 +131,51 @@ public class Activities extends AppCompatActivity {
                 overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
             }
         });
+    }
+
+
+
+    // INITIALIZE ADAPTER FOR RECYCLERVIEW
+    public void initializeAdapter2(){
+        activitiesFinalsAdapter = new ActivitiesFinalsAdapter(activitiesItems2,Activities.this);
+        extendedRecyclerView2.setAdapter(activitiesFinalsAdapter);
+        extendedRecyclerView2.setLayoutManager(new LinearLayoutManager(Activities.this));
+        extendedRecyclerView2.setEmptyView(noView2, noText2);
+    }
+
+    // DATA TO BE DISPLAY IN RECYCLERVIEW
+    public void display2(){
+
+        activitiesItems2 = new ArrayList<>();
+        dataBaseHelper = new DataBaseHelper(Activities.this);
+        activitiesItems2 = displayData2();
+    }
+
+    // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
+    private ArrayList<ActivitiesItems> displayData2(){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
+                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
+                + _studentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
+                + _subjectID.getText().toString() + " AND  "
+                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                + _activity.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Finals%'", null);
+
+        ArrayList<ActivitiesItems> activitiesItems2 = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do {
+                activitiesItems2.add(new ActivitiesItems(
+                        cursor.getString(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return activitiesItems2;
     }
 }

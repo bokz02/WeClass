@@ -12,14 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.21" />
+        app:layout_constraintGuide_percent="0.13" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".9"/>
+        app:layout_constraintGuide_percent=".5"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide3"
@@ -35,18 +35,61 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".95"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".55"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".9"/>
+
     <TextView
         android:id="@+id/textViewA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="Activities"
+        android:layout_marginEnd="5dp"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/guide1"/>
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="@id/guide4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Midterm"
+        android:layout_marginEnd="5dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="@id/guide4"
+        app:layout_constraintStart_toStartOf="@id/guide3"
+        app:layout_constraintBottom_toBottomOf="@id/guide1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Finals"
+        android:layout_marginEnd="5dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="@id/guide4"
+        app:layout_constraintStart_toStartOf="@id/guide3"
+        app:layout_constraintBottom_toBottomOf="@id/guide5" />
 
     <TextView
         android:id="@+id/noTextTextViewActivity"
@@ -69,6 +112,28 @@
         app:layout_constraintEnd_toEndOf="@id/guide4"
         app:layout_constraintStart_toStartOf="@id/guide3"
         app:layout_constraintTop_toTopOf="@id/guide1" />
+
+    <TextView
+        android:id="@+id/noTextTextViewActivity2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Currently no activities to display."
+        android:textColor="@color/cancelButtonPressed"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/noViewViewActivity2"
+        app:layout_constraintEnd_toEndOf="@+id/noViewViewActivity2"
+        app:layout_constraintStart_toStartOf="@+id/noViewViewActivity2" />
+
+    <View
+        android:id="@+id/noViewViewActivity2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_no_file"
+        app:layout_constraintBottom_toBottomOf="@id/guide6"
+        app:layout_constraintEnd_toEndOf="@id/guide4"
+        app:layout_constraintStart_toStartOf="@id/guide3"
+        app:layout_constraintTop_toTopOf="@id/guide5" />
 
     <ImageButton
         android:id="@+id/backButtonActivity"
@@ -103,6 +168,24 @@
         app:layout_constraintTop_toBottomOf="@+id/subjectIDStudentActivity" />
 
     <TextView
+        android:id="@+id/midtermTextViewStudentActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Midterm"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/activityStudentActivity"
+        app:layout_constraintTop_toBottomOf="@+id/subjectIDStudentActivity" />
+
+    <TextView
+        android:id="@+id/finalsTextViewStudentActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finals"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/activityStudentActivity"
+        app:layout_constraintTop_toBottomOf="@+id/subjectIDStudentActivity" />
+
+    <TextView
         android:id="@+id/studentIDStudentActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -118,6 +201,15 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="@+id/guide1"
         app:layout_constraintBottom_toBottomOf="@+id/guide2"
+        app:layout_constraintStart_toStartOf="@id/guide3"
+        app:layout_constraintEnd_toEndOf="@id/guide4"/>
+
+    <com.example.weclass.ExtendedRecyclerView
+        android:id="@+id/studentActivityRecView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/guide5"
+        app:layout_constraintBottom_toBottomOf="@+id/guide6"
         app:layout_constraintStart_toStartOf="@id/guide3"
         app:layout_constraintEnd_toEndOf="@id/guide4"/>
 

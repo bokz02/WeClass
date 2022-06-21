@@ -13,12 +13,12 @@ import com.example.weclass.R;
 
 import java.util.ArrayList;
 
-public class ActivitiesAdapter extends RecyclerView.Adapter<ActivitiesAdapter.MyViewHolder> {
+public class ActivitiesMidtermAdapter extends RecyclerView.Adapter<ActivitiesMidtermAdapter.MyViewHolder> {
 
     private final ArrayList<ActivitiesItems> activities;
     Context context;
 
-    public ActivitiesAdapter(Context context,ArrayList<ActivitiesItems> activities) {
+    public ActivitiesMidtermAdapter(Context context, ArrayList<ActivitiesItems> activities) {
         this.context = context;
         this.activities = activities;
     }

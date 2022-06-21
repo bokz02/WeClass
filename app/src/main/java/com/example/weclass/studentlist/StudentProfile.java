@@ -3,6 +3,8 @@ package com.example.weclass.studentlist;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,18 +13,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weclass.R;
+import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.activities.Activities;
 import com.example.weclass.studentlist.profile.assignments.Assignments;
 import com.example.weclass.studentlist.profile.attendance.Absent;
 import com.example.weclass.studentlist.profile.attendance.Present;
 import com.example.weclass.studentlist.profile.quiz.Quiz;
 import com.example.weclass.studentlist.profile.seatwork.SeatWork;
+import com.example.weclass.tasks.AddTask;
+import com.google.android.material.snackbar.Snackbar;
 
 public class StudentProfile extends AppCompatActivity {
 
     ImageButton backButton;
     TextView _id, _subjectID, _lastName, _firstName, _presentTextview, _absentTextView, _courseTextView, _subjectTextView;
-    ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent;
+    ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,6 @@ public class StudentProfile extends AppCompatActivity {
         goToPresent();
         goToAbsent();
 
-
     }
 
     public void initialize(){
@@ -61,6 +65,8 @@ public class StudentProfile extends AppCompatActivity {
         _absent = findViewById(R.id.absentButtonProfile);
         _courseTextView = findViewById(R.id.courseTextViewProfile);
         _subjectTextView = findViewById(R.id.subjectTextViewProfile);
+        _exams = findViewById(R.id.examButtonProfile);
+
     }
 
     public void goToActivities(){
@@ -173,7 +179,6 @@ public class StudentProfile extends AppCompatActivity {
         _absentTextView.setText(String.valueOf(absent));
         _courseTextView.setText(course);
         _subjectTextView.setText(subjectCode);
-
-
     }
+
 }

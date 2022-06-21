@@ -13,7 +13,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 18;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 19;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -63,6 +63,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TASK_TYPE_MY_GRADE = "task_type";
     public static final String COLUMN_TASK_NUMBER_MY_GRADE = "task_number";
     public static final String COLUMN_GRADE_MY_GRADE = "score";
+    public static final String COLUMN_GRADING_PERIOD_MY_GRADE = "grading_period";
+
 
     public static final String TABLE_ATTENDANCE = "my_attendance";
     public static final String COLUMN_ID_ATTENDANCE = "id_number";
@@ -142,7 +144,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_FIRST_NAME_MY_GRADE + " TEXT, " +
                 COLUMN_TASK_TYPE_MY_GRADE + " TEXT, " +
                 COLUMN_TASK_NUMBER_MY_GRADE + " TEXT," +
-                COLUMN_GRADE_MY_GRADE + " TEXT);";
+                COLUMN_GRADE_MY_GRADE + " TEXT," +
+                COLUMN_GRADING_PERIOD_MY_GRADE + " TEXT);";
 
         String query6 = "CREATE TABLE " + TABLE_ATTENDANCE +
                 " (" + COLUMN_ID_ATTENDANCE + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -261,7 +264,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO my_grades DATABASE
-    public void addGrade(String idStudent, String idSubject, String lastName, String firstName, String taskType, String taskNumber, String grade){
+    public void addGrade(String idStudent, String idSubject, String lastName, String firstName, String taskType, String taskNumber, String grade, String period){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -273,6 +276,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_TASK_TYPE_MY_GRADE, taskType);
         contentValues.put(COLUMN_TASK_NUMBER_MY_GRADE, taskNumber);
         contentValues.put(COLUMN_GRADE_MY_GRADE, grade);
+        contentValues.put(COLUMN_GRADING_PERIOD_MY_GRADE, period);
 
         long result = db.insert(TABLE_MY_GRADE, null, contentValues);
         if(result == -1){

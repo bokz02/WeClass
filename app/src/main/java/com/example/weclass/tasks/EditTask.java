@@ -100,7 +100,7 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
             _taskType.setText(bundle.getString("task_type"));
             _dueDate.setText(bundle.getString("task_date"));
             _progress.setText(bundle.getString("task_progress"));
-            _gradingPeriod.setText(bundle.getString("grading_period"));
+            _gradingPeriod.setText(bundle.getString("period"));
 
         }
     }

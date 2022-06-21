@@ -15,21 +15,22 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.profile.activities.ActivitiesAdapter;
+import com.example.weclass.studentlist.profile.activities.ActivitiesFinalsAdapter;
+import com.example.weclass.studentlist.profile.activities.ActivitiesMidtermAdapter;
 import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
-import com.example.weclass.studentlist.profile.quiz.Quiz;
 
 import java.util.ArrayList;
 
 public class SeatWork extends AppCompatActivity {
 
-    TextView _studentID, _subjectID, noText, _seatWork;
+    TextView _studentID, _subjectID, noText, noText2, _seatWork;
     ImageButton _backButton;
-    ExtendedRecyclerView extendedRecyclerView;
-    ActivitiesAdapter activitiesAdapter;
-    ArrayList<ActivitiesItems> activitiesItems;
+    ExtendedRecyclerView extendedRecyclerView, extendedRecyclerView2;
+    ActivitiesMidtermAdapter activitiesAdapter;
+    ActivitiesFinalsAdapter activitiesFinalsAdapter;
+    ArrayList<ActivitiesItems> activitiesItems, activitiesItems2;
     DataBaseHelper dataBaseHelper;
-    View noView;
+    View noView, noView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class SeatWork extends AppCompatActivity {
         getDataFromProfile();
         display();
         initializeAdapter();
+        display2();
+        initializeAdapter2();
 
     }
 
@@ -52,6 +55,7 @@ public class SeatWork extends AppCompatActivity {
         super.onResume();
 
         initializeAdapter();
+        initializeAdapter2();
     }
 
     public void initialize(){
@@ -60,14 +64,17 @@ public class SeatWork extends AppCompatActivity {
         _subjectID = findViewById(R.id.subjectIDStudentSeatWork);
         _backButton = findViewById(R.id.backButtonSeatWork);
         extendedRecyclerView = findViewById(R.id.studentSeatWorkRecView);
+        extendedRecyclerView2 = findViewById(R.id.studentSeatWorkRecView2);
         noView = findViewById(R.id.noViewViewSeatWork);
         noText = findViewById(R.id.noTextTextViewSeatWork);
+        noView2 = findViewById(R.id.noViewViewSeatWork2);
+        noText2 = findViewById(R.id.noTextTextViewSeatWork2);
         _seatWork = findViewById(R.id.seatWorkStudentSeatWork);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
-        activitiesAdapter = new ActivitiesAdapter(SeatWork.this, activitiesItems);
+        activitiesAdapter = new ActivitiesMidtermAdapter(SeatWork.this, activitiesItems);
         extendedRecyclerView.setAdapter(activitiesAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(SeatWork.this));
         extendedRecyclerView.setEmptyView(noView, noText);
@@ -92,7 +99,8 @@ public class SeatWork extends AppCompatActivity {
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
-                + _seatWork.getText().toString() + "'", null);
+                + _seatWork.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Midterm%'", null);
 
         ArrayList<ActivitiesItems> activitiesItems = new ArrayList<>();
 
@@ -125,5 +133,49 @@ public class SeatWork extends AppCompatActivity {
                 overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
             }
         });
+    }
+
+    // INITIALIZE ADAPTER FOR RECYCLERVIEW
+    public void initializeAdapter2(){
+        activitiesFinalsAdapter = new ActivitiesFinalsAdapter(activitiesItems2,SeatWork.this);
+        extendedRecyclerView2.setAdapter(activitiesFinalsAdapter);
+        extendedRecyclerView2.setLayoutManager(new LinearLayoutManager(SeatWork.this));
+        extendedRecyclerView2.setEmptyView(noView2, noText2);
+    }
+
+    // DATA TO BE DISPLAY IN RECYCLERVIEW
+    public void display2(){
+
+        activitiesItems2 = new ArrayList<>();
+        dataBaseHelper = new DataBaseHelper(SeatWork.this);
+        activitiesItems2 = displayData2();
+    }
+
+    // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
+    private ArrayList<ActivitiesItems> displayData2(){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
+                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
+                + _studentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
+                + _subjectID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                + _seatWork.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Finals%'", null);
+
+        ArrayList<ActivitiesItems> activitiesItems2 = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do {
+                activitiesItems2.add(new ActivitiesItems(
+                        cursor.getString(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return activitiesItems2;
     }
 }

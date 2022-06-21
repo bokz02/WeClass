@@ -10,6 +10,7 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/input_text_style.xml" value="0.262" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ripple_create_cancel_button.xml" value="0.262" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ripple_effect_pressed.xml" value="0.262" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activities_finals_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activities_recyclerview_layout.xml" value="0.365625" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_about_us.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_absent.xml" value="0.36666666666666664" />
@@ -54,6 +55,7 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studentlist_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studentlist_viewpager_style.xml" value="0.365625" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/subject_recyclerview_style.xml" value="0.36666666666666664" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/task_grade_finals_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/task_grade_recycler_style.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/task_recyclerview_style.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />

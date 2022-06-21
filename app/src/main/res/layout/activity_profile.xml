@@ -37,20 +37,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.93" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".2" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.88" />
-
         <TextView
             android:id="@+id/studentIDProfile"
             android:layout_width="wrap_content"
@@ -67,32 +53,34 @@
             android:layout_height="wrap_content"
             android:text="subject id"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/studentIDProfile"
+            app:layout_constraintStart_toStartOf="@+id/studentIDProfile"
             app:layout_constraintTop_toBottomOf="@+id/studentIDProfile" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/guide6"
             app:layout_constraintEnd_toStartOf="@+id/guide2"
             app:layout_constraintStart_toStartOf="@+id/guide1"
-            app:layout_constraintTop_toTopOf="@+id/guide5">
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingHorizontal="10dp"
+                android:paddingBottom="20dp">
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/studentPfp"
                     android:layout_width="125dp"
                     android:layout_height="125dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="20dp"
 
                     android:src="@drawable/icon_profile1"
                     app:civ_border_color="@color/white"
@@ -103,10 +91,10 @@
 
                 <TextView
                     android:id="@+id/studFirstnameProfile"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="30dp"
                     android:gravity="center_horizontal"
                     android:text="Firstname"
@@ -114,7 +102,6 @@
                     android:textSize="23sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/studentPfp" />
 
@@ -125,10 +112,8 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/iconattendance"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.088"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                    app:layout_constraintStart_toStartOf="@+id/imageView13"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
                 <ImageView
                     android:id="@+id/imageView8"
@@ -136,18 +121,16 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/iconattendance"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.088"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView7"
                     app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:src="@drawable/iconpuzzle"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.088"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/studLastnameProfile" />
@@ -157,77 +140,83 @@
                     android:id="@+id/activityButtonProfile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/iconnext1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintTop_toBottomOf="@+id/studLastnameProfile" />
+                    app:layout_constraintTop_toTopOf="@+id/textView16" />
 
                 <ImageView
                     android:id="@+id/seatWorkButtonProfile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/iconnext1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.844"
-                    app:layout_constraintTop_toBottomOf="@+id/assignmentButtonProfile" />
+                    app:layout_constraintEnd_toEndOf="@+id/assignmentButtonProfile"
+                    app:layout_constraintTop_toTopOf="@+id/textView18" />
 
                 <ImageView
                     android:id="@+id/quizButtonProfile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/iconnext1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/seatWorkButtonProfile" />
+                    app:layout_constraintEnd_toEndOf="@+id/seatWorkButtonProfile"
+                    app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+                <ImageView
+                    android:id="@+id/projectButtonProfile"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/iconnext1"
+                    app:layout_constraintEnd_toEndOf="@+id/quizButtonProfile"
+                    app:layout_constraintTop_toTopOf="@+id/textView28" />
 
                 <ImageView
                     android:id="@+id/presentButtonProfile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/iconnext1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/quizButtonProfile" />
+                    app:layout_constraintEnd_toEndOf="@+id/quizButtonProfile"
+                    app:layout_constraintTop_toTopOf="@+id/textView20" />
 
                 <ImageView
                     android:id="@+id/absentButtonProfile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/iconnext1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/presentButtonProfile" />
+                    app:layout_constraintEnd_toEndOf="@+id/presentButtonProfile"
+                    app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+                <ImageView
+                    android:id="@+id/examButtonProfile"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/iconnext1"
+                    app:layout_constraintEnd_toEndOf="@+id/presentButtonProfile"
+                    app:layout_constraintTop_toTopOf="@+id/textView23" />
 
 
                 <ImageView
                     android:id="@+id/assignmentButtonProfile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/iconnext1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.826"
-                    app:layout_constraintTop_toBottomOf="@+id/activityButtonProfile" />
+                    app:layout_constraintEnd_toEndOf="@+id/activityButtonProfile"
+                    app:layout_constraintTop_toTopOf="@+id/textView17" />
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -235,9 +224,7 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/iconconnect"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.088"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView3"
                     app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
                 <ImageView
@@ -246,10 +233,26 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/iconconnect"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.088"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView5"
                     app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/iconconnect"
+                    app:layout_constraintStart_toStartOf="@+id/imageView5"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/iconconnect"
+                    app:layout_constraintStart_toStartOf="@+id/imageView5"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
                 <ImageView
                     android:id="@+id/imageView5"
@@ -257,14 +260,12 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/iconconnect"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.088"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView4"
                     app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
                 <TextView
                     android:id="@+id/studLastnameProfile"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
@@ -274,7 +275,6 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/studFirstnameProfile" />
 
@@ -283,68 +283,75 @@
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
                     android:text="Present"
                     android:textColor="@color/darkText"
-                    app:layout_constraintStart_toEndOf="@+id/imageView7"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    app:layout_constraintStart_toStartOf="@+id/textView28"
+                    app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
                     android:text="Assignment"
                     android:textColor="@color/darkText"
-                    app:layout_constraintStart_toEndOf="@+id/imageView4"
-                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+                    app:layout_constraintStart_toStartOf="@+id/textView16"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
                 <TextView
                     android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
                     android:text="Seatwork"
                     android:textColor="@color/darkText"
-                    app:layout_constraintStart_toEndOf="@+id/imageView5"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                    app:layout_constraintStart_toStartOf="@+id/textView17"
+                    app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
                 <TextView
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
                     android:text="Quiz"
                     android:textColor="@color/darkText"
-                    app:layout_constraintStart_toEndOf="@+id/imageView5"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                    app:layout_constraintStart_toStartOf="@+id/textView18"
+                    app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:text="Project"
+                    android:textColor="@color/darkText"
+                    app:layout_constraintStart_toStartOf="@+id/textView19"
+                    app:layout_constraintTop_toTopOf="@+id/imageView12" />
+
 
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="24dp"
                     android:text="Activity"
                     android:textColor="@color/darkText"
-                    app:layout_constraintHorizontal_bias="0.054"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/studLastnameProfile" />
+                    app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
                 <TextView
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
                     android:text="Absences"
                     android:textColor="@color/darkText"
-                    app:layout_constraintStart_toEndOf="@+id/imageView8"
-                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                    app:layout_constraintStart_toStartOf="@+id/textView20"
+                    app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:text="Exams"
+                    android:textColor="@color/darkText"
+                    app:layout_constraintStart_toStartOf="@+id/textView28"
+                    app:layout_constraintTop_toTopOf="@+id/imageView13" />
 
 
                 <TextView
@@ -352,6 +359,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:text="0"
                     android:textColor="@color/darkText"
                     app:layout_constraintEnd_toStartOf="@+id/presentButtonProfile"
@@ -362,6 +370,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:text="0"
                     android:textColor="@color/darkText"
                     app:layout_constraintEnd_toStartOf="@+id/absentButtonProfile"
@@ -376,12 +385,12 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
             android:text="Student Profile"
             android:textAllCaps="false"
-            android:layout_marginTop="20dp"
             android:textColor="@color/navigation_text_color"
             android:textSize="25sp"
-            android:layout_marginEnd="10dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guide2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -391,9 +400,9 @@
             android:id="@+id/courseTextViewProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:text="Course"
-            android:layout_marginEnd="10dp"
             android:textAllCaps="false"
             android:textColor="@color/darkText"
             android:textSize="15sp"
