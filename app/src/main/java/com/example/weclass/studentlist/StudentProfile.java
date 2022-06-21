@@ -18,6 +18,8 @@ import com.example.weclass.studentlist.profile.activities.Activities;
 import com.example.weclass.studentlist.profile.assignments.Assignments;
 import com.example.weclass.studentlist.profile.attendance.Absent;
 import com.example.weclass.studentlist.profile.attendance.Present;
+import com.example.weclass.studentlist.profile.exams.Exams;
+import com.example.weclass.studentlist.profile.projects.Projects;
 import com.example.weclass.studentlist.profile.quiz.Quiz;
 import com.example.weclass.studentlist.profile.seatwork.SeatWork;
 import com.example.weclass.tasks.AddTask;
@@ -27,7 +29,7 @@ public class StudentProfile extends AppCompatActivity {
 
     ImageButton backButton;
     TextView _id, _subjectID, _lastName, _firstName, _presentTextview, _absentTextView, _courseTextView, _subjectTextView;
-    ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams;
+    ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class StudentProfile extends AppCompatActivity {
         goToSeatWork();
         goToPresent();
         goToAbsent();
+        goToProjects();
+        goToExams();
 
     }
 
@@ -66,6 +70,7 @@ public class StudentProfile extends AppCompatActivity {
         _courseTextView = findViewById(R.id.courseTextViewProfile);
         _subjectTextView = findViewById(R.id.subjectTextViewProfile);
         _exams = findViewById(R.id.examButtonProfile);
+        _projects = findViewById(R.id.projectButtonProfile);
 
     }
 
@@ -113,6 +118,32 @@ public class StudentProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, SeatWork.class);
+                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("subjectID", _subjectID.getText().toString());
+                startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+            }
+        });
+    }
+
+    public void goToProjects(){
+        _projects.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StudentProfile.this, Projects.class);
+                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("subjectID", _subjectID.getText().toString());
+                startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+            }
+        });
+    }
+
+    public void goToExams(){
+        _exams.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StudentProfile.this, Exams.class);
                 intent.putExtra("studentID", _id.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);

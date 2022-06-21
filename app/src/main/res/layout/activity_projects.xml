@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".studentlist.profile.quiz.Quiz"
+    tools:context=".studentlist.profile.projects.Projects"
     android:background="@drawable/bg_nnavi">
 
     <androidx.constraintlayout.widget.Guideline
@@ -53,7 +53,7 @@
         android:id="@+id/textViewA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quizzes"
+        android:text="Projects"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="25dp"
@@ -63,19 +63,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/noTextTextViewQuiz"
+        android:id="@+id/noTextTextViewProjects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Currently no quiz to display."
+        android:text="Currently no projects to display."
         android:textColor="@color/cancelButtonPressed"
         android:textSize="16sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@id/noViewViewQuiz"
-        app:layout_constraintEnd_toEndOf="@+id/noViewViewQuiz"
-        app:layout_constraintStart_toStartOf="@+id/noViewViewQuiz" />
+        app:layout_constraintBottom_toTopOf="@id/noViewViewProjects"
+        app:layout_constraintEnd_toEndOf="@+id/noViewViewProjects"
+        app:layout_constraintStart_toStartOf="@+id/noViewViewProjects" />
 
     <View
-        android:id="@+id/noViewViewQuiz"
+        android:id="@+id/noViewViewProjects"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/ic_no_file"
@@ -85,19 +85,19 @@
         app:layout_constraintTop_toTopOf="@id/guide1" />
 
     <TextView
-        android:id="@+id/noTextTextViewQuiz2"
+        android:id="@+id/noTextTextViewProjects2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Currently no quiz to display."
+        android:text="Currently no projects to display."
         android:textColor="@color/cancelButtonPressed"
         android:textSize="16sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/noViewViewQuiz2"
-        app:layout_constraintEnd_toEndOf="@+id/noViewViewQuiz2"
-        app:layout_constraintStart_toStartOf="@+id/noViewViewQuiz2" />
+        app:layout_constraintBottom_toTopOf="@+id/noViewViewProjects2"
+        app:layout_constraintEnd_toEndOf="@+id/noViewViewProjects2"
+        app:layout_constraintStart_toStartOf="@+id/noViewViewProjects2" />
 
     <View
-        android:id="@+id/noViewViewQuiz2"
+        android:id="@+id/noViewViewProjects2"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/ic_no_file"
@@ -136,7 +136,7 @@
         app:layout_constraintBottom_toBottomOf="@id/guide1" />
 
     <ImageButton
-        android:id="@+id/backButtonQuiz"
+        android:id="@+id/backButtonProjects"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
@@ -147,17 +147,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/subjectIDStudentQuiz"
+        android:id="@+id/subjectIDStudentProjects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="subjectID"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentIDStudentQuiz" />
+        app:layout_constraintTop_toBottomOf="@+id/studentIDStudentProjects" />
 
     <TextView
-        android:id="@+id/studentIDStudentQuiz"
+        android:id="@+id/studentIDStudentProjects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="studentID"
@@ -167,7 +167,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.weclass.ExtendedRecyclerView
-        android:id="@+id/studentQuizRecView"
+        android:id="@+id/studentProjectsRecView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="@+id/guide1"
@@ -176,13 +176,12 @@
         app:layout_constraintEnd_toEndOf="@id/guide4"/>
 
     <com.example.weclass.ExtendedRecyclerView
-        android:id="@+id/studentQuizRecView2"
+        android:id="@+id/studentProjectsRecView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="@+id/guide5"
         app:layout_constraintBottom_toBottomOf="@+id/guide6"
         app:layout_constraintStart_toStartOf="@id/guide3"
         app:layout_constraintEnd_toEndOf="@id/guide4"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

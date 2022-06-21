@@ -72,7 +72,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
             public void onClick(View view) {
 
                 PopupMenu popupMenu = new PopupMenu(context, holder.optionSubject);
-                popupMenu.inflate(R.menu.option_subject_menu);
+                popupMenu.inflate(R.menu.option_subject_menu2);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {

@@ -9,15 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
-
+        <activity
+            android:name=".studentlist.profile.exams.Exams"
+            android:exported="false" />
+        <activity
+            android:name=".studentlist.profile.projects.Projects"
+            android:exported="false" />
         <activity
             android:name=".login.LoginActivity"
             android:exported="false" />
-
         <activity
             android:name=".login.RegisterAccountActivity"
             android:exported="false" />
-
         <activity
             android:name=".archive.Archive"
             android:exported="false"
@@ -85,7 +88,7 @@
             android:label="Add Subject"
             android:parentActivityName=".subject.Subject"
             android:theme="@style/Theme.Dialog"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".studentlist.StudentProfile"
             android:exported="false" />

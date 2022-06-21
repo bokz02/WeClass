@@ -1,4 +1,4 @@
-package com.example.weclass.studentlist.profile.quiz;
+package com.example.weclass.studentlist.profile.exams;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,74 +16,72 @@ import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.activities.ActivitiesFinalsAdapter;
-import com.example.weclass.studentlist.profile.activities.ActivitiesMidtermAdapter;
 import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
+import com.example.weclass.studentlist.profile.activities.ActivitiesMidtermAdapter;
+import com.example.weclass.studentlist.profile.projects.Projects;
 
 import java.util.ArrayList;
 
-public class Quiz extends AppCompatActivity {
+public class Exams extends AppCompatActivity {
 
-    TextView _studentID, _subjectID, noText, noText2, _quiz;
-    ImageButton _backButton;
+    TextView _studentID, _subjectID, _noText, _noText2;
+    ImageButton backButton;
     ExtendedRecyclerView extendedRecyclerView, extendedRecyclerView2;
-    ActivitiesMidtermAdapter activitiesAdapter;
+    ActivitiesMidtermAdapter activitiesMidtermAdapter;
     ActivitiesFinalsAdapter activitiesFinalsAdapter;
-    ArrayList<ActivitiesItems> activitiesItems, activitiesItems2;
     DataBaseHelper dataBaseHelper;
-    View noView, noView2;
+    ArrayList<ActivitiesItems> activitiesItems, activitiesItems2;
+    View _view , _view2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+        setContentView(R.layout.activity_exams);
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
         initialize();
-        backToStudentProfile();
         getDataFromProfile();
         display();
         initializeAdapter();
         display2();
         initializeAdapter2();
-
+        backToStudentProfile();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         initializeAdapter();
         initializeAdapter2();
     }
 
-    public void initialize(){
-
-        _studentID = findViewById(R.id.studentIDStudentQuiz);
-        _subjectID = findViewById(R.id.subjectIDStudentQuiz);
-        _backButton = findViewById(R.id.backButtonQuiz);
-        extendedRecyclerView = findViewById(R.id.studentQuizRecView);
-        extendedRecyclerView2 = findViewById(R.id.studentQuizRecView2);
-        noView = findViewById(R.id.noViewViewQuiz);
-        noText = findViewById(R.id.noTextTextViewQuiz);
-        noView2 = findViewById(R.id.noViewViewQuiz2);
-        noText2 = findViewById(R.id.noTextTextViewQuiz2);
+    private void initialize() {
+        _studentID = findViewById(R.id.studentIDStudentExams);
+        _subjectID = findViewById(R.id.subjectIDStudentExams);
+        _noText = findViewById(R.id.noTextTextViewExams);
+        _noText2 = findViewById(R.id.noTextTextViewExams2);
+        backButton = findViewById(R.id.backButtonExams);
+        extendedRecyclerView = findViewById(R.id.studentExamsRecView);
+        extendedRecyclerView2 = findViewById(R.id.studentExamsRecView2);
+        _view = findViewById(R.id.noViewViewExams);
+        _view2 = findViewById(R.id.noViewViewExams2);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
-        activitiesAdapter = new ActivitiesMidtermAdapter(Quiz.this, activitiesItems);
-        extendedRecyclerView.setAdapter(activitiesAdapter);
-        extendedRecyclerView.setLayoutManager(new LinearLayoutManager(Quiz.this));
-        extendedRecyclerView.setEmptyView(noView, noText);
+        activitiesMidtermAdapter = new ActivitiesMidtermAdapter(Exams.this, activitiesItems);
+        extendedRecyclerView.setAdapter(activitiesMidtermAdapter);
+        extendedRecyclerView.setLayoutManager(new LinearLayoutManager(Exams.this));
+        extendedRecyclerView.setEmptyView(_view, _noText);
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
     public void display(){
 
         activitiesItems = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(Quiz.this);
+        dataBaseHelper = new DataBaseHelper(Exams.this);
         activitiesItems = displayData();
     }
 
@@ -97,7 +95,7 @@ public class Quiz extends AppCompatActivity {
                 + _studentID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " LIKE '%Quiz%' " + " AND "
+                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " LIKE '%Exam%' " + " AND "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Midterm%'", null);
 
         ArrayList<ActivitiesItems> activitiesItems = new ArrayList<>();
@@ -114,39 +112,20 @@ public class Quiz extends AppCompatActivity {
         return activitiesItems;
     }
 
-    public void getDataFromProfile(){
-        Intent intent = getIntent();
-        String studentID = intent.getStringExtra("studentID");
-        String subjectID = intent.getStringExtra("subjectID");
-
-        _studentID.setText(studentID);
-        _subjectID.setText(subjectID);
-    }
-
-    public void backToStudentProfile(){
-        _backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
-            }
-        });
-    }
-
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter2(){
-        activitiesFinalsAdapter = new ActivitiesFinalsAdapter(activitiesItems2,Quiz.this);
+        activitiesFinalsAdapter = new ActivitiesFinalsAdapter(activitiesItems2, Exams.this);
         extendedRecyclerView2.setAdapter(activitiesFinalsAdapter);
-        extendedRecyclerView2.setLayoutManager(new LinearLayoutManager(Quiz.this));
-        extendedRecyclerView2.setEmptyView(noView2, noText2);
+        extendedRecyclerView2.setLayoutManager(new LinearLayoutManager(Exams.this));
+        extendedRecyclerView2.setEmptyView(_view2, _noText2);
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
     public void display2(){
 
         activitiesItems2 = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(Quiz.this);
+        dataBaseHelper = new DataBaseHelper(Exams.this);
         activitiesItems2 = displayData2();
     }
 
@@ -160,8 +139,7 @@ public class Quiz extends AppCompatActivity {
                 + _studentID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
-                + _quiz.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " LIKE '%Exam%' " + " AND "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Finals%'", null);
 
         ArrayList<ActivitiesItems> activitiesItems2 = new ArrayList<>();
@@ -178,4 +156,22 @@ public class Quiz extends AppCompatActivity {
         return activitiesItems2;
     }
 
+    public void getDataFromProfile(){
+        Intent intent = getIntent();
+        String studentID = intent.getStringExtra("studentID");
+        String subjectID = intent.getStringExtra("subjectID");
+
+        _studentID.setText(studentID);
+        _subjectID.setText(subjectID);
+    }
+
+    public void backToStudentProfile(){
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+            }
+        });
+    }
 }
