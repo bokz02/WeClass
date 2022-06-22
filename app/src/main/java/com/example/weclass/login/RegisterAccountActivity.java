@@ -143,10 +143,9 @@ public class RegisterAccountActivity extends AppCompatActivity {
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()){
+                                            if (task.isSuccessful()) {
                                                 Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!.", Toast.LENGTH_LONG).show();
-
-                                            }else {
+                                            } else {
                                                 Toast.makeText(RegisterAccountActivity.this, "Account Registration failed. Please try Again.", Toast.LENGTH_LONG).show();
                                             }
                                             progressBar.setVisibility(View.GONE);

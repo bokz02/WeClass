@@ -16,6 +16,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.29" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.25" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -55,11 +62,11 @@
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="List of Students"
+            android:layout_marginTop="25dp"
+            android:text="Student List"
             android:layout_marginEnd="10dp"
             android:textColor="@color/navigation_text_color"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintTop_toTopOf="parent" />
@@ -109,6 +116,38 @@
             app:layout_constraintEnd_toEndOf="@+id/guide4" />
 
         <TextView
+            android:id="@+id/summaryOfStudentTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:drawablePadding="10dp"
+            android:text="Total of Students:"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewStudentList"
+            app:layout_constraintEnd_toStartOf="@+id/summaryOfStudent"
+            app:layout_constraintHorizontal_bias="0.958"
+            app:layout_constraintStart_toStartOf="@+id/guide3"
+            app:layout_constraintTop_toTopOf="@+id/guide8"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/summaryOfStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:drawablePadding="10dp"
+            android:text="56"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guide1"
+            app:layout_constraintEnd_toEndOf="@+id/guide4"
+            app:layout_constraintTop_toTopOf="@+id/summaryOfStudentTV"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
             android:id="@+id/noStudentTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,9 +183,9 @@
             android:id="@+id/fabAddStudent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/lightText"
             android:clickable="true"
-            app:rippleColor="@color/rippleFAB"
+            app:backgroundTint="@color/lightText"
+            app:tint ="@color/white"
             android:tooltipText="Add student"
             android:contentDescription="@string/addStudent"
             android:focusable="true"
@@ -158,13 +197,13 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="39dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/guide1"
+            app:layout_constraintBottom_toTopOf="@+id/guide8"
             app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintStart_toStartOf="@id/guide3">
+            app:layout_constraintStart_toStartOf="@id/guide3"
+            app:layout_constraintTop_toBottomOf="@+id/parentID">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -177,12 +216,13 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/transparent_bg"
-                    android:drawableStart="@drawable/ic_baseline_search_24"
+                    android:drawableEnd="@drawable/ic_baseline_search_24"
                     android:drawablePadding="10dp"
-                    android:drawableTint="@color/lightText"
+                    android:drawableTint="#ACACAC"
                     android:hint="Search"
-                    android:textColor="@color/darkText"
+                    android:textColor="@color/black"
                     android:textColorHint="#ACACAC"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

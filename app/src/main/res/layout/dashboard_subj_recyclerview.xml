@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="15dp"
+    android:focusable="true"
+    android:clickable="true"
+    app:cardElevation="3dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/taskTypeRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Course"
+            android:textAllCaps="true"
+            android:textColor="@color/cardViewColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/subjectCodeRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subject code"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskTypeRecView" />
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_baseline_access_time_24"
+            android:backgroundTint="@color/darkText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecView" />
+
+        <TextView
+            android:id="@+id/timeTextViewRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="8:00 AM"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/dashSeparator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="-"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/timeTextViewRecView"
+            app:layout_constraintTop_toTopOf="@+id/timeTextViewRecView" />
+
+        <TextView
+            android:id="@+id/timeEndTextViewRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="8:00 AM"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/dashSeparator"
+            app:layout_constraintTop_toTopOf="@+id/dashSeparator" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>

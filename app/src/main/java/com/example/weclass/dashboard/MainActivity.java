@@ -18,9 +18,11 @@ import android.view.WindowManager;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.archive.Archive;
+import com.example.weclass.login.LoginActivity;
 import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.subject.Subject;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     ViewPager2 viewPager2;
 
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +105,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(MainActivity.this, Archive.class);
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.drawerLogout:
+
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to exit?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", (dialog, id) -> finish())
+                        .setNegativeButton("No", null)
+                        .show();                    // Exit pop up when back button is pressed if navigation drawer is not open
+
+                intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+
                 break;
 
         }

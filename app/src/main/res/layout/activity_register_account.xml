@@ -124,19 +124,8 @@
                     tools:layout_editor_absoluteX="60dp" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/signUpPassword1"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/signUpFullname"
-                    app:passwordToggleEnabled="true"
-                    android:drawableTint="@color/darkText"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
+
+                    <EditText
                         android:id="@+id/signUpPassword"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -146,15 +135,15 @@
                         android:drawablePadding="12dp"
                         android:drawableTint="@color/darkText"
                         android:hint="Password"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="30dp"
                         android:inputType="textPassword"
                         android:textColor="#717171"
                         android:textColorHighlight="#717171"
                         android:textColorHint="#717171"
                         android:textSize="15sp"
-                     />
-
-
-                </com.google.android.material.textfield.TextInputLayout>
+                        app:layout_constraintTop_toBottomOf="@+id/signUpFullname"/>
 
 
 
@@ -183,12 +172,11 @@
                     android:id="@+id/linearLayout6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:gravity="left"
                     android:layout_marginStart="55dp"
                     android:layout_marginEnd="55dp"
-                    android:gravity="left"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/signUpPassword1">
+                    app:layout_constraintTop_toBottomOf="@+id/signUpPassword">
 
                     <TextView
                         android:id="@+id/forgotPassword"
