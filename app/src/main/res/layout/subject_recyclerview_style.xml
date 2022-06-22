@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardViewRecView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="20dp"
     android:focusable="true"
     android:clickable="true"
-    app:cardElevation="5dp"
+    app:cardElevation="3dp"
     app:layout_constraintBottom_toBottomOf="@id/guide4"
     app:layout_constraintEnd_toEndOf="@id/guide2"
     app:layout_constraintStart_toStartOf="@id/guide1"
@@ -45,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="Course"
             android:textAllCaps="true"
-            android:textColor="@color/black"
+            android:textColor="@color/cardViewColor"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Subject code"
-            android:textColor="@color/black"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/taskTypeRecView" />
@@ -66,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Subject title"
-            android:textColor="@color/black"
+            android:textColor="@color/lightText"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecView" />
@@ -75,7 +76,7 @@
             android:id="@+id/imageView2"
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/ic_baseline_access_time_24"
             android:backgroundTint="@color/darkText"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,22 +131,33 @@
             android:id="@+id/semesterSubjectRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/round_corner_calcell"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="Semester"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/cardViewColor"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/optionButtonSubject"
-            app:layout_constraintTop_toTopOf="@+id/optionButtonSubject" />
+            app:layout_constraintStart_toEndOf="@+id/schoolYearSubjectRecView"
+            app:layout_constraintTop_toTopOf="@+id/schoolYearSubjectRecView" />
 
         <TextView
             android:id="@+id/schoolYearSubjectRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_corner_calcell"
+            android:backgroundTint="#32BAAA"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="School year"
-            android:textColor="@color/black"
+            android:textColor="#32BAAA"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/semesterSubjectRecView"
-            app:layout_constraintTop_toBottomOf="@+id/semesterSubjectRecView" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.003"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateTextViewRecView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

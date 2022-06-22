@@ -10,17 +10,23 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.archive.Archive;
+import com.example.weclass.login.LoginActivity;
 import com.example.weclass.schedule.WeekViewActivity;
+import com.example.weclass.studentlist.AddStudent;
 import com.example.weclass.subject.Subject;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     ViewPager2 viewPager2;
 
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +109,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(MainActivity.this, Archive.class);
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.drawerLogout:
+
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this);
+                builder.setTitle("Confirm logout");
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                builder.setMessage("Do you really want to logout?");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        finish();
+                        startActivity(intent);
+                        overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+
                 break;
 
         }

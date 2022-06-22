@@ -17,34 +17,34 @@
             android:layout_marginBottom="10dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
             app:layout_constraintBottom_toTopOf="@+id/guide1"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/searchAttendanceEditText"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/transparent_bg"
-                android:drawableStart="@drawable/ic_baseline_search_24"
-                android:drawablePadding="10dp"
-                android:drawableTint="@color/lightText"
-                android:hint="Search"
-                android:textColor="@color/darkText"
-                android:textColorHint="#ACACAC"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="match_parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:id="@+id/searchAttendanceEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/transparent_bg"
+                    android:drawableEnd="@drawable/ic_baseline_search_24"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#ACACAC"
+                    android:hint="Search"
+                    android:textColor="@color/black"
+                    android:textColorHint="#ACACAC"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".25" />
+            app:layout_constraintGuide_percent="0.24" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -127,32 +127,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".275" />
+            app:layout_constraintGuide_percent="0.27" />
+
 
         <TextView
             android:id="@+id/presentTextView"
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:background="@drawable/transparent_bg"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/round_corner_calcell"
+            android:backgroundTint="@color/lightText"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="Present"
-            android:layout_marginEnd="5dp"
-            android:textColor="@color/darkText"
+            android:textColor="@color/lightText"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/guide5"
-            app:layout_constraintEnd_toEndOf="@id/guide4" />
+            app:layout_constraintEnd_toEndOf="@id/guide4"
+            app:layout_constraintTop_toTopOf="@+id/guide1" />
 
         <TextView
             android:id="@+id/absentTextView"
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:background="@drawable/transparent_bg"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/round_corner_calcell"
+            android:backgroundTint="@color/progressColorToDo"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="Absent"
-            android:layout_marginEnd="5dp"
             android:textColor="@color/progressColorToDo"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/guide5"
-            app:layout_constraintEnd_toStartOf="@+id/presentTextView" />
-
+            app:layout_constraintEnd_toStartOf="@+id/presentTextView"
+            app:layout_constraintTop_toTopOf="@+id/guide1" />
 
         <com.example.weclass.ExtendedRecyclerView
             android:id="@+id/attendanceRecyclerView"
@@ -171,7 +179,7 @@
             android:layout_marginEnd="10dp"
             android:text="Attendance"
             android:textColor="@color/navigation_text_color"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintTop_toTopOf="parent" />
@@ -192,31 +200,31 @@
             android:id="@+id/sortAttendance"
             android:layout_width="60dp"
             android:layout_height="22dp"
-            android:background="@drawable/transparent_bg"
-            android:text="Sort"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/transparent_bg"
+            android:text="Sort"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
+            app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+            app:layout_constraintEnd_toEndOf="@id/guide4" />
 
         <TextView
             android:id="@+id/currentDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             android:text="Monday, Feb 15,2022"
             android:textAllCaps="false"
-            android:textStyle="bold"
             android:textColor="@color/darkText"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
             android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
-            app:layout_constraintStart_toStartOf="@id/guide3"
             app:layout_constraintHorizontal_bias="0.163"
+            app:layout_constraintStart_toStartOf="@id/guide3"
             app:layout_constraintVertical_bias="0.188" />
 
 
