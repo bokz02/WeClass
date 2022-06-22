@@ -175,13 +175,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     //If may nakalog-in na, automatic pupunta sa MainActivity
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            finish();
-        } else {
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (mAuth.getCurrentUser() != null) {
+//            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+//            finish();
+//        } else {
+//        }
+//    }
     }
