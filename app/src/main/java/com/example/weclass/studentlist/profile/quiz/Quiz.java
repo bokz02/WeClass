@@ -160,8 +160,7 @@ public class Quiz extends AppCompatActivity {
                 + _studentID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
-                + _quiz.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " LIKE '%Quiz%'"+ " AND "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Finals%'", null);
 
         ArrayList<ActivitiesItems> activitiesItems2 = new ArrayList<>();

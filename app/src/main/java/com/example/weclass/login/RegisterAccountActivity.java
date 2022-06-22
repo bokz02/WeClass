@@ -34,6 +34,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
    ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,7 +136,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
-
+                                    Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!.", Toast.LENGTH_LONG).show();
                                     UserItem user = new UserItem(email, fullname);
 
                                     FirebaseDatabase.getInstance().getReference("Users")
@@ -143,13 +144,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()){
-                                                Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!.", Toast.LENGTH_LONG).show();
 
-                                            }else {
-                                                Toast.makeText(RegisterAccountActivity.this, "Account Registration failed. Please try Again.", Toast.LENGTH_LONG).show();
-                                            }
-                                            progressBar.setVisibility(View.GONE);
                                         }
                                     });
                                 }else {

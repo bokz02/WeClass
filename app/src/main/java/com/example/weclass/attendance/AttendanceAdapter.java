@@ -129,8 +129,9 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                     holder.absentButton.setEnabled(false);
                     holder.presentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
                     holder.absentButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
-                    Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
-                            + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
+                            + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                     cursor.close();
 
                     // ELSE IT WILL STORE TO DATABASE
