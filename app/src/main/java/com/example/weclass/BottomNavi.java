@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,10 +17,13 @@ import android.widget.TextView;
 
 import com.example.weclass.archive.ArchiveItems;
 import com.example.weclass.attendance.Attendance;
+import com.example.weclass.dashboard.MainActivity;
+import com.example.weclass.login.LoginActivity;
 import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.subject.SubjectItems;
 import com.example.weclass.tasks.Tasks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -191,6 +195,31 @@ public class BottomNavi extends AppCompatActivity {
                         break;
                     case R.id.naviRanking:
                         fragmentRanks();
+                        break;
+                    case R.id.drawerLogout:
+
+                        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(BottomNavi.this);
+                        builder.setTitle("Confirm logout");
+                        builder.setIcon(R.drawable.ic_baseline_warning_24);
+                        builder.setMessage("Do you really want to logout?");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(BottomNavi.this, LoginActivity.class);
+                                finish();
+                                startActivity(intent);
+                                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+                            }
+                        });
+
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        builder.show();
+
                         break;
                 }
                 return true;

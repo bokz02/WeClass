@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,8 +31,10 @@ import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.login.LoginActivity;
 import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.studentlist.StudentProfile;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -233,6 +236,31 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 intent = new Intent(this, Archive.class);
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.drawerLogout:
+
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Subject.this);
+                builder.setTitle("Confirm logout");
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                builder.setMessage("Do you really want to logout?");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Subject.this, LoginActivity.class);
+                        finish();
+                        startActivity(intent);
+                        overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+
                 break;
         }
         return true;

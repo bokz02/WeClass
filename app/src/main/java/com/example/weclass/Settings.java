@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,8 +18,10 @@ import android.widget.ImageView;
 
 import com.example.weclass.archive.Archive;
 import com.example.weclass.dashboard.MainActivity;
+import com.example.weclass.login.LoginActivity;
 import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.subject.Subject;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
 public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -119,6 +122,31 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                 intent = new Intent(this, Archive.class);
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.drawerLogout:
+
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Settings.this);
+                builder.setTitle("Confirm logout");
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                builder.setMessage("Do you really want to logout?");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Settings.this, LoginActivity.class);
+                        finish();
+                        startActivity(intent);
+                        overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+
                 break;
         }
         return true;

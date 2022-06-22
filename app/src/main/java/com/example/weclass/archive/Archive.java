@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,11 +26,13 @@ import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.login.LoginActivity;
 import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.subject.Subject;
 import com.example.weclass.subject.SubjectAdapter;
 import com.example.weclass.subject.SubjectItems;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -173,6 +176,31 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
                 intent = new Intent(this, Subject.class);
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.drawerLogout:
+
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Archive.this);
+                builder.setTitle("Confirm logout");
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                builder.setMessage("Do you really want to logout?");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Archive.this, LoginActivity.class);
+                        finish();
+                        startActivity(intent);
+                        overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+
                 break;
 
         }
