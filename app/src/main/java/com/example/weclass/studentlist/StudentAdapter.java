@@ -3,6 +3,8 @@ package com.example.weclass.studentlist;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -19,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.studentlist.profile.image.ImageUtils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
@@ -91,12 +95,17 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         StudentItems item = studentItems.get(position);
+
+        byte[] image = item.getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
+
         holder.id.setText(String.valueOf(studentItems.get(position).getId()));
         holder.parent_id.setText(String.valueOf(studentItems.get(position).getParent_id()));
         holder.lastNameText.setText(String.valueOf(studentItems.get(position).getLastname()));
         holder.firstNameText.setText(String.valueOf(studentItems.get(position).getFirstname()));
         holder.middleNameText.setText(String.valueOf(studentItems.get(position).getMiddleName()));
         holder.genderText.setText(String.valueOf(studentItems.get(position).getGender()));
+        holder.studentImage.setImageBitmap(bitmap);
 
         // NAVIGATE TO EDIT ACTIVITY, OR DELETE A SUBJECT
         holder.optionStudent.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +180,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         TextView id,parent_id, lastNameText, firstNameText, middleNameText, genderText;
         ImageButton button, optionStudent;
         OnNoteListener onNoteListener;
+        ImageView studentImage;
         public MyViewHolder(@NonNull View itemView, OnNoteListener mOnNoteListener) {
             super(itemView);
 
@@ -181,6 +191,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
             firstNameText = itemView.findViewById(R.id.studentFirstnameRecView);
             genderText = itemView.findViewById(R.id.studentSexRecView);
             optionStudent = itemView.findViewById(R.id.optionButtonSubject);
+            studentImage = itemView.findViewById(R.id.studentImageRecView);
 
             this.onNoteListener = mOnNoteListener;
 

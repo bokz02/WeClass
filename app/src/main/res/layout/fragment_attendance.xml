@@ -14,7 +14,6 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginBottom="10dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toTopOf="@+id/guide1"
@@ -98,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.24" />
+            app:layout_constraintGuide_percent="0.25" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -127,7 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.27" />
+            app:layout_constraintGuide_percent="0.29" />
 
 
         <TextView
@@ -139,12 +138,12 @@
             android:backgroundTint="@color/lightText"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
+            android:layout_marginBottom="5dp"
             android:text="Present"
             android:textColor="@color/lightText"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/guide5"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintTop_toTopOf="@+id/guide1" />
+            app:layout_constraintEnd_toEndOf="@id/guide4" />
 
         <TextView
             android:id="@+id/absentTextView"
@@ -158,9 +157,9 @@
             android:text="Absent"
             android:textColor="@color/progressColorToDo"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/guide5"
+            app:layout_constraintBottom_toBottomOf="@+id/presentTextView"
             app:layout_constraintEnd_toStartOf="@+id/presentTextView"
-            app:layout_constraintTop_toTopOf="@+id/guide1" />
+            app:layout_constraintTop_toTopOf="@+id/presentTextView" />
 
         <com.example.weclass.ExtendedRecyclerView
             android:id="@+id/attendanceRecyclerView"
@@ -191,23 +190,23 @@
             android:fontFamily="sans-serif"
             android:text="BSCS 3"
             android:textAllCaps="true"
-            android:textColor="@color/navigation_text_color"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/subjectCodeRecords"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
         <TextView
             android:id="@+id/sortAttendance"
-            android:layout_width="60dp"
-            android:layout_height="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/transparent_bg"
+            android:drawablePadding="10dp"
             android:text="Sort"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24"
+            app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_circle_24"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="@id/guide4" />
 

@@ -18,8 +18,8 @@
             android:id="@+id/lastNameAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
             android:layout_marginTop="10dp"
+            android:paddingStart="5dp"
             android:text="Last"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -30,9 +30,9 @@
             android:id="@+id/firstNameAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:text="First"
             android:textSize="16sp"
-            android:layout_marginStart="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/lastNameAttendanceRecView"
             app:layout_constraintStart_toEndOf="@+id/commaAttendanceRecView" />
 
@@ -51,8 +51,8 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="5dp"
             android:text="ID"
-            android:visibility="invisible"
             android:textSize="16sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/parentIdAttendanceRecView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -130,19 +130,19 @@
             android:id="@+id/genderAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
             android:layout_marginTop="5dp"
+            android:paddingHorizontal="5dp"
             android:text="Gender"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/lastNameAttendanceRecView"
             app:layout_constraintTop_toBottomOf="@+id/lastNameAttendanceRecView" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/pictureAttendanceRecView"
             android:layout_width="65dp"
-            android:layout_marginStart="10dp"
             android:layout_height="65dp"
             android:layout_marginVertical="5dp"
+            android:layout_marginStart="10dp"
             android:src="@drawable/ic_no_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -164,8 +164,8 @@
             android:id="@+id/absentAttendanceRecView"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/ic_x_red"
             android:layout_marginEnd="15dp"
+            android:background="@drawable/ic_x_red"
             android:backgroundTint="#DC433A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/presentAttendanceRecView"

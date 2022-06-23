@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:clickable="true"
+    android:focusable="true"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
-    android:clickable="true"
-    android:focusable="true"
     app:rippleColor="@color/lightText">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,8 +27,7 @@
             android:textSize="16sp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/parentIDStudentList"
@@ -37,33 +36,30 @@
             android:text="Parent iD"
             android:textSize="16sp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/iDNumberStudentList"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/studentSexRecView"
+            app:layout_constraintEnd_toStartOf="@+id/studentSexRecView" />
 
 
         <ImageButton
             android:id="@+id/optionButtonSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:background="@drawable/ic_subject_option"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/studentImageRecView"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginVertical="5dp"
             android:layout_marginStart="10dp"
-            android:background="@drawable/ic_no_image"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="1dp"
+            android:src="@drawable/ic_no_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,10 +70,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/studentFirstnameRecView"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/studentImageRecView"
             android:text="Lastname"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
             android:textColor="@color/darkText"
             android:textSize="15dp"
             android:textStyle="bold"
@@ -115,15 +111,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/studentLastnameRecView"
-            android:layout_marginStart="5dp"
             android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/studentFirstnameRecView"
             android:text="Middle"
             android:textColor="@color/lightText"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/studentFirstnameRecView"
             app:layout_constraintStart_toEndOf="@+id/studentFirstnameRecView" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

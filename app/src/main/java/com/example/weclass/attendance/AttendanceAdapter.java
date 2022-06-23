@@ -3,12 +3,15 @@ package com.example.weclass.attendance;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +46,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         TextView lastName, firstName, gender, id, _present, _absent, _subjectID, _date, _always1, _always0;
         ImageButton absentButton, presentButton;
         OnNoteListener onNoteListener;
+        ImageView image;
 
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
@@ -60,6 +64,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             _date = itemView.findViewById(R.id.dateTextViewAttendanceRecView);
             _always1 = itemView.findViewById(R.id.always1AttendanceRecView);
             _always0 = itemView.findViewById(R.id.always0AttendanceRecView);
+            image = itemView.findViewById(R.id.pictureAttendanceRecView);
 
             this.onNoteListener = onNoteListener;
         }
@@ -82,6 +87,9 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         AttendanceItems itemsAttendance = attendanceItems.get(position);
 
+        byte[] image = itemsAttendance.getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
+
         holder.id.setText(String.valueOf(attendanceItems.get(position).getId()));
         holder.lastName.setText(String.valueOf(attendanceItems.get(position).getLastName()));
         holder.firstName.setText(String.valueOf(attendanceItems.get(position).getFirstName()));
@@ -89,6 +97,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder._present.setText(String.valueOf(attendanceItems.get(position).getPresent()));
         holder._absent.setText(String.valueOf(attendanceItems.get(position).getAbsent()));
         holder._subjectID.setText(String.valueOf(attendanceItems.get(position).getParentID()));
+        holder.image.setImageBitmap(bitmap);
 
         // PRESENT BUTTON
         holder.presentButton.setOnClickListener(new View.OnClickListener() {

@@ -11,10 +11,11 @@ public class StudentItems implements Parcelable {
     private final int present;
     private final int absent;
     private int parent_id;
+    private byte[] image;
 
 
 
-    public StudentItems (int id, int parent_ID, String lastname, String firstname, String middleName, String gender, int present, int absent){
+    public StudentItems (int id, int parent_ID, String lastname, String firstname, String middleName, String gender, int present, int absent, byte[] image){
         this.id = id;
         this.parent_id = parent_ID;
         this.lastname = lastname;
@@ -23,6 +24,7 @@ public class StudentItems implements Parcelable {
         this.gender = gender;
         this.present = present;
         this.absent = absent;
+        this.image = image;
     }
 
     protected StudentItems(Parcel in) {
@@ -102,6 +104,10 @@ public class StudentItems implements Parcelable {
 
     public int getAbsent() {
         return absent;
+    }
+
+    public byte[] getImage(){
+        return image;
     }
 
     public static Comparator<StudentItems> sortAtoZComparator = new Comparator<StudentItems>() {

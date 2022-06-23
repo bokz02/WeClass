@@ -8,10 +8,11 @@ public class AttendanceItems {
 
     String lastName, firstName, gender;
     int id, parentID, present, absent;
+    byte[] image;
 
 
 
-    public AttendanceItems(int id, int parentID, String lastName, String firstName, String gender, int present, int absent) {
+    public AttendanceItems(int id, int parentID, String lastName, String firstName, String gender, int present, int absent, byte[] image) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.gender = gender;
@@ -19,6 +20,7 @@ public class AttendanceItems {
         this.parentID = parentID;
         this.present = present;
         this.absent = absent;
+        this.image = image;
     }
 
     public String getLastName() {
@@ -47,6 +49,10 @@ public class AttendanceItems {
 
     public int getAbsent() {
         return absent;
+    }
+
+    public byte[] getImage() {
+        return image;
     }
 
     public static Comparator<AttendanceItems> sortAtoZComparator = new Comparator<AttendanceItems>() {
