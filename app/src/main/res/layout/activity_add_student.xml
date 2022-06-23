@@ -56,27 +56,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".9"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
-        android:layout_width="325dp"
-        android:layout_height="420dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guide2"
+        app:layout_constraintStart_toStartOf="@id/guide1"
         app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="448dp">
+            android:layout_height="wrap_content">
 
             <View
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-
                 android:layout_marginTop="28dp"
                 android:background="#ECECEC"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,8 +99,8 @@
 
             <TextView
                 android:id="@+id/textView27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="62dp"
+                android:layout_height="21dp"
                 android:layout_marginTop="16dp"
                 android:text="Add New"
                 android:textColor="@color/black"
@@ -102,96 +115,101 @@
                 android:id="@+id/textView29"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
                 android:text="Student Information"
                 android:textColor="@color/black"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView27"
                 app:layout_constraintHorizontal_bias="0.494"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-
-                android:layout_marginTop="256dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-
-                android:layout_marginTop="188dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-
-                android:layout_marginTop="224dp"
-                android:background="#ECECEC"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView27"
                 app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
 
             <View
+                android:id="@+id/view12"
                 android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_height="1dp"
-
-                android:layout_marginTop="256dp"
                 android:background="#ECECEC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintTop_toBottomOf="@+id/studFirstnameProfile" />
 
             <View
+                android:id="@+id/view5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-
-                android:layout_marginTop="292dp"
+                android:layout_marginTop="15dp"
                 android:background="#ECECEC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintTop_toBottomOf="@+id/studentProfilePicture" />
 
             <View
+                android:id="@+id/view7"
                 android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_height="1dp"
-
-                android:layout_marginTop="325dp"
                 android:background="#ECECEC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintTop_toBottomOf="@+id/studLastnameProfile" />
 
-            <ImageView
-                android:id="@+id/studentPfp"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginBottom="244dp"
-                android:background="@drawable/ic_no_image"
+
+            <View
+                android:id="@+id/view13"
+                android:layout_width="match_parent"
+
+                android:layout_height="1dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view12" />
+
+            <View
+                android:id="@+id/view14"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="1dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/studMidname" />
+
+            <View
+                android:id="@+id/view17"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#ECECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/studGender" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/studentProfilePicture"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:src="@drawable/icon_profile1"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+            <ImageButton
+                android:id="@+id/addImageAddStudent"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_add_photo"
+                app:layout_constraintEnd_toEndOf="@+id/studentProfilePicture"
+                app:layout_constraintBottom_toBottomOf="@+id/studentProfilePicture"/>
 
 
             <EditText
@@ -202,31 +220,30 @@
                 android:background="@drawable/transparent_bg"
                 android:gravity="center"
                 android:hint="Last name"
-                android:maxLines="1"
-                android:maxLength="30"
                 android:inputType="textCapSentences|none"
+                android:maxLength="30"
+                android:maxLines="1"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view5" />
 
             <EditText
                 android:id="@+id/studMidname"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_marginBottom="124dp"
                 android:background="@drawable/transparent_bg"
                 android:gravity="center"
                 android:hint="Middle name"
                 android:inputType="textCapSentences"
-                android:textSize="15sp"
                 android:maxLength="30"
                 android:maxLines="1"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view12" />
 
             <EditText
                 android:id="@+id/studFirstnameProfile"
@@ -236,37 +253,35 @@
                 android:background="@drawable/transparent_bg"
                 android:gravity="center"
                 android:hint="First name"
-                android:textSize="16sp"
+                android:inputType="textCapSentences"
                 android:maxLength="30"
                 android:maxLines="1"
-                android:inputType="textCapSentences"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view7" />
 
             <TextView
                 android:id="@+id/studGender"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_marginBottom="92dp"
                 android:background="@drawable/transparent_bg"
-                android:gravity="center"
-                android:hint="Gender"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center"
+                android:hint="Gender"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view14" />
 
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/createButtonStudent"
-                android:layout_width="132dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginBottom="32dp"
                 android:background="@drawable/transparent_bg"
                 android:text="Add"
                 android:textAllCaps="false"
@@ -274,36 +289,24 @@
                 android:textSize="14sp"
                 app:backgroundTint="@color/navigation_text_color_pressed"
                 app:cornerRadius="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.917"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/view16"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
 
             <View
-                android:layout_width="1dp"
-                android:layout_height="5dp"
-
-                android:layout_marginTop="344dp"
-                android:background="#ECECEC"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
-
-
-            <View
+                android:id="@+id/view16"
                 android:layout_width="1dp"
                 android:layout_height="60dp"
-
-                android:layout_marginTop="325dp"
                 android:background="#ECECEC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/cancelButtonStudent"
-                android:layout_width="132dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginBottom="32dp"
                 android:background="@drawable/transparent_bg"
                 android:text="Cancel"
                 android:textAllCaps="false"
@@ -311,10 +314,10 @@
                 android:textSize="14sp"
                 app:backgroundTint="@color/navigation_text_color_pressed"
                 app:cornerRadius="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/view16"
                 app:layout_constraintHorizontal_bias="0.082"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -155,7 +155,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
             <ImageView
-                android:id="@+id/studentPfp"
+                android:id="@+id/studentProfilePicture"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginBottom="244dp"

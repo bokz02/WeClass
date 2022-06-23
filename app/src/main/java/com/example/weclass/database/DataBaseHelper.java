@@ -1,6 +1,8 @@
 package com.example.weclass.database;
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -13,7 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 19;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 26;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -35,6 +37,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_GENDER = "gender";
     public static final String COLUMN_PRESENT = "present";
     public static final String COLUMN_ABSENT = "absent";
+    public static final String COLUMN_PROFILE_PICTURE = "profile_picture";
 
 
     public static final String TABLE_MY_SCHEDULE = "my_schedule";
@@ -87,6 +90,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SEM_ARCHIVE = "semester";
     public static final String COLUMN_SY_ARCHIVE = "school_year";
 
+    public static final String TABLE_IMAGES = "my_images";
+    public static final String COLUMN_ID_IMAGES = "id_number";
+    public static final String COLUMN_ID_STUDENT_IMAGES = "id_student";
+    public static final String COLUMN_IMAGE_IMAGES = "student_image";
+
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -117,7 +125,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_MIDDLE_NAME + " TEXT, " +
                 COLUMN_GENDER + " TEXT, " +
                 COLUMN_PRESENT + " TEXT, " +
-                COLUMN_ABSENT + " TEXT);";
+                COLUMN_ABSENT + " TEXT, " +
+                COLUMN_PROFILE_PICTURE + " BLOB);";
+
 
         String query3 = "CREATE TABLE " + TABLE_MY_SCHEDULE +
                 " (" + COLUMN_ID3 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -168,6 +178,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_SEM_ARCHIVE + " TEXT, " +
                 COLUMN_SY_ARCHIVE + " TEXT);";
 
+        String query8 = "CREATE TABLE " + TABLE_IMAGES +
+                " (" + COLUMN_ID_IMAGES + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_ID_STUDENT_IMAGES + " TEXT, " +
+                COLUMN_IMAGE_IMAGES + " BLOB );";
+
         db.execSQL(query4);
         db.execSQL(query3);
         db.execSQL(query2);
@@ -175,6 +190,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(query5);
         db.execSQL(query6);
         db.execSQL(query7);
+        db.execSQL(query8);
     }
 
     @Override
@@ -186,6 +202,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_GRADE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTENDANCE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_ARCHIVE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGES);
         onCreate(db);
     }
 
@@ -205,7 +222,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void addStudent(String parentID, String lastName, String firstName, String middleName, String gender, String present, String absent){
+    public void addStudent(String parentID, String lastName, String firstName, String middleName, String gender, String present, String absent, byte[] img){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -216,6 +233,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_GENDER, gender);
         cv.put(COLUMN_PRESENT, present);
         cv.put(COLUMN_ABSENT, absent);
+        cv.put(COLUMN_PROFILE_PICTURE, img);
+
 
         long result = db.insert(TABLE_MY_STUDENTS, null, cv);
         if(result == -1){
@@ -324,6 +343,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void addToImages(String studentID, byte[] img){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_ID_STUDENT_IMAGES, studentID);
+        contentValues.put(COLUMN_IMAGE_IMAGES, img);
+
+        long result = db.insert(TABLE_IMAGES, null, contentValues);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
     // UPDATE DATA OF SUBJECT DATABASE
@@ -411,6 +443,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY
+    public void updateProfilePicture(String id, String idSubject,byte[] image){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_ID2, id);
+        contentValues.put(COLUMN_PARENT_ID_SUBJECT, idSubject);
+        contentValues.put(COLUMN_PROFILE_PICTURE, image);
+
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     // DELETE A SUBJECT
     public void deleteSubject(int row_id){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -448,6 +495,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public byte[] loadImageFromDB(){
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        Cursor cursor = db.query(true, TABLE_IMAGES, new String[]{COLUMN_IMAGE_IMAGES,},
+                null, null, null,null, COLUMN_ID_IMAGES + " DESC ", "1");
+        if (cursor.moveToFirst()){
+            @SuppressLint("Range") byte[] blob = cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE_IMAGES));
+            cursor.close();
+            return blob;
+        }
+        cursor.close();
+        return null;
+    }
 
 }

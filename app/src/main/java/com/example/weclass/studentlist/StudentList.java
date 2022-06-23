@@ -148,6 +148,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
     private ArrayList<StudentItems> displayData(){
+
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "

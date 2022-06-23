@@ -1,31 +1,45 @@
 package com.example.weclass.studentlist;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.studentlist.profile.image.DrawableUtils;
+import com.example.weclass.studentlist.profile.image.ImageUtils;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 public class AddStudent extends AppCompatActivity {
 
     Button cancelButton, createButton;
-    ImageButton backButton;
+    ImageButton backButton, _addImage;
+    ImageView profilePicture;
     TextView genderTextview, parentID, _present, _absent, _date;
     EditText lastName, firstName, middleName;
     String selectedGender;
+    Uri uri = null;
+    byte[] img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +55,8 @@ public class AddStudent extends AppCompatActivity {
         cancelButton();     // CANCEL BUTTON, BACK TO STUDENT LIST
         backToStudentList();    // BACK TO STUDENT LIST ACTIVITY
         getDataFromStudentListFragment();
+        addPhoto();     // BUTTON THAT PICK IMAGE FROM CAMERA OR GALLERY
+        //displayImage();
     }
 
     public void getDataFromStudentListFragment(){
@@ -60,7 +76,8 @@ public class AddStudent extends AppCompatActivity {
         parentID = findViewById(R.id.parentIDAddStudent);
         _absent = findViewById(R.id.absentIDAddStudent);
         _present = findViewById(R.id.presentIDAddStudent);
-
+        _addImage = findViewById(R.id.addImageAddStudent);
+        profilePicture = findViewById(R.id.studentProfilePicture);
     }
 
     public void backToStudentList(){
@@ -178,21 +195,58 @@ public class AddStudent extends AppCompatActivity {
 
                             }else {
 
-                                DataBaseHelper dbh = new DataBaseHelper(AddStudent.this);
-                                dbh.addStudent(parentID.getText().toString().trim(),
-                                        lastName.getText().toString().trim(),
-                                        firstName.getText().toString().trim(),
-                                        middleName.getText().toString().trim(),
-                                        genderTextview.getText().toString().trim(),
-                                        _present.getText().toString().trim(),
-                                        _absent.getText().toString().trim());
+                                // IF URI DON'T HAVE DATA, IT WILL SAVE WITH A DEFAULT IMAGE
+                                if(uri == null) {
 
-                                Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
-                                lastName.setText("");
-                                firstName.setText("");
-                                middleName.setText("");
-                                genderTextview.setText("");
+                                    byte[] image = DrawableUtils.getBytes(BitmapFactory.decodeResource(getResources(), R.drawable.icon_profile1));
 
+                                    DataBaseHelper dbh = new DataBaseHelper(AddStudent.this);
+                                    dbh.addStudent(parentID.getText().toString().trim(),
+                                            lastName.getText().toString().trim(),
+                                            firstName.getText().toString().trim(),
+                                            middleName.getText().toString().trim(),
+                                            genderTextview.getText().toString().trim(),
+                                            _present.getText().toString().trim(),
+                                            _absent.getText().toString().trim(),
+                                            image);
+
+
+                                    Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
+                                    lastName.setText("");
+                                    firstName.setText("");
+                                    middleName.setText("");
+                                    genderTextview.setText("");
+
+                                    // IF URI DON'T HAVE DATA, IT WILL SAVE WITH AN IMAGE PROVIDED BY USER
+                                }else {
+                                    try {
+                                        InputStream inputStream = getContentResolver().openInputStream(uri);
+                                        byte[] inputData = ImageUtils.getBytes(inputStream);
+                                        DataBaseHelper dbh = new DataBaseHelper(AddStudent.this);
+                                        dbh.addStudent(parentID.getText().toString().trim(),
+                                                lastName.getText().toString().trim(),
+                                                firstName.getText().toString().trim(),
+                                                middleName.getText().toString().trim(),
+                                                genderTextview.getText().toString().trim(),
+                                                _present.getText().toString().trim(),
+                                                _absent.getText().toString().trim(),
+                                                inputData);
+
+
+                                        Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
+                                        lastName.setText("");
+                                        firstName.setText("");
+                                        middleName.setText("");
+                                        genderTextview.setText("");
+                                        profilePicture.setImageResource(R.drawable.icon_profile1);
+
+
+                                    }catch (Exception e){
+                                        DataBaseHelper dbh = new DataBaseHelper(AddStudent.this);
+                                        dbh.close();
+
+                                    }
+                                }
                             }
                         }
                     });
@@ -202,5 +256,31 @@ public class AddStudent extends AppCompatActivity {
         };
     }
     );
+}
 
-}}
+    //IMAGE PICKER THAT SELECT PHOTO FROM CAMERA OR GALLERY
+    public void addPhoto(){
+        _addImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagePicker.with(AddStudent.this)
+                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
+            }
+        });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(data != null){
+            uri = data.getData();
+            profilePicture.setImageURI(uri);
+        }
+    }
+
+}
