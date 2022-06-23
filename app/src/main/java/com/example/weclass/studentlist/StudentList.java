@@ -30,12 +30,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class StudentList extends Fragment implements StudentAdapter.OnNoteListener{
+public class StudentList extends Fragment implements StudentAdapter.OnNoteListener, StudentAdapter.ItemCallback{
 
     ExtendedRecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
     View view;
-    TextView parentID, _subjectCode, _sort, _courseTitle, noStudentTextView, _id;
+    TextView parentID, _subjectCode, _sort, _courseTitle, noStudentTextView, _id, _studentSum;
     DataBaseHelper dataBaseHelper;
     ArrayList<StudentItems> studentItems;
     StudentAdapter studentAdapter;
@@ -48,14 +48,15 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
                              Bundle savedInstanceState) {
     view = inflater.inflate(R.layout.fragment_student_list, container, false);
 
-    initialize();       // INITIALIZE ALL VIEWS
-    addStudent();       // ADD STUDENT BUTTON
-    getDataFromBottomNaviActivity(); // GET DATA FROM BOTTOM NAVI THE NEEDS to DISPLAY SPECIFIC DATA FROM EACH SUBJECT
-    display();              // DATA TO BE DISPLAY IN RECYCLERVIEW
-    initializeAdapter();     // INITIALIZE ADAPTER FOR RECYCLERVIEW
-    textListener();         // SEARCH FUNCTION FOR LIST OF STUDENTS
-    showHideFloatingActionButton();     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
-    sortList();     // SORT STUDENT LIST
+        initialize();       // INITIALIZE ALL VIEWS
+        addStudent();       // ADD STUDENT BUTTON
+        getDataFromBottomNaviActivity(); // GET DATA FROM BOTTOM NAVI THE NEEDS to DISPLAY SPECIFIC DATA FROM EACH SUBJECT
+        display();              // DATA TO BE DISPLAY IN RECYCLERVIEW
+        initializeAdapter();     // INITIALIZE ADAPTER FOR RECYCLERVIEW
+        textListener();         // SEARCH FUNCTION FOR LIST OF STUDENTS
+        showHideFloatingActionButton();     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
+        sortList();     // SORT STUDENT LIST
+        getSumOfStudents(); // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
 
 
         return view;
@@ -72,6 +73,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         display();              // DATA TO BE DISPLAY IN RECYCLERVIEW
         initializeAdapter();     // INITIALIZE ADAPTER FOR RECYCLERVIEW
         textListener();         // SEARCH BAR FOR LIST OF STUDENTS
+        getSumOfStudents();     // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
         super.onResume();
     }
 
@@ -131,7 +133,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
-        studentAdapter = new StudentAdapter(getContext(), studentItems, this);
+        studentAdapter = new StudentAdapter(getContext(), studentItems, this, this);
         recyclerView.setAdapter(studentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setEmptyView(noFile_, noStudentTextView);
@@ -139,8 +141,6 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
     public void display(){
-//        id = new ArrayList<>();
-//        parent_id = new ArrayList<>();
         studentItems = new ArrayList<>();
         dataBaseHelper = new DataBaseHelper(getContext());
         studentItems = displayData();
@@ -188,6 +188,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         noFile_ = view.findViewById(R.id.noStudentTaskView);
         noStudentTextView = view.findViewById(R.id.noStudentTextView);
         _id = view.findViewById(R.id.iDNumberStudentList);
+        _studentSum = view.findViewById(R.id.summaryOfStudent);
 
     }
 
@@ -235,6 +236,22 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         }
     }
 
+    // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
+    public void getSumOfStudents(){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                + parentID.getText().toString(), null);
+
+        if (cursor.moveToFirst() ){
+            _studentSum.setText(String.valueOf(cursor.getInt(0)));
+            cursor.close();
+        }
+    }
+
+
+    // THIS INTERFACE KNOWS WHAT ITEM NUMBER USER CLICKS THEN PASS THE DATA TO PROFILE ACTIVITY
     @Override
     public void onNoteClick(int position) {
         Intent intent = new Intent(getContext(), StudentProfile.class);
@@ -245,5 +262,11 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
 
         startActivity(intent);
+    }
+
+    // UPDATE SUM OF STUDENTS TEXTVIEW WHEN ITEM IS DELETE FROM RECYCLERVIEW
+    @Override
+    public void updateTextView() {
+        _studentSum.setText(String.valueOf(studentAdapter.getItemCount()));
     }
 }

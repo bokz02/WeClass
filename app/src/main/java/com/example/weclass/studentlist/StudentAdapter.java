@@ -31,15 +31,17 @@ import java.util.List;
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHolder> implements Filterable {
 
     private final ArrayList<StudentItems> studentItems;
-    private ArrayList<StudentItems> studentItemsFull;
+    private final ArrayList<StudentItems> studentItemsFull;
     private final Context context;
     private final OnNoteListener mOnNoteListener;
+    private final ItemCallback itemCallback;
 
 
-    public StudentAdapter(Context context, ArrayList<StudentItems> studentItems, OnNoteListener onNoteListener){
+    public StudentAdapter(Context context, ArrayList<StudentItems> studentItems, OnNoteListener onNoteListener, ItemCallback itemCallback){
         this.context = context;
         this.studentItems = studentItems;
         this.mOnNoteListener = onNoteListener;
+        this.itemCallback = itemCallback;
         studentItemsFull = new ArrayList<>(studentItems);
 
     }
@@ -89,7 +91,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.studentlist_recyclerview_style, parent,false);
-        return new MyViewHolder(view, mOnNoteListener);
+        return new MyViewHolder(view, mOnNoteListener, itemCallback);
     }
 
     @Override
@@ -148,6 +150,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                         int a = holder.getAdapterPosition();
                                         studentItems.remove(a);
                                         notifyItemRemoved(a);
+                                        itemCallback.updateTextView();
+
                                     }
                                 });
 
@@ -181,7 +185,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         ImageButton button, optionStudent;
         OnNoteListener onNoteListener;
         ImageView studentImage;
-        public MyViewHolder(@NonNull View itemView, OnNoteListener mOnNoteListener) {
+
+        public MyViewHolder(@NonNull View itemView, OnNoteListener mOnNoteListener, ItemCallback itemCallback) {
             super(itemView);
 
             id = itemView.findViewById(R.id.iDNumberStudentList);
@@ -192,6 +197,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
             genderText = itemView.findViewById(R.id.studentSexRecView);
             optionStudent = itemView.findViewById(R.id.optionButtonSubject);
             studentImage = itemView.findViewById(R.id.studentImageRecView);
+
 
             this.onNoteListener = mOnNoteListener;
 
@@ -208,6 +214,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
 
     public interface OnNoteListener{
         void onNoteClick(int position);
+    }
+
+    // UPDATE SUM OF STUDENTS IN STUDENT LIST FRAGMENT
+    public interface ItemCallback{
+        void updateTextView();
     }
 
 }
