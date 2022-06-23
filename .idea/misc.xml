@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable-nodpi/rounded_stroke.xml" value="0.262" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable-v24/round_bottom_corner.xml" value="0.262" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable-v24/round_top_corner.xml" value="0.262" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.262" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ic_baseline_access_time_filled_24.xml" value="0.199" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ic_launcher_background.xml" value="0.263" />
@@ -12,6 +15,8 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/input_text_style.xml" value="0.262" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ripple_create_cancel_button.xml" value="0.262" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/ripple_effect_pressed.xml" value="0.262" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/rounded_stroke_red.xml" value="0.262" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/drawable/sign_in_white_background.xml" value="0.262" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_about_us.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_add_student.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_add_subject.xml" value="0.33" />
@@ -22,8 +27,10 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_edit_task.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_event_edit.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_register_account.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_schedule.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_student_information.xml" value="0.36666666666666664" />
