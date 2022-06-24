@@ -33,13 +33,12 @@ import java.io.InputStream;
 public class AddStudent extends AppCompatActivity {
 
     Button cancelButton, createButton;
-    ImageButton backButton, _addImage;
+    ImageButton backButton;
     ImageView profilePicture;
-    TextView genderTextview, parentID, _present, _absent, _date;
+    TextView genderTextview, parentID, _present, _absent;
     EditText lastName, firstName, middleName;
     String selectedGender;
     Uri uri = null;
-    byte[] img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +75,6 @@ public class AddStudent extends AppCompatActivity {
         parentID = findViewById(R.id.parentIDAddStudent);
         _absent = findViewById(R.id.absentIDAddStudent);
         _present = findViewById(R.id.presentIDAddStudent);
-        _addImage = findViewById(R.id.addImageAddStudent);
         profilePicture = findViewById(R.id.studentProfilePicture);
     }
 
@@ -198,7 +196,7 @@ public class AddStudent extends AppCompatActivity {
                                 // IF URI DON'T HAVE DATA, IT WILL SAVE WITH A DEFAULT IMAGE
                                 if(uri == null) {
 
-                                    byte[] image = DrawableUtils.getBytes(BitmapFactory.decodeResource(getResources(), R.drawable.icon_profile1));
+                                    byte[] image = DrawableUtils.getBytes(BitmapFactory.decodeResource(getResources(), R.drawable.add_profile_1));
 
                                     DataBaseHelper dbh = new DataBaseHelper(AddStudent.this);
                                     dbh.addStudent(parentID.getText().toString().trim(),
@@ -260,7 +258,7 @@ public class AddStudent extends AppCompatActivity {
 
     //IMAGE PICKER THAT SELECT PHOTO FROM CAMERA OR GALLERY
     public void addPhoto(){
-        _addImage.setOnClickListener(new View.OnClickListener() {
+        profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ImagePicker.with(AddStudent.this)

@@ -40,11 +40,9 @@ import java.io.InputStream;
 
 public class StudentProfile extends AppCompatActivity {
 
-    ImageButton backButton, _addPhoto;
+    ImageButton backButton;
     TextView _id, _subjectID, _lastName, _firstName, _presentTextview, _absentTextView, _courseTextView, _subjectTextView;
     ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects, _profileImage;
-    Bitmap profileImage;
-    DataBaseHelper dataBaseHelper;
     Uri uri = null;
 
     @Override
@@ -90,7 +88,6 @@ public class StudentProfile extends AppCompatActivity {
         _subjectTextView = findViewById(R.id.subjectTextViewProfile);
         _exams = findViewById(R.id.examButtonProfile);
         _projects = findViewById(R.id.projectButtonProfile);
-        _addPhoto = findViewById(R.id.addPhotoButton);
         _profileImage = findViewById(R.id.studentProfilePicture);
 
     }
@@ -236,7 +233,7 @@ public class StudentProfile extends AppCompatActivity {
 
     //IMAGE PICKER THAT SELECT PHOTO FROM CAMERA OR GALLERY
     public void addPhoto(){
-        _addPhoto.setOnClickListener(new View.OnClickListener() {
+        _profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ImagePicker.with(StudentProfile.this)

@@ -6,8 +6,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -46,6 +48,7 @@ public class UserAccount extends AppCompatActivity {
     private String userId;
     private FirebaseUser user;
     ImageView changeProfile;
+    ImageButton backButton;
     Button editBtn, editBtnSave;
     FirebaseAuth fauth;
     String fullname, email;
@@ -64,6 +67,10 @@ public class UserAccount extends AppCompatActivity {
         setContentView(R.layout.activity_user_account);
 
 
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
+
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         auth = FirebaseAuth.getInstance();
 
@@ -75,6 +82,7 @@ public class UserAccount extends AppCompatActivity {
         userPfp();
         refreshlayout();
         addPhoto();
+        backButtonUser();
 
         editBtnSave = findViewById(R.id.userSaveBtn);
         editBtnSave.setOnClickListener(new View.OnClickListener() {
@@ -162,6 +170,7 @@ public class UserAccount extends AppCompatActivity {
         editBtn = findViewById(R.id.userEditBtn);
         progressBar = findViewById(R.id.progress_bar);
         fullname1 = findViewById(R.id.editFullname);
+        backButton = findViewById(R.id.userAccBack);
     }
 
 
@@ -234,19 +243,6 @@ public class UserAccount extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode,@androidx.annotation.Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if(requestCode == 1000) {
-//            if (resultCode == Activity.RESULT_OK){
-//                Uri imageUri = data.getData();
-//                //profilepic.setImageURI(imageUri);
-//                uploadImageToFirebase(imageUri);
-//            }
-//        }
-//    }
-
     private void uploadImageToFirebase(Uri imageUri) {
 
         StorageReference fileRef = storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/profile.jpg");
@@ -295,5 +291,15 @@ public class UserAccount extends AppCompatActivity {
                 changeProfile.setImageURI(uri);
                 uploadImageToFirebase(uri);
         }
+    }
+
+    public void backButtonUser(){
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+            }
+        });
     }
 }

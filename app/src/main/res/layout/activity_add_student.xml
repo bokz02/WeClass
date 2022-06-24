@@ -195,21 +195,14 @@
                 android:id="@+id/studentProfilePicture"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:src="@drawable/icon_profile1"
+                android:src="@drawable/add_profile_1"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1dp"
+                android:clickable="true"
                 android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-            <ImageButton
-                android:id="@+id/addImageAddStudent"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/ic_add_photo"
-                app:layout_constraintEnd_toEndOf="@+id/studentProfilePicture"
-                app:layout_constraintBottom_toBottomOf="@+id/studentProfilePicture"/>
 
 
             <EditText

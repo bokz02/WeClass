@@ -65,7 +65,6 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
         initialize();
         navigationOpen();
-
         terms();
         aboutUs();
         refreshlayout();
@@ -78,8 +77,16 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        initialize();
+        refreshlayout();
+        getData();
+        getPicture();
     }
 
     private void getPicture() {
@@ -124,6 +131,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
             public void onClick(View v) {
                 Intent intent = new Intent(Settings.this, UserAccount.class);
                 startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
             }
         });
     }
