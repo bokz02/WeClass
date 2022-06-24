@@ -54,6 +54,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         textListener();
         displayDate();
         sortAttendance();
+        automaticSort();
 
         return view;
     }
@@ -65,6 +66,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         getDataFromBottomNaviActivity();
         display();
         initializeAdapter();
+        automaticSort();
         super.onResume();
     }
 
@@ -188,6 +190,12 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
 
             }
         });
+    }
+
+    // AUTOMATIC SORT WHEN ACTIVITY OPEN
+    public void automaticSort(){
+        Collections.sort(attendanceItems, AttendanceItems.sortAtoZComparator);
+        initializeAdapter();
     }
 
     @Override

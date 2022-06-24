@@ -57,6 +57,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         showHideFloatingActionButton();     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
         sortList();     // SORT STUDENT LIST
         getSumOfStudents(); // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
+        automaticSort();    //AUTOMATIC SORT
 
 
         return view;
@@ -74,6 +75,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         initializeAdapter();     // INITIALIZE ADAPTER FOR RECYCLERVIEW
         textListener();         // SEARCH BAR FOR LIST OF STUDENTS
         getSumOfStudents();     // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
+        automaticSort();    //AUTOMATIC SORT
         super.onResume();
     }
 
@@ -268,5 +270,12 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     @Override
     public void updateTextView() {
         _studentSum.setText(String.valueOf(studentAdapter.getItemCount()));
+    }
+
+
+    // AUTOMATIC SORT WHEN ACTIVITY OPEN
+    public void automaticSort(){
+        Collections.sort(studentItems, StudentItems.sortAtoZComparator);
+        initializeAdapter();
     }
 }
