@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void initialize(){
-        viewPager2 = findViewById(R.id.viewPagerDashboard);
+
     }
 
 

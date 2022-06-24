@@ -130,15 +130,15 @@ public class RegisterAccountActivity extends AppCompatActivity {
 
                 //SAVING USER INFO IN FIREBASE
                 progressBar.setVisibility(View.VISIBLE);
-                mAuth.createUserWithEmailAndPassword(editTextemail.getText().toString(), editTextpassword.getText().toString())
+                mAuth.createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
-                                    Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!.", Toast.LENGTH_LONG).show();
-                                    UserItem user = new UserItem(email, fullname);
 
-                                    FirebaseDatabase.getInstance().getReference("Users")
+                                    UserItem user = new UserItem(email, fullname);
+                                    Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!", Toast.LENGTH_LONG).show();
+                                    FirebaseDatabase.getInstance().getReference("UserItem")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override

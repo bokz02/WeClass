@@ -5,7 +5,9 @@ public class UserItem {
 
     public String email, fullname;
 
-    public UserItem (){}
+    public UserItem (){
+
+    }
 
     public UserItem (String email, String fullname){
         this.email = email;

@@ -246,14 +246,12 @@
                 app:layout_constraintTop_toTopOf="@+id/timeAddSubject" />
 
 
-
-
             <TextView
                 android:id="@+id/textView78"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Day Schedule"
+                android:layout_width="77dp"
+                android:layout_height="18dp"
                 android:layout_marginTop="8dp"
+                android:text="Day Schedule"
                 android:textColor="@color/darkText"
                 android:textSize="13sp"
                 android:textStyle="bold"
