@@ -14,10 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.weclass.R;
+import com.example.weclass.studentlist.StudentProfile;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,6 +55,8 @@ public class UserAccount extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     private StorageReference storageReference;
     ProgressBar progressBar;
+    ImageView addProfilePicture;
+    Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,7 @@ public class UserAccount extends AppCompatActivity {
         chooseProfile();
         userPfp();
         refreshlayout();
+        addPhoto();
 
         editBtnSave = findViewById(R.id.userSaveBtn);
         editBtnSave.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +86,10 @@ public class UserAccount extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     private void update(FirebaseUser firebaseUser) {
         referenceUsers = FirebaseDatabase.getInstance().getReference().child("UserItem");
@@ -152,7 +162,6 @@ public class UserAccount extends AppCompatActivity {
         editBtn = findViewById(R.id.userEditBtn);
         progressBar = findViewById(R.id.progress_bar);
         fullname1 = findViewById(R.id.editFullname);
-
     }
 
 
@@ -225,21 +234,20 @@ public class UserAccount extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode,@androidx.annotation.Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 1000) {
-            if (resultCode == Activity.RESULT_OK){
-                Uri imageUri = data.getData();
-                //profilepic.setImageURI(imageUri);
-                uploadImageToFirebase(imageUri);
-            }
-        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode,@androidx.annotation.Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if(requestCode == 1000) {
+//            if (resultCode == Activity.RESULT_OK){
+//                Uri imageUri = data.getData();
+//                //profilepic.setImageURI(imageUri);
+//                uploadImageToFirebase(imageUri);
+//            }
+//        }
+//    }
 
     private void uploadImageToFirebase(Uri imageUri) {
-
 
         StorageReference fileRef = storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/profile.jpg");
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -263,4 +271,29 @@ public class UserAccount extends AppCompatActivity {
         });
     }
 
+    //IMAGE PICKER THAT SELECT PHOTO FROM CAMERA OR GALLERY
+    public void addPhoto(){
+        changeProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagePicker.with(UserAccount.this)
+                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
+            }
+        });
+    }
+
+    // SET IMAGE FROM CAMERA OR GALLERY
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(data != null) {
+            uri = data.getData();
+                changeProfile.setImageURI(uri);
+                uploadImageToFirebase(uri);
+        }
+    }
 }
