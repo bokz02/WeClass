@@ -76,7 +76,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
     }
 
-    // RESUME ALL FUNCTION FROM BEING HIDE
+    // RESUME ALL FUNCTION AFTER THIS ACTIVITY BEING HIDE
     @Override
     public void onResume() {
         init();             // INITIALIZE ALL VIEWS
@@ -166,7 +166,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                         cursor.getString(5),
                         cursor.getString(6),
                         cursor.getString(7),
-                        cursor.getString(8)));
+                        cursor.getString(8),
+                        cursor.getString(9)));
             }while (cursor.moveToNext());
         }
         cursor.close();

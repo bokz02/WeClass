@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bglight"
+    android:orientation="vertical"
     tools:context=".login.LoginActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -14,28 +13,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".1"/>
+        app:layout_constraintGuide_percent=".1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".5"/>
+        app:layout_constraintGuide_percent=".5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".15"/>
+        app:layout_constraintGuide_percent=".15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".85"/>
+        app:layout_constraintGuide_percent=".85" />
 
 
     <ImageView
@@ -43,10 +42,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/ic_login"
-        app:layout_constraintTop_toTopOf="@id/guide1"
+        app:layout_constraintBottom_toBottomOf="@id/guide2"
         app:layout_constraintEnd_toEndOf="@id/guide4"
         app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintBottom_toBottomOf="@id/guide2"/>
+        app:layout_constraintTop_toTopOf="@id/guide1" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/sign_in_white_background"
-        android:paddingBottom="50dp"
+        android:paddingBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -128,25 +127,33 @@
             app:passwordToggleTint="@color/darkText" />
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnLogin"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/loginParent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-            android:layout_marginStart="30dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/white_rounded_button"
-            android:backgroundTint="#027B75"
-            android:padding="12dp"
-            android:text="Log in"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.567"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/forgotPassword">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/white_rounded_button"
+                android:backgroundTint="#027B75"
+                android:padding="12dp"
+                android:text="Log in"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.567"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/forgotPassword"
@@ -174,14 +181,14 @@
             app:layout_constraintEnd_toStartOf="@+id/signUp"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+            app:layout_constraintTop_toBottomOf="@+id/loginParent" />
 
         <TextView
             android:id="@+id/signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="88dp"
-            android:onClick="signUp"
+            android:clickable="true"
             android:text="Register Here."
             android:textColor="#28908C"
             android:textStyle="bold"
@@ -194,8 +201,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

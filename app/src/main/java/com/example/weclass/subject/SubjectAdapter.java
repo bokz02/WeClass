@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.BottomNavi;
@@ -64,6 +66,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         holder.timeEnd.setText(String.valueOf(subjectItems.get(position).getTimeEndSubject()));
         holder.semester.setText(String.valueOf(subjectItems.get(position).getSemesterSubject()));
         holder.schoolYear.setText(String.valueOf(subjectItems.get(position).getSchoolYearSubject()));
+        holder.constraintLayout.setBackgroundColor(Color.parseColor(subjectItems.get(position).getColor()));
 
 
         // NAVIGATE TO EDIT ACTIVITY, OR DELETE A SUBJECT
@@ -229,6 +232,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         OnNoteListener onNoteListener;
         ImageButton optionSubject;
         CardView subjectClick;
+        ConstraintLayout constraintLayout;
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
@@ -243,6 +247,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
             timeEnd = itemView.findViewById(R.id.timeEndTextViewRecView);
             semester = itemView.findViewById(R.id.semesterSubjectRecView);
             schoolYear = itemView.findViewById(R.id.schoolYearSubjectRecView);
+            constraintLayout = itemView.findViewById(R.id.constraintBackgroundSubjectRecView);
 
 
             this.onNoteListener = onNoteListener;

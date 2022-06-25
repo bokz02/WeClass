@@ -17,21 +17,27 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.weclass.R;
+import com.example.weclass.Ranking;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
 
 public class AddSubjectActivity extends AppCompatActivity {
 
     Button cancelButton, createButton;
     EditText courseEditText, subjectNameEditText, subjectCodeEditText;
-    TextView dayTextView, timeTextView, timeEndTextView, schoolYearTextView, semesterTextView;
+    TextView dayTextView, timeTextView, timeEndTextView, schoolYearTextView, semesterTextView, colorTextView;
     int t1Hour, t1Minute;
     ImageButton backButton;
     String selectedDay, selectedSem, selectedSchoolYear;
+    int index;
+    List<String> colors = new ArrayList<>();
 
 
     @Override
@@ -51,6 +57,9 @@ public class AddSubjectActivity extends AppCompatActivity {
         pickDate();     // DATE PICKER POP UP AFTER BUTTON CLICKED
         pickSemester();
         pickSchoolYear();
+        randomColor();
+
+
     }
 
     // DAY PICKER WILL OPEN WHEN PRESSED
@@ -226,6 +235,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         timeEndTextView = findViewById(R.id.timeEndAddSubject);
         semesterTextView = findViewById(R.id.semesterAddSubject);
         schoolYearTextView = findViewById(R.id.schoolYearAddSubject);
+        colorTextView = findViewById(R.id.colorHexTextView);
     }
 
 
@@ -265,23 +275,17 @@ public class AddSubjectActivity extends AppCompatActivity {
                             DataBaseHelper dbh = new DataBaseHelper(AddSubjectActivity.this);
                             SQLiteDatabase sqLiteDatabase = dbh.getWritableDatabase();
 
-                            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-                                    + DataBaseHelper.TABLE_MY_SUBJECTS + " WHERE "
-                                    + DataBaseHelper.COLUMN_SUBJECT_CODE + " = '"
-                                    + subjectCodeEditText.getText().toString().trim() + "' AND "
-                                    + DataBaseHelper.COLUMN_SUBJECT_NAME + " = '"
-                                    + subjectNameEditText.getText().toString().trim() + "' AND "
-                                    + DataBaseHelper.COLUMN_COURSE + " = '"
-                                    + courseEditText.getText().toString().trim() + "'",  null);
-
-
-                            if(cursor.moveToFirst()){
-                                Snackbar.make(createButton, "" + courseEditText.getText().toString() + ", "
-                                        + subjectCodeEditText.getText().toString() + " is already in your subject list.", Snackbar.LENGTH_SHORT).show();
-                                cursor.close();
-                            }
-
-                            else {
+//                            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+//                                    + DataBaseHelper.TABLE_MY_SUBJECTS + " WHERE "
+//                                    + DataBaseHelper.COLUMN_SUBJECT_CODE + " = '"
+//                                    + subjectCodeEditText.getText().toString().trim() + "' AND "
+//                                    + DataBaseHelper.COLUMN_SUBJECT_NAME + " = '"
+//                                    + subjectNameEditText.getText().toString().trim() + "' AND "
+//                                    + DataBaseHelper.COLUMN_COURSE + " = '"
+//                                    + courseEditText.getText().toString().trim() + "'",  null);
+//
+//
+//                            if(cursor.moveToFirst()){
                                 dbh.addSubject(courseEditText.getText().toString().trim(),
                                         subjectCodeEditText.getText().toString().trim(),
                                         subjectNameEditText.getText().toString().trim(),
@@ -289,7 +293,8 @@ public class AddSubjectActivity extends AppCompatActivity {
                                         timeTextView.getText().toString().trim(),
                                         timeEndTextView.getText().toString().trim(),
                                         semesterTextView.getText().toString().trim(),
-                                        schoolYearTextView.getText().toString().trim());
+                                        schoolYearTextView.getText().toString().trim(),
+                                        colorTextView.getText().toString().trim());
 
                                 Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
 
@@ -301,7 +306,13 @@ public class AddSubjectActivity extends AppCompatActivity {
                                 timeEndTextView.setText("");
                                 semesterTextView.setText("");
                                 schoolYearTextView.setText("");
-                            }
+
+                                index = new Random().nextInt(colors.size());
+                                colorTextView.setText(String.valueOf(colors.get(index)));
+
+                                //cursor.close();
+
+
                         }
                     });
                     builder.show();
@@ -339,5 +350,33 @@ public class AddSubjectActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+    }
+
+
+    public void randomColor(){
+        colors = new ArrayList<>();
+
+        colors.add("#FFEBEE");
+        colors.add("#FCE4EC");
+        colors.add("#F3E5F5");
+
+        colors.add("#EDE7F6");
+        colors.add("#EDE7F6");
+        colors.add("#E8EAF6");
+
+        colors.add("#E1F5FE");
+        colors.add("#E0F7FA");
+        colors.add("#E0F2F1");
+
+        colors.add("#E8F5E9");
+        colors.add("#F1F8E9");
+        colors.add("#F9FBE7");
+//
+//        colors.add("#FFB300");
+//        colors.add("#FB8C00");
+//        colors.add("#F4511E");
+
+        index = new Random().nextInt(colors.size());
+        colorTextView.setText(String.valueOf(colors.get(index)));
     }
 }

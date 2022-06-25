@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mAuth = FirebaseAuth.getInstance();
         Initialized();
         signIn();
+        signUp();
     }
 
 
@@ -165,8 +166,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    public void signUp(View view) {
-        startActivity(new Intent(this, RegisterAccountActivity.class));
+    public void signUp() {
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,  RegisterAccountActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+            }
+        });
+
     }
 
     public void forgotPass(View view) {

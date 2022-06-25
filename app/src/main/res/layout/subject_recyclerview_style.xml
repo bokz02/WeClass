@@ -17,9 +17,11 @@
     app:rippleColor="@color/lightText">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintBackgroundSubjectRecView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/positionNumber"
@@ -36,6 +38,7 @@
             android:id="@+id/optionButtonSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/darkText"
             android:background="@drawable/ic_subject_option"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +49,7 @@
             android:layout_height="wrap_content"
             android:text="Course"
             android:textAllCaps="true"
-            android:textColor="@color/cardViewColor"
+            android:textColor="@color/darkText"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Subject title"
-            android:textColor="@color/lightText"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecView" />
@@ -136,8 +139,9 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="Semester"
-            android:textColor="@color/cardViewColor"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
+            android:backgroundTint="@color/darkText"
             app:layout_constraintStart_toEndOf="@+id/schoolYearSubjectRecView"
             app:layout_constraintTop_toTopOf="@+id/schoolYearSubjectRecView" />
 
@@ -148,11 +152,11 @@
 
             android:layout_marginTop="8dp"
             android:background="@drawable/round_corner_calcell"
-            android:backgroundTint="#32BAAA"
+            android:backgroundTint="@color/darkText"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="School year"
-            android:textColor="#32BAAA"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.003"

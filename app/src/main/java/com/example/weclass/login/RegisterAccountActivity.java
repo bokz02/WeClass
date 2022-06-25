@@ -45,6 +45,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
         Initialized();
         registerUser();
         backButton();
+        logIn();
 
     }
 
@@ -66,6 +67,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
             }
         });
     }
@@ -166,8 +168,6 @@ public class RegisterAccountActivity extends AppCompatActivity {
                             }
 
                         });
-
-
             }
         });
 
@@ -179,7 +179,14 @@ public class RegisterAccountActivity extends AppCompatActivity {
         startActivity(new Intent(this, TermsAndCondition.class));
     }
 
-    public void logIn(View view) {
-        startActivity(new Intent(this, LoginActivity.class));
+    public void logIn() {
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+            }
+        });
+
     }
 }

@@ -15,7 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 26;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 27;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -26,6 +26,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DAY = "subject_day";
     public static final String COLUMN_SEMESTER = "subject_semester";
     public static final String COLUMN_SCHOOL_YEAR = "subject_school_year";
+    public static final String COLUMN_SUBJECT_COLOR = "subject_color";
 
 
     public static final String TABLE_MY_STUDENTS = "my_students";
@@ -115,7 +116,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         COLUMN_TIME + " TEXT, " +
                         COLUMN_TIME_END + " TEXT, " +
                         COLUMN_SEMESTER + " TEXT, " +
-                        COLUMN_SCHOOL_YEAR + " TEXT);";
+                        COLUMN_SCHOOL_YEAR + " TEXT, " +
+                        COLUMN_SUBJECT_COLOR + " TEXT);";
 
         String query2 = "CREATE TABLE " + TABLE_MY_STUDENTS +
                 " (" + COLUMN_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -263,7 +265,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO SUBJECT DATABASE
-    public void addSubject(String course, String subjectCode, String subjectName, String day, String time, String timeEnd,String semester, String schoolYear){
+    public void addSubject(String course, String subjectCode, String subjectName, String day, String time, String timeEnd,String semester, String schoolYear, String color){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -275,6 +277,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_TIME_END, timeEnd);
         contentValues.put(COLUMN_SEMESTER, semester);
         contentValues.put(COLUMN_SCHOOL_YEAR, schoolYear);
+        contentValues.put(COLUMN_SUBJECT_COLOR, color);
 
         long result = db.insert(TABLE_MY_SUBJECTS, null, contentValues);
         if(result == -1){
