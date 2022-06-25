@@ -130,21 +130,22 @@ public class RegisterAccountActivity extends AppCompatActivity {
 
                 //SAVING USER INFO IN FIREBASE
                 progressBar.setVisibility(View.VISIBLE);
-                mAuth.createUserWithEmailAndPassword(editTextemail.getText().toString(), editTextpassword.getText().toString())
+                mAuth.createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
 
                                     UserItem user = new UserItem(email, fullname);
-
-                                    FirebaseDatabase.getInstance().getReference("Users")
+                                    Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!", Toast.LENGTH_LONG).show();
+                                    FirebaseDatabase.getInstance().getReference("UserItem")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!.", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!", Toast.LENGTH_LONG).show();
                                             } else {
                                                 Toast.makeText(RegisterAccountActivity.this, "Account Registration failed. Please try Again.", Toast.LENGTH_LONG).show();
                                             }

@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void initialize(){
-        viewPager2 = findViewById(R.id.viewPagerDashboard);
+
     }
 
 
@@ -111,14 +112,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 new AlertDialog.Builder(this)
                         .setMessage("Are you sure you want to exit?")
                         .setCancelable(false)
-                        .setPositiveButton("Yes", (dialog, id) -> finish())
+
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                finish();
+                            }
+                        })
                         .setNegativeButton("No", null)
-                        .show();                    // Exit pop up when back button is pressed if navigation drawer is not open
+                        .show();
 
-                intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-
-                break;
 
         }
         return true;
