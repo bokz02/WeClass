@@ -251,7 +251,7 @@
                 android:drawableTint="@color/buttonDisabled"
                 android:hint="Select Time"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/darkText"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView8"
                 app:layout_constraintStart_toStartOf="@+id/textView8"
