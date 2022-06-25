@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 import com.example.weclass.archive.ArchiveItems;
 import com.example.weclass.attendance.Attendance;
-import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.login.LoginActivity;
+import com.example.weclass.ratings.Ratings;
 import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.subject.SubjectItems;
 import com.example.weclass.tasks.Tasks;
@@ -137,9 +137,11 @@ public class BottomNavi extends AppCompatActivity {
 
     // OPEN ATTENDANCE FRAGMENT FUNCTION
     public void fragmentRanks(){
-        Ranking ranking = new Ranking();
+        Ratings ranking = new Ratings();
         Bundle bundle = new Bundle();
         bundle.putString("IDParent", parentID.getText().toString());
+        bundle.putString("SubjectCode", subjectCode.getText().toString());
+        bundle.putString("CourseCode", courseName.getText().toString());
 
         ranking.setArguments(bundle);
         fragmentLoader(ranking);

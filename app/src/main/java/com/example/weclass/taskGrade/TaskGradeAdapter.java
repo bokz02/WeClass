@@ -96,6 +96,9 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                 DataBaseHelper db = new DataBaseHelper(context);
                 SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
 
+
+                int a = Integer.parseInt(holder.gradeEditText.getText().toString());
+
                 Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
@@ -109,8 +112,11 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                         + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
                         + holder.gradingPeriod.getText().toString() + "'", null);
 
-                if(holder.gradeEditText.getText().toString().isEmpty()){
+                if(holder.gradeEditText.getText().toString().isEmpty()) {
                     Snackbar.make(holder.submitButtonGrade, "Do not submit empty grade!", Snackbar.LENGTH_SHORT).show();
+
+                }else if (a > 100){
+                    Snackbar.make(holder.submitButtonGrade, "" + "Score can't exceed over 100!", Snackbar.LENGTH_SHORT).show();
 
                 }else if (cursor.moveToFirst()){
 

@@ -20,6 +20,6 @@
 
     <item
         android:id="@+id/naviRanking"
-        android:title="Rankings"
+        android:title="Ratings"
         android:icon="@drawable/iconbargraph"/>
 </menu>

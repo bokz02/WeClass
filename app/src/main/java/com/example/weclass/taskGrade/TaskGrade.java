@@ -122,9 +122,9 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
                         cursor.getInt(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getString(10),
-                        cursor.getInt(15),
-                        cursor.getString(16)));
+                        cursor.getString(14),
+                        cursor.getInt(19),
+                        cursor.getString(20)));
             }while (cursor.moveToNext());
         }
         cursor.close();

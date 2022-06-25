@@ -105,6 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BSCS 3"
+            android:textAllCaps="true"
             android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/subjectCodeRecords"

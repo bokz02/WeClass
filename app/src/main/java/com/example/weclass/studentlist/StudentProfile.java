@@ -437,16 +437,16 @@ public class StudentProfile extends AppCompatActivity {
     // FINAL RATING PICKER
     public void pickFinalRating() {
         final String[] grade = new String[]{
-                "1",
+                "1.0",
                 "1.25",
                 "1.5",
                 "1.75",
-                "2",
+                "2.0",
                 "2.25",
                 "2.5",
                 "2.75",
-                "3",
-                "5",
+                "3.0",
+                "5.0",
                 "INC",
                 "DRP",
 
