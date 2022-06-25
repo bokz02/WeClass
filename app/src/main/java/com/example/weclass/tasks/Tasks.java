@@ -40,6 +40,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
     EditText searchEditText;
     View view;
     View _noFile;
+    int lastFirstVisiblePosition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,8 +98,19 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
         getDataFromBottomNaviActivity(); // GET PARENT ID FROM SUBJECT ACTIVITY
         display();              // DATA TO BE DISPLAY IN RECYCLERVIEW
         initializeAdapter();     // INITIALIZE ADAPTER FOR RECYCLERVIEW
-        textListener();
+        textListener();     // FILTER DATA WHEN SEARCHING
+
+        // SAVE RECYCLERVIEW SCROLL POSITION
+        ((LinearLayoutManager) extendedRecyclerView.getLayoutManager()).scrollToPosition(lastFirstVisiblePosition);
         super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+
+        // RESUME RECYCLERVIEW SCROLL POSITION
+        lastFirstVisiblePosition = ((LinearLayoutManager)extendedRecyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+        super.onPause();
     }
 
     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING

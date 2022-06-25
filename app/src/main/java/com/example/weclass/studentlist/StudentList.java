@@ -6,10 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -41,6 +43,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     StudentAdapter studentAdapter;
     EditText searchStudent;
     View noFile_;
+    int lastFirstVisiblePosition;
+    private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
 
 
     @Override
@@ -68,6 +72,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     // RESUME ALL FUNCTION FROM BEING HIDE
     @Override
     public void onResume() {
+        super.onResume();
+
         initialize();       // INITIALIZE ALL VIEWS
         addStudent();       // ADD STUDENT BUTTON
         getDataFromBottomNaviActivity(); // GET PARENT ID FROM SUBJECT ACTIVITY
@@ -76,7 +82,17 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         textListener();         // SEARCH BAR FOR LIST OF STUDENTS
         getSumOfStudents();     // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
         automaticSort();    //AUTOMATIC SORT
-        super.onResume();
+
+        // SAVE RECYCLERVIEW SCROLL POSITION
+        ((LinearLayoutManager) recyclerView.getLayoutManager()).scrollToPosition(lastFirstVisiblePosition);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        // RESUME RECYCLERVIEW SCROLL POSITION
+        lastFirstVisiblePosition = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
     }
 
     // SORT STUDENT LIST
@@ -280,5 +296,22 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     public void automaticSort(){
         Collections.sort(studentItems, StudentItems.sortAtoZComparator);
         initializeAdapter();
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if(savedInstanceState != null)
+        {
+            Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
+            recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(BUNDLE_RECYCLER_LAYOUT, recyclerView.getLayoutManager().onSaveInstanceState());
     }
 }

@@ -14,7 +14,7 @@
             android:id="@+id/noTaskTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No task to display, create one."
+            android:text="Currently you don't have task assigned, create one."
             android:textColor="@color/cancelButtonPressed"
             android:textSize="16sp"
             android:textStyle="italic"
