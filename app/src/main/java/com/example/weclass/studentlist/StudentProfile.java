@@ -3,6 +3,7 @@ package com.example.weclass.studentlist;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -29,8 +31,10 @@ import com.example.weclass.studentlist.profile.image.ImageUtils;
 import com.example.weclass.studentlist.profile.projects.Projects;
 import com.example.weclass.studentlist.profile.quiz.Quiz;
 import com.example.weclass.studentlist.profile.seatwork.SeatWork;
+import com.example.weclass.subject.AddSubjectActivity;
 import com.example.weclass.tasks.AddTask;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayInputStream;
@@ -40,9 +44,13 @@ import java.io.InputStream;
 
 public class StudentProfile extends AppCompatActivity {
 
-    ImageButton backButton;
-    TextView _id, _subjectID, _lastName, _firstName, _presentTextview, _absentTextView, _courseTextView, _subjectTextView;
+    ImageButton backButton, finalGradeButton, midtermGradeButton, finalRatingButton;
+    TextView _id, _subjectID, _lastName,
+            _firstName, _presentTextview, _absentTextView,
+            _courseTextView, _subjectTextView, _finalGrade,
+            _midtermGrade, _finalRating;
     ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects, _profileImage;
+    String selectedFinalGrade, selectedMidtermGrade, selectedFinalRating;
     Uri uri = null;
 
     @Override
@@ -66,6 +74,9 @@ public class StudentProfile extends AppCompatActivity {
         goToExams();    // GO TO EXAMS ACTIVITY
         addPhoto();     // ADD PHOTO FEATURE
         displayImage(); // DISPLAY IMAGE FROM DATABASE
+        pickMidtermGrade();
+        pickFinalGrade();
+        pickFinalRating();
 
 
     }
@@ -89,6 +100,13 @@ public class StudentProfile extends AppCompatActivity {
         _exams = findViewById(R.id.examButtonProfile);
         _projects = findViewById(R.id.projectButtonProfile);
         _profileImage = findViewById(R.id.studentProfilePicture);
+        _midtermGrade = findViewById(R.id.midtermGradeTextViewProfile);
+        _finalGrade = findViewById(R.id.finalGradeTextViewProfile);
+        _finalRating = findViewById(R.id.finalRatingTextViewProfile);
+        midtermGradeButton = findViewById(R.id.midtermGradeButtonProfile);
+        finalGradeButton = findViewById(R.id.finalGradeButtonProfile);
+        finalRatingButton = findViewById(R.id.finalRatingButtonProfile);
+
 
     }
 
@@ -217,6 +235,9 @@ public class StudentProfile extends AppCompatActivity {
 
         String lastName = studentItems.getLastname();
         String firstName = studentItems.getFirstname();
+        String midtermGrade_ = studentItems.getMidtermGrade();
+        String finalGrade_ = studentItems.getFinalGrade();
+        String finalRating_ = studentItems.getFinalRating();
         int present = studentItems.getPresent();
         int absent = studentItems.getAbsent();
 
@@ -228,6 +249,10 @@ public class StudentProfile extends AppCompatActivity {
         _absentTextView.setText(String.valueOf(absent));
         _courseTextView.setText(course);
         _subjectTextView.setText(subjectCode);
+        _midtermGrade.setText(midtermGrade_);
+        _finalGrade.setText(finalGrade_);
+        _finalRating.setText(finalRating_);
+
     }
 
 
@@ -298,6 +323,168 @@ public class StudentProfile extends AppCompatActivity {
             cursor.close();
         }
 
+    }
+
+
+    // MIDTERM GRADE PICKER
+    public void pickMidtermGrade() {
+        final String[] grade = new String[]{
+                "1",
+                "1.25",
+                "1.5",
+                "1.75",
+                "2",
+                "2.25",
+                "2.5",
+                "2.75",
+                "3",
+                "5",
+                "INC",
+                "DRP",
+
+        };
+
+        selectedMidtermGrade = grade[0];
+        midtermGradeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(StudentProfile.this);
+                builder.setTitle("Select grade");
+                builder.setSingleChoiceItems(grade, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedMidtermGrade = grade[i];
+                        _midtermGrade.setText(selectedMidtermGrade);
+
+                        DataBaseHelper dbh = new DataBaseHelper(StudentProfile.this);
+                        SQLiteDatabase sqLiteDatabase = dbh.getWritableDatabase();
+
+                        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                                + DataBaseHelper.COLUMN_ID2 + " = "
+                                + _id.getText().toString() + " AND "
+                                + DataBaseHelper.COLUMN_PARENT_ID + " = '"
+                                + _subjectID.getText().toString() + "'", null);
+
+                        dbh.updateMidtermGrade(_id.getText().toString().trim(),
+                                _midtermGrade.getText().toString());
+
+                        cursor.close();
+
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+
+    // FINAL GRADE PICKER
+    public void pickFinalGrade() {
+        final String[] grade = new String[]{
+                "1",
+                "1.25",
+                "1.5",
+                "1.75",
+                "2",
+                "2.25",
+                "2.5",
+                "2.75",
+                "3",
+                "5",
+                "INC",
+                "DRP",
+
+        };
+
+        selectedFinalGrade = grade[0];
+        finalGradeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(StudentProfile.this);
+                builder.setTitle("Select grade");
+                builder.setSingleChoiceItems(grade, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedFinalGrade = grade[i];
+                        _finalGrade.setText(selectedFinalGrade);
+
+                        DataBaseHelper dbh = new DataBaseHelper(StudentProfile.this);
+                        SQLiteDatabase sqLiteDatabase = dbh.getWritableDatabase();
+
+                        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                                + DataBaseHelper.COLUMN_ID2 + " = "
+                                + _id.getText().toString() + " AND "
+                                + DataBaseHelper.COLUMN_PARENT_ID + " = '"
+                                + _subjectID.getText().toString() + "'", null);
+
+                        dbh.updateFinalGrade(_id.getText().toString().trim(),
+                                _finalGrade.getText().toString());
+
+                        cursor.close();
+
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+
+    // FINAL RATING PICKER
+    public void pickFinalRating() {
+        final String[] grade = new String[]{
+                "1",
+                "1.25",
+                "1.5",
+                "1.75",
+                "2",
+                "2.25",
+                "2.5",
+                "2.75",
+                "3",
+                "5",
+                "INC",
+                "DRP",
+
+        };
+
+        selectedFinalRating = grade[0];
+        finalRatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(StudentProfile.this);
+                builder.setTitle("Select grade");
+                builder.setSingleChoiceItems(grade, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedFinalRating = grade[i];
+                        _finalRating.setText(selectedFinalRating);
+
+                        DataBaseHelper dbh = new DataBaseHelper(StudentProfile.this);
+                        SQLiteDatabase sqLiteDatabase = dbh.getWritableDatabase();
+
+                        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                                + DataBaseHelper.COLUMN_ID2 + " = "
+                                + _id.getText().toString() + " AND "
+                                + DataBaseHelper.COLUMN_PARENT_ID + " = '"
+                                + _subjectID.getText().toString() + "'", null);
+
+                        dbh.updateFinalRating(_id.getText().toString().trim(),
+                                _finalRating.getText().toString());
+
+                        cursor.close();
+
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
     }
 
 }

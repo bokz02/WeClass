@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.Comparator;
 
 public class StudentItems implements Parcelable {
-    String lastname, middleName, firstname, gender;
+    String lastname, middleName, firstname, gender, finalGrade, midtermGrade, finalRating;
     private int id;
     private final int present;
     private final int absent;
@@ -15,7 +15,12 @@ public class StudentItems implements Parcelable {
 
 
 
-    public StudentItems (int id, int parent_ID, String lastname, String firstname, String middleName, String gender, int present, int absent, byte[] image){
+    public StudentItems (int id, int parent_ID, String lastname,
+                         String firstname, String middleName, String gender,
+                         int present, int absent, byte[] image,
+                         String midtermGrade,String finalGrade, String finalRating){
+
+
         this.id = id;
         this.parent_id = parent_ID;
         this.lastname = lastname;
@@ -25,6 +30,9 @@ public class StudentItems implements Parcelable {
         this.present = present;
         this.absent = absent;
         this.image = image;
+        this.midtermGrade = midtermGrade;
+        this.finalGrade = finalGrade;
+        this.finalRating = finalRating;
     }
 
     protected StudentItems(Parcel in) {
@@ -36,6 +44,9 @@ public class StudentItems implements Parcelable {
         present = in.readInt();
         absent = in.readInt();
         parent_id = in.readInt();
+        midtermGrade = in.readString();
+        finalGrade = in.readString();
+        finalRating = in.readString();
     }
 
     public static final Creator<StudentItems> CREATOR = new Creator<StudentItems>() {
@@ -110,6 +121,18 @@ public class StudentItems implements Parcelable {
         return image;
     }
 
+    public String getMidtermGrade() {
+        return midtermGrade;
+    }
+
+    public String getFinalGrade() {
+        return finalGrade;
+    }
+
+    public String getFinalRating() {
+        return finalRating;
+    }
+
     public static Comparator<StudentItems> sortAtoZComparator = new Comparator<StudentItems>() {
         @Override
         public int compare(StudentItems studentItems, StudentItems t1) {
@@ -140,5 +163,8 @@ public class StudentItems implements Parcelable {
         parcel.writeInt(present);
         parcel.writeInt(absent);
         parcel.writeInt(parent_id);
+        parcel.writeString(midtermGrade);
+        parcel.writeString(finalGrade);
+        parcel.writeString(finalRating);
     }
 }

@@ -15,7 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 27;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 30;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -39,7 +39,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PRESENT = "present";
     public static final String COLUMN_ABSENT = "absent";
     public static final String COLUMN_PROFILE_PICTURE = "profile_picture";
-
+    public static final String COLUMN_MIDTERM_GRADE_STUDENT = "midterm_grade";
+    public static final String COLUMN_FINAL_GRADE_STUDENT = "final_grade";
+    public static final String COLUMN_FINAL_RATING_STUDENT = "final_rating";
 
     public static final String TABLE_MY_SCHEDULE = "my_schedule";
     public static final String COLUMN_ID3 = "id_number";
@@ -128,7 +130,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_GENDER + " TEXT, " +
                 COLUMN_PRESENT + " TEXT, " +
                 COLUMN_ABSENT + " TEXT, " +
-                COLUMN_PROFILE_PICTURE + " BLOB);";
+                COLUMN_PROFILE_PICTURE + " BLOB, " +
+                COLUMN_MIDTERM_GRADE_STUDENT + " TEXT," +
+                COLUMN_FINAL_GRADE_STUDENT + " TEXT," +
+                COLUMN_FINAL_RATING_STUDENT + " TEXT);";
 
 
         String query3 = "CREATE TABLE " + TABLE_MY_SCHEDULE +
@@ -224,7 +229,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void addStudent(String parentID, String lastName, String firstName, String middleName, String gender, String present, String absent, byte[] img){
+    public void addStudent(String parentID, String lastName,
+                           String firstName, String middleName,
+                           String gender, String present,
+                           String absent, byte[] img,
+                           String midtermGrade, String finalGrade,
+                           String finalRating){
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -236,7 +247,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PRESENT, present);
         cv.put(COLUMN_ABSENT, absent);
         cv.put(COLUMN_PROFILE_PICTURE, img);
-
+        cv.put(COLUMN_MIDTERM_GRADE_STUDENT, midtermGrade);
+        cv.put(COLUMN_FINAL_GRADE_STUDENT, finalGrade);
+        cv.put(COLUMN_FINAL_RATING_STUDENT, finalRating);
 
         long result = db.insert(TABLE_MY_STUDENTS, null, cv);
         if(result == -1){
@@ -454,6 +467,49 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_ID2, id);
         contentValues.put(COLUMN_PARENT_ID_SUBJECT, idSubject);
         contentValues.put(COLUMN_PROFILE_PICTURE, image);
+
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY
+    public void updateMidtermGrade(String id, String midtermGrade){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_ID2, id);
+        contentValues.put(COLUMN_MIDTERM_GRADE_STUDENT, midtermGrade);
+
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY
+    public void updateFinalGrade(String id, String finalGrade){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_ID2, id);
+        contentValues.put(COLUMN_FINAL_GRADE_STUDENT, finalGrade);
+
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY
+    public void updateFinalRating(String id, String finalRating){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_ID2, id);
+        contentValues.put(COLUMN_FINAL_RATING_STUDENT, finalRating);
 
         long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
         if(result == -1){

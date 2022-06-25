@@ -35,7 +35,7 @@ public class AddStudent extends AppCompatActivity {
     Button cancelButton, createButton;
     ImageButton backButton;
     ImageView profilePicture;
-    TextView genderTextview, parentID, _present, _absent;
+    TextView genderTextview, parentID, _present, _absent, _finalGrade, _midtermGrade, _finalRating;
     EditText lastName, firstName, middleName;
     String selectedGender;
     Uri uri = null;
@@ -76,6 +76,9 @@ public class AddStudent extends AppCompatActivity {
         _absent = findViewById(R.id.absentIDAddStudent);
         _present = findViewById(R.id.presentIDAddStudent);
         profilePicture = findViewById(R.id.studentProfilePicture);
+        _midtermGrade = findViewById(R.id.midtermGradeTextViewAddStudent);
+        _finalGrade = findViewById(R.id.finalGradeTextViewAddStudent);
+        _finalRating = findViewById(R.id.finalRatingTextViewAddStudent);
     }
 
     public void backToStudentList(){
@@ -206,7 +209,10 @@ public class AddStudent extends AppCompatActivity {
                                             genderTextview.getText().toString().trim(),
                                             _present.getText().toString().trim(),
                                             _absent.getText().toString().trim(),
-                                            image);
+                                            image,
+                                            _midtermGrade.getText().toString().trim(),
+                                            _finalGrade.getText().toString().trim(),
+                                            _finalRating.getText().toString().trim());
 
 
                                     Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
@@ -228,7 +234,10 @@ public class AddStudent extends AppCompatActivity {
                                                 genderTextview.getText().toString().trim(),
                                                 _present.getText().toString().trim(),
                                                 _absent.getText().toString().trim(),
-                                                inputData);
+                                                inputData,
+                                                _midtermGrade.getText().toString().trim(),
+                                                _finalGrade.getText().toString().trim(),
+                                                _finalRating.getText().toString().trim());
 
 
                                         Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();

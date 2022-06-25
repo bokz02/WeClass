@@ -171,7 +171,10 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
                         cursor.getString(5),
                         cursor.getInt(6),
                         cursor.getInt(7),
-                        cursor.getBlob(8)));
+                        cursor.getBlob(8),
+                        cursor.getString(9),
+                        cursor.getString(10),
+                        cursor.getString(11)));
             }while (cursor.moveToNext());
         }
         cursor.close();
