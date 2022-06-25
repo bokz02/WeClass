@@ -6,7 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -45,8 +51,67 @@ public class RegisterAccountActivity extends AppCompatActivity {
         Initialized();
         registerUser();
         backButton();
-        logIn();
 
+        String text = "Already have an account? Login Here ";
+        String text1 = "By signing up, you've agree to our Terms of Service and Privacy policy.";
+        SpannableString ss1 = new SpannableString(text1);
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                startActivity(new Intent(RegisterAccountActivity.this, TermsAndCondition.class));
+            }
+
+            @Override
+            public void updateDrawState(@NonNull TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(Color.parseColor("#28908C"));
+                ds.setUnderlineText(false);
+            }
+
+        };
+
+        ClickableSpan clickableSpan3 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+            Toast.makeText(RegisterAccountActivity.this, "Privacy Policy", Toast.LENGTH_SHORT);
+            }
+
+            @Override
+            public void updateDrawState(@NonNull TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(Color.parseColor("#28908C"));
+                ds.setUnderlineText(false);
+            }
+        };
+
+        ss1.setSpan(clickableSpan3, 56, 70, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE  );
+        ss1.setSpan(clickableSpan1, 35, 52, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE  );
+        terms.setText(ss1);
+        terms.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+
+
+
+        SpannableString ss = new SpannableString(text);
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                startActivity(new Intent(RegisterAccountActivity.this, LoginActivity.class));
+            }
+
+            @Override
+            public void updateDrawState(@NonNull TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(Color.parseColor("#28908C"));
+                ds.setUnderlineText(false);
+            }
+        };
+
+
+        ss.setSpan(clickableSpan, 25, 35, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE  );
+        login.setText(ss);
+        login.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void Initialized(){
@@ -174,18 +239,6 @@ public class RegisterAccountActivity extends AppCompatActivity {
 
 
 
-    public void terms(View view) {
-        startActivity(new Intent(this, TermsAndCondition.class));
-    }
 
-    public void logIn() {
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
-            }
-        });
 
-    }
 }

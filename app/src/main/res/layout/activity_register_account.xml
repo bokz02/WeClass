@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_top_corner"
-        android:paddingBottom="30dp"
+        android:paddingBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -172,109 +172,42 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+            app:layout_constraintTop_toBottomOf="@+id/termsOfServices" />
 
 
-        <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginEnd="55dp"
-            android:gravity="left"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/signUpPassword">
 
-            <TextView
-                android:id="@+id/forgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="By signing up, you've agree to our "
-                android:textColor="#A8A8A8"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/termsOfServices"
-                app:layout_constraintHorizontal_bias="0.981"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/signUpPassword" />
 
             <TextView
                 android:id="@+id/termsOfServices"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="terms"
                 android:text="Terms of Services "
-                android:textColor="#28908C"
+                android:layout_marginStart="55dp"
+                android:layout_marginEnd="55dp"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/forgotPassword" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginEnd="55dp"
-            android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-            tools:layout_editor_absoluteX="55dp">
-
-
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="and "
-                android:textColor="#A8A8A8"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/privacyPolicy"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
-
-            <TextView
-                android:id="@+id/privacyPolicy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Privacy Policy."
-                android:textColor="#28908C"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.205"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView25" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/btnsignUp">
+                app:layout_constraintTop_toBottomOf="@+id/signUpPassword"/>
 
 
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Already have an account? " />
+
 
             <TextView
                 android:id="@+id/signUpLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:text=" Sign in here."
-                android:textColor="#28908C"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:text="Already have an account? Register Here"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnsignUp" />
 
         <ProgressBar
             android:id="@+id/progressBar"

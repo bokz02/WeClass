@@ -5,4 +5,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="addStudent">Add student</string>
+    <string name="termsOfService">By signing up, you\'ve agree to our <font color ="#28908C">\nTerms of services </font> and  <font color ="#28908C">Privacy policy</font></string>
+    <string name="AlreadyHave">Already have an account? <font color ="#28908C">Register Here</font> </string>
 </resources>
