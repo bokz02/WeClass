@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AboutUs"
-    android:background="@color/cleanMainBackground"
     android:orientation="vertical">
 
     <ImageView

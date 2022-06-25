@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".studentlist.AddStudent"
-    android:background="@drawable/bg_navi">
+    android:background="@drawable/bg_sub">
 
     <TextView
         android:id="@+id/parentIDAddStudent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_nnavi"
+    android:background="@drawable/bg_sub"
     tools:context=".studentlist.profile.assignments.Assignments">
 
     <androidx.constraintlayout.widget.Guideline
