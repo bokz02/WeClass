@@ -356,25 +356,33 @@ public class AddSubjectActivity extends AppCompatActivity {
     public void randomColor(){
         colors = new ArrayList<>();
 
-        colors.add("#FFEBEE");
-        colors.add("#FCE4EC");
-        colors.add("#F3E5F5");
 
-        colors.add("#EDE7F6");
-        colors.add("#EDE7F6");
-        colors.add("#E8EAF6");
+        //TEAL
+        colors.add("#009688");
+        colors.add("#00897B");
+        colors.add("#00796B");
+        colors.add("#00695C");
 
-        colors.add("#E1F5FE");
-        colors.add("#E0F7FA");
-        colors.add("#E0F2F1");
+        //CYAN
+        colors.add("#00BCD4");
+        colors.add("#00ACC1");
+        colors.add("#0097A7");
+        colors.add("#00838F");
 
-        colors.add("#E8F5E9");
-        colors.add("#F1F8E9");
-        colors.add("#F9FBE7");
-//
-//        colors.add("#FFB300");
-//        colors.add("#FB8C00");
-//        colors.add("#F4511E");
+        //AQUA BLUE
+        colors.add("#4AEC4");
+        colors.add("#079BF5");
+        colors.add("#038C9E");
+
+        //TURQUOISE
+        colors.add("#40E0D0");
+        colors.add("#48D1CC");
+        colors.add("#00CED1");
+      
+
+
+
+
 
         index = new Random().nextInt(colors.size());
         colorTextView.setText(String.valueOf(colors.get(index)));
