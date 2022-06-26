@@ -132,7 +132,12 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                    floatingActionButton.show();
+                    floatingActionButton.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            floatingActionButton.show();
+                        }
+                    }, 2000);
                 }
                 super.onScrollStateChanged(recyclerView, newState);
             }
@@ -298,7 +303,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         initializeAdapter();
     }
 
-    @Override
+
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
 

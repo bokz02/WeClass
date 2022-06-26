@@ -1,6 +1,7 @@
 package com.example.weclass.subject;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +17,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -54,6 +56,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     EditText searchEditText;
     View noFile;
     TextView noSubject;
+    int lastFirstVisiblePosition;
+    private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
 
 
+
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
@@ -79,6 +84,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     // RESUME ALL FUNCTION AFTER THIS ACTIVITY BEING HIDE
     @Override
     public void onResume() {
+        super.onResume();
+
         init();             // INITIALIZE ALL VIEWS
         navigationOpen();   //NAVIGATION DRAWER
         addSubject();       //FLOATING ACTION BUTTON
@@ -86,8 +93,20 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         textListener();     // FILTER SEARCH IN SUBJECT ACTIVITY
         initializeAdapter(); // INITIALIZE ADAPTER
         showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
-        super.onResume();
+
+        // SAVE RECYCLERVIEW SCROLL POSITION
+        ((LinearLayoutManager) recyclerView.getLayoutManager()).scrollToPosition(lastFirstVisiblePosition);
+
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // RESUME RECYCLERVIEW SCROLL POSITION
+        lastFirstVisiblePosition = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+    }
+
     // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
     public void showHideFloatingActionButton(){
 
@@ -95,7 +114,12 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                    floatActionButton.show();
+                    floatActionButton.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            floatActionButton.show();
+                        }
+                    }, 2000);
                 }
                 super.onScrollStateChanged(recyclerView, newState);
             }
@@ -286,6 +310,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         startActivity(intent);
         overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
     }
+
 
 
 }
