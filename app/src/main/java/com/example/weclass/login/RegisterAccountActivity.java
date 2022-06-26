@@ -73,7 +73,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
         ClickableSpan clickableSpan3 = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-            Toast.makeText(RegisterAccountActivity.this, "Privacy Policy", Toast.LENGTH_SHORT);
+            Toast.makeText(RegisterAccountActivity.this, "Privacy Policy", Toast.LENGTH_SHORT).show();
             }
 
             @Override
