@@ -21,6 +21,7 @@
 
     <style name="Theme.Dialog" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/navigation_text_color</item>
+
     </style>
 
     <style name="Theme.TimeDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
