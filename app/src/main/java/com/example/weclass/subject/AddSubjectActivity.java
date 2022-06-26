@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -273,17 +274,21 @@ public class AddSubjectActivity extends AppCompatActivity {
                             DataBaseHelper dbh = new DataBaseHelper(AddSubjectActivity.this);
                             SQLiteDatabase sqLiteDatabase = dbh.getWritableDatabase();
 
-//                            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-//                                    + DataBaseHelper.TABLE_MY_SUBJECTS + " WHERE "
-//                                    + DataBaseHelper.COLUMN_SUBJECT_CODE + " = '"
-//                                    + subjectCodeEditText.getText().toString().trim() + "' AND "
-//                                    + DataBaseHelper.COLUMN_SUBJECT_NAME + " = '"
-//                                    + subjectNameEditText.getText().toString().trim() + "' AND "
-//                                    + DataBaseHelper.COLUMN_COURSE + " = '"
-//                                    + courseEditText.getText().toString().trim() + "'",  null);
-//
-//
-//                            if(cursor.moveToFirst()){
+                            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                                    + DataBaseHelper.TABLE_MY_SUBJECTS + " WHERE "
+                                    + DataBaseHelper.COLUMN_SUBJECT_CODE + " = '"
+                                    + subjectCodeEditText.getText().toString().trim() + "' AND "
+                                    + DataBaseHelper.COLUMN_SUBJECT_NAME + " = '"
+                                    + subjectNameEditText.getText().toString().trim() + "' AND "
+                                    + DataBaseHelper.COLUMN_COURSE + " = '"
+                                    + courseEditText.getText().toString().trim() + "'",  null);
+
+
+                            if(cursor.moveToFirst()){
+                                Snackbar.make(createButton, "" + courseEditText.getText().toString() + "," + subjectCodeEditText.getText().toString() + " is already in your subject list!", Snackbar.LENGTH_LONG).show();
+                                cursor.close();
+
+                            }else {
                                 dbh.addSubject(courseEditText.getText().toString().trim(),
                                         subjectCodeEditText.getText().toString().trim(),
                                         subjectNameEditText.getText().toString().trim(),
@@ -310,7 +315,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
                                 //cursor.close();
 
-
+                            }
                         }
                     });
                     builder.show();
