@@ -5,4 +5,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="addStudent">Add student</string>
+
+
+    <string name="termsOfService"> By signing up, you\'ve agree to our <font color='red'>Terms of Services</font></string>
+
 </resources>
+

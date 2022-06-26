@@ -14,7 +14,7 @@
         android:id="@+id/iconWeClass"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/iconweclass"
+        android:src="@drawable/we_class_icon_transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

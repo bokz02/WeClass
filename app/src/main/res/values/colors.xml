@@ -28,4 +28,5 @@
     <color name="grayText">#858585</color>
 
     <color name="cardViewBackground">#42A5F5</color>
+    <color name="splashScreenBackground">#00695C</color>
 </resources>

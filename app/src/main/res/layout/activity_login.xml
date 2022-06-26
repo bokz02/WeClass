@@ -90,7 +90,6 @@
             android:hint="Email Address"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-
             android:textColor="#717171"
             android:textColorHighlight="#717171"
             android:textColorHint="#717171"
