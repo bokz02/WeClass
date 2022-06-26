@@ -53,14 +53,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".1" />
+        app:layout_constraintGuide_percent=".05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".9" />
+        app:layout_constraintGuide_percent=".95" />
 
 
     <com.google.android.material.card.MaterialCardView
@@ -82,10 +82,11 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:text="Add Task"
                 android:textColor="@color/darkText"
                 android:textStyle="bold"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,14 +96,13 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
                 android:text="Task Information"
                 android:textColor="@color/darkText"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <View
                 android:id="@+id/view8"
@@ -137,8 +137,7 @@
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:background="#ECECEC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -198,18 +197,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-
-                android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_task1"
+                android:layout_marginTop="10dp"
                 android:drawablePadding="5dp"
-                android:drawableTint="@color/darkText"
-                android:inputType="textCapSentences|textMultiLine"
                 android:text="Task number:"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/guide6"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guide5"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
+                app:layout_constraintTop_toBottomOf="@+id/view2"
+                app:drawableStartCompat="@drawable/ic_task1"
+                app:drawableTint="@color/darkText" />
 
             <View
                 android:id="@+id/view11"
@@ -228,9 +225,8 @@
                 android:id="@+id/scoreEditTextEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="8dp"
                 android:background="@drawable/transparent_bg"
                 android:drawableTint="@color/darkText"
                 android:focusableInTouchMode="true"
@@ -238,7 +234,6 @@
                 android:inputType="textCapSentences|textMultiLine|number|numberSigned"
                 android:maxLength="7"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/view9"
                 app:layout_constraintEnd_toEndOf="@id/guide6"
                 app:layout_constraintHorizontal_bias="0.476"
                 app:layout_constraintTop_toBottomOf="@+id/view2"
@@ -256,7 +251,6 @@
                 android:maxLength="2"
                 android:paddingHorizontal="5dp"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/guide6"
                 app:layout_constraintHorizontal_bias="0.208"
                 app:layout_constraintStart_toEndOf="@+id/taskText"
                 app:layout_constraintTop_toTopOf="@+id/taskText" />
@@ -265,7 +259,6 @@
                 android:id="@+id/progressTaskEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
                 android:drawablePadding="5dp"
                 android:hint="Select Progress"
@@ -273,15 +266,14 @@
                 app:drawableStartCompat="@drawable/ic_progress1"
                 app:drawableTint="@color/darkText"
                 app:layout_constraintEnd_toStartOf="@+id/guide6"
-                app:layout_constraintStart_toEndOf="@+id/taskTypeTextViewEdit"
-                app:layout_constraintTop_toBottomOf="@+id/view9" />
+                app:layout_constraintTop_toTopOf="@+id/taskTypeTextViewEdit" />
 
             <TextView
                 android:id="@+id/taskTypeTextViewEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"
@@ -329,8 +321,8 @@
                 android:clickable="true"
                 android:text="Create"
                 android:textAllCaps="false"
+                android:textSize="16sp"
                 android:textColor="@color/darkText"
-
                 app:layout_constraintEnd_toEndOf="@id/guide6"
                 app:layout_constraintStart_toStartOf="@id/guide7"
                 app:layout_constraintTop_toTopOf="@id/horizontalLine" />
@@ -342,9 +334,9 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:text="Cancel"
+                android:textSize="16sp"
                 android:textAllCaps="false"
                 android:textColor="@color/darkText"
-
                 app:layout_constraintEnd_toEndOf="@id/guide7"
                 app:layout_constraintStart_toStartOf="@id/guide5"
                 app:layout_constraintTop_toTopOf="@id/horizontalLine"
@@ -373,9 +365,7 @@
                 android:id="@+id/gradingPeriodTextViewAddTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"

@@ -21,21 +21,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".9" />
+        app:layout_constraintGuide_percent=".95" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.09" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.91" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <TextView
         android:id="@+id/noStudentTextViewGrade"
@@ -132,24 +132,32 @@
                 android:id="@+id/descriptionTextViewGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="lorem ipsum"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Instruction:"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/taskTypeTextViewGrade"
                 app:layout_constraintTop_toBottomOf="@+id/taskTypeTextViewGrade" />
 
             <TextView
                 android:id="@+id/taskNumberTextViewGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="5dp"
                 android:text="#"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.024"
                 app:layout_constraintStart_toEndOf="@+id/taskTypeTextViewGrade"
                 app:layout_constraintTop_toTopOf="@+id/taskTypeTextViewGrade" />
 
@@ -191,19 +199,27 @@
         app:layout_constraintTop_toBottomOf="@id/cardView" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deadline: "
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/deadLineTextViewGrade"
+        app:layout_constraintTop_toTopOf="@+id/deadLineTextViewGrade" />
+
+    <TextView
         android:id="@+id/deadLineTextViewGrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
-        android:drawableStart="@drawable/ic_deadline1"
         android:drawablePadding="5dp"
-        android:drawableTint="@color/darkText"
         android:text="Deadline"
         android:textColor="@color/darkText"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guide4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" />
+        app:layout_constraintVertical_bias="0.868"
+        app:drawableStartCompat="@drawable/ic_deadline1"
+        app:drawableTint="@color/darkText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

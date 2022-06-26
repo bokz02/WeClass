@@ -100,10 +100,8 @@ public class Assignments extends AppCompatActivity {
                 + _studentID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
-                + _assignments.getText().toString() + "' AND "
-                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + _midterm.getText().toString() + "'", null);
+                + DataBaseHelper.COLUMN_TASK_TYPE + " LIKE '%Assignment%'"+ " AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Midterm%'", null);
 
         ArrayList<ActivitiesItems> activitiesItems = new ArrayList<>();
 
@@ -141,7 +139,7 @@ public class Assignments extends AppCompatActivity {
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter2(){
-        activitiesFinalsAdapter = new ActivitiesFinalsAdapter(activitiesItems,Assignments.this);
+        activitiesFinalsAdapter = new ActivitiesFinalsAdapter(activitiesItems2,Assignments.this);
         extendedRecyclerView2.setAdapter(activitiesFinalsAdapter);
         extendedRecyclerView2.setLayoutManager(new LinearLayoutManager(Assignments.this));
         extendedRecyclerView2.setEmptyView(noView2, noText2);
@@ -165,10 +163,8 @@ public class Assignments extends AppCompatActivity {
                 + _studentID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
-                + _assignments.getText().toString() + "' AND "
-                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + _finals.getText().toString() + "'", null);
+                + DataBaseHelper.COLUMN_TASK_TYPE + " LIKE '%Assignment%'"+ " AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Finals%'", null);
 
         ArrayList<ActivitiesItems> activitiesItems2 = new ArrayList<>();
 
