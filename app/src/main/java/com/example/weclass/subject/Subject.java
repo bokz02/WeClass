@@ -94,9 +94,9 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-//                if(newState == RecyclerView.SCROLL_STATE_IDLE){
-//                    floatActionButton.show();
-//                }
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    floatActionButton.show();
+                }
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
@@ -104,8 +104,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 if(dy > 0){
                     floatActionButton.hide();
-                }else if (dy < 0){
-                    floatActionButton.show();
+//                }else if (dy < 0){
+//                    floatActionButton.show();
                 }
             }
         });
