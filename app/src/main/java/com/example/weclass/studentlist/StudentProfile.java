@@ -1,8 +1,5 @@
 package com.example.weclass.studentlist;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,14 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
@@ -31,20 +28,14 @@ import com.example.weclass.studentlist.profile.image.ImageUtils;
 import com.example.weclass.studentlist.profile.projects.Projects;
 import com.example.weclass.studentlist.profile.quiz.Quiz;
 import com.example.weclass.studentlist.profile.seatwork.SeatWork;
-import com.example.weclass.subject.AddSubjectActivity;
-import com.example.weclass.tasks.AddTask;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class StudentProfile extends AppCompatActivity {
 
-    ImageButton backButton, finalGradeButton, midtermGradeButton, finalRatingButton;
+    ImageButton backButton, _finalGradeButton, _midtermGradeButton, _finalRatingButton;
     TextView _id, _subjectID, _lastName,
             _firstName, _presentTextview, _absentTextView,
             _courseTextView, _subjectTextView, _finalGrade,
@@ -77,8 +68,7 @@ public class StudentProfile extends AppCompatActivity {
         pickMidtermGrade();
         pickFinalGrade();
         pickFinalRating();
-
-
+        
     }
 
     public void initialize(){
@@ -103,9 +93,9 @@ public class StudentProfile extends AppCompatActivity {
         _midtermGrade = findViewById(R.id.midtermGradeTextViewProfile);
         _finalGrade = findViewById(R.id.finalGradeTextViewProfile);
         _finalRating = findViewById(R.id.finalRatingTextViewProfile);
-        midtermGradeButton = findViewById(R.id.midtermGradeButtonProfile);
-        finalGradeButton = findViewById(R.id.finalGradeButtonProfile);
-        finalRatingButton = findViewById(R.id.finalRatingButtonProfile);
+        _midtermGradeButton = findViewById(R.id.midtermGradeButton);
+        _finalGradeButton = findViewById(R.id.finalGradeButton);
+        _finalRatingButton = findViewById(R.id.finalRatingButton);
 
 
     }
@@ -345,7 +335,7 @@ public class StudentProfile extends AppCompatActivity {
         };
 
         selectedMidtermGrade = grade[0];
-        midtermGradeButton.setOnClickListener(new View.OnClickListener() {
+        _midtermGradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(StudentProfile.this);
@@ -399,7 +389,7 @@ public class StudentProfile extends AppCompatActivity {
         };
 
         selectedFinalGrade = grade[0];
-        finalGradeButton.setOnClickListener(new View.OnClickListener() {
+        _finalGradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(StudentProfile.this);
@@ -453,7 +443,7 @@ public class StudentProfile extends AppCompatActivity {
         };
 
         selectedFinalRating = grade[0];
-        finalRatingButton.setOnClickListener(new View.OnClickListener() {
+        _finalRatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(StudentProfile.this);

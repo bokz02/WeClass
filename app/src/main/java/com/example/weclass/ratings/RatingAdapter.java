@@ -64,15 +64,15 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.MyViewHold
         holder._profilePicture.setImageBitmap(bitmap);
 
         if(holder._finalRating.getText().toString().equals("5")){
-            holder._finalRating.setTextColor(Color.parseColor("#F44336"));
+            holder._finalRating.setTextColor(Color.parseColor("#EF5350"));
         }
 
         if(holder._finalRating.getText().toString().equals("INC")){
-            holder._finalRating.setTextColor(Color.parseColor("#29B6F6"));
+            holder._finalRating.setTextColor(Color.parseColor("#26A69A"));
         }
 
         if(holder._finalRating.getText().toString().equals("DRP")){
-            holder._finalRating.setTextColor(Color.parseColor("#8BC34A"));
+            holder._finalRating.setTextColor(Color.parseColor("#BDBDBD"));
         }
 
     }

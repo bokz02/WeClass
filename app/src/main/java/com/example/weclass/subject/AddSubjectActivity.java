@@ -362,7 +362,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
         //TEAL
         colors.add("#009688");
-        colors.add("#00897B");
+        colors.add("#00796B");
         colors.add("#00796B");
         colors.add("#00695C");
 

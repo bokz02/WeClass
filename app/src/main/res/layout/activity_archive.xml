@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".archive.Archive"
     android:id="@+id/drawerArchive"
-    android:background="@drawable/bg_nnavi">
+    android:background="@drawable/bg_menu">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navViewArchive"
