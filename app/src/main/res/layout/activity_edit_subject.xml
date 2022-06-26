@@ -10,7 +10,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_nnavi"
+        android:background="@drawable/bg_menu"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18" />
+        app:layout_constraintGuide_percent="0.22" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide4"
@@ -163,7 +163,7 @@
                 android:text="Semester:"
                 android:layout_marginTop="10dp"
                 android:textAlignment="center"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="@android:color/darker_gray"
                 app:layout_constraintEnd_toStartOf="@+id/textView545"
                 app:layout_constraintHorizontal_bias="0.272"
@@ -193,7 +193,7 @@
                 android:layout_marginEnd="24dp"
                 android:text="School Year"
                 android:textAlignment="center"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView4" />
@@ -220,7 +220,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
                 android:text="Start Time:"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="@android:color/darker_gray"
                 android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
@@ -254,7 +254,7 @@
                 android:text="End Time:"
                 android:textColor="@android:color/darker_gray"
                 android:textAlignment="center"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView7" />
 
@@ -292,7 +292,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Day Schedule"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/view"
@@ -334,7 +334,7 @@
                 android:background="@color/transparent"
                 android:drawablePadding="5dp"
                 android:text="Subject Code:"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textAlignment="center"
                 android:layout_marginTop="10dp"
                 android:textColor="@android:color/darker_gray"
@@ -375,7 +375,7 @@
                 android:text="Subject Description"
                 android:textColor="@android:color/darker_gray"
                 android:layout_marginTop="10dp"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.518"
                 app:layout_constraintStart_toStartOf="@+id/view"
@@ -419,7 +419,7 @@
                 android:background="@color/transparent"
                 android:text="Course:"
                 android:textAlignment="center"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.426"

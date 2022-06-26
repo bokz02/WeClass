@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".studentlist.profile.attendance.Absent"
-    android:background="@drawable/bg_nnavi">
+    android:background="@drawable/bg_sub">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide1"
