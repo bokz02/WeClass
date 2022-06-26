@@ -27,6 +27,8 @@
     <color name="buttonDisabled">#BBBBBB</color>
     <color name="grayText">#858585</color>
 
+    <color name="text">#28908C</color>
+
     <color name="cardViewBackground">#42A5F5</color>
     <color name="splashScreenBackground">#00695C</color>
 </resources>

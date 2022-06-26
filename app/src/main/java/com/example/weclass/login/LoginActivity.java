@@ -7,7 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -19,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weclass.R;
+import com.example.weclass.TermsAndCondition;
 import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.schedule.ScheduleActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -51,7 +58,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mAuth = FirebaseAuth.getInstance();
         Initialized();
         signIn();
-        signUp();
+
+        String text = "Don't have an account? Register Here ";
+        SpannableString ss = new SpannableString(text);
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                startActivity(new Intent(LoginActivity.this, RegisterAccountActivity.class));
+            }
+
+            @Override
+            public void updateDrawState(@NonNull TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(Color.parseColor("#28908C"));
+                ds.setUnderlineText(false);
+            }
+
+        };
+
+        ss.setSpan(clickableSpan1, 23, 37, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE  );
+        signup.setText(ss);
+        signup.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+
     }
 
 
@@ -166,24 +196,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    public void signUp() {
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,  RegisterAccountActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
-            }
-        });
-
-    }
 
     public void forgotPass(View view) {
         startActivity(new Intent(this, ForgotPassword.class));
     }
 
 
-    //If may nakalog-in na, automatic pupunta sa MainActivity
+    //    If may nakalog-in na, automatic pupunta sa MainActivity
 //    @Override
 //    protected void onStart() {
 //        super.onStart();
