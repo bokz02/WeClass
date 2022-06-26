@@ -137,9 +137,8 @@ public class RegisterAccountActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
-
-                                    UserItem user = new UserItem(email, fullname);
                                     Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!", Toast.LENGTH_LONG).show();
+                                    UserItem user = new UserItem(email, fullname);
                                     FirebaseDatabase.getInstance().getReference("UserItem")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

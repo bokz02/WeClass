@@ -131,7 +131,7 @@
             android:name=".login.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.Dialog"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
