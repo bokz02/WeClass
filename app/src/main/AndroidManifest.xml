@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".login.SplashScreen"
+            android:exported="false" />
+        <activity
             android:name=".login.UserAccount"
             android:exported="false" />
         <activity
@@ -21,7 +24,6 @@
         <activity
             android:name=".login.PasswordResetLinkSuceed"
             android:exported="false" />
-
         <activity
             android:name=".login.ForgotPassword"
             android:exported="false" />
@@ -101,16 +103,16 @@
         <activity
             android:name=".studentlist.StudentProfile"
             android:exported="false"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".Settings"
             android:exported="false"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".schedule.ScheduleActivity"
             android:exported="false"
             android:parentActivityName=".schedule.WeekViewActivity"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".BottomNavi"
             android:exported="false"
@@ -125,7 +127,7 @@
         <activity
             android:name=".schedule.WeekViewActivity"
             android:exported="false"
-            android:theme="@style/Theme.Dialog"/>
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".dashboard.MainActivity"
             android:exported="true"
@@ -133,8 +135,8 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/Theme.WeClass">
+            android:theme="@style/Theme.Dialog"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

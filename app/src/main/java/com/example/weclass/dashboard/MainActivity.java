@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mAuth = FirebaseAuth.getInstance();
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
         toolbar = findViewById(R.id.toolbar);
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         finish();
                         startActivity(intent);

@@ -117,6 +117,7 @@
                             android:drawablePadding="10dp"
                             android:drawableTint="#ACACAC"
                             android:hint="Search"
+                            android:fontFamily="@font/poppins_regular"
                             android:textColor="@color/black"
                             android:textColorHint="#ACACAC"
                             android:textSize="14sp"

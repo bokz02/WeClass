@@ -79,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Add new subject"
+                android:fontFamily="@font/poppins_semibold"
                 android:textAlignment="center"
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
@@ -94,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:text="Subject Information"
+                android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/darkText"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView26"
@@ -142,6 +144,7 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="Semester:"
+                android:fontFamily="@font/poppins_semibold"
                 android:layout_marginTop="8dp"
                 android:textAlignment="center"
                 android:textColor="@color/darkText"
@@ -155,7 +158,7 @@
             <TextView
                 android:id="@+id/semesterAddSubject"
                 android:layout_width="120dp"
-
+                android:fontFamily="@font/poppins_regular"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:backgroundTint="#979797"
@@ -174,6 +177,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:text="School Year"
+                android:fontFamily="@font/poppins_semibold"
+
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -187,6 +192,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:hint="Select Year"
+                android:fontFamily="@font/poppins_regular"
+
                 android:textAlignment="center"
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
@@ -199,6 +206,8 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="Start Time:"
+                android:fontFamily="@font/poppins_semibold"
+
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
                 android:layout_marginTop="8dp"
@@ -216,6 +225,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:text="End Time:"
+                android:fontFamily="@font/poppins_semibold"
+
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -227,6 +238,7 @@
             <TextView
                 android:id="@+id/timeAddSubject"
                 android:layout_width="120dp"
+                android:fontFamily="@font/poppins_regular"
 
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
@@ -246,6 +258,8 @@
                 android:id="@+id/timeEndAddSubject"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+
                 android:background="@color/transparent"
                 android:backgroundTint="#979797"
                 android:drawableTint="@color/buttonDisabled"
@@ -262,6 +276,8 @@
                 android:id="@+id/textView78"
                 android:layout_width="77dp"
                 android:layout_height="18dp"
+                android:fontFamily="@font/poppins_semibold"
+
                 android:layout_marginTop="8dp"
                 android:text="Day Schedule"
                 android:textColor="@color/darkText"
@@ -280,6 +296,7 @@
                 android:hint="Select Day"
                 android:inputType="textCapSentences"
                 android:maxLength="10"
+                android:fontFamily="@font/poppins_regular"
 
                 android:textAlignment="center"
                 android:textColor="@color/darkText"
@@ -306,6 +323,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins_semibold"
+
                 android:text="Subject Code:"
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
@@ -323,6 +342,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:hint="Code"
+                android:fontFamily="@font/poppins_regular"
+
                 android:textAlignment="center"
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
@@ -351,6 +372,8 @@
                 android:text="Subject Description"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
+                android:fontFamily="@font/poppins_semibold"
+
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -365,6 +388,8 @@
                 android:layout_marginTop="4dp"
                 android:background="@color/transparent"
                 android:hint="Description"
+                android:fontFamily="@font/poppins_regular"
+
                 android:inputType="textCapWords"
                 android:textAlignment="center"
                 android:textColor="@color/darkText"
@@ -394,6 +419,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:text="Course:"
+                android:fontFamily="@font/poppins_semibold"
+
                 android:textAlignment="center"
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
@@ -411,6 +438,8 @@
                 android:background="@color/transparent"
                 android:backgroundTint="#979797"
                 android:hint="Course"
+                android:fontFamily="@font/poppins_regular"
+
                 android:maxLines="1"
                 android:maxLength="30"
                 android:textAlignment="center"
@@ -439,6 +468,8 @@
                 android:layout_height="60dp"
                 android:background="@drawable/transparent_bg"
                 android:text="Cancel"
+                android:fontFamily="@font/poppins_semibold"
+
                 android:textAllCaps="false"
                 android:textColor="@color/darkText"
                 android:textSize="14sp"
@@ -452,6 +483,7 @@
                 android:layout_height="60dp"
                 android:background="@color/transparent"
                 android:text="Create"
+                android:fontFamily="@font/poppins_semibold"
                 android:textAllCaps="false"
                 android:textColor="@color/darkText"
                 android:textSize="14sp"

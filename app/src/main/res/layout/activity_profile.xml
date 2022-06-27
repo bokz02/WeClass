@@ -57,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Student Profile"
+                android:fontFamily="@font/poppins_regular"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15sp"
@@ -72,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="Course"
                 android:textAllCaps="true"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -85,6 +87,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="36dp"
                 android:text="Subject"
+                android:fontFamily="@font/poppins_semibold"
+
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -167,6 +171,7 @@
                     android:layout_marginEnd="188dp"
                     android:gravity="center_horizontal"
                     android:text="Firstname"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/lightText"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -183,6 +188,7 @@
                     android:layout_marginTop="12dp"
                     android:gravity="center_horizontal"
                     android:text="Lastname"
+                    android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/darkText"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -196,6 +202,8 @@
                     android:layout_marginTop="20dp"
                     android:gravity="center_horizontal"
                     android:text="Attendance"
+                    android:fontFamily="@font/poppins_semibold"
+
                     android:textColor="@color/darkText"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -233,6 +241,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
                         android:text="Present:  "
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -244,6 +254,8 @@
                         android:layout_marginStart="105dp"
                         android:gravity="center"
                         android:text="0"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <ImageView
@@ -267,6 +279,7 @@
                     android:orientation="horizontal"
                     app:cardBackgroundColor="#28908c"
                     app:cardCornerRadius="10dp"
+
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintStart_toStartOf="@+id/guide15"
                     app:layout_constraintTop_toTopOf="@+id/materialCardView3">
@@ -285,6 +298,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:text="Absent:  "
                         android:textColor="@color/white"
                         android:textStyle="bold" />
@@ -292,6 +307,7 @@
                     <TextView
                         android:id="@+id/absentTextViewProfile"
                         android:layout_width="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="100dp"
@@ -320,6 +336,8 @@
                     android:layout_marginTop="12dp"
                     android:gravity="center_horizontal"
                     android:text="Records"
+                    android:fontFamily="@font/poppins_semibold"
+
                     android:textColor="@color/darkText"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -347,6 +365,8 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="View All"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <TextView
@@ -354,6 +374,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:text="Activity"
                         android:textColor="@color/white" />
 
@@ -391,6 +413,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
                         android:text="Assignment"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <TextView
@@ -400,6 +424,8 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="View All"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
 
@@ -438,6 +464,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
                         android:text="Seatwork"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <TextView
@@ -447,6 +475,8 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="View All"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
 
@@ -486,6 +516,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
                         android:text="Quiz"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <TextView
@@ -495,6 +527,8 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="View All"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
 
@@ -533,6 +567,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
                         android:text="Project"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <TextView
@@ -542,6 +578,8 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="View All"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
 
@@ -581,6 +619,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
                         android:text="Exams"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <TextView
@@ -590,6 +630,8 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="View All"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <ImageView
@@ -613,6 +655,8 @@
                     android:layout_marginTop="12dp"
                     android:gravity="center_horizontal"
                     android:text="Grades"
+                    android:fontFamily="@font/poppins_semibold"
+
                     android:textColor="@color/darkText"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -641,6 +685,8 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="Grade"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
 
@@ -650,6 +696,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
                         android:text="Midterm Grade"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <ImageButton
@@ -691,6 +739,8 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="Grade"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
 
@@ -700,6 +750,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
                         android:text="Final Grade"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <ImageButton
@@ -748,6 +800,8 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="Grade"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
 
@@ -757,6 +811,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="50dp"
                         android:text="Final Rating"
+                        android:fontFamily="@font/poppins_regular"
+
                         android:textColor="@color/white" />
 
                     <ImageButton

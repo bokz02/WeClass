@@ -118,6 +118,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 {
                     editTextEmail.setError("Email Address is not valid!");
                     editTextEmail.requestFocus();
+                    return;
                 }
 
                 else if(password.isEmpty()){

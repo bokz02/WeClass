@@ -5,5 +5,7 @@
         <item>@font/butterfly_kids</item>
         <item>@font/montaga</item>
         <item>@font/montserrat_alternates</item>
+        <item>@font/poppins_thin</item>
+        <item>@font/roboto</item>
     </array>
 </resources>

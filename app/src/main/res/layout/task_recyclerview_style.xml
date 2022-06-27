@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardViewRecView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -50,13 +51,14 @@
                 android:id="@+id/gradingPeriodTaskRecView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Period"
-                android:textSize="16sp"
                 android:layout_marginEnd="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Period"
+                android:textColor="@color/lightText"
+                android:textSize="16sp"
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/progressTextView"
                 app:layout_constraintEnd_toStartOf="@+id/progressTextView"
-                app:layout_constraintTop_toTopOf="@+id/progressTextView" />
+                app:layout_constraintTop_toTopOf="@+id/taskNumberRecView" />
 
         <ImageButton
             android:id="@+id/optionButtonTaskRecView"
@@ -82,22 +84,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Task type"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/darkText"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/progressTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/progressTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
 
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/rounded_stroke"
-            android:text="Progress"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/rounded_stroke"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/darkText"
+                android:text="Progress"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/parentIDTaskRecView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/gradingPeriodTaskRecView" />
 
             <TextView
                 android:id="@+id/taskNumberRecView"
@@ -105,6 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="number"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/darkText"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/taskTypeRecView"
@@ -118,6 +127,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:text="Score"
+                android:textColor="@color/lightText"
+                android:fontFamily="@font/poppins_regular"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/scoreText"
                 app:layout_constraintTop_toBottomOf="@+id/deadlineTextView" />
@@ -128,6 +139,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Score:"
+                android:textColor="@color/lightText"
+                android:fontFamily="@font/poppins_regular"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -140,6 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Deadline:"
+                android:textColor="@color/darkText"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/taskTypeRecView"
@@ -154,6 +168,9 @@
                 android:layout_marginTop="5dp"
                 android:paddingHorizontal="5dp"
                 android:text="8:00 AM"
+
+                android:textColor="@color/darkText"
+                android:fontFamily="@font/poppins_regular"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/deadlineTextView"
                 app:layout_constraintTop_toBottomOf="@+id/taskNumberRecView" />

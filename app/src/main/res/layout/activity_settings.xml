@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="144dp"
             android:text="Settings"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/darkText"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -199,13 +200,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="8dp"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="Account Name"
+
                     android:textSize="14dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/accountEmail"
-                    app:layout_constraintStart_toEndOf="@+id/userProfile"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintStart_toEndOf="@+id/userProfile" />
 
                 <TextView
                     android:id="@+id/accountEmail"
@@ -214,6 +215,9 @@
                     android:layout_gravity="center_vertical"
                     android:text="Email"
                     android:textSize="13dp"
+
+                    android:fontFamily="@font/poppins_regular"
+
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/accountName"
                     app:layout_constraintTop_toTopOf="parent"
@@ -263,6 +267,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="60dp"
                 android:text="Dark mode"
+
+                android:fontFamily="@font/poppins_semibold"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -306,6 +312,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="60dp"
                 android:text="Notifications"
+                android:fontFamily="@font/poppins_semibold"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -352,6 +359,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="60dp"
                 android:text="Terms of Services"
+                android:fontFamily="@font/poppins_semibold"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -400,6 +408,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="60dp"
                 android:text="About us"
+                android:fontFamily="@font/poppins_semibold"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -448,6 +457,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="60dp"
                 android:text="Help"
+                android:fontFamily="@font/poppins_semibold"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 

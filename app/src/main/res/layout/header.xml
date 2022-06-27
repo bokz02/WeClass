@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:fontFamily="@font/montserrat_alternates"
+        android:fontFamily="@font/poppins_semibold"
         android:textColor="@color/white"
         android:text="WeClass"
         android:textSize="20sp"

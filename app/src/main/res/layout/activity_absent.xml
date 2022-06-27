@@ -83,6 +83,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Days absent"
+        android:textColor="@color/darkText"
+        android:fontFamily="@font/poppins_semibold"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"

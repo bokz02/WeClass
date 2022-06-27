@@ -11,7 +11,8 @@
         android:id="@+id/backButtonAboutUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_simple_back"
+        android:background="@drawable/ic_baseline_arrow_back_24"
+        android:backgroundTint="@color/darkText"
         android:layout_marginTop="20dp"
         android:clickable="true"
         android:focusable="true"
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:text="About us"
         android:textSize="25dp"
+        android:fontFamily="@font/poppins_bold"
         android:layout_marginTop="20dp"
         android:layout_marginStart="30dp"
         android:textStyle="bold"
@@ -66,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
+                android:fontFamily="@font/poppins_regular"
                 android:justificationMode="inter_word"
                 android:layout_marginTop="10dp"
                 android:text="WeClass is a class record management application. You can easily keep track of your students' attendance, grades, and behavior as well as manage the class. It also adding impact to your work."/>
@@ -75,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
+                android:fontFamily="@font/poppins_regular"
                 android:justificationMode="inter_word"
                 android:layout_marginTop="10dp"
                 android:text="WeClass Class Record Application will provide efficiency in class record management, cater to all faculty/teachers with different mobile phones in different Android version, allow for easy application management, and is appropriate Higher Education Faculty, and corporate trainers."/>
@@ -96,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Manage Your Class"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:drawablePadding="10dp"
@@ -107,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Manage Your Class"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:drawablePadding="10dp"
@@ -118,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Monitor Student Attendance"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:drawablePadding="10dp"
@@ -128,6 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Archive Deleted Data"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
@@ -143,6 +151,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
                 android:text="Acquire Reports"
+                android:fontFamily="@font/poppins_regular"
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_baseline_circle_24"
                 android:textSize="15sp" />
@@ -153,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_marginEnd="30dp"
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_baseline_circle_24"
@@ -167,6 +177,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginTop="20dp"
                 android:textSize="20sp"
+                android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/lightText"
                 android:textStyle="bold" />
 
@@ -177,6 +188,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
                 android:text="Teacher"
+                android:fontFamily="@font/poppins_regular"
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_baseline_circle_24"
                 android:textSize="15sp"
@@ -187,6 +199,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_marginEnd="30dp"
                 android:text="      Track students' attendance, records and grade"
                 android:textSize="15sp" />
@@ -198,6 +211,7 @@
                 android:text="Meet Our Team"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
+                android:fontFamily="@font/poppins_bold"
                 android:layout_marginTop="20dp"
                 android:textSize="20sp"
                 android:textColor="@color/lightText"
@@ -206,6 +220,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
@@ -239,6 +254,7 @@
                         android:textColor="@color/white"
                         android:textAlignment="center"
                         android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_gravity="center_horizontal"/>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -271,6 +287,7 @@
                         android:textColor="@color/darkText"
                         android:textAlignment="center"
                         android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_gravity="center_horizontal"/>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -278,6 +295,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
@@ -308,6 +326,7 @@
                         android:textColor="@color/darkText"
                         android:textAlignment="center"
                         android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_gravity="center_horizontal"/>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -335,6 +354,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jomar P. Montiman"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_marginTop="110dp"
                         android:textColor="@color/darkText"
                         android:textAlignment="center"
@@ -346,6 +366,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
@@ -375,6 +396,7 @@
                         android:layout_marginTop="110dp"
                         android:text="Ron Sebastian A.Suarez"
                         android:textAlignment="center"
+                        android:fontFamily="@font/poppins_regular"
                         android:textStyle="bold"
                         android:textColor="@color/darkText" />
                 </com.google.android.material.card.MaterialCardView>
@@ -403,6 +425,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rhine V. Ocampo"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_marginTop="110dp"
                         android:textColor="@color/darkText"
                         android:textAlignment="center"
