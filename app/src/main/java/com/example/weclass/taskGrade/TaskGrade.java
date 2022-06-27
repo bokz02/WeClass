@@ -15,14 +15,18 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.studentlist.StudentItems;
+import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
 import com.example.weclass.tasks.TaskItems;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnNoteListener {
 
     ExtendedRecyclerView recyclerView;
     ArrayList<TaskGradeItems> taskGradeItems, studentID, subjectID;
+    ArrayList<ActivitiesItems> activitiesItems;
     TaskGradeAdapter taskGradeAdapter;
     DataBaseHelper dataBaseHelper;
     ImageView backButton;
@@ -43,6 +47,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         display();
         initializeAdapter();
         backToTask();
+        automaticSort();
 
     }
 
@@ -75,10 +80,12 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(TaskGrade.this);
         taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, TaskGrade.this, this);
         recyclerView.setAdapter(taskGradeAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(TaskGrade.this));
         recyclerView.setEmptyView(_noStudentToGradeView, _noStudentToGradeTextView);
+        linearLayoutManager.setStackFromEnd(true);
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
@@ -166,6 +173,12 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         _gradingPeriod.setText(period);
 
 
+    }
+
+    // AUTOMATIC SORT WHEN ACTIVITY OPEN
+    public void automaticSort(){
+        Collections.sort(taskGradeItems, TaskGradeItems.sortAtoZComparator);
+        initializeAdapter();
     }
 
     @Override

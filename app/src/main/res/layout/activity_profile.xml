@@ -225,48 +225,63 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView6">
 
 
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/iconattendance"
-                        android:backgroundTint="@color/white" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
-                        android:text="Present:  "
-                        android:fontFamily="@font/poppins_regular"
+                        <ImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/iconattendance"
+                            android:backgroundTint="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Present:  "
+                            android:gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                            app:layout_constraintStart_toEndOf="@+id/imageView7"
+                            app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
-                    <TextView
-                        android:id="@+id/presentTextViewProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="105dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:fontFamily="@font/poppins_regular"
+                        <TextView
+                            android:id="@+id/presentTextViewProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:text="0"
 
-                        android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            app:layout_constraintStart_toEndOf="@+id/textView2"
+                            app:layout_constraintTop_toTopOf="@+id/textView2" />
 
-                    <ImageView
-                        android:id="@+id/presentButtonProfile"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="125dp"
-                        android:background="@drawable/ic_baseline_navigate_next_24"
-                        android:clickable="true"
-                        android:focusable="true" />
+                        <ImageView
+                            android:id="@+id/presentButtonProfile"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/ic_baseline_navigate_next_24"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -276,56 +291,69 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:elevation="10dp"
-                    android:orientation="horizontal"
                     app:cardBackgroundColor="#28908c"
                     app:cardCornerRadius="10dp"
-
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintStart_toStartOf="@+id/guide15"
                     app:layout_constraintTop_toTopOf="@+id/materialCardView3">
 
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/iconattendance"
-                        android:backgroundTint="@color/white" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
-                        android:fontFamily="@font/poppins_regular"
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="15dp"
+                            android:background="@drawable/iconattendance"
+                            android:backgroundTint="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        android:text="Absent:  "
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/textView17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:text="Absent:  "
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                            app:layout_constraintStart_toEndOf="@+id/imageView3"
+                            app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
-                    <TextView
-                        android:id="@+id/absentTextViewProfile"
-                        android:layout_width="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="100dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="@color/white" />
+                        <TextView
+                            android:id="@+id/absentTextViewProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView17"
+                            app:layout_constraintStart_toEndOf="@+id/textView17" />
 
-                    <ImageView
-                        android:id="@+id/absentButtonProfile"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="125dp"
-                        android:background="@drawable/ic_baseline_navigate_next_24"
-                        android:clickable="true"
-                        android:focusable="true" />
+                        <ImageView
+                            android:id="@+id/absentButtonProfile"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/ic_baseline_navigate_next_24"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView

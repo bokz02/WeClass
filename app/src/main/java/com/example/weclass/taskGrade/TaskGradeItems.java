@@ -1,5 +1,9 @@
 package com.example.weclass.taskGrade;
 
+import com.example.weclass.studentlist.StudentItems;
+
+import java.util.Comparator;
+
 public class TaskGradeItems {
 
     String lastName, firstName, taskType, gradingPeriod;
@@ -43,4 +47,11 @@ public class TaskGradeItems {
     public String getGradingPeriod() {
         return gradingPeriod;
     }
+
+    public static Comparator<TaskGradeItems> sortAtoZComparator = new Comparator<TaskGradeItems>() {
+        @Override
+        public int compare(TaskGradeItems taskGradeItems, TaskGradeItems t1) {
+            return taskGradeItems.getLastName().compareTo(t1.getLastName());
+        }
+    };
 }

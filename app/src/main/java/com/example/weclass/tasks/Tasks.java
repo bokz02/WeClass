@@ -119,9 +119,14 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
         extendedRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-//                if(newState == RecyclerView.SCROLL_STATE_IDLE){
-//                    floatingActionButton.show();
-//                }
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    floatingActionButton.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            floatingActionButton.show();
+                        }
+                    }, 2000);
+                }
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
@@ -133,8 +138,8 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
 
                 if(dy > 0){
                     floatingActionButton.hide();
-                }else if (dy < 0){
-                    floatingActionButton.show();
+//                }else if (dy < 0){
+//                    floatingActionButton.show();
                 }
             }
         });

@@ -5,6 +5,8 @@ import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
 import com.example.weclass.tasks.AddTask;
 import com.example.weclass.tasks.TaskAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.HashMap;
 
 public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyViewHolder>{
 
@@ -81,6 +85,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         TaskGradeItems itemsTaskGrade = taskGradeItems.get(position);
         holder.lastName.setText(String.valueOf(taskGradeItems.get(position).getLastName()));
         holder.firstName.setText(String.valueOf(taskGradeItems.get(position).getFirstName()));
@@ -90,12 +95,15 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         holder.taskNumber.setText(String.valueOf(taskGradeItems.get(position).getTaskNumber()));
         holder.gradingPeriod.setText(String.valueOf(taskGradeItems.get(position).getGradingPeriod()));
 
+        holder.gradeEditText.setText("");
+
+
         holder.submitButtonGrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DataBaseHelper db = new DataBaseHelper(context);
                 SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
-
+                int b;
 
                 int a = Integer.parseInt(holder.gradeEditText.getText().toString());
 
@@ -120,8 +128,13 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
                 }else if (cursor.moveToFirst()){
 
-                    Snackbar.make(holder.submitButtonGrade, "You already graded this student!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(holder.submitButtonGrade, "" + holder.lastName.getText().toString() + ", " + holder.firstName.getText().toString() + " already graded!", Snackbar.LENGTH_SHORT).show();
                     cursor.close();
+
+                    b = holder.getAdapterPosition();
+                    taskGradeItems.remove(b);
+                    notifyItemRemoved(b);
+
                 }
                 else {
 
@@ -135,11 +148,13 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                             holder.gradeEditText.getText().toString().trim(),
                             holder.gradingPeriod.getText().toString().trim());
 
-                    holder.submitButtonGrade.setEnabled(false);
-                    holder.submitButtonGrade.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.buttonDisabled));
                     Snackbar.make(holder.submitButtonGrade, "" + holder.lastName.getText().toString() +
                             ", " + holder.firstName.getText().toString() +
                             " successfully graded!", Snackbar.LENGTH_SHORT).show();
+
+                    b = holder.getAdapterPosition();
+                    taskGradeItems.remove(b);
+                    notifyItemRemoved(b);
 
                 }
 

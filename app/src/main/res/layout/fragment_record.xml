@@ -30,21 +30,14 @@
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toTopOf="@id/guide1" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintTop_toTopOf="@id/recyclerViewTaskList" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".91" />
+            app:layout_constraintGuide_percent=".92" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide3"
@@ -65,15 +58,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Subject Code"
             android:textAllCaps="true"
-            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/darkText"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/cardView"
-            app:layout_constraintStart_toStartOf="@+id/guide3" />
+            app:layout_constraintStart_toStartOf="@+id/guide3"
+            app:layout_constraintTop_toBottomOf="@+id/courseTextViewTask" />
 
         <TextView
             android:id="@+id/parentIDRecord"
@@ -94,8 +88,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:text="Tasks"
             android:fontFamily="@font/poppins_bold"
+            android:text="Tasks"
             android:textColor="@color/navigation_text_color"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -106,9 +100,9 @@
             android:id="@+id/courseTextViewTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
             android:text="BSCS 3"
             android:textAllCaps="true"
-            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/subjectCodeRecords"
@@ -117,28 +111,29 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddTask"
-            app:rippleColor="@color/rippleFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:backgroundTint="@color/lightText"
-            app:tint ="@color/white"
             android:clickable="true"
-            android:tooltipText="Add student"
             android:contentDescription="@string/addStudent"
             android:focusable="true"
             android:src="@drawable/ic_baseline_add_24"
+            android:tooltipText="Add student"
+            app:backgroundTint="@color/lightText"
             app:layout_constraintBottom_toBottomOf="@id/guide2"
-            app:layout_constraintEnd_toEndOf="@id/guide4"/>
+            app:layout_constraintEnd_toEndOf="@id/guide4"
+            app:rippleColor="@color/rippleFAB"
+            app:tint="@color/white" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
+            android:layout_marginTop="9dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/guide1"
             app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintStart_toStartOf="@id/guide3">
+            app:layout_constraintStart_toStartOf="@id/guide3"
+            app:layout_constraintTop_toBottomOf="@+id/taskSubjectTextView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -177,8 +172,7 @@
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toTopOf="@id/guide1"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
