@@ -34,6 +34,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
     private final ArrayList<TaskGradeItems> taskGradeItems;
     private final Context context;
     private final OnNoteListener onNoteListener;
+    int a;
 
 
     public TaskGradeAdapter(ArrayList<TaskGradeItems> taskGradeItems, Context context, OnNoteListener onNoteListener) {
@@ -95,7 +96,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         holder.taskNumber.setText(String.valueOf(taskGradeItems.get(position).getTaskNumber()));
         holder.gradingPeriod.setText(String.valueOf(taskGradeItems.get(position).getGradingPeriod()));
 
-        holder.gradeEditText.setText("0");
+        holder.gradeEditText.setText("");
 
 
         holder.submitButtonGrade.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +106,9 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                 SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
                 int b;
 
-                int a = Integer.parseInt(holder.gradeEditText.getText().toString());
+                if(!holder.gradeEditText.getText().toString().equals("")) {
+                    a = Integer.parseInt(holder.gradeEditText.getText().toString());
+                }
 
                 Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
@@ -123,8 +126,8 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                 if(holder.gradeEditText.getText().toString().equals("")) {
                     Snackbar.make(holder.submitButtonGrade, "Do not submit empty grade!", Snackbar.LENGTH_SHORT).show();
 
-                }else if (a > 100){
-                    Snackbar.make(holder.submitButtonGrade, "" + "Score can't exceed over 100!", Snackbar.LENGTH_SHORT).show();
+                }else if (a < 0 ||a > 100){
+                    Snackbar.make(holder.submitButtonGrade, "" + "Grades must be within a range.", Snackbar.LENGTH_SHORT).show();
 
                 }else if (cursor.moveToFirst()){
 
