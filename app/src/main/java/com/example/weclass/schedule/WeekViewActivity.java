@@ -162,8 +162,14 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+
+            case R.id.drawerHome:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                break;
             case R.id.drawerSubject:
-                Intent intent = new Intent(this, Subject.class);
+                intent = new Intent(this, Subject.class);
                 startActivity(intent);
                 finish();
                 break;
