@@ -5,6 +5,8 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -71,21 +73,46 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         _update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataBaseHelper dbh = new DataBaseHelper(EditTask.this);
-                dbh.updateTask(
-                        _idTask.getText().toString().trim(),
-                        _taskType.getText().toString().trim(),
-                        _dueDate.getText().toString().trim(),
-                        _score.getText().toString().trim(),
-                        _description.getText().toString().trim(),
-                        _progress.getText().toString().trim(),
-                        _taskNumber.getText().toString().trim(),
-                        _gradingPeriod.getText().toString().trim());
 
-                Snackbar.make(_update, "Task information successfully updated!", Snackbar.LENGTH_LONG).show();
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(EditTask.this);
+                SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
 
+                Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                        + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
+                        + DataBaseHelper.COLUMN_ID4 + " = "
+                        + _idTask.getText().toString() + " AND "
+                        + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                        + _taskType.getText().toString() + "' AND "
+                        + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
+                        + _taskNumber.getText().toString() + " AND "
+                        + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
+                        + _gradingPeriod.getText().toString() + "'", null);
+
+                // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
+                if (cursor.moveToFirst()) {
+                    Snackbar.make(_update, "" + _taskType.getText().toString() + " "
+                            + _taskNumber.getText().toString() + " is already in tasks list!", Snackbar.LENGTH_SHORT).show();
+                    cursor.close();
+
+                }else {
+
+
+                    DataBaseHelper dbh = new DataBaseHelper(EditTask.this);
+                    dbh.updateTask(
+                            _idTask.getText().toString().trim(),
+                            _taskType.getText().toString().trim(),
+                            _dueDate.getText().toString().trim(),
+                            _score.getText().toString().trim(),
+                            _description.getText().toString().trim(),
+                            _progress.getText().toString().trim(),
+                            _taskNumber.getText().toString().trim(),
+                            _gradingPeriod.getText().toString().trim());
+
+                    Snackbar.make(_update, "Task information successfully updated!", Snackbar.LENGTH_LONG).show();
+                }
             }
         });
+
     }
 
     //  GET THE DATA THAT PASS TO HERE, FROM THE ADAPTER
