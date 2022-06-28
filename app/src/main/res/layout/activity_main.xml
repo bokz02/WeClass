@@ -212,7 +212,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guide3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/homeSubjectRecView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <TextView
             android:id="@+id/noSubjectTextViewHome2"
@@ -234,7 +234,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guide4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/homeScheduleRecView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
 
         <com.example.weclass.ExtendedRecyclerView
