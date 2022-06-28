@@ -195,12 +195,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="7dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Your schedules: "
             android:textSize="20sp"
+            android:layout_marginTop="200dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/homeSubjectRecView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <TextView
             android:id="@+id/noSubjectTextViewHome"
@@ -241,10 +241,10 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/ic_no_file"
-            app:layout_constraintBottom_toTopOf="@+id/guide4"
+            android:layout_marginTop="70dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/homeScheduleRecView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
 
         <com.example.weclass.ExtendedRecyclerView

@@ -153,7 +153,7 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort3_svg);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort1_svg);
 
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }

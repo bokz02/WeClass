@@ -145,7 +145,13 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
                                        Snackbar.make(_create, "Task successfully created!", Snackbar.LENGTH_LONG).show();
 
-
+                                       taskType.setText("");
+                                       _date.setText("");
+                                       _score.setText("");
+                                       _description.setText("");
+                                       _progress.setText("");
+                                       _taskNumber.setText("");
+                                       _gradingPeriod.setText("");
                                            }
                                        });
 
