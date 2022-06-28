@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.18" />
+            app:layout_constraintGuide_percent="0.24" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide2"
@@ -98,14 +98,14 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Subject"
+            android:layout_marginTop="72dp"
             android:fontFamily="@font/poppins_semibold"
+            android:text="Subject"
             android:textColor="@color/darkText"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintHorizontal_bias="0.964"
+            app:layout_constraintHorizontal_bias="0.981"
             app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,6 +116,7 @@
             android:layout_marginBottom="10dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
             app:layout_constraintBottom_toBottomOf="@id/guide1">
