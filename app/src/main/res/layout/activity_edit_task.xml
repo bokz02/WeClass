@@ -57,14 +57,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".1" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".9" />
+        app:layout_constraintGuide_percent="0.95" />
 
 
     <com.google.android.material.card.MaterialCardView
@@ -107,6 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Edit task"
                 android:textColor="@color/darkText"
                 android:textSize="16sp"
@@ -119,6 +120,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Task information"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,6 +136,8 @@
                 android:drawableStart="@drawable/ic_desc1"
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/darkText"
+
+                android:fontFamily="@font/poppins_regular"
                 android:hint="Description"
                 android:inputType="textCapSentences|textMultiLine"
                 android:maxLength="1000"
@@ -152,17 +156,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+
                 android:background="@drawable/transparent_bg"
                 android:drawableTint="@color/darkText"
                 android:focusableInTouchMode="true"
+                android:fontFamily="@font/poppins_regular"
                 android:hint="No."
                 android:inputType="textCapSentences|textMultiLine|number|numberSigned"
                 android:maxLength="7"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/view9"
                 app:layout_constraintEnd_toEndOf="@id/guide6"
-                app:layout_constraintHorizontal_bias="0.62"
-                app:layout_constraintStart_toEndOf="@+id/textView12"
                 app:layout_constraintTop_toBottomOf="@+id/view2"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -174,16 +178,18 @@
                 android:layout_marginBottom="8dp"
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/darkText"
+                android:fontFamily="@font/poppins_regular"
+                app:drawableStartCompat="@drawable/ic_progress1"
 
                 android:hint="Progress"
                 android:text="Select Progress"
                 android:textSize="16sp"
-                app:drawableStartCompat="@drawable/ic_progress1"
                 app:layout_constraintBottom_toTopOf="@+id/view11"
                 app:layout_constraintEnd_toStartOf="@+id/guide6"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/taskTypeTextViewEdit"
                 app:layout_constraintTop_toBottomOf="@+id/view9"
-                app:layout_constraintVertical_bias="0.888" />
+                app:layout_constraintVertical_bias="0.8" />
 
             <View
                 android:id="@+id/view11"
@@ -202,13 +208,12 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="36dp"
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/darkText"
-                android:text="Items:"
+                android:text="Items: "
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/guide6"
-                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintEnd_toStartOf="@+id/scoreEditTextEdit"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/taskNumberEditTextEdit"
                 app:layout_constraintTop_toTopOf="@+id/taskNumberEditTextEdit" />
 
@@ -216,7 +221,6 @@
                 android:id="@+id/taskNumberEditTextEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
                 android:background="@drawable/transparent_bg"
                 android:gravity="center"
                 android:hint="No."
@@ -234,10 +238,12 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
-                android:drawableStart="@drawable/ic_folder1"
+                app:drawableStartCompat="@drawable/ic_folder1"
+
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/darkText"
                 android:focusable="true"
+                android:fontFamily="@font/poppins_regular"
                 android:hint="Select Category"
                 android:text="Select Category"
                 android:textSize="16sp"
@@ -274,10 +280,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_task1"
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/darkText"
-                android:text="Task number:"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Task number: "
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/guide6"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -292,8 +298,10 @@
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:drawablePadding="5dp"
+
                 android:drawableTint="@color/darkText"
                 android:focusable="true"
+                android:fontFamily="@font/poppins_regular"
                 android:gravity="center_vertical"
                 android:hint="Deadline"
                 android:textSize="16sp"
@@ -309,8 +317,10 @@
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:drawablePadding="5dp"
+
                 android:drawableTint="@color/darkText"
                 android:focusable="true"
+                android:fontFamily="@font/poppins_regular"
                 android:gravity="center_vertical"
                 android:hint="Grading period"
                 android:textSize="16sp"
@@ -346,9 +356,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Update"
+
                 android:textAllCaps="false"
-                android:textColor="@color/createAndcancelButtonColor"
+                android:textColor="@color/darkText"
                 app:layout_constraintEnd_toEndOf="@id/guide6"
                 app:layout_constraintStart_toStartOf="@id/guide7"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalLine" />
@@ -359,9 +371,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Cancel"
                 android:textAllCaps="false"
-                android:textColor="@color/createAndcancelButtonColor"
+
+                android:textColor="@color/darkText"
                 app:layout_constraintEnd_toEndOf="@id/guide7"
                 app:layout_constraintStart_toStartOf="@id/guide5"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalLine"

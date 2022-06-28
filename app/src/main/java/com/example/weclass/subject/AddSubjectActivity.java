@@ -372,19 +372,11 @@ public class AddSubjectActivity extends AppCompatActivity {
         colors.add("#0097A7");
         colors.add("#00838F");
 
-        //AQUA BLUE
-        colors.add("#4AEC4");
-        colors.add("#079BF5");
-        colors.add("#038C9E");
-
         //TURQUOISE
         colors.add("#40E0D0");
         colors.add("#48D1CC");
         colors.add("#00CED1");
       
-
-
-
 
 
         index = new Random().nextInt(colors.size());

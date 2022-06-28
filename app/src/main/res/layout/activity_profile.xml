@@ -251,7 +251,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="105dp"
+                        android:layout_marginStart="110dp"
                         android:gravity="center"
                         android:text="0"
                         android:fontFamily="@font/poppins_regular"
@@ -310,7 +310,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="100dp"
+                        android:layout_marginStart="110dp"
                         android:gravity="center"
                         android:text="0"
                         android:textColor="@color/white" />
