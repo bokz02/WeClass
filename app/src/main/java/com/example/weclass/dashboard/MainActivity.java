@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort2_svg);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort1_svg);
 
             navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
         }

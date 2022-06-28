@@ -39,6 +39,7 @@ import com.example.weclass.studentlist.StudentProfile;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -58,12 +59,12 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     TextView noSubject;
     int lastFirstVisiblePosition;
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
-
+        mAuth = FirebaseAuth.getInstance();
         init();             // INITIALIZE ALL VIEWS
         navigationOpen();   //NAVIGATION DRAWER
         addSubject();       //FLOATING ACTION BUTTON FOR ADDING SUBJECT
@@ -275,6 +276,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
                         Intent intent = new Intent(Subject.this, LoginActivity.class);
                         finish();
                         startActivity(intent);

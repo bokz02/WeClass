@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/bg_classess"
     tools:context=".dashboard.MainActivity">
 
     <com.google.android.material.navigation.NavigationView
@@ -64,12 +63,12 @@
                     android:id="@+id/dashName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="44dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="48dp"
                     android:text="Hey, let's dive into the details."
                     android:textSize="20sp"
-                    android:textColor="#272727"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/cardView"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
                 <TextView
@@ -80,7 +79,6 @@
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Lastname, Firstname"
-                    android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/homePic"
@@ -91,10 +89,9 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
 
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="48dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="32dp"
                     android:background="@drawable/ic_no_image"
-                    android:backgroundTint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
@@ -188,7 +185,6 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Your subjects: "
             android:textSize="20sp"
-            android:textColor="#272727"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.122"
             app:layout_constraintStart_toStartOf="parent"
@@ -199,13 +195,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="7dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Your schedules: "
-            android:textColor="#272727"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guide3" />
+            app:layout_constraintTop_toBottomOf="@+id/homeSubjectRecView" />
 
         <TextView
             android:id="@+id/noSubjectTextViewHome"
@@ -255,22 +250,20 @@
         <com.example.weclass.ExtendedRecyclerView
             android:id="@+id/homeSubjectRecView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="190dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/guide3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guide1"
-            app:layout_constraintTop_toBottomOf="@+id/textView18"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/textView18">
 
         </com.example.weclass.ExtendedRecyclerView>
 
         <com.example.weclass.ExtendedRecyclerView
             android:id="@+id/homeScheduleRecView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guide4"
+            android:layout_height="190dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guide1"
             app:layout_constraintTop_toBottomOf="@+id/textView19">
 

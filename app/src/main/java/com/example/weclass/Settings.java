@@ -57,12 +57,12 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     private StorageReference storageReference;
     FirebaseAuth fauth;
     ImageView profilepic;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
+        mAuth = FirebaseAuth.getInstance();
         initialize();
         navigationOpen();
         terms();
@@ -239,6 +239,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
                         Intent intent = new Intent(Settings.this, LoginActivity.class);
                         finish();
                         startActivity(intent);

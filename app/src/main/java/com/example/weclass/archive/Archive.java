@@ -34,6 +34,7 @@ import com.example.weclass.subject.SubjectAdapter;
 import com.example.weclass.subject.SubjectItems;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,7 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
     EditText searchEditText;
     View noFile;
     TextView noSubject;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
-
+        mAuth = FirebaseAuth.getInstance();
         initialize();
         display();
         initializeAdapter();
@@ -189,6 +190,7 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
                         Intent intent = new Intent(Archive.this, LoginActivity.class);
                         finish();
                         startActivity(intent);

@@ -41,6 +41,7 @@ import com.example.weclass.subject.Subject;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, NavigationView.OnNavigationItemSelectedListener, EventAdapter.OnNoteListener {
     private TextView monthYearText, weeklyYearText, eventDay, eventTime, storeText;
@@ -54,7 +55,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     DataBaseHelper dataBaseHelper;
     View _noScheduleView;
     TextView _noScheduleTextView;
-
+    private FirebaseAuth mAuth;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -189,6 +190,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
                         Intent intent = new Intent(WeekViewActivity.this, LoginActivity.class);
                         finish();
                         startActivity(intent);
