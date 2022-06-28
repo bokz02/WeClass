@@ -95,7 +95,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         holder.taskNumber.setText(String.valueOf(taskGradeItems.get(position).getTaskNumber()));
         holder.gradingPeriod.setText(String.valueOf(taskGradeItems.get(position).getGradingPeriod()));
 
-        holder.gradeEditText.setText("");
+        holder.gradeEditText.setText("0");
 
 
         holder.submitButtonGrade.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +120,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                         + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
                         + holder.gradingPeriod.getText().toString() + "'", null);
 
-                if(holder.gradeEditText.getText().toString().isEmpty()) {
+                if(holder.gradeEditText.getText().toString().equals("")) {
                     Snackbar.make(holder.submitButtonGrade, "Do not submit empty grade!", Snackbar.LENGTH_SHORT).show();
 
                 }else if (a > 100){
