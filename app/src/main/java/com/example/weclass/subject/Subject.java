@@ -39,6 +39,7 @@ import com.example.weclass.studentlist.StudentProfile;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -56,6 +57,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     EditText searchEditText;
     View noFile;
     TextView noSubject;
+    private FirebaseAuth mAuth;
     int lastFirstVisiblePosition;
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
 
@@ -73,7 +75,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
 
 
-
+        mAuth = FirebaseAuth.getInstance();
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
@@ -235,10 +237,6 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();     // Show navigation drawer when clicked
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort3_svg);
-
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
 
@@ -275,6 +273,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
                         Intent intent = new Intent(Subject.this, LoginActivity.class);
                         finish();
                         startActivity(intent);

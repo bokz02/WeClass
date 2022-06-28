@@ -192,13 +192,13 @@
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_exams.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_main.xml" value="0.153125" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_password_reset_link_suceed.xml" value="0.2" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_present.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_projects.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_quiz.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_register_account.xml" value="0.33" />
+        <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_register_account.xml" value="0.25" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_schedule.xml" value="0.20102564102564102" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_seatwork.xml" value="0.20102564102564102" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/activity_settings.xml" value="0.33" />
@@ -225,6 +225,7 @@
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/studentlist_recyclerview_style.xml" value="0.20102564102564102" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/studentlist_viewpager_style.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/subject_recyclerview_home_style.xml" value="0.5" />
+        <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/subject_recyclerview_style.xml" value="0.153125" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/task_grade_recycler_style.xml" value="0.5" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/layout/task_recyclerview_style.xml" value="0.25" />
         <entry key="..\:/Users/thriz/AndroidStudioProjects/WeClass/app/src/main/res/menu/main_menu.xml" value="0.33" />

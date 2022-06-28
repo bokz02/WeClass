@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="5dp"
@@ -28,39 +27,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="title"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="18dp"
-            android:textColor="@color/darkText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/ic_baseline_access_time_24"
-            app:layout_constraintEnd_toStartOf="@+id/scheduleTimeTextViewRecView"
-            app:layout_constraintTop_toTopOf="@+id/scheduleDateTextViewRecView" />
 
         <TextView
             android:id="@+id/scheduleTimeTextViewRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="36dp"
-            android:fontFamily="@font/poppins_semibold"
             android:text="time"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView5" />
-
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/ic_baseline_calendar_today_24"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="@+id/scheduleTitleTextViewRecView"
             app:layout_constraintTop_toBottomOf="@+id/scheduleTitleTextViewRecView" />
 
@@ -68,11 +43,11 @@
             android:id="@+id/scheduleDateTextViewRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:fontFamily="@font/poppins_semibold"
             android:text="date"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="@+id/imageView4" />
+            app:layout_constraintStart_toStartOf="@+id/scheduleTitleTextViewRecView"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleTimeTextViewRecView" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

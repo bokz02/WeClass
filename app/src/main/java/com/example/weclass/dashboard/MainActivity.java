@@ -7,23 +7,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.weclass.BottomNavi;
 import com.example.weclass.ExtendedRecyclerView;
@@ -37,19 +33,9 @@ import com.example.weclass.schedule.EventItem;
 import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.subject.Subject;
 import com.example.weclass.subject.SubjectItems;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -65,18 +51,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     HomeSubjectAdapter homeSubjectAdapter;
     HomeScheduleAdapter homeScheduleAdapter;
     View noFile, noFile2;
-    TextView noSubject, noSchedule, userFullname;
+    TextView noSubject, noSchedule;
     TextView search;
 
-
-
-    SwipeRefreshLayout refreshLayout;
-    DatabaseReference referenceUsers;
-    FirebaseAuth auth;
-
-    private StorageReference storageReference;
-    FirebaseAuth fauth;
-    ImageView profilepic;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
-
         initialize();
         navigationOpen(); // open navigation drawer method
         display();
@@ -96,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initializeAdapter();
         initializeAdapter2();
         textListener();
-        getData();
-        getPicture();
         //viewPagerView();
 
     }
@@ -111,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         noSubject = findViewById(R.id.noSubjectTextViewHome);
         noFile = findViewById(R.id.noViewViewSubjectHome);
         search = findViewById(R.id.searchEditTextSubjectHome);
-        userFullname = findViewById(R.id.homeName);
+
         extendedRecyclerView2 = findViewById(R.id.homeScheduleRecView);
         noSchedule = findViewById(R.id.noSubjectTextViewHome2);
         noFile2 = findViewById(R.id.noViewViewSubjectHome2);
@@ -161,16 +135,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         public void navigationOpen() {
             setSupportActionBar(toolbar);
-
             navigationView.bringToFront();
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
             drawerLayout.addDrawerListener(toggle);
-            toggle.syncState();// Show navigation drawer when clicked
-
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort2_svg);
-
+            toggle.syncState();     // Show navigation drawer when clicked
             navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
         }
 
@@ -309,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void initializeAdapter2(){
         homeScheduleAdapter = new HomeScheduleAdapter(this, eventItems);
         extendedRecyclerView2.setAdapter(homeScheduleAdapter);
-        extendedRecyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        extendedRecyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         extendedRecyclerView2.setEmptyView(noFile2,noSchedule);
     }
 
@@ -339,40 +307,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         cursor.close();
         return eventItems;
-    }
-
-    private void getPicture() {
-        fauth = FirebaseAuth.getInstance();
-        profilepic = findViewById(R.id.homePic);
-        storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference profileRef = storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(profilepic);
-            }
-        });
-    }
-
-
-    //Get data to firebase
-    private void getData() {
-        auth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = auth.getCurrentUser();
-        referenceUsers = FirebaseDatabase.getInstance().getReference().child("UserItem");
-        referenceUsers.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String user_name = dataSnapshot.child(user.getUid()).child("fullname").getValue(String.class);
-
-                //Displaying data from firebase
-                userFullname.setText(user_name);}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(MainActivity.this, "Something wrong happend!", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }

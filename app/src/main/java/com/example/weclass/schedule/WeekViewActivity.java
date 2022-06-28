@@ -41,6 +41,7 @@ import com.example.weclass.subject.Subject;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, NavigationView.OnNavigationItemSelectedListener, EventAdapter.OnNoteListener {
     private TextView monthYearText, weeklyYearText, eventDay, eventTime, storeText;
@@ -56,6 +57,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     TextView _noScheduleTextView;
 
 
+    private FirebaseAuth mAuth;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -75,6 +77,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         display();
         initializeAdapter();
 
+        mAuth = FirebaseAuth.getInstance();
         Intent intent = getIntent();
         String str = intent.getStringExtra("message_key");
         weeklyYearText.setText(str);
@@ -146,11 +149,6 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();     // Show navigation drawer when clicked
-
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort3_svg);
-
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
 
@@ -189,6 +187,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
                         Intent intent = new Intent(WeekViewActivity.this, LoginActivity.class);
                         finish();
                         startActivity(intent);

@@ -49,6 +49,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     NavigationView navigationView;
     ImageView button, button1, changeProfile, button2;
     TextView userFullname, userEmail;
+    private FirebaseAuth mAuth;
 
     SwipeRefreshLayout refreshLayout;
     DatabaseReference referenceUsers;
@@ -74,7 +75,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
         //Refresh
 
-
+        mAuth = FirebaseAuth.getInstance();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
     }
@@ -184,10 +185,6 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();     // Show navigation drawer when clicked
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort3_svg);
-
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
 
@@ -239,6 +236,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
                         Intent intent = new Intent(Settings.this, LoginActivity.class);
                         finish();
                         startActivity(intent);
