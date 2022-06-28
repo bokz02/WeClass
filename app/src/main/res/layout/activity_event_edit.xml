@@ -34,6 +34,7 @@
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/transparent_bg"
                 android:text="Create"
+                android:fontFamily="@font/poppins_semibold"
                 android:textAllCaps="false"
                 android:textColor="@color/darkText"
                 android:textSize="14sp"
@@ -57,6 +58,7 @@
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/transparent_bg"
                 android:text="Cancel"
+                android:fontFamily="@font/poppins_semibold"
                 android:textAllCaps="false"
                 android:textColor="@color/darkText"
                 android:textSize="14sp"
@@ -72,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Add New"
-                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/darkText"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +89,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:text="Subject Information"
-                android:textColor="@color/black"
+                android:textColor="@color/darkText"
+                android:fontFamily="@font/poppins_regular"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.494"
@@ -118,52 +122,55 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
+
             <EditText
                 android:id="@+id/eventNameText"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_marginTop="69dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/transparent_bg"
+                android:fontFamily="@font/poppins_regular"
                 android:gravity="center"
                 android:hint="Event Name"
-                android:textSize="16sp"
 
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
 
             <TextView
                 android:id="@+id/eventTimeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="112dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/transparent_bg"
-                android:hint="Select Time"
-                android:textSize="16sp"
+                android:clickable="true"
                 android:enabled="true"
                 android:focusable="true"
-                android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Select Time"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.491"
-                app:layout_constraintStart_toStartOf="parent" />
-
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view3" />
 
             <TextView
                 android:id="@+id/eventDateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="76dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/transparent_bg"
                 android:enabled="false"
+                android:fontFamily="@font/poppins_regular"
                 android:hint="Select Date"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.487"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view6" />
 
             <View
                 android:id="@+id/view6"
