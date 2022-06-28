@@ -55,7 +55,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     DataBaseHelper dataBaseHelper;
     View _noScheduleView;
     TextView _noScheduleTextView;
-
+    private FirebaseAuth mAuth;
 
     private FirebaseAuth mAuth;
     DrawerLayout drawerLayout;

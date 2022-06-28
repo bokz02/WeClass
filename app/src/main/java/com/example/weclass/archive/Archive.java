@@ -50,7 +50,6 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
     EditText searchEditText;
     View noFile;
     TextView noSubject;
-
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +58,6 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
-
         mAuth = FirebaseAuth.getInstance();
         initialize();
         display();
@@ -153,6 +151,9 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();     // Show navigation drawer when clicked
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort3_svg);
 
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
@@ -181,6 +182,7 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
                 finish();
                 break;
             case R.id.drawerLogout:
+
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Archive.this);
                 builder.setTitle("Confirm logout");
                 builder.setIcon(R.drawable.ic_baseline_warning_24);

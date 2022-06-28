@@ -60,12 +60,12 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     private FirebaseAuth mAuth;
     int lastFirstVisiblePosition;
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
-
+        mAuth = FirebaseAuth.getInstance();
         init();             // INITIALIZE ALL VIEWS
         navigationOpen();   //NAVIGATION DRAWER
         addSubject();       //FLOATING ACTION BUTTON FOR ADDING SUBJECT

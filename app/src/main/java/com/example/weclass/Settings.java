@@ -58,12 +58,12 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     private StorageReference storageReference;
     FirebaseAuth fauth;
     ImageView profilepic;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
+        mAuth = FirebaseAuth.getInstance();
         initialize();
         navigationOpen();
         terms();
