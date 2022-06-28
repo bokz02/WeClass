@@ -146,6 +146,11 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();     // Show navigation drawer when clicked
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort3_svg);
+
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
 
