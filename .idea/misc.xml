@@ -30,7 +30,7 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_event_edit.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
-        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_profile.xml" value="0.4230769230769231" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_register_account.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/activity_schedule.xml" value="0.33" />
@@ -53,10 +53,13 @@
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/header.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/ratings_recyclerview_style.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/sample.xml" value="0.36666666666666664" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/schedule_recyclerview_home_style.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studenlist_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studentlist_recyclerview_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/studentlist_viewpager_style.xml" value="0.365625" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/subject_recyclerview_home_style.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/subject_recyclerview_style.xml" value="0.36666666666666664" />
+        <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/subject_viewpager_style.xml" value="0.365625" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/task_grade_recycler_style.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/layout/task_recyclerview_style.xml" value="0.33" />
         <entry key="..\:/JavaProjects/WeClass/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />

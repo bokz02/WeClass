@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewRecViewHome"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="10dp"
+    app:cardCornerRadius="20dp"
+    android:focusable="true"
+    android:clickable="true"
+    app:cardElevation="3dp"
+    app:layout_constraintBottom_toBottomOf="@id/guide4"
+    app:layout_constraintEnd_toEndOf="@id/guide2"
+    app:layout_constraintStart_toStartOf="@id/guide1"
+    app:layout_constraintTop_toTopOf="@id/guide3"
+    app:rippleColor="@color/lightText">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintBackgroundSubjectRecViewHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        android:background="@color/lightText">
+
+        <TextView
+            android:id="@+id/positionNumberHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginVertical="50dp"
+            android:text="ID"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/taskTypeRecViewHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Course"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/subjectCodeRecViewHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subject code"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskTypeRecViewHome" />
+
+        <TextView
+            android:id="@+id/subjectTitleRecViewHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subject title"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecViewHome" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_baseline_access_time_24"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/dateTextViewRecViewHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Monday"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

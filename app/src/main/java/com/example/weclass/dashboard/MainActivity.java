@@ -6,34 +6,53 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
+import com.example.weclass.BottomNavi;
+import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.archive.Archive;
+import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.login.LoginActivity;
+import com.example.weclass.schedule.EventAdapter;
+import com.example.weclass.schedule.EventItem;
 import com.example.weclass.schedule.WeekViewActivity;
-import com.example.weclass.studentlist.AddStudent;
 import com.example.weclass.subject.Subject;
+import com.example.weclass.subject.SubjectItems;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, HomeSubjectAdapter.OnNoteListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    ViewPager2 viewPager2;
+    ExtendedRecyclerView extendedRecyclerView, extendedRecyclerView2;
+    ArrayList<SubjectItems> subjectItems;
+    ArrayList<EventItem> eventItems;
+    DataBaseHelper dataBaseHelper;
+    HomeSubjectAdapter homeSubjectAdapter;
+    HomeScheduleAdapter homeScheduleAdapter;
+    View noFile, noFile2;
+    TextView noSubject, noSchedule;
+    TextView search;
 
     private FirebaseAuth mAuth;
     @Override
@@ -42,24 +61,48 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
-        drawerLayout = findViewById(R.id.drawerLayout);
-        navigationView = findViewById(R.id.navView);
-        toolbar = findViewById(R.id.toolbar);
 
-//        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
 
-        navigationOpen(); // open navigation drawer method
         initialize();
-
+        navigationOpen(); // open navigation drawer method
+        display();
+        display2();
+        initializeAdapter();
+        initializeAdapter2();
+        textListener();
+        //viewPagerView();
 
     }
 
     public void initialize(){
 
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.navView);
+        toolbar = findViewById(R.id.toolbar);
+        extendedRecyclerView = findViewById(R.id.homeSubjectRecView);
+        noSubject = findViewById(R.id.noSubjectTextViewHome);
+        noFile = findViewById(R.id.noViewViewSubjectHome);
+        search = findViewById(R.id.searchEditTextSubjectHome);
+
+        extendedRecyclerView2 = findViewById(R.id.homeScheduleRecView);
+        noSchedule = findViewById(R.id.noSubjectTextViewHome2);
+        noFile2 = findViewById(R.id.noViewViewSubjectHome2);
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        initialize();
+        navigationOpen(); // open navigation drawer method
+        display();
+        display2();
+        initializeAdapter();
+        initializeAdapter2();
+    }
 
     @Override
     public void onBackPressed() {
@@ -153,5 +196,116 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         return true;
+    }
+
+
+    // INITIALIZE ADAPTER FOR VIEWPAGER
+    public void initializeAdapter(){
+        homeSubjectAdapter = new HomeSubjectAdapter(this, subjectItems, this);
+        extendedRecyclerView.setAdapter(homeSubjectAdapter);
+        extendedRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        extendedRecyclerView.setEmptyView(noFile, noSubject);
+    }
+
+    // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
+    public void display(){
+        subjectItems = new ArrayList<>();
+        dataBaseHelper = new DataBaseHelper(this);
+        subjectItems = displayData();
+
+    }
+
+
+    // GET THE DATA IN THE DATABASE
+    private ArrayList<SubjectItems> displayData(){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_MY_SUBJECTS, null);
+        ArrayList<SubjectItems> subjectItems = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                subjectItems.add(new SubjectItems (
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getString(9)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return subjectItems;
+    }
+
+
+    @Override
+    public void onNoteClick(int position) {
+        Intent intent = new Intent(this, BottomNavi.class);
+        intent.putExtra("Subject", subjectItems.get(position));
+        startActivity(intent);
+        overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+
+    }
+
+    // FILTER SEARCH IN SUBJECT ACTIVITY
+    public void textListener(){
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                homeSubjectAdapter.getFilter().filter(editable);
+
+            }
+        });
+    }
+
+
+
+    public void initializeAdapter2(){
+        homeScheduleAdapter = new HomeScheduleAdapter(this, eventItems);
+        extendedRecyclerView2.setAdapter(homeScheduleAdapter);
+        extendedRecyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        extendedRecyclerView2.setEmptyView(noFile2,noSchedule);
+    }
+
+    // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
+    public void display2(){
+        eventItems = new ArrayList<>();
+        dataBaseHelper = new DataBaseHelper(this);
+        eventItems = displayData2();
+
+    }
+
+
+    // GET THE DATA IN THE DATABASE
+    private ArrayList<EventItem> displayData2(){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_MY_SCHEDULE, null);
+        ArrayList<EventItem> eventItems= new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                eventItems.add(new EventItem (
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return eventItems;
     }
 }
