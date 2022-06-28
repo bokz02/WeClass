@@ -60,7 +60,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     private FirebaseAuth mAuth;
     int lastFirstVisiblePosition;
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
-    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

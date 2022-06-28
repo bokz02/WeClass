@@ -261,11 +261,11 @@
         <com.example.weclass.ExtendedRecyclerView
             android:id="@+id/homeScheduleRecView"
             android:layout_width="0dp"
-            android:layout_height="190dp"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guide1"
-            app:layout_constraintTop_toBottomOf="@+id/textView19">
+            app:layout_constraintTop_toBottomOf="@+id/textView19"
+            app:layout_constraintBottom_toBottomOf="@id/guide4">
 
 
         </com.example.weclass.ExtendedRecyclerView>

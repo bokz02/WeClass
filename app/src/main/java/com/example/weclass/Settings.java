@@ -53,12 +53,12 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
     SwipeRefreshLayout refreshLayout;
     DatabaseReference referenceUsers;
-    FirebaseAuth auth;
+
 
     private StorageReference storageReference;
     FirebaseAuth fauth;
     ImageView profilepic;
-    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,8 +106,8 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
     //Get data to firebase
     private void getData() {
-        auth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = auth.getCurrentUser();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
         referenceUsers = FirebaseDatabase.getInstance().getReference().child("UserItem");
         referenceUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

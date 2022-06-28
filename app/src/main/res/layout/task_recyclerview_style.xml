@@ -55,9 +55,10 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Period"
                 android:textSize="16sp"
+                android:layout_marginTop="5dp"
                 android:visibility="visible"
-                app:layout_constraintEnd_toStartOf="@+id/progressTextView"
-                app:layout_constraintTop_toTopOf="@+id/taskNumberRecView" />
+                app:layout_constraintStart_toStartOf="@+id/scoreText"
+                app:layout_constraintTop_toBottomOf="@+id/scoreText" />
 
         <ImageButton
             android:id="@+id/optionButtonTaskRecView"
@@ -98,12 +99,12 @@
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/rounded_stroke"
                 android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/darkText"
                 android:text="Progress"
+                android:textColor="@color/darkText"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/parentIDTaskRecView"
+                app:layout_constraintBottom_toBottomOf="@+id/optionButtonTaskRecView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/gradingPeriodTaskRecView" />
+                app:layout_constraintTop_toTopOf="@+id/optionButtonTaskRecView" />
 
             <TextView
                 android:id="@+id/taskNumberRecView"
