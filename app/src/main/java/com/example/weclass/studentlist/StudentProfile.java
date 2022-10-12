@@ -319,16 +319,16 @@ public class StudentProfile extends AppCompatActivity {
     // MIDTERM GRADE PICKER
     public void pickMidtermGrade() {
         final String[] grade = new String[]{
-                "1",
+                "1.00",
                 "1.25",
-                "1.5",
+                "1.50",
                 "1.75",
-                "2",
+                "2.00",
                 "2.25",
-                "2.5",
+                "2.50",
                 "2.75",
-                "3",
-                "5",
+                "3.00",
+                "5.00",
                 "INC",
                 "DRP",
 
@@ -373,16 +373,16 @@ public class StudentProfile extends AppCompatActivity {
     // FINAL GRADE PICKER
     public void pickFinalGrade() {
         final String[] grade = new String[]{
-                "1",
+                "1.00",
                 "1.25",
-                "1.5",
+                "1.50",
                 "1.75",
-                "2",
+                "2.00",
                 "2.25",
-                "2.5",
+                "2.50",
                 "2.75",
-                "3",
-                "5",
+                "3.00",
+                "5.00",
                 "INC",
                 "DRP",
 
@@ -427,16 +427,16 @@ public class StudentProfile extends AppCompatActivity {
     // FINAL RATING PICKER
     public void pickFinalRating() {
         final String[] grade = new String[]{
-                "1.0",
+                "1.00",
                 "1.25",
-                "1.5",
+                "1.50",
                 "1.75",
-                "2.0",
+                "2.00",
                 "2.25",
-                "2.5",
+                "2.50",
                 "2.75",
-                "3.0",
-                "5.0",
+                "3.00",
+                "5.00",
                 "INC",
                 "DRP",
 
