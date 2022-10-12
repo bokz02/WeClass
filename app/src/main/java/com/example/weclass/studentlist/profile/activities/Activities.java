@@ -15,8 +15,10 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.studentlist.StudentItems;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Activities extends AppCompatActivity {
 
@@ -44,6 +46,7 @@ public class Activities extends AppCompatActivity {
         initializeAdapter();
         display2(); // DISPLAY STUDENT FINALS ACTIVITY
         initializeAdapter2();
+        automaticSort(); // SORT ACTIVITIES WHEN ACTIVITY OPENS
     }
 
     @Override
@@ -52,6 +55,7 @@ public class Activities extends AppCompatActivity {
 
         initializeAdapter();
         initializeAdapter2();
+        automaticSort(); // SORT ACTIVITIES WHEN ACTIVITY OPENS
     }
 
     public void initialize(){
@@ -177,5 +181,12 @@ public class Activities extends AppCompatActivity {
         }
         cursor.close();
         return activitiesItems2;
+    }
+
+    // AUTOMATIC SORT WHEN ACTIVITY OPEN
+    public void automaticSort(){
+        Collections.sort(activitiesItems, ActivitiesItems.sortAtoZComparator);
+        initializeAdapter();
+        initializeAdapter2();
     }
 }

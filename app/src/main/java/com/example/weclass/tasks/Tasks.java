@@ -22,12 +22,14 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.studentlist.StudentItems;
 import com.example.weclass.subject.AddSubjectActivity;
 import com.example.weclass.taskGrade.TaskGrade;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
 
@@ -54,6 +56,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
         display();      // DATA TO BE DISPLAY IN RECYCLERVIEW
         initializeAdapter();        // INITIALIZE ADAPTER FOR RECYCLERVIEW
         textListener();     // SEARCH FUNCTION FOR LIST OF STUDENTS
+        automaticSort(); // SORT LISTS WHEN ACTIVITY OPENS
 
         return view;
     }
@@ -99,6 +102,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
         display();              // DATA TO BE DISPLAY IN RECYCLERVIEW
         initializeAdapter();     // INITIALIZE ADAPTER FOR RECYCLERVIEW
         textListener();     // FILTER DATA WHEN SEARCHING
+        automaticSort(); // SORT LISTS WHEN ACTIVITY OPENS
 
         // SAVE RECYCLERVIEW SCROLL POSITION
         ((LinearLayoutManager) extendedRecyclerView.getLayoutManager()).scrollToPosition(lastFirstVisiblePosition);
@@ -225,5 +229,12 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
         intent.putExtra("id", parentID.getText().toString());
 
         startActivity(intent);
+    }
+
+    // AUTOMATIC SORT WHEN ACTIVITY OPEN
+    public void automaticSort(){
+        Collections.sort(taskItems, TaskItems.sortAtoZComparator);
+        Collections.sort(taskItems, TaskItems.sortZtoAComparator);
+        initializeAdapter();
     }
 }

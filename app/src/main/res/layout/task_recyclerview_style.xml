@@ -179,12 +179,11 @@
                 android:id="@+id/hiddenDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:orientation="vertical"
                 android:paddingHorizontal="5dp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/scoreTextViewRecView">
+                app:layout_constraintTop_toBottomOf="@+id/gradingPeriodTaskRecView">
 
                 <TextView
                     android:id="@+id/descriptionTextView"

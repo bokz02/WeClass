@@ -3,6 +3,11 @@ package com.example.weclass.tasks;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.weclass.studentlist.StudentItems;
+import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
+
+import java.util.Comparator;
+
 public class TaskItems implements Parcelable {
 
     String taskType, dueDate, score, taskDescription, progress, gradingPeriod;
@@ -138,4 +143,18 @@ public class TaskItems implements Parcelable {
         parcel.writeInt(taskNumber);
         parcel.writeString(gradingPeriod);
     }
+
+    public static Comparator<TaskItems> sortAtoZComparator = new Comparator<TaskItems>() {
+        @Override
+        public int compare(TaskItems t1, TaskItems t2) {
+            return t1.getTaskType().compareTo(t2.getTaskType());
+        }
+    };
+
+    public static Comparator<TaskItems> sortZtoAComparator = new Comparator<TaskItems>() {
+        @Override
+        public int compare(TaskItems t2, TaskItems t1) {
+            return t1.getGradingPeriod().compareTo(t2.getGradingPeriod());
+        }
+    };
 }
