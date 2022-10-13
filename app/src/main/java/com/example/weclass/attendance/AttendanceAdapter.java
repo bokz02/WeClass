@@ -138,11 +138,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                         + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
                         + holder._subjectID.getText().toString() + " AND "
                         + DataBaseHelper.COLUMN_DATE_ATTENDANCE + " = '"
-                        + holder._date.getText().toString() + "' AND "
-                        + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + " = "
-                        + holder._always1.getText().toString() + " OR "
-                        + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + " = "
-                        + holder._always1.getText().toString(), null);
+                        + holder._date.getText().toString() + "'", null);
 
                 // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
                 if (cursor.moveToFirst()) {
@@ -221,11 +217,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                         + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
                         + holder._subjectID.getText().toString() + " AND "
                         + DataBaseHelper.COLUMN_DATE_ATTENDANCE + " = '"
-                        + holder._date.getText().toString() + "' AND "
-                        + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + " = "
-                        + holder._always1.getText().toString() + " OR "
-                        + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + " = "
-                        + holder._always1.getText().toString(), null);
+                        + holder._date.getText().toString() + "'", null);
 
 
                 // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
