@@ -425,7 +425,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // UPDATE PRESENT COLUMN OF STUDENT DATABASE
+    // UPDATE ABSENT COLUMN OF STUDENT DATABASE
     public void updateStudentAbsent(String id, String idSubject,String absent){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

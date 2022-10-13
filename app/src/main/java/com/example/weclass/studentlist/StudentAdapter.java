@@ -113,6 +113,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         holder.absences.setText(String.valueOf(studentItems.get(position).getAbsent()));
         holder.studentImage.setImageBitmap(bitmap);
 
+
         int a = Integer.parseInt(holder.absences.getText().toString());
         if(a == 4){
             holder.background.setBackgroundResource(R.color.lightText);

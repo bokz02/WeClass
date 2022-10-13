@@ -61,7 +61,7 @@
             android:paddingHorizontal="5dp"
             android:text="ID"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/parentIdAttendanceRecView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -97,7 +97,7 @@
             android:paddingHorizontal="5dp"
             android:text="parent id"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -120,7 +120,7 @@
             android:paddingHorizontal="5dp"
             android:text="absent"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/presentTextViewAttendanceRecView"
             app:layout_constraintStart_toEndOf="@+id/parentIdAttendanceRecView" />
 
@@ -131,7 +131,7 @@
             android:paddingHorizontal="5dp"
             android:text="date"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/absentTextViewAttendanceRecView"
             app:layout_constraintStart_toStartOf="@+id/absentTextViewAttendanceRecView" />
 

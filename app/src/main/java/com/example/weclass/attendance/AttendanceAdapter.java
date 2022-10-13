@@ -152,6 +152,10 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                     snackbar.show();
                     cursor.close();
 
+                    c = holder.getAdapterPosition();
+                    attendanceItems.remove(c);
+                    notifyItemRemoved(c);
+
                     // ELSE IT WILL STORE TO DATABASE
                 } else {
 
@@ -171,14 +175,16 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._subjectID.getText().toString(),
                             holder._present.getText().toString());
 
+                    c = holder.getAdapterPosition();
+                    attendanceItems.remove(c);
+                    notifyItemRemoved(c);
+
                 }
-                c = holder.getAdapterPosition();
-                attendanceItems.remove(c);
-                notifyItemRemoved(c);
+
             }
         });
 
-        // PRESENT BUTTON
+        // ABSENT BUTTON
         holder.absentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
