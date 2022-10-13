@@ -15,6 +15,7 @@
     app:rippleColor="@color/lightText">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/studentListBackgroundRecView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dp">
@@ -122,6 +123,16 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/studentFirstnameRecView"
             app:layout_constraintStart_toEndOf="@+id/studentFirstnameRecView" />
+
+        <TextView
+            android:id="@+id/studentListAbsentWarning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

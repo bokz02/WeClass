@@ -3,6 +3,8 @@ package com.example.weclass.studentlist;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
@@ -107,9 +110,17 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         holder.firstNameText.setText(String.valueOf(studentItems.get(position).getFirstname()));
         holder.middleNameText.setText(String.valueOf(studentItems.get(position).getMiddleName()));
         holder.genderText.setText(String.valueOf(studentItems.get(position).getGender()));
+        holder.absences.setText(String.valueOf(studentItems.get(position).getAbsent()));
         holder.studentImage.setImageBitmap(bitmap);
 
-        // NAVIGATE TO EDIT ACTIVITY, OR DELETE A SUBJECT
+        int a = Integer.parseInt(holder.absences.getText().toString());
+        if(a == 4){
+            holder.background.setBackgroundResource(R.color.lightText);
+        }else if (a == 5){
+            holder.background.setBackgroundResource(R.color.Red);
+        }
+
+        // NAVIGATE TO EDIT ACTIVITY, OR DELETE A STUDENT
         holder.optionStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,6 +184,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
 
             }
         });
+
     }
 
     @Override
@@ -181,10 +193,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView id,parent_id, lastNameText, firstNameText, middleNameText, genderText;
+        TextView id,parent_id, lastNameText, firstNameText, middleNameText, genderText, absences;
         ImageButton button, optionStudent;
         OnNoteListener onNoteListener;
         ImageView studentImage;
+        ConstraintLayout background;
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener mOnNoteListener, ItemCallback itemCallback) {
             super(itemView);
@@ -197,7 +210,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
             genderText = itemView.findViewById(R.id.studentSexRecView);
             optionStudent = itemView.findViewById(R.id.optionButtonSubject);
             studentImage = itemView.findViewById(R.id.studentImageRecView);
-
+            absences =itemView.findViewById(R.id.studentListAbsentWarning);
+            background = itemView.findViewById(R.id.studentListBackgroundRecView);
 
             this.onNoteListener = mOnNoteListener;
 

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,6 +49,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         ImageButton absentButton, presentButton;
         OnNoteListener onNoteListener;
         ImageView image;
+        ConstraintLayout background;
 
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
@@ -66,6 +68,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             _always1 = itemView.findViewById(R.id.always1AttendanceRecView);
             _always0 = itemView.findViewById(R.id.always0AttendanceRecView);
             image = itemView.findViewById(R.id.pictureAttendanceRecView);
+            background =itemView.findViewById(R.id.attendanceBackgroundRecView);
 
             this.onNoteListener = onNoteListener;
         }
@@ -99,6 +102,13 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder._absent.setText(String.valueOf(attendanceItems.get(position).getAbsent()));
         holder._subjectID.setText(String.valueOf(attendanceItems.get(position).getParentID()));
         holder.image.setImageBitmap(bitmap);
+
+        // BACKGROUND COLOR WILL CHANGE IF IT HITS THE SPECIFIC COUNT
+        int d = Integer.parseInt(holder._absent.getText().toString());
+        if(d == 4) {
+            holder.background.setBackgroundResource(R.color.lightText);
+        }
+
 
         // PRESENT BUTTON
         holder.presentButton.setOnClickListener(new View.OnClickListener() {
@@ -142,10 +152,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                     snackbar.show();
                     cursor.close();
 
-                    c = holder.getAdapterPosition();
-                    attendanceItems.remove(c);
-                    notifyItemRemoved(c);
-
                     // ELSE IT WILL STORE TO DATABASE
                 } else {
 
@@ -165,10 +171,10 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._subjectID.getText().toString(),
                             holder._present.getText().toString());
 
-                    c = holder.getAdapterPosition();
-                    attendanceItems.remove(c);
-                    notifyItemRemoved(c);
                 }
+                c = holder.getAdapterPosition();
+                attendanceItems.remove(c);
+                notifyItemRemoved(c);
             }
         });
 
@@ -187,6 +193,15 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                 int a = 1;
                 int b = Integer.parseInt(holder._absent.getText().toString());
                 holder._absent.setText(String.valueOf(a + b));
+
+
+                // BACKGROUND COLOR WILL CHANGE IF IT HITS THE SPECIFIC COUNT
+                int d = Integer.parseInt(holder._absent.getText().toString());
+                if(d == 4){
+                    holder.background.setBackgroundResource(R.color.lightText);
+                }else if (d == 5){
+                    holder.background.setBackgroundResource(R.color.Red);
+                }
 
 
                 DataBaseHelper db = new DataBaseHelper(context);
