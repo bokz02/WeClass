@@ -295,7 +295,7 @@
                 android:background="@color/transparent"
                 android:hint="Select Day"
                 android:inputType="textCapSentences"
-                android:maxLength="10"
+                android:maxLength="30"
                 android:fontFamily="@font/poppins_regular"
 
                 android:textAlignment="center"
