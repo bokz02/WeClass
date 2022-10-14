@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class EditSubjectActivity extends AppCompatActivity implements SubjectAdapter.OnNoteListener {
 
@@ -33,6 +34,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
     int t1Hour, t1Minute;
     ImageButton backButton;
     String selectedDay, selectedSem, selectedSy;
+    private List<String> daysSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,30 +210,50 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
 
     // DAY PICKER WILL OPEN WHEN PRESSED
     public void pickDate() {
-        final String[] dayOfWeek = new String[]{
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-        };
-
-        selectedDay = dayOfWeek[0];
         dayTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                daysSelected = new ArrayList<>();
+                String[] daysOfWeek = {"Monday ", "Tuesday", "Wednesday ", "Thursday ", "Friday "};
+
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
                 builder.setTitle("Select day");
-                builder.setSingleChoiceItems(dayOfWeek, 0, new DialogInterface.OnClickListener() {
+                builder.setMultiChoiceItems(daysOfWeek, null, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        selectedDay = dayOfWeek[i];
-                        dayTextView.setText(selectedDay);
-                        dialogInterface.dismiss();
+                    public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
+                        String selected[] = daysOfWeek;
+
+                        if (isChecked)
+                        {
+                            daysSelected.add(selected[i]);
+                        }
+                        else if (daysSelected.contains(selected[i]))
+                        {
+                            daysSelected.remove(selected[i]);
+                        }
                     }
                 });
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String data = "";
+                        for (String item:daysSelected)
+                        {
+                            data = data +" "+ item;
+                        }
+//                        Toast.makeText(AddSubjectActivity.this, data, Toast.LENGTH_SHORT).show();
+                        dayTextView.setText(data);
+                    }
+                });
+
+                builder.setNegativeButton("Cancel",null);
+
+                builder.create();
                 builder.show();
+
             }
         });
     }
