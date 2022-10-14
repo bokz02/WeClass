@@ -11,11 +11,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -26,7 +28,6 @@ import com.example.weclass.archive.Archive;
 import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.login.LoginActivity;
 import com.example.weclass.login.UserAccount;
-import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.subject.Subject;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -76,8 +77,13 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         //Refresh
 
         mAuth = FirebaseAuth.getInstance();
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
+        //status bar
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        window.setStatusBarColor(Color.WHITE);
     }
 
     @Override
@@ -169,7 +175,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
     public void initialize(){
         toolbar = findViewById(R.id.toolbarSettings);
-        navigationView = findViewById(R.id.navigationViewSettings);
+        navigationView = findViewById(R.id.navViewSettings);
         drawerLayout = findViewById(R.id.drawerSettings);
         button = findViewById(R.id.button);
         button1 = findViewById(R.id.button1);
@@ -188,7 +194,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort1_svg);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.mm1);
 
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
@@ -212,18 +218,13 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.drawerHome:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.drawerSched:
-                intent = new Intent(this, WeekViewActivity.class);
-                startActivity(intent);
-                finish();
-                break;
             case R.id.drawerSubject:
-                intent = new Intent(this, Subject.class);
+                Intent intent = new Intent(this, Subject.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerSettings:
+                intent = new Intent(this, Settings.class);
                 startActivity(intent);
                 finish();
                 break;

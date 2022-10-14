@@ -7,7 +7,7 @@
     <string name="addStudent">Add student</string>
     <string name="termsOfService">By signing up, you\'ve agree to our <font color="#28908C">\nTerms of services </font> and  <font color="#28908C">Privacy policy</font></string>
     <string name="AlreadyHave">Already have an account? <font color="#28908C">Register Here</font> </string>
-    <string name="WeClass">We<font color="#32B6FF">Class</font> </string>
+    <string name="WeClass">We<font color="#fe5757">Class</font> </string>
 
 
 </resources>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_sub"
     tools:context=".studentlist.profile.assignments.Assignments">
 
     <androidx.constraintlayout.widget.Guideline
@@ -173,6 +172,7 @@
         android:textStyle="bold"
         android:visibility="visible"
         android:layout_marginTop="25dp"
+        android:textColor="@color/darkText"
         app:layout_constraintEnd_toEndOf="@id/guide4"
         app:layout_constraintStart_toStartOf="@id/guide3"
         app:layout_constraintBottom_toBottomOf="@id/guide5" />

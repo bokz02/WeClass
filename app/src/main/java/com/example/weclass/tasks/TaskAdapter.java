@@ -1,10 +1,8 @@
 package com.example.weclass.tasks;
 
-import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Binder;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -15,20 +13,16 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.EditStudent;
-import com.example.weclass.subject.SubjectItems;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
@@ -61,7 +55,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             super(itemView);
 
             _id = itemView.findViewById(R.id.taskNumberRecView);
-            _taskType = itemView.findViewById(R.id.taskTypeRecView);
+            _taskType = itemView.findViewById(R.id.courseTypeRecView);
             _dueDate = itemView.findViewById(R.id.deadLineRecView);
             _score = itemView.findViewById(R.id.scoreTextViewRecView);
             _description = itemView.findViewById(R.id.descriptionHiddenTextView);

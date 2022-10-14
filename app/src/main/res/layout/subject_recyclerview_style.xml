@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="15dp"
     android:focusable="true"
     android:clickable="true"
     app:cardElevation="3dp"
     app:layout_constraintBottom_toBottomOf="@id/guide4"
+    app:cardBackgroundColor="#FF968A"
     app:layout_constraintEnd_toEndOf="@id/guide2"
     app:layout_constraintStart_toStartOf="@id/guide1"
     app:layout_constraintTop_toTopOf="@id/guide3"
@@ -20,8 +21,7 @@
         android:id="@+id/constraintBackgroundSubjectRecView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
-        android:background="@color/lightText">
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/positionNumber"
@@ -38,59 +38,80 @@
             android:id="@+id/optionButtonSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
             android:background="@drawable/ic_subject_option"
+            android:backgroundTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/taskTypeRecView"
+            android:id="@+id/courseTypeRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
             android:text="Course"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/subjectTitleRecView"
+            app:layout_constraintTop_toBottomOf="@+id/subjectTitleRecView" />
+
 
         <TextView
             android:id="@+id/subjectCodeRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Subject code"
+            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taskTypeRecView" />
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/subjectTitleRecView"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/subjectTitleRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/poppins_regular"
             android:text="Subject title"
             android:textColor="@color/white"
+
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecView" />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@drawable/ic_baseline_access_time_24"
             android:backgroundTint="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subjectTitleRecView" />
+            app:layout_constraintStart_toStartOf="@+id/courseTypeRecView"
+            app:layout_constraintTop_toBottomOf="@+id/courseTypeRecView" />
+
 
         <TextView
             android:id="@+id/dateTextViewRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:fontFamily="@font/poppins_regular"
             android:text="Monday"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/subjectTitleRecView"
+            app:layout_constraintTop_toBottomOf="@+id/subjectTitleRecView" />
+
+        <TextView
+            android:id="@+id/timeTextViewRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingStart="5dp"
+            android:text="8:00 AM"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -98,37 +119,31 @@
 
 
         <TextView
-            android:id="@+id/timeTextViewRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:text="8:00 AM"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/dateTextViewRecView"
-            app:layout_constraintTop_toTopOf="@+id/dateTextViewRecView" />
-
-        <TextView
             android:id="@+id/dashSeparator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
+            android:layout_marginStart="4dp"
             android:text="-"
             android:textColor="@color/white"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/timeTextViewRecView"
             app:layout_constraintStart_toEndOf="@+id/timeTextViewRecView"
-            app:layout_constraintTop_toTopOf="@+id/timeTextViewRecView" />
+            app:layout_constraintTop_toTopOf="@+id/timeTextViewRecView"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/timeEndTextViewRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
             android:paddingStart="5dp"
             android:text="8:00 AM"
             android:textColor="@color/white"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/dashSeparator"
             app:layout_constraintStart_toEndOf="@+id/dashSeparator"
-            app:layout_constraintTop_toTopOf="@+id/dashSeparator" />
+            app:layout_constraintTop_toTopOf="@+id/dashSeparator"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/semesterSubjectRecView"
@@ -136,12 +151,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@drawable/round_corner_calcell"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/poppins_regular"
             android:paddingStart="10dp"
+            android:visibility="gone"
             android:paddingEnd="10dp"
             android:text="Semester"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:backgroundTint="@color/white"
             app:layout_constraintStart_toEndOf="@+id/schoolYearSubjectRecView"
             app:layout_constraintTop_toTopOf="@+id/schoolYearSubjectRecView" />
 
@@ -149,19 +166,20 @@
             android:id="@+id/schoolYearSubjectRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="8dp"
             android:background="@drawable/round_corner_calcell"
             android:backgroundTint="@color/white"
-            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginTop="3dp"
             android:paddingStart="10dp"
+            android:visibility="gone"
             android:paddingEnd="10dp"
             android:text="School year"
+            android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.003"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dateTextViewRecView" />
+            app:layout_constraintTop_toBottomOf="@+id/timeTextViewRecView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

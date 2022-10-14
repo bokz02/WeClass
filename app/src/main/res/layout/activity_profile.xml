@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#32BAAA"
+    android:background="@color/red1"
     tools:context=".studentlist.StudentProfile">
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,9 +24,11 @@
                 android:id="@+id/studentIDProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
                 android:text="student id"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.742"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,68 +36,104 @@
                 android:id="@+id/subjectIDProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="subject id"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/studentIDProfile"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/studentIDProfile"
                 app:layout_constraintTop_toBottomOf="@+id/studentIDProfile" />
 
-
             <ImageButton
                 android:id="@+id/backButtonProfile"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/iconback2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/ic_simple_back"
                 android:backgroundTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Student Profile"
-                android:fontFamily="@font/poppins_regular"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.112"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/backButtonProfile" />
 
             <TextView
 
                 android:id="@+id/courseTextViewProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Course"
                 android:textAllCaps="true"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textColor="@color/red1"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textView13"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                app:layout_constraintStart_toStartOf="@+id/backButtonProfile"
+                app:layout_constraintTop_toBottomOf="@+id/backButtonProfile" />
+
 
             <TextView
 
                 android:id="@+id/subjectTextViewProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="36dp"
-                android:text="Subject"
                 android:fontFamily="@font/poppins_semibold"
-
+                android:text="Subject"
                 android:textAllCaps="true"
+                android:textColor="@color/red1"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/courseTextViewProfile"
+                app:layout_constraintTop_toBottomOf="@+id/courseTextViewProfile" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/studentProfilePicture"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:elevation="10dp"
+                android:src="@drawable/prof1"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"
+                app:civ_circle_background_color="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/courseTextViewProfile" />
+                app:layout_constraintHorizontal_bias="0.106"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/backButtonProfile"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/studLastnameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center_horizontal"
+                android:text="Lastname"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.128"
+                app:layout_constraintStart_toEndOf="@+id/studentProfilePicture"
+                app:layout_constraintTop_toTopOf="@+id/studentProfilePicture" />
+
+            <TextView
+                android:id="@+id/studFirstnameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_horizontal"
+                android:text="Firstname"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/studLastnameProfile"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/studLastnameProfile"
+                app:layout_constraintTop_toBottomOf="@+id/studLastnameProfile" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -154,71 +193,31 @@
                     app:layout_constraintGuide_percent="0.07" />
 
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/studentProfilePicture"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="32dp"
-                    android:clickable="true"
-                    android:src="@drawable/add_profile_1"
-                    app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/studFirstnameProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="188dp"
-                    android:gravity="center_horizontal"
-                    android:text="Firstname"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/lightText"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/studLastnameProfile"
-                    app:layout_constraintTop_toBottomOf="@+id/studLastnameProfile" />
-
-                <TextView
-                    android:id="@+id/studLastnameProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_horizontal"
-                    android:text="Lastname"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textColor="@color/darkText"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/studentProfilePicture"
-                    app:layout_constraintTop_toTopOf="@+id/studentProfilePicture" />
-
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal"
-                    android:text="Attendance"
+                    android:layout_marginTop="36dp"
                     android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center_horizontal"
 
+                    android:text="Attendance"
                     android:textColor="@color/darkText"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/studentProfilePicture" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView3"
+                    android:id="@+id/_materialPresent"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
                     android:elevation="10dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#32BAAA"
                     app:cardCornerRadius="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:layout_constraintEnd_toStartOf="@+id/guide11"
                     app:layout_constraintHorizontal_bias="0.075"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
@@ -236,7 +235,6 @@
                             android:layout_marginStart="15dp"
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/iconattendance"
-                            android:backgroundTint="@color/white"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -248,9 +246,9 @@
                             android:layout_gravity="center_vertical"
                             android:fontFamily="@font/poppins_regular"
                             android:text="Present:  "
+                            android:textColor="@color/black1"
                             android:gravity="center"
                             android:layout_marginStart="10dp"
-                            android:textColor="@color/white"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                             app:layout_constraintStart_toEndOf="@+id/imageView7"
@@ -269,17 +267,6 @@
                             app:layout_constraintStart_toEndOf="@+id/textView2"
                             app:layout_constraintTop_toTopOf="@+id/textView2" />
 
-                        <ImageView
-                            android:id="@+id/presentButtonProfile"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/ic_baseline_navigate_next_24"
-                            android:clickable="true"
-                            android:focusable="true"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -288,14 +275,14 @@
 
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/_materialAbsent"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:elevation="10dp"
-                    app:cardBackgroundColor="#28908c"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintStart_toStartOf="@+id/guide15"
-                    app:layout_constraintTop_toTopOf="@+id/materialCardView3">
+                    app:layout_constraintTop_toTopOf="@+id/_materialPresent">
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -309,7 +296,6 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="15dp"
                             android:background="@drawable/iconattendance"
-                            android:backgroundTint="@color/white"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -321,8 +307,9 @@
                             android:layout_gravity="center_vertical"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="center"
+                            android:textColor="@color/black1"
                             android:text="Absent:  "
-                            android:textColor="@color/white"
+
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                             app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -340,18 +327,6 @@
                             app:layout_constraintBottom_toBottomOf="@+id/textView17"
                             app:layout_constraintStart_toEndOf="@+id/textView17" />
 
-                        <ImageView
-                            android:id="@+id/absentButtonProfile"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/ic_baseline_navigate_next_24"
-                            android:clickable="true"
-                            android:focusable="true"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -360,26 +335,24 @@
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="12dp"
                     android:gravity="center_horizontal"
                     android:text="Records"
                     android:fontFamily="@font/poppins_semibold"
-
                     android:textColor="@color/darkText"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/_materialPresent" />
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView4"
+                    android:id="@+id/_materialActivity"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="16dp"
                     android:elevation="10dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#32BAAA"
+
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
@@ -391,150 +364,112 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginTop="19dp"
-                        android:layout_marginEnd="48dp"
-                        android:text="View All"
+                        android:layout_marginEnd="30dp"
                         android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black2"
+                        android:text="View All" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="30dp"
+                        android:textColor="@color/black1"
                         android:fontFamily="@font/poppins_regular"
-
-                        android:text="Activity"
-                        android:textColor="@color/white" />
-
-                    <ImageView
-                        android:id="@+id/activityButtonProfile"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="25dp"
-                        android:layout_gravity="right"
-                        android:background="@drawable/ic_baseline_navigate_next_24"
-                        android:clickable="true"
-                        android:focusable="true" />
+                        android:text="Activity" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView5"
+                    android:id="@+id/_materialAssignment"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
                     android:elevation="10dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#28908c"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView4">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialActivity">
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
                         android:text="Assignment"
+                        android:layout_marginStart="30dp"
+                        android:textColor="@color/black1"
                         android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginTop="19dp"
-                        android:layout_marginEnd="48dp"
+                        android:layout_marginEnd="30dp"
+                        android:textColor="@color/black2"
                         android:text="View All"
                         android:fontFamily="@font/poppins_regular"
+                        />
 
-                        android:textColor="@color/white" />
 
-
-                    <ImageView
-                        android:id="@+id/assignmentButtonProfile"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="25dp"
-                        android:layout_gravity="right"
-                        android:background="@drawable/ic_baseline_navigate_next_24"
-                        android:clickable="true"
-                        android:focusable="true" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView7"
+                    android:id="@+id/_materialSeatwork"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
                     android:elevation="10dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#32BAAA"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.916"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView5">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialAssignment">
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
                         android:text="Seatwork"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:layout_marginStart="30dp"
+                        android:textColor="@color/black1"
+                        android:fontFamily="@font/poppins_regular" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginTop="19dp"
-                        android:layout_marginEnd="48dp"
+                        android:layout_marginEnd="30dp"
+                        android:textColor="@color/black2"
                         android:text="View All"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:fontFamily="@font/poppins_regular" />
 
 
-                    <ImageView
-                        android:id="@+id/seatWorkButtonProfile"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="25dp"
-                        android:layout_gravity="right"
-                        android:background="@drawable/ic_baseline_navigate_next_24"
-                        android:clickable="true"
-                        android:focusable="true" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView8"
+                    android:id="@+id/_materialQuiz"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
                     android:elevation="10dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#28908c"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView7">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialSeatwork">
 
 
 
@@ -542,136 +477,96 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
+                        android:textColor="@color/black1"
                         android:text="Quiz"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/poppins_regular" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginTop="19dp"
-                        android:layout_marginEnd="48dp"
+                        android:layout_marginEnd="30dp"
+                        android:textColor="@color/black2"
                         android:text="View All"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/poppins_regular" />
 
-                        android:textColor="@color/white" />
-
-
-                    <ImageView
-                        android:id="@+id/quizButtonProfile"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="25dp"
-                        android:layout_gravity="right"
-                        android:background="@drawable/ic_baseline_navigate_next_24"
-                        android:clickable="true"
-                        android:focusable="true" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView12"
+                    android:id="@+id/_materialProject"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
                     android:elevation="10dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#32BAAA"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.916"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView8">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialQuiz">
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
                         android:text="Project"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:layout_marginStart="30dp"
+                        android:textColor="@color/black1"
+                        android:fontFamily="@font/poppins_regular" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginTop="19dp"
-                        android:layout_marginEnd="48dp"
                         android:text="View All"
-                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginEnd="30dp"
+                        android:textColor="@color/black2"
+                        android:fontFamily="@font/poppins_regular" />
 
-                        android:textColor="@color/white" />
-
-
-                    <ImageView
-                        android:id="@+id/projectButtonProfile"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="25dp"
-                        android:layout_gravity="right"
-                        android:background="@drawable/ic_baseline_navigate_next_24"
-                        android:clickable="true"
-                        android:focusable="true" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView14"
+                    android:id="@+id/_materialExams"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
                     android:elevation="10dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#28908c"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView12">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialProject">
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
                         android:text="Exams"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:layout_marginStart="30dp"
+                        android:textColor="@color/black1"
+                        android:fontFamily="@font/poppins_regular" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginTop="19dp"
-                        android:layout_marginEnd="48dp"
                         android:text="View All"
-                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginEnd="30dp"
+                        android:textColor="@color/black2"
+                        android:fontFamily="@font/poppins_regular" />
 
-                        android:textColor="@color/white" />
-
-                    <ImageView
-                        android:id="@+id/examButtonProfile"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="25dp"
-                        android:layout_gravity="right"
-                        android:background="@drawable/ic_baseline_navigate_next_24"
-                        android:clickable="true"
-                        android:focusable="true" />
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -689,7 +584,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView14" />
+                    app:layout_constraintTop_toBottomOf="@+id/_materialExams" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/materialCardView15"
@@ -698,7 +593,6 @@
                     android:elevation="10dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#32BAAA"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
@@ -713,20 +607,16 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="Grade"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:fontFamily="@font/poppins_regular" />
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="30dp"
                         android:text="Midterm Grade"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:fontFamily="@font/poppins_regular" />
 
                     <ImageButton
                         android:id="@+id/midtermGradeButton"
@@ -735,7 +625,6 @@
                         android:layout_marginTop="18dp"
                         android:layout_marginEnd="25dp"
                         android:layout_gravity="right"
-                        android:backgroundTint="@color/white"
                         android:background="@drawable/ic_baseline_arrow_drop_down_24"
                         android:clickable="true"
                         android:focusable="true" />
@@ -750,7 +639,6 @@
                     android:layout_marginTop="8dp"
                     android:elevation="10dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#28908c"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -767,20 +655,17 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="Grade"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:fontFamily="@font/poppins_regular" />
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="30dp"
                         android:text="Final Grade"
                         android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                      />
 
                     <ImageButton
                         android:id="@+id/finalGradeButton"
@@ -789,7 +674,6 @@
                         android:layout_marginTop="18dp"
                         android:layout_marginEnd="25dp"
                         android:layout_gravity="right"
-                        android:backgroundTint="@color/white"
                         android:background="@drawable/ic_baseline_arrow_drop_down_24"
                         android:clickable="true"
                         android:focusable="true" />
@@ -804,7 +688,6 @@
                     android:elevation="10dp"
                     android:layout_marginBottom="20dp"
                     android:orientation="horizontal"
-                    app:cardBackgroundColor="#32BAAA"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -828,20 +711,16 @@
                         android:layout_marginTop="19dp"
                         android:layout_marginEnd="48dp"
                         android:text="Grade"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:fontFamily="@font/poppins_regular" />
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="30dp"
                         android:text="Final Rating"
-                        android:fontFamily="@font/poppins_regular"
-
-                        android:textColor="@color/white" />
+                        android:fontFamily="@font/poppins_regular" />
 
                     <ImageButton
                         android:id="@+id/finalRatingButton"
@@ -851,7 +730,6 @@
                         android:layout_marginEnd="25dp"
                         android:layout_gravity="right"
                         android:background="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:backgroundTint="@color/white"
                         android:clickable="true"
                         android:focusable="true" />
 

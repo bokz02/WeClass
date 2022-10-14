@@ -199,7 +199,7 @@ public class AddStudent extends AppCompatActivity {
                                 // IF URI DON'T HAVE DATA, IT WILL SAVE WITH A DEFAULT IMAGE
                                 if(uri == null) {
 
-                                    byte[] image = DrawableUtils.getBytes(BitmapFactory.decodeResource(getResources(), R.drawable.add_profile_1));
+                                    byte[] image = DrawableUtils.getBytes(BitmapFactory.decodeResource(getResources(), R.drawable.prof1));
 
                                     DataBaseHelper dbh = new DataBaseHelper(AddStudent.this);
                                     dbh.addStudent(parentID.getText().toString().trim(),

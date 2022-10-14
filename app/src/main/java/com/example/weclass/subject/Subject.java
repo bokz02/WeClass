@@ -1,7 +1,6 @@
 package com.example.weclass.subject;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,12 +15,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,13 +29,10 @@ import android.widget.TextView;
 import com.example.weclass.BottomNavi;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.archive.Archive;
-import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.login.LoginActivity;
-import com.example.weclass.schedule.WeekViewActivity;
-import com.example.weclass.studentlist.StudentProfile;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -63,6 +60,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
         mAuth = FirebaseAuth.getInstance();
@@ -77,8 +75,18 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
         mAuth = FirebaseAuth.getInstance();
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        window.setStatusBarColor(Color.WHITE);
+
+
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
+
+
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
     }
@@ -224,7 +232,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         recyclerView = findViewById(R.id.recyclerViewAddSubject);
         drawerLayout = findViewById(R.id.drawerSubject);
         navigationView = findViewById(R.id.navSubject);
-        toolbar = findViewById(R.id.toolbarSubject);
+        toolbar = findViewById(R.id.toolbarArchive);
         noFile = findViewById(R.id.noViewViewAssignments);
         noSubject = findViewById(R.id.noSubjectTextView);
     }
@@ -239,7 +247,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort1_svg);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.mm1);
+
 
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
@@ -248,18 +257,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.drawerHome:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.drawerSched:
-                intent = new Intent(this, WeekViewActivity.class);
-                startActivity(intent);
-                finish();
-                break;
             case R.id.drawerSettings:
-                intent = new Intent(this, Settings.class);
+                Intent intent = new Intent(this, Settings.class);
                 startActivity(intent);
                 finish();
                 break;

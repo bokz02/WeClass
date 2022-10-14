@@ -1,10 +1,12 @@
 package com.example.weclass.subject;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -21,8 +24,8 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weclass.BottomNavi;
 import com.example.weclass.R;
+import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -37,7 +40,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
     private final OnNoteListener mOnNoteListener;
 
 
-     public SubjectAdapter(Context context, ArrayList<SubjectItems> subjectItems, OnNoteListener onNoteListener){
+    public SubjectAdapter(Context context, ArrayList<SubjectItems> subjectItems, OnNoteListener onNoteListener){
         this.context = context;
         this.subjectItems = subjectItems;
         this.mOnNoteListener = onNoteListener;
@@ -56,8 +59,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-         SubjectItems item = subjectItems.get(position);
-         holder.id.setText(String.valueOf(subjectItems.get(position).getId()));
+        SubjectItems item = subjectItems.get(position);
+        holder.id.setText(String.valueOf(subjectItems.get(position).getId()));
         holder.courseNameTxt.setText(String.valueOf(subjectItems.get(position).getCourse()));
         holder.subjectCodeTxt.setText(String.valueOf(subjectItems.get(position).getSubjectCode()));
         holder.subjectTitleTxt.setText(String.valueOf(subjectItems.get(position).getSubjectName()));
@@ -171,6 +174,28 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
                                 builder.show();
                                 break;
+
+                            case R.id.edit_info:
+                                Intent intent1 = new Intent(context, MainActivity.class);
+
+                                Bundle bundle1 = new Bundle();
+                                bundle1.putString("id", String.valueOf(item.getId()));
+                                bundle1.putString("course", item.getCourse());
+                                bundle1.putString("subject_code", item.getSubjectCode());
+                                bundle1.putString("subject_name", item.getSubjectName());
+                                bundle1.putString("day", item.getDaySubject());
+                                bundle1.putString("time", item.getTimeSubject());
+                                bundle1.putString("timeEnd", item.getTimeEndSubject());
+                                bundle1.putString("sem", item.getSemesterSubject());
+                                bundle1.putString("sy", item.getSchoolYearSubject());
+
+
+                                intent1.putExtra("Userdata", bundle1);
+                                context.startActivity(intent1);
+
+
+                                break;
+
                         }
                         return false;
                     }
@@ -205,8 +230,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
                 for (SubjectItems subjectItems: subjectItemsFull){
                     if (subjectItems.getCourse().toLowerCase().contains(filterPattern) ||
-                    subjectItems.getSubjectCode().toLowerCase().contains(filterPattern) ||
-                    subjectItems.getSubjectName().toLowerCase().contains(filterPattern)){
+                            subjectItems.getSubjectCode().toLowerCase().contains(filterPattern) ||
+                            subjectItems.getSubjectName().toLowerCase().contains(filterPattern)){
                         filteredList.add(subjectItems);
                     }
                 }
@@ -237,7 +262,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
             id = itemView.findViewById(R.id.positionNumber);
-            courseNameTxt = itemView.findViewById(R.id.taskTypeRecView);
+            courseNameTxt = itemView.findViewById(R.id.courseTypeRecView);
             subjectCodeTxt = itemView.findViewById(R.id.subjectCodeRecView);
             subjectTitleTxt = itemView.findViewById(R.id.subjectTitleRecView);
             dateTxt = itemView.findViewById(R.id.dateTextViewRecView);

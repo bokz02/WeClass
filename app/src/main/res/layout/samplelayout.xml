@@ -176,7 +176,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/studentProfilePicture" />
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/materialCardView3"
+                        android:id="@+id/_materialPresent"
                         android:layout_width="0dp"
                         android:layout_height="56dp"
                         android:layout_marginTop="8dp"
@@ -242,7 +242,7 @@
                         app:cardCornerRadius="10dp"
                         app:layout_constraintEnd_toStartOf="@+id/guide12"
                         app:layout_constraintStart_toStartOf="@+id/guide15"
-                        app:layout_constraintTop_toTopOf="@+id/materialCardView3">
+                        app:layout_constraintTop_toTopOf="@+id/_materialPresent">
 
 
                         <ImageView
@@ -297,10 +297,10 @@
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/guide13"
-                        app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/_materialPresent" />
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/materialCardView4"
+                        android:id="@+id/_materialActivity"
                         android:layout_width="0dp"
                         android:layout_height="56dp"
                         android:layout_marginTop="16dp"
@@ -352,7 +352,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/materialCardView5"
+                        android:id="@+id/_materialAssignment"
                         android:layout_width="0dp"
                         android:layout_height="56dp"
                         android:layout_marginTop="8dp"
@@ -362,7 +362,7 @@
                         app:cardCornerRadius="10dp"
                         app:layout_constraintEnd_toStartOf="@+id/guide12"
                         app:layout_constraintStart_toStartOf="@+id/guide13"
-                        app:layout_constraintTop_toBottomOf="@+id/materialCardView4">
+                        app:layout_constraintTop_toBottomOf="@+id/_materialActivity">
 
 
                         <ImageView
@@ -404,7 +404,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/materialCardView7"
+                        android:id="@+id/_materialSeatwork"
                         android:layout_width="0dp"
                         android:layout_height="56dp"
                         android:layout_marginTop="8dp"
@@ -415,7 +415,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/guide12"
                         app:layout_constraintHorizontal_bias="0.916"
                         app:layout_constraintStart_toStartOf="@+id/guide13"
-                        app:layout_constraintTop_toBottomOf="@+id/materialCardView5">
+                        app:layout_constraintTop_toBottomOf="@+id/_materialAssignment">
 
 
                         <ImageView
@@ -457,7 +457,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/materialCardView8"
+                        android:id="@+id/_materialQuiz"
                         android:layout_width="0dp"
                         android:layout_height="56dp"
                         android:layout_marginTop="8dp"
@@ -468,7 +468,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/guide12"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/guide13"
-                        app:layout_constraintTop_toBottomOf="@+id/materialCardView7">
+                        app:layout_constraintTop_toBottomOf="@+id/_materialSeatwork">
 
 
                         <ImageView
@@ -510,7 +510,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/materialCardView12"
+                        android:id="@+id/_materialProject"
                         android:layout_width="0dp"
                         android:layout_height="56dp"
                         android:layout_marginTop="8dp"
@@ -521,7 +521,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/guide12"
                         app:layout_constraintHorizontal_bias="0.916"
                         app:layout_constraintStart_toStartOf="@+id/guide13"
-                        app:layout_constraintTop_toBottomOf="@+id/materialCardView8">
+                        app:layout_constraintTop_toBottomOf="@+id/_materialQuiz">
 
 
                         <ImageView
@@ -564,7 +564,7 @@
 
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/materialCardView14"
+                android:id="@+id/_materialExams"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="8dp"
@@ -575,7 +575,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guide12"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guide13"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView12">
+                app:layout_constraintTop_toBottomOf="@+id/_materialProject">
 
 
                 <ImageView
@@ -626,7 +626,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/guide13"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView14" />
+                app:layout_constraintTop_toBottomOf="@+id/_materialExams" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView15"

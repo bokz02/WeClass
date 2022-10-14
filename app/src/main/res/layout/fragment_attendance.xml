@@ -14,7 +14,7 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="10dp"
@@ -77,11 +77,12 @@
             android:id="@+id/parentIDAttendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="52dp"
             android:text="parent id"
             android:textSize="16sp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.735"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".92" />
+            app:layout_constraintGuide_percent="0.89" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide3"
@@ -122,7 +123,6 @@
             android:id="@+id/presentTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/round_corner_calcell"
@@ -131,6 +131,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="Present"
+            android:layout_marginTop="15dp"
             android:textColor="@color/lightText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/guide4"
@@ -169,14 +170,16 @@
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="216dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Attendance"
-            android:textColor="@color/navigation_text_color"
-            android:textSize="20sp"
+            android:textColor="@color/black1"
+            android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guide4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -187,15 +190,16 @@
             android:text="BSCS 3"
             android:textAllCaps="true"
             android:textColor="@color/darkText"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/subjectCodeRecords"
-            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/guide4"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/sortAttendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
             android:drawablePadding="10dp"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
@@ -203,23 +207,23 @@
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:drawableEndCompat="@drawable/ic_arrow_down1"
-            app:layout_constraintEnd_toEndOf="@+id/section"
-            app:layout_constraintTop_toBottomOf="@+id/section" />
+            app:layout_constraintBottom_toBottomOf="@+id/currentDateTextView"
+            app:layout_constraintEnd_toStartOf="@+id/guide4"
+            app:layout_constraintTop_toTopOf="@+id/currentDateTextView" />
 
         <TextView
             android:id="@+id/currentDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
-            android:layout_marginStart="12dp"
+
             android:fontFamily="@font/poppins_regular"
             android:text="Monday, Feb 15,2022"
             android:textAllCaps="false"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toTopOf="@+id/sortAttendance" />
+            app:layout_constraintStart_toStartOf="@+id/subjectCodeRecords"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

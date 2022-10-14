@@ -6,22 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/bg_menu"
     tools:context=".subject.Subject">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navSubject"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemIconTint="@color/navigation_text_color"
-        app:itemTextColor="@color/navigation_text_color"
-        app:menu="@menu/main_menu" />
+        app:itemTextAppearance="@style/PoppinsTextViewStyle"
+        app:itemIconTint="@color/black1"
+        app:itemTextColor="@color/black1"
+        app:menu="@menu/main_menu">
+
+    </com.google.android.material.navigation.NavigationView>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+
         android:layout_height="match_parent">
 
         <TextView
@@ -51,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.24" />
+            app:layout_constraintGuide_percent="0.23" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide2"
@@ -65,61 +68,127 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent=".072" />
+            app:layout_constraintGuide_percent="0.07" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent=".925" />
+            app:layout_constraintGuide_percent="0.94" />
 
         <com.example.weclass.ExtendedRecyclerView
             android:id="@+id/recyclerViewAddSubject"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toTopOf="@+id/guide1"
-            app:layout_constraintBottom_toBottomOf="@+id/guide2"/>
+            app:layout_constraintTop_toTopOf="@+id/guide1" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarSubject"
-            android:layout_width="41dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintHorizontal_bias="0.089"
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_iconsort1_svg" />
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:layout_constraintEnd_toStartOf="@+id/guide4"
+                app:layout_constraintStart_toStartOf="@+id/guide3"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/studentImageRecView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginVertical="5dp"
+                    android:src="@drawable/ic_no_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.0" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="1.0" />
+
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbarArchive"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guide11"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.461"
+                    app:navigationContentDescription="Menu"
+                    app:navigationIcon="@drawable/mm1" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/WeClass"
+                    android:layout_marginTop="3dp"
+                    android:textColor="@color/black1"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/toolbarArchive"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_gravity="center_vertical"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Subject"
-            android:textColor="@color/darkText"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintHorizontal_bias="0.981"
+            android:layout_marginTop="15dp"
+            android:text="My Classes"
+            android:textColor="@color/black1"
+            android:textSize="25sp"
             app:layout_constraintStart_toStartOf="@+id/guide3"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/bottomNavigationView" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginBottom="10dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintBottom_toBottomOf="@id/guide1">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/guide1"
+            app:layout_constraintEnd_toStartOf="@+id/guide4"
+            app:layout_constraintStart_toStartOf="@+id/guide3"
+            app:layout_constraintTop_toBottomOf="@+id/textView1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -129,14 +198,14 @@
                     android:id="@+id/searchEditTextSubject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
                     android:background="@drawable/transparent_bg"
-                    android:fontFamily="@font/poppins_regular"
                     android:drawableEnd="@drawable/ic_baseline_search_24"
                     android:drawablePadding="10dp"
                     android:drawableTint="#ACACAC"
-                    android:hint="Search"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Search (Subject Code)"
                     android:textColor="@color/black"
                     android:textColorHint="#ACACAC"
                     android:textSize="14sp"
@@ -160,8 +229,8 @@
 
             android:src="@drawable/ic_baseline_add_24"
             android:tooltipText="Add subject"
-            app:backgroundTint="@color/lightText"
-            app:tint ="@color/white"
+            app:backgroundTint="@color/white"
+            app:tint ="@color/red1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.901"

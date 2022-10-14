@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
@@ -43,14 +46,22 @@ public class StudentProfile extends AppCompatActivity {
     ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects, _profileImage;
     String selectedFinalGrade, selectedMidtermGrade, selectedFinalRating;
     Uri uri = null;
+    CardView present, absent, activities, quiz, assignment, seatWork, exams, projects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
+        //Windows status bar transparent
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        window.setStatusBarColor(Color.TRANSPARENT);
 
         initialize();   // INITIALIZE ALL VIEWS
         backToStudentListActivity(); // BACK BUTTON
@@ -96,12 +107,20 @@ public class StudentProfile extends AppCompatActivity {
         _midtermGradeButton = findViewById(R.id.midtermGradeButton);
         _finalGradeButton = findViewById(R.id.finalGradeButton);
         _finalRatingButton = findViewById(R.id.finalRatingButton);
-
+        present = findViewById(R.id._materialPresent);
+        absent = findViewById(R.id._materialAbsent);
+        exams = findViewById(R.id._materialExams);
+        projects = findViewById(R.id._materialProject);
+        quiz = findViewById(R.id._materialQuiz);
+        seatWork = findViewById(R.id._materialSeatwork);
+        assignment = findViewById(R.id._materialAssignment);
+        activities = findViewById(R.id._materialActivity);
 
     }
 
+
     public void goToActivities(){
-        _activities.setOnClickListener(new View.OnClickListener() {
+        activities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Activities.class);
@@ -114,7 +133,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void goToAssignments(){
-        _assignments.setOnClickListener(new View.OnClickListener() {
+        assignment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Assignments.class);
@@ -127,7 +146,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void goToQuiz(){
-        _quiz.setOnClickListener(new View.OnClickListener() {
+        quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Quiz.class);
@@ -140,7 +159,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void goToSeatWork(){
-        _seatWork.setOnClickListener(new View.OnClickListener() {
+        seatWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, SeatWork.class);
@@ -153,7 +172,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void goToProjects(){
-        _projects.setOnClickListener(new View.OnClickListener() {
+        projects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Projects.class);
@@ -166,7 +185,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void goToExams(){
-        _exams.setOnClickListener(new View.OnClickListener() {
+        exams.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Exams.class);
@@ -179,7 +198,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void goToPresent(){
-        _present.setOnClickListener(new View.OnClickListener() {
+        present.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Present.class);
@@ -192,7 +211,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void goToAbsent(){
-        _absent.setOnClickListener(new View.OnClickListener() {
+        absent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Absent.class);
