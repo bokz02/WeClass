@@ -29,10 +29,10 @@ import com.google.android.material.snackbar.Snackbar;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddTask extends AppCompatActivity {
 
     ImageButton backButton;
-    TextView taskType, _date, parentID, _progress, _gradingPeriod, _examTextView;
+    TextView taskType, parentID, _progress, _gradingPeriod, _examTextView;
     EditText _score, _description, _taskNumber;
     Button _cancel, _create;
     String selectedTask, selectedProgress, selectedPeriod;
@@ -48,7 +48,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         initialize();   // INITIALIZE ALL VIEWS
         backToTasks();  //  BACK TO RECORD ACTIVITY
         pickTask();     // TASK PICKER BUTTON
-        setDate();      // DATE PICKER
+        //setDate();      // DATE PICKER
         pickProgress(); // CHOOSE PROGRESS
         cancelButton(); // CANCEL BUTTON
         getDataFromStudentListFragment(); // SET THE ID FOR PARENT ID TEXT
@@ -66,7 +66,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         _description = findViewById(R.id.descriptionEditTextEdit);
         _cancel = findViewById(R.id.cancelButtonTaskEdit);
         _create = findViewById(R.id.updateButtonTaskEdit);
-        _date = findViewById(R.id.dateTextViewTaskEdit);
         parentID = findViewById(R.id.parentIDTask);
         _progress = findViewById(R.id.progressTaskEditText);
         _taskNumber = findViewById(R.id.taskNumberEditText);
@@ -82,7 +81,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                public void onClick(View v) {
 
                    // IF ANY OF THE FIELDS IS EMPTY, AN ERROR WILL POP UP
-                   if (taskType.getText().toString().isEmpty() || _date.getText().toString().isEmpty() || _score.getText().toString().isEmpty()
+                   if (taskType.getText().toString().isEmpty() || _score.getText().toString().isEmpty()
                            || _description.getText().toString().isEmpty()  || _taskNumber.getText().toString().isEmpty()
                            || _gradingPeriod.getText().toString().isEmpty()) {
 
@@ -136,7 +135,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
                                        dataBaseHelper.addTask(parentID.getText().toString().trim(),
                                                taskType.getText().toString().trim(),
-                                               _date.getText().toString().trim(),
                                                _score.getText().toString().trim(),
                                                _description.getText().toString().trim(),
                                                _progress.getText().toString().trim(),
@@ -146,7 +144,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                                        Snackbar.make(_create, "Task successfully created!", Snackbar.LENGTH_LONG).show();
 
                                        taskType.setText("");
-                                       _date.setText("");
                                        _score.setText("");
                                        _description.setText("");
                                        _progress.setText("");
@@ -273,26 +270,26 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
 
     // DATE PICKER
-    public void setDate() {
-        _date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
-            }
-        });
-    }
+//    public void setDate() {
+//        _date.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                DialogFragment datePicker = new DatePickerFragment();
+//                datePicker.show(getSupportFragmentManager(), "date picker");
+//            }
+//        });
+//    }
 
-    @Override
-    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-
-        _date.setText(currentDate);
-    }
+//    @Override
+//    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.YEAR, year);
+//        calendar.set(Calendar.MONTH, month);
+//        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+//
+//        _date.setText(currentDate);
+//    }
 
     public void cancelButton() {
         _cancel.setOnClickListener(new View.OnClickListener() {

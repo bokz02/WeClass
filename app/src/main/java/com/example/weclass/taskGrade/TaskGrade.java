@@ -64,7 +64,6 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     private void initialize() {
         backButton = findViewById(R.id.backToTaskButton);
         _progress = findViewById(R.id.proressTextViewGrade);
-        _deadline = findViewById(R.id.deadLineTextViewGrade);
         _score = findViewById(R.id.scoreTextViewGrade);
         _description = findViewById(R.id.descriptionTextViewGrade);
         _taskType = findViewById(R.id.taskTypeTextViewGrade);
@@ -156,7 +155,6 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
 
 
         String progress =taskItems.getProgress();
-        String deadline = taskItems.getDueDate();
         String score = taskItems.getScore();
         String description = taskItems.getTaskDescription();
         String taskType = taskItems.getTaskType();
@@ -164,7 +162,6 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         int taskNumber = taskItems.getTaskNumber();
 
         _progress.setText(progress);
-        _deadline.setText(deadline);
         _score.setText(score);
         _description.setText(description);
         _taskType.setText(taskType);

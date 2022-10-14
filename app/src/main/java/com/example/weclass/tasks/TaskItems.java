@@ -10,7 +10,7 @@ import java.util.Comparator;
 
 public class TaskItems implements Parcelable {
 
-    String taskType, dueDate, score, taskDescription, progress, gradingPeriod;
+    String taskType, score, taskDescription, progress, gradingPeriod;
     private int taskID;
     private int parentID;
     private final int taskNumber;
@@ -19,7 +19,6 @@ public class TaskItems implements Parcelable {
     public TaskItems(int taskID,
                      int parentID,
                      String taskType,
-                     String dueDate,
                      String score,
                      String taskDescription,
                      String progress,
@@ -28,7 +27,6 @@ public class TaskItems implements Parcelable {
 
 
         this.taskType = taskType;
-        this.dueDate = dueDate;
         this.score = score;
         this.taskDescription = taskDescription;
         this.taskID = taskID;
@@ -40,7 +38,6 @@ public class TaskItems implements Parcelable {
 
     protected TaskItems(Parcel in) {
         taskType = in.readString();
-        dueDate = in.readString();
         score = in.readString();
         taskDescription = in.readString();
         progress = in.readString();
@@ -68,14 +65,6 @@ public class TaskItems implements Parcelable {
 
     public void setTaskType(String taskType) {
         this.taskType = taskType;
-    }
-
-    public String getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
     }
 
     public String getScore() {
@@ -134,7 +123,6 @@ public class TaskItems implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(taskType);
-        parcel.writeString(dueDate);
         parcel.writeString(score);
         parcel.writeString(taskDescription);
         parcel.writeString(progress);

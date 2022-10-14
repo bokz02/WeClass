@@ -124,56 +124,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Score"
                 android:textColor="@color/lightText"
-                android:fontFamily="@font/poppins_regular"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/scoreText"
-                app:layout_constraintTop_toBottomOf="@+id/deadlineTextView" />
+                app:layout_constraintTop_toTopOf="@+id/scoreText" />
 
             <TextView
                 android:id="@+id/scoreText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Score:"
                 android:textColor="@color/lightText"
-                android:fontFamily="@font/poppins_regular"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/deadlineTextView" />
-
-
-            <TextView
-                android:id="@+id/deadlineTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Deadline:"
-                android:textColor="@color/darkText"
-                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/courseTypeRecView"
                 app:layout_constraintTop_toBottomOf="@+id/courseTypeRecView" />
 
-
-            <TextView
-                android:id="@+id/deadLineRecView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:paddingHorizontal="5dp"
-                android:text="8:00 AM"
-
-                android:textColor="@color/darkText"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/deadlineTextView"
-                app:layout_constraintTop_toBottomOf="@+id/taskNumberRecView" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/hiddenDescription"

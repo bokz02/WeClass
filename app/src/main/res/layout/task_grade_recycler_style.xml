@@ -61,23 +61,30 @@
 
         <EditText
             android:id="@+id/gradeEditTextRecViewGrade"
-            android:layout_width="wrap_content"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:background="@drawable/transparent_bg"
-            android:gravity="center_horizontal"
-            android:hint="Add"
             android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
             android:inputType="number"
             android:maxLength="3"
             android:maxLines="1"
             android:padding="5dp"
             android:textColor="@color/darkText"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/submitButtonRecViewGrade"
             app:layout_constraintEnd_toStartOf="@+id/submitButtonRecViewGrade"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.522" />
+            app:layout_constraintTop_toTopOf="@+id/submitButtonRecViewGrade" />
+
+        <View
+            android:id="@+id/view13"
+            android:layout_width="35dp"
+            android:layout_height="3dp"
+            android:background="@color/grayText"
+            app:layout_constraintEnd_toEndOf="@+id/gradeEditTextRecViewGrade"
+            app:layout_constraintStart_toStartOf="@+id/gradeEditTextRecViewGrade"
+            app:layout_constraintTop_toBottomOf="@id/gradeEditTextRecViewGrade" />
 
         <TextView
             android:id="@+id/studentIDGrade"
@@ -118,12 +125,13 @@
             android:id="@+id/scoreTExt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score:"
-            android:padding="5dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="14sp"
             android:layout_marginEnd="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="5dp"
+            android:text="Score:"
+            android:textSize="14sp"
             android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/view13"
             app:layout_constraintEnd_toStartOf="@+id/gradeEditTextRecViewGrade"
             app:layout_constraintTop_toTopOf="@+id/gradeEditTextRecViewGrade" />
 

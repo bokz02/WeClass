@@ -45,7 +45,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView _id, _parentTD, _taskType, _dueDate, _score, _description,_progress, _gradingPeriod;
+        TextView _id, _parentTD, _taskType, _score, _description,_progress, _gradingPeriod;
         ImageButton _optionTask, _expand;
         OnNoteListener onNoteListener;
         ConstraintLayout constraintLayout;
@@ -56,7 +56,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
             _id = itemView.findViewById(R.id.taskNumberRecView);
             _taskType = itemView.findViewById(R.id.courseTypeRecView);
-            _dueDate = itemView.findViewById(R.id.deadLineRecView);
             _score = itemView.findViewById(R.id.scoreTextViewRecView);
             _description = itemView.findViewById(R.id.descriptionHiddenTextView);
             _optionTask = itemView.findViewById(R.id.optionButtonTaskRecView);
@@ -94,7 +93,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
         holder._parentTD.setText(String.valueOf(taskItems.get(position).getParentID()));
         holder._taskType.setText(String.valueOf(taskItems.get(position).getTaskType()));
-        holder._dueDate.setText(String.valueOf(taskItems.get(position).getDueDate()));
         holder._score.setText(String.valueOf(taskItems.get(position).getScore()));
         holder._description.setText(String.valueOf(taskItems.get(position).getTaskDescription()));
         holder._progress.setText(String.valueOf(taskItems.get(position).getProgress()));
@@ -152,7 +150,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                                 bundle.putString("task_number", String.valueOf(itemsTask.getTaskNumber()));
                                 bundle.putString("task_type", String.valueOf(itemsTask.getTaskType()));
                                 bundle.putString("task_progress", String.valueOf(itemsTask.getProgress()));
-                                bundle.putString("task_date", String.valueOf(itemsTask.getDueDate()));
                                 bundle.putString("task_score", String.valueOf(itemsTask.getScore()));
                                 bundle.putString("task_description", String.valueOf(itemsTask.getTaskDescription()));
                                 bundle.putString("period", String.valueOf(itemsTask.getGradingPeriod()));
@@ -226,7 +223,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
                 for (TaskItems taskItems: taskItemsFull){
                     if (taskItems.getTaskType().toLowerCase().contains(filterPattern) ||
-                            taskItems.getDueDate().toLowerCase().contains(filterPattern) ||
                             taskItems.getTaskDescription().toLowerCase().contains(filterPattern) ||
                             taskItems.getGradingPeriod().toLowerCase().contains(filterPattern)){
                         filteredList.add(taskItems);

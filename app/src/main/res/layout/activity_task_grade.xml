@@ -67,10 +67,10 @@
         android:elevation="5dp"
         app:cardBackgroundColor="@color/cardViewColor"
         app:cardCornerRadius="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/guide4"
         app:layout_constraintStart_toStartOf="@+id/guide3"
-        app:layout_constraintTop_toBottomOf="@+id/deadLineTextViewGrade">
+        app:layout_constraintTop_toBottomOf="@+id/backToTaskButton">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,9 +86,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:drawableStart="@drawable/ic_progress1"
-                android:fontFamily="@font/poppins_regular"
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/white"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Progress"
                 android:textColor="@color/white"
                 android:textSize="14sp"
@@ -113,8 +113,8 @@
                 android:layout_height="wrap_content"
                 android:text="Period"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -122,8 +122,8 @@
                 android:id="@+id/taskTypeTextViewGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Task type"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Task type"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -134,8 +134,8 @@
                 android:id="@+id/descriptionTextViewGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="lorem ipsum"
                 android:fontFamily="@font/poppins_regular"
+                android:text="lorem ipsum"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView16"
@@ -146,8 +146,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Instruction:"
                 android:fontFamily="@font/poppins_regular"
+                android:text="Instruction:"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/taskTypeTextViewGrade"
@@ -158,8 +158,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="#"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="#"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -170,8 +170,8 @@
                 android:id="@+id/scoreTextViewGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Score"
                 android:fontFamily="@font/poppins_regular"
+                android:text="Score"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -184,8 +184,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
-                android:text="Items:"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Items:"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/proressTextViewGrade"
                 app:layout_constraintEnd_toStartOf="@+id/scoreTextViewGrade"
@@ -205,30 +205,5 @@
         app:layout_constraintStart_toStartOf="@id/guide3"
         app:layout_constraintTop_toBottomOf="@id/cardView" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Deadline: "
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/deadLineTextViewGrade"
-        app:layout_constraintTop_toTopOf="@+id/deadLineTextViewGrade" />
-
-    <TextView
-        android:id="@+id/deadLineTextViewGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/poppins_regular"
-        android:layout_marginEnd="8dp"
-        android:drawablePadding="5dp"
-        android:text="Deadline"
-        android:textColor="@color/darkText"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/guide4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868"
-        app:drawableStartCompat="@drawable/ic_deadline1"
-        app:drawableTint="@color/darkText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

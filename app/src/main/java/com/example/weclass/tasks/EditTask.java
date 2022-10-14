@@ -101,7 +101,6 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
                     dbh.updateTask(
                             _idTask.getText().toString().trim(),
                             _taskType.getText().toString().trim(),
-                            _dueDate.getText().toString().trim(),
                             _score.getText().toString().trim(),
                             _description.getText().toString().trim(),
                             _progress.getText().toString().trim(),
@@ -125,7 +124,6 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
             _description.setText(bundle.getString("task_description"));
             _taskNumber.setText(bundle.getString("task_number"));
             _taskType.setText(bundle.getString("task_type"));
-            _dueDate.setText(bundle.getString("task_date"));
             _progress.setText(bundle.getString("task_progress"));
             _gradingPeriod.setText(bundle.getString("period"));
 
