@@ -33,7 +33,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     ArrayList<AttendanceItems> attendanceItems, id, parentID;
     AttendanceAdapter attendanceAdapter;
     DataBaseHelper dataBaseHelper;
-    TextView _noStudentsTextView, _id, _parentID, dateTimeDisplay, _sortAttendance;
+    TextView _noStudentsTextView, _id, _parentID, dateTimeDisplay, _sortAttendance, _always0;
     View view;
     View _noStudentsView;
     EditText _search;
@@ -79,6 +79,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         _parentID = view.findViewById(R.id.parentIDAttendance);
         _search = view.findViewById(R.id.searchAttendanceEditText);
         _sortAttendance = view.findViewById(R.id.sortAttendance);
+        _always0 = view.findViewById(R.id.always0Attendance);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
