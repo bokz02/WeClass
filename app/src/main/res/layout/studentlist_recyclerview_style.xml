@@ -11,14 +11,13 @@
     android:focusable="true"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
-    app:rippleColor="@color/lightText">
+    app:rippleColor="@color/white1">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/studentListBackgroundRecView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp">
+      >
 
         <TextView
             android:id="@+id/iDNumberStudentList"
@@ -51,6 +50,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/ic_subject_option"
+            android:backgroundTint="@color/black2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,7 +77,7 @@
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/studentImageRecView"
             android:text="Lastname"
-            android:textColor="@color/darkText"
+            android:textColor="@color/black1"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/studentImageRecView"
@@ -91,7 +91,7 @@
             android:layout_toEndOf="@id/studentImageRecView"
             android:text="Firstname"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/lightText"
+            android:textColor="@color/black1"
             app:layout_constraintStart_toStartOf="@+id/studentLastnameRecView"
             app:layout_constraintTop_toBottomOf="@+id/studentLastnameRecView" />
 

@@ -15,12 +15,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.10" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.48" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide3"
@@ -72,7 +67,12 @@
             android:layout_height="wrap_content"
             >
 
-
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.48" />
             <TextView
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
@@ -178,7 +178,6 @@
                 android:layout_marginEnd="24dp"
                 android:text="School Year"
                 android:fontFamily="@font/poppins_semibold"
-
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -297,7 +296,6 @@
                 android:inputType="textCapSentences"
                 android:maxLength="30"
                 android:fontFamily="@font/poppins_regular"
-
                 android:textAlignment="center"
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
@@ -494,9 +492,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-
-
 
     <ImageButton
         android:id="@+id/backButtonSubject"

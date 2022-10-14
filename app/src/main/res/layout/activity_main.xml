@@ -1,275 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
+    android:elevation="10dp"
     tools:context=".dashboard.MainActivity">
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/header"
-        app:itemIconTint="@color/navigation_text_color"
-        app:itemTextColor="@color/navigation_text_color"
-        app:menu="@menu/main_menu">
-
-    </com.google.android.material.navigation.NavigationView>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:elevation="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp">
 
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.27" />
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout5"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="220dp">
+            <TextView
+                android:id="@+id/positionNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="41dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:navigationIcon="@drawable/ic_iconsort1_svg" />
-
-
-                <TextView
-                    android:id="@+id/dashName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="48dp"
-                    android:text="Hey, let's dive into the details."
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-                <TextView
-                    android:id="@+id/homeName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="Lastname, Firstname"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/homePic"
-                    app:layout_constraintTop_toTopOf="@+id/homePic" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/homePic"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="@drawable/ic_no_image"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/toolbar" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginEnd="35dp"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="20dp"
-                    android:elevation="10dp"
-                    android:layout_marginTop="5dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dashName">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <EditText
-                            android:id="@+id/searchEditTextSubjectHome"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginEnd="30dp"
-                            android:background="@drawable/transparent_bg"
-                            android:drawableEnd="@drawable/ic_baseline_search_24"
-                            android:drawablePadding="10dp"
-                            android:drawableTint="#ACACAC"
-                            android:fontFamily="@font/poppins_regular"
-                            android:hint="Search"
-                            android:textColor="@color/black"
-                            android:textColorHint="#ACACAC"
-                            android:textSize="14sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/courseTypeRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="BSCS3"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="@+id/textView5" />
 
 
-                </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Subject Code: "
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Course: "
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Subject Title: "
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Day: "
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subjectTitleRecView" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/subjectCodeRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="COMPROG"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/subjectTitleRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Computer Programming"
+
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_baseline_access_time_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/dateTextViewRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Monday"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/timeTextViewRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingStart="5dp"
+                android:text="8:00 AM"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            <TextView
+                android:id="@+id/dashSeparator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:paddingStart="5dp"
+                android:textColor="@color/black1"
+                android:text="-"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/timeTextViewRecView"
+                app:layout_constraintTop_toTopOf="@+id/timeTextViewRecView" />
+
+            <TextView
+                android:id="@+id/timeEndTextViewRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingStart="5dp"
+                android:text="8:00 AM"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/dashSeparator"
+                app:layout_constraintTop_toTopOf="@+id/dashSeparator" />
+
+            <TextView
+                android:id="@+id/semesterSubjectRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/round_corner_calcell"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:backgroundTint="@color/red1"
+                android:text="1st Semester"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/schoolYearSubjectRecView"
+                app:layout_constraintTop_toTopOf="@+id/schoolYearSubjectRecView" />
+
+            <TextView
+                android:id="@+id/schoolYearSubjectRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_corner_calcell"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingStart="10dp"
+                android:layout_marginTop="5dp"
+                android:paddingEnd="10dp"
+                android:backgroundTint="@color/red1"
+                android:text="SY 2020-2023"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.003"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timeTextViewRecView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.04" />
 
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.9" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.63" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.99" />
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Your subjects: "
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.122"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
-
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Your schedules: "
-            android:textSize="20sp"
-            android:layout_marginTop="200dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-        <TextView
-            android:id="@+id/noSubjectTextViewHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No subject to display, create one."
-            android:textColor="@color/cancelButtonPressed"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/noViewViewSubjectHome"
-            app:layout_constraintEnd_toEndOf="@+id/noViewViewSubjectHome"
-            app:layout_constraintStart_toStartOf="@+id/noViewViewSubjectHome" />
-
-        <View
-            android:id="@+id/noViewViewSubjectHome"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/ic_no_file"
-            app:layout_constraintBottom_toTopOf="@+id/guide3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/homeSubjectRecView" />
-
-        <TextView
-            android:id="@+id/noSubjectTextViewHome2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No schedule to display, create one."
-            android:textColor="@color/cancelButtonPressed"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/noViewViewSubjectHome2"
-            app:layout_constraintEnd_toEndOf="@+id/noViewViewSubjectHome2"
-            app:layout_constraintStart_toStartOf="@+id/noViewViewSubjectHome2" />
-
-        <View
-            android:id="@+id/noViewViewSubjectHome2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/ic_no_file"
-            android:layout_marginTop="70dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
 
-        <com.example.weclass.ExtendedRecyclerView
-            android:id="@+id/homeSubjectRecView"
-            android:layout_width="0dp"
-            android:layout_height="190dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guide1"
-            app:layout_constraintTop_toBottomOf="@+id/textView18">
+    </LinearLayout>
 
-        </com.example.weclass.ExtendedRecyclerView>
-
-        <com.example.weclass.ExtendedRecyclerView
-            android:id="@+id/homeScheduleRecView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guide1"
-            app:layout_constraintTop_toBottomOf="@+id/textView19"
-            app:layout_constraintBottom_toBottomOf="@id/guide4">
-
-
-        </com.example.weclass.ExtendedRecyclerView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.drawerlayout.widget.DrawerLayout>
+</RelativeLayout>

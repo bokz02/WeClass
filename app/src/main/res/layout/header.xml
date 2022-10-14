@@ -3,31 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="100dp"
     android:padding="10dp"
     android:orientation="vertical"
-    android:background="@color/text_main_color"
+    android:background="@color/red2"
     android:layout_gravity="top"
     android:id="@+id/parent">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/iconWeClass"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/we_class_icon_transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
-
+-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/white"
         android:text="WeClass"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iconWeClass" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.862" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

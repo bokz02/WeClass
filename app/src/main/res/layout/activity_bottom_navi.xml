@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_sub"
     tools:context=".BottomNavi">
 
 
@@ -16,20 +15,20 @@
     </FrameLayout>
 
 
-
-
-
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/iconback2"
-        android:backgroundTint="@color/white"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_simple_back"
+        android:backgroundTint="@color/black1"
+
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".92"/>
+            app:layout_constraintGuide_percent="0.89" />
 
         <TextView
             android:id="@+id/parentIDBottomNavi"
@@ -77,25 +76,41 @@
             app:layout_constraintBottom_toTopOf="@+id/subjectCodeBottomNavi"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="bottom"
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="53dp"
+            android:layout_marginBottom="20dp"
+            android:foregroundGravity="center_horizontal"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="@color/lightText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guide1">
+            app:layout_constraintStart_toStartOf="parent">
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigation"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                app:itemIconSize="30dp"
-                app:itemTextColor="@color/navigation_text_color"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:menu="@menu/subject_menu" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guide1">
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottomNavigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:itemIconSize="30dp"
+                    app:itemIconTint="@color/red1"
+                    app:itemTextColor="@color/black3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:menu="@menu/subject_menu" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

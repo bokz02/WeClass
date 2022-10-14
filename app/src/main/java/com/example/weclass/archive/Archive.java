@@ -13,9 +13,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +29,6 @@ import com.example.weclass.Settings;
 import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.login.LoginActivity;
-import com.example.weclass.schedule.WeekViewActivity;
 import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.subject.Subject;
 import com.example.weclass.subject.SubjectAdapter;
@@ -56,8 +57,16 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
+
+        //status bar
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        window.setStatusBarColor(Color.WHITE);
+
+
         mAuth = FirebaseAuth.getInstance();
         initialize();
         display();
@@ -153,7 +162,7 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_iconsort1_svg);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.mm1);
 
         navigationView.setNavigationItemSelectedListener(this); //navigation drawer item clickable
     }
@@ -161,13 +170,8 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.drawerHome:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.drawerSched:
-                intent = new Intent(this, WeekViewActivity.class);
+            case R.id.drawerSubject:
+                Intent intent = new Intent(this, Subject.class);
                 startActivity(intent);
                 finish();
                 break;
@@ -176,13 +180,13 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.drawerSubject:
-                intent = new Intent(this, Subject.class);
+            case R.id.drawerArchive:
+                intent = new Intent(this, Archive.class);
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.drawerLogout:
 
+            case R.id.drawerLogout:
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Archive.this);
                 builder.setTitle("Confirm logout");
                 builder.setIcon(R.drawable.ic_baseline_warning_24);

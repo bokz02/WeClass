@@ -4,22 +4,22 @@
 
     <item
         android:id="@+id/naviStudents"
-        android:title="Student"
-        android:icon="@drawable/iconstudent"/>
+        android:title="People"
+        android:icon="@drawable/frag_people"/>
 
     <item
         android:id="@+id/naviAttendance"
         android:title="Attendance"
-        android:icon="@drawable/iconprofile"/>
+        android:icon="@drawable/frag_atten"/>
 
     <item
         android:id="@+id/naviReport"
-        android:title="Reports"
-        android:icon="@drawable/iconfolder"/>
+        android:title="Classwork"
+        android:icon="@drawable/frag_rec"/>
 
 
     <item
         android:id="@+id/naviRanking"
         android:title="Ratings"
-        android:icon="@drawable/iconbargraph"/>
+        android:icon="@drawable/frag_rem"/>
 </menu>

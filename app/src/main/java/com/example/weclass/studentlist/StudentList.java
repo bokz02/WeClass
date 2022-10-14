@@ -69,7 +69,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
 
 
-    // RESUME ALL FUNCTION FROM BEING HIDE
+    // RESUME ALL FUNCTION FROM BcEING HIDE
     @Override
     public void onResume() {
         super.onResume();

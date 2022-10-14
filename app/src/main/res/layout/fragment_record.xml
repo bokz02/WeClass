@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".92" />
+            app:layout_constraintGuide_percent="0.89" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide3"
@@ -57,44 +57,43 @@
             android:id="@+id/taskSubjectTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Subject Code"
             android:textAllCaps="true"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/guide3"
-            app:layout_constraintTop_toBottomOf="@+id/courseTextViewTask" />
+            app:layout_constraintStart_toStartOf="@+id/subjectCodeRecords"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
+
 
         <TextView
             android:id="@+id/parentIDRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="68dp"
             android:text="parent id"
             android:textSize="16sp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="52dp"
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Tasks"
-            android:textColor="@color/navigation_text_color"
-            android:textSize="20sp"
+            android:text="Classwork"
+            android:textColor="@color/black1"
+            android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guide4"
+            app:layout_constraintHorizontal_bias="0.009"
+            app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/courseTextViewTask"
@@ -105,9 +104,9 @@
             android:textAllCaps="true"
             android:textColor="@color/darkText"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/subjectCodeRecords"
-            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
-
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/parentIDRecord"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddTask"
@@ -128,7 +127,7 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="15dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="10dp"

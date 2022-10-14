@@ -415,23 +415,18 @@ public class AddSubjectActivity extends AppCompatActivity {
         colors = new ArrayList<>();
 
 
-        //TEAL
-        colors.add("#009688");
-        colors.add("#00796B");
-        colors.add("#00796B");
-        colors.add("#00695C");
 
-        //CYAN
-        colors.add("#00BCD4");
-        colors.add("#00ACC1");
-        colors.add("#0097A7");
-        colors.add("#00838F");
+        colors.add("#FF968A");
+        colors.add("#FFC9A2");
+        colors.add("#97C1A9");
+        colors.add("#55CBCD");
+        colors.add("#FFC8A2");
+        colors.add("#DADADA");
 
-        //TURQUOISE
-        colors.add("#40E0D0");
-        colors.add("#48D1CC");
-        colors.add("#00CED1");
-      
+        colors.add("#E0A096");
+        colors.add("#B2CFA5");
+        colors.add("#99A399");
+
 
 
         index = new Random().nextInt(colors.size());

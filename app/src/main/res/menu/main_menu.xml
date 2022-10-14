@@ -2,31 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/drawerHome"
-            android:title="Home"
-            android:fontFamily="@font/poppins_semibold"
-
-            android:icon="@drawable/icondrawer"/>
 
         <item
             android:id="@+id/drawerSubject"
-            android:title="Subjects"
-            android:fontFamily="@font/poppins_semibold"
-            android:icon="@drawable/icontabs"/>
+            android:title="Classes"
+            android:icon="@drawable/nav_class"/>
 
-        <item
-            android:id="@+id/drawerSched"
-            android:title="Schedules"
-            android:fontFamily="@font/poppins_semibold"
-
-            android:icon="@drawable/iconcalendar"/>
 
         <item
             android:id="@+id/drawerArchive"
             android:title="Archive"
-            android:fontFamily="@font/poppins_semibold"
-            android:icon="@drawable/iconpapers"/>
+            android:icon="@drawable/nav_archive"/>
 
     </group>
 
@@ -34,16 +20,12 @@
         <item
             android:id="@+id/drawerSettings"
             android:title="Settings"
-            android:fontFamily="@font/poppins_semibold"
-
-            android:icon="@drawable/iconsettings"/>
+            android:icon="@drawable/nav_set"/>
 
         <item
             android:id="@+id/drawerLogout"
             android:title="Log out"
-            android:fontFamily="@font/poppins_semibold"
-
-            android:icon="@drawable/logout_button"/>
+            android:icon="@drawable/nav_logout"/>
     </group>
 
 </menu>

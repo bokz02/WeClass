@@ -15,14 +15,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".18"/>
+            app:layout_constraintGuide_percent="0.16" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".93"/>
+            app:layout_constraintGuide_percent="0.89" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide3"
@@ -54,43 +54,46 @@
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:text="Final ratings"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="180dp"
             android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/navigation_text_color"
-            android:textSize="20sp"
+            android:text="Final ratings"
+            android:textColor="@color/black1"
+            android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guide4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/courseTextViewRatings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BSCS 3"
             android:fontFamily="@font/poppins_semibold"
+            android:text="BSCS 3"
             android:textAllCaps="true"
             android:textColor="@color/darkText"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/subjectCodeRecords"
-            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/subjectCodeTextViewRatings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Subject code"
-            android:fontFamily="@font/poppins_semibold"
-            android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Subject code"
             android:textAllCaps="true"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guide1"
-            app:layout_constraintStart_toStartOf="@id/guide3" />
+            app:layout_constraintStart_toStartOf="@+id/guide3"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/noStudentTextViewRatings"

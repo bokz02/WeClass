@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -51,6 +52,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         backButton();
         pickSemester();
         pickSchoolYear();
+
     }
 
     // Open time picker when PRESSED
@@ -254,7 +256,6 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
     public void displayData(){
         if (getIntent().getBundleExtra("Userdata") != null){
             Bundle bundle = getIntent().getBundleExtra("Userdata");
-
 
             _id.setText(bundle.getString("id"));
             _course.setText(bundle.getString("course"));

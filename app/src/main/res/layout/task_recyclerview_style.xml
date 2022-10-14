@@ -80,7 +80,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/taskTypeRecView"
+            android:id="@+id/courseTypeRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Task type"
@@ -116,8 +116,8 @@
                 android:textColor="@color/darkText"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/taskTypeRecView"
-                app:layout_constraintTop_toTopOf="@+id/taskTypeRecView" />
+                app:layout_constraintStart_toEndOf="@+id/courseTypeRecView"
+                app:layout_constraintTop_toTopOf="@+id/courseTypeRecView" />
 
             <TextView
                 android:id="@+id/scoreTextViewRecView"
@@ -156,8 +156,8 @@
                 android:textColor="@color/darkText"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/taskTypeRecView"
-                app:layout_constraintTop_toBottomOf="@+id/taskTypeRecView" />
+                app:layout_constraintStart_toStartOf="@+id/courseTypeRecView"
+                app:layout_constraintTop_toBottomOf="@+id/courseTypeRecView" />
 
 
             <TextView

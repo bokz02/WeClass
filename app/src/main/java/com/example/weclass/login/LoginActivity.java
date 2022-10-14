@@ -27,7 +27,7 @@ import android.widget.Toast;
 import com.example.weclass.R;
 import com.example.weclass.TermsAndCondition;
 import com.example.weclass.dashboard.MainActivity;
-import com.example.weclass.schedule.ScheduleActivity;
+import com.example.weclass.subject.Subject;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
                     if (firebaseUser.isEmailVerified()){
-                        Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent loginIntent = new Intent(LoginActivity.this, Subject.class);
                         loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(loginIntent);
                         finish();
@@ -208,7 +208,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onStart() {
         super.onStart();
         if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            startActivity(new Intent(LoginActivity.this,Subject.class));
             finish();
         } else {
         }

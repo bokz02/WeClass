@@ -5,16 +5,32 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+
+    //black
+    <color name="black">#131313</color>
+    <color name="black1">#272727</color>
+    <color name="black2">#adada1</color>
+    <color name="black3">#747474</color>
+
+    //white
+    <color name="white1">#f4f4f4</color>
     <color name="white">#FFFFFFFF</color>
+
+    //red
+    <color name="red1">#fe5757</color>
+    <color name="red2">#da4e4e</color>
+    <color name="lightText">#747474</color>
+    <color name="darkText">#272727</color>
+
     <color name="main_background">#edf3f3</color>
     <color name="text_main_color">#567975</color>
     <color name="text_main_second_color">#545454</color>
     <color name="navigation_text_color">#618f8c</color>
     <color name="navigation_text_color_pressed">#385150</color>
-    <color name="lightText">#59bdb3</color>
-    <color name="darkText">#567975</color>
-    <color name="btmNaviColor">#a2e1db</color>
+
+
+
+    <color name="btmNaviColor">#747474</color>
     <color name="cancelButtonPressed">#7A7A7A</color>
     <color name="cancelButtonNotPressed">#DBDBDB</color>
     <color name="transparent">#00FFFFFF</color>

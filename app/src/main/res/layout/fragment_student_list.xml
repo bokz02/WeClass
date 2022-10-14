@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".92" />
+            app:layout_constraintGuide_percent="0.89" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide3"
@@ -37,83 +37,80 @@
             android:id="@+id/parentID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:text="Parent ID"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.83"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!--  app:drawableEndCompat="@drawable/ic_arrow_down1"-->
 
         <TextView
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="52dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Student List"
-            android:textColor="@color/navigation_text_color"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
+            android:textColor="@color/black1"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guide4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/courseTitleStudentList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="BSCS 3"
             android:textAllCaps="true"
-            android:textColor="@color/darkText"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
-
+            android:textColor="@color/black1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/subjectCodeRecords"
+            app:layout_constraintEnd_toStartOf="@+id/guide4"
+            app:layout_constraintTop_toTopOf="@+id/subjectCodeRecords" />
 
         <TextView
             android:id="@+id/studentListSubjectCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:text="Subject Code"
-            android:textAllCaps="true"
-            android:textColor="@color/darkText"
-            android:textSize="15sp"
+            android:textColor="@color/black1"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guide3"
-            app:layout_constraintTop_toTopOf="@+id/sortStudentList" />
-
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
         <TextView
             android:id="@+id/sortStudentList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:drawablePadding="10dp"
+            android:drawableTint="@color/black3"
             android:fontFamily="@font/poppins_regular"
             android:text="Sort"
-            android:textColor="@color/darkText"
+            android:textColor="@color/black1"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:drawableEndCompat="@drawable/ic_arrow_down1"
             app:layout_constraintEnd_toEndOf="@+id/courseTitleStudentList"
-            app:layout_constraintTop_toBottomOf="@+id/courseTitleStudentList" />
+            app:layout_constraintTop_toTopOf="@+id/studentListSubjectCode" />
 
         <TextView
             android:id="@+id/summaryOfStudentTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:drawablePadding="10dp"
-            android:text="Total of Students: "
-            android:textColor="@color/darkText"
-            android:textSize="14sp"
             android:fontFamily="@font/poppins_regular"
+            android:text="Total of Students: "
+            android:textColor="@color/black3"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/summaryOfStudent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -123,10 +120,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:drawablePadding="10dp"
+            android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:text=" 56"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/darkText"
+            android:textColor="@color/black3"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/summaryOfStudentTV"
             app:layout_constraintEnd_toEndOf="@+id/guide4" />
@@ -168,12 +165,13 @@
             android:id="@+id/fabAddStudent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
             android:clickable="true"
             android:contentDescription="@string/addStudent"
             android:focusable="true"
             android:src="@drawable/ic_baseline_add_24"
             android:tooltipText="Add student"
-            app:backgroundTint="@color/lightText"
+            app:backgroundTint="@color/red1"
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:tint="@color/white" />
@@ -182,10 +180,10 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
+            app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
             app:layout_constraintTop_toBottomOf="@+id/sortStudentList">
@@ -203,9 +201,9 @@
                     android:background="@drawable/transparent_bg"
                     android:drawableEnd="@drawable/ic_baseline_search_24"
                     android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
                     android:drawableTint="#ACACAC"
                     android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
                     android:hint="Search"
                     android:textColor="@color/black"
                     android:textColorHint="#ACACAC"
