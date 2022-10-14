@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width*.8),(int) (height*.3));
+        getWindow().setLayout((int) (width*.8),(int) (height*.32));
         getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
         getWindow().setElevation(10);
 
