@@ -53,6 +53,16 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         pickSemester();
         pickSchoolYear();
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        getWindow().setLayout((int) (width*.8),(int) (height*.57));
+        getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
+        getWindow().setElevation(20);
+
     }
 
     // Open time picker when PRESSED

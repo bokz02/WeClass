@@ -192,8 +192,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
                                 intent1.putExtra("Userdata", bundle1);
                                 context.startActivity(intent1);
-
-
                                 break;
 
                         }
