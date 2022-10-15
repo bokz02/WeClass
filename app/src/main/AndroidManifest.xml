@@ -90,7 +90,7 @@
             android:name=".subject.EditSubjectActivity"
             android:exported="false"
             android:parentActivityName=".subject.Subject"
-            android:theme="@style/Theme.Dialog" />
+            android:theme="@style/Theme.WeClass.CustomTheme" />
         <activity
             android:name=".subject.AddSubjectActivity"
             android:exported="false"

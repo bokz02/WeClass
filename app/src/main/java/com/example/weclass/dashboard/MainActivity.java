@@ -1,6 +1,7 @@
 package com.example.weclass.dashboard;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,22 +11,33 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.view.WindowMetrics;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +69,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     TextView _course, _subjectCode, _subjectName;
     TextView  _id, dayTextView, timeTextView, timeEndTextView, semesterTextView, schoolYearTextView;
+    private Activity activity;
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,9 +87,17 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
         getWindow().setElevation(10);
 
+
         initialize();
         displayData();
+
+
+
+
+
     }
+
+
 
     public void initialize() {
         _id  = findViewById(R.id.positionNumber);
@@ -102,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
             timeEndTextView.setText(bundle.getString("timeEnd"));
             semesterTextView.setText(bundle.getString("sem"));
             schoolYearTextView.setText(bundle.getString("sy"));
+
         }
     }
 

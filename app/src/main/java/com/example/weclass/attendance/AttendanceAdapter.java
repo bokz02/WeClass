@@ -223,13 +223,18 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                 // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
                 if (cursor.moveToFirst()) {
 
+
+
                     Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + ", "
                             + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT).show();
                     cursor.close();
 
+
+
                     c = holder.getAdapterPosition();
                     attendanceItems.remove(c);
                     notifyItemRemoved(c);
+
 
                     // ELSE IT WILL STORE TO DATABASE
                 } else {
@@ -244,7 +249,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._date.getText().toString(),
                             holder._always0.getText().toString(),
                             holder._always1.getText().toString());
-
 
                     // UPDATE STUDENT'S ATTENDANCE COUNT
                     db.updateStudentAbsent(holder.id.getText().toString(),
