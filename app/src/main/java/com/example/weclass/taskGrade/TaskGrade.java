@@ -1,7 +1,10 @@
 package com.example.weclass.taskGrade;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,6 +21,7 @@ import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.StudentItems;
 import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
 import com.example.weclass.tasks.TaskItems;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,6 +36,9 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     ImageView backButton;
     TextView _progress, _deadline, _score, _description, _taskType, _taskNumber, _subjectID , _noStudentToGradeTextView, _gradingPeriod;
     View _noStudentToGradeView;
+    TabLayout _tabLayout;
+    ViewPager2 _viewPager2;
+    TaskGradeFragmentAdapter taskGradeFragmentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +51,11 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
 
         initialize();
         getDataFromTaskRecView();
-        display();
-        initializeAdapter();
+        //display();
+        //initializeAdapter();
         backToTask();
-        automaticSort();
+        //automaticSort();
+        fragmentManager();
 
     }
 
@@ -55,8 +63,8 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     public void onResume() {
         initialize();
         getDataFromTaskRecView();
-        display();
-        initializeAdapter();
+        //display();
+        //initializeAdapter();
         backToTask();
         super.onResume();
     }
@@ -73,6 +81,8 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         _noStudentToGradeTextView = findViewById(R.id.noStudentTextViewGrade);
         _noStudentToGradeView = findViewById(R.id.noStudentViewGrade);
         _gradingPeriod = findViewById(R.id.gradingPeriodTextViewTaskGrade);
+        _viewPager2 = findViewById(R.id.viewPagerTaskGrade);
+        _tabLayout = findViewById(R.id.tabLayoutTaskGrade);
 
     }
 
@@ -182,4 +192,47 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     public void OnNoteClick(int position) {
 
     }
+
+    // Method for tab layout and viewpager2
+    public void fragmentManager(){
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        // Pass data from this activity to pager adapter
+        String taskType = _taskType.getText().toString();
+        String taskNumber = _taskNumber.getText().toString();
+        String gradingPeriod = _gradingPeriod.getText().toString();
+        String subjectId = _subjectID.getText().toString();
+
+        taskGradeFragmentAdapter = new TaskGradeFragmentAdapter(fragmentManager, getLifecycle(), taskType, taskNumber, gradingPeriod, subjectId);
+
+
+        _viewPager2.setAdapter(taskGradeFragmentAdapter);
+
+        _tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                _viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        _viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                _tabLayout.selectTab(_tabLayout.getTabAt(position));
+            }
+        });
+    }
+
+
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".taskGrade.TaskGradeFragment">
+
+    <TextView
+        android:id="@+id/taskTypeTaskGradeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="task type"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/taskNumberTaskGradeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="task number"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@id/taskTypeTaskGradeFragment"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/gradingPeriodTaskGradeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="grading period"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subjectIDTaskGradeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="subject id"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/gradingPeriodTaskGradeFragment"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/noStudentTextViewGradeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Currently you don't have student, add one."
+        android:textColor="@color/cancelButtonPressed"
+        android:textSize="16sp"
+        android:visibility="visible"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@id/noStudentViewGradeFragment"
+        app:layout_constraintEnd_toEndOf="@+id/noStudentViewGradeFragment"
+        app:layout_constraintStart_toStartOf="@+id/noStudentViewGradeFragment" />
+
+    <View
+        android:id="@+id/noStudentViewGradeFragment"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_no_file"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.weclass.ExtendedRecyclerView
+        android:id="@+id/extendedRecViewTaskGrade"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
