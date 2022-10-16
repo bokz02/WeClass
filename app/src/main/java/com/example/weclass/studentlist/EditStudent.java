@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -30,15 +31,22 @@ public class EditStudent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_student);
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
-
         initialize();   // INITIALIZE ALL VIEWS
         chooseGender(); // GENDER PICKER
         displayData();  // RECEIVE THA DATA FROM ADAPTER THAT PASS HERE, AND DISPLAY IN ALL VIEWS
         backToStudentList();    // BACK BUTTON
         cancelButton();     // CANCEL BUTTON
         updateData();   // GET ALL DATA IN VIES AND INSERT TO DATABASE
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        getWindow().setLayout((int) (width*.8),(int) (height*.67));
+        getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
+        getWindow().setElevation(20);
     }
 
     // GET ALL DATA IN VIES AND INSERT TO DATABASE
@@ -111,8 +119,6 @@ public class EditStudent extends AppCompatActivity {
     public void displayData(){
         if (getIntent().getBundleExtra("Student") != null){
             Bundle bundle = getIntent().getBundleExtra("Student");
-
-
             _id.setText(bundle.getString("id"));
             _lastName.setText(bundle.getString("last_name"));
             _firstName.setText(bundle.getString("first_name"));

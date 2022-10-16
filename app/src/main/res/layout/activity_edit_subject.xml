@@ -41,14 +41,14 @@
         android:orientation="vertical"
         android:gravity="center"
         android:layout_weight="1"
-        >
+    >
 
         <TextView
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Edit subject"
+            android:text="Update subject"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -117,26 +117,26 @@
             android:layout_marginEnd="30dp"
             android:gravity="center_vertical"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/textView545"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="School Year"
-                android:textColor="@color/black2"
-                android:textSize="13sp" />
+        <TextView
+            android:id="@+id/textView545"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="School Year"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
 
-            <EditText
-                android:id="@+id/schoolYearTextViewEditSubject"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_regular"
-                android:hint="Select Year"
-                android:textColor="@color/black1"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+        <EditText
+            android:id="@+id/schoolYearTextViewEditSubject"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:background="@color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Select Year"
+            android:textColor="@color/black1"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -202,7 +202,7 @@
                 android:text="End Time"
                 android:textColor="@color/black3"
                 android:textSize="13sp"
-                />
+              />
 
             <EditText
                 android:id="@+id/timeEndTextViewEditSubject"
@@ -386,16 +386,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1"
-        android:weightSum="2"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp">
+        android:weightSum="2">
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancelButtonEditSubject"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/transparent_bg"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
             android:text="Cancel"
             android:layout_weight="1"
             app:rippleColor="@color/black3"
@@ -407,9 +405,9 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/updateButtonSubject"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:text="Update"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Save"
             android:layout_weight="1"
             android:textAllCaps="false"
             android:layout_gravity="center"
@@ -423,3 +421,7 @@
 
 
 </LinearLayout>
+
+
+
+

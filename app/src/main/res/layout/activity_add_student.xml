@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="7"
+    android:orientation="vertical"
     tools:context=".studentlist.AddStudent">
+
 
     <TextView
         android:id="@+id/parentIDAddStudent"
@@ -13,7 +16,7 @@
         android:layout_marginTop="90dp"
         android:text="parentID"
         android:textSize="16sp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/parentIDAddStudent"
         app:layout_constraintStart_toStartOf="@+id/parentIDAddStudent"
         app:layout_constraintTop_toBottomOf="@+id/parentIDAddStudent" />
@@ -33,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/parentIDAddStudent"
         app:layout_constraintStart_toEndOf="@+id/finalGradeTextViewAddStudent"
         app:layout_constraintTop_toBottomOf="@+id/parentIDAddStudent" />
@@ -43,11 +46,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/parentIDAddStudent"
         app:layout_constraintStart_toEndOf="@+id/midtermGradeTextViewAddStudent"
         app:layout_constraintTop_toBottomOf="@+id/parentIDAddStudent" />
-
 
     <TextView
         android:id="@+id/presentIDAddStudent"
@@ -56,7 +58,7 @@
         android:layout_marginTop="90dp"
         android:text="0"
         android:textSize="16sp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/parentIDAddStudent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -68,7 +70,7 @@
         android:layout_marginTop="90dp"
         android:text="0"
         android:textSize="16sp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/parentIDAddStudent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -78,6 +80,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
+        android:visibility="gone"
         android:layout_marginTop="24dp"
         android:background="@drawable/iconback2"
         android:backgroundTint="@color/white"
@@ -85,259 +88,236 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".05" />
+        android:gravity="center"
+        android:layout_weight="1"
+        >
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide2"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Add Student"
+            android:textColor="@color/darkText"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Student Information"
+            android:textColor="@color/darkText"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".95" />
+        android:gravity="center"
+        android:layout_weight="1">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="0dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/studentProfilePicture"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:background="@drawable/add_profile_1"
+            android:backgroundTint="@color/red1"
+            android:clickable="true"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guide2"
-        app:layout_constraintStart_toStartOf="@id/guide1"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/studLastnameProfile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView29" />
-
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="wrap_content"
-                android:layout_height="21dp"
-                android:layout_marginTop="20dp"
-                android:text="Add New"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/darkText"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Student Information"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:fontFamily="@font/poppins_regular"
-                app:layout_constraintEnd_toEndOf="@+id/textView27"
-                app:layout_constraintHorizontal_bias="0.494"
-                app:layout_constraintStart_toStartOf="@+id/textView27"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparent_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:hint="Last name"
+            android:inputType="textCapWords|none"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:textSize="16sp" />
 
 
-            <View
-                android:id="@+id/view12"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/studFirstnameProfile" />
+    </LinearLayout>
 
-            <View
-                android:id="@+id/view5"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/studentProfilePicture" />
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-            <View
-                android:id="@+id/view7"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/studLastnameProfile" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
 
+        <EditText
+            android:id="@+id/studMidname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparent_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:hint="Middle name"
+            android:inputType="textCapWords"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view12" />
 
-            <View
-                android:id="@+id/view14"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/studMidname" />
+    </LinearLayout>
 
-            <View
-                android:id="@+id/view17"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/studGender" />
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/studentProfilePicture"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_marginTop="15dp"
-                android:clickable="true"
-                android:background="@drawable/add_profile_1"
-                android:backgroundTint="@color/red1"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
 
+        <EditText
+            android:id="@+id/studFirstnameProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparent_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:hint="First name"
+            android:inputType="textCapWords"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view7" />
 
-            <EditText
-                android:id="@+id/studLastnameProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/transparent_bg"
-                android:gravity="center"
-                android:hint="Last name"
-                android:fontFamily="@font/poppins_regular"
-                android:inputType="textCapWords|none"
-                android:maxLength="30"
-                android:maxLines="1"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view5" />
+    </LinearLayout>
 
-            <EditText
-                android:id="@+id/studMidname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_regular"
-                android:background="@drawable/transparent_bg"
-                android:gravity="center"
-                android:hint="Middle name"
-                android:inputType="textCapWords"
-                android:maxLength="30"
-                android:maxLines="1"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view12" />
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-            <EditText
-                android:id="@+id/studFirstnameProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/poppins_regular"
-                android:background="@drawable/transparent_bg"
-                android:gravity="center"
-                android:hint="First name"
-                android:inputType="textCapWords"
-                android:maxLength="30"
-                android:maxLines="1"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view7" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/studGender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_regular"
-                android:background="@drawable/transparent_bg"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:hint="Gender"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view14" />
+        <TextView
+            android:id="@+id/studGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/transparent_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:hint="Gender"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view14" />
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/createButtonStudent"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:background="@drawable/transparent_bg"
-                android:text="Add"
-                android:textAllCaps="false"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/darkText"
-                android:textSize="16sp"
-                app:backgroundTint="@color/navigation_text_color_pressed"
-                app:cornerRadius="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.917"
-                app:layout_constraintStart_toEndOf="@+id/view16"
-                app:layout_constraintTop_toBottomOf="@+id/view17" />
+    </LinearLayout>
 
-            <View
-                android:id="@+id/view16"
-                android:layout_width="1dp"
-                android:layout_height="60dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view17" />
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/cancelButtonStudent"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:background="@drawable/transparent_bg"
-                android:text="Cancel"
-                android:fontFamily="@font/poppins_semibold"
-                android:textAllCaps="false"
-                android:textColor="@color/darkText"
-                android:textSize="16sp"
-                app:backgroundTint="@color/navigation_text_color_pressed"
-                app:cornerRadius="5dp"
-                app:layout_constraintEnd_toStartOf="@+id/view16"
-                app:layout_constraintHorizontal_bias="0.082"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view17" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:weightSum="2">
 
 
-    </androidx.cardview.widget.CardView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelButtonStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Cancel"
+            android:layout_weight="1"
+            app:rippleColor="@color/black3"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/darkText"
+            android:textSize="14sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createButtonStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Add"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            app:rippleColor="@color/black3"
+            app:cornerRadius="5dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

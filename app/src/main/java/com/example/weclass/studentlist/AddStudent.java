@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -56,6 +57,19 @@ public class AddStudent extends AppCompatActivity {
         getDataFromStudentListFragment();
         addPhoto();     // BUTTON THAT PICK IMAGE FROM CAMERA OR GALLERY
         //displayImage();
+
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        getWindow().setLayout((int) (width*.8),(int) (height*.67));
+        getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
+        getWindow().setElevation(20);
+
+
     }
 
     public void getDataFromStudentListFragment(){
@@ -119,8 +133,12 @@ public class AddStudent extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddStudent.this);
                 builder.setTitle("Confirm exit");
+
+
                 builder.setIcon(R.drawable.ic_baseline_warning_24);
                 builder.setMessage("All the fields will not be saved!");
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -275,6 +293,7 @@ public class AddStudent extends AppCompatActivity {
                         .compress(1024)			//Final image size will be less than 1 MB(Optional)
                         .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
                         .start();
+
             }
         });
     }

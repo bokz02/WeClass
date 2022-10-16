@@ -1,498 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".subject.AddSubjectActivity"
-    android:background="@drawable/bg_menu">
+    android:weightSum="8"
+    android:orientation="vertical"
+    tools:context=".subject.AddSubjectActivity">
 
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide1"
+    <TextView
+        android:id="@+id/idNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.10" />
-
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.81" />
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".9"/>
-
+        android:layout_marginTop="100dp"
+        android:text="ID number"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/colorHexTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Color"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/guide3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/guide4"
-        app:layout_constraintEnd_toEndOf="@id/guide2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@id/guide1"
-        app:layout_constraintTop_toTopOf="@+id/guide3"
-        app:layout_constraintVertical_bias="0.0">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.48" />
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Add new subject"
-                android:fontFamily="@font/poppins_semibold"
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="Subject Information"
-                android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/darkText"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView26"
-                app:layout_constraintHorizontal_bias="0.494"
-                app:layout_constraintStart_toStartOf="@+id/textView26"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView30" />
-
-
-            <View
-                android:id="@+id/view19"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/semesterAddSubject" />
-
-            <View
-                android:id="@+id/view15"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/timeAddSubject" />
-
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Semester:"
-                android:fontFamily="@font/poppins_semibold"
-                android:layout_marginTop="8dp"
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/textView545"
-                app:layout_constraintHorizontal_bias="0.272"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
-
-            <TextView
-                android:id="@+id/semesterAddSubject"
-                android:layout_width="120dp"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:backgroundTint="#979797"
-                android:hint="Semester"
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView4"
-                app:layout_constraintHorizontal_bias="0.272"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-            <TextView
-                android:id="@+id/textView545"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:text="School Year"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView4" />
-
-            <TextView
-                android:id="@+id/schoolYearAddSubject"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:hint="Select Year"
-                android:fontFamily="@font/poppins_regular"
-
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView545"
-                app:layout_constraintStart_toStartOf="@+id/textView545"
-                app:layout_constraintTop_toBottomOf="@+id/textView545" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Start Time:"
-                android:fontFamily="@font/poppins_semibold"
-
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:layout_marginTop="8dp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/textView545"
-                app:layout_constraintHorizontal_bias="0.272"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view19" />
-
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:text="End Time:"
-                android:fontFamily="@font/poppins_semibold"
-
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView7" />
-
-
-            <TextView
-                android:id="@+id/timeAddSubject"
-                android:layout_width="120dp"
-                android:fontFamily="@font/poppins_regular"
-
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:backgroundTint="#979797"
-
-                android:drawableTint="@color/buttonDisabled"
-                android:hint="Select Time"
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView7"
-                app:layout_constraintHorizontal_bias="0.272"
-                app:layout_constraintStart_toStartOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-            <TextView
-                android:id="@+id/timeEndAddSubject"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-
-                android:background="@color/transparent"
-                android:backgroundTint="#979797"
-                android:drawableTint="@color/buttonDisabled"
-                android:hint="Select Time"
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView8"
-                app:layout_constraintStart_toStartOf="@+id/textView8"
-                app:layout_constraintTop_toTopOf="@+id/timeAddSubject" />
-
-
-            <TextView
-                android:id="@+id/textView78"
-                android:layout_width="77dp"
-                android:layout_height="18dp"
-                android:fontFamily="@font/poppins_semibold"
-
-                android:layout_marginTop="8dp"
-                android:text="Day Schedule"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toBottomOf="@+id/view15" />
-
-            <TextView
-                android:id="@+id/dayAddSubject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:hint="Select Day"
-                android:inputType="textCapSentences"
-                android:maxLength="30"
-                android:fontFamily="@font/poppins_regular"
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.606"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView78" />
-
-            <View
-                android:id="@+id/view18"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ECECEC"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dayAddSubject" />
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/poppins_semibold"
-
-                android:text="Subject Code:"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:textAlignment="center"
-                android:layout_marginTop="8dp"
-
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view18" />
-
-            <EditText
-                android:id="@+id/subjectCodeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:hint="Code"
-                android:fontFamily="@font/poppins_regular"
-
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:maxLength="15"
-                android:maxLines="1"
-                android:inputType="text|textCapCharacters"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView24" />
-
-            <View
-                android:id="@+id/view20"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subjectCodeText" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Subject Description"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:fontFamily="@font/poppins_semibold"
-
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.518"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toBottomOf="@+id/view20" />
-
-            <EditText
-                android:id="@+id/subjectNameText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:background="@color/transparent"
-                android:hint="Description"
-                android:fontFamily="@font/poppins_regular"
-
-                android:inputType="textCapWords"
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:maxLines="1"
-                android:maxLength="40"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.39"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-            <View
-                android:id="@+id/view21"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ECECEC"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subjectNameText" />
-
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:text="Course:"
-                android:fontFamily="@font/poppins_semibold"
-
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:layout_marginTop="8dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.426"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view21" />
-
-            <EditText
-                android:id="@+id/courseNameText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:backgroundTint="#979797"
-                android:hint="Course"
-                android:fontFamily="@font/poppins_regular"
-
-                android:maxLines="1"
-                android:maxLength="30"
-                android:textAlignment="center"
-                android:textColor="@color/darkText"
-                android:textSize="15sp"
-                android:inputType="textCapSentences"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.426"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-            <View
-                android:id="@+id/view22"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ECECEC"
-                android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/courseNameText" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/cancelButtonSubject"
-                android:layout_width="163dp"
-                android:layout_height="60dp"
-                android:background="@drawable/transparent_bg"
-                android:text="Cancel"
-                android:fontFamily="@font/poppins_semibold"
-
-                android:textAllCaps="false"
-                android:textColor="@color/darkText"
-                android:textSize="14sp"
-                app:backgroundTint="@color/cancelButtonNotPressed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view22" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/createButtonSubject"
-                android:layout_width="163dp"
-                android:layout_height="60dp"
-                android:background="@color/transparent"
-                android:text="Create"
-                android:fontFamily="@font/poppins_semibold"
-                android:textAllCaps="false"
-                android:textColor="@color/darkText"
-                android:textSize="14sp"
-                app:cornerRadius="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view22" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
     <ImageButton
         android:id="@+id/backButtonSubject"
         android:layout_width="30dp"
@@ -501,8 +38,399 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/iconback2"
         android:backgroundTint="@color/white"
+        android:visibility="gone"
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Add subject"
+            android:textColor="@color/darkText"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Subject Information"
+            android:textColor="@color/darkText"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Semester: "
+                android:textColor="@color/black2"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/semesterAddSubject"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:backgroundTint="#979797"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Semester"
+                android:textColor="@color/black1"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView545"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="School Year"
+                android:textColor="@color/black2"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/schoolYearAddSubject"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:background="@color/transparent"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Select Year"
+                android:textColor="@color/black1"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginStart="30dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Start Time:"
+                android:textColor="@color/black3"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view19" />
+
+            <EditText
+                android:id="@+id/timeAddSubject"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:backgroundTint="#979797"
+                android:drawableTint="@color/buttonDisabled"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Start Time"
+                android:textColor="@color/darkText"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="End Time"
+                android:textColor="@color/black3"
+                android:textSize="13sp"
+                />
+
+            <EditText
+                android:id="@+id/timeEndAddSubject"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:backgroundTint="#979797"
+                android:drawableTint="@color/buttonDisabled"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="End Time"
+                android:textColor="@color/darkText"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        >
+
+        <TextView
+            android:id="@+id/textView78"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Day Schedule:"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/dayAddSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Select Day"
+            android:inputType="textCapSentences"
+            android:maxLength="10"
+            android:textColor="@color/black1"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        >
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+
+            android:background="@color/transparent"
+            android:drawablePadding="5dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Subject Code:"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/subjectCodeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Code"
+            android:textColor="@color/black1"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        >
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Subject Description:"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/subjectNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Description"
+            android:inputType="textCapSentences"
+            android:textColor="@color/black1"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Course:"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/courseNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:backgroundTint="#979797"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Course"
+            android:textColor="@color/black1"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:weightSum="2"
+      >
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelButtonSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Cancel"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/darkText"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="14sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createButtonSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Add"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            android:background="?android:attr/selectableItemBackground"
+            app:rippleColor="@color/black3"
+            app:cornerRadius="5dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+
