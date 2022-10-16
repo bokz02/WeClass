@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -46,8 +47,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_subject);
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
 
         initialize(); // INITIALIZE ALL VIEWS
         pickTime();     // TIME PICKER POP AFTER BUTTON CLICKED
@@ -61,6 +61,15 @@ public class AddSubjectActivity extends AppCompatActivity {
         pickSchoolYear();
         randomColor();
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        getWindow().setLayout((int) (width*.8),(int) (height*.67));
+        getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
+        getWindow().setElevation(20);
 
     }
 

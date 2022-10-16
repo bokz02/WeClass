@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Student List"
+            android:text="Students"
             android:textColor="@color/black1"
             android:textSize="25sp"
             app:layout_constraintEnd_toStartOf="@+id/guide4"
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_regular"
             android:text="BSCS 3"
             android:textAllCaps="true"
             android:textColor="@color/black1"
@@ -79,7 +79,7 @@
             android:id="@+id/studentListSubjectCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:text="Subject Code"
             android:textColor="@color/black1"
@@ -108,7 +108,7 @@
             android:layout_marginTop="15dp"
             android:drawablePadding="10dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="Total of Students: "
+            android:text="Students: "
             android:textColor="@color/black3"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/summaryOfStudent"
@@ -171,10 +171,10 @@
             android:focusable="true"
             android:src="@drawable/ic_baseline_add_24"
             android:tooltipText="Add student"
-            app:backgroundTint="@color/red1"
+            app:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:tint="@color/white" />
+            app:tint="@color/red1" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"

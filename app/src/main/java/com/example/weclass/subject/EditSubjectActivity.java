@@ -59,7 +59,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width*.8),(int) (height*.57));
+        getWindow().setLayout((int) (width*.8),(int) (height*.67));
         getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
         getWindow().setElevation(20);
 
