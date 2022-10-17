@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
@@ -39,6 +40,8 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     TabLayout _tabLayout;
     ViewPager2 _viewPager2;
     TaskGradeFragmentAdapter taskGradeFragmentAdapter;
+    TaskGradeViewFragment taskGradeViewFragment;
+    private RefreshInterface listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,6 +216,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 _viewPager2.setCurrentItem(tab.getPosition());
+
             }
 
             @Override
@@ -230,9 +234,17 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
             @Override
             public void onPageSelected(int position) {
                 _tabLayout.selectTab(_tabLayout.getTabAt(position));
+
+                if(position == 1 ){
+
+
+                }
             }
         });
     }
 
+    public void setListener(RefreshInterface listener){
+        this.listener = listener;
+    }
 
 }

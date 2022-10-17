@@ -1,12 +1,8 @@
 package com.example.weclass.taskGrade;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +11,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
-import com.example.weclass.tasks.AddTask;
-import com.example.weclass.tasks.TaskAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.HashMap;
 
 public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyViewHolder>{
 
@@ -41,6 +31,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         this.taskGradeItems = taskGradeItems;
         this.context = context;
         this.onNoteListener = onNoteListener;
+
 
     }
 
@@ -57,7 +48,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
             lastName = itemView.findViewById(R.id.lastNameRecViewGrade);
             firstName = itemView.findViewById(R.id.firstNameRecViewGrade);
             submitButtonGrade = itemView.findViewById(R.id.submitButtonRecViewGrade);
-            gradeEditText = itemView.findViewById(R.id.gradeEditTextRecViewGrade);
+            gradeEditText = itemView.findViewById(R.id.gradeTextViewGrade);
             studentID = itemView.findViewById(R.id.studentIDGrade);
             subjectID = itemView.findViewById(R.id.subjectIDTextViewRecViewGrade);
             taskType = itemView.findViewById(R.id.taskTypeTextViewRecViewGrade);
@@ -158,6 +149,8 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                     b = holder.getAdapterPosition();
                     taskGradeItems.remove(b);
                     notifyItemRemoved(b);
+
+
 
                 }
 

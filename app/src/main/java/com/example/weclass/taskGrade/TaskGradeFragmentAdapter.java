@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import java.sql.Ref;
 import java.util.ArrayList;
 
 public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
@@ -16,6 +17,7 @@ public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
     private final String taskNumber;
     private final String gradingPeriod;
     private final String subjectId;
+    private RefreshInterface listener;
 
     public TaskGradeFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, String string, String taskNumber, String gradingPeriod, String subjectId) {
         super(fragmentManager, lifecycle);
@@ -37,6 +39,7 @@ public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
             bundle.putString("SubjectId", subjectId);
             TaskGradeViewFragment fragment= new TaskGradeViewFragment();
             fragment.setArguments(bundle);
+
             return fragment;
         }
 
@@ -48,12 +51,18 @@ public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
         TaskGradeFragment taskGradeFragment= new TaskGradeFragment();
         taskGradeFragment.setArguments(bundle);
 
+
         return taskGradeFragment;
     }
 
     @Override
     public int getItemCount() {
         return 2;
+    }
+
+    public void setListener(RefreshInterface listener){
+        this.listener = listener;
+
     }
 
 }

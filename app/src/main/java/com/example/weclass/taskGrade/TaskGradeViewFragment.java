@@ -1,22 +1,40 @@
 package com.example.weclass.taskGrade;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
+import com.example.weclass.database.DataBaseHelper;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.core.Tag;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 
-public class TaskGradeViewFragment extends Fragment {
+public class TaskGradeViewFragment extends Fragment{
 
-    TextView _taskType, _taskNumber, _gradingPeriod, _subjectId;
-    View view;
+
+    TextView _taskType, _taskNumber, _gradingPeriod, _subjectId, _noStudentToGradeTextViewFragment;
+    View view, _noStudentTGradeViewFragment;
     Bundle bundle;
+    ExtendedRecyclerView extendedRecyclerView;
+    ArrayList<TaskGradeViewItems> taskGradeViewItems, studentID, subjectID;
+    TaskGradeViewFragmentAdapter taskGradeViewFragmentAdapter;
+    DataBaseHelper dataBaseHelper;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,16 +43,81 @@ public class TaskGradeViewFragment extends Fragment {
 
         initialize();
         getDataFromTaskGradeActivity();
+        display();
+        initializeAdapter();
+        automaticSort();
 
         return view;
     }
 
     public void initialize(){
-        _taskType = view.findViewById(R.id.simpleText);
+        extendedRecyclerView = view.findViewById(R.id.extendedRecViewTaskGradeView);
+        _taskType = view.findViewById(R.id.taskTypeGradeView);
         _taskNumber = view.findViewById(R.id.taskNumberGradeView);
         _gradingPeriod = view.findViewById(R.id.gradingPeriodGradeView);
         _subjectId = view.findViewById(R.id.subjectIdGradeViewFragment);
+        _noStudentTGradeViewFragment = view.findViewById(R.id.noStudentViewGradeFragmentView);
+        _noStudentToGradeTextViewFragment = view.findViewById(R.id.noStudentTextViewGradeFragmentView);
     }
+
+    // INITIALIZE ADAPTER FOR RECYCLERVIEW
+    public void initializeAdapter(){
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        taskGradeViewFragmentAdapter = new TaskGradeViewFragmentAdapter(taskGradeViewItems, getContext());
+        extendedRecyclerView.setAdapter(taskGradeViewFragmentAdapter);
+        extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        extendedRecyclerView.setEmptyView(_noStudentTGradeViewFragment, _noStudentToGradeTextViewFragment);
+        linearLayoutManager.setStackFromEnd(true);
+    }
+
+    // DATA TO BE DISPLAY IN RECYCLERVIEW
+    public void display(){
+        studentID = new ArrayList<>();
+        subjectID = new ArrayList<>();
+        taskGradeViewItems = new ArrayList<>();
+        dataBaseHelper = new DataBaseHelper(getContext());
+        taskGradeViewItems = displayData();
+    }
+
+    // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
+    private ArrayList<TaskGradeViewItems> displayData(){
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
+                + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
+                + _subjectId.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
+                + _taskType.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
+                + _taskNumber.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
+                + _gradingPeriod.getText().toString() + "'", null);
+
+        ArrayList<TaskGradeViewItems> taskGradeViewItems = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do {
+                taskGradeViewItems.add(new TaskGradeViewItems(
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return taskGradeViewItems;
+    }
+
+    // AUTOMATIC SORT WHEN ACTIVITY OPEN
+    public void automaticSort(){
+        Collections.sort(taskGradeViewItems, TaskGradeViewItems.sortAtoZComparator);
+        initializeAdapter();
+    }
+
+
 
     public void getDataFromTaskGradeActivity(){
 
@@ -55,5 +138,10 @@ public class TaskGradeViewFragment extends Fragment {
         }
     }
 
-
+    public void refreshData() {
+        if(taskGradeViewItems != null) {
+            Toast.makeText(getContext(),"Success", Toast.LENGTH_SHORT).show();
+            taskGradeViewFragmentAdapter.notifyDataSetChanged();
+        }
+    }
 }

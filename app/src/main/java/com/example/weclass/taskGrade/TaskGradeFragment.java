@@ -22,13 +22,14 @@ import java.util.Collections;
 
 public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNoteListener{
 
-    View view, _noStudentToGradeViewFragment;
+    View view, _noStudentTGradeViewFragment;
     TextView _taskType,_subjectID, _taskNumber, _gradingPeriod, _noStudentToGradeTextViewFragment;
     Bundle bundle;
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<TaskGradeItems> taskGradeItems, studentID, subjectID;
     TaskGradeAdapter taskGradeAdapter;
     DataBaseHelper dataBaseHelper;
+    TaskGradeViewFragment taskGradeViewFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +54,7 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNo
         _gradingPeriod = view.findViewById(R.id.gradingPeriodTaskGradeFragment);
         _subjectID = view.findViewById(R.id.subjectIDTaskGradeFragment);
         _noStudentToGradeTextViewFragment = view.findViewById(R.id.noStudentTextViewGradeFragment);
-        _noStudentToGradeViewFragment = view.findViewById(R.id.noStudentViewGradeFragment);
+        _noStudentTGradeViewFragment = view.findViewById(R.id.noStudentViewGradeFragment);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
@@ -63,7 +64,7 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNo
         taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, getContext(), this);
         extendedRecyclerView.setAdapter(taskGradeAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        extendedRecyclerView.setEmptyView(_noStudentToGradeTextViewFragment, _noStudentToGradeTextViewFragment);
+        extendedRecyclerView.setEmptyView(_noStudentTGradeViewFragment, _noStudentToGradeTextViewFragment);
         linearLayoutManager.setStackFromEnd(true);
     }
 
@@ -146,4 +147,5 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNo
     public void OnNoteClick(int position) {
 
     }
+
 }

@@ -538,6 +538,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // DELETE A SUBJECT
+    public void deleteStudentGrade(int row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result =  db.delete(TABLE_MY_GRADE, "id_student=?", new String[]{ String.valueOf(row_id)});
+
+        if (result == -1){
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
     // DELETE A TASK
     public void deleteTask(int row_id){
         SQLiteDatabase db = this.getWritableDatabase();

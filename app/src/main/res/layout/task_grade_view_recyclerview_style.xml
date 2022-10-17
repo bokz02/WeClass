@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="1dp"
     android:background="@color/white"
@@ -21,7 +21,7 @@
             android:id="@+id/lastNameRecViewGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="15dp"
+            android:layout_marginVertical="10dp"
             android:layout_marginStart="32dp"
             android:text="Last"
             android:fontFamily="@font/poppins_semibold"
@@ -30,61 +30,50 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.229" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/firstNameRecViewGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="15dp"
-            android:layout_marginStart="32dp"
-            android:text="First"
             android:fontFamily="@font/poppins_regular"
+            android:text="First"
+            android:layout_marginStart="5dp"
             android:textColor="@color/darkText"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.979" />
+            app:layout_constraintBottom_toBottomOf="@+id/comma"
+            app:layout_constraintStart_toEndOf="@+id/comma"
+            app:layout_constraintTop_toTopOf="@+id/comma" />
 
         <TextView
-            android:id="@+id/commaRecViewGrade"
+            android:id="@+id/comma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="15dp"
+            android:fontFamily="@font/poppins_regular"
             android:text=","
-            android:textColor="@color/lightText"
+            android:layout_marginStart="3dp"
+            android:textColor="@color/darkText"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/lastNameRecViewGrade"
             app:layout_constraintStart_toEndOf="@+id/lastNameRecViewGrade"
             app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
 
-        <EditText
+
+        <TextView
             android:id="@+id/gradeTextViewGrade"
-            android:layout_width="35dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="25dp"
             android:background="@drawable/transparent_bg"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
-            android:inputType="number"
-            android:maxLength="3"
-            android:maxLines="1"
-            android:padding="5dp"
             android:textColor="@color/darkText"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/submitButtonRecViewGrade"
-            app:layout_constraintEnd_toStartOf="@+id/submitButtonRecViewGrade"
-            app:layout_constraintTop_toTopOf="@+id/submitButtonRecViewGrade" />
+            android:text="grade"
+            app:layout_constraintBottom_toBottomOf="@+id/firstNameRecViewGrade"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/firstNameRecViewGrade" />
 
-        <View
-            android:id="@+id/view13"
-            android:layout_width="35dp"
-            android:layout_height="3dp"
-            android:background="@color/grayText"
-            app:layout_constraintEnd_toEndOf="@+id/gradeTextViewGrade"
-            app:layout_constraintStart_toStartOf="@+id/gradeTextViewGrade"
-            app:layout_constraintTop_toBottomOf="@id/gradeTextViewGrade" />
 
         <TextView
             android:id="@+id/studentIDGrade"
@@ -122,20 +111,6 @@
             app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
 
         <TextView
-            android:id="@+id/scoreTExt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:padding="5dp"
-            android:text="Score:"
-            android:textSize="14sp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/view13"
-            app:layout_constraintEnd_toStartOf="@+id/gradeTextViewGrade"
-            app:layout_constraintTop_toTopOf="@+id/gradeTextViewGrade" />
-
-        <TextView
             android:id="@+id/taskTypeTextViewRecViewGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -157,19 +132,6 @@
             app:layout_constraintEnd_toStartOf="@+id/subjectIDTextViewRecViewGrade"
             app:layout_constraintTop_toBottomOf="@+id/taskTypeTextViewRecViewGrade" />
 
-        <ImageButton
-            android:id="@+id/submitButtonRecViewGrade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/ic_green_check"
-            android:backgroundTint="@color/darkText"
-            android:hint="Grade"
-            android:paddingHorizontal="5dp"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
