@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNoteListener{
+public class TaskGradeFragment extends Fragment{
 
     View view, _noStudentTGradeViewFragment;
     TextView _taskType,_subjectID, _taskNumber, _gradingPeriod, _noStudentToGradeTextViewFragment;
@@ -29,7 +29,6 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNo
     ArrayList<TaskGradeItems> taskGradeItems, studentID, subjectID;
     TaskGradeAdapter taskGradeAdapter;
     DataBaseHelper dataBaseHelper;
-    TaskGradeViewFragment taskGradeViewFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,8 +45,8 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNo
         return view;
     }
 
+    // initialize all views
     public void initialize(){
-
         extendedRecyclerView = view.findViewById(R.id.extendedRecViewTaskGrade);
         _taskType = view.findViewById(R.id.taskTypeTaskGradeFragment);
         _taskNumber = view.findViewById(R.id.taskNumberTaskGradeFragment);
@@ -61,7 +60,7 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNo
     public void initializeAdapter(){
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, getContext(), this);
+        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, getContext());
         extendedRecyclerView.setAdapter(taskGradeAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noStudentTGradeViewFragment, _noStudentToGradeTextViewFragment);
@@ -124,6 +123,7 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNo
         initializeAdapter();
     }
 
+    // get data from task grade activity to this fragment
     public void getDataFromTaskGradeActivity(){
 
         bundle = this.getArguments();
@@ -143,9 +143,6 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.OnNo
     }
 
 
-    @Override
-    public void OnNoteClick(int position) {
 
-    }
 
 }

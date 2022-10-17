@@ -17,7 +17,6 @@ public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
     private final String taskNumber;
     private final String gradingPeriod;
     private final String subjectId;
-    private RefreshInterface listener;
 
     public TaskGradeFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, String string, String taskNumber, String gradingPeriod, String subjectId) {
         super(fragmentManager, lifecycle);
@@ -60,9 +59,6 @@ public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
         return 2;
     }
 
-    public void setListener(RefreshInterface listener){
-        this.listener = listener;
 
-    }
 
 }

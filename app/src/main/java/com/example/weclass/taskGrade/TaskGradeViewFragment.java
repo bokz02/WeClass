@@ -41,6 +41,7 @@ public class TaskGradeViewFragment extends Fragment{
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_task_grade_view, container, false);
 
+
         initialize();
         getDataFromTaskGradeActivity();
         display();
@@ -50,6 +51,18 @@ public class TaskGradeViewFragment extends Fragment{
         return view;
     }
 
+    // run all methods of this fragment when fragment is resumed
+    @Override
+    public void onResume() {
+        super.onResume();
+        initialize();
+        getDataFromTaskGradeActivity();
+        display();
+        initializeAdapter();
+        automaticSort();
+    }
+
+    // initialize all views
     public void initialize(){
         extendedRecyclerView = view.findViewById(R.id.extendedRecViewTaskGradeView);
         _taskType = view.findViewById(R.id.taskTypeGradeView);
@@ -118,7 +131,7 @@ public class TaskGradeViewFragment extends Fragment{
     }
 
 
-
+    // get data from task grade activity to this fragment
     public void getDataFromTaskGradeActivity(){
 
         bundle = this.getArguments();
@@ -138,10 +151,4 @@ public class TaskGradeViewFragment extends Fragment{
         }
     }
 
-    public void refreshData() {
-        if(taskGradeViewItems != null) {
-            Toast.makeText(getContext(),"Success", Toast.LENGTH_SHORT).show();
-            taskGradeViewFragmentAdapter.notifyDataSetChanged();
-        }
-    }
 }

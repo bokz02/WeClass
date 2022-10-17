@@ -23,26 +23,24 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
     private final ArrayList<TaskGradeItems> taskGradeItems;
     private final Context context;
-    private final OnNoteListener onNoteListener;
+
     int a;
 
 
-    public TaskGradeAdapter(ArrayList<TaskGradeItems> taskGradeItems, Context context, OnNoteListener onNoteListener) {
+    public TaskGradeAdapter(ArrayList<TaskGradeItems> taskGradeItems, Context context) {
         this.taskGradeItems = taskGradeItems;
         this.context = context;
-        this.onNoteListener = onNoteListener;
-
 
     }
 
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView lastName, firstName, studentID, subjectID, taskType, taskNumber, gradingPeriod;
         ImageButton submitButtonGrade;
         EditText gradeEditText;
         OnNoteListener onNoteListener;
 
-        public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             lastName = itemView.findViewById(R.id.lastNameRecViewGrade);
@@ -54,17 +52,9 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
             taskType = itemView.findViewById(R.id.taskTypeTextViewRecViewGrade);
             taskNumber = itemView.findViewById(R.id.taskNumberRecViewGrade);
             gradingPeriod = itemView.findViewById(R.id.gradingPeriodTextViewRecViewGrade);
-
-            this.onNoteListener = onNoteListener;
-
-            itemView.setOnClickListener(this);
+            
         }
 
-        @Override
-        public void onClick(View view) {
-            onNoteListener.OnNoteClick(getAdapterPosition());
-
-        }
     }
 
     @NonNull
@@ -72,7 +62,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.task_grade_recycler_style, parent, false);
-        return new MyViewHolder(view, onNoteListener);
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -153,8 +143,6 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
 
                 }
-
-
 
             }
         });

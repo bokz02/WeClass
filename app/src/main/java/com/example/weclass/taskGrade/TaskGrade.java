@@ -27,7 +27,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnNoteListener {
+public class TaskGrade extends AppCompatActivity{
 
     ExtendedRecyclerView recyclerView;
     ArrayList<TaskGradeItems> taskGradeItems, studentID, subjectID;
@@ -40,8 +40,6 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     TabLayout _tabLayout;
     ViewPager2 _viewPager2;
     TaskGradeFragmentAdapter taskGradeFragmentAdapter;
-    TaskGradeViewFragment taskGradeViewFragment;
-    private RefreshInterface listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +91,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
     public void initializeAdapter(){
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(TaskGrade.this);
-        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, TaskGrade.this, this);
+        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, TaskGrade.this);
         recyclerView.setAdapter(taskGradeAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(TaskGrade.this));
         recyclerView.setEmptyView(_noStudentToGradeView, _noStudentToGradeTextView);
@@ -191,10 +189,6 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
         initializeAdapter();
     }
 
-    @Override
-    public void OnNoteClick(int position) {
-
-    }
 
     // Method for tab layout and viewpager2
     public void fragmentManager(){
@@ -221,12 +215,12 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                //Toast.makeText(TaskGrade.this,"Success", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                //Toast.makeText(TaskGrade.this,"Success", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -236,15 +230,11 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.OnN
                 _tabLayout.selectTab(_tabLayout.getTabAt(position));
 
                 if(position == 1 ){
-
-
+                    //Toast.makeText(TaskGrade.this,"Success", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public void setListener(RefreshInterface listener){
-        this.listener = listener;
-    }
 
 }
