@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setColor(Color.parseColor("#28908C"));
+                ds.setColor(Color.parseColor("#C62828"));
                 ds.setUnderlineText(false);
             }
 

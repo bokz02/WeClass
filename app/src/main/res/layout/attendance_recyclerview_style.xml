@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
@@ -20,10 +21,9 @@
             android:id="@+id/lastNameAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingStart="5dp"
-            android:text="Last"
             android:fontFamily="@font/poppins_semibold"
+            android:paddingStart="5dp"
+            android:text="Lastname"
             android:textColor="@color/darkText"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -34,25 +34,13 @@
             android:id="@+id/firstNameAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="First"
-            android:textColor="@color/lightText"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/lastNameAttendanceRecView"
-            app:layout_constraintStart_toEndOf="@+id/commaAttendanceRecView"
-            app:layout_constraintTop_toTopOf="@+id/lastNameAttendanceRecView" />
-
-        <TextView
-            android:id="@+id/commaAttendanceRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=","
             android:fontFamily="@font/poppins_regular"
+            android:text="Firstname"
+            android:paddingStart="5dp"
+            android:textColor="@color/black1"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/lastNameAttendanceRecView"
-            app:layout_constraintStart_toEndOf="@+id/lastNameAttendanceRecView"
-            app:layout_constraintTop_toTopOf="@+id/lastNameAttendanceRecView" />
+            app:layout_constraintStart_toStartOf="@+id/lastNameAttendanceRecView"
+            app:layout_constraintTop_toBottomOf="@+id/lastNameAttendanceRecView" />
 
         <TextView
             android:id="@+id/idAttendanceRecView"
@@ -61,7 +49,7 @@
             android:paddingHorizontal="5dp"
             android:text="ID"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/parentIdAttendanceRecView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -73,7 +61,7 @@
             android:paddingHorizontal="5dp"
             android:text="1"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/idAttendanceRecView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -85,7 +73,7 @@
             android:paddingHorizontal="5dp"
             android:text="0"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/idAttendanceRecView"
             app:layout_constraintEnd_toStartOf="@+id/always1AttendanceRecView" />
 
@@ -97,7 +85,7 @@
             android:paddingHorizontal="5dp"
             android:text="parent id"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -109,7 +97,7 @@
             android:paddingHorizontal="5dp"
             android:text="present"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/parentIdAttendanceRecView" />
 
@@ -120,7 +108,7 @@
             android:paddingHorizontal="5dp"
             android:text="absent"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/presentTextViewAttendanceRecView"
             app:layout_constraintStart_toEndOf="@+id/parentIdAttendanceRecView" />
 
@@ -131,7 +119,7 @@
             android:paddingHorizontal="5dp"
             android:text="date"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/absentTextViewAttendanceRecView"
             app:layout_constraintStart_toStartOf="@+id/absentTextViewAttendanceRecView" />
 
@@ -139,13 +127,13 @@
             android:id="@+id/genderAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
             android:paddingHorizontal="5dp"
             android:text="Gender"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/lightText"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/lastNameAttendanceRecView"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameAttendanceRecView" />
+            android:textColor="@color/black2"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/firstNameAttendanceRecView"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameAttendanceRecView" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/pictureAttendanceRecView"

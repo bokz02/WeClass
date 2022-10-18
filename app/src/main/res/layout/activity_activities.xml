@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".studentlist.profile.activities.Activities"
-    android:background="@drawable/bg_menu">
+    tools:context=".studentlist.profile.activities.Activities">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide1"
@@ -53,33 +52,32 @@
         android:id="@+id/textViewA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="Activities"
+        android:layout_marginStart="12dp"
         android:fontFamily="@font/poppins_bold"
+        android:text="Activities"
         android:textColor="@color/darkText"
-        android:layout_marginEnd="5dp"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:drawableStart="@color/darkText"
         android:visibility="visible"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/backButtonActivity"
+        app:layout_constraintStart_toEndOf="@+id/backButtonActivity"
+        app:layout_constraintTop_toTopOf="@+id/backButtonActivity" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Midterm"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/darkText"
         android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Midterm"
+        android:textColor="@color/darkText"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:visibility="visible"
-        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toBottomOf="@id/guide1"
         app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintBottom_toBottomOf="@id/guide1" />
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@id/guide3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,6 +86,8 @@
         android:text="Finals"
         android:layout_marginEnd="5dp"
         android:textSize="18sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/darkText"
         android:textStyle="bold"
         android:visibility="visible"
         android:layout_marginTop="25dp"
@@ -141,12 +141,12 @@
 
     <ImageButton
         android:id="@+id/backButtonActivity"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/iconback2"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/darkText"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/ic_simple_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -156,7 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="subjectID"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -166,7 +166,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Activity"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subjectIDStudentActivity" />
@@ -176,7 +176,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Midterm"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/activityStudentActivity"
         app:layout_constraintTop_toBottomOf="@+id/subjectIDStudentActivity" />
 
@@ -185,7 +185,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Finals"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/activityStudentActivity"
         app:layout_constraintTop_toBottomOf="@+id/subjectIDStudentActivity" />
 
@@ -194,7 +194,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="studentID"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".studentlist.profile.attendance.Present"
-    android:background="@drawable/bg_menu">
+    tools:context=".studentlist.profile.attendance.Present">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide1"
@@ -39,16 +38,17 @@
         android:id="@+id/textViewA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Days present"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/poppins_semibold"
+        android:text="Days present"
         android:textColor="@color/darkText"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="visible"
-        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/guide1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/guide1"/>
+        app:layout_constraintTop_toBottomOf="@+id/backButtonPresent" />
 
     <TextView
         android:id="@+id/noTextTextViewPresent"
@@ -74,12 +74,11 @@
 
     <ImageButton
         android:id="@+id/backButtonPresent"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/iconback2"
-        android:backgroundTint="@color/white"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/ic_simple_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,10 +87,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="subjectID"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentIDStudentPresent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/always1TextViewPresent"
@@ -108,7 +107,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="studentID"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

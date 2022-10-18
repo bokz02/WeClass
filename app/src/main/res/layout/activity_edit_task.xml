@@ -6,24 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".tasks.EditTask">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-29dp" />
+
 
     <ImageButton
         android:id="@+id/backButtonAddTasksEdit"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/iconback2"
-        android:backgroundTint="@color/white"
-        app:layout_constraintHorizontal_bias="0.089"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/darkText"
+        android:background="@drawable/ic_simple_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="id"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

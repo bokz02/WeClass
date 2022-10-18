@@ -67,7 +67,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             cardView = itemView.findViewById(R.id.cardViewRecView);
             _gradingPeriod = itemView.findViewById(R.id.gradingPeriodTaskRecView);
 
-
             this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
 

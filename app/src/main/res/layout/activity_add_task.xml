@@ -1,391 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_menu"
+    android:weightSum="7"
+    android:orientation="vertical"
     tools:context=".tasks.AddTask">
 
 
     <ImageButton
         android:id="@+id/backButtonAddTasks"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/iconback2"
-        android:backgroundTint="@color/white"
+        android:layout_marginTop="50dp"
+        android:visibility="gone"
+        android:backgroundTint="@color/darkText"
+        android:background="@drawable/ic_simple_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/parentIDTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="parent id"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/examTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Exam"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/parentIDTask" />
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Add task"
+            android:textColor="@color/darkText"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Task Information"
+            android:textColor="@color/darkText"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.79" />
+        android:weightSum="2"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".05" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".95" />
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintParent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView4"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Add Task"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/darkText"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Task Information"
-                android:textColor="@color/darkText"
-                android:textSize="14sp"
                 android:fontFamily="@font/poppins_regular"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.494"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <View
-                android:id="@+id/view8"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dateTextViewTaskEdit" />
-
-            <View
-                android:id="@+id/view18"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gradingPeriodTextViewAddTask" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@id/guide5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent=".05" />
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@id/guide6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent=".95" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent=".5" />
-
-
-            <EditText
-                android:id="@+id/descriptionEditTextEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/input_text_style"
-                android:drawableStart="@drawable/ic_desc1"
-                android:drawablePadding="5dp"
-                android:drawableTint="@color/darkText"
-                android:hint="Description"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginTop="10dp"
-                android:inputType="textCapSentences|textMultiLine"
-                android:maxLength="1000"
-                android:maxLines="11"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="10dp"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/guide6"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/guide5"
-                app:layout_constraintTop_toBottomOf="@+id/view18" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:drawablePadding="5dp"
-                android:drawableTint="@color/darkText"
-                android:text="Items:"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/scoreEditTextEdit"
-                app:layout_constraintTop_toTopOf="@+id/scoreEditTextEdit" />
-
-            <TextView
-                android:id="@+id/taskText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="10dp"
-                android:drawablePadding="5dp"
-                android:text="Task number: "
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/guide6"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/guide5"
-                app:layout_constraintTop_toBottomOf="@+id/view2"
-                app:drawableTint="@color/darkText" />
-
-            <View
-                android:id="@+id/view11"
-                android:layout_width="match_parent"
-
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/taskTypeTextViewEdit" />
-
-
-            <EditText
-                android:id="@+id/scoreEditTextEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/transparent_bg"
-                android:drawableTint="@color/darkText"
-                android:focusableInTouchMode="true"
-                android:hint="No."
-                android:inputType="textCapSentences|textMultiLine|number|numberSigned"
-                android:maxLength="7"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@id/guide6"
-                app:layout_constraintHorizontal_bias="0.476"
-                app:layout_constraintTop_toBottomOf="@+id/view2"
-                app:layout_constraintVertical_bias="0.0" />
+                android:text="Task Number:"
+                android:textColor="@color/black2"
+                android:textSize="13sp" />
 
             <EditText
                 android:id="@+id/taskNumberEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="112dp"
                 android:background="@drawable/transparent_bg"
                 android:focusableInTouchMode="true"
-                android:hint="No."
+                android:hint="Task"
+                android:textColor="@color/black1"
                 android:inputType="number"
+                android:fontFamily="@font/poppins_regular"
                 android:maxLength="2"
-                android:paddingHorizontal="5dp"
-                android:textSize="16sp"
-                app:layout_constraintHorizontal_bias="0.208"
-                app:layout_constraintStart_toEndOf="@+id/taskText"
-                app:layout_constraintTop_toTopOf="@+id/taskText" />
+                android:textSize="15sp" />
 
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
             <TextView
-                android:id="@+id/progressTaskEditText"
+
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Items:"
+                android:textColor="@color/black2"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/scoreEditTextEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:drawablePadding="5dp"
+                android:background="@drawable/transparent_bg"
+                android:drawableTint="@color/darkText"
+                android:focusableInTouchMode="true"
+                android:hint="Item"
+                android:textColor="@color/black1"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="Select Progress"
-                android:textSize="16sp"
-                app:drawableStartCompat="@drawable/ic_progress1"
-                app:drawableTint="@color/darkText"
-                app:layout_constraintEnd_toStartOf="@+id/guide6"
-                app:layout_constraintTop_toTopOf="@+id/taskTypeTextViewEdit" />
+                android:inputType="textCapSentences|textMultiLine|number|numberSigned"
+                android:maxLength="7"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Task Category:"
+                android:textColor="@color/black2"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/black2"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/taskTypeTextViewEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
                 android:fontFamily="@font/poppins_regular"
-                android:drawablePadding="5dp"
-                android:focusable="true"
                 android:hint="Select Category"
-                android:textSize="16sp"
-                app:drawableStartCompat="@drawable/ic_folder1"
-                app:drawableTint="@color/darkText"
-                app:layout_constraintStart_toStartOf="@id/guide5"
-                app:layout_constraintTop_toBottomOf="@+id/view9" />
-
-            <View
-                android:id="@+id/view9"
-                android:layout_width="match_parent"
-
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/taskNumberEditText" />
-
-            <TextView
-                android:id="@+id/dateTextViewTaskEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
-                android:fontFamily="@font/poppins_regular"
-                android:drawablePadding="5dp"
-                android:drawableTint="@color/darkText"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:hint="Deadline"
-                android:textSize="16sp"
-                app:drawableStartCompat="@drawable/ic_deadline1"
-                app:layout_constraintStart_toStartOf="@id/guide5"
-                app:layout_constraintTop_toBottomOf="@+id/view11" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/updateButtonTaskEdit"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="Create"
-                android:fontFamily="@font/poppins_semibold"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textColor="@color/darkText"
-                app:layout_constraintEnd_toEndOf="@id/guide6"
-                app:layout_constraintStart_toStartOf="@id/guide7"
-                app:layout_constraintTop_toTopOf="@id/horizontalLine" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/cancelButtonTaskEdit"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="Cancel"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                android:textColor="@color/darkText"
-                app:layout_constraintEnd_toEndOf="@id/guide7"
-                app:layout_constraintStart_toStartOf="@id/guide5"
-                app:layout_constraintTop_toTopOf="@id/horizontalLine"
-                app:strokeColor="@color/lightText" />
-
-            <ImageView
-                android:id="@+id/horizontalLine"
-                android:layout_width="0dp"
-                android:layout_height=".75dp"
-                android:layout_marginTop="20dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionEditTextEdit" />
-
-            <ImageView
-                android:id="@+id/verticalLine"
-                android:layout_width=".2dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="#ECECEC"
-                app:layout_constraintEnd_toEndOf="@id/guide7"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionEditTextEdit" />
-
-            <TextView
-                android:id="@+id/gradingPeriodTextViewAddTask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:focusable="true"
-                android:fontFamily="@font/poppins_regular"
-                android:hint="Grading period"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/dateTextViewTaskEdit"
-                app:layout_constraintTop_toBottomOf="@+id/view8" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+                android:textColor="@color/black1"
+                android:textSize="15sp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:drawablePadding="5dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Progress Task:"
+            android:textColor="@color/black2"
+            android:drawableTint="@color/black2"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/gradingPeriodTextViewAddTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/poppins_regular"
+            android:drawablePadding="5dp"
+            android:textColor="@color/black1"
+            android:drawableTint="@color/darkText"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:hint="Select Grading Period"
+            android:textSize="15sp"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:drawablePadding="5dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Progress:"
+            android:textColor="@color/black2"
+            android:drawableTint="@color/black2"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/progressTaskEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/poppins_regular"
+            android:drawablePadding="5dp"
+            android:textColor="@color/black1"
+            android:drawableTint="@color/darkText"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:hint="Select Progress"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+
+        <EditText
+            android:id="@+id/descriptionEditTextEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_text_style"
+            android:drawableStart="@drawable/ic_desc1"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/black2"
+            android:padding="10dp"
+            android:hint="Description"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black1"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="1000"
+            android:maxLines="11"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:weightSum="2">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelButtonTaskEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Cancel"
+            android:layout_weight="1"
+            app:rippleColor="@color/black3"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/darkText"
+            android:textSize="14sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/updateButtonTaskEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Save"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            app:rippleColor="@color/black3"
+            app:cornerRadius="5dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
