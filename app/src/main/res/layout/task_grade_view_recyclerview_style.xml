@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginVertical="1dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="2dp"
     android:background="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
-    android:layout_margin="2dp"
     android:padding="5dp">
 
 
@@ -39,7 +38,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="First"
             android:layout_marginStart="5dp"
-            android:textColor="@color/darkText"
+            android:textColor="@color/lightText"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/comma"
             app:layout_constraintStart_toEndOf="@+id/comma"

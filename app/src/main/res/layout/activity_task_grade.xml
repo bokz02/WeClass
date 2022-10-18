@@ -8,12 +8,13 @@
 
     <ImageButton
         android:id="@+id/backToTaskButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/iconback2"
-        android:backgroundTint="@color/cardViewColor"
-        app:layout_constraintStart_toStartOf="@+id/guide3"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/ic_simple_back"
+        android:backgroundTint="@color/black1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -28,14 +29,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.07" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.93" />
 
     <TextView
         android:id="@+id/noStudentTextViewGrade"

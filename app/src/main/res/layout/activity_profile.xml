@@ -243,8 +243,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center"
                                 android:text="0"
-
-                                android:textColor="@color/white"
+                                android:textColor="@color/black1"
                                 app:layout_constraintStart_toEndOf="@+id/textView2"
                                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
@@ -303,7 +302,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center"
                                 android:text="0"
-                                android:textColor="@color/white"
+                                android:textColor="@color/black1"
                                 app:layout_constraintBottom_toBottomOf="@+id/textView18"
                                 app:layout_constraintStart_toEndOf="@+id/textView18" />
 

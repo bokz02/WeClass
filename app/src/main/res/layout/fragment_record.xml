@@ -57,7 +57,7 @@
             android:id="@+id/taskSubjectTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_regular"
             android:text="Subject Code"
             android:textAllCaps="true"
             android:textColor="@color/darkText"
@@ -83,14 +83,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
-            android:layout_marginEnd="10dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Classwork"
             android:textColor="@color/black1"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintHorizontal_bias="0.009"
             app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,7 +126,7 @@
             android:layout_marginTop="20dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
+            app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
             app:layout_constraintTop_toBottomOf="@+id/taskSubjectTextView">

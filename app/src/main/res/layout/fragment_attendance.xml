@@ -17,10 +17,10 @@
             android:layout_marginTop="20dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
+            app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toBottomOf="@+id/sortAttendance">
+            app:layout_constraintTop_toBottomOf="@+id/currentDateTextView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -35,9 +35,9 @@
                     android:background="@drawable/transparent_bg"
                     android:drawableEnd="@drawable/ic_baseline_search_24"
                     android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
                     android:drawableTint="#ACACAC"
                     android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
                     android:hint="Search"
                     android:textColor="@color/black"
                     android:textColorHint="#ACACAC"
@@ -123,6 +123,7 @@
             android:id="@+id/presentTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/round_corner_calcell"
@@ -131,7 +132,6 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="Present"
-            android:layout_marginTop="15dp"
             android:textColor="#FF00897B"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/guide4"
@@ -177,8 +177,6 @@
             android:textColor="@color/black1"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -213,8 +211,7 @@
         <TextView
             android:id="@+id/currentDateTextView"
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
-
+            android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="Monday, Feb 15,2022"
             android:textAllCaps="false"

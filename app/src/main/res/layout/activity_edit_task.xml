@@ -122,6 +122,7 @@
                 android:textSize="13sp" />
 
             <EditText
+                android:id="@+id/scoreEditTextEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/transparent_bg"

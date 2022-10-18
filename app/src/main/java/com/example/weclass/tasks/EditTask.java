@@ -26,10 +26,10 @@ import com.google.android.material.snackbar.Snackbar;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class EditTask extends AppCompatActivity{
 
     EditText _score, _description, _taskNumber;
-    TextView _progress, _taskType, _dueDate, _idTask, _gradingPeriod;
+    TextView _progress, _taskType, _idTask, _gradingPeriod;
     String selectedTask, selectedProgress, selectedPeriod;
     Button _cancel, _update;
     ImageButton _backButton;
@@ -46,7 +46,6 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         initialize();
         pickTask();
         pickProgress();
-        setDate();
         displayData();
         updateData();
         backButton();
@@ -60,7 +59,6 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         _taskNumber = findViewById(R.id.taskNumberEditTextEdit);
         _progress = findViewById(R.id.progressEditTextEdit);
         _taskType = findViewById(R.id.taskTypeTextViewEdit);
-        _dueDate = findViewById(R.id.dateTextViewTaskEdit);
         _idTask = findViewById(R.id.idTaskEdit);
         _cancel = findViewById(R.id.cancelButtonTaskEdit);
         _update = findViewById(R.id.updateButtonTaskEdit);
@@ -209,28 +207,6 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         });
     }
 
-    // DATE PICKER
-    public void setDate() {
-        _dueDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
-            }
-        });
-    }
-
-    // IMPLEMENTS ON DATE PICKER DIALOG
-    @Override
-    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-
-        _dueDate.setText(currentDate);
-    }
 
     public void cancelButton() {
         _cancel.setOnClickListener(new View.OnClickListener() {
