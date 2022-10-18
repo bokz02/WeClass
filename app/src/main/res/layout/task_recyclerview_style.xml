@@ -55,7 +55,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Period"
                 android:textSize="16sp"
-                android:layout_marginTop="5dp"
+
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="@+id/scoreText"
                 app:layout_constraintTop_toBottomOf="@+id/scoreText" />
@@ -131,6 +131,7 @@
                 app:layout_constraintStart_toEndOf="@+id/scoreText"
                 app:layout_constraintTop_toTopOf="@+id/scoreText" />
 
+
             <TextView
                 android:id="@+id/scoreText"
                 android:layout_width="wrap_content"
@@ -139,11 +140,9 @@
                 android:text="Score:"
                 android:textColor="@color/lightText"
                 android:textSize="14sp"
-                android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/courseTypeRecView"
                 app:layout_constraintTop_toBottomOf="@+id/courseTypeRecView" />
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/hiddenDescription"

@@ -87,6 +87,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Subject code"
             android:textAllCaps="true"
+            android:visibility="gone"
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"

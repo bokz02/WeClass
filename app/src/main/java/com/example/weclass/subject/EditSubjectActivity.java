@@ -41,8 +41,15 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_subject);
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        getWindow().setLayout((int) (width*.8),(int) (height*.67));
+        getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
+        getWindow().setElevation(20);
 
         initialize();
         displayData();
@@ -54,17 +61,6 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         backButton();
         pickSemester();
         pickSchoolYear();
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-
-        int width = displayMetrics.widthPixels;
-        int height = displayMetrics.heightPixels;
-
-        getWindow().setLayout((int) (width*.8),(int) (height*.67));
-        getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
-        getWindow().setElevation(20);
-
     }
 
     // Open time picker when PRESSED

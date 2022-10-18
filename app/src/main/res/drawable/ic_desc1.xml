@@ -9,7 +9,7 @@
       android:strokeLineJoin="round"
       android:strokeWidth="18.895134"
       android:fillColor="#00000000"
-      android:strokeColor="#000000"
+      android:strokeColor="#787878"
       android:strokeLineCap="round"/>
   <group>
     <clip-path
@@ -19,7 +19,7 @@
         android:strokeLineJoin="round"
         android:strokeWidth="18.895134"
         android:fillColor="#00000000"
-        android:strokeColor="#000000"
+        android:strokeColor="#787878"
         android:strokeLineCap="round"/>
   </group>
 </vector>
