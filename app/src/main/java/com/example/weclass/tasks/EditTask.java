@@ -90,12 +90,6 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
 
                 // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
                 if (cursor.moveToFirst()) {
-                    Snackbar.make(_update, "" + _taskType.getText().toString() + " "
-                            + _taskNumber.getText().toString() + " is already in tasks list!", Snackbar.LENGTH_SHORT).show();
-                    cursor.close();
-
-                }else {
-
 
                     DataBaseHelper dbh = new DataBaseHelper(EditTask.this);
                     dbh.updateTask(
