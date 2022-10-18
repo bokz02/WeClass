@@ -132,7 +132,7 @@ public class AddTask extends AppCompatActivity {
                                                if (cursor.moveToFirst()) {
                                                    Snackbar.make(_create, "" + taskType.getText().toString() + " "
                                                            + _taskNumber.getText().toString() + " is already in tasks list!", Snackbar.LENGTH_SHORT).show();
-                                                   cursor.close();
+                                                   cursor.close ();
 
                                                } else {
 

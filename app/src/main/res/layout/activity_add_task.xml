@@ -184,7 +184,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="Select Category"
+                android:hint="Select Category "
                 android:textColor="@color/black1"
                 android:textSize="15sp" />
 
