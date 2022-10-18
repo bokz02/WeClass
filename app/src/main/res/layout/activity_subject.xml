@@ -24,7 +24,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
 
         <TextView
@@ -185,6 +184,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             app:cardCornerRadius="15dp"
+
+            android:backgroundTint="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/guide1"
             app:layout_constraintEnd_toStartOf="@+id/guide4"
             app:layout_constraintStart_toStartOf="@+id/guide3"
@@ -203,11 +204,11 @@
                     android:background="@drawable/transparent_bg"
                     android:drawableEnd="@drawable/ic_baseline_search_24"
                     android:drawablePadding="10dp"
-                    android:drawableTint="#ACACAC"
+                    android:drawableTint="@color/grayText"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="Search (Subject Code)"
                     android:textColor="@color/black"
-                    android:textColorHint="#ACACAC"
+                    android:textColorHint="@color/grayText"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

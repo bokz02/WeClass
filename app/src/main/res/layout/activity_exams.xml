@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".studentlist.profile.exams.Exams"
-    android:background="@drawable/bg_menu">
+   >
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide1"
@@ -53,16 +53,16 @@
         android:id="@+id/textViewA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exams"
         android:fontFamily="@font/poppins_semibold"
+        android:text="Exams"
         android:textColor="@color/darkText"
         android:textSize="18sp"
+        android:layout_marginStart="10dp"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="5dp"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/backButtonExams"
+        app:layout_constraintStart_toEndOf="@+id/backButtonExams"
+        app:layout_constraintTop_toTopOf="@+id/backButtonExams" />
 
     <TextView
         android:id="@+id/noTextTextViewExams"
@@ -117,36 +117,38 @@
         android:layout_marginEnd="5dp"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:fontFamily="@font/poppins_semibold"
         android:visibility="visible"
         android:layout_marginTop="25dp"
+        android:textColor="@color/darkText"
         app:layout_constraintEnd_toEndOf="@id/guide4"
         app:layout_constraintStart_toStartOf="@id/guide3"
         app:layout_constraintBottom_toBottomOf="@id/guide5" />
 
     <TextView
+        android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Midterm"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/darkText"
         android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Midterm"
+        android:textColor="@color/darkText"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"
-        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toBottomOf="@id/guide1"
         app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintBottom_toBottomOf="@id/guide1" />
+        app:layout_constraintStart_toStartOf="@id/guide3" />
 
     <ImageButton
         android:id="@+id/backButtonExams"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/iconback2"
-        android:backgroundTint="@color/white"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/ic_simple_back"
+        android:backgroundTint="@color/darkText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -155,7 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="subjectID"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/studentIDStudentExams"
         app:layout_constraintStart_toStartOf="@+id/studentIDStudentExams"
         app:layout_constraintTop_toBottomOf="@+id/studentIDStudentExams" />
@@ -165,7 +167,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="studentID"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

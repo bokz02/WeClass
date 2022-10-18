@@ -66,12 +66,12 @@
         <activity
             android:name=".tasks.EditTask"
             android:exported="false"
-            android:theme="@style/Theme.Dialog" />
+            android:theme="@style/Theme.WeClass.CustomTheme" />
         <activity
             android:name=".tasks.AddTask"
             android:exported="false"
             android:parentActivityName=".BottomNavi"
-            android:theme="@style/Theme.Dialog"
+            android:theme="@style/Theme.WeClass.CustomTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".studentlist.EditStudent"
