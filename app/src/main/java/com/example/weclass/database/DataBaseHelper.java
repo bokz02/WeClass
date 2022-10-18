@@ -394,7 +394,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // UPDATE DATA OF STUDENT DATABASE
-    public void updateStudent(String id, String lastName, String firstName, String middleName, String gender){
+    public void updateStudent(String id, String lastName, String firstName, String middleName, String gender, byte[] img){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -402,6 +402,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_FIRST_NAME, firstName);
         contentValues.put(COLUMN_MIDDLE_NAME, middleName);
         contentValues.put(COLUMN_GENDER, gender);
+        contentValues.put(COLUMN_PROFILE_PICTURE, img);
 
         long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
         if(result == -1){
@@ -457,7 +458,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY
+    // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY OR EDIT STUDENT ACTIVITY
     public void updateProfilePicture(String id, String idSubject,byte[] image){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
