@@ -440,12 +440,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // UPDATE DATA OF STUDENT DATABASE
-    public void updateTask(String id, String taskType, String dueDate, String score, String description, String progress, String taskNumber, String period){
+    public void updateTask(String id, String taskType, String score, String description, String progress, String taskNumber, String period){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_TASK_TYPE, taskType);
-        contentValues.put(COLUMN_DUE_DATE, dueDate);
         contentValues.put(COLUMN_SCORE, score);
         contentValues.put(COLUMN_DESCRIPTION, description);
         contentValues.put(COLUMN_PROGRESS, progress);

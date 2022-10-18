@@ -14,7 +14,7 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="10dp"
@@ -80,7 +80,7 @@
             android:layout_marginTop="52dp"
             android:text="parent id"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.735"
             app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +191,7 @@
             android:textAllCaps="true"
             android:textColor="@color/darkText"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guide4"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -199,7 +199,6 @@
             android:id="@+id/sortAttendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:drawablePadding="10dp"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
@@ -209,7 +208,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/currentDateTextView"
             app:layout_constraintEnd_toStartOf="@+id/guide4"
-            app:layout_constraintTop_toTopOf="@+id/currentDateTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
         <TextView
             android:id="@+id/currentDateTextView"
@@ -222,7 +221,7 @@
             android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/subjectCodeRecords"
+            app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
 

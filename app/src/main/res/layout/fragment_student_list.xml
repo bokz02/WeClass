@@ -69,6 +69,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="BSCS 3"
             android:textAllCaps="true"
+            android:visibility="gone"
             android:textColor="@color/black1"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/subjectCodeRecords"
@@ -98,8 +99,9 @@
             android:textColor="@color/black1"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/courseTitleStudentList"
-            app:layout_constraintTop_toTopOf="@+id/studentListSubjectCode" />
+            app:layout_constraintBottom_toBottomOf="@+id/studentListSubjectCode"
+            app:layout_constraintEnd_toStartOf="@+id/guide4"
+            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
         <TextView
             android:id="@+id/summaryOfStudentTV"
@@ -180,13 +182,13 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginTop="20dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toBottomOf="@+id/sortStudentList">
+            app:layout_constraintTop_toBottomOf="@+id/studentListSubjectCode">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

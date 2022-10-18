@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Settings"
     android:fitsSystemWindows="true"
-    android:background="@drawable/bg_menu"
     android:id="@+id/drawerSettings">
 
 
@@ -34,31 +33,69 @@
         android:layout_height="match_parent">
 
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarSettings"
-            android:layout_width="41dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="20dp"
-            app:layout_constraintHorizontal_bias="0.089"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_iconsort1_svg" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbarSettings"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.461"
+                    app:navigationContentDescription="Menu"
+                    app:navigationIcon="@drawable/mm1" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/WeClass"
+                    android:layout_marginStart="12dp"
+                    android:textColor="@color/black1"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/toolbarSettings"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
         <TextView
             android:id="@+id/textView21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="144dp"
-            android:text="Settings"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/poppins_semibold"
+            android:text="Settings"
             android:textColor="@color/darkText"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guide3"
             app:layout_constraintStart_toStartOf="@+id/guide1"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toBottomOf="@+id/bottomNavigationView" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide1"
@@ -80,14 +117,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.27" />
+            app:layout_constraintGuide_percent="0.18" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.36" />
+            app:layout_constraintGuide_percent="0.27" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -95,28 +132,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.38" />
+            app:layout_constraintGuide_percent="0.29" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.45" />
+            app:layout_constraintGuide_percent="0.41" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.47" />
+            app:layout_constraintGuide_percent="0.39" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.54" />
+            app:layout_constraintGuide_percent="0.5" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -124,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.56" />
+            app:layout_constraintGuide_percent="0.53" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -132,7 +169,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.63" />
+            app:layout_constraintGuide_percent="0.61" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -140,7 +177,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.65" />
+            app:layout_constraintGuide_percent="0.63" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -164,7 +201,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.81" />
+            app:layout_constraintGuide_percent="0.83" />
 
 
         <com.google.android.material.card.MaterialCardView
@@ -191,6 +228,7 @@
                     android:layout_marginVertical="5dp"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/ic_no_image"
+                    android:backgroundTint="@color/black3"
                     app:civ_border_color="@color/white"
                     app:civ_border_width="1dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -233,7 +271,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginEnd="16dp"
-                    android:background="@drawable/iconnext3"
+                    android:background="@drawable/set_next"
                     android:scaleType="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -249,7 +287,7 @@
             android:layout_height="0dp"
 
             app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/guide7"
+            app:layout_constraintBottom_toTopOf="@+id/guide8"
             app:layout_constraintEnd_toStartOf="@+id/guide2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/guide2"
@@ -261,7 +299,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:src="@drawable/iconnight"
+                android:src="@drawable/set_dark"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1dp" />
 
@@ -270,9 +308,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="60dp"
-                android:text="Dark mode"
-
                 android:fontFamily="@font/poppins_semibold"
+
+                android:text="Dark mode"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -299,14 +337,14 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/guide2"
             app:layout_constraintStart_toStartOf="@id/guide1"
-            app:layout_constraintTop_toTopOf="@+id/guide8">
+            app:layout_constraintTop_toTopOf="@+id/guide7">
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:src="@drawable/iconbell"
+                android:src="@drawable/setnotif"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1dp" />
 
@@ -315,8 +353,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="60dp"
-                android:text="Notifications"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Notifications"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -353,7 +391,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:src="@drawable/iconpapers"
+                android:src="@drawable/set_terms"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1dp" />
 
@@ -374,7 +412,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/iconnext3"
+                android:background="@drawable/set_next"
                 android:scaleType="center" />
 
 
@@ -402,7 +440,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:src="@drawable/iconpeople"
+                android:src="@drawable/set_aboutus"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1dp" />
 
@@ -422,7 +460,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/iconnext3"
+                android:background="@drawable/set_next"
                 android:scaleType="center" />
 
 
@@ -451,7 +489,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:src="@drawable/iconcircle"
+                android:src="@drawable/set_help"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1dp" />
 
@@ -470,7 +508,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/iconnext3"
+                android:background="@drawable/set_next"
                 android:scaleType="center" />
 
 

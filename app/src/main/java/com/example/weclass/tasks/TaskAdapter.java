@@ -56,7 +56,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
             _id = itemView.findViewById(R.id.taskNumberRecView);
             _taskType = itemView.findViewById(R.id.courseTypeRecView);
-            _dueDate = itemView.findViewById(R.id.deadLineRecView);
             _score = itemView.findViewById(R.id.scoreTextViewRecView);
             _description = itemView.findViewById(R.id.descriptionHiddenTextView);
             _optionTask = itemView.findViewById(R.id.optionButtonTaskRecView);
