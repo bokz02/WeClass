@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:elevation="5dp"
-        app:cardBackgroundColor="@color/cardViewColor"
+        app:cardBackgroundColor="#EF5350"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toStartOf="@+id/guide4"
         app:layout_constraintStart_toStartOf="@+id/guide3"
@@ -214,11 +214,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:tabIndicatorColor="@color/cardViewColor"
+            app:tabIndicatorColor="#CFCFCE"
             app:tabMode="fixed"
             android:layout_marginHorizontal="20dp"
-            app:tabSelectedTextColor="@color/cardViewColor"
-            app:tabTextColor="@color/cardViewColor">
+            app:tabSelectedTextColor="@color/red2"
+            app:tabIndicatorHeight="1dp"
+            app:tabTextColor="#FFCFCFCE">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -228,7 +229,8 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Grades" />
+                android:text="Grades"
+                />
 
         </com.google.android.material.tabs.TabLayout>
 
