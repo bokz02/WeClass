@@ -69,6 +69,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         holder.timeEnd.setText(String.valueOf(subjectItems.get(position).getTimeEndSubject()));
         holder.semester.setText(String.valueOf(subjectItems.get(position).getSemesterSubject()));
         holder.schoolYear.setText(String.valueOf(subjectItems.get(position).getSchoolYearSubject()));
+        holder._room.setText(String.valueOf(subjectItems.get(position).get_room()));
         holder.constraintLayout.setBackgroundColor(Color.parseColor(subjectItems.get(position).getColor()));
 
 
@@ -96,6 +97,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                 bundle.putString("timeEnd", item.getTimeEndSubject());
                                 bundle.putString("sem", item.getSemesterSubject());
                                 bundle.putString("sy", item.getSchoolYearSubject());
+                                bundle.putString("room", item.get_room());
 
 
                                 intent.putExtra("Userdata", bundle);
@@ -251,7 +253,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView id,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt, timeEnd, semester, schoolYear;
+        TextView id,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt, timeEnd, semester, schoolYear, _room;
         OnNoteListener onNoteListener;
         ImageButton optionSubject;
         CardView subjectClick;
@@ -270,6 +272,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
             timeEnd = itemView.findViewById(R.id.timeEndTextViewRecView);
             semester = itemView.findViewById(R.id.semesterSubjectRecView);
             schoolYear = itemView.findViewById(R.id.schoolYearSubjectRecView);
+            _room = itemView.findViewById(R.id.roomTextViewRecView);
             constraintLayout = itemView.findViewById(R.id.constraintBackgroundSubjectRecView);
 
 

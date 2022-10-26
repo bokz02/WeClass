@@ -10,13 +10,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
@@ -32,7 +30,7 @@ import java.util.Random;
 public class AddSubjectActivity extends AppCompatActivity {
 
     Button cancelButton, createButton;
-    EditText courseEditText, subjectNameEditText, subjectCodeEditText;
+    EditText courseEditText, subjectNameEditText, subjectCodeEditText, roomEditText;
     TextView dayTextView, timeTextView, timeEndTextView, schoolYearTextView, semesterTextView, colorTextView;
     int t1Hour, t1Minute;
     ImageButton backButton;
@@ -73,35 +71,6 @@ public class AddSubjectActivity extends AppCompatActivity {
 
     }
 
-    // DAY PICKER WILL OPEN WHEN PRESSED
-//    public void pickDate() {
-//        final String[] dayOfWeek = new String[]{
-//                "Monday",
-//                "Tuesday",
-//                "Wednesday",
-//                "Thursday",
-//                "Friday",
-//                "Saturday",
-//        };
-//
-//        selectedDay = dayOfWeek[0];
-//        dayTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
-//                builder.setTitle("Select day");
-//                builder.setSingleChoiceItems(dayOfWeek, 0, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        selectedDay = dayOfWeek[i];
-//                        dayTextView.setText(selectedDay);
-//                        dialogInterface.dismiss();
-//                    }
-//                });
-//                builder.show();
-//            }
-//        });
-//    }
 
 
     //DAY PICKER
@@ -299,6 +268,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         semesterTextView = findViewById(R.id.semesterAddSubject);
         schoolYearTextView = findViewById(R.id.schoolYearAddSubject);
         colorTextView = findViewById(R.id.colorHexTextView);
+        roomEditText = findViewById(R.id.roomNumberEditTextAddSubject);
     }
 
 
@@ -361,7 +331,8 @@ public class AddSubjectActivity extends AppCompatActivity {
                                         timeEndTextView.getText().toString().trim(),
                                         semesterTextView.getText().toString().trim(),
                                         schoolYearTextView.getText().toString().trim(),
-                                        colorTextView.getText().toString().trim());
+                                        colorTextView.getText().toString().trim(),
+                                        roomEditText.getText().toString().trim());
 
                                 Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
 
@@ -373,6 +344,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                                 timeEndTextView.setText("");
                                 semesterTextView.setText("");
                                 schoolYearTextView.setText("");
+                                roomEditText.setText("");
 
                                 index = new Random().nextInt(colors.size());
                                 colorTextView.setText(String.valueOf(colors.get(index)));

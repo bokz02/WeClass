@@ -28,7 +28,7 @@ import java.util.List;
 
 public class EditSubjectActivity extends AppCompatActivity implements SubjectAdapter.OnNoteListener {
 
-    EditText _course, _subjectCode, _subjectName;
+    EditText _course, _subjectCode, _subjectName, _room;
     TextView  _id, dayTextView, timeTextView, timeEndTextView, semesterTextView, schoolYearTextView;
     Button updateButton, cancelEditButton;
     int t1Hour, t1Minute;
@@ -120,7 +120,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
                         timeTextView.getText().toString().trim(),
                         timeEndTextView.getText().toString().trim(),
                         semesterTextView.getText().toString().trim(),
-                        schoolYearTextView.getText().toString().trim());
+                        schoolYearTextView.getText().toString().trim(),
+                        _room.getText().toString().trim());
 
                 Snackbar.make(updateButton, "Subject successfully updated!", Snackbar.LENGTH_LONG).show();
 
@@ -278,6 +279,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         timeEndTextView = findViewById(R.id.timeEndTextViewEditSubject);
         semesterTextView = findViewById(R.id.semesterTextViewEditSubject);
         schoolYearTextView = findViewById(R.id.schoolYearTextViewEditSubject);
+        _room = findViewById(R.id.roomNumberEditTextEditSubject);
 
     }
 
@@ -294,6 +296,7 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
             timeEndTextView.setText(bundle.getString("timeEnd"));
             semesterTextView.setText(bundle.getString("sem"));
             schoolYearTextView.setText(bundle.getString("sy"));
+            _room.setText(bundle.getString("room"));
         }
     }
 

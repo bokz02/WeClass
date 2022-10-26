@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="15dp"
-    android:focusable="true"
     android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="#FF968A"
+    app:cardCornerRadius="15dp"
     app:cardElevation="3dp"
     app:layout_constraintBottom_toBottomOf="@id/guide4"
-    app:cardBackgroundColor="#FF968A"
     app:layout_constraintEnd_toEndOf="@id/guide2"
     app:layout_constraintStart_toStartOf="@id/guide1"
     app:layout_constraintTop_toTopOf="@id/guide3"
@@ -61,7 +61,6 @@
             android:id="@+id/subjectCodeRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Subject code"
             android:textAllCaps="true"
@@ -78,8 +77,8 @@
             android:fontFamily="@font/poppins_regular"
             android:text="Subject title"
             android:textColor="@color/white"
-            android:visibility="gone"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecView" />
 
@@ -98,10 +97,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
+            android:maxLength="30"
             android:text="Monday"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:maxLength="30"
             app:layout_constraintStart_toStartOf="@+id/courseTypeRecView"
             app:layout_constraintTop_toBottomOf="@+id/courseTypeRecView" />
 
@@ -154,11 +153,11 @@
             android:backgroundTint="@color/white"
             android:fontFamily="@font/poppins_regular"
             android:paddingStart="10dp"
-            android:visibility="gone"
             android:paddingEnd="10dp"
             android:text="Semester"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/schoolYearSubjectRecView"
             app:layout_constraintTop_toTopOf="@+id/schoolYearSubjectRecView" />
 
@@ -166,20 +165,33 @@
             android:id="@+id/schoolYearSubjectRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:background="@drawable/round_corner_calcell"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/poppins_regular"
-            android:layout_marginTop="3dp"
             android:paddingStart="10dp"
-            android:visibility="gone"
             android:paddingEnd="10dp"
             android:text="School year"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.003"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/timeTextViewRecView" />
+
+        <TextView
+            android:id="@+id/roomTextViewRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Room"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/optionButtonSubject"
+            app:layout_constraintTop_toTopOf="@+id/subjectCodeRecView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

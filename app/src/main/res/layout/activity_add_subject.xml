@@ -307,6 +307,9 @@
             android:background="@color/transparent"
             android:fontFamily="@font/poppins_regular"
             android:hint="Code"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:inputType="textCapCharacters"
             android:textColor="@color/black1"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -344,6 +347,8 @@
             android:background="@color/transparent"
             android:fontFamily="@font/poppins_regular"
             android:hint="Description"
+            android:maxLength="30"
+            android:maxLines="1"
             android:inputType="textCapSentences"
             android:textColor="@color/black1"
             android:textSize="15sp"
@@ -382,6 +387,8 @@
             android:backgroundTint="#979797"
             android:fontFamily="@font/poppins_regular"
             android:hint="Course"
+            android:maxLength="30"
+            android:maxLines="1"
             android:textColor="@color/black1"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -397,10 +404,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
+        <TextView
+            android:id="@+id/roomTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Room number"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/roomNumberEditTextAddSubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:backgroundTint="#979797"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Room"
+            android:maxLines="1"
+            android:maxLength="15"
+            android:textColor="@color/black1"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1"
-        android:weightSum="2"
-      >
+        android:weightSum="2">
 
 
         <com.google.android.material.button.MaterialButton

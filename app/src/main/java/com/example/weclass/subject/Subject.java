@@ -203,7 +203,8 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                         cursor.getString(6),
                         cursor.getString(7),
                         cursor.getString(8),
-                        cursor.getString(9)));
+                        cursor.getString(9),
+                        cursor.getString(10)));
             }while (cursor.moveToNext());
         }
         cursor.close();
