@@ -101,6 +101,7 @@
             android:text="Monday"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:maxLength="30"
             app:layout_constraintStart_toStartOf="@+id/courseTypeRecView"
             app:layout_constraintTop_toBottomOf="@+id/courseTypeRecView" />
 

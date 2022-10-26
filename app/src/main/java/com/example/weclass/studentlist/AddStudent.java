@@ -12,13 +12,17 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.ActionMode;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
@@ -40,6 +44,7 @@ public class AddStudent extends AppCompatActivity {
     EditText lastName, firstName, middleName;
     String selectedGender;
     Uri uri = null;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +98,7 @@ public class AddStudent extends AppCompatActivity {
         _midtermGrade = findViewById(R.id.midtermGradeTextViewAddStudent);
         _finalGrade = findViewById(R.id.finalGradeTextViewAddStudent);
         _finalRating = findViewById(R.id.finalRatingTextViewAddStudent);
+        progressBar = findViewById(R.id.progressBar);
     }
 
     public void backToStudentList(){
@@ -263,7 +269,7 @@ public class AddStudent extends AppCompatActivity {
                                         firstName.setText("");
                                         middleName.setText("");
                                         genderTextview.setText("");
-                                        profilePicture.setImageResource(R.drawable.icon_profile1);
+                                        profilePicture.setImageResource(R.drawable.prof1);
 
 
                                     }catch (Exception e){
@@ -288,6 +294,7 @@ public class AddStudent extends AppCompatActivity {
         profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 ImagePicker.with(AddStudent.this)
                         .crop()	    			//Crop image(Optional), Check Customization for more option
                         .compress(1024)			//Final image size will be less than 1 MB(Optional)
@@ -298,14 +305,21 @@ public class AddStudent extends AppCompatActivity {
         });
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(data != null){
-            uri = data.getData();
-            profilePicture.setImageURI(uri);
+        if(resultCode == RESULT_OK) {
+            progressBar.setVisibility(View.VISIBLE);
+            Toast.makeText(AddStudent.this, "Success!", Toast.LENGTH_SHORT).show();
+            if (data != null) {
+                uri = data.getData();
+                profilePicture.setImageURI(uri);
+                progressBar.setVisibility(View.GONE);
+            }
+        }else if(resultCode == RESULT_CANCELED){
+            Toast.makeText(AddStudent.this, "Canceled!", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.GONE);
         }
     }
 

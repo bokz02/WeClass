@@ -95,7 +95,7 @@
                 android:textColor="@color/black2"
                 android:textSize="13sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/semesterTextViewEditSubject"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
@@ -103,6 +103,7 @@
                 android:backgroundTint="#979797"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Semester"
+                android:clickable="true"
                 android:textColor="@color/black1"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -126,7 +127,7 @@
             android:textColor="@color/black2"
             android:textSize="13sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/schoolYearTextViewEditSubject"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
@@ -134,6 +135,7 @@
             android:background="@color/transparent"
             android:fontFamily="@font/poppins_regular"
             android:hint="Select Year"
+            android:clickable="true"
             android:textColor="@color/black1"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -173,7 +175,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view19" />
 
-            <EditText
+            <TextView
                 android:id="@+id/timeTextViewEditSubject"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
@@ -182,6 +184,7 @@
                 android:drawableTint="@color/buttonDisabled"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Start Time"
+                android:clickable="true"
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -204,7 +207,7 @@
                 android:textSize="13sp"
               />
 
-            <EditText
+            <TextView
                 android:id="@+id/timeEndTextViewEditSubject"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
@@ -213,6 +216,7 @@
                 android:drawableTint="@color/buttonDisabled"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="End Time"
+                android:clickable="true"
                 android:textColor="@color/darkText"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -245,7 +249,7 @@
             android:textColor="@color/black2"
             android:textSize="13sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/dayTextViewEditSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -253,7 +257,8 @@
             android:fontFamily="@font/poppins_regular"
             android:hint="Select Day"
             android:inputType="textCapSentences"
-            android:maxLength="10"
+            android:maxLength="30"
+            android:clickable="true"
             android:textColor="@color/black1"
             android:textSize="15sp"
             android:textStyle="bold" />
