@@ -67,7 +67,7 @@
             android:maxLength="3"
             android:maxLines="1"
             android:textColor="@color/black1"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/submitButtonRecViewGrade"
             app:layout_constraintEnd_toStartOf="@+id/submitButtonRecViewGrade"
             app:layout_constraintTop_toTopOf="@+id/submitButtonRecViewGrade" />

@@ -15,6 +15,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +33,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 public class RegisterAccountActivity extends AppCompatActivity {
 
    TextView login, terms;
@@ -44,8 +47,12 @@ public class RegisterAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_account);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        window.setStatusBarColor(Color.WHITE);
 
         mAuth = FirebaseAuth.getInstance();
         Initialized();
@@ -58,13 +65,13 @@ public class RegisterAccountActivity extends AppCompatActivity {
         ClickableSpan clickableSpan1 = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                startActivity(new Intent(RegisterAccountActivity.this, TermsAndCondition.class));
+                startActivity(new Intent(RegisterAccountActivity.this, LoginActivity.class));
             }
 
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setColor(Color.parseColor("#28908C"));
+                ds.setColor(Color.parseColor("#da4e4e"));
                 ds.setUnderlineText(false);
             }
 
@@ -79,7 +86,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setColor(Color.parseColor("#28908C"));
+                ds.setColor(Color.parseColor("#da4e4e"));
                 ds.setUnderlineText(false);
             }
         };
@@ -103,7 +110,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setColor(Color.parseColor("#28908C"));
+                ds.setColor(Color.parseColor("#da4e4e"));
                 ds.setUnderlineText(false);
             }
         };
@@ -202,6 +209,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
+                                    progressBar.setVisibility(View.GONE);
                                     Toast.makeText(RegisterAccountActivity.this, "Account has been registered successfully!", Toast.LENGTH_LONG).show();
                                     UserItem user = new UserItem(email, fullname);
                                     FirebaseDatabase.getInstance().getReference("UserItem")
@@ -209,7 +217,6 @@ public class RegisterAccountActivity extends AppCompatActivity {
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-
                                         }
                                     });
                                 }else {

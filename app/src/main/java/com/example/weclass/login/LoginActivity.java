@@ -17,6 +17,7 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView signup, forgotpass;
@@ -52,12 +55,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
-
         mAuth = FirebaseAuth.getInstance();
         Initialized();
         signIn();
+
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        window.setStatusBarColor(Color.WHITE);
 
         String text = "Don't have an account? Register Here ";
         SpannableString ss = new SpannableString(text);
@@ -70,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setColor(Color.parseColor("#C62828"));
+                ds.setColor(Color.parseColor("#da4e4e"));
                 ds.setUnderlineText(false);
             }
 
@@ -197,19 +203,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-
     public void forgotPass(View view) {
         startActivity(new Intent(this, ForgotPassword.class));
     }
 
 
     //    If may nakalog-in na, automatic pupunta sa MainActivity
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this,Subject.class));
-            finish();
+   @Override
+   protected void onStart() {
+       super.onStart();
+       if (mAuth.getCurrentUser() != null) {
+           startActivity(new Intent(LoginActivity.this,Subject.class));
+          finish();
         } else {
         }
     }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="8"
+    android:weightSum="9"
     tools:context=".subject.AddSubjectActivity">
 
     <TextView
@@ -84,7 +84,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=".75"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -103,7 +103,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Semester: "
                 android:textColor="@color/black2"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/semesterAddSubject"
@@ -135,9 +135,10 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:text="School Year"
+                android:text="School Year:"
+                android:layout_marginStart="30dp"
                 android:textColor="@color/black2"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/schoolYearAddSubject"
@@ -146,10 +147,11 @@
                 android:layout_marginEnd="30dp"
                 android:background="@color/transparent"
                 android:clickable="true"
+                android:layout_marginStart="30dp"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Select Year"
                 android:textColor="@color/black1"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -165,7 +167,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=".75"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -183,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Start Time:"
-                android:textColor="@color/black3"
+                android:textColor="@color/black2"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view19" />
@@ -198,7 +200,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Start Time"
                 android:textColor="@color/darkText"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:drawableTint="@color/buttonDisabled" />
         </LinearLayout>
@@ -206,7 +208,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd= "30dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical">
@@ -216,9 +218,10 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:text="End Time"
-                android:textColor="@color/black3"
-                android:textSize="13sp" />
+                android:text="End Time:"
+                android:textColor="@color/black2"
+                android:layout_marginStart="30dp"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/timeEndAddSubject"
@@ -227,10 +230,11 @@
                 android:background="@color/transparent"
                 android:backgroundTint="#979797"
                 android:clickable="true"
+                android:layout_marginStart="30dp"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="End Time"
                 android:textColor="@color/darkText"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:drawableTint="@color/buttonDisabled" />
         </LinearLayout>
@@ -248,7 +252,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_weight=".75"
+        android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -259,7 +263,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="Day Schedule:"
             android:textColor="@color/black2"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/dayAddSubject"
@@ -271,7 +275,7 @@
             android:hint="Select Day"
             android:maxLength="30"
             android:textColor="@color/black1"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -284,40 +288,85 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_weight=".75"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-        <TextView
-            android:id="@+id/textView24"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-            android:layout_marginTop="5dp"
-            android:background="@color/transparent"
-            android:drawablePadding="5dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Subject Code:"
-            android:textColor="@color/black2"
-            android:textSize="13sp" />
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/transparent"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Subject Code:"
+                android:textColor="@color/black2"
+                android:textSize="12sp" />
 
-        <EditText
-            android:id="@+id/subjectCodeText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="Code"
-            android:inputType="textCapCharacters"
-            android:maxLength="15"
-            android:maxLines="1"
-            android:textColor="@color/black1"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/subjectCodeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Code"
+                android:inputType="textCapCharacters"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:textColor="@color/black1"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Class type:"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/black2"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/classTypeTextViewAddSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:backgroundTint="#979797"
+                android:clickable="true"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Selec type"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:textColor="@color/black1"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </LinearLayout>
+
+
+
 
     <View
         android:id="@+id/view5"
@@ -330,7 +379,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_weight=".75"
+        android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -341,7 +390,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="Subject Description:"
             android:textColor="@color/black2"
-            android:textSize="13sp" />
+            android:textSize="12sp"/>
 
         <EditText
             android:id="@+id/subjectNameText"
@@ -354,7 +403,7 @@
             android:maxLength="30"
             android:maxLines="1"
             android:textColor="@color/black1"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -364,40 +413,87 @@
         android:layout_height="1dp"
         android:background="#ECECEC" />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_weight=".75"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Course:"
-            android:textColor="@color/black2"
-            android:textSize="13sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/courseNameText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:backgroundTint="#979797"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="Course"
-            android:maxLength="30"
-            android:maxLines="1"
-            android:textColor="@color/black1"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Course:"
+                android:textColor="@color/black2"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/courseNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:backgroundTint="#979797"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Course"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:textColor="@color/black1"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Section:"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/black2"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/sectionTextViewAddSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:backgroundTint="#979797"
+                android:clickable="true"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Select Section"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:textColor="@color/black1"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
+
+
 
     <View
         android:id="@+id/view7"
@@ -410,7 +506,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_weight=".75"
+        android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -422,7 +518,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="Room number"
             android:textColor="@color/black2"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
         <EditText
             android:id="@+id/roomNumberEditTextAddSubject"
@@ -435,7 +531,7 @@
             android:maxLength="15"
             android:maxLines="1"
             android:textColor="@color/black1"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -446,40 +542,6 @@
         android:layout_height="1dp"
         android:background="#ECECEC" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_weight=".75"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Section"
-            android:textColor="@color/black2"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/sectionTextViewAddSubject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:backgroundTint="#979797"
-            android:clickable="true"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="Section"
-            android:maxLength="10"
-            android:maxLines="1"
-            android:textColor="@color/black1"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
 
     <View
         android:id="@+id/view9"
@@ -487,46 +549,6 @@
         android:layout_height="1dp"
         android:background="#ECECEC" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_weight=".75"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Class type"
-            android:textColor="@color/black2"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/classTypeTextViewAddSubject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:backgroundTint="#979797"
-            android:clickable="true"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="Section"
-            android:maxLength="10"
-            android:maxLines="1"
-            android:textColor="@color/black1"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view10"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#ECECEC" />
 
     <LinearLayout
         android:layout_width="match_parent"

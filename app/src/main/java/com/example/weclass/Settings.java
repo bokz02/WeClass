@@ -50,16 +50,15 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     NavigationView navigationView;
     ImageView button, button1, changeProfile, button2;
     TextView userFullname, userEmail;
-    private FirebaseAuth mAuth;
+
 
     SwipeRefreshLayout refreshLayout;
     DatabaseReference referenceUsers;
 
-
     private StorageReference storageReference;
     FirebaseAuth fauth;
     ImageView profilepic;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

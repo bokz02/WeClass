@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weclass.BottomNavi;
@@ -33,10 +35,14 @@ import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.login.LoginActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -56,6 +62,11 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     TextView noSubject;
     private FirebaseAuth mAuth;
     int lastFirstVisiblePosition;
+
+    private StorageReference storageReference;
+    FirebaseAuth fauth;
+    ImageView profilepic;
+
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
 
     @Override
@@ -74,21 +85,12 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
 
         mAuth = FirebaseAuth.getInstance();
-
-
         //status bar white background
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         window.setStatusBarColor(Color.WHITE);
-
-
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
-
-
-
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
     }
@@ -105,6 +107,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         textListener();     // FILTER SEARCH IN SUBJECT ACTIVITY
         initializeAdapter(); // INITIALIZE ADAPTER
         showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
+        getPicture(); //profilepic
 
         // SAVE RECYCLERVIEW SCROLL POSITION
         ((LinearLayoutManager) recyclerView.getLayoutManager()).scrollToPosition(lastFirstVisiblePosition);
@@ -240,6 +243,19 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         toolbar = findViewById(R.id.toolbarArchive);
         noFile = findViewById(R.id.noViewViewAssignments);
         noSubject = findViewById(R.id.noSubjectTextView);
+    }
+
+    private void getPicture() {
+        fauth = FirebaseAuth.getInstance();
+        profilepic = findViewById(R.id.profile);
+        storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileRef = storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profilepic);
+            }
+        });
     }
 
     //NAVIGATION DRAWER
