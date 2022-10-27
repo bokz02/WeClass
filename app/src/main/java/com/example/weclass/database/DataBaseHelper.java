@@ -15,7 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 32;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 34;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -28,6 +28,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SCHOOL_YEAR = "subject_school_year";
     public static final String COLUMN_SUBJECT_COLOR = "subject_color";
     public static final String COLUMN_SUBJECT_ROOM = "subject_room";
+    public static final String COLUMN_SUBJECT_SECTION = "subject_section";
+    public static final String COLUMN_SUBJECT_CLASS_TYPE = "subject_class_type";
 
     public static final String TABLE_MY_STUDENTS = "my_students";
     public static final String COLUMN_ID2 = "id_number";
@@ -120,7 +122,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         COLUMN_SEMESTER + " TEXT, " +
                         COLUMN_SCHOOL_YEAR + " TEXT, " +
                         COLUMN_SUBJECT_COLOR + " TEXT, " +
-                        COLUMN_SUBJECT_ROOM + " TEXT);";
+                        COLUMN_SUBJECT_ROOM + " TEXT, " +
+                        COLUMN_SUBJECT_SECTION + " TEXT, " +
+                        COLUMN_SUBJECT_CLASS_TYPE + " TEXT);";
 
         String query2 = "CREATE TABLE " + TABLE_MY_STUDENTS +
                 " (" + COLUMN_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -278,7 +282,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO SUBJECT DATABASE
-    public void addSubject(String course, String subjectCode, String subjectName, String day, String time, String timeEnd,String semester, String schoolYear, String color, String room){
+    public void addSubject(String course, String subjectCode, String subjectName, String day, String time,
+                           String timeEnd,String semester, String schoolYear, String color, String room, String section, String classType){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -292,6 +297,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SCHOOL_YEAR, schoolYear);
         contentValues.put(COLUMN_SUBJECT_COLOR, color);
         contentValues.put(COLUMN_SUBJECT_ROOM, room);
+        contentValues.put(COLUMN_SUBJECT_SECTION, section);
+        contentValues.put(COLUMN_SUBJECT_CLASS_TYPE, classType);
+
 
         long result = db.insert(TABLE_MY_SUBJECTS, null, contentValues);
         if(result == -1){
@@ -376,7 +384,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     // UPDATE DATA OF SUBJECT DATABASE
-    public void updateSubject(String id, String course, String subjectCode, String subjectName, String day, String time, String endTime, String sem, String sy, String room){
+    public void updateSubject(String id, String course, String subjectCode, String subjectName, String day,
+                              String time, String endTime, String sem, String sy, String room, String section, String classType){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -389,6 +398,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SEMESTER, sem);
         contentValues.put(COLUMN_SCHOOL_YEAR, sy);
         contentValues.put(COLUMN_SUBJECT_ROOM, room);
+        contentValues.put(COLUMN_SUBJECT_SECTION, section);
+        contentValues.put(COLUMN_SUBJECT_CLASS_TYPE, classType);
 
         long result = db.update(TABLE_MY_SUBJECTS, contentValues, "id_number=" + id, null);
         if(result == -1){

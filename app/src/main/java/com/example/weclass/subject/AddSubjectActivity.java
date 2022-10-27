@@ -31,10 +31,10 @@ public class AddSubjectActivity extends AppCompatActivity {
 
     Button cancelButton, createButton;
     EditText courseEditText, subjectNameEditText, subjectCodeEditText, roomEditText;
-    TextView dayTextView, timeTextView, timeEndTextView, schoolYearTextView, semesterTextView, colorTextView;
+    TextView dayTextView, timeTextView, timeEndTextView, schoolYearTextView, semesterTextView, colorTextView, _classType, _section;
     int t1Hour, t1Minute;
     ImageButton backButton;
-    String selectedDay, selectedSem, selectedSchoolYear;
+    String selectedDay, selectedSem,selectedSchoolYear, selectedSection, selectedClassType;
     int index;
     List<String> colors = new ArrayList<>();
     private List<String> daysSelected;
@@ -58,6 +58,8 @@ public class AddSubjectActivity extends AppCompatActivity {
         pickSemester();
         pickSchoolYear();
         randomColor();
+        pickSection();
+        pickClassType();
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -269,6 +271,9 @@ public class AddSubjectActivity extends AppCompatActivity {
         schoolYearTextView = findViewById(R.id.schoolYearAddSubject);
         colorTextView = findViewById(R.id.colorHexTextView);
         roomEditText = findViewById(R.id.roomNumberEditTextAddSubject);
+        _section = findViewById(R.id.sectionTextViewAddSubject);
+        _classType = findViewById(R.id.classTypeTextViewAddSubject);
+
     }
 
 
@@ -332,7 +337,9 @@ public class AddSubjectActivity extends AppCompatActivity {
                                         semesterTextView.getText().toString().trim(),
                                         schoolYearTextView.getText().toString().trim(),
                                         colorTextView.getText().toString().trim(),
-                                        roomEditText.getText().toString().trim());
+                                        roomEditText.getText().toString().trim(),
+                                        _section.getText().toString().trim(),
+                                        _classType.getText().toString().trim());
 
                                 Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
 
@@ -345,6 +352,8 @@ public class AddSubjectActivity extends AppCompatActivity {
                                 semesterTextView.setText("");
                                 schoolYearTextView.setText("");
                                 roomEditText.setText("");
+                                _section.setText("");
+                                _classType.setText("");
 
                                 index = new Random().nextInt(colors.size());
                                 colorTextView.setText(String.valueOf(colors.get(index)));
@@ -403,7 +412,6 @@ public class AddSubjectActivity extends AppCompatActivity {
         colors.add("#55CBCD");
         colors.add("#FFC8A2");
         colors.add("#DADADA");
-
         colors.add("#E0A096");
         colors.add("#B2CFA5");
         colors.add("#99A399");
@@ -412,5 +420,63 @@ public class AddSubjectActivity extends AppCompatActivity {
 
         index = new Random().nextInt(colors.size());
         colorTextView.setText(String.valueOf(colors.get(index)));
+    }
+
+    // SECTION PICKER WILL OPEN WHEN PRESSED
+    public void pickSection() {
+        final String[] section = new String[]{
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+
+        };
+
+        selectedSection = section[0];
+        _section.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
+                builder.setTitle("Select section");
+                builder.setSingleChoiceItems(section, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedSection = section[i];
+                        _section.setText(selectedSection);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    // CLASS PICKER WILL OPEN WHEN PRESSED
+    public void pickClassType() {
+        final String[] classType = new String[]{
+                "Lecture",
+                "Laboratory",
+
+
+        };
+
+        selectedClassType = classType[0];
+        _classType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
+                builder.setTitle("Select class type");
+                builder.setSingleChoiceItems(classType, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedClassType = classType[i];
+                        _classType.setText(selectedClassType);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
     }
 }

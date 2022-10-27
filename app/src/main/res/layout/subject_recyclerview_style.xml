@@ -139,9 +139,9 @@
             android:text="8:00 AM"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/dashSeparator"
+            app:layout_constraintBottom_toBottomOf="@+id/timeTextViewRecView"
             app:layout_constraintStart_toEndOf="@+id/dashSeparator"
-            app:layout_constraintTop_toTopOf="@+id/dashSeparator"
+            app:layout_constraintTop_toTopOf="@+id/timeTextViewRecView"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -189,9 +189,36 @@
             android:text="Room"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/optionButtonSubject"
             app:layout_constraintTop_toTopOf="@+id/subjectCodeRecView" />
+
+        <TextView
+            android:id="@+id/classTypeTextViewRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Class type"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/optionButtonSubject"
+            app:layout_constraintTop_toBottomOf="@+id/roomTextViewRecView" />
+
+        <TextView
+            android:id="@+id/sectionTextViewRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Section"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/courseTypeRecView"
+            app:layout_constraintTop_toTopOf="@+id/courseTypeRecView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

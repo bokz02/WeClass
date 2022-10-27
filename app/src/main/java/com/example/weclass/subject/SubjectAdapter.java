@@ -71,6 +71,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         holder.schoolYear.setText(String.valueOf(subjectItems.get(position).getSchoolYearSubject()));
         holder._room.setText(String.valueOf(subjectItems.get(position).get_room()));
         holder.constraintLayout.setBackgroundColor(Color.parseColor(subjectItems.get(position).getColor()));
+        holder._section.setText(String.valueOf(subjectItems.get(position).getSection()));
+        holder._classType.setText(String.valueOf(subjectItems.get(position).getClassType()));
 
 
         // NAVIGATE TO EDIT ACTIVITY, OR DELETE A SUBJECT
@@ -98,6 +100,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                 bundle.putString("sem", item.getSemesterSubject());
                                 bundle.putString("sy", item.getSchoolYearSubject());
                                 bundle.putString("room", item.get_room());
+                                bundle.putString("section", item.getSection());
+                                bundle.putString("class_type", item.getClassType());
+
 
 
                                 intent.putExtra("Userdata", bundle);
@@ -253,7 +258,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView id,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt, timeEnd, semester, schoolYear, _room;
+        TextView id,courseNameTxt, subjectCodeTxt, subjectTitleTxt, dateTxt, timeTxt,
+                timeEnd, semester, schoolYear, _room, _section, _classType;
         OnNoteListener onNoteListener;
         ImageButton optionSubject;
         CardView subjectClick;
@@ -274,6 +280,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
             schoolYear = itemView.findViewById(R.id.schoolYearSubjectRecView);
             _room = itemView.findViewById(R.id.roomTextViewRecView);
             constraintLayout = itemView.findViewById(R.id.constraintBackgroundSubjectRecView);
+            _section = itemView.findViewById(R.id.sectionTextViewRecView);
+            _classType = itemView.findViewById(R.id.classTypeTextViewRecView);
 
 
             this.onNoteListener = onNoteListener;

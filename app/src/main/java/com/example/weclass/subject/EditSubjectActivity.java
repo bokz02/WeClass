@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.weclass.R;
-import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -26,14 +24,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class EditSubjectActivity extends AppCompatActivity implements SubjectAdapter.OnNoteListener {
+public class EditSubjectActivity extends AppCompatActivity {
 
     EditText _course, _subjectCode, _subjectName, _room;
-    TextView  _id, dayTextView, timeTextView, timeEndTextView, semesterTextView, schoolYearTextView;
+    TextView  _id, dayTextView, timeTextView, timeEndTextView, semesterTextView, schoolYearTextView, _section, _classType;
     Button updateButton, cancelEditButton;
     int t1Hour, t1Minute;
     ImageButton backButton;
-    String selectedDay, selectedSem, selectedSy;
+    String selectedDay, selectedSem, selectedSy, selectedSection, selectedClassType;
     private List<String> daysSelected;
 
     @Override
@@ -61,6 +59,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         backButton();
         pickSemester();
         pickSchoolYear();
+        pickSection();
+        pickClassType();
     }
 
     // Open time picker when PRESSED
@@ -121,7 +121,9 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
                         timeEndTextView.getText().toString().trim(),
                         semesterTextView.getText().toString().trim(),
                         schoolYearTextView.getText().toString().trim(),
-                        _room.getText().toString().trim());
+                        _room.getText().toString().trim(),
+                        _section.getText().toString().trim(),
+                        _classType.getText().toString().trim());
 
                 Snackbar.make(updateButton, "Subject successfully updated!", Snackbar.LENGTH_LONG).show();
 
@@ -280,6 +282,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         semesterTextView = findViewById(R.id.semesterTextViewEditSubject);
         schoolYearTextView = findViewById(R.id.schoolYearTextViewEditSubject);
         _room = findViewById(R.id.roomNumberEditTextEditSubject);
+        _section = findViewById(R.id.sectionTextViewEditSubject);
+        _classType = findViewById(R.id.classTypeTextViewEditSubject);
 
     }
 
@@ -297,6 +301,8 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
             semesterTextView.setText(bundle.getString("sem"));
             schoolYearTextView.setText(bundle.getString("sy"));
             _room.setText(bundle.getString("room"));
+            _section.setText(bundle.getString("section"));
+            _classType.setText(bundle.getString("class_type"));
         }
     }
 
@@ -329,9 +335,61 @@ public class EditSubjectActivity extends AppCompatActivity implements SubjectAda
         });
     }
 
+    // SECTION PICKER WILL OPEN WHEN PRESSED
+    public void pickSection() {
+        final String[] section = new String[]{
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
 
-    @Override
-    public void onNoteClick(int position) {
+        };
 
+        selectedSection = section[0];
+        _section.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
+                builder.setTitle("Select section");
+                builder.setSingleChoiceItems(section, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedSection = section[i];
+                        _section.setText(selectedSection);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    // CLASS PICKER WILL OPEN WHEN PRESSED
+    public void pickClassType() {
+        final String[] classType = new String[]{
+                "Lecture",
+                "Laboratory",
+
+
+        };
+
+        selectedClassType = classType[0];
+        _classType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
+                builder.setTitle("Select class type");
+                builder.setSingleChoiceItems(classType, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedClassType = classType[i];
+                        _classType.setText(selectedClassType);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
     }
 }

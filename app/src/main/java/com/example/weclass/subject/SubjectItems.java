@@ -4,7 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class SubjectItems implements Parcelable {
-    String course, subjectCode, subjectName, daySubject, timeSubject, timeEndSubject, semester, schoolYear, _color, _room;
+    String course, subjectCode, subjectName, daySubject, timeSubject,
+            timeEndSubject, semester, schoolYear, _color, _room, _section, _classType;
     private int id;
 
     public SubjectItems(int id ,
@@ -17,7 +18,7 @@ public class SubjectItems implements Parcelable {
                         String semester,
                         String schoolYear,
                         String _color,
-                        String room){
+                        String room, String section, String classType){
         this.id = id;
         this.course = course;
         this.subjectCode = subjectCode;
@@ -29,6 +30,8 @@ public class SubjectItems implements Parcelable {
         this.schoolYear = schoolYear;
         this._color = _color;
         this._room = room;
+        this._section = section;
+        this._classType = classType;
     }
 
     protected SubjectItems(Parcel in) {
@@ -118,6 +121,14 @@ public class SubjectItems implements Parcelable {
 
     public String get_room(){
         return _room;
+    }
+
+    public String getSection(){
+        return _section;
+    }
+
+    public String getClassType(){
+        return _classType;
     }
 
     @Override
