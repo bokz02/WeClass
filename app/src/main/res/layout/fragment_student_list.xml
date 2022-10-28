@@ -81,6 +81,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
+            android:textAllCaps="true"
             android:text="Subject Code"
             android:textColor="@color/black1"
             android:textSize="15sp"

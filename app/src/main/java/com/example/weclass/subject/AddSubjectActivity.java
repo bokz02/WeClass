@@ -316,50 +316,67 @@ public class AddSubjectActivity extends AppCompatActivity {
                             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
                                     + DataBaseHelper.TABLE_MY_SUBJECTS + " WHERE "
                                     + DataBaseHelper.COLUMN_SUBJECT_CODE + " = '"
-                                    + subjectCodeEditText.getText().toString().trim() + "' AND "
+                                    + subjectCodeEditText.getText().toString().trim() + "'" + " collate nocase " + " AND "
                                     + DataBaseHelper.COLUMN_SUBJECT_NAME + " = '"
-                                    + subjectNameEditText.getText().toString().trim() + "' AND "
+                                    + subjectNameEditText.getText().toString().trim() + "'" + " collate nocase " + " AND "
                                     + DataBaseHelper.COLUMN_COURSE + " = '"
-                                    + courseEditText.getText().toString().trim() + "'",  null);
+                                    + courseEditText.getText().toString().trim() + "' AND "
+                                    + DataBaseHelper.COLUMN_SUBJECT_SECTION + " ='"
+                                    + _section.getText().toString() + "'",  null);
 
 
                             if(cursor.moveToFirst()){
-                                Snackbar.make(createButton, "" + courseEditText.getText().toString() + "," + subjectCodeEditText.getText().toString() + " is already in your subject list!", Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(createButton, "" + courseEditText.getText().toString() + ""+ _section.getText().toString() +", " + subjectCodeEditText.getText().toString() + " is already in your subject list!", Snackbar.LENGTH_LONG).show();
                                 cursor.close();
 
                             }else {
-                                dbh.addSubject(courseEditText.getText().toString().trim(),
-                                        subjectCodeEditText.getText().toString().trim(),
-                                        subjectNameEditText.getText().toString().trim(),
-                                        dayTextView.getText().toString().trim(),
-                                        timeTextView.getText().toString().trim(),
-                                        timeEndTextView.getText().toString().trim(),
-                                        semesterTextView.getText().toString().trim(),
-                                        schoolYearTextView.getText().toString().trim(),
-                                        colorTextView.getText().toString().trim(),
-                                        roomEditText.getText().toString().trim(),
-                                        _section.getText().toString().trim(),
-                                        _classType.getText().toString().trim());
 
-                                Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
+                                Cursor c = sqLiteDatabase.rawQuery("SELECT * FROM "
+                                        + DataBaseHelper.TABLE_MY_SUBJECTS + " WHERE "
+                                        + DataBaseHelper.COLUMN_TIME + " = '"
+                                        + timeTextView.getText().toString().trim() + "' AND "
+                                        + DataBaseHelper.COLUMN_TIME_END + " AND '"
+                                        + timeEndTextView.getText().toString().trim() + "' AND "
+                                        + DataBaseHelper.COLUMN_DAY + " = '"
+                                        + dayTextView.getText().toString().trim() + "'",  null);
 
-                                courseEditText.setText("");
-                                subjectCodeEditText.setText("");
-                                subjectNameEditText.setText("");
-                                dayTextView.setText("");
-                                timeTextView.setText("");
-                                timeEndTextView.setText("");
-                                semesterTextView.setText("");
-                                schoolYearTextView.setText("");
-                                roomEditText.setText("");
-                                _section.setText("");
-                                _classType.setText("");
+                                if(c.moveToFirst()){
+                                    Snackbar.make(createButton, "You already created a subject with that schedule.", Snackbar.LENGTH_LONG).show();
+                                    c.close();
 
-                                index = new Random().nextInt(colors.size());
-                                colorTextView.setText(String.valueOf(colors.get(index)));
+                                }else {
 
-                                //cursor.close();
+                                    dbh.addSubject(courseEditText.getText().toString().trim(),
+                                            subjectCodeEditText.getText().toString().trim(),
+                                            subjectNameEditText.getText().toString().trim(),
+                                            dayTextView.getText().toString().trim(),
+                                            timeTextView.getText().toString().trim(),
+                                            timeEndTextView.getText().toString().trim(),
+                                            semesterTextView.getText().toString().trim(),
+                                            schoolYearTextView.getText().toString().trim(),
+                                            colorTextView.getText().toString().trim(),
+                                            roomEditText.getText().toString().trim(),
+                                            _section.getText().toString().trim(),
+                                            _classType.getText().toString().trim());
 
+                                    Snackbar.make(createButton, "" + subjectCodeEditText.getText().toString() + " successfully created!", Snackbar.LENGTH_LONG).show();
+
+                                    courseEditText.setText("");
+                                    subjectCodeEditText.setText("");
+                                    subjectNameEditText.setText("");
+                                    dayTextView.setText("");
+                                    timeTextView.setText("");
+                                    timeEndTextView.setText("");
+                                    semesterTextView.setText("");
+                                    schoolYearTextView.setText("");
+                                    roomEditText.setText("");
+                                    _section.setText("");
+                                    _classType.setText("");
+
+                                    index = new Random().nextInt(colors.size());
+                                    colorTextView.setText(String.valueOf(colors.get(index)));
+
+                                }
                             }
                         }
                     });

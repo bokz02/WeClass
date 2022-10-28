@@ -207,7 +207,7 @@ public class AddStudent extends AppCompatActivity {
                                     + DataBaseHelper.COLUMN_PARENT_ID + " = "
                                     + parentID.getText().toString().trim() + " AND "
                                     + DataBaseHelper.COLUMN_LAST_NAME + " = '"
-                                    + lastName.getText().toString().trim() + "' AND "
+                                    + lastName.getText().toString().trim() + "'"+ " COLLATE NOCASE " +" AND "
                                     + DataBaseHelper.COLUMN_FIRST_NAME + " = '"
                                     + firstName.getText().toString().trim() + "'", null);
 

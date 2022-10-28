@@ -215,7 +215,7 @@
             android:drawablePadding="5dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="Progress Task:"
+            android:text="Grading period:"
             android:textColor="@color/black2"
             android:drawableTint="@color/black2"
             android:textSize="13sp" />

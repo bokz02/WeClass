@@ -198,7 +198,7 @@ public class AddTask extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
-                builder.setTitle("Select day");
+                builder.setTitle("Select grading period");
                 builder.setSingleChoiceItems(gradingPeriod, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

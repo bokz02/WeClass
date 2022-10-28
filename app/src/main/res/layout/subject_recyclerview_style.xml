@@ -76,9 +76,10 @@
             android:layout_marginStart="2dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Subject title"
+            android:inputType="textCapSentences"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecView" />
 
