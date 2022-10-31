@@ -454,7 +454,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // UPDATE DATA OF STUDENT DATABASE
+    // UPDATE DATA OF task DATABASE
     public void updateTask(String id, String taskType, String score, String description, String progress, String taskNumber, String period){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -467,6 +467,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_GRADING_PERIOD_TASK, period);
 
         long result = db.update(TABLE_MY_TASKS, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // UPDATE DATA OF STUDENT DATABASE
+    public void updateTaskGrade(String id, String taskGrade){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_GRADE_MY_GRADE, taskGrade);
+
+
+        long result = db.update(TABLE_MY_GRADE, contentValues, "id_number=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -487,7 +501,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY
+    // UPDATE STUDENT'S midterm grade IN PROFILE ACTIVITY
     public void updateMidtermGrade(String id, String midtermGrade){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

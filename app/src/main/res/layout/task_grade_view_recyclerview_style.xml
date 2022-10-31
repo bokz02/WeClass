@@ -58,7 +58,7 @@
             app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
 
 
-        <TextView
+        <EditText
             android:id="@+id/gradeTextViewGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,10 +68,23 @@
             android:gravity="center"
             android:textColor="@color/darkText"
             android:textSize="16sp"
-            android:text="grade"
+            android:inputType="number"
+            android:hint="Grade"
+            android:maxLines="1"
+            android:maxLength="3"
             app:layout_constraintBottom_toBottomOf="@+id/firstNameRecViewGrade"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/firstNameRecViewGrade" />
+
+        <ImageButton
+            android:id="@+id/editGradeImageButtonTaskGradeRecView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_baseline_check_circle_24"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/gradeTextViewGrade"
+            app:layout_constraintEnd_toStartOf="@+id/gradeTextViewGrade"
+            app:layout_constraintTop_toTopOf="@+id/gradeTextViewGrade" />
 
 
         <TextView
@@ -96,6 +109,15 @@
             android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/studentIDGrade"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/idTextViewTaskGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="id"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/subjectIDTextViewRecViewGrade"
+            app:layout_constraintTop_toBottomOf="@+id/subjectIDTextViewRecViewGrade" />
 
         <TextView
             android:id="@+id/subjectIDTextViewRecViewGrade"

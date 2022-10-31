@@ -31,7 +31,7 @@ public class TaskGradeViewFragment extends Fragment{
     View view, _noStudentTGradeViewFragment;
     Bundle bundle;
     ExtendedRecyclerView extendedRecyclerView;
-    ArrayList<TaskGradeViewItems> taskGradeViewItems, studentID, subjectID;
+    ArrayList<TaskGradeViewItems> taskGradeViewItems, studentID, subjectID, idTaskGrade;
     TaskGradeViewFragmentAdapter taskGradeViewFragmentAdapter;
     DataBaseHelper dataBaseHelper;
 
@@ -55,6 +55,16 @@ public class TaskGradeViewFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+        initialize();
+        getDataFromTaskGradeActivity();
+        display();
+        initializeAdapter();
+        automaticSort();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
         initialize();
         getDataFromTaskGradeActivity();
         display();
@@ -86,6 +96,7 @@ public class TaskGradeViewFragment extends Fragment{
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
     public void display(){
+        idTaskGrade = new ArrayList<>();
         studentID = new ArrayList<>();
         subjectID = new ArrayList<>();
         taskGradeViewItems = new ArrayList<>();
@@ -117,7 +128,8 @@ public class TaskGradeViewFragment extends Fragment{
                         cursor.getString(4),
                         cursor.getString(5),
                         cursor.getInt(6),
-                        cursor.getInt(7)));
+                        cursor.getInt(7),
+                        cursor.getInt(0)));
             }while (cursor.moveToNext());
         }
         cursor.close();

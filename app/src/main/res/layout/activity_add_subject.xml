@@ -524,7 +524,7 @@
             android:backgroundTint="#979797"
             android:fontFamily="@font/poppins_regular"
             android:hint="Room"
-            android:maxLength="5"
+            android:maxLength="10"
             android:maxLines="1"
             android:textColor="@color/black1"
             android:textSize="14sp"
