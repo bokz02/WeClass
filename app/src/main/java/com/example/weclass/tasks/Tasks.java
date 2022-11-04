@@ -61,6 +61,8 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
         return view;
     }
 
+
+
     // INITIALIZE VIEWS
     public void initialize(){
         parentID = view.findViewById(R.id.parentIDRecord);
@@ -116,6 +118,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
         lastFirstVisiblePosition = ((LinearLayoutManager)extendedRecyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
         super.onPause();
     }
+
 
     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
     public void showHideFloatingActionButton(){

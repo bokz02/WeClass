@@ -54,21 +54,25 @@ public class BottomNavi extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         window.setStatusBarColor(Color.TRANSPARENT);
 
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
     }
 
     // GET DATA FROM SUBJECT ADAPTER (RECYCLERVIEW ITEM CLICK)
     public void displayData(){
-//        if (getIntent().getBundleExtra("ParentID") != null) {
-//            Bundle bundle = getIntent().getBundleExtra("ParentID");
-//
-//
-//            parentID.setText(bundle.getString("id"));
-//            subjectCode.setText(bundle.getString("subject_code"));
-//            courseName.setText(bundle.getString("course"));
-//        }
 
         if(getIntent().getParcelableExtra("Subject") != null){
 

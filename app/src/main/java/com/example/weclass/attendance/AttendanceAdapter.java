@@ -107,6 +107,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         int d = Integer.parseInt(holder._absent.getText().toString());
         if(d == 4) {
             holder.background.setBackgroundResource(R.color.lightText);
+        }else if (d == 5){
+            holder.background.setBackgroundResource(R.color.Red);
         }
 
 

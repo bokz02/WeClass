@@ -57,10 +57,7 @@ public class TaskGrade extends AppCompatActivity{
 
         initialize();
         getDataFromTaskRecView();
-        //display();
-        //initializeAdapter();
         backToTask();
-        //automaticSort();
         fragmentManager();
 
     }
@@ -69,10 +66,21 @@ public class TaskGrade extends AppCompatActivity{
     public void onResume() {
         initialize();
         getDataFromTaskRecView();
-        //display();
-        //initializeAdapter();
         backToTask();
         super.onResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
     }
 
     private void initialize() {

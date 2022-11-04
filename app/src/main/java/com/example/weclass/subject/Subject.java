@@ -122,6 +122,13 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         lastFirstVisiblePosition = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+    }
+
+
     // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
     public void showHideFloatingActionButton(){
 

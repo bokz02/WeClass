@@ -47,7 +47,7 @@ public class LockScreen extends AppCompatActivity {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                Toast.makeText(LockScreen.this, "Authentication success!" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(LockScreen.this, "Login success!" , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LockScreen.this, Subject.class);
                 startActivity(intent);
             }
@@ -55,7 +55,7 @@ public class LockScreen extends AppCompatActivity {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
-                Toast.makeText(LockScreen.this, "Authentication failed!" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(LockScreen.this, "Login failed!" , Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -53,9 +53,6 @@ public class StudentProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);    //enable full screen
-
         //status bar white background
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -80,7 +77,14 @@ public class StudentProfile extends AppCompatActivity {
         pickMidtermGrade();
         pickFinalGrade();
         pickFinalRating();
+
         
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     public void initialize(){
