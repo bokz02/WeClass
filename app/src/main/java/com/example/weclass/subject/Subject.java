@@ -227,7 +227,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
             new AlertDialog.Builder(this)
                     .setMessage("Are you sure you want to exit?")
                     .setCancelable(false)
-                    .setPositiveButton("Yes", (dialog, id) -> finish())
+                    .setPositiveButton("Yes", (dialog, id) -> finishAffinity())
                     .setNegativeButton("No", null)
                     .show();                    // Exit pop up when back button is pressed if navigation drawer is not open
         }
