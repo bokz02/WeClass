@@ -7,31 +7,4 @@
     tools:context=".login.SplashScreen">
 
 
-    <ImageView
-        android:id="@+id/backgound_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="256dp"
-        android:src="@drawable/we_class_icon_svg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/powered_by_line"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/WeClass"
-        android:textColor="#00C2CB"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backgound_image"
-        app:layout_constraintVertical_bias="0.062" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

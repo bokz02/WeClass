@@ -7,9 +7,12 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +36,11 @@ public class LockScreen extends AppCompatActivity {
         checkBiometricSupported();
         //executor();
 
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        window.setStatusBarColor(Color.WHITE);
 
         Executor executor = ContextCompat.getMainExecutor(this);
         BiometricPrompt biometricPrompt = new BiometricPrompt(LockScreen.this,
@@ -47,7 +55,7 @@ public class LockScreen extends AppCompatActivity {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                Toast.makeText(LockScreen.this, "Login success!" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(LockScreen.this, "Login successfully!" , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LockScreen.this, Subject.class);
                 startActivity(intent);
             }

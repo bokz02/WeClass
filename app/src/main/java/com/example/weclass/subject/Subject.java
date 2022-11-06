@@ -107,7 +107,6 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         textListener();     // FILTER SEARCH IN SUBJECT ACTIVITY
         initializeAdapter(); // INITIALIZE ADAPTER
         showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
-        getPicture(); //profilepic
 
         // SAVE RECYCLERVIEW SCROLL POSITION
         ((LinearLayoutManager) recyclerView.getLayoutManager()).scrollToPosition(lastFirstVisiblePosition);
@@ -252,19 +251,6 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         noSubject = findViewById(R.id.noSubjectTextView);
     }
 
-    private void getPicture() {
-        fauth = FirebaseAuth.getInstance();
-        profilepic = findViewById(R.id.profile);
-        storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference profileRef = storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(profilepic);
-            }
-        });
-    }
-
     //NAVIGATION DRAWER
     public void navigationOpen() {
         setSupportActionBar(toolbar);
@@ -296,30 +282,14 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 finish();
                 break;
             case R.id.drawerLogout:
-
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Subject.this);
-                builder.setTitle("Confirm logout");
+                builder.setTitle("Confirm Exit");
                 builder.setIcon(R.drawable.ic_baseline_warning_24);
-                builder.setMessage("Do you really want to logout?");
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        mAuth.signOut();
-                        Intent intent = new Intent(Subject.this, LoginActivity.class);
-                        finish();
-                        startActivity(intent);
-                        overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                builder.show();
-
+                builder.setMessage("Are you sure you want to exit?");
+                builder.setCancelable(false)
+                        .setPositiveButton("Yes", (dialog, id) -> finishAffinity())
+                        .setNegativeButton("No", null)
+                        .show();
                 break;
         }
         return true;

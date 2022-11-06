@@ -214,27 +214,13 @@ public class BottomNavi extends AppCompatActivity {
                     case R.id.drawerLogout:
 
                         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(BottomNavi.this);
-                        builder.setTitle("Confirm logout");
+                        builder.setTitle("Confirm Exit");
                         builder.setIcon(R.drawable.ic_baseline_warning_24);
-                        builder.setMessage("Do you really want to logout?");
-                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(BottomNavi.this, LoginActivity.class);
-                                finish();
-                                startActivity(intent);
-                                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
-                            }
-                        });
-
-                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                        builder.show();
-
+                        builder.setMessage("Are you sure you want to exit?");
+                        builder.setCancelable(false)
+                            .setPositiveButton("Yes", (dialog, id) -> finishAffinity())
+                            .setNegativeButton("No", null)
+                            .show();
                         break;
                 }
                 return true;

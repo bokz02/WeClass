@@ -107,18 +107,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginVertical="5dp"
-                    android:src="@drawable/ic_no_image"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guide11"
                     android:layout_width="wrap_content"

@@ -69,9 +69,6 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         terms();
         aboutUs();
         refreshlayout();
-        userProfile();
-        getData();
-        getPicture();
 
         //Refresh
 
@@ -91,56 +88,8 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
         initialize();
         refreshlayout();
-        getData();
-        getPicture();
     }
 
-    private void getPicture() {
-        fauth = FirebaseAuth.getInstance();
-        profilepic = findViewById(R.id.userProfile);
-        storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference profileRef = storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(profilepic);
-            }
-        });
-    }
-
-
-    //Get data to firebase
-    private void getData() {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        referenceUsers = FirebaseDatabase.getInstance().getReference().child("UserItem");
-        referenceUsers.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String user_name = dataSnapshot.child(user.getUid()).child("fullname").getValue(String.class);
-                String user_email = firebaseUser.getEmail();
-
-                //Displaying data from firebase
-                userFullname.setText(user_name);
-                userEmail.setText(user_email); }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(Settings.this, "Something wrong happend!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    private void userProfile() {
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Settings.this, UserAccount.class);
-                startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
-            }
-        });
-    }
     private void refreshlayout() {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -178,10 +127,8 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         drawerLayout = findViewById(R.id.drawerSettings);
         button = findViewById(R.id.button);
         button1 = findViewById(R.id.button1);
-        userFullname = findViewById(R.id.accountName);
-        userEmail = findViewById(R.id.accountEmail);
         refreshLayout = findViewById(R.id.refreshLayout);
-        button2 = findViewById(R.id.accButton);
+
     }
 
     public void navigationOpen() {
@@ -233,30 +180,14 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                 finish();
                 break;
             case R.id.drawerLogout:
-
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Settings.this);
-                builder.setTitle("Confirm logout");
+                builder.setTitle("Confirm Exit");
                 builder.setIcon(R.drawable.ic_baseline_warning_24);
-                builder.setMessage("Do you really want to logout?");
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        mAuth.signOut();
-                        Intent intent = new Intent(Settings.this, LoginActivity.class);
-                        finish();
-                        startActivity(intent);
-                        overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                builder.show();
-
+                builder.setMessage("Are you sure you want to exit?");
+                builder.setCancelable(false)
+                        .setPositiveButton("Yes", (dialog, id) -> finishAffinity())
+                        .setNegativeButton("No", null)
+                        .show();
                 break;
         }
         return true;

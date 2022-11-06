@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.WeClass" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/lightText</item>
+        <item name="colorPrimary">#FFFFFF</item>
         <item name="colorPrimaryVariant">@color/darkText</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -60,5 +60,16 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
 
     </style>
+
+    <!-- SplashScreen -->
+
+    -<style parent="Theme.MaterialComponents.DayNight.NoActionBar" name="SplashScreen">
+
+    <item name="android:windowBackground">@drawable/bg_splash</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowTranslucentNavigation">true</item>
+    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
+
+</style>
 
 </resources>
