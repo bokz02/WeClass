@@ -32,7 +32,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class BottomNavi extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     BottomNavigationView bottomNavigationView;
-    TextView parentID, subjectCode, courseName;
+    TextView parentID, subjectCode, courseName, _archive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +94,13 @@ public class BottomNavi extends AppCompatActivity {
             int idParent = archiveItems.getId_subject();
             String codeSubject = archiveItems.getSubjectCode();
             String nameCourse = archiveItems.getCourse();
+            String archive = getIntent().getStringExtra("archive_text");
 
             parentID.setText(String.valueOf(idParent));
             subjectCode.setText(codeSubject);
             courseName.setText(nameCourse);
+            _archive.setText(archive);
+
         }
 
 
@@ -121,6 +124,7 @@ public class BottomNavi extends AppCompatActivity {
         bundle.putString("IDParent", parentID.getText().toString());
         bundle.putString("SubjectCode", subjectCode.getText().toString());
         bundle.putString("CourseCode", courseName.getText().toString());
+        bundle.putString("archive_text", _archive.getText().toString());
 
         studentList.setArguments(bundle);
         fragmentLoader(studentList);
@@ -186,6 +190,7 @@ public class BottomNavi extends AppCompatActivity {
         parentID = findViewById(R.id.parentIDBottomNavi);
         subjectCode = findViewById(R.id.subjectCodeBottomNavi);
         courseName = findViewById(R.id.courseNameBottomNavi);
+        _archive = findViewById(R.id.archiveTextViewBottomNavi);
 
     }
 

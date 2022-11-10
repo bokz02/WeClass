@@ -80,6 +80,15 @@
             app:layout_constraintBottom_toTopOf="@+id/subjectCodeBottomNavi"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <TextView
+            android:id="@+id/archiveTextViewBottomNavi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="archive"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/courseNameBottomNavi"
+            app:layout_constraintEnd_toEndOf="@+id/courseNameBottomNavi" />
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="300dp"

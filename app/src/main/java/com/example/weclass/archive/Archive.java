@@ -206,8 +206,8 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     public void onNoteClick(int position) {
         Intent intent = new Intent(this, BottomNavi.class);
+        intent.putExtra("archive_text", "archive");
         intent.putExtra("Archive", archiveItems.get(position));
-
         startActivity(intent);
         overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
     }

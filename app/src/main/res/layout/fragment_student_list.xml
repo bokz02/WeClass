@@ -48,6 +48,15 @@
         <!--  app:drawableEndCompat="@drawable/ic_arrow_down1"-->
 
         <TextView
+            android:id="@+id/archiveTextViewStudentList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="subject"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/subjectCodeRecords"
+            app:layout_constraintStart_toStartOf="@+id/guide3" />
+
+        <TextView
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

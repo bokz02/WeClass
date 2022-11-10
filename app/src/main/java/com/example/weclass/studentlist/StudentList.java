@@ -37,7 +37,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     ExtendedRecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
     View view;
-    TextView parentID, _subjectCode, _sort, _courseTitle, noStudentTextView, _id, _studentSum;
+    TextView parentID, _subjectCode, _sort, _courseTitle,
+            noStudentTextView, _id, _studentSum, _archive;
     DataBaseHelper dataBaseHelper;
     ArrayList<StudentItems> studentItems;
     StudentAdapter studentAdapter;
@@ -64,6 +65,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         automaticSort();    //AUTOMATIC SORT
 
 
+
         return view;
     }
 
@@ -82,6 +84,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         textListener();         // SEARCH BAR FOR LIST OF STUDENTS
         getSumOfStudents();     // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
         automaticSort();    //AUTOMATIC SORT
+
 
         // SAVE RECYCLERVIEW SCROLL POSITION
         ((LinearLayoutManager) recyclerView.getLayoutManager()).scrollToPosition(lastFirstVisiblePosition);
@@ -123,6 +126,13 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
                 popupMenu.show();
             }
         });
+    }
+
+    public void hideFab(){
+        if (_archive.getText().toString().equals("archive")) {
+            floatingActionButton.hide();
+        }
+
     }
 
     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
@@ -215,6 +225,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         noStudentTextView = view.findViewById(R.id.noStudentTextView);
         _id = view.findViewById(R.id.iDNumberStudentList);
         _studentSum = view.findViewById(R.id.summaryOfStudent);
+        _archive = view.findViewById(R.id.archiveTextViewStudentList);
 
     }
 
@@ -259,6 +270,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             parentID.setText(bundle.getString("IDParent"));
             _subjectCode.setText(bundle.getString("SubjectCode"));
             _courseTitle.setText(bundle.getString("CourseCode"));
+            _archive.setText(bundle.getString("archive_text"));
         }
     }
 

@@ -20,17 +20,14 @@
             android:id="@+id/lastNameRecViewGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="15dp"
             android:layout_marginStart="32dp"
-            android:text="Last"
             android:fontFamily="@font/poppins_semibold"
+            android:text="Last"
             android:textColor="@color/lightText"
             android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.229" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/firstNameRecViewGrade"
@@ -40,7 +37,7 @@
             android:text="First"
             android:textColor="@color/lightText"
             android:textSize="14sp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/lastNameRecViewGrade"
             app:layout_constraintTop_toBottomOf="@+id/lastNameRecViewGrade" />
@@ -58,28 +55,20 @@
 
         <EditText
             android:id="@+id/gradeTextViewGrade"
-            android:layout_width="35dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:background="@drawable/transparent_bg"
+            android:background="@drawable/edit_text_underline"
             android:gravity="center"
+            android:hint="Score"
             android:inputType="number"
             android:maxLength="3"
             android:maxLines="1"
             android:textColor="@color/black1"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/submitButtonRecViewGrade"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/firstNameRecViewGrade"
             app:layout_constraintEnd_toStartOf="@+id/submitButtonRecViewGrade"
-            app:layout_constraintTop_toTopOf="@+id/submitButtonRecViewGrade" />
-
-        <View
-            android:id="@+id/view13"
-            android:layout_width="35dp"
-            android:layout_height="3dp"
-            android:background="@color/grayText"
-            app:layout_constraintEnd_toEndOf="@+id/gradeTextViewGrade"
-            app:layout_constraintStart_toStartOf="@+id/gradeTextViewGrade"
-            app:layout_constraintTop_toBottomOf="@id/gradeTextViewGrade" />
+            app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
 
         <TextView
             android:id="@+id/studentIDGrade"
@@ -116,18 +105,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
 
-        <TextView
-            android:id="@+id/scoreTExt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Score:"
-            android:textSize="14sp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/view13"
-            app:layout_constraintEnd_toStartOf="@+id/gradeTextViewGrade"
-            app:layout_constraintTop_toTopOf="@+id/gradeTextViewGrade" />
 
         <TextView
             android:id="@+id/taskTypeTextViewRecViewGrade"
@@ -161,9 +138,11 @@
             android:hint="Grade"
             android:paddingHorizontal="5dp"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/gradeTextViewGrade"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/gradeTextViewGrade" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
