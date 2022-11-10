@@ -27,10 +27,10 @@ import com.google.android.material.snackbar.Snackbar;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class EditTask extends AppCompatActivity{
+public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     EditText _score, _description, _taskNumber;
-    TextView _progress, _taskType, _idTask, _gradingPeriod;
+    TextView _progress, _taskType, _idTask, _gradingPeriod, _due;
     String selectedTask, selectedProgress, selectedPeriod;
     Button _cancel, _update;
     ImageButton _backButton;
@@ -46,6 +46,7 @@ public class EditTask extends AppCompatActivity{
         pickTask();
         pickProgress();
         displayData();
+        setDate();
         updateData();
         backButton();
         cancelButton();
@@ -74,6 +75,7 @@ public class EditTask extends AppCompatActivity{
         _update = findViewById(R.id.updateButtonTaskEdit);
         _backButton = findViewById(R.id.backButtonAddTasksEdit);
         _gradingPeriod = findViewById(R.id.gradingPeriodTextViewTaskEdit);
+        _due = findViewById(R.id.dueTextViewEditTask);
     }
 
     // GET ALL DATA IN VIES AND INSERT TO DATABASE
@@ -107,7 +109,8 @@ public class EditTask extends AppCompatActivity{
                             _description.getText().toString().trim(),
                             _progress.getText().toString().trim(),
                             _taskNumber.getText().toString().trim(),
-                            _gradingPeriod.getText().toString().trim());
+                            _gradingPeriod.getText().toString().trim(),
+                            _due.getText().toString().trim());
 
                     Snackbar.make(_update, "Task information successfully updated!", Snackbar.LENGTH_LONG).show();
                 }
@@ -128,6 +131,7 @@ public class EditTask extends AppCompatActivity{
             _taskType.setText(bundle.getString("task_type"));
             _progress.setText(bundle.getString("task_progress"));
             _gradingPeriod.setText(bundle.getString("period"));
+            _due.setText(bundle.getString("due"));
 
         }
     }
@@ -251,5 +255,27 @@ public class EditTask extends AppCompatActivity{
                 finish();
             }
         });
+    }
+
+    // DATE PICKER
+    public void setDate() {
+        _due.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
+        });
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+        _due.setText(currentDate);
     }
 }

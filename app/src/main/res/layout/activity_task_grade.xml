@@ -62,6 +62,26 @@
         app:layout_constraintStart_toStartOf="@id/guide3"
         app:layout_constraintTop_toBottomOf="@id/cardView" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due: "
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dueTextViewTaskGrade"
+        app:layout_constraintEnd_toStartOf="@+id/dueTextViewTaskGrade"
+        app:layout_constraintTop_toTopOf="@+id/dueTextViewTaskGrade" />
+
+    <TextView
+        android:id="@+id/dueTextViewTaskGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="due"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/guide4" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"

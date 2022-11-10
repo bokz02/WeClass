@@ -172,7 +172,9 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
                         cursor.getString(5),
                         cursor.getString(6),
                         cursor.getInt(7),
-                        cursor.getString(8)));
+                        cursor.getString(8),
+                        cursor.getString(3)));
+
             }while (cursor.moveToNext());
         }
         cursor.close();

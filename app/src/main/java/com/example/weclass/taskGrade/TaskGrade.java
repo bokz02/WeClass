@@ -37,7 +37,8 @@ public class TaskGrade extends AppCompatActivity{
     TaskGradeAdapter taskGradeAdapter;
     DataBaseHelper dataBaseHelper;
     ImageView backButton;
-    TextView _progress, _deadline, _score, _description, _taskType, _taskNumber, _subjectID , _noStudentToGradeTextView, _gradingPeriod;
+    TextView _progress, _deadline, _score, _description, _taskType, _taskNumber,
+            _subjectID , _noStudentToGradeTextView, _gradingPeriod, _due;
     View _noStudentToGradeView;
     TabLayout _tabLayout;
     ViewPager2 _viewPager2;
@@ -97,6 +98,7 @@ public class TaskGrade extends AppCompatActivity{
         _gradingPeriod = findViewById(R.id.gradingPeriodTextViewTaskGrade);
         _viewPager2 = findViewById(R.id.viewPagerTaskGrade);
         _tabLayout = findViewById(R.id.tabLayoutTaskGrade);
+        _due = findViewById(R.id.dueTextViewTaskGrade);
 
     }
 
@@ -183,6 +185,7 @@ public class TaskGrade extends AppCompatActivity{
         String description = taskItems.getTaskDescription();
         String taskType = taskItems.getTaskType();
         String period = taskItems.getGradingPeriod();
+        String due = taskItems.getDue();
         int taskNumber = taskItems.getTaskNumber();
 
         _progress.setText(progress);
@@ -192,7 +195,7 @@ public class TaskGrade extends AppCompatActivity{
         _taskNumber.setText(String.valueOf(taskNumber));
         _subjectID.setText(subjectID);
         _gradingPeriod.setText(period);
-
+        _due.setText(due);
 
     }
 

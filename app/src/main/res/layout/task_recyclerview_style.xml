@@ -144,6 +144,15 @@
                 app:layout_constraintStart_toStartOf="@+id/courseTypeRecView"
                 app:layout_constraintTop_toBottomOf="@+id/courseTypeRecView" />
 
+            <TextView
+                android:id="@+id/dueTextViewTaskRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="due"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/parentIDTaskRecView"
+                app:layout_constraintTop_toBottomOf="@+id/parentIDTaskRecView" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/hiddenDescription"
                 android:layout_width="match_parent"

@@ -10,11 +10,10 @@ import java.util.Comparator;
 
 public class TaskItems implements Parcelable {
 
-    String taskType, score, taskDescription, progress, gradingPeriod;
+    String taskType, score, taskDescription, progress, gradingPeriod, due;
     private int taskID;
     private int parentID;
     private final int taskNumber;
-
 
     public TaskItems(int taskID,
                      int parentID,
@@ -23,7 +22,7 @@ public class TaskItems implements Parcelable {
                      String taskDescription,
                      String progress,
                      int taskNumber,
-                     String gradingPeriod) {
+                     String gradingPeriod, String due) {
 
 
         this.taskType = taskType;
@@ -34,6 +33,7 @@ public class TaskItems implements Parcelable {
         this.progress = progress;
         this.taskNumber = taskNumber;
         this.gradingPeriod = gradingPeriod;
+        this.due = due;
     }
 
     protected TaskItems(Parcel in) {
@@ -45,6 +45,7 @@ public class TaskItems implements Parcelable {
         parentID = in.readInt();
         taskNumber = in.readInt();
         gradingPeriod = in.readString();
+        due = in.readString();
     }
 
     public static final Creator<TaskItems> CREATOR = new Creator<TaskItems>() {
@@ -115,6 +116,10 @@ public class TaskItems implements Parcelable {
         return gradingPeriod;
     }
 
+    public String getDue() {
+        return due;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -130,6 +135,7 @@ public class TaskItems implements Parcelable {
         parcel.writeInt(parentID);
         parcel.writeInt(taskNumber);
         parcel.writeString(gradingPeriod);
+        parcel.writeString(due);
     }
 
     public static Comparator<TaskItems> sortAtoZComparator = new Comparator<TaskItems>() {

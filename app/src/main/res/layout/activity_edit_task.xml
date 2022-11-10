@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_weight="1"
+        android:layout_weight=".5"
         >
 
         <TextView
@@ -271,6 +271,50 @@
     </LinearLayout>
     <View
         android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:drawablePadding="5dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Due:"
+            android:textColor="@color/black2"
+            android:drawableTint="@color/black2"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/dueTextViewEditTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/poppins_regular"
+            android:drawablePadding="5dp"
+            android:textColor="@color/black1"
+            android:drawableTint="@color/darkText"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:hint="Select Date"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view7"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#ECECEC"

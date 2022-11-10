@@ -263,7 +263,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO MY_TASKS DATABASE
-    public void addTask(String parentID, String taskType, String score, String description, String progress, String taskNumber, String period){
+    public void addTask(String parentID, String taskType, String score, String description, String progress, String taskNumber, String period, String due){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -274,6 +274,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PROGRESS, progress);
         cv.put(COLUMN_TASK_NUMBER, taskNumber);
         cv.put(COLUMN_GRADING_PERIOD_TASK, period);
+        cv.put(COLUMN_DUE_DATE, due);
 
         long result = db.insert(TABLE_MY_TASKS, null, cv);
         if(result == -1){
@@ -455,7 +456,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // UPDATE DATA OF task DATABASE
-    public void updateTask(String id, String taskType, String score, String description, String progress, String taskNumber, String period){
+    public void updateTask(String id, String taskType, String score, String description, String progress, String taskNumber, String period, String due){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -465,6 +466,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_PROGRESS, progress);
         contentValues.put(COLUMN_TASK_NUMBER, taskNumber);
         contentValues.put(COLUMN_GRADING_PERIOD_TASK, period);
+        contentValues.put(COLUMN_DUE_DATE, due);
 
         long result = db.update(TABLE_MY_TASKS, contentValues, "id_number=" + id, null);
         if(result == -1){

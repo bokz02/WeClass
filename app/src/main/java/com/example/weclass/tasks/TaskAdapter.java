@@ -45,7 +45,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView _id, _parentTD, _taskType, _score, _description,_progress, _gradingPeriod;
+        TextView _id, _parentTD, _taskType, _score, _description,_progress, _gradingPeriod, _due;
         ImageButton _optionTask, _expand;
         OnNoteListener onNoteListener;
         ConstraintLayout constraintLayout;
@@ -65,6 +65,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             constraintLayout = itemView.findViewById(R.id.hiddenDescription);
             cardView = itemView.findViewById(R.id.cardViewRecView);
             _gradingPeriod = itemView.findViewById(R.id.gradingPeriodTaskRecView);
+            _due = itemView.findViewById(R.id.dueTextViewTaskRecView);
 
             this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
@@ -97,6 +98,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder._progress.setText(String.valueOf(taskItems.get(position).getProgress()));
         holder._id.setText(String.valueOf(taskItems.get(position).getTaskNumber()));
         holder._gradingPeriod.setText(String.valueOf(taskItems.get(position).getGradingPeriod()));
+        holder._due.setText(String.valueOf(taskItems.get(position).getDue()));
+
 
         if(holder._progress.getText().toString().equals("Completed")){
             holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.lightText));
@@ -152,6 +155,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                                 bundle.putString("task_score", String.valueOf(itemsTask.getScore()));
                                 bundle.putString("task_description", String.valueOf(itemsTask.getTaskDescription()));
                                 bundle.putString("period", String.valueOf(itemsTask.getGradingPeriod()));
+                                bundle.putString("due", String.valueOf(itemsTask.getDue()));
 
                                 intent.putExtra("Task", bundle);
                                 context.startActivity(intent);
