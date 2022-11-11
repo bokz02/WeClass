@@ -596,18 +596,4 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public byte[] loadImageFromDB(){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.query(true, TABLE_IMAGES, new String[]{COLUMN_IMAGE_IMAGES,},
-                null, null, null,null, COLUMN_ID_IMAGES + " DESC ", "1");
-        if (cursor.moveToFirst()){
-            @SuppressLint("Range") byte[] blob = cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE_IMAGES));
-            cursor.close();
-            return blob;
-        }
-        cursor.close();
-        return null;
-    }
-
 }

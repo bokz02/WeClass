@@ -1,33 +1,51 @@
 package com.example.weclass.studentlist;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Environment;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.weclass.BottomNavi;
+import com.example.weclass.CSVWriter;
 import com.example.weclass.ExtendedRecyclerView;
+import com.example.weclass.LockScreen;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -37,8 +55,10 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     ExtendedRecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
     View view;
+    ImageButton optionButton;
     TextView parentID, _subjectCode, _sort, _courseTitle,
-            noStudentTextView, _id, _studentSum, _archive;
+            noStudentTextView, _id, _studentSum, _archive
+            ,_schoolYear;
     DataBaseHelper dataBaseHelper;
     ArrayList<StudentItems> studentItems;
     StudentAdapter studentAdapter;
@@ -63,7 +83,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         sortList();     // SORT STUDENT LIST
         getSumOfStudents(); // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
         automaticSort();    //AUTOMATIC SORT
-
+        optionButton();
 
 
         return view;
@@ -226,7 +246,34 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         _id = view.findViewById(R.id.iDNumberStudentList);
         _studentSum = view.findViewById(R.id.summaryOfStudent);
         _archive = view.findViewById(R.id.archiveTextViewStudentList);
+        optionButton = view.findViewById(R.id.optionButtonStudentList);
+        _schoolYear = view.findViewById(R.id.schoolYearStudentList);
 
+    }
+
+    public void optionButton(){
+        optionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(getContext(), optionButton);
+                popupMenu.getMenuInflater().inflate(R.menu.option_student_list, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.exportCSV:
+                                askForPermissions();
+                                break;
+                        }
+                        return false;
+                    }
+                });
+
+
+                popupMenu.show();
+            }
+        });
     }
 
     // SEARCH FUNCTION FOR LIST OF STUDENTS
@@ -271,6 +318,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             _subjectCode.setText(bundle.getString("SubjectCode"));
             _courseTitle.setText(bundle.getString("CourseCode"));
             _archive.setText(bundle.getString("archive_text"));
+            _schoolYear.setText(bundle.getString("sy"));
         }
     }
 
@@ -330,5 +378,69 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(BUNDLE_RECYCLER_LAYOUT, recyclerView.getLayoutManager().onSaveInstanceState());
+    }
+
+    public void askForPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivity(intent);
+                return;
+            }
+            exportDB();
+        }
+    }
+
+
+    private void exportDB() {
+
+        DataBaseHelper dbhelper = new DataBaseHelper(getContext());
+        File exportDir = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS);
+        if (!exportDir.exists()){
+            boolean mkdir = exportDir.mkdirs();
+
+            if (!mkdir) {
+                Toast.makeText(getContext(), "failed" , Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getContext(), "Success" , Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        File file = new File(exportDir,  ""+_courseTitle.getText().toString()+"_"+ _subjectCode.getText().toString() +
+                "_Student_list_" + _schoolYear.getText().toString() +""+".csv");
+        try
+        {
+            boolean createFile = file.createNewFile();
+            if (!createFile){
+
+            }
+
+            CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
+            SQLiteDatabase db = dbhelper.getReadableDatabase();
+            String[] columns = {"Last name","First name","Gender", "Present", "Absences", "Midterm grade", "Finals grade", "Final rating"};
+
+            Cursor cursor = db.rawQuery("SELECT * FROM "
+                    + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                    + DataBaseHelper.COLUMN_PARENT_ID + "="
+                    + parentID.getText().toString(),null);
+
+
+            csvWrite.writeNext(columns);
+            while(cursor.moveToNext())
+            {
+                //Which column you want to export
+                String[] arrStr ={cursor.getString(2),cursor.getString(3), cursor.getString(5), cursor.getString(6)
+                        , cursor.getString(7), cursor.getString(9), cursor.getString(10), cursor.getString(11)};
+                csvWrite.writeNext(arrStr);
+            }
+            Toast.makeText(getContext(), "Downloaded to storage/downloads" , Toast.LENGTH_SHORT).show();
+            csvWrite.close();
+            cursor.close();
+        }
+        catch(Exception sqlEx)
+        {
+            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
+            Toast.makeText(getContext(), "Error occurred" , Toast.LENGTH_SHORT).show();
+        }
     }
 }

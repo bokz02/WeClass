@@ -1,27 +1,37 @@
 package com.example.weclass.attendance;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.os.Environment;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.weclass.CSVWriter;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.StudentItems;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,8 +42,11 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<AttendanceItems> attendanceItems, id, parentID;
     AttendanceAdapter attendanceAdapter;
+    ImageButton optionButton;
     DataBaseHelper dataBaseHelper;
-    TextView _noStudentsTextView, _id, _parentID, dateTimeDisplay, _sortAttendance, _always0;
+    TextView _noStudentsTextView, _id, _parentID,
+            dateTimeDisplay, _sortAttendance, _always0, _subjectCode,
+            _sy, _course;
     View view;
     View _noStudentsView;
     EditText _search;
@@ -55,6 +68,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         displayDate();
         sortAttendance();
         automaticSort();
+        optionButton();
 
         return view;
     }
@@ -80,6 +94,10 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         _search = view.findViewById(R.id.searchAttendanceEditText);
         _sortAttendance = view.findViewById(R.id.sortAttendance);
         _always0 = view.findViewById(R.id.always0Attendance);
+        optionButton = view.findViewById(R.id.optionButtonAttendance);
+        _subjectCode = view.findViewById(R.id.subjectCodeAttendance);
+        _sy = view.findViewById(R.id.schoolYearAttendance);
+        _course = view.findViewById(R.id.courseAttendance);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
@@ -139,6 +157,9 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         Bundle bundle = getArguments();
         if (bundle != null) {
             _parentID.setText(bundle.getString("IDParent"));
+            _subjectCode.setText(bundle.getString("SubjectCode"));
+            _sy.setText(bundle.getString("sy"));
+            _course.setText(bundle.getString("CourseCode"));
         }
     }
 
@@ -202,5 +223,86 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     @Override
     public void onNoteClick(int position) {
 
+    }
+
+    public void optionButton() {
+        optionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(getContext(), optionButton);
+                popupMenu.getMenuInflater().inflate(R.menu.option_student_list, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.exportCSV:
+                                askForPermissions();
+                                break;
+                        }
+                        return false;
+                    }
+                });
+
+
+                popupMenu.show();
+            }
+        });
+    }
+
+    public void askForPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivity(intent);
+                return;
+            }
+            exportDB();
+        }
+    }
+
+    private void exportDB() {
+        DataBaseHelper dbhelper = new DataBaseHelper(getContext());
+        File exportDir = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS);
+        if (!exportDir.exists()) {
+            boolean mkdir = exportDir.mkdirs();
+
+            if (!mkdir) {
+                Toast.makeText(getContext(), "failed", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        File file = new File(exportDir, _subjectCode.getText().toString() + "_Attendance_" +_course.getText().toString()+"_"+ _sy.getText().toString() + ".csv");
+        try {
+            boolean createFile = file.createNewFile();
+            if (!createFile) {
+
+            }
+
+            CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
+            SQLiteDatabase db = dbhelper.getReadableDatabase();
+            String[] columns = {"Last name", "Date", "Present", "Absent"};
+
+            Cursor cursor = db.rawQuery("SELECT * FROM "
+                    + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                    + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "="
+                    + _parentID.getText().toString(), null);
+
+
+            csvWrite.writeNext(columns);
+            while (cursor.moveToNext()) {
+                //Which column you want to export
+                String[] arrStr = {cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)};
+                csvWrite.writeNext(arrStr);
+            }
+            Toast.makeText(getContext(), "Downloaded to storage/downloads", Toast.LENGTH_SHORT).show();
+            csvWrite.close();
+            cursor.close();
+        } catch (Exception sqlEx) {
+            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
+            Toast.makeText(getContext(), "Error occurred", Toast.LENGTH_SHORT).show();
+        }
     }
 }

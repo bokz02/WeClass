@@ -3,6 +3,9 @@
     package="com.example.weclass">
 
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        android:minSdkVersion="30" />
 
     <application
         android:allowBackup="true"

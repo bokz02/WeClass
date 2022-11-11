@@ -41,11 +41,19 @@
             android:text="Parent ID"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.83"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--  app:drawableEndCompat="@drawable/ic_arrow_down1"-->
+        <ImageButton
+            android:id="@+id/optionButtonStudentList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_subject_option"
+            android:backgroundTint="@color/black1"
+            android:layout_marginEnd="-10dp"
+            app:layout_constraintEnd_toEndOf="@+id/sortStudentList"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/archiveTextViewStudentList"
@@ -73,16 +81,22 @@
             android:id="@+id/courseTitleStudentList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="BSCS 3"
-            android:textAllCaps="true"
+            android:text="course"
             android:textColor="@color/black1"
-            android:textSize="16sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/subjectCodeRecords"
-            app:layout_constraintEnd_toStartOf="@+id/guide4"
-            app:layout_constraintTop_toTopOf="@+id/subjectCodeRecords" />
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/parentID"
+            app:layout_constraintStart_toStartOf="@+id/parentID"
+            app:layout_constraintTop_toBottomOf="@+id/parentID" />
+
+        <TextView
+            android:id="@+id/schoolYearStudentList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="school year"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/courseTitleStudentList"
+            app:layout_constraintStart_toStartOf="@+id/courseTitleStudentList"
+            app:layout_constraintTop_toBottomOf="@+id/courseTitleStudentList" />
 
         <TextView
             android:id="@+id/studentListSubjectCode"

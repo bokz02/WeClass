@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 
 import com.example.weclass.archive.ArchiveItems;
 import com.example.weclass.attendance.Attendance;
-import com.example.weclass.login.LoginActivity;
 import com.example.weclass.ratings.Ratings;
 import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.subject.SubjectItems;
@@ -32,7 +30,8 @@ import com.google.android.material.navigation.NavigationBarView;
 public class BottomNavi extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     BottomNavigationView bottomNavigationView;
-    TextView parentID, subjectCode, courseName, _archive;
+    TextView parentID, subjectCode, courseName, _archive
+            , _schoolYear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +81,12 @@ public class BottomNavi extends AppCompatActivity {
             int idParent = subjectItems.getId();
             String codeSubject = subjectItems.getSubjectCode();
             String nameCourse = subjectItems.getCourse();
+            String sy = subjectItems.getSchoolYearSubject();
 
             parentID.setText(String.valueOf(idParent));
             subjectCode.setText(codeSubject);
             courseName.setText(nameCourse);
+            _schoolYear.setText(sy);
 
         }else {
             Intent intent = getIntent();
@@ -125,6 +126,7 @@ public class BottomNavi extends AppCompatActivity {
         bundle.putString("SubjectCode", subjectCode.getText().toString());
         bundle.putString("CourseCode", courseName.getText().toString());
         bundle.putString("archive_text", _archive.getText().toString());
+        bundle.putString("sy", _schoolYear.getText().toString());
 
         studentList.setArguments(bundle);
         fragmentLoader(studentList);
@@ -137,7 +139,7 @@ public class BottomNavi extends AppCompatActivity {
         bundle.putString("IDParent", parentID.getText().toString());
         bundle.putString("SubjectCode", subjectCode.getText().toString());
         bundle.putString("CourseCode", courseName.getText().toString());
-
+        bundle.putString("sy", _schoolYear.getText().toString());
         record.setArguments(bundle);
         fragmentLoader(record);
     }
@@ -147,6 +149,9 @@ public class BottomNavi extends AppCompatActivity {
         Attendance attendance = new Attendance();
         Bundle bundle = new Bundle();
         bundle.putString("IDParent", parentID.getText().toString());
+        bundle.putString("SubjectCode", subjectCode.getText().toString());
+        bundle.putString("sy", _schoolYear.getText().toString());
+        bundle.putString("CourseCode", courseName.getText().toString());
 
         attendance.setArguments(bundle);
         fragmentLoader(attendance);
@@ -159,6 +164,7 @@ public class BottomNavi extends AppCompatActivity {
         bundle.putString("IDParent", parentID.getText().toString());
         bundle.putString("SubjectCode", subjectCode.getText().toString());
         bundle.putString("CourseCode", courseName.getText().toString());
+        bundle.putString("sy", _schoolYear.getText().toString());
 
         ranking.setArguments(bundle);
         fragmentLoader(ranking);
@@ -191,6 +197,7 @@ public class BottomNavi extends AppCompatActivity {
         subjectCode = findViewById(R.id.subjectCodeBottomNavi);
         courseName = findViewById(R.id.courseNameBottomNavi);
         _archive = findViewById(R.id.archiveTextViewBottomNavi);
+        _schoolYear = findViewById(R.id.schoolYearTextViewBottomNavigation);
 
     }
 

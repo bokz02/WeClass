@@ -66,16 +66,26 @@
             app:layout_constraintStart_toStartOf="@+id/subjectCodeRecords"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
 
+        <ImageButton
+            android:id="@+id/optionButtonTasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="-10dp"
+            android:background="@drawable/ic_subject_option"
+            android:backgroundTint="@color/black1"
+            app:layout_constraintEnd_toStartOf="@+id/guide4"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/parentIDRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
             android:text="parent id"
-            android:textSize="16sp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -96,14 +106,21 @@
             android:id="@+id/courseTextViewTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="BSCS 3"
-            android:textAllCaps="true"
-            android:textColor="@color/darkText"
-            android:textSize="14sp"
+            android:text="course"
             android:visibility="invisible"
-            app:layout_constraintEnd_toStartOf="@+id/parentIDRecord"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/parentIDRecord"
+            app:layout_constraintStart_toStartOf="@+id/parentIDRecord"
+            app:layout_constraintTop_toBottomOf="@+id/parentIDRecord" />
+
+        <TextView
+            android:id="@+id/schoolYearTasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sy"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/courseTextViewTask"
+            app:layout_constraintStart_toStartOf="@+id/courseTextViewTask"
+            app:layout_constraintTop_toBottomOf="@+id/courseTextViewTask" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddTask"

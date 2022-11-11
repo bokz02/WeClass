@@ -40,6 +40,7 @@ public class SubjectItems implements Parcelable {
         subjectName = in.readString();
         daySubject = in.readString();
         timeSubject = in.readString();
+        schoolYear = in.readString();
         id = in.readInt();
     }
 
@@ -143,6 +144,7 @@ public class SubjectItems implements Parcelable {
         parcel.writeString(subjectName);
         parcel.writeString(daySubject);
         parcel.writeString(timeSubject);
+        parcel.writeString(schoolYear);
         parcel.writeInt(id);
     }
 }
