@@ -3,14 +3,17 @@ package com.example.weclass;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,10 +22,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.weclass.archive.Archive;
 import com.example.weclass.dashboard.MainActivity;
@@ -32,6 +37,7 @@ import com.example.weclass.subject.Subject;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -48,31 +54,35 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageView button, button1, changeProfile, button2;
-    TextView userFullname, userEmail;
-
-
+    ImageView button, button1;
     SwipeRefreshLayout refreshLayout;
-    DatabaseReference referenceUsers;
+    SwitchMaterial toggleButton;
+    SharedPreferences sharedPreferences = null;
+    SharedPref sharedPref;
 
-    private StorageReference storageReference;
-    FirebaseAuth fauth;
-    ImageView profilepic;
-    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
+        if (sharedPref.loadNightModeState()){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        }else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        mAuth = FirebaseAuth.getInstance();
+
         initialize();
         navigationOpen();
         terms();
         aboutUs();
         refreshlayout();
+        setNightModeTheme(); // Button toggle for night mode
 
-        //Refresh
-
-        mAuth = FirebaseAuth.getInstance();
 
         //status bar
         Window window = getWindow();
@@ -90,6 +100,32 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         refreshlayout();
     }
 
+    // Button toggle for night mode
+    public void setNightModeTheme(){
+        if (sharedPref.loadNightModeState()){
+            toggleButton.setChecked(true);
+        }
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    sharedPref.setNightModeState(true);
+                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+                }else {
+                    sharedPref.setNightModeState(false);
+                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+                }
+
+            }
+        });
+    }
+
+
+
+
+
     private void refreshlayout() {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -100,6 +136,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
             }
         });
     }
+
     private void aboutUs() {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +148,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     }
 
 
-    public void terms (){
+    public void terms() {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,13 +158,14 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         });
     }
 
-    public void initialize(){
+    public void initialize() {
         toolbar = findViewById(R.id.toolbarSettings);
         navigationView = findViewById(R.id.navViewSettings);
         drawerLayout = findViewById(R.id.drawerSettings);
         button = findViewById(R.id.button);
         button1 = findViewById(R.id.button1);
         refreshLayout = findViewById(R.id.refreshLayout);
+        toggleButton = findViewById(R.id.darkModeButton);
 
     }
 
@@ -148,10 +186,9 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public void onBackPressed() {
 
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);  // When back button is pressed while navigation drawer is open, it will close the navigation drawer.
-        }
-        else {
+        } else {
             new AlertDialog.Builder(this)
                     .setMessage("Are you sure you want to exit?")
                     .setCancelable(false)
@@ -163,14 +200,9 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.drawerSubject:
                 Intent intent = new Intent(this, Subject.class);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.drawerSettings:
-                intent = new Intent(this, Settings.class);
                 startActivity(intent);
                 finish();
                 break;

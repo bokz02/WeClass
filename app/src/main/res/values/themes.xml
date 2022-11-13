@@ -14,7 +14,10 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <!-- Customize your theme here. -->
+
     </style>
+
+
 
    <style name="BottomAppBarOverlay">
        <item name="colorControlNormal">@color/white</item>
@@ -24,7 +27,9 @@
     <style name="Theme.Dialog" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/navigation_text_color</item>
 
+
     </style>
+
 
     <style name="Theme.TimeDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
         <item name="colorAccent">@color/navigation_text_color</item>
@@ -65,11 +70,12 @@
 
     -<style parent="Theme.MaterialComponents.DayNight.NoActionBar" name="SplashScreen">
 
-    <item name="android:windowBackground">@drawable/bg_splash</item>
-    <item name="android:windowTranslucentStatus">true</item>
-    <item name="android:windowTranslucentNavigation">true</item>
-    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
 
-</style>
+    </style>
+
 
 </resources>
