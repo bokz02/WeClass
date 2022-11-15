@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".archive.Archive"
-    android:background="@drawable/bgp_2"
     android:id="@+id/drawerArchive">
 
     <com.google.android.material.navigation.NavigationView
@@ -17,7 +16,6 @@
         app:itemTextAppearance="@style/PoppinsTextViewStyle"
         app:itemIconTint="@color/black1"
         app:itemTextColor="@color/black1"
-        android:background="@color/white"
         app:menu="@menu/main_menu">
 
     </com.google.android.material.navigation.NavigationView>

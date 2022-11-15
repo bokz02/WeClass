@@ -74,7 +74,8 @@
             android:exported="false" />
         <activity
             android:name=".AboutUs"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.WeClass.CustomTheme"/>
         <activity
             android:name=".taskGrade.TaskGrade"
             android:exported="false"
@@ -97,7 +98,7 @@
         <activity
             android:name=".TermsAndCondition"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.WeClass.CustomTheme"/>
         <activity
             android:name=".studentlist.AddStudent"
             android:exported="false"
@@ -132,7 +133,7 @@
         <activity
             android:name=".subject.Subject"
             android:exported="false"
-            android:theme="@style/Theme.WeClass"
+            android:theme="@style/Theme.Dialog"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".dashboard.MainActivity"

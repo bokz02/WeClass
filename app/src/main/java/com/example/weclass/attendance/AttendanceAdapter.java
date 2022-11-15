@@ -87,6 +87,10 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         return new  MyViewHolder(view, mOnNoteListener);
     }
 
+
+
+
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         AttendanceItems itemsAttendance = attendanceItems.get(position);
@@ -144,7 +148,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                 // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
                 if (cursor.moveToFirst()) {
-
                     Snackbar snackbar = Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
                             + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT);
                     snackbar.show();

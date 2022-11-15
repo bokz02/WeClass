@@ -49,7 +49,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
@@ -58,9 +57,9 @@
             android:layout_marginEnd="180dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Final ratings"
-            android:textColor="@color/black1"
             android:textSize="25sp"
             android:textStyle="bold"
+            android:textColor="@color/darkText"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guide3"

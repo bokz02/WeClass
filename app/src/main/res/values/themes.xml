@@ -17,22 +17,26 @@
 
     </style>
 
-
-
    <style name="BottomAppBarOverlay">
        <item name="colorControlNormal">@color/white</item>
 
    </style>
 
     <style name="Theme.Dialog" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/navigation_text_color</item>
-
+        <item name="colorPrimary">@color/white</item>
 
     </style>
 
 
     <style name="Theme.TimeDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
         <item name="colorAccent">@color/navigation_text_color</item>
+        <item name="colorPrimary">@color/black1</item>
+        <item name="colorSecondaryVariant">@color/darkText</item>
+
+        <!-- Switch button -->
+        <item name="colorControlActivated">#E57373</item>
+        <item name="colorSwitchThumbNormal">@color/white1</item>
+        <item name="trackTint">#F44336</item>
     </style>
 
     <style name="FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
@@ -53,6 +57,17 @@
 
     </style>
 
+    <style name="TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/black1</item>
+    </style>
+    <!-- CardView Background color -->
+    <style name="CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
 
     <style name="PoppinsTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/poppins_regular</item>
@@ -66,16 +81,16 @@
 
     </style>
 
+
     <!-- SplashScreen -->
 
     -<style parent="Theme.MaterialComponents.DayNight.NoActionBar" name="SplashScreen">
 
-        <item name="android:windowBackground">@drawable/bg_splash</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
+    <item name="android:windowBackground">@drawable/bg_splash</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowTranslucentNavigation">true</item>
+    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
 
-    </style>
-
+</style>
 
 </resources>

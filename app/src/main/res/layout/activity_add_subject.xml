@@ -78,7 +78,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC"
+        android:background="@color/view"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
@@ -106,6 +106,7 @@
                 android:textSize="12sp" />
 
             <TextView
+                style="@style/TextView"
                 android:id="@+id/semesterAddSubject"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
@@ -113,7 +114,6 @@
                 android:clickable="true"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Semester"
-                android:textColor="@color/black1"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -140,6 +140,7 @@
                 android:textSize="12sp" />
 
             <TextView
+                style="@style/TextView"
                 android:id="@+id/schoolYearAddSubject"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
@@ -149,7 +150,6 @@
                 android:clickable="true"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Select Year"
-                android:textColor="@color/black1"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -161,7 +161,7 @@
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC" />
+        android:background="@color/view"  />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -243,7 +243,7 @@
         android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC" />
+        android:background="@color/view"  />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -282,7 +282,7 @@
         android:id="@+id/view4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC" />
+        android:background="@color/view"  />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -369,7 +369,7 @@
         android:id="@+id/view5"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC" />
+        android:background="@color/view" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -408,7 +408,7 @@
         android:id="@+id/view6"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC" />
+        android:background="@color/view"  />
 
 
     <LinearLayout
@@ -495,7 +495,7 @@
         android:id="@+id/view7"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC" />
+        android:background="@color/view" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -536,14 +536,14 @@
         android:id="@+id/view8"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC" />
+        android:background="@color/view" />
 
 
     <View
         android:id="@+id/view9"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC" />
+        android:background="@color/view"  />
 
 
     <LinearLayout
@@ -556,6 +556,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancelButtonSubject"
+            style="@style/TextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -563,7 +564,6 @@
             android:background="?android:attr/selectableItemBackground"
             android:text="Cancel"
             android:textAllCaps="false"
-            android:textColor="@color/darkText"
             android:textSize="14sp" />
 
         <com.google.android.material.button.MaterialButton
@@ -574,8 +574,8 @@
             android:layout_weight="1"
             android:background="?android:attr/selectableItemBackground"
             android:text="Add"
+            style="@style/TextView"
             android:textAllCaps="false"
-            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:cornerRadius="5dp"
             app:rippleColor="@color/black3" />

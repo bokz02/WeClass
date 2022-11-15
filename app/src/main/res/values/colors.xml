@@ -17,6 +17,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dirty_white">#F1F1F1</color>
 
+    //light mode
+    <color name="drawableTint">#131313</color>
+    <color name="dialogBox">#FFFFFFFF</color>
+    <color name="view">#ECECEC</color>
+    <color name="Fab">#FFFFFFFF</color>
+
     //red
     <color name="red1">#C62828</color>
     <color name="red2">#da4e4e</color>
@@ -31,8 +37,7 @@
     <color name="navigation_text_color">#272727</color>
     <color name="navigation_text_color_pressed">#272727</color>
 
-
-    <color name="editTextUnderline">#888888</color>
+    <color name="editTextUnderline">#CACACA</color>
     <color name="btmNaviColor">#747474</color>
     <color name="cancelButtonPressed">#7A7A7A</color>
     <color name="cancelButtonNotPressed">#DBDBDB</color>

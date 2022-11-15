@@ -8,6 +8,7 @@
     app:cardElevation="5dp"
     android:clickable="true"
     android:focusable="true"
+    app:cardBackgroundColor="@color/Fab"
     app:rippleColor="@color/lightText"
     android:layout_margin="5dp">
 
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Subject code"
             android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/black"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/courseRecViewArchive" />
@@ -57,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text="Subject title"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecViewArchive" />
@@ -89,13 +90,13 @@
             android:id="@+id/timeTextViewRecViewArchive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
             android:paddingStart="5dp"
             android:text="8:00 AM"
-            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/darkText"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/dateTextViewRecViewArchive"
-            app:layout_constraintTop_toTopOf="@+id/dateTextViewRecViewArchive" />
+            app:layout_constraintStart_toStartOf="@+id/imageView2Archive"
+            app:layout_constraintTop_toBottomOf="@+id/dateTextViewRecViewArchive" />
 
         <TextView
             android:id="@+id/separator"
@@ -106,19 +107,19 @@
             android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/timeTextViewRecViewArchive"
-            app:layout_constraintTop_toTopOf="@+id/dateTextViewRecViewArchive" />
+            app:layout_constraintTop_toTopOf="@+id/timeTextViewRecViewArchive" />
 
         <TextView
             android:id="@+id/timeEndTextViewRecViewArchive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
             android:paddingStart="5dp"
             android:text="8:00 AM"
-            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/separator"
-            app:layout_constraintTop_toTopOf="@+id/dateTextViewRecViewArchive" />
+            app:layout_constraintTop_toTopOf="@+id/timeTextViewRecViewArchive" />
 
         <TextView
             android:id="@+id/semesterRecViewArchive"
@@ -126,7 +127,7 @@
             android:layout_height="wrap_content"
             android:text="Semester"
             android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/black"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -137,7 +138,7 @@
             android:layout_height="wrap_content"
             android:text="Sy"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/semesterRecViewArchive"
             app:layout_constraintTop_toBottomOf="@+id/semesterRecViewArchive" />

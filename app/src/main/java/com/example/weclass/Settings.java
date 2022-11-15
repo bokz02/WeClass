@@ -67,10 +67,16 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
         if (sharedPref.loadNightModeState()){
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         }else {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.setStatusBarColor(Color.WHITE);
         }
 
         super.onCreate(savedInstanceState);
@@ -84,12 +90,6 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         setNightModeTheme(); // Button toggle for night mode
 
 
-        //status bar
-        Window window = getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        window.setStatusBarColor(Color.WHITE);
     }
 
     @Override

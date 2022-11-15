@@ -1,10 +1,12 @@
 package com.example.weclass.subject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.weclass.R;
+import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -38,10 +41,20 @@ public class AddSubjectActivity extends AppCompatActivity {
     int index;
     List<String> colors = new ArrayList<>();
     private List<String> daysSelected;
-
+    SharedPreferences sharedPreferences = null;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
+        if (sharedPref.loadNightModeState()){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        }else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_subject);
 

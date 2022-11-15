@@ -126,7 +126,7 @@
             android:id="@+id/view1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ECECEC"
+            android:background="@color/view"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <LinearLayout
@@ -156,7 +156,7 @@
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ECECEC"
+            android:background="@color/view"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <LinearLayout
@@ -186,7 +186,7 @@
             android:id="@+id/view3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ECECEC"
+            android:background="@color/view"
             app:layout_constraintEnd_toEndOf="parent" />
 
 
@@ -220,7 +220,7 @@
             android:id="@+id/view4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ECECEC"
+            android:background="@color/view"
             app:layout_constraintEnd_toEndOf="parent" />
 
 
@@ -253,7 +253,7 @@
             android:id="@+id/view5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ECECEC"
+            android:background="@color/view"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <LinearLayout
@@ -286,7 +286,7 @@
             android:id="@+id/view6"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ECECEC"
+            android:background="@color/view"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <LinearLayout

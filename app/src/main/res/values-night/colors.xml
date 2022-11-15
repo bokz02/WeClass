@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="drawableTint">#adada1</color>
+    <color name="dialogBox">#272727</color>
+    <color name="view">#2C2C2C</color>
+    <color name="darkText">#f0f0f0</color>
+    <color name="Fab">#272727</color>
+    <color name="black1">#f0f0f0</color>
+</resources>

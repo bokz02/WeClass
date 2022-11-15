@@ -1,10 +1,12 @@
 package com.example.weclass.tasks;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import com.example.weclass.DatePickerFragment;
 import com.example.weclass.R;
+import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.EditStudent;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -34,10 +37,16 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
     String selectedTask, selectedProgress, selectedPeriod;
     Button _cancel, _update;
     ImageButton _backButton;
-
+    SharedPreferences sharedPreferences = null;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (sharedPref.loadNightModeState()){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 

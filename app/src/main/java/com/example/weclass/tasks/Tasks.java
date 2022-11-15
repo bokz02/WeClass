@@ -56,6 +56,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
     View _noFile;
     int lastFirstVisiblePosition;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

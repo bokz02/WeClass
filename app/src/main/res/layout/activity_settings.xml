@@ -8,13 +8,11 @@
     android:fitsSystemWindows="true"
     tools:context=".Settings">
 
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navViewSettings"
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/white"
         app:headerLayout="@layout/header"
         app:itemIconTint="@color/black1"
         app:itemTextAppearance="@style/PoppinsTextViewStyle"
@@ -70,7 +68,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="3dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="@string/WeClass"
+                        android:text="Settings"
                         android:textColor="@color/black1"
                         android:textSize="25sp"
                         android:textStyle="bold"
@@ -82,19 +80,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Settings"
-                android:textColor="@color/darkText"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/guide1"
-                app:layout_constraintTop_toTopOf="@+id/guide3"
-                tools:layout_editor_absoluteY="122dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guide1"
@@ -112,47 +97,18 @@
 
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="88dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.18" />
-
-
-            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guide5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.2" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.3" />
+                app:layout_constraintGuide_percent="0.1" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guide8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.27" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.37" />
+                app:layout_constraintGuide_percent="0.17" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -160,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.4" />
+                app:layout_constraintGuide_percent="0.18" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -168,7 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.47" />
+                app:layout_constraintGuide_percent="0.25" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -176,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5" />
+                app:layout_constraintGuide_percent="0.26" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -184,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.57" />
+                app:layout_constraintGuide_percent="0.33" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -192,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.6" />
+                app:layout_constraintGuide_percent="0.34" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -200,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.67" />
+                app:layout_constraintGuide_percent="0.41" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView9"
@@ -208,6 +164,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="@color/Fab"
                 app:layout_constraintBottom_toTopOf="@+id/guide8"
                 app:layout_constraintEnd_toStartOf="@+id/guide2"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -216,8 +173,8 @@
                 app:layout_constraintTop_toTopOf="@+id/guide5">
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:src="@drawable/set_dark"
@@ -229,10 +186,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="60dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Dark mode"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textSize="13dp" />
 
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
@@ -247,47 +203,6 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/materialCardView10"
-                style="@style/CardView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/guide9"
-                app:layout_constraintEnd_toStartOf="@+id/guide2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@id/guide2"
-                app:layout_constraintStart_toStartOf="@id/guide1"
-                app:layout_constraintTop_toTopOf="@+id/guide7">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="15dp"
-                    android:src="@drawable/setnotif"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="1dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="60dp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="Notifications"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="20dp"
-                    android:scaleType="center" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView11"
                 style="@style/CardView"
                 android:layout_width="0dp"
@@ -297,6 +212,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guide2"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/guide2"
+                app:cardBackgroundColor="@color/Fab"
                 app:layout_constraintStart_toStartOf="@id/guide1"
                 app:layout_constraintTop_toTopOf="@+id/guide10">
 
@@ -307,8 +223,8 @@
 
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:src="@drawable/set_terms"
@@ -320,10 +236,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="60dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Terms of Services"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textSize="13dp" />
 
 
                 <ImageView
@@ -349,6 +264,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/guide2"
                 app:layout_constraintStart_toStartOf="@id/guide1"
+                app:cardBackgroundColor="@color/Fab"
                 app:layout_constraintTop_toTopOf="@+id/guide12">
 
                 <ImageButton
@@ -357,8 +273,8 @@
                     android:background="@drawable/transparent_bg" />
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:src="@drawable/set_aboutus"
@@ -370,10 +286,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="60dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="About us"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textSize="13dp"
+                    />
 
                 <ImageView
                     android:id="@+id/button1"
@@ -397,6 +313,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/guide2"
                 app:layout_constraintStart_toStartOf="@id/guide1"
+                app:cardBackgroundColor="@color/Fab"
                 app:layout_constraintTop_toTopOf="@+id/guide14"
                 app:layout_constraintVertical_bias="0.0">
 
@@ -407,8 +324,8 @@
                     android:background="@drawable/transparent_bg" />
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:src="@drawable/set_help"
@@ -420,10 +337,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="60dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Help"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textSize="13dp" />
 
                 <ImageView
                     android:layout_width="30dp"
