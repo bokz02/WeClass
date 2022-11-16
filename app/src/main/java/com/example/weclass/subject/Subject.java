@@ -14,6 +14,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -25,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,6 +43,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -69,11 +72,29 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     private StorageReference storageReference;
     FirebaseAuth fauth;
     ImageView profilepic;
+    SharedPreferences sharedPreferences = null;
+    SharedPref sharedPref;
+    SwitchMaterial toggleButton;
 
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
+        if (sharedPref.loadNightModeState()){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.setStatusBarColor(Color.WHITE);
+        }
 
         //This will set the theme depends on save state of switch button
         sharedPref = new SharedPref(this);
@@ -97,17 +118,12 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
         initializeAdapter(); // INITIALIZE ADAPTER FOR RECYCLERVIEW
         showHideFloatingActionButton(); // SHOW/HIDE FLOATING ACTION BUTTON WHEN SCROLLING
 
-
         mAuth = FirebaseAuth.getInstance();
         //status bar white background
-        Window window = getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        window.setStatusBarColor(Color.WHITE);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide action bar title
     }
+
 
     // RESUME ALL FUNCTION AFTER THIS ACTIVITY BEING HIDE
     @Override

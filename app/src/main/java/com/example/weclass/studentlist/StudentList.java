@@ -3,6 +3,7 @@ package com.example.weclass.studentlist;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -40,6 +42,7 @@ import com.example.weclass.CSVWriter;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.LockScreen;
 import com.example.weclass.R;
+import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -65,6 +68,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     EditText searchStudent;
     View noFile_;
     int lastFirstVisiblePosition;
+    SharedPreferences sharedPreferences = null;
+    SharedPref sharedPref;
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
 
 

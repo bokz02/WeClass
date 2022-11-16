@@ -17,6 +17,7 @@
         android:backgroundTint="@color/darkText"
         android:layout_marginTop="20dp"
         android:layout_marginStart="25dp"
+        android:visibility="gone"
         />
 
 
@@ -31,7 +32,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="30dp"
             android:textStyle="bold"
-            android:textColor="@color/lightText"/>
+            android:textColor="@color/darkText"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,12 +40,12 @@
             android:text="Last Updated June 2022"
             android:layout_marginStart="35dp"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="#909C9B"/>
+            android:textColor="@color/darkText"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/lightText"
+            android:background="@color/view"
             android:layout_marginTop="10dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="40dp"/>
@@ -71,6 +72,7 @@
             android:fontFamily="@font/poppins_regular"
             android:justificationMode="inter_word"
             android:layout_marginTop="10dp"
+            android:textColor="@color/darkText"
             android:text="These terms and conditions of use Terms (&quot;Terms&quot;) apply to the mobile application named WeClass, version 1.0 (&quot;App&quot;) and any documentation that we make available to you in connection with the App (&quot;Documents&quot;)."/>
 
         <TextView
@@ -81,8 +83,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="20dp"
+            android:textColor="@color/darkText"
             android:textSize="20sp"
-            android:textColor="@color/lightText"
             android:textStyle="bold"
        />
 
@@ -93,6 +95,7 @@
             android:text="1. In order to use the App, you must have a compatible device which meets the following minimum specifications: Any compatible device to which download the App will be known as a (&quot;Device&quot;) for the purposes of these Terms. "
             android:fontFamily="@font/poppins_regular"
             android:layout_marginStart="30dp"
+            android:textColor="@color/darkText"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="10dp" />
 
@@ -100,6 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:justificationMode="inter_word"
+            android:textColor="@color/darkText"
             android:text="2. Subject to these Terms, the App and any services provided via the App (&quot;Services&quot;) are intended for (and your license herein is limited to) use by teachers to assist them with organization and management of classes and students. The App and Services are not intended to be used by another user or for any other purpose."
             android:fontFamily="@font/poppins_regular"
             android:layout_marginStart="30dp"
@@ -113,6 +117,7 @@
             android:text="3. Please read these Terms carefully before downloading, accessing or using the App. By downloaing the App or clicking the &quot;Accept&quot; button you agree to these Terms, which will bind you."
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+            android:textColor="@color/darkText"
             android:fontFamily="@font/poppins_regular"
             android:layout_marginTop="10dp" />
 
@@ -122,6 +127,7 @@
             android:justificationMode="inter_word"
             android:text="4. If you do not agree to these Terms, we will not license the App and Documents to you and you must stop the downloading process now by clicking on the &quot;Cancel&quot; button. In this case the downloading process will terminate. "
             android:layout_marginStart="30dp"
+            android:textColor="@color/darkText"
             android:layout_marginEnd="30dp"
             android:fontFamily="@font/poppins_regular"
             android:layout_marginTop="10dp" />
@@ -134,6 +140,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/darkText"
             android:fontFamily="@font/poppins_regular"
             android:layout_marginBottom="50dp"/>
         </LinearLayout>

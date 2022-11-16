@@ -66,7 +66,7 @@
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC"
+        android:background="@color/view"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
@@ -80,10 +80,10 @@
             android:id="@+id/editStudentProfilePicture"
             android:layout_width="125dp"
             android:layout_height="125dp"
-            android:background="@drawable/add_profile_1"
+            android:background="@drawable/prof1"
             android:backgroundTint="@color/red1"
             android:clickable="true"
-            app:civ_border_color="@color/white"
+            app:civ_border_color="@color/Fab"
             app:civ_border_width="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -95,7 +95,7 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC"
+        android:background="@color/view"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
@@ -125,39 +125,7 @@
         android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_weight="1">
-
-        <EditText
-            android:id="@+id/editStudMiddleName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/transparent_bg"
-            android:fontFamily="@font/poppins_regular"
-            android:gravity="center"
-            android:hint="Middle name"
-            android:inputType="textCapWords"
-            android:maxLength="30"
-            android:maxLines="1"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view12" />
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view4"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#ECECEC"
+        android:background="@color/view"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
@@ -187,10 +155,42 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/view"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
+        <EditText
+            android:id="@+id/editStudMiddleName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparent_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:hint="Middle name"
+            android:inputType="textCapWords"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view12" />
+
+
+    </LinearLayout>
+
+    <View
         android:id="@+id/view5"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC"
+        android:background="@color/view"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
@@ -223,7 +223,7 @@
         android:id="@+id/view6"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ECECEC"
+        android:background="@color/view"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout

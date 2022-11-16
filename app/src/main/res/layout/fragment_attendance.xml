@@ -39,8 +39,6 @@
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center_vertical"
                     android:hint="Search"
-                    android:textColor="@color/black"
-                    android:textColorHint="#ACACAC"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -127,12 +125,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/round_corner_calcell"
-            android:backgroundTint="#FF00897B"
+            android:backgroundTint="#346751"
             android:fontFamily="@font/poppins_regular"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="Present"
-            android:textColor="#FF00897B"
+            android:textColor="#346751"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -141,18 +139,19 @@
             android:id="@+id/absentTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="4dp"
             android:background="@drawable/round_corner_calcell"
-            android:backgroundTint="@color/progressColorToDo"
+            android:backgroundTint="#C84B31"
             android:fontFamily="@font/poppins_regular"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="Absent"
-            android:textColor="@color/progressColorToDo"
+            android:textColor="#C84B31"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/presentTextView"
             app:layout_constraintEnd_toStartOf="@+id/presentTextView"
-            app:layout_constraintTop_toTopOf="@+id/presentTextView" />
+            app:layout_constraintTop_toTopOf="@+id/presentTextView"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.example.weclass.ExtendedRecyclerView
             android:id="@+id/attendanceRecyclerView"
@@ -167,6 +166,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
+            android:textColor="@color/darkText"
             android:id="@+id/subjectCodeRecords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -174,7 +174,6 @@
             android:layout_marginEnd="216dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Attendance"
-            android:textColor="@color/black1"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guide3"
@@ -201,7 +200,7 @@
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:text="Sort"
-            android:textColor="@color/darkText"
+            style="@style/TextView"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/currentDateTextView"
@@ -215,7 +214,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="-10dp"
             android:background="@drawable/ic_subject_option"
-            android:backgroundTint="@color/black1"
             app:layout_constraintEnd_toStartOf="@+id/guide4"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -249,13 +247,13 @@
             app:layout_constraintTop_toBottomOf="@+id/courseAttendance" />
 
         <TextView
+            android:textColor="@color/darkText"
             android:id="@+id/currentDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="Monday, Feb 15,2022"
             android:textAllCaps="false"
-            android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guide3"

@@ -10,7 +10,7 @@
     android:clickable="true"
     android:focusable="true"
     app:cardElevation="5dp"
-    app:cardBackgroundColor="@color/white"
+    style="@style/FloatingActionButton"
     app:cardCornerRadius="10dp"
     app:rippleColor="@color/white1">
 
@@ -78,7 +78,7 @@
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/studentImageRecView"
             android:text="Lastname"
-            android:textColor="@color/black1"
+            android:textColor="@color/darkText"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/studentImageRecView"
@@ -92,7 +92,7 @@
             android:layout_toEndOf="@id/studentImageRecView"
             android:text="Firstname"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black1"
+            android:textColor="@color/darkText"
             app:layout_constraintStart_toStartOf="@+id/studentLastnameRecView"
             app:layout_constraintTop_toBottomOf="@+id/studentLastnameRecView" />
 

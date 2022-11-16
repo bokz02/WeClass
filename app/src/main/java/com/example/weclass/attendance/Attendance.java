@@ -29,6 +29,7 @@ import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.StudentItems;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -71,6 +72,8 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         optionButton();
 
         return view;
+
+
     }
 
     @Override

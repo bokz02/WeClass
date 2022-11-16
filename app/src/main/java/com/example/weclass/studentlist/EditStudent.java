@@ -2,9 +2,11 @@ package com.example.weclass.studentlist;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -21,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weclass.R;
+import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.image.DrawableUtils;
 import com.example.weclass.studentlist.profile.image.ImageUtils;
@@ -39,9 +42,20 @@ public class EditStudent extends AppCompatActivity {
     TextView _gender, _id;
     String selectedGender;
     Uri uri = null;
+    SharedPreferences sharedPreferences = null;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
+        if (sharedPref.loadNightModeState()){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        }else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_student);
 

@@ -2,11 +2,13 @@ package com.example.weclass;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -26,9 +28,25 @@ public class LockScreen extends AppCompatActivity {
 
     Button fingerprintBtn, patternBtn;
     TextView infoTextView;
-
+    SharedPreferences sharedPreferences = null;
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
+        if (sharedPref.loadNightModeState()){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.setStatusBarColor(Color.WHITE);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock_screen);
 
@@ -36,11 +54,6 @@ public class LockScreen extends AppCompatActivity {
         checkBiometricSupported();
         //executor();
 
-        Window window = getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        window.setStatusBarColor(Color.WHITE);
 
         Executor executor = ContextCompat.getMainExecutor(this);
         BiometricPrompt biometricPrompt = new BiometricPrompt(LockScreen.this,
