@@ -3,6 +3,7 @@ package com.example.weclass.subject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 
 import com.example.weclass.BottomNavi;
 import com.example.weclass.ExtendedRecyclerView;
+import com.example.weclass.SharedPref;
 import com.example.weclass.archive.Archive;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
@@ -62,6 +64,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     TextView noSubject;
     private FirebaseAuth mAuth;
     int lastFirstVisiblePosition;
+    SharedPref sharedPref;
 
     private StorageReference storageReference;
     FirebaseAuth fauth;
@@ -71,6 +74,17 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //This will set the theme depends on save state of switch button
+        sharedPref = new SharedPref(this);
+
+        if (sharedPref.loadNightModeState()){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        }else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);

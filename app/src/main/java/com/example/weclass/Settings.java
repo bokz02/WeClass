@@ -63,6 +63,8 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //This will set the theme depends on save state of switch button
         sharedPref = new SharedPref(this);
 
         if (sharedPref.loadNightModeState()){

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.WeClassNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.WeClass" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/darkText</item>
         <item name="colorPrimaryVariant">@color/darkText</item>
         <item name="colorOnPrimary">@color/darkText</item>
@@ -35,7 +35,9 @@
         <item name="cardBackgroundColor">@color/black3</item>
     </style>
 
-
+    <style name="TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/teal_700</item>
+    </style>
 
 
     <style name="Theme.TimeDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
