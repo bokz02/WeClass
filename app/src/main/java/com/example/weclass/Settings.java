@@ -9,45 +9,26 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.annotation.SuppressLint;
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.example.weclass.archive.Archive;
-import com.example.weclass.dashboard.MainActivity;
-import com.example.weclass.login.LoginActivity;
-import com.example.weclass.login.UserAccount;
+import com.example.weclass.calendar.CalendarEvents;
 import com.example.weclass.subject.Subject;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
+
+import java.util.Set;
 
 public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -57,7 +38,6 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     ImageView button, button1;
     SwipeRefreshLayout refreshLayout;
     SwitchMaterial toggleButton;
-    SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
 
 
@@ -68,17 +48,20 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         sharedPref = new SharedPref(this);
 
         if (sharedPref.loadNightModeState()){
+
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         }else {
+
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             window.setStatusBarColor(Color.WHITE);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
 
         super.onCreate(savedInstanceState);
@@ -112,12 +95,19 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
                     sharedPref.setNightModeState(true);
+                    Intent intent = new Intent(Settings.this, Settings.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(R.transition.fade_in_out,R.transition.fade_in_out);
                     getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
                 }else {
                     sharedPref.setNightModeState(false);
+                    Intent intent = new Intent(Settings.this, Settings.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(R.transition.fade_in_out,R.transition.fade_in_out);
                     getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
                 }
 
             }
@@ -210,6 +200,11 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                 break;
             case R.id.drawerArchive:
                 intent = new Intent(this, Archive.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerCalendar:
+                intent = new Intent(this, CalendarEvents.class);
                 startActivity(intent);
                 finish();
                 break;

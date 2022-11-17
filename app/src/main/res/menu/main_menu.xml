@@ -14,6 +14,11 @@
             android:title="Archive"
             android:icon="@drawable/nav_archive"/>
 
+        <item
+            android:id="@+id/drawerCalendar"
+            android:title="Calendar"
+            android:icon="@drawable/nav_archive"/>
+
     </group>
 
     <group android:checkableBehavior="single">

@@ -116,9 +116,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
 
         int a = Integer.parseInt(holder.absences.getText().toString());
         if(a == 4){
-            holder.background.setBackgroundResource(R.color.lightText);
+            holder.background.setBackgroundResource(R.color.absentWarning1);
         }else if (a == 5){
-            holder.background.setBackgroundResource(R.color.Red);
+            holder.background.setBackgroundResource(R.color.absentWarning2);
         }
 
         // NAVIGATE TO EDIT ACTIVITY, OR DELETE A STUDENT

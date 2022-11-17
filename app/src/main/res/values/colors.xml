@@ -15,7 +15,7 @@
     //white
     <color name="white1">#f4f4f4</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="dirty_white">#F1F1F1</color>
+    <color name="dirty_white">#E7E7E7</color>
 
     //light mode
     <color name="drawableTint">#131313</color>
@@ -55,4 +55,13 @@
     <color name="Red">#FF1100</color>
     <color name="cardViewBackground">#42A5F5</color>
     <color name="splashScreenBackground">#00695C</color>
+
+    <color name="absentWarning1">#FDF99F</color>
+    <color name="absentWarning2">#FF9C9C</color>
+
+    <color name="taskGradeBanner">#da4e4e</color>
+    <color name="taskGradeTextBanner">#EAEAEA</color>
+
+    <color name="calendarButton">#da4e4e</color>
+    <color name="calendarText">#F6F6F6</color>
 </resources>

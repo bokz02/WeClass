@@ -2,7 +2,6 @@ package com.example.weclass.studentlist;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -49,8 +48,7 @@ public class StudentProfile extends AppCompatActivity {
     ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects, _profileImage;
     String selectedFinalGrade, selectedMidtermGrade, selectedFinalRating;
     Uri uri = null;
-    CardView present, absent, activities, quiz, assignment, seatWork, exams, projects;
-    SharedPreferences sharedPreferences = null;
+    CardView present, absentCardView, activities, quiz, assignment, seatWork, exams, projects;
     SharedPref sharedPref;
 
     @Override
@@ -91,6 +89,7 @@ public class StudentProfile extends AppCompatActivity {
         pickMidtermGrade();
         pickFinalGrade();
         pickFinalRating();
+        countAbsent();
 
         
     }
@@ -127,7 +126,7 @@ public class StudentProfile extends AppCompatActivity {
         _finalGradeButton = findViewById(R.id.finalGradeButton);
         _finalRatingButton = findViewById(R.id.finalRatingButton);
         present = findViewById(R.id._materialPresent);
-        absent = findViewById(R.id._materialAbsent);
+        absentCardView = findViewById(R.id._materialAbsent);
         exams = findViewById(R.id._materialExams);
         projects = findViewById(R.id._materialProject);
         quiz = findViewById(R.id._materialQuiz);
@@ -135,6 +134,27 @@ public class StudentProfile extends AppCompatActivity {
         assignment = findViewById(R.id._materialAssignment);
         activities = findViewById(R.id._materialActivity);
 
+    }
+
+    public void countAbsent(){
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.COLUMN_ID2 + " = "
+                + _id.getText().toString(), null);
+
+        if (cursor.moveToFirst()){
+            _absentTextView.setText(String.valueOf(cursor.getInt(7)));
+            cursor.close();
+        }
+
+        int a = Integer.parseInt(_absentTextView.getText().toString());
+        if(a == 4){
+            absentCardView.setCardBackgroundColor(getResources().getColor(R.color.absentWarning1));
+        }else if(a >= 5 ){
+            absentCardView.setCardBackgroundColor(getResources().getColor(R.color.absentWarning2));
+        }
     }
 
 
@@ -230,7 +250,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void goToAbsent(){
-        absent.setOnClickListener(new View.OnClickListener() {
+        absentCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Absent.class);

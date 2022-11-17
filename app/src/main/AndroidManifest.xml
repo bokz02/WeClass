@@ -15,6 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".calendar.CalendarEvents"
+            android:exported="false"
+            android:theme="@style/Theme.Calendar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".login.LoginActivity"
             android:exported="false">
             <meta-data
@@ -27,6 +35,7 @@
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -56,26 +65,32 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".studentlist.profile.attendance.Absent"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".studentlist.profile.attendance.Present"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".studentlist.profile.seatwork.SeatWork"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".studentlist.profile.quiz.Quiz"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".studentlist.profile.assignments.Assignments"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".studentlist.profile.activities.Activities"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".AboutUs"
             android:exported="false"
-            android:theme="@style/Theme.WeClass.CustomTheme"/>
+            android:theme="@style/Theme.WeClass.CustomTheme" />
         <activity
             android:name=".taskGrade.TaskGrade"
             android:exported="false"
@@ -98,7 +113,7 @@
         <activity
             android:name=".TermsAndCondition"
             android:exported="false"
-            android:theme="@style/Theme.WeClass.CustomTheme"/>
+            android:theme="@style/Theme.WeClass.CustomTheme" />
         <activity
             android:name=".studentlist.AddStudent"
             android:exported="false"
@@ -143,9 +158,7 @@
             android:name=".LockScreen"
             android:exported="true"
             android:theme="@style/Theme.Dialog"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"/>
 
         <meta-data
             android:name="preloaded_fonts"

@@ -236,7 +236,14 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                 for (SubjectItems subjectItems: subjectItemsFull){
                     if (subjectItems.getCourse().toLowerCase().contains(filterPattern) ||
                             subjectItems.getSubjectCode().toLowerCase().contains(filterPattern) ||
-                            subjectItems.getSubjectName().toLowerCase().contains(filterPattern)){
+                            subjectItems.getSubjectName().toLowerCase().contains(filterPattern) ||
+                            subjectItems.getDaySubject().toLowerCase().contains(filterPattern) ||
+                            subjectItems.getSchoolYearSubject().toLowerCase().contains(filterPattern) ||
+                            subjectItems.getSemesterSubject().toLowerCase().contains(filterPattern) ||
+                            subjectItems.getClassType().toLowerCase().contains(filterPattern) ||
+                            subjectItems.get_room().toLowerCase().contains(filterPattern) ||
+                            subjectItems.getSection().toLowerCase().contains(filterPattern) ||
+                            subjectItems.getTimeSubject().toLowerCase().contains(filterPattern)){
                         filteredList.add(subjectItems);
                     }
                 }

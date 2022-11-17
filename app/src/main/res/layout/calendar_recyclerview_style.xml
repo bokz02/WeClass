@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="2dp"
+    android:background="@color/white"
+    android:padding="5dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/taskTextViewCalendarRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Activity"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/taskNumberTextViewCalendarRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginStart="5dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/taskTextViewCalendarRecView"
+            app:layout_constraintTop_toTopOf="@+id/taskTextViewCalendarRecView" />
+
+        <TextView
+            android:id="@+id/courseTextViewCalendarRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BSCS 3"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/sectionTextViewCalendarRecView"
+            app:layout_constraintTop_toTopOf="@+id/taskTextViewCalendarRecView" />
+
+        <TextView
+            android:id="@+id/sectionTextViewCalendarRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="A"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/courseTextViewCalendarRecView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/courseTextViewCalendarRecView" />
+
+
+
+
+        <TextView
+            android:id="@+id/instructionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="Instruction: "
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintStart_toStartOf="@+id/taskTextViewCalendarRecView"
+            app:layout_constraintTop_toBottomOf="@+id/taskTextViewCalendarRecView" />
+
+        <TextView
+            android:id="@+id/instructionTextViewRecView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="what is life"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/sectionTextViewCalendarRecView"
+            app:layout_constraintStart_toStartOf="@+id/taskTextViewCalendarRecView"
+            app:layout_constraintTop_toTopOf="@+id/instructionTextView" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

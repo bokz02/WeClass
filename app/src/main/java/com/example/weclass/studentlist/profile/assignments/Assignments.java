@@ -1,6 +1,7 @@
 package com.example.weclass.studentlist.profile.assignments;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
+import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.activities.ActivitiesFinalsAdapter;
 import com.example.weclass.studentlist.profile.activities.ActivitiesMidtermAdapter;
@@ -34,9 +36,29 @@ public class Assignments extends AppCompatActivity {
     ArrayList<ActivitiesItems> activitiesItems, activitiesItems2;
     DataBaseHelper dataBaseHelper;
     View noView, noView2;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //This will set the theme depends on save state of switch button
+        sharedPref = new SharedPref(this);
+
+        if (sharedPref.loadNightModeState()){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.setStatusBarColor(Color.WHITE);
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignments);
 

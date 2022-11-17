@@ -110,9 +110,9 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         // BACKGROUND COLOR WILL CHANGE IF IT HITS THE SPECIFIC COUNT
         int d = Integer.parseInt(holder._absent.getText().toString());
         if(d == 4) {
-            holder.background.setBackgroundResource(R.color.lightText);
+            holder.background.setBackgroundResource(R.color.absentWarning1);
         }else if (d == 5){
-            holder.background.setBackgroundResource(R.color.Red);
+            holder.background.setBackgroundResource(R.color.absentWarning2);
         }
 
 

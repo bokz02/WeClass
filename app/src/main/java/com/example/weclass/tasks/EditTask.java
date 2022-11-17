@@ -37,16 +37,18 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
     String selectedTask, selectedProgress, selectedPeriod;
     Button _cancel, _update;
     ImageButton _backButton;
-    SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
         if (sharedPref.loadNightModeState()){
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }else {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 

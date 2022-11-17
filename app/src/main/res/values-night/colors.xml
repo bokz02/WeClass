@@ -6,4 +6,13 @@
     <color name="darkText">#f0f0f0</color>
     <color name="Fab">#272727</color>
     <color name="black1">#f0f0f0</color>
+
+    <color name="absentWarning1">#97945F</color>
+    <color name="absentWarning2">#A56464</color>
+
+    <color name="taskGradeBanner">#777777</color>
+    <color name="taskGradeTextBanner">#E4E4E4</color>
+
+    <color name="calendarButton">#B1B1B1</color>
+    <color name="calendarText">#2E2E2E</color>
 </resources>

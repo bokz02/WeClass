@@ -9,9 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -26,17 +24,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.weclass.BottomNavi;
+import com.example.weclass.calendar.CalendarEvents;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.SharedPref;
-import com.example.weclass.dashboard.MainActivity;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.login.LoginActivity;
-import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.subject.Subject;
-import com.example.weclass.subject.SubjectAdapter;
-import com.example.weclass.subject.SubjectItems;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -194,6 +188,11 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case R.id.drawerArchive:
                 intent = new Intent(this, Archive.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerCalendar:
+                intent = new Intent(this, CalendarEvents.class);
                 startActivity(intent);
                 finish();
                 break;

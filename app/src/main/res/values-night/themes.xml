@@ -30,10 +30,16 @@
 
     </style>
 
+    <style name="Theme.Calendar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/black1</item>
+
+    </style>
+
     <!-- CardView Background color -->
     <style name="CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/black3</item>
     </style>
+    
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
@@ -41,6 +47,11 @@
     <style name="TextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/black2</item>
     </style>
+
+    <style name="TextGradeView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/dirty_white</item>
+    </style>
+
 
     <style name="Theme.TimeDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
         <item name="colorAccent">@color/navigation_text_color</item>

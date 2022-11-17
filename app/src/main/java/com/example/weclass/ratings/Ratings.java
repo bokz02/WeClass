@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.ratings.RatingAdapter;
 import com.example.weclass.studentlist.StudentItems;
 
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class Ratings extends Fragment {
     public void initialize(){
         extendedRecyclerView = view.findViewById(R.id.extendedRecViewRatings);
         _noViewTextView = view.findViewById(R.id.noStudentTextViewRatings);
-        _noView = view.findViewById(R.id.noStudentViewRatings);
+        _noView = view.findViewById(R.id.noStudentViewCalendar);
         _subjectID = view.findViewById(R.id.subjectIDRatings);
         _subjectCode = view.findViewById(R.id.subjectCodeTextViewRatings);
         _course = view.findViewById(R.id.courseTextViewRatings);

@@ -12,13 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,28 +24,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weclass.BottomNavi;
+import com.example.weclass.calendar.CalendarEvents;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.SharedPref;
 import com.example.weclass.archive.Archive;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.login.LoginActivity;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -73,7 +67,6 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     FirebaseAuth fauth;
     ImageView profilepic;
     SharedPreferences sharedPreferences = null;
-    SharedPref sharedPref;
     SwitchMaterial toggleButton;
 
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
@@ -308,6 +301,11 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case R.id.drawerArchive:
                 intent = new Intent(this, Archive.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.drawerCalendar:
+                intent = new Intent(this, CalendarEvents.class);
                 startActivity(intent);
                 finish();
                 break;

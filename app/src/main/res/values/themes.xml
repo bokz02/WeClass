@@ -23,8 +23,12 @@
    </style>
 
     <style name="Theme.Dialog" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/black1</item>
+    </style>
 
+    <style name="Theme.Calendar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/black1</item>
+        <item name="colorAccent">@color/red2</item>
     </style>
 
 

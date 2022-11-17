@@ -68,8 +68,6 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     EditText searchStudent;
     View noFile_;
     int lastFirstVisiblePosition;
-    SharedPreferences sharedPreferences = null;
-    SharedPref sharedPref;
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
 
 
@@ -329,8 +327,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
     public void getSumOfStudents(){
-        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
                 + DataBaseHelper.COLUMN_PARENT_ID + " = "
                 + parentID.getText().toString(), null);

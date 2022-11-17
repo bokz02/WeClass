@@ -103,12 +103,12 @@
             android:textColor="@color/cancelButtonPressed"
             android:textSize="16sp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@id/noStudentViewRatings"
-            app:layout_constraintEnd_toEndOf="@+id/noStudentViewRatings"
-            app:layout_constraintStart_toStartOf="@+id/noStudentViewRatings" />
+            app:layout_constraintBottom_toTopOf="@id/noStudentViewCalendar"
+            app:layout_constraintEnd_toEndOf="@+id/noStudentViewCalendar"
+            app:layout_constraintStart_toStartOf="@+id/noStudentViewCalendar" />
 
         <View
-            android:id="@+id/noStudentViewRatings"
+            android:id="@+id/noStudentViewCalendar"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/ic_no_file"
