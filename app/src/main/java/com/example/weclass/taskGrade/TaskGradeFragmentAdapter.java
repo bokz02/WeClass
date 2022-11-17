@@ -17,13 +17,16 @@ public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
     private final String taskNumber;
     private final String gradingPeriod;
     private final String subjectId;
+    private final String taskId;
 
-    public TaskGradeFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, String string, String taskNumber, String gradingPeriod, String subjectId) {
+    public TaskGradeFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, String string,
+                                    String taskNumber, String gradingPeriod, String subjectId, String taskId) {
         super(fragmentManager, lifecycle);
         this.string = string;
         this.taskNumber = taskNumber;
         this.gradingPeriod = gradingPeriod;
         this.subjectId =subjectId;
+        this.taskId =taskId;
     }
 
 
@@ -36,6 +39,7 @@ public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
             bundle.putString("TaskNumber", taskNumber);
             bundle.putString("GradingPeriod", gradingPeriod);
             bundle.putString("SubjectId", subjectId);
+            bundle.putString("TaskId", taskId);
             TaskGradeViewFragment fragment= new TaskGradeViewFragment();
             fragment.setArguments(bundle);
 
@@ -47,6 +51,7 @@ public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
         bundle.putString("TaskNumber", taskNumber);
         bundle.putString("GradingPeriod", gradingPeriod);
         bundle.putString("SubjectId", subjectId);
+        bundle.putString("TaskId", taskId);
         TaskGradeFragment taskGradeFragment= new TaskGradeFragment();
         taskGradeFragment.setArguments(bundle);
 

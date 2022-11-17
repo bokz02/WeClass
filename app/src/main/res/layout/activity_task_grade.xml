@@ -10,8 +10,8 @@
         android:id="@+id/backToTaskButton"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/ic_simple_back"
         android:backgroundTint="@color/black1"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,8 +45,8 @@
         android:text="Currently you don't have student, add one."
         android:textColor="@color/cancelButtonPressed"
         android:textSize="16sp"
-        android:visibility="invisible"
         android:textStyle="italic"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/noStudentViewGrade"
         app:layout_constraintEnd_toEndOf="@+id/noStudentViewGrade"
         app:layout_constraintStart_toStartOf="@+id/noStudentViewGrade" />
@@ -55,8 +55,8 @@
         android:id="@+id/noStudentViewGrade"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:visibility="invisible"
         android:background="@drawable/ic_no_file"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guide2"
         app:layout_constraintEnd_toEndOf="@id/guide4"
         app:layout_constraintStart_toStartOf="@id/guide3"
@@ -65,9 +65,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
         android:text="Due: "
         android:textColor="@color/darkText"
-        android:fontFamily="@font/poppins_regular"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/dueTextViewTaskGrade"
         app:layout_constraintEnd_toStartOf="@+id/dueTextViewTaskGrade"
@@ -77,13 +77,33 @@
         android:id="@+id/dueTextViewTaskGrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/poppins_semibold"
         android:text="due"
         android:textColor="@color/darkText"
         android:textSize="14sp"
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toStartOf="@+id/guide4" />
+
+    <TextView
+        android:id="@+id/subjectIDTextViewGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Subject id"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/taskIdTaskGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="taskId"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/subjectIDTextViewGrade"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
@@ -102,48 +122,36 @@
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="10dp"
-            android:background="@color/taskGradeBanner">
+            android:background="@color/taskGradeBanner"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp">
 
             <TextView
                 android:id="@+id/proressTextViewGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:drawableStart="@drawable/ic_progress1"
                 android:drawablePadding="5dp"
-                android:textColor="@color/taskGradeTextBanner"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Progress"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/taskGradeTextBanner"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTextViewGrade" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-            <TextView
-                android:id="@+id/subjectIDTextViewGrade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="10dp"
-                android:text="Subject id"
-                android:textSize="14sp"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/textView15"
-                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/gradingPeriodTextViewTaskGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Period"
                 android:textColor="@color/taskGradeTextBanner"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/totalStudentTextViewTaskGrade"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <TextView
                 android:id="@+id/taskTypeTextViewGrade"
@@ -157,28 +165,41 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/descriptionTextViewGrade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="lorem ipsum"
-                android:textColor="@color/taskGradeTextBanner"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/textView16"
-                app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Instruction:"
-                android:textColor="@color/taskGradeTextBanner"
-                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/totalStudentTextViewTaskGrade"
                 app:layout_constraintStart_toStartOf="@+id/taskTypeTextViewGrade"
-                app:layout_constraintTop_toBottomOf="@+id/taskTypeTextViewGrade" />
+                app:layout_constraintTop_toBottomOf="@+id/taskTypeTextViewGrade">
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Instruction:"
+                    android:textColor="@color/taskGradeTextBanner"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/descriptionTextViewGrade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="lorem ipsum"
+                    android:textColor="@color/taskGradeTextBanner"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView16"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             <TextView
                 android:id="@+id/taskNumberTextViewGrade"
@@ -220,8 +241,55 @@
                 app:layout_constraintTop_toTopOf="@+id/proressTextViewGrade"
                 app:layout_constraintVertical_bias="0.045" />
 
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Graded:"
+                android:textColor="@color/taskGradeTextBanner"
+                app:layout_constraintBottom_toBottomOf="@+id/gradedTextViewTaskGraded"
+                app:layout_constraintEnd_toStartOf="@+id/gradedTextViewTaskGraded"
+                app:layout_constraintTop_toTopOf="@+id/gradedTextViewTaskGraded" />
+
+            <TextView
+                android:id="@+id/gradedTextViewTaskGraded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="35"
+                android:textColor="@color/taskGradeTextBanner"
+                app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                app:layout_constraintEnd_toStartOf="@+id/textView12"
+                app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/taskGradeTextBanner"
+                app:layout_constraintBottom_toBottomOf="@+id/totalStudentTextViewTaskGrade"
+                app:layout_constraintEnd_toStartOf="@+id/totalStudentTextViewTaskGrade"
+                app:layout_constraintTop_toTopOf="@+id/totalStudentTextViewTaskGrade" />
+
+            <TextView
+                android:id="@+id/totalStudentTextViewTaskGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="40"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/taskGradeTextBanner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -229,21 +297,20 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardView">
-
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
 
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayoutTaskGrade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:tabIndicatorColor="#CFCFCE"
-            app:tabMode="fixed"
-            app:tabTextAppearance="@style/tab_text"
             android:layout_marginHorizontal="20dp"
-            app:tabSelectedTextColor="#DD5538"
+            android:layout_marginTop="10dp"
+            app:tabIndicatorColor="@color/ViewPagerIndicator"
             app:tabIndicatorHeight="1dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/ViewPagerIndicator"
+            app:tabTextAppearance="@style/tab_text"
             app:tabTextColor="@color/black3">
 
             <com.google.android.material.tabs.TabItem
@@ -254,8 +321,7 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Grades"
-                />
+                android:text="Grades" />
 
         </com.google.android.material.tabs.TabLayout>
 

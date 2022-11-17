@@ -25,6 +25,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/taskIdTaskGradeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="taskId"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/taskNumberTaskGradeFragment"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/gradingPeriodTaskGradeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

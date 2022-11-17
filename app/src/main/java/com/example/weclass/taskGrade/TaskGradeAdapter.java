@@ -3,18 +3,23 @@ package com.example.weclass.taskGrade;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.weclass.LockScreen;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.studentlist.StudentAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -23,24 +28,28 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
     private final ArrayList<TaskGradeItems> taskGradeItems;
     private final Context context;
+    private final ItemCallBack itemCallBack;
 
     int a;
+    int c;
 
 
-    public TaskGradeAdapter(ArrayList<TaskGradeItems> taskGradeItems, Context context) {
+    public TaskGradeAdapter(ArrayList<TaskGradeItems> taskGradeItems, Context context, ItemCallBack itemCallBack) {
         this.taskGradeItems = taskGradeItems;
         this.context = context;
+        this.itemCallBack = itemCallBack;
 
     }
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView lastName, firstName, studentID, subjectID, taskType, taskNumber, gradingPeriod;
+        TextView lastName, firstName, studentID, subjectID, taskType,
+                taskNumber, gradingPeriod, taskId;
         ImageButton submitButtonGrade;
         EditText gradeEditText;
         OnNoteListener onNoteListener;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, ItemCallBack itemCallBack) {
             super(itemView);
 
             lastName = itemView.findViewById(R.id.lastNameRecViewGrade);
@@ -52,6 +61,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
             taskType = itemView.findViewById(R.id.taskTypeTextViewRecViewGrade);
             taskNumber = itemView.findViewById(R.id.taskNumberRecViewGrade);
             gradingPeriod = itemView.findViewById(R.id.gradingPeriodTextViewRecViewGrade);
+            taskId = itemView.findViewById(R.id.taskIdTaskGradeRecView);
             
         }
 
@@ -62,7 +72,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.task_grade_recycler_style, parent, false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, itemCallBack);
     }
 
     @Override
@@ -76,6 +86,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         holder.taskType.setText(String.valueOf(taskGradeItems.get(position).getTaskType()));
         holder.taskNumber.setText(String.valueOf(taskGradeItems.get(position).getTaskNumber()));
         holder.gradingPeriod.setText(String.valueOf(taskGradeItems.get(position).getGradingPeriod()));
+        holder.taskId.setText(String.valueOf(taskGradeItems.get(position).getTaskId()));
 
         holder.gradeEditText.setText("");
 
@@ -105,14 +116,16 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                         + holder.gradingPeriod.getText().toString() + "'", null);
 
                 if(holder.gradeEditText.getText().toString().equals("")) {
-                    Snackbar.make(holder.submitButtonGrade, "Do not submit empty grade!", Snackbar.LENGTH_SHORT).show();
+                    itemCallBack.updateStudentGrades();
+                    Toast.makeText(context, "Do not submit empty grade" , Toast.LENGTH_SHORT).show();
 
                 }else if (a < 0 ||a > 100){
-                    Snackbar.make(holder.submitButtonGrade, "" + "Grades must be within a range.", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Grades must be within range" , Toast.LENGTH_SHORT).show();
 
                 }else if (cursor.moveToFirst()){
 
-                    Snackbar.make(holder.submitButtonGrade, "" + holder.lastName.getText().toString() + ", " + holder.firstName.getText().toString() + " already graded!", Snackbar.LENGTH_SHORT).show();
+
+                    Toast.makeText(context, "" + holder.lastName.getText().toString() + ", " + holder.firstName.getText().toString() + " already graded!" , Toast.LENGTH_SHORT).show();
                     cursor.close();
 
                     b = holder.getAdapterPosition();
@@ -124,6 +137,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
                     DataBaseHelper dbh = new DataBaseHelper(context);
                     dbh.addGrade(holder.studentID.getText().toString().trim(),
+                            holder.taskId.getText().toString().trim(),
                             holder.subjectID.getText().toString().trim(),
                             holder.lastName.getText().toString().trim(),
                             holder.firstName.getText().toString().trim(),
@@ -134,7 +148,9 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
                     Snackbar.make(holder.submitButtonGrade, "" + holder.lastName.getText().toString() +
                             ", " + holder.firstName.getText().toString() +
-                            " successfully graded!", Snackbar.LENGTH_SHORT).show();
+                            " successfully graded", Snackbar.LENGTH_SHORT).show();
+
+
 
                     b = holder.getAdapterPosition();
                     taskGradeItems.remove(b);
@@ -156,5 +172,10 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
     public interface OnNoteListener{
         void OnNoteClick(int position);
     }
+
+    public interface ItemCallBack{
+        void updateStudentGrades();
+    }
+
 
 }

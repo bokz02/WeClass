@@ -15,4 +15,6 @@
 
     <color name="calendarButton">#B1B1B1</color>
     <color name="calendarText">#2E2E2E</color>
+
+    <color name="ViewPagerIndicator">#da4e4e</color>
 </resources>

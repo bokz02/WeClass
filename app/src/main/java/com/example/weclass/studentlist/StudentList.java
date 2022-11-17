@@ -151,12 +151,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         });
     }
 
-    public void hideFab(){
-        if (_archive.getText().toString().equals("archive")) {
-            floatingActionButton.hide();
-        }
 
-    }
+
 
     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
     public void showHideFloatingActionButton(){
@@ -328,7 +324,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
     public void getSumOfStudents(){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
                 + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
                 + DataBaseHelper.COLUMN_PARENT_ID + " = "
                 + parentID.getText().toString(), null);
@@ -357,6 +353,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     @Override
     public void updateTextView() {
         _studentSum.setText(String.valueOf(studentAdapter.getItemCount()));
+
     }
 
 

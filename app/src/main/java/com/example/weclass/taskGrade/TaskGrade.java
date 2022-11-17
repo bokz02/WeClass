@@ -32,7 +32,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TaskGrade extends AppCompatActivity{
+public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.ItemCallBack {
 
     ExtendedRecyclerView recyclerView;
     ArrayList<TaskGradeItems> taskGradeItems, studentID, subjectID;
@@ -40,12 +40,14 @@ public class TaskGrade extends AppCompatActivity{
     TaskGradeAdapter taskGradeAdapter;
     DataBaseHelper dataBaseHelper;
     ImageView backButton;
-    TextView _progress, _deadline, _score, _description, _taskType, _taskNumber,
-            _subjectID , _noStudentToGradeTextView, _gradingPeriod, _due;
+    TextView _progress, _score, _description, _taskType, _taskNumber,
+            _subjectID , _noStudentToGradeTextView, _gradingPeriod, _due,
+            totalStudent, gradedStudent, _taskId;
     View _noStudentToGradeView;
     TabLayout _tabLayout;
     ViewPager2 _viewPager2;
     TaskGradeFragmentAdapter taskGradeFragmentAdapter;
+    TaskGradeViewFragmentAdapter taskGradeViewFragmentAdapter;
     SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
     @Override
@@ -73,6 +75,9 @@ public class TaskGrade extends AppCompatActivity{
         getDataFromTaskRecView();
         backToTask();
         fragmentManager();
+        getSumOfStudents();
+        gradedStudent();
+        updateGradedStudents();
 
     }
 
@@ -82,6 +87,11 @@ public class TaskGrade extends AppCompatActivity{
         getDataFromTaskRecView();
         backToTask();
         super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override
@@ -96,6 +106,8 @@ public class TaskGrade extends AppCompatActivity{
         super.onStop();
 
     }
+
+
 
     private void initialize() {
         backButton = findViewById(R.id.backToTaskButton);
@@ -112,6 +124,9 @@ public class TaskGrade extends AppCompatActivity{
         _viewPager2 = findViewById(R.id.viewPagerTaskGrade);
         _tabLayout = findViewById(R.id.tabLayoutTaskGrade);
         _due = findViewById(R.id.dueTextViewTaskGrade);
+        gradedStudent = findViewById(R.id.gradedTextViewTaskGraded);
+        totalStudent = findViewById(R.id.totalStudentTextViewTaskGrade);
+        _taskId = findViewById(R.id.taskIdTaskGrade);
 
     }
 
@@ -119,7 +134,7 @@ public class TaskGrade extends AppCompatActivity{
     public void initializeAdapter(){
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(TaskGrade.this);
-        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, TaskGrade.this);
+        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, TaskGrade.this, this);
         recyclerView.setAdapter(taskGradeAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(TaskGrade.this));
         recyclerView.setEmptyView(_noStudentToGradeView, _noStudentToGradeTextView);
@@ -169,7 +184,8 @@ public class TaskGrade extends AppCompatActivity{
                         cursor.getString(3),
                         cursor.getString(14),
                         cursor.getInt(19),
-                        cursor.getString(20)));
+                        cursor.getString(20),
+                        cursor.getInt(12)));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -199,16 +215,21 @@ public class TaskGrade extends AppCompatActivity{
         String taskType = taskItems.getTaskType();
         String period = taskItems.getGradingPeriod();
         String due = taskItems.getDue();
+        int taskId = taskItems.getTaskID();
         int taskNumber = taskItems.getTaskNumber();
+        String a = "                        ";
+        String c = a + description;
 
         _progress.setText(progress);
         _score.setText(score);
-        _description.setText(description);
+        _description.setText(c);
         _taskType.setText(taskType);
         _taskNumber.setText(String.valueOf(taskNumber));
         _subjectID.setText(subjectID);
         _gradingPeriod.setText(period);
         _due.setText(due);
+        _taskId.setText(String.valueOf(taskId));
+
 
     }
 
@@ -229,8 +250,9 @@ public class TaskGrade extends AppCompatActivity{
         String taskNumber = _taskNumber.getText().toString();
         String gradingPeriod = _gradingPeriod.getText().toString();
         String subjectId = _subjectID.getText().toString();
+        String idTask = _taskId.getText().toString();
 
-        taskGradeFragmentAdapter = new TaskGradeFragmentAdapter(fragmentManager, getLifecycle(), taskType, taskNumber, gradingPeriod, subjectId);
+        taskGradeFragmentAdapter = new TaskGradeFragmentAdapter(fragmentManager, getLifecycle(), taskType, taskNumber, gradingPeriod, subjectId, idTask);
 
 
         _viewPager2.setAdapter(taskGradeFragmentAdapter);
@@ -265,5 +287,72 @@ public class TaskGrade extends AppCompatActivity{
         });
     }
 
+    // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
+    public void getSumOfStudents(){
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                + _subjectID.getText().toString(), null);
 
+        if (cursor.moveToFirst() ){
+            totalStudent.setText(String.valueOf(cursor.getInt(0)));
+            cursor.close();
+        }
+    }
+
+    public void gradedStudent(){
+
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
+                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
+                + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
+                + _subjectID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " ='"
+                + _taskType.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
+                + _taskNumber.getText().toString(), null);
+
+        if (cursor.moveToFirst() ){
+            gradedStudent.setText(String.valueOf(cursor.getInt(0)));
+            cursor.close();
+        }
+
+    }
+
+
+
+    @Override
+    public void updateStudentGrades() {
+
+    }
+
+    public void updateGradedStudents(){
+        Thread thread = new Thread(){
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()){
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                gradedStudent();
+
+                            }
+                        });
+                    }
+                } catch (InterruptedException e){
+
+                }
+            }
+
+        };
+
+        thread.start();
+    }
 }

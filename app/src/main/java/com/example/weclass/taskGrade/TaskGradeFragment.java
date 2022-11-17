@@ -20,10 +20,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class TaskGradeFragment extends Fragment{
+public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.ItemCallBack{
 
     View view, _noStudentTGradeViewFragment;
-    TextView _taskType,_subjectID, _taskNumber, _gradingPeriod, _noStudentToGradeTextViewFragment;
+    TextView _taskType,_subjectID, _taskNumber, _gradingPeriod,
+            _noStudentToGradeTextViewFragment, _taskId;
     Bundle bundle;
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<TaskGradeItems> taskGradeItems, studentID, subjectID;
@@ -54,13 +55,14 @@ public class TaskGradeFragment extends Fragment{
         _subjectID = view.findViewById(R.id.subjectIDTaskGradeFragment);
         _noStudentToGradeTextViewFragment = view.findViewById(R.id.noStudentTextViewGradeFragment);
         _noStudentTGradeViewFragment = view.findViewById(R.id.noStudentViewGradeFragment);
+        _taskId = view.findViewById(R.id.taskIdTaskGradeFragment);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, getContext());
+        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, getContext(), this);
         extendedRecyclerView.setAdapter(taskGradeAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noStudentTGradeViewFragment, _noStudentToGradeTextViewFragment);
@@ -110,7 +112,8 @@ public class TaskGradeFragment extends Fragment{
                         cursor.getString(3),
                         cursor.getString(14),
                         cursor.getInt(19),
-                        cursor.getString(20)));
+                        cursor.getString(20),
+                        cursor.getInt(12)));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -139,10 +142,14 @@ public class TaskGradeFragment extends Fragment{
 
             String subjectId = bundle.getString("SubjectId");
             _subjectID.setText(subjectId);
+
+            String taskId = bundle.getString("TaskId");
+            _taskId.setText(taskId);
         }
     }
 
+    @Override
+    public void updateStudentGrades() {
 
-
-
+    }
 }

@@ -3,6 +3,8 @@ package com.example.weclass.tasks;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -45,7 +47,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView _id, _parentTD, _taskType, _score, _description,_progress, _gradingPeriod, _due;
+        TextView _id, _parentTD, _taskType, _score, _description,_progress, _gradingPeriod, _due, _taskId;
         ImageButton _optionTask, _expand;
         OnNoteListener onNoteListener;
         ConstraintLayout constraintLayout;
@@ -66,6 +68,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             cardView = itemView.findViewById(R.id.cardViewRecView);
             _gradingPeriod = itemView.findViewById(R.id.gradingPeriodTaskRecView);
             _due = itemView.findViewById(R.id.dueTextViewTaskRecView);
+            _taskId = itemView.findViewById(R.id.idNumberTask);
 
             this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
@@ -99,6 +102,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder._id.setText(String.valueOf(taskItems.get(position).getTaskNumber()));
         holder._gradingPeriod.setText(String.valueOf(taskItems.get(position).getGradingPeriod()));
         holder._due.setText(String.valueOf(taskItems.get(position).getDue()));
+        holder._taskId.setText(String.valueOf(taskItems.get(position).getTaskID()));
 
 
         if(holder._progress.getText().toString().equals("Completed")){
@@ -172,11 +176,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                                     public void onClick(DialogInterface dialogInterface, int i) {
 
                                         DataBaseHelper db = new DataBaseHelper(context);
+                                        SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+
                                         db.deleteTask(itemsTask.getTaskID());
+
+
+                                        db.deleteAll(itemsTask.getTaskID());
 
                                         int a = holder.getAdapterPosition();
                                         taskItems.remove(a);
                                         notifyItemRemoved(a);
+
+
                                     }
                                 });
 

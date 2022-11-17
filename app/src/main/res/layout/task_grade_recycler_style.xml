@@ -31,16 +31,16 @@
 
         <TextView
             android:id="@+id/firstNameRecViewGrade"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="First"
+            android:layout_marginStart="5dp"
             android:textColor="@color/darkText"
             android:textSize="14sp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/lastNameRecViewGrade"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameRecViewGrade" />
+            app:layout_constraintBottom_toBottomOf="@+id/lastNameRecViewGrade"
+            app:layout_constraintStart_toEndOf="@+id/lastNameRecViewGrade"
+            app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
 
         <TextView
             android:id="@+id/commaRecViewGrade"
@@ -60,7 +60,7 @@
             android:layout_marginEnd="12dp"
             android:background="@drawable/edit_text_underline"
             android:gravity="center"
-            android:hint="Score"
+            android:hint="       "
             android:inputType="number"
             android:maxLength="3"
             android:maxLines="1"
@@ -104,6 +104,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/studentIDGrade" />
+
+        <TextView
+            android:id="@+id/taskIdTaskGradeRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="taskId"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/subjectIDTextViewRecViewGrade"
+            app:layout_constraintTop_toBottomOf="@+id/subjectIDTextViewRecViewGrade" />
 
 
         <TextView

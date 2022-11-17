@@ -22,9 +22,12 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
     private final ArrayList<TaskGradeViewItems> taskGradeViewItems;
     private final android.content.Context context;
 
+
+
     public TaskGradeViewFragmentAdapter(ArrayList<TaskGradeViewItems> taskGradeViewItems, Context context){
         this.taskGradeViewItems = taskGradeViewItems;
         this.context = context;
+
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -87,6 +90,5 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
     public int getItemCount() {
         return taskGradeViewItems.size();
     }
-
 
 }
