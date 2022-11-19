@@ -352,7 +352,8 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
             }
 
         };
-
         thread.start();
     }
+
+
 }

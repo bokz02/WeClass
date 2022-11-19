@@ -37,13 +37,16 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class AddStudent extends AppCompatActivity {
 
     Button cancelButton, createButton;
     ImageButton backButton;
     ImageView profilePicture;
-    TextView genderTextview, parentID, _present, _absent, _finalGrade, _midtermGrade, _finalRating;
+    TextView genderTextview, parentID, _present, _absent, _finalGrade,
+            _midtermGrade, _finalRating, _date;
     EditText lastName, firstName, middleName;
     String selectedGender;
     Uri uri = null;
@@ -113,6 +116,7 @@ public class AddStudent extends AppCompatActivity {
         _finalGrade = findViewById(R.id.finalGradeTextViewAddStudent);
         _finalRating = findViewById(R.id.finalRatingTextViewAddStudent);
         progressBar = findViewById(R.id.progressBar);
+        _date = findViewById(R.id.dateTodayAddStudent);
     }
 
     public void backToStudentList(){
@@ -148,6 +152,7 @@ public class AddStudent extends AppCompatActivity {
             }
         });
     }
+
 
     public void cancelButton() {
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -253,13 +258,21 @@ public class AddStudent extends AppCompatActivity {
                                             _finalRating.getText().toString().trim());
 
 
+                                    dbh.addToAttendanceToday(parentID.getText().toString(),
+                                            lastName.getText().toString(),
+                                            firstName.getText().toString(),
+                                            _date.getText().toString(),
+                                            image,
+                                            "0",
+                                            "0");
+
                                     Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
                                     lastName.setText("");
                                     firstName.setText("");
                                     middleName.setText("");
                                     genderTextview.setText("");
 
-                                    // IF URI DON'T HAVE DATA, IT WILL SAVE WITH AN IMAGE PROVIDED BY USER
+                                    // IF URI HAVE DATA, IT WILL SAVE WITH AN IMAGE PROVIDED BY USER
                                 }else {
                                     try {
                                         InputStream inputStream = getContentResolver().openInputStream(uri);
@@ -276,6 +289,14 @@ public class AddStudent extends AppCompatActivity {
                                                 _midtermGrade.getText().toString().trim(),
                                                 _finalGrade.getText().toString().trim(),
                                                 _finalRating.getText().toString().trim());
+
+                                        dbh.addToAttendanceToday(parentID.getText().toString(),
+                                                lastName.getText().toString(),
+                                                firstName.getText().toString(),
+                                                _date.getText().toString(),
+                                                inputData,
+                                                "0",
+                                                "0");
 
 
                                         Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();

@@ -120,6 +120,14 @@
                 android:textColor="@color/darkText"
                 android:textSize="13sp" />
 
+            <TextView
+                android:id="@+id/dateTodayAddStudent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="date"/>
+
+
         </LinearLayout>
 
         <View

@@ -160,6 +160,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                         DataBaseHelper db = new DataBaseHelper(context);
                                         db.deleteStudent(item.getId());
                                         db.deleteStudentGrade(item.getId());
+                                        db.deleteAttendanceToday(item.getId());
 
                                         int a = holder.getAdapterPosition();
                                         studentItems.remove(a);

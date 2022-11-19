@@ -15,7 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 35;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 38;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -101,6 +101,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID_STUDENT_IMAGES = "id_student";
     public static final String COLUMN_IMAGE_IMAGES = "student_image";
 
+    public static final String TABLE_ATTENDANCE_TODAY = "my_attendance_today";
+    public static final String COLUMN_ID_TODAY = "id";
+    public static final String COLUMN_PARENT_ID_TODAY = "parent_id";
+    public static final String COLUMN_LAST_NAME_TODAY = "last_name";
+    public static final String COLUMN_FIRST_NAME_TODAY = "first_name";
+    public static final String COLUMN_DATE_TODAY = "date";
+    public static final String COLUMN_PICTURE_TODAY = "profile_picture";
+    public static final String COLUMN_PRESENT_COUNT_TODAY = "present_count";
+    public static final String COLUMN_ABSENT_COUNT_TODAY = "absent_count";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -197,6 +206,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_ID_STUDENT_IMAGES + " TEXT, " +
                 COLUMN_IMAGE_IMAGES + " BLOB );";
 
+        String date = "CREATE TABLE " + TABLE_ATTENDANCE_TODAY +
+                " (" + COLUMN_ID_TODAY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_PARENT_ID_TODAY + " TEXT, " +
+                COLUMN_LAST_NAME_TODAY + " TEXT, " +
+                COLUMN_FIRST_NAME_TODAY + " TEXT, " +
+                COLUMN_DATE_TODAY + " TEXT, " +
+                COLUMN_PRESENT_COUNT_TODAY + " TEXT, " +
+                COLUMN_ABSENT_COUNT_TODAY + " TEXT, " +
+                COLUMN_PICTURE_TODAY + " BLOB);";
+
         db.execSQL(query4);
         db.execSQL(query3);
         db.execSQL(query2);
@@ -205,6 +224,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(query6);
         db.execSQL(query7);
         db.execSQL(query8);
+        db.execSQL(date);
+
     }
 
     @Override
@@ -217,6 +238,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTENDANCE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MY_ARCHIVE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTENDANCE_TODAY);
         onCreate(db);
     }
 
@@ -359,6 +381,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // ADD QUERY TO SUBJECT DATABASE
+    public void addToAttendanceToday(String parentId, String lastName, String firstName, String dateToday, byte[] picture, String present, String absent){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_PARENT_ID_TODAY, parentId);
+        contentValues.put(COLUMN_LAST_NAME_TODAY, lastName);
+        contentValues.put(COLUMN_FIRST_NAME_TODAY, firstName);
+        contentValues.put(COLUMN_DATE_TODAY, dateToday);
+        contentValues.put(COLUMN_PICTURE_TODAY, picture);
+        contentValues.put(COLUMN_PRESENT_COUNT_TODAY, present);
+        contentValues.put(COLUMN_ABSENT_COUNT_TODAY, absent);
+
+
+        long result = db.insert(TABLE_ATTENDANCE_TODAY, null, contentValues);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     // UPDATE DATA OF SUBJECT DATABASE
     public void updateSubject(String id, String course, String subjectCode, String subjectName, String day,
@@ -493,7 +535,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY
+    // UPDATE STUDENT'S PROFILE GRADE IN PROFILE ACTIVITY
     public void updateFinalGrade(String id, String finalGrade){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -508,7 +550,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY
+    // UPDATE STUDENT'S PROFILE FINAL RATING IN PROFILE ACTIVITY
     public void updateFinalRating(String id, String finalRating){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -517,6 +559,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_FINAL_RATING_STUDENT, finalRating);
 
         long result = db.update(TABLE_MY_STUDENTS, contentValues, "id_number=" + id, null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // UPDATE STUDENT'S attendance today
+    public void updateAttendanceToday(String id, String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_ID_TODAY, id);
+        contentValues.put(COLUMN_DATE_TODAY, date);
+
+        long result = db.update(TABLE_ATTENDANCE_TODAY, contentValues, "id=" + id, null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -571,10 +627,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // DELETE A TASK GRADE
-    public void deleteTaskGrade(int row_id){
+
+    public void deleteAll(int id){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result =  db.delete(TABLE_MY_GRADE, "id_number=?", new String[]{ String.valueOf(row_id)});
+
+        long result = db.delete(TABLE_MY_GRADE,"id_task=?", new String[]{String.valueOf(id)});
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
@@ -584,10 +641,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteAll(int id){
+    public void deleteAttendanceToday(int id){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        long result = db.delete(TABLE_MY_GRADE,"id_task=?", new String[]{String.valueOf(id)});
+        long result = db.delete(TABLE_ATTENDANCE_TODAY,"id=?", new String[]{String.valueOf(id)});
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();

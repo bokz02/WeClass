@@ -101,7 +101,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.id.setText(String.valueOf(attendanceItems.get(position).getId()));
         holder.lastName.setText(String.valueOf(attendanceItems.get(position).getLastName()));
         holder.firstName.setText(String.valueOf(attendanceItems.get(position).getFirstName()));
-        holder.gender.setText(String.valueOf(attendanceItems.get(position).getGender()));
         holder._present.setText(String.valueOf(attendanceItems.get(position).getPresent()));
         holder._absent.setText(String.valueOf(attendanceItems.get(position).getAbsent()));
         holder._subjectID.setText(String.valueOf(attendanceItems.get(position).getParentID()));
@@ -134,31 +133,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                 holder._present.setText(String.valueOf(a + b));
 
                 DataBaseHelper db = new DataBaseHelper(context);
-                SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
-
-                // CURSOR WILL CHECK DATABASE IF ALREADY HAVE DUPLICATE ENTRY
-                Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-                        + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
-                        + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + " = "
-                        + holder.id.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
-                        + holder._subjectID.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_DATE_ATTENDANCE + " = '"
-                        + holder._date.getText().toString() + "'", null);
-
-                // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
-                if (cursor.moveToFirst()) {
-                    Snackbar snackbar = Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
-                            + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT);
-                    snackbar.show();
-                    cursor.close();
-
-                    c = holder.getAdapterPosition();
-                    attendanceItems.remove(c);
-                    notifyItemRemoved(c);
-
-                    // ELSE IT WILL STORE TO DATABASE
-                } else {
 
                     Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
                             + holder.firstName.getText().toString() + " is present!", Snackbar.LENGTH_SHORT).show();
@@ -176,13 +150,16 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._subjectID.getText().toString(),
                             holder._present.getText().toString());
 
+                    db.updateAttendanceToday(holder.id.getText().toString(),
+                            holder._date.getText().toString());
+
                     c = holder.getAdapterPosition();
                     attendanceItems.remove(c);
                     notifyItemRemoved(c);
 
                 }
 
-            }
+
         });
 
         // ABSENT BUTTON
@@ -201,48 +178,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                 int b = Integer.parseInt(holder._absent.getText().toString());
                 holder._absent.setText(String.valueOf(a + b));
 
-
-                // BACKGROUND COLOR WILL CHANGE IF IT HITS THE SPECIFIC COUNT
-                int d = Integer.parseInt(holder._absent.getText().toString());
-                if(d == 4){
-                    holder.background.setBackgroundResource(R.color.lightText);
-                }else if (d == 5){
-                    holder.background.setBackgroundResource(R.color.Red);
-                }
-
-
                 DataBaseHelper db = new DataBaseHelper(context);
-                SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
-
-                // CURSOR WILL CHECK DATABASE IF ALREADY HAVE DUPLICATE ENTRY
-                Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-                        + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
-                        + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + " = "
-                        + holder.id.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
-                        + holder._subjectID.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_DATE_ATTENDANCE + " = '"
-                        + holder._date.getText().toString() + "'", null);
-
-
-                // IF DATABASE HAVE DUPLICATE ENTRY, IT WILL RUN THIS BLOCK
-                if (cursor.moveToFirst()) {
-
-
-
-                    Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + ", "
-                            + holder.firstName.getText().toString() + " already have attendance today!", Snackbar.LENGTH_SHORT).show();
-                    cursor.close();
-
-
-
-                    c = holder.getAdapterPosition();
-                    attendanceItems.remove(c);
-                    notifyItemRemoved(c);
-
-
-                    // ELSE IT WILL STORE TO DATABASE
-                } else {
 
                     Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + ", "
                             + holder.firstName.getText().toString() + " is absent!", Snackbar.LENGTH_SHORT).show();
@@ -260,16 +196,15 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._subjectID.getText().toString(),
                             holder._absent.getText().toString());
 
+                    db.updateAttendanceToday(holder.id.getText().toString(),
+                            holder._date.getText().toString());
+
                     c = holder.getAdapterPosition();
                     attendanceItems.remove(c);
                     notifyItemRemoved(c);
                 }
-            }
+
         });
-
-
-
-
 
 
     }
@@ -300,8 +235,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                 for (AttendanceItems attendanceItems: attendanceItemsFull){
                     if (attendanceItems.getLastName().toLowerCase().contains(filterPattern) ||
-                            attendanceItems.getFirstName().toLowerCase().contains(filterPattern) ||
-                            attendanceItems.getGender().toLowerCase().contains(filterPattern)){
+                            attendanceItems.getFirstName().toLowerCase().contains(filterPattern)){
                         filteredList.add(attendanceItems);
                     }
                 }

@@ -66,4 +66,6 @@
     <color name="calendarText">#F6F6F6</color>
 
     <color name="ViewPagerIndicator">#da4e4e</color>
+
+    <color name="menuBackGround">#ECECEC</color>
 </resources>

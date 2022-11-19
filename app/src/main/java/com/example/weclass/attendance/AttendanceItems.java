@@ -6,21 +6,21 @@ import java.util.Comparator;
 
 public class AttendanceItems {
 
-    String lastName, firstName, gender;
+    String lastName, firstName;
     int id, parentID, present, absent;
     byte[] image;
 
 
 
-    public AttendanceItems(int id, int parentID, String lastName, String firstName, String gender, int present, int absent, byte[] image) {
+    public AttendanceItems(int id, int parentID, String lastName, String firstName, byte[] image, int present, int absent) {
         this.lastName = lastName;
         this.firstName = firstName;
-        this.gender = gender;
-        this.id = id;
         this.parentID = parentID;
+        this.image = image;
+        this.id = id;
         this.present = present;
         this.absent = absent;
-        this.image = image;
+
     }
 
     public String getLastName() {
@@ -31,16 +31,16 @@ public class AttendanceItems {
         return firstName;
     }
 
-    public String getGender() {
-        return gender;
+    public int getParentID() {
+        return parentID;
+    }
+
+    public byte[] getImage() {
+        return image;
     }
 
     public int getId() {
         return id;
-    }
-
-    public int getParentID() {
-        return parentID;
     }
 
     public int getPresent() {
@@ -49,10 +49,6 @@ public class AttendanceItems {
 
     public int getAbsent() {
         return absent;
-    }
-
-    public byte[] getImage() {
-        return image;
     }
 
     public static Comparator<AttendanceItems> sortAtoZComparator = new Comparator<AttendanceItems>() {

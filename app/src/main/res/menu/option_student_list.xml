@@ -2,5 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Export CSV file"
         android:icon="@drawable/ic_download"
-        android:id="@+id/exportCSV"/>
+        android:id="@+id/exportCSV" />
 </menu>

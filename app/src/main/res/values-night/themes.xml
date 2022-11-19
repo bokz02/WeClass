@@ -27,7 +27,12 @@
         <item name="colorControlActivated">#E57373</item>
         <item name="colorSwitchThumbNormal">@color/white1</item>
         <item name="trackTint">#F44336</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
 
+    </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/menuBackGround</item>
     </style>
 
     <style name="Theme.Calendar" parent="Theme.MaterialComponents.DayNight.NoActionBar">

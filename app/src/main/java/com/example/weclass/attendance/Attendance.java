@@ -38,7 +38,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
-public class Attendance extends Fragment implements AttendanceAdapter.OnNoteListener{
+public class Attendance extends Fragment implements AttendanceAdapter.OnNoteListener {
 
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<AttendanceItems> attendanceItems, id, parentID;
@@ -47,7 +47,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     DataBaseHelper dataBaseHelper;
     TextView _noStudentsTextView, _id, _parentID,
             dateTimeDisplay, _sortAttendance, _always0, _subjectCode,
-            _sy, _course;
+            _sy, _course, present, absent;
     View view;
     View _noStudentsView;
     EditText _search;
@@ -70,6 +70,9 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         sortAttendance();
         automaticSort();
         optionButton();
+        presentToday();
+        absentToday();
+        updatePresentToday();
 
         return view;
 
@@ -87,7 +90,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         super.onResume();
     }
 
-    public void initialize(){
+    public void initialize() {
         dateTimeDisplay = view.findViewById(R.id.currentDateTextView);
         extendedRecyclerView = view.findViewById(R.id.attendanceRecyclerView);
         _noStudentsView = view.findViewById(R.id.noAttendanceView);
@@ -101,18 +104,20 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         _subjectCode = view.findViewById(R.id.subjectCodeAttendance);
         _sy = view.findViewById(R.id.schoolYearAttendance);
         _course = view.findViewById(R.id.courseAttendance);
+        present = view.findViewById(R.id.presentTodayAttendance);
+        absent = view.findViewById(R.id.absentTodayAttendance);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
-    public void initializeAdapter(){
+    public void initializeAdapter() {
         attendanceAdapter = new AttendanceAdapter(getContext(), attendanceItems, this);
         extendedRecyclerView.setAdapter(attendanceAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        extendedRecyclerView.setEmptyView(_noStudentsView,_noStudentsTextView);
+        extendedRecyclerView.setEmptyView(_noStudentsView, _noStudentsTextView);
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
-    public void display(){
+    public void display() {
         id = new ArrayList<>();
         parentID = new ArrayList<>();
         attendanceItems = new ArrayList<>();
@@ -121,33 +126,34 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     }
 
     // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
-    private ArrayList<AttendanceItems> displayData(){
+    private ArrayList<AttendanceItems> displayData() {
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.TABLE_ATTENDANCE_TODAY + " WHERE "
                 + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                + _parentID.getText().toString(), null);
+                + _parentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_DATE_TODAY + " != '"
+                + dateTimeDisplay.getText().toString() + "'", null);
 
         ArrayList<AttendanceItems> attendanceItems = new ArrayList<>();
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 attendanceItems.add(new AttendanceItems(
                         cursor.getInt(0),
                         cursor.getInt(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getString(5),
-                        cursor.getInt(6),
-                        cursor.getInt(7),
-                        cursor.getBlob(8)));
-            }while (cursor.moveToNext());
+                        cursor.getBlob(7),
+                        cursor.getInt(5),
+                        cursor.getInt(6)));
+            } while (cursor.moveToNext());
         }
         cursor.close();
         return attendanceItems;
     }
 
-    public void displayDate(){
+    public void displayDate() {
         calendar = Calendar.getInstance();
 
         dateFormat = new SimpleDateFormat("EEEE - MMM d, yyyy");
@@ -166,16 +172,16 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         }
     }
 
-    public void sortAttendance(){
+    public void sortAttendance() {
         _sortAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popupMenu = new PopupMenu(getContext(),view);
+                PopupMenu popupMenu = new PopupMenu(getContext(), view);
                 popupMenu.inflate(R.menu.sort_student);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        switch (menuItem.getItemId()){
+                        switch (menuItem.getItemId()) {
                             case R.id.sortAtoZ:
                                 Collections.sort(attendanceItems, AttendanceItems.sortAtoZComparator);
                                 initializeAdapter();
@@ -197,7 +203,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
 
 
     // SEARCH FUNCTION FOR LIST OF STUDENTS
-    public void textListener(){
+    public void textListener() {
         _search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -218,7 +224,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     }
 
     // AUTOMATIC SORT WHEN ACTIVITY OPEN
-    public void automaticSort(){
+    public void automaticSort() {
         Collections.sort(attendanceItems, AttendanceItems.sortAtoZComparator);
         initializeAdapter();
     }
@@ -238,7 +244,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        switch (menuItem.getItemId()){
+                        switch (menuItem.getItemId()) {
                             case R.id.exportCSV:
                                 askForPermissions();
                                 break;
@@ -277,7 +283,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
             }
         }
 
-        File file = new File(exportDir, _subjectCode.getText().toString() + "_Attendance_" +_course.getText().toString()+"_"+ _sy.getText().toString() + ".csv");
+        File file = new File(exportDir, _subjectCode.getText().toString() + "_Attendance_" + _course.getText().toString() + "_" + _sy.getText().toString() + ".csv");
         try {
             boolean createFile = file.createNewFile();
             if (!createFile) {
@@ -307,5 +313,60 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
             Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
             Toast.makeText(getContext(), "Error occurred", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void presentToday() {
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
+                + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
+                + _parentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + " = "
+                + "1", null);
+
+        if (cursor.moveToFirst()) {
+            present.setText(String.valueOf(cursor.getInt(0)));
+            cursor.close();
+        }
+    }
+
+    public void absentToday() {
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
+                + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
+                + _parentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + " = "
+                + "1", null);
+
+        if (cursor.moveToFirst()) {
+            absent.setText(String.valueOf(cursor.getInt(0)));
+            cursor.close();
+        }
+    }
+
+    public void updatePresentToday() {
+        Thread thread = new Thread(){
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()){
+                        Thread.sleep(1000);
+                        if(getActivity() == null)
+                            return;
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                presentToday();
+                                absentToday();
+                            }
+                        });
+                    }
+                } catch (InterruptedException e){
+                }
+            }
+        };
+        thread.start();
     }
 }

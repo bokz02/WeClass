@@ -30,7 +30,7 @@
             android:id="@+id/noSubjectTextViewArchive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No subject to display, create one."
+            android:text="No subject to display."
             android:textColor="@color/cancelButtonPressed"
             android:textSize="16sp"
             android:textStyle="italic"

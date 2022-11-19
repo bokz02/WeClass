@@ -24,12 +24,19 @@
 
     <style name="Theme.Dialog" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/black1</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+    </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/menuBackGround</item>
     </style>
 
     <style name="Theme.Calendar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/black1</item>
         <item name="colorAccent">@color/red2</item>
     </style>
+
+
 
 
     <style name="Theme.TimeDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
