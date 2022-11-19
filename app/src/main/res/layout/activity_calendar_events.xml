@@ -77,28 +77,33 @@
 
         <TextView
             android:id="@+id/dateCalendar"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginHorizontal="50dp"
-            android:fontFamily="@font/poppins_regular"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:textColor="@color/darkText"
+            android:fontFamily="@font/poppins_bold"
             android:text="Friday, November 18, 2022"
             android:textSize="18sp"
-            android:gravity="center"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bottomNavigationView" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCalendar"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/calendarButton"
-            android:text="Select date"
-            android:textColor="@color/calendarText"
-            app:layout_constraintEnd_toEndOf="@+id/dateCalendar"
-            app:layout_constraintStart_toStartOf="@+id/dateCalendar"
+            android:layout_marginStart="8dp"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/nav_sched1"
+            android:drawableTint="@color/calendarButton"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Select Date"
+            android:textAllCaps="false"
+            android:textColor="@color/darkText"
+            app:backgroundTint="@color/calendarButton"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateCalendar" />
 
         <com.example.weclass.ExtendedRecyclerView

@@ -89,8 +89,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
 
 
-
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         AttendanceItems itemsAttendance = attendanceItems.get(position);

@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="178dp"
-        android:layout_height="168dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginBottom="188dp"
         android:background="@drawable/lockl"
         android:backgroundTint="@color/red2"

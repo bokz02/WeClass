@@ -1,14 +1,5 @@
 package com.example.weclass.calendar;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,11 +12,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.weclass.DatePickerFragment;
 import com.example.weclass.ExtendedRecyclerView;
-import com.example.weclass.LockScreen;
 import com.example.weclass.R;
 import com.example.weclass.Settings;
 import com.example.weclass.SharedPref;
@@ -40,8 +38,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import uk.co.deanwild.flowtextview.FlowTextView;
 
 public class CalendarEvents extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 

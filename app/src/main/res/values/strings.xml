@@ -8,7 +8,7 @@
     <string name="termsOfService">By signing up, you\'ve agree to our <font color="#da4e4e">\nTerms of services </font> and  <font color="#28908C">Privacy policy</font></string>
     <string name="AlreadyHave">Already have an account> <font color="#da4e4e">Register Here</font>  </string>
     <string name="WeClass">W<font color="#da4e4e">ecc</font>lass </string>
-    <string name="WeClass1">W<font color="#FF6768">ecc</font>lass </string>
+    <string name="WeClass1">W<font color="#C62828">ecc</font>lass </string>
 
 
 </resources>

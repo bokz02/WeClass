@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/drawerSubject"
@@ -17,20 +19,22 @@
         <item
             android:id="@+id/drawerCalendar"
             android:title="Calendar"
-            android:icon="@drawable/nav_archive"/>
+            android:icon="@drawable/nav_sched"/>
 
     </group>
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/drawerSettings"
             android:title="Settings"
             android:icon="@drawable/nav_set"/>
 
-        <item
-            android:id="@+id/drawerLogout"
-            android:title="Exit"
-            android:icon="@drawable/nav_logout"/>
     </group>
 
+    <item
+        android:id="@+id/drawerLogout"
+        android:title="Exit"
+        android:icon="@drawable/nav_logout"/>
 </menu>
