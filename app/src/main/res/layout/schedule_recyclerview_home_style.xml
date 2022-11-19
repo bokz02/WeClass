@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="5dp"
-    app:cardCornerRadius="15dp">
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="2dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardElevation="5dp"
+    style="@style/FloatingActionButton"
+    app:cardCornerRadius="10dp"
+    app:rippleColor="@color/white1">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,15 +27,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
             android:id="@+id/scheduleTitleTextViewRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="title"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_semibold"
-            android:textSize="16dp"
+            android:text="title"
             android:textColor="@color/darkText"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,8 +47,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="8dp"
-            android:backgroundTint="#6E6E6E"
             android:background="@drawable/ic_baseline_access_time_24"
+            android:backgroundTint="#6E6E6E"
             app:layout_constraintEnd_toStartOf="@+id/scheduleTimeTextViewRecView"
             app:layout_constraintTop_toTopOf="@+id/scheduleDateTextViewRecView" />
 
@@ -49,12 +56,11 @@
             android:id="@+id/scheduleTimeTextViewRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="36dp"
+            android:layout_marginEnd="52dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView5" />
-
 
         <ImageView
             android:id="@+id/imageView4"
