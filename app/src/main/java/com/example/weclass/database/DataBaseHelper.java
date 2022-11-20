@@ -15,7 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 38;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
+    private static final int DATABASE_VERSION = 41;  // JUST INCREMENT DATABASE IF YOU YOU WANT UPDATED DB
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -645,6 +645,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         long result = db.delete(TABLE_ATTENDANCE_TODAY,"id=?", new String[]{String.valueOf(id)});
+
+        if (result == -1){
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    public void deleteAttendance(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long result = db.delete(TABLE_ATTENDANCE,"id_student=?", new String[]{String.valueOf(id)});
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();

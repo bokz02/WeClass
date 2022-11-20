@@ -1,15 +1,22 @@
 package com.example.weclass;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,17 +24,29 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weclass.archive.ArchiveItems;
 import com.example.weclass.attendance.Attendance;
+import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.ratings.Ratings;
 import com.example.weclass.studentlist.StudentList;
+import com.example.weclass.studentlist.profile.image.DrawableUtils;
 import com.example.weclass.subject.SubjectItems;
 import com.example.weclass.tasks.Tasks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class BottomNavi extends AppCompatActivity {
     SharedPreferences sharedPreferences = null;
@@ -253,4 +272,75 @@ public class BottomNavi extends AppCompatActivity {
         });
     }
 
+    // This method will run after uploading a CSV file in student list fragment
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+            if (resultCode == RESULT_OK && data != null){
+                Uri uri = data.getData();
+                String path = uri.getPath();
+                String[] format = null;
+                format = path.split("");
+
+                    // here we want to check if the file format is CSV
+                    if (format[format.length-1].equals("v")){
+
+                        byte[] image = DrawableUtils.getBytes(BitmapFactory.decodeResource(getResources(), R.drawable.prof1));
+
+                        DataBaseHelper dbHelper = new DataBaseHelper(this);
+                        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+                        try {
+                            InputStream inputStream = getContentResolver().openInputStream(uri);
+                            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                            String line ="";
+                            db.beginTransaction();
+
+                            while ((line = bufferedReader.readLine()) != null){
+                                String[] columns = line.split(",");
+                                if (columns.length != 2){
+                                    Toast.makeText(this, "Check column format", Toast.LENGTH_SHORT).show();
+
+                                }else {
+                                    ContentValues cv = new ContentValues(2);
+                                    cv.put(DataBaseHelper.COLUMN_PARENT_ID, parentID.getText().toString());
+                                    cv.put(DataBaseHelper.COLUMN_LAST_NAME, columns[0]);
+                                    cv.put(DataBaseHelper.COLUMN_FIRST_NAME, columns[1]);
+                                    cv.put(DataBaseHelper.COLUMN_PROFILE_PICTURE, image);
+                                    cv.put(DataBaseHelper.COLUMN_MIDDLE_NAME, "-");
+                                    cv.put(DataBaseHelper.COLUMN_GENDER, "-");
+                                    cv.put(DataBaseHelper.COLUMN_PRESENT, 0);
+                                    cv.put(DataBaseHelper.COLUMN_ABSENT, 0);
+                                    cv.put(DataBaseHelper.COLUMN_MIDTERM_GRADE_STUDENT, 0);
+                                    cv.put(DataBaseHelper.COLUMN_FINAL_GRADE_STUDENT, 0);
+                                    cv.put(DataBaseHelper.COLUMN_FINAL_RATING_STUDENT, 0);
+                                    db.insert(DataBaseHelper.TABLE_MY_STUDENTS, null, cv);
+
+                                    ContentValues cValues = new ContentValues();
+                                    cValues.put(DataBaseHelper.COLUMN_PARENT_ID_TODAY, parentID.getText().toString());
+                                    cValues.put(DataBaseHelper.COLUMN_LAST_NAME_TODAY, columns[0]);
+                                    cValues.put(DataBaseHelper.COLUMN_FIRST_NAME_TODAY, columns[1]);
+                                    cValues.put(DataBaseHelper.COLUMN_DATE_TODAY, "date");
+                                    cValues.put(DataBaseHelper.COLUMN_PROFILE_PICTURE, image);
+                                    cValues.put(DataBaseHelper.COLUMN_PRESENT_COUNT_TODAY, 0);
+                                    cValues.put(DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY, 0);
+                                    db.insert(DataBaseHelper.TABLE_ATTENDANCE_TODAY, null, cValues);
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        db.setTransactionSuccessful();
+                        db.endTransaction();
+
+                    }else {
+                        Toast.makeText(this, "Make sure the file is in CSV format" , Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+
+            }
+    }
 }

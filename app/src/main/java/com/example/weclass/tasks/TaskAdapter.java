@@ -17,6 +17,7 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -253,6 +254,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             taskItems.clear();
             taskItems.addAll((List)filterResults.values);
+
+            if(taskItems.size()==0){
+                Toast.makeText(context, "Task doesn't exist" , Toast.LENGTH_SHORT).show();
+            }
+
             notifyDataSetChanged();
 
         }

@@ -263,7 +263,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
             @Override
             public void onClick(View view) {
                 PopupMenu popupMenu = new PopupMenu(getContext(), optionButton);
-                popupMenu.getMenuInflater().inflate(R.menu.option_student_list, popupMenu.getMenu());
+                popupMenu.getMenuInflater().inflate(R.menu.option_tasks, popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override

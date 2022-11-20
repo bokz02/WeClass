@@ -1,11 +1,15 @@
 package com.example.weclass.studentlist;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -22,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.Settings;
+import android.security.identity.ResultData;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -46,8 +51,13 @@ import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,6 +77,9 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     StudentAdapter studentAdapter;
     EditText searchStudent;
     View noFile_;
+    Context context;
+    Uri uri = null;
+
     int lastFirstVisiblePosition;
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
 
@@ -264,6 +277,10 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
                             case R.id.exportCSV:
                                 askForPermissions();
                                 break;
+                            case R.id.importCSV:
+
+                                askForPermissionsBeforeImport();
+                                break;
                         }
                         return false;
                     }
@@ -273,6 +290,24 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
                 popupMenu.show();
             }
         });
+    }
+
+    public void askForPermissionsBeforeImport() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivity(intent);
+                return;
+            }
+            openStorage();
+        }
+    }
+
+    public void openStorage(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath());
+        intent.setDataAndType(uri,"*/*");
+        startActivityForResult(intent,1);
     }
 
     // SEARCH FUNCTION FOR LIST OF STUDENTS
@@ -394,7 +429,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     private void exportDB() {
 
-        DataBaseHelper dbhelper = new DataBaseHelper(getContext());
+        DataBaseHelper dbHelper = new DataBaseHelper(getContext());
         File exportDir = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS);
         if (!exportDir.exists()){
             boolean mkdir = exportDir.mkdirs();
@@ -416,7 +451,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             }
 
             CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
-            SQLiteDatabase db = dbhelper.getReadableDatabase();
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
             String[] columns = {"Last name","First name","Gender", "Present", "Absences", "Midterm grade", "Finals grade", "Final rating"};
 
             Cursor cursor = db.rawQuery("SELECT * FROM "

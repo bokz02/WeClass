@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weclass.LockScreen;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
@@ -345,16 +346,13 @@ public class AddStudent extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == RESULT_OK) {
-            progressBar.setVisibility(View.VISIBLE);
-            Toast.makeText(AddStudent.this, "Success!", Toast.LENGTH_SHORT).show();
             if (data != null) {
                 uri = data.getData();
                 profilePicture.setImageURI(uri);
-                progressBar.setVisibility(View.GONE);
             }
         }else if(resultCode == RESULT_CANCELED){
             Toast.makeText(AddStudent.this, "Canceled!", Toast.LENGTH_SHORT).show();
-            progressBar.setVisibility(View.GONE);
+
         }
     }
 

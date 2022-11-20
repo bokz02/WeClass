@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -258,6 +259,10 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             subjectItems.clear();
             subjectItems.addAll((List)filterResults.values);
+
+            if(subjectItems.size()==0){
+                Toast.makeText(context, "Subject doesn't exist" , Toast.LENGTH_SHORT).show();
+            }
             notifyDataSetChanged();
 
         }

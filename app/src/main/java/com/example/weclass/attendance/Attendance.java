@@ -239,14 +239,16 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
             @Override
             public void onClick(View view) {
                 PopupMenu popupMenu = new PopupMenu(getContext(), optionButton);
-                popupMenu.getMenuInflater().inflate(R.menu.option_student_list, popupMenu.getMenu());
+                popupMenu.getMenuInflater().inflate(R.menu.option_attendance, popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
-                            case R.id.exportCSV:
+                            case R.id.exportAllCSV:
                                 askForPermissions();
+                                break;
+                            case R.id.exportCSV:
                                 break;
                         }
                         return false;
@@ -322,7 +324,9 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
                 + _parentID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + " = "
-                + "1", null);
+                + "1" + " AND "
+                + DataBaseHelper.COLUMN_DATE_ATTENDANCE + " ='"
+                + dateTimeDisplay.getText().toString() + "'", null);
 
         if (cursor.moveToFirst()) {
             present.setText(String.valueOf(cursor.getInt(0)));
@@ -337,7 +341,9 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
                 + _parentID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + " = "
-                + "1", null);
+                + "1" + " AND "
+                + DataBaseHelper.COLUMN_DATE_ATTENDANCE + " ='"
+                + dateTimeDisplay.getText().toString() + "'", null);
 
         if (cursor.moveToFirst()) {
             absent.setText(String.valueOf(cursor.getInt(0)));

@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.weclass.LockScreen;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.image.ImageUtils;
@@ -71,7 +72,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                             studentItems.getMiddleName().toLowerCase().contains(filterPattern) ||
                             studentItems.getGender().toLowerCase().contains(filterPattern)
                     ){
+
                         filteredList.add(studentItems);
+
                     }
                 }
             }
@@ -85,6 +88,10 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             studentItems.clear();
             studentItems.addAll((List)filterResults.values);
+
+            if(studentItems.size()==0){
+                Toast.makeText(context, "Student doesn't exist" , Toast.LENGTH_SHORT).show();
+            }
             notifyDataSetChanged();
 
         }
@@ -161,6 +168,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                         db.deleteStudent(item.getId());
                                         db.deleteStudentGrade(item.getId());
                                         db.deleteAttendanceToday(item.getId());
+                                        db.deleteAttendance(item.getId());
 
                                         int a = holder.getAdapterPosition();
                                         studentItems.remove(a);
