@@ -249,6 +249,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                                 askForPermissions();
                                 break;
                             case R.id.exportCSV:
+                                askForPermissionsToday();
                                 break;
                         }
                         return false;
@@ -269,6 +270,64 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                 return;
             }
             exportDB();
+        }
+    }
+
+    public void askForPermissionsToday() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivity(intent);
+                return;
+            }
+            downloadTodayAttendance();
+        }
+    }
+
+    private void downloadTodayAttendance(){
+        DataBaseHelper dbHelper = new DataBaseHelper(getContext());
+        File exportDir = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS);
+        if (!exportDir.exists()) {
+            boolean mkdir = exportDir.mkdirs();
+
+            if (!mkdir) {
+                Toast.makeText(getContext(), "failed", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        File file = new File(exportDir, _subjectCode.getText().toString() + "_Attendance_" + _course.getText().toString() + "_" + dateTimeDisplay.getText().toString() + ".csv");
+        try {
+            boolean createFile = file.createNewFile();
+            if (!createFile) {
+
+            }
+
+            CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            String[] columns = {"Last name", "Date", "Present", "Absent"};
+
+            Cursor cursor = db.rawQuery("SELECT * FROM "
+                    + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                    + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "="
+                    + _parentID.getText().toString() + " AND "
+                    + DataBaseHelper.COLUMN_DATE_TODAY + " = '"
+                    + dateTimeDisplay.getText().toString() + "'", null);
+
+
+            csvWrite.writeNext(columns);
+            while (cursor.moveToNext()) {
+                //Which column you want to export
+                String[] arrStr = {cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)};
+                csvWrite.writeNext(arrStr);
+            }
+            Toast.makeText(getContext(), "Downloaded to storage/downloads", Toast.LENGTH_SHORT).show();
+            csvWrite.close();
+            cursor.close();
+        } catch (Exception sqlEx) {
+            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
+            Toast.makeText(getContext(), "Error occurred", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -369,7 +428,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                             }
                         });
                     }
-                } catch (InterruptedException e){
+                } catch (InterruptedException ignored){
                 }
             }
         };

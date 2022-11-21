@@ -108,7 +108,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
                                            // IF ANY OF THE FIELDS IS EMPTY, AN ERROR WILL POP UP
                                            if (taskType.getText().toString().isEmpty() || _score.getText().toString().isEmpty()
-                                                   || _description.getText().toString().isEmpty()  || _taskNumber.getText().toString().isEmpty()
+                                                   || _taskNumber.getText().toString().isEmpty()
                                                    || _gradingPeriod.getText().toString().isEmpty() || _dueTextView.getText().toString().isEmpty()) {
 
                                                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
