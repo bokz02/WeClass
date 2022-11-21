@@ -91,18 +91,18 @@ public class Ratings extends Fragment {
         if (cursor.moveToFirst()){
             do {
                 studentItems.add(new StudentItems(
-                        cursor.getInt(0),
-                        cursor.getInt(1),
-                        cursor.getString(2),
+                        cursor.getString(1),
+                        cursor.getInt(2),
                         cursor.getString(3),
                         cursor.getString(4),
                         cursor.getString(5),
-                        cursor.getInt(6),
+                        cursor.getString(6),
                         cursor.getInt(7),
-                        cursor.getBlob(8),
-                        cursor.getString(9),
+                        cursor.getInt(8),
+                        cursor.getBlob(9),
                         cursor.getString(10),
-                        cursor.getString(11)));
+                        cursor.getString(11),
+                        cursor.getString(12)));
             }while (cursor.moveToNext());
         }
         cursor.close();

@@ -113,8 +113,8 @@ public class Absent extends AppCompatActivity {
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
                 + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
-                + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + " = "
-                + _studentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + " = '"
+                + _studentID.getText().toString() + "' AND "
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
                 + _subjectID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + " = "

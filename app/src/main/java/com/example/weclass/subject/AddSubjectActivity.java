@@ -441,12 +441,14 @@ public class AddSubjectActivity extends AppCompatActivity {
         colors.add("#97C1A9");
         colors.add("#55CBCD");
         colors.add("#FFC8A2");
-        colors.add("#DADADA");
         colors.add("#E0A096");
         colors.add("#B2CFA5");
         colors.add("#99A399");
-
-
+        colors.add("#BA94D1");
+        colors.add("#90A17D");
+        colors.add("#9ED2C6");
+        colors.add("#9A86A4");
+        colors.add("#886F6F");
 
         index = new Random().nextInt(colors.size());
         colorTextView.setText(String.valueOf(colors.get(index)));

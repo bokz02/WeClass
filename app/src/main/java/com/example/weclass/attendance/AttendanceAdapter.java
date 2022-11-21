@@ -96,7 +96,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         byte[] image = itemsAttendance.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
 
-        holder.id.setText(String.valueOf(attendanceItems.get(position).getId()));
+        holder.id.setText(String.valueOf(attendanceItems.get(position).getStudentNumber()));
         holder.lastName.setText(String.valueOf(attendanceItems.get(position).getLastName()));
         holder.firstName.setText(String.valueOf(attendanceItems.get(position).getFirstName()));
         holder._present.setText(String.valueOf(attendanceItems.get(position).getPresent()));

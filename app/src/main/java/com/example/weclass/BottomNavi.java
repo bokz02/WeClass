@@ -13,16 +13,19 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +58,7 @@ public class BottomNavi extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     TextView parentID, subjectCode, courseName, _archive
             , _schoolYear;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,6 +234,7 @@ public class BottomNavi extends AppCompatActivity {
         courseName = findViewById(R.id.courseNameBottomNavi);
         _archive = findViewById(R.id.archiveTextViewBottomNavi);
         _schoolYear = findViewById(R.id.schoolYearTextViewBottomNavigation);
+        progressBar = findViewById(R.id.progressBarBotNavi);
 
     }
 
@@ -299,33 +304,59 @@ public class BottomNavi extends AppCompatActivity {
 
                             while ((line = bufferedReader.readLine()) != null){
                                 String[] columns = line.split(",");
-                                if (columns.length != 2){
+                                if (columns.length != 3){
                                     Toast.makeText(this, "Check column format", Toast.LENGTH_SHORT).show();
 
                                 }else {
-                                    ContentValues cv = new ContentValues(2);
-                                    cv.put(DataBaseHelper.COLUMN_PARENT_ID, parentID.getText().toString());
-                                    cv.put(DataBaseHelper.COLUMN_LAST_NAME, columns[0]);
-                                    cv.put(DataBaseHelper.COLUMN_FIRST_NAME, columns[1]);
-                                    cv.put(DataBaseHelper.COLUMN_PROFILE_PICTURE, image);
-                                    cv.put(DataBaseHelper.COLUMN_MIDDLE_NAME, "-");
-                                    cv.put(DataBaseHelper.COLUMN_GENDER, "-");
-                                    cv.put(DataBaseHelper.COLUMN_PRESENT, 0);
-                                    cv.put(DataBaseHelper.COLUMN_ABSENT, 0);
-                                    cv.put(DataBaseHelper.COLUMN_MIDTERM_GRADE_STUDENT, 0);
-                                    cv.put(DataBaseHelper.COLUMN_FINAL_GRADE_STUDENT, 0);
-                                    cv.put(DataBaseHelper.COLUMN_FINAL_RATING_STUDENT, 0);
-                                    db.insert(DataBaseHelper.TABLE_MY_STUDENTS, null, cv);
 
-                                    ContentValues cValues = new ContentValues();
-                                    cValues.put(DataBaseHelper.COLUMN_PARENT_ID_TODAY, parentID.getText().toString());
-                                    cValues.put(DataBaseHelper.COLUMN_LAST_NAME_TODAY, columns[0]);
-                                    cValues.put(DataBaseHelper.COLUMN_FIRST_NAME_TODAY, columns[1]);
-                                    cValues.put(DataBaseHelper.COLUMN_DATE_TODAY, "date");
-                                    cValues.put(DataBaseHelper.COLUMN_PROFILE_PICTURE, image);
-                                    cValues.put(DataBaseHelper.COLUMN_PRESENT_COUNT_TODAY, 0);
-                                    cValues.put(DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY, 0);
-                                    db.insert(DataBaseHelper.TABLE_ATTENDANCE_TODAY, null, cValues);
+                                    // in this method we would like to check database if student number already added
+                                    Cursor cursor = db.rawQuery(" SELECT * FROM "
+                                            + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                                            + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " ='"
+                                            + columns[0] + "'", null);
+
+                                    //if student number is already added, it will not save
+                                    if (cursor.moveToNext()){
+                                        Toast.makeText(this, "Skipping duplicate students", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.VISIBLE);
+                                        loadingAfterImport();
+                                    }else {
+
+                                        // else, save student number in this subject
+                                        ContentValues cv = new ContentValues(3);
+                                        cv.put(DataBaseHelper.COLUMN_PARENT_ID, parentID.getText().toString());
+                                        cv.put(DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT, columns[0].trim());
+                                        cv.put(DataBaseHelper.COLUMN_LAST_NAME, columns[1]);
+                                        cv.put(DataBaseHelper.COLUMN_FIRST_NAME, columns[2]);
+                                        cv.put(DataBaseHelper.COLUMN_PROFILE_PICTURE, image);
+                                        cv.put(DataBaseHelper.COLUMN_MIDDLE_NAME, "-");
+                                        cv.put(DataBaseHelper.COLUMN_GENDER, "-");
+                                        cv.put(DataBaseHelper.COLUMN_PRESENT, 0);
+                                        cv.put(DataBaseHelper.COLUMN_ABSENT, 0);
+                                        cv.put(DataBaseHelper.COLUMN_MIDTERM_GRADE_STUDENT, 0);
+                                        cv.put(DataBaseHelper.COLUMN_FINAL_GRADE_STUDENT, 0);
+                                        cv.put(DataBaseHelper.COLUMN_FINAL_RATING_STUDENT, 0);
+                                        db.insert(DataBaseHelper.TABLE_MY_STUDENTS, null, cv);
+
+                                        ContentValues cValues = new ContentValues(2);
+                                        cValues.put(DataBaseHelper.COLUMN_PARENT_ID_TODAY, parentID.getText().toString());
+                                        cValues.put(DataBaseHelper.COLUMN_LAST_NAME_TODAY, columns[1]);
+                                        cValues.put(DataBaseHelper.COLUMN_FIRST_NAME_TODAY, columns[2]);
+                                        cValues.put(DataBaseHelper.COLUMN_DATE_TODAY, "date");
+                                        cValues.put(DataBaseHelper.COLUMN_PROFILE_PICTURE, image);
+                                        cValues.put(DataBaseHelper.COLUMN_PRESENT_COUNT_TODAY, 0);
+                                        cValues.put(DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY, 0);
+                                        cValues.put(DataBaseHelper.COLUMN_STUDENT_NUMBER_TODAY, columns[0]);
+                                        db.insert(DataBaseHelper.TABLE_ATTENDANCE_TODAY, null, cValues);
+                                        cursor.close();
+
+
+                                        progressBar.setVisibility(View.VISIBLE);
+                                        loadingAfterImport();
+
+                                    }
+
+
                                 }
                             }
                         } catch (IOException e) {
@@ -342,5 +373,15 @@ public class BottomNavi extends AppCompatActivity {
 
 
             }
+    }
+
+    public void loadingAfterImport(){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+            }
+        }, 3000);
     }
 }

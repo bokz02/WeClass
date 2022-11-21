@@ -6,18 +6,18 @@ import java.util.Comparator;
 
 public class AttendanceItems {
 
-    String lastName, firstName;
+    String lastName, firstName, studentNumber;
     int id, parentID, present, absent;
     byte[] image;
 
 
 
-    public AttendanceItems(int id, int parentID, String lastName, String firstName, byte[] image, int present, int absent) {
+    public AttendanceItems(String studentNumber, int parentID, String lastName, String firstName, byte[] image, int present, int absent) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.parentID = parentID;
         this.image = image;
-        this.id = id;
+        this.studentNumber = studentNumber;
         this.present = present;
         this.absent = absent;
 
@@ -39,8 +39,8 @@ public class AttendanceItems {
         return image;
     }
 
-    public int getId() {
-        return id;
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
     public int getPresent() {

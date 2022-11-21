@@ -140,7 +140,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         if (cursor.moveToFirst()) {
             do {
                 attendanceItems.add(new AttendanceItems(
-                        cursor.getInt(0),
+                        cursor.getString(8),
                         cursor.getInt(1),
                         cursor.getString(2),
                         cursor.getString(3),

@@ -6,8 +6,8 @@ import android.os.Parcelable;
 import java.util.Comparator;
 
 public class StudentItems implements Parcelable {
-    String lastname, middleName, firstname, gender, finalGrade, midtermGrade, finalRating;
-    private int id;
+    String lastname, middleName, firstname, gender, finalGrade,
+            midtermGrade, finalRating, studentNumber;
     private final int present;
     private final int absent;
     private int parent_id;
@@ -15,13 +15,12 @@ public class StudentItems implements Parcelable {
 
 
 
-    public StudentItems (int id, int parent_ID, String lastname,
+    public StudentItems (String studentNumber, int parent_ID, String lastname,
                          String firstname, String middleName, String gender,
                          int present, int absent, byte[] image,
                          String midtermGrade,String finalGrade, String finalRating){
 
 
-        this.id = id;
         this.parent_id = parent_ID;
         this.lastname = lastname;
         this.firstname = firstname;
@@ -33,6 +32,7 @@ public class StudentItems implements Parcelable {
         this.midtermGrade = midtermGrade;
         this.finalGrade = finalGrade;
         this.finalRating = finalRating;
+        this.studentNumber = studentNumber;
     }
 
     protected StudentItems(Parcel in) {
@@ -40,13 +40,13 @@ public class StudentItems implements Parcelable {
         middleName = in.readString();
         firstname = in.readString();
         gender = in.readString();
-        id = in.readInt();
         present = in.readInt();
         absent = in.readInt();
         parent_id = in.readInt();
         midtermGrade = in.readString();
         finalGrade = in.readString();
         finalRating = in.readString();
+        studentNumber = in.readString();
     }
 
     public static final Creator<StudentItems> CREATOR = new Creator<StudentItems>() {
@@ -69,13 +69,6 @@ public class StudentItems implements Parcelable {
         this.parent_id = parent_id;
     }
 
-    public int getId(){
-        return id;
-    }
-
-    public void setId(int id){
-        this.id = id;
-    }
 
     public String getLastname() {
         return lastname;
@@ -97,16 +90,8 @@ public class StudentItems implements Parcelable {
         return middleName;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
     public String getGender() {
         return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public int getPresent() {
@@ -131,6 +116,10 @@ public class StudentItems implements Parcelable {
 
     public String getFinalRating() {
         return finalRating;
+    }
+
+    public String getStudentNumber(){
+        return studentNumber;
     }
 
     public static Comparator<StudentItems> sortAtoZComparator = new Comparator<StudentItems>() {
@@ -159,12 +148,12 @@ public class StudentItems implements Parcelable {
         parcel.writeString(middleName);
         parcel.writeString(firstname);
         parcel.writeString(gender);
-        parcel.writeInt(id);
         parcel.writeInt(present);
         parcel.writeInt(absent);
         parcel.writeInt(parent_id);
         parcel.writeString(midtermGrade);
         parcel.writeString(finalGrade);
         parcel.writeString(finalRating);
+        parcel.writeString(studentNumber);
     }
 }

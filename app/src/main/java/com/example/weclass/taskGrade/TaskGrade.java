@@ -178,14 +178,14 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
         if (cursor.moveToFirst()){
             do {
                 taskGradeItems.add(new TaskGradeItems(
-                        cursor.getInt(0),
                         cursor.getInt(1),
-                        cursor.getString(2),
+                        cursor.getInt(2),
                         cursor.getString(3),
-                        cursor.getString(14),
-                        cursor.getInt(19),
-                        cursor.getString(20),
-                        cursor.getInt(12)));
+                        cursor.getString(4),
+                        cursor.getString(15),
+                        cursor.getInt(16),
+                        cursor.getString(21),
+                        cursor.getInt(13)));
             }while (cursor.moveToNext());
         }
         cursor.close();

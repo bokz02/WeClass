@@ -47,7 +47,7 @@ public class AddStudent extends AppCompatActivity {
     ImageButton backButton;
     ImageView profilePicture;
     TextView genderTextview, parentID, _present, _absent, _finalGrade,
-            _midtermGrade, _finalRating, _date;
+            _midtermGrade, _finalRating, _date, studentNumber;
     EditText lastName, firstName, middleName;
     String selectedGender;
     Uri uri = null;
@@ -118,6 +118,7 @@ public class AddStudent extends AppCompatActivity {
         _finalRating = findViewById(R.id.finalRatingTextViewAddStudent);
         progressBar = findViewById(R.id.progressBar);
         _date = findViewById(R.id.dateTodayAddStudent);
+        studentNumber = findViewById(R.id.studentNumberAddStudent);
     }
 
     public void backToStudentList(){
@@ -193,7 +194,8 @@ public class AddStudent extends AppCompatActivity {
 
 
 
-                if (lastName.getText().toString().isEmpty() || firstName.getText().toString().isEmpty() || genderTextview.getText().toString().isEmpty()){
+                if (lastName.getText().toString().isEmpty() || firstName.getText().toString().isEmpty() ||
+                        genderTextview.getText().toString().isEmpty() || studentNumber.getText().toString().isEmpty()){
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddStudent.this);
                     builder.setTitle("Error");
                     builder.setIcon(R.drawable.ic_baseline_warning_24);
@@ -226,10 +228,8 @@ public class AddStudent extends AppCompatActivity {
                                     + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
                                     + DataBaseHelper.COLUMN_PARENT_ID + " = "
                                     + parentID.getText().toString().trim() + " AND "
-                                    + DataBaseHelper.COLUMN_LAST_NAME + " = '"
-                                    + lastName.getText().toString().trim() + "'"+ " COLLATE NOCASE " +" AND "
-                                    + DataBaseHelper.COLUMN_FIRST_NAME + " = '"
-                                    + firstName.getText().toString().trim() + "'", null);
+                                    + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " ='"
+                                    + studentNumber.getText().toString().trim() + "'", null);
 
 
                             if(cursor.moveToFirst()){
@@ -256,13 +256,14 @@ public class AddStudent extends AppCompatActivity {
                                             image,
                                             _midtermGrade.getText().toString().trim(),
                                             _finalGrade.getText().toString().trim(),
-                                            _finalRating.getText().toString().trim());
+                                            _finalRating.getText().toString().trim(),
+                                            studentNumber.getText().toString().trim());
 
 
-                                    dbh.addToAttendanceToday(parentID.getText().toString(),
-                                            lastName.getText().toString(),
-                                            firstName.getText().toString(),
-                                            _date.getText().toString(),
+                                    dbh.addToAttendanceToday(parentID.getText().toString().trim(),
+                                            lastName.getText().toString().trim(),
+                                            firstName.getText().toString().trim(),
+                                            _date.getText().toString().trim(),
                                             image,
                                             "0",
                                             "0");
@@ -289,12 +290,13 @@ public class AddStudent extends AppCompatActivity {
                                                 inputData,
                                                 _midtermGrade.getText().toString().trim(),
                                                 _finalGrade.getText().toString().trim(),
-                                                _finalRating.getText().toString().trim());
+                                                _finalRating.getText().toString().trim(),
+                                                studentNumber.getText().toString().trim());
 
-                                        dbh.addToAttendanceToday(parentID.getText().toString(),
-                                                lastName.getText().toString(),
-                                                firstName.getText().toString(),
-                                                _date.getText().toString(),
+                                        dbh.addToAttendanceToday(parentID.getText().toString().trim(),
+                                                lastName.getText().toString().trim(),
+                                                firstName.getText().toString().trim(),
+                                                _date.getText().toString().trim(),
                                                 inputData,
                                                 "0",
                                                 "0");
@@ -351,7 +353,7 @@ public class AddStudent extends AppCompatActivity {
                 profilePicture.setImageURI(uri);
             }
         }else if(resultCode == RESULT_CANCELED){
-            Toast.makeText(AddStudent.this, "Canceled!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddStudent.this, "Canceled", Toast.LENGTH_SHORT).show();
 
         }
     }

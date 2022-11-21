@@ -112,13 +112,13 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         byte[] image = item.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
 
-        holder.id.setText(String.valueOf(studentItems.get(position).getId()));
         holder.parent_id.setText(String.valueOf(studentItems.get(position).getParent_id()));
         holder.lastNameText.setText(String.valueOf(studentItems.get(position).getLastname()));
         holder.firstNameText.setText(String.valueOf(studentItems.get(position).getFirstname()));
         holder.middleNameText.setText(String.valueOf(studentItems.get(position).getMiddleName()));
         holder.genderText.setText(String.valueOf(studentItems.get(position).getGender()));
         holder.absences.setText(String.valueOf(studentItems.get(position).getAbsent()));
+        holder.studentNumber.setText(String.valueOf(studentItems.get(position).getStudentNumber()));
         holder.studentImage.setImageBitmap(bitmap);
 
 
@@ -144,12 +144,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
 
                                 Intent intent = new Intent(context, EditStudent.class);
                                 Bundle bundle = new Bundle();
-                                bundle.putString("id", String.valueOf(item.getId()));
                                 bundle.putString("parent_id", String.valueOf(item.getParent_id()));
                                 bundle.putString("last_name", String.valueOf(item.getLastname()));
                                 bundle.putString("first_name", String.valueOf(item.getFirstname()));
                                 bundle.putString("middle_name", String.valueOf(item.getMiddleName()));
                                 bundle.putString("gender", String.valueOf(item.getGender()));
+                                bundle.putString("studentNumber", String.valueOf(item.getStudentNumber()));
                                 intent.putExtra("Student", bundle);
                                 context.startActivity(intent);
 
@@ -165,10 +165,19 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                     public void onClick(DialogInterface dialogInterface, int i) {
 
                                         DataBaseHelper db = new DataBaseHelper(context);
-                                        db.deleteStudent(item.getId());
-                                        db.deleteStudentGrade(item.getId());
-                                        db.deleteAttendanceToday(item.getId());
-                                        db.deleteAttendance(item.getId());
+                                        db.deleteStudent(item.getStudentNumber());
+                                        db.deleteAttendanceToday(item.getStudentNumber());
+                                        db.deleteAttendance(item.getStudentNumber());
+
+                                        SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
+                                        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                                                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
+                                                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + "='"
+                                                + item.getStudentNumber() + "'",null);
+
+                                        if (cursor.moveToNext()){
+                                            db.deleteStudentGrade(item.getStudentNumber());
+                                        }
 
                                         int a = holder.getAdapterPosition();
                                         studentItems.remove(a);
@@ -205,7 +214,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView id,parent_id, lastNameText, firstNameText, middleNameText, genderText, absences;
+        TextView id,parent_id, lastNameText, firstNameText, middleNameText, genderText, absences, studentNumber;
         ImageButton button, optionStudent;
         OnNoteListener onNoteListener;
         ImageView studentImage;
@@ -224,6 +233,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
             studentImage = itemView.findViewById(R.id.studentImageRecView);
             absences =itemView.findViewById(R.id.studentListAbsentWarning);
             background = itemView.findViewById(R.id.studentListBackgroundRecView);
+            studentNumber = itemView.findViewById(R.id.studentNumberStudentListRecView);
 
             this.onNoteListener = mOnNoteListener;
 

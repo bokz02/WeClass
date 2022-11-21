@@ -33,8 +33,6 @@
                         android:text="student id"
                         android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.742"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
@@ -110,8 +108,8 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/studentProfilePicture"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
                         android:layout_marginTop="16dp"
                         android:clickable="true"
                         android:elevation="10dp"
@@ -123,20 +121,29 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                     <TextView
+                        android:id="@+id/studentNumberProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="student number"
+                        android:textColor="@color/black1"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@+id/studentProfilePicture"
+                        app:layout_constraintTop_toTopOf="@+id/studentProfilePicture" />
+
+                    <TextView
                         android:id="@+id/studLastnameProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="center_horizontal"
-                        android:textColor="@color/black1"
                         android:text="Lastname"
+                        android:textColor="@color/black1"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.13"
-                        app:layout_constraintStart_toEndOf="@+id/studentProfilePicture"
-                        app:layout_constraintTop_toTopOf="@+id/studentProfilePicture" />
+                        app:layout_constraintStart_toStartOf="@+id/studentNumberProfile"
+                        app:layout_constraintTop_toBottomOf="@+id/studentNumberProfile" />
 
                     <TextView
                         android:id="@+id/studFirstnameProfile"

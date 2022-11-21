@@ -44,7 +44,7 @@ public class StudentProfile extends AppCompatActivity {
     TextView _id, _subjectID, _lastName,
             _firstName, _presentTextview, _absentTextView,
             _courseTextView, _subjectTextView, _finalGrade,
-            _midtermGrade, _finalRating;
+            _midtermGrade, _finalRating, studentNumber;
     ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects, _profileImage;
     String selectedFinalGrade, selectedMidtermGrade, selectedFinalRating;
     Uri uri = null;
@@ -90,6 +90,7 @@ public class StudentProfile extends AppCompatActivity {
         pickFinalGrade();
         pickFinalRating();
         countAbsent();
+        countPresent();
 
         
     }
@@ -133,6 +134,7 @@ public class StudentProfile extends AppCompatActivity {
         seatWork = findViewById(R.id._materialSeatwork);
         assignment = findViewById(R.id._materialAssignment);
         activities = findViewById(R.id._materialActivity);
+        studentNumber = findViewById(R.id.studentNumberProfile);
 
     }
 
@@ -141,11 +143,11 @@ public class StudentProfile extends AppCompatActivity {
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
-                + DataBaseHelper.COLUMN_ID2 + " = "
-                + _id.getText().toString(), null);
+                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+                + studentNumber.getText().toString() + "'", null);
 
         if (cursor.moveToFirst()){
-            _absentTextView.setText(String.valueOf(cursor.getInt(7)));
+            _absentTextView.setText(String.valueOf(cursor.getInt(8)));
             cursor.close();
         }
 
@@ -157,13 +159,29 @@ public class StudentProfile extends AppCompatActivity {
         }
     }
 
+    public void countPresent(){
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+                + studentNumber.getText().toString() + "'", null);
+
+        if (cursor.moveToFirst()){
+            _presentTextview.setText(String.valueOf(cursor.getInt(7)));
+            cursor.close();
+        }
+
+
+    }
+
 
     public void goToActivities(){
         activities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Activities.class);
-                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
@@ -176,7 +194,7 @@ public class StudentProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Assignments.class);
-                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
@@ -189,7 +207,7 @@ public class StudentProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Quiz.class);
-                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
@@ -202,7 +220,7 @@ public class StudentProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, SeatWork.class);
-                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
@@ -215,7 +233,7 @@ public class StudentProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Projects.class);
-                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
@@ -228,7 +246,7 @@ public class StudentProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Exams.class);
-                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
@@ -241,7 +259,7 @@ public class StudentProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Present.class);
-                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
@@ -254,7 +272,7 @@ public class StudentProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Absent.class);
-                intent.putExtra("studentID", _id.getText().toString());
+                intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
@@ -278,7 +296,7 @@ public class StudentProfile extends AppCompatActivity {
         String subjectCode = intent.getStringExtra("subject");
         String course = intent.getStringExtra("course");
 
-        int studentID = studentItems.getId();
+        //int studentID = studentItems.getId();
         int subjectID = studentItems.getParent_id();
 
         String lastName = studentItems.getLastname();
@@ -288,8 +306,9 @@ public class StudentProfile extends AppCompatActivity {
         String finalRating_ = studentItems.getFinalRating();
         int present = studentItems.getPresent();
         int absent = studentItems.getAbsent();
+        String studNumber = studentItems.getStudentNumber();
 
-        _id.setText(String.valueOf(studentID));
+        //_id.setText(String.valueOf(studentID));
         _subjectID.setText(String.valueOf(subjectID));
         _lastName.setText(lastName);
         _firstName.setText(firstName);
@@ -300,6 +319,7 @@ public class StudentProfile extends AppCompatActivity {
         _midtermGrade.setText(midtermGrade_);
         _finalGrade.setText(finalGrade_);
         _finalRating.setText(finalRating_);
+        studentNumber.setText(studNumber);
 
     }
 
@@ -339,9 +359,11 @@ public class StudentProfile extends AppCompatActivity {
             InputStream inputStream = getContentResolver().openInputStream(uri);
             byte[] inputData = ImageUtils.getBytes(inputStream);
             DataBaseHelper dbh = new DataBaseHelper(StudentProfile.this);
-            dbh.updateProfilePicture(_id.getText().toString(),
-                    _subjectID.getText().toString(),
+            dbh.updateProfilePictureAttendanceToday(studentNumber.getText().toString(),
                     inputData);
+            dbh.updateProfilePicture(studentNumber.getText().toString(),
+                    inputData);
+
 
             return true;
 
@@ -359,13 +381,11 @@ public class StudentProfile extends AppCompatActivity {
         SQLiteDatabase sqL = db.getWritableDatabase();
         Cursor cursor = sqL.rawQuery("SELECT * FROM "
                         + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
-                        + DataBaseHelper.COLUMN_ID2 + " = "
-                        + _id.getText().toString().trim() + " AND "
-                        + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                        + _subjectID.getText().toString(), null);
+                        + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+                        + studentNumber.getText().toString().trim() + "'", null);
 
         if (cursor.moveToFirst()){
-            byte[] image = cursor.getBlob(8);
+            byte[] image = cursor.getBlob(9);
             Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
             _profileImage.setImageBitmap(bitmap);
             cursor.close();

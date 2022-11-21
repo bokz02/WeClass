@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.Settings;
 import android.security.identity.ResultData;
@@ -38,6 +39,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,6 +79,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     StudentAdapter studentAdapter;
     EditText searchStudent;
     View noFile_;
+    ProgressBar progressBar;
     Context context;
     Uri uri = null;
 
@@ -226,18 +229,18 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         if (cursor.moveToFirst()){
             do {
                 studentItems.add(new StudentItems(
-                        cursor.getInt(0),
-                        cursor.getInt(1),
-                        cursor.getString(2),
+                        cursor.getString(1),
+                        cursor.getInt(2),
                         cursor.getString(3),
                         cursor.getString(4),
                         cursor.getString(5),
-                        cursor.getInt(6),
+                        cursor.getString(6),
                         cursor.getInt(7),
-                        cursor.getBlob(8),
-                        cursor.getString(9),
+                        cursor.getInt(8),
+                        cursor.getBlob(9),
                         cursor.getString(10),
-                        cursor.getString(11)));
+                        cursor.getString(11),
+                        cursor.getString(12)));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -260,6 +263,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         _archive = view.findViewById(R.id.archiveTextViewStudentList);
         optionButton = view.findViewById(R.id.optionButtonStudentList);
         _schoolYear = view.findViewById(R.id.schoolYearStudentList);
+        progressBar = view.findViewById(R.id.progressBarStudentList);
 
     }
 
@@ -308,7 +312,9 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath());
         intent.setDataAndType(uri,"*/*");
         startActivityForResult(intent,1);
+
     }
+
 
     // SEARCH FUNCTION FOR LIST OF STUDENTS
     public void textListener(){

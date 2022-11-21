@@ -39,7 +39,7 @@ public class EditStudent extends AppCompatActivity {
     Button updateButton, cancelButton;
     ImageButton _backButton;
     ImageView profilePic;
-    TextView _gender, _id;
+    TextView _gender, _id, studentNumber;
     String selectedGender;
     Uri uri = null;
     SharedPreferences sharedPreferences = null;
@@ -105,27 +105,34 @@ public class EditStudent extends AppCompatActivity {
 
                             DataBaseHelper dbh = new DataBaseHelper(EditStudent.this);
                             dbh.updateStudent(
-                                    _id.getText().toString().trim(),
+                                    studentNumber.getText().toString().trim(),
                                     _lastName.getText().toString().trim(),
                                     _firstName.getText().toString().trim(),
                                     _middleName.getText().toString().trim(),
                                     _gender.getText().toString().trim(),
                                     image);
 
+                            dbh.updateProfilePictureAttendanceToday(
+                                    studentNumber.getText().toString().trim(),
+                                    image);
+
                             Snackbar.make(updateButton, "Student information successfully updated!", Snackbar.LENGTH_LONG).show();
                         }else {
                             try {
-
 
                                 InputStream inputStream = getContentResolver().openInputStream(uri);
                                 byte[] inputData = ImageUtils.getBytes(inputStream);
                                 DataBaseHelper dbh = new DataBaseHelper(EditStudent.this);
                                 dbh.updateStudent(
-                                        _id.getText().toString().trim(),
+                                        studentNumber.getText().toString().trim(),
                                         _lastName.getText().toString().trim(),
                                         _firstName.getText().toString().trim(),
                                         _middleName.getText().toString().trim(),
                                         _gender.getText().toString().trim(),
+                                        inputData);
+
+                                dbh.updateProfilePictureAttendanceToday(
+                                        studentNumber.getText().toString().trim(),
                                         inputData);
 
                                 Snackbar.make(updateButton, "Student information successfully updated!", Snackbar.LENGTH_LONG).show();
@@ -153,6 +160,7 @@ public class EditStudent extends AppCompatActivity {
         cancelButton = findViewById(R.id.editCancelButtonStudent);
         updateButton = findViewById(R.id.editUpdateButton);
         profilePic = findViewById(R.id.editStudentProfilePicture);
+        studentNumber = findViewById(R.id.studentNumberEditStudent);
     }
 
     public void backToStudentList(){
@@ -199,7 +207,7 @@ public class EditStudent extends AppCompatActivity {
             _firstName.setText(bundle.getString("first_name"));
             _middleName.setText(bundle.getString("middle_name"));
             _gender.setText(bundle.getString("gender"));
-
+            studentNumber.setText(bundle.getString("studentNumber"));
         }
     }
 
@@ -260,11 +268,11 @@ public class EditStudent extends AppCompatActivity {
         SQLiteDatabase sqL = db.getWritableDatabase();
         Cursor cursor = sqL.rawQuery("SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
-                + DataBaseHelper.COLUMN_ID2 + " = "
-                + _id.getText().toString().trim(), null);
+                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+                + studentNumber.getText().toString().trim() + "'", null);
 
         if (cursor.moveToFirst()){
-            byte[] image = cursor.getBlob(8);
+            byte[] image = cursor.getBlob(9);
             Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
             profilePic.setImageBitmap(bitmap);
             cursor.close();
