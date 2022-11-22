@@ -7,12 +7,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -29,6 +31,7 @@ import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
 import com.example.weclass.tasks.TaskItems;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -78,6 +81,10 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
         getSumOfStudents();
         gradedStudent();
         updateGradedStudents();
+        insertDataToTaskGrade();
+
+
+
 
     }
 
@@ -178,7 +185,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
         if (cursor.moveToFirst()){
             do {
                 taskGradeItems.add(new TaskGradeItems(
-                        cursor.getInt(1),
+                        cursor.getString(1),
                         cursor.getInt(2),
                         cursor.getString(3),
                         cursor.getString(4),
@@ -313,7 +320,10 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " ='"
                 + _taskType.getText().toString() + "' AND "
                 + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
-                + _taskNumber.getText().toString(), null);
+                + _taskNumber.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != " + 0 + " AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + "='"
+                + _gradingPeriod.getText().toString() + "'", null);
 
         if (cursor.moveToFirst() ){
             gradedStudent.setText(String.valueOf(cursor.getInt(0)));
@@ -354,6 +364,70 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
         };
         thread.start();
     }
+
+    public void insertDataToTaskGrade(){
+        DataBaseHelper dbHelper = new DataBaseHelper(this);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+        SQLiteDatabase sqL = dbHelper.getWritableDatabase();
+
+
+        // MERGE 2 TABLES USING LEFT JOIN
+
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " LEFT JOIN "
+                + DataBaseHelper.TABLE_MY_TASKS + " ON "
+                + DataBaseHelper.TABLE_MY_STUDENTS + "."
+                + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                + DataBaseHelper.TABLE_MY_TASKS + "."
+                + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " WHERE "
+                + DataBaseHelper.TABLE_MY_STUDENTS + "."
+                + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                + _subjectID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                + _taskType.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
+                + _taskNumber.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
+                + _gradingPeriod.getText().toString() + "'", null);
+
+        if (cursor.moveToFirst()){
+            do {
+                Cursor c = sqL.rawQuery("SELECT * FROM "
+                        + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
+                        + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
+                        + cursor.getString(1) + "'" + " AND "
+                        + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
+                        + cursor.getInt(2) + " AND "
+                        + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
+                        + cursor.getString(15) + "' AND "
+                        + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
+                        + cursor.getInt(20) + " AND "
+                        + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " ='"
+                        + cursor.getString(21) + "'", null);
+
+                if (!c.moveToFirst()){
+                    ContentValues cv = new ContentValues();
+                    cv.put(DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE, cursor.getString(1));
+                    cv.put(DataBaseHelper.COLUMN_TASK_ID_MY_GRADE, _taskId.getText().toString());
+                    cv.put(DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE, _subjectID.getText().toString());
+                    cv.put(DataBaseHelper.COLUMN_LAST_NAME_MY_GRADE, cursor.getString(3));
+                    cv.put(DataBaseHelper.COLUMN_FIRST_NAME_MY_GRADE, cursor.getString(4));
+                    cv.put(DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE, _taskType.getText().toString());
+                    cv.put(DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE, _taskNumber.getText().toString());
+                    cv.put(DataBaseHelper.COLUMN_GRADE_MY_GRADE, 0);
+                    cv.put(DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE, _gradingPeriod.getText().toString());
+                    sqL.insert(DataBaseHelper.TABLE_MY_GRADE, null,cv);
+                    c.close();
+                }
+
+            }while (cursor.moveToNext());
+
+        }cursor.close();
+
+
+    }
+
+
 
 
 }

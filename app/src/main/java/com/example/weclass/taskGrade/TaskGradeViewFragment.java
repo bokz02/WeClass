@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weclass.EditTextSetMinMax;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class TaskGradeViewFragment extends Fragment{
+public class TaskGradeViewFragment extends Fragment {
 
 
     TextView _taskType, _taskNumber, _gradingPeriod, _subjectId, _noStudentToGradeTextViewFragment;
@@ -117,7 +118,8 @@ public class TaskGradeViewFragment extends Fragment{
                 + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
                 + _taskNumber.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + _gradingPeriod.getText().toString() + "'", null);
+                + _gradingPeriod.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + "!=" + 0, null);
 
         ArrayList<TaskGradeViewItems> taskGradeViewItems = new ArrayList<>();
 
@@ -129,7 +131,9 @@ public class TaskGradeViewFragment extends Fragment{
                         cursor.getString(6),
                         cursor.getInt(7),
                         cursor.getInt(8),
-                        cursor.getInt(0)));
+                        cursor.getString(1),
+                        cursor.getString(9),
+                        cursor.getInt(3)));
             }while (cursor.moveToNext());
         }
         cursor.close();

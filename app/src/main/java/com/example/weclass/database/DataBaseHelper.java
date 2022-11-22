@@ -15,7 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 52;
+    private static final int DATABASE_VERSION = 54;
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -452,30 +452,32 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // UPDATE PRESENT COLUMN OF STUDENT DATABASE
-    public void updateStudentPresent(String id, String idSubject,String present){
+    public void updateStudentPresent(String id, String parentId,String present){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_STUDENT_NUMBER_STUDENT, id);
-        contentValues.put(COLUMN_PARENT_ID_SUBJECT, idSubject);
+        contentValues.put(COLUMN_PARENT_ID_SUBJECT, parentId);
         contentValues.put(COLUMN_PRESENT, present);
 
-        long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'"+id+"'", null);
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'"+id+"'"
+                + " and " + "parent_id=" + "'" + parentId + "'", null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
     }
 
     // UPDATE ABSENT COLUMN OF STUDENT DATABASE
-    public void updateStudentAbsent(String id, String idSubject,String absent){
+    public void updateStudentAbsent(String id, String parentId,String absent){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_STUDENT_NUMBER_STUDENT, id);
-        contentValues.put(COLUMN_PARENT_ID_SUBJECT, idSubject);
+        contentValues.put(COLUMN_PARENT_ID_SUBJECT, parentId);
         contentValues.put(COLUMN_ABSENT, absent);
 
-        long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'"+id+"'", null);
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'"+id+"'"
+                + " and " + "parent_id=" + "'" + parentId + "'", null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -500,19 +502,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // UPDATE DATA OF STUDENT DATABASE
-    public void updateTaskGrade(String id, String taskGrade){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(COLUMN_GRADE_MY_GRADE, taskGrade);
-
-
-        long result = db.update(TABLE_MY_GRADE, contentValues, "id_number=" + id, null);
-        if(result == -1){
-            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY OR EDIT STUDENT ACTIVITY
     public void updateProfilePicture(String id, byte[] image){
@@ -585,15 +574,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // UPDATE STUDENT'S PROFILE FINAL RATING IN PROFILE ACTIVITY
+    public void updateGrade(String id, String taskType, String taskNumber, String gradingPeriod, String grade, String parentId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_STUDENT_ID_MY_GRADE, id);
+        contentValues.put(COLUMN_GRADE_MY_GRADE, grade);
+        contentValues.put(COLUMN_TASK_TYPE_MY_GRADE, taskType);
+        contentValues.put(COLUMN_TASK_NUMBER_MY_GRADE, taskNumber);
+        contentValues.put(COLUMN_GRADING_PERIOD_MY_GRADE, gradingPeriod);
+        contentValues.put(COLUMN_PARENT_ID_MY_GRADE, parentId);
+
+        long result = db.update(TABLE_MY_GRADE, contentValues, "id_student=" + "'"+id+"'" + " and " + "task_type=" + "'" +taskType+ "'"
+                + " and " + "task_number=" + "'"+taskNumber+"'" + " and " + "grading_period=" + "'" + gradingPeriod + "'"
+                + " and " + "id_parent=" + "'"+parentId + "'", null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     // UPDATE STUDENT'S attendance today
-    public void updateAttendanceToday(String id, String date){
+    public void updateAttendanceToday(String id, String parentId,String date){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_STUDENT_NUMBER_TODAY, id);
+        contentValues.put(COLUMN_PARENT_ID_TODAY, parentId);
         contentValues.put(COLUMN_DATE_TODAY, date);
 
-        long result = db.update(TABLE_ATTENDANCE_TODAY, contentValues, "student_number=" + "'"+id+"'", null);
+        long result = db.update(TABLE_ATTENDANCE_TODAY, contentValues, "student_number=" + "'"+id+"'"
+                + "parent_id=" + "'" + parentId + "'", null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
@@ -610,9 +621,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // DELETE A SUBJECT
-    public void deleteStudent(String row_id){
+    public void deleteStudent(String studentId, int parentId){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result =  db.delete(TABLE_MY_STUDENTS, "student_number=?", new String[]{ String.valueOf(row_id)});
+        long result =  db.delete(TABLE_MY_STUDENTS, "student_number=" + "'" + studentId+ "'"
+                + " and " + "parent_id=" + parentId, null);
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
@@ -623,9 +635,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // DELETE A SUBJECT
-    public void deleteStudentGrade(String row_id){
+    public void deleteStudentGrade(String studentId, int parentId){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result =  db.delete(TABLE_MY_GRADE, "id_student=?", new String[]{ String.valueOf(row_id)});
+        long result =  db.delete(TABLE_MY_GRADE, "id_student=" + "'" +studentId+ "'"
+                + " and " + "id_parent=" + parentId, null);
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
@@ -662,10 +675,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteAttendanceToday(String id){
+    public void deleteAttendanceToday(String studentId, int parentId){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        long result = db.delete(TABLE_ATTENDANCE_TODAY,"student_number=?", new String[]{String.valueOf(id)});
+        long result = db.delete(TABLE_ATTENDANCE_TODAY,"student_number=" + "'" + studentId + "'"
+                + " and " + "parent_id=" + parentId, null);
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
@@ -675,10 +689,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteAttendance(String id){
+    public void deleteAttendance(String id, int parentId){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        long result = db.delete(TABLE_ATTENDANCE,"id_student=?", new String[]{String.valueOf(id)});
+        long result = db.delete(TABLE_ATTENDANCE,"id_student=" + "'" + id + "'"
+                + " and " + "id_subject=" + parentId, null);
 
         if (result == -1){
             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();

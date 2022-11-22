@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Environment;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weclass.CSVWriter;
+import com.example.weclass.EditTextSetMinMax;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
@@ -38,7 +40,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
-public class Attendance extends Fragment implements AttendanceAdapter.OnNoteListener {
+public class Attendance extends Fragment implements AttendanceAdapter.OnNoteListener{
 
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<AttendanceItems> attendanceItems, id, parentID;
@@ -204,6 +206,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
 
     // SEARCH FUNCTION FOR LIST OF STUDENTS
     public void textListener() {
+
         _search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

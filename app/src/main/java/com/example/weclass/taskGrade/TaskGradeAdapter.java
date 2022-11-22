@@ -3,8 +3,6 @@ package com.example.weclass.taskGrade;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weclass.LockScreen;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.StudentAdapter;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -55,7 +50,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
             lastName = itemView.findViewById(R.id.lastNameRecViewGrade);
             firstName = itemView.findViewById(R.id.firstNameRecViewGrade);
             submitButtonGrade = itemView.findViewById(R.id.submitButtonRecViewGrade);
-            gradeEditText = itemView.findViewById(R.id.gradeTextViewGrade);
+            gradeEditText = itemView.findViewById(R.id.gradeEditTextViewGrade);
             studentID = itemView.findViewById(R.id.studentIDGrade);
             subjectID = itemView.findViewById(R.id.subjectIDTextViewRecViewGrade);
             taskType = itemView.findViewById(R.id.taskTypeTextViewRecViewGrade);
@@ -87,9 +82,6 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         holder.taskNumber.setText(String.valueOf(taskGradeItems.get(position).getTaskNumber()));
         holder.gradingPeriod.setText(String.valueOf(taskGradeItems.get(position).getGradingPeriod()));
         holder.taskId.setText(String.valueOf(taskGradeItems.get(position).getTaskId()));
-
-        holder.gradeEditText.setText("");
-
 
         holder.submitButtonGrade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,20 +127,14 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                 }
                 else {
 
-                    DataBaseHelper dbh = new DataBaseHelper(context);
-                    dbh.addGrade(holder.studentID.getText().toString().trim(),
-                            holder.taskId.getText().toString().trim(),
-                            holder.subjectID.getText().toString().trim(),
-                            holder.lastName.getText().toString().trim(),
-                            holder.firstName.getText().toString().trim(),
+                    db.updateGrade(holder.studentID.getText().toString().trim(),
                             holder.taskType.getText().toString().trim(),
                             holder.taskNumber.getText().toString().trim(),
+                            holder.gradingPeriod.getText().toString().trim(),
                             holder.gradeEditText.getText().toString().trim(),
-                            holder.gradingPeriod.getText().toString().trim());
+                            holder.subjectID.getText().toString().trim());
 
-                    Snackbar.make(holder.submitButtonGrade, "" + holder.lastName.getText().toString() +
-                            ", " + holder.firstName.getText().toString() +
-                            " successfully graded", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(context, "" + holder.lastName.getText().toString() + ", " + holder.firstName.getText().toString() + " successfully graded" , Toast.LENGTH_SHORT).show();
 
 
 

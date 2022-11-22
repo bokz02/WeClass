@@ -165,9 +165,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                     public void onClick(DialogInterface dialogInterface, int i) {
 
                                         DataBaseHelper db = new DataBaseHelper(context);
-                                        db.deleteStudent(item.getStudentNumber());
-                                        db.deleteAttendanceToday(item.getStudentNumber());
-                                        db.deleteAttendance(item.getStudentNumber());
+                                        db.deleteStudent(item.getStudentNumber(),
+                                                item.getParent_id());
+                                        db.deleteAttendanceToday(item.getStudentNumber(),
+                                                item.getParent_id());
+                                        db.deleteAttendance(item.getStudentNumber(),
+                                                item.getParent_id());
 
                                         SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
                                         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
@@ -176,7 +179,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                                 + item.getStudentNumber() + "'",null);
 
                                         if (cursor.moveToNext()){
-                                            db.deleteStudentGrade(item.getStudentNumber());
+                                            db.deleteStudentGrade(item.getStudentNumber(),
+                                                    item.getParent_id());
                                         }
 
                                         int a = holder.getAdapterPosition();

@@ -6,15 +6,15 @@ import java.util.Comparator;
 
 public class TaskGradeItems {
 
-    String lastName, firstName, taskType, gradingPeriod;
+    String lastName, firstName, taskType, gradingPeriod, studentNumber;
     int studentID, subjectID, taskNumber, taskId;
 
 
-    public TaskGradeItems(int studentID, int subjectID, String lastName, String firstName, String taskType,
+    public TaskGradeItems(String studentNumber, int subjectID, String lastName, String firstName, String taskType,
                           int taskNumber, String gradingPeriod, int taskId) {
         this.lastName = lastName;
         this.firstName = firstName;
-        this.studentID = studentID;
+        this.studentNumber = studentNumber;
         this.subjectID = subjectID;
         this.taskType = taskType;
         this.taskNumber = taskNumber;
@@ -30,8 +30,8 @@ public class TaskGradeItems {
         return firstName;
     }
 
-    public int getStudentID() {
-        return studentID;
+    public String getStudentID() {
+        return studentNumber;
     }
 
     public int getSubjectID() {

@@ -149,6 +149,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._present.getText().toString());
 
                     db.updateAttendanceToday(holder.id.getText().toString(),
+                            holder._subjectID.getText().toString(),
                             holder._date.getText().toString());
 
                     c = holder.getAdapterPosition();
@@ -195,6 +196,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._absent.getText().toString());
 
                     db.updateAttendanceToday(holder.id.getText().toString(),
+                            holder._subjectID.getText().toString(),
                             holder._date.getText().toString());
 
                     c = holder.getAdapterPosition();

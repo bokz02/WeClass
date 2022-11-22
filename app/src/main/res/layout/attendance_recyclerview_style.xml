@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="2dp"
-    android:clickable="true"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
     app:rippleColor="@color/lightText">
@@ -14,21 +13,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/attendanceBackgroundRecView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/lastNameAttendanceRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:paddingStart="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
             android:text="Lastname"
             android:textColor="@color/darkText"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/pictureAttendanceRecView"
             app:layout_constraintStart_toEndOf="@+id/pictureAttendanceRecView"
             app:layout_constraintTop_toTopOf="@+id/pictureAttendanceRecView"
             app:layout_constraintVertical_bias="0.146" />
@@ -39,9 +36,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="Firstname"
-            android:paddingStart="5dp"
             android:textColor="@color/darkText"
-            android:textSize="13sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/lastNameAttendanceRecView"
             app:layout_constraintTop_toBottomOf="@+id/lastNameAttendanceRecView" />
 

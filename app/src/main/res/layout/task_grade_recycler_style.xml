@@ -7,9 +7,9 @@
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="2dp"
     android:background="@color/white"
+    android:padding="5dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
-    android:padding="5dp">
+    app:cardElevation="5dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,11 +21,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Last"
             android:textColor="@color/darkText"
             android:textSize="16sp"
-            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,9 +33,9 @@
             android:id="@+id/firstNameRecViewGrade"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/poppins_regular"
             android:text="First"
-            android:layout_marginStart="5dp"
             android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/lastNameRecViewGrade"
@@ -54,13 +54,13 @@
             app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
 
         <EditText
-            android:id="@+id/gradeTextViewGrade"
-            android:layout_width="wrap_content"
+            android:id="@+id/gradeEditTextViewGrade"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="60dp"
             android:background="@drawable/edit_text_underline"
-            android:gravity="center"
-            android:hint="       "
+            android:gravity="end"
+            android:hint="0"
             android:inputType="number"
             android:maxLength="3"
             android:maxLines="1"
@@ -69,6 +69,16 @@
             app:layout_constraintBottom_toBottomOf="@+id/firstNameRecViewGrade"
             app:layout_constraintEnd_toStartOf="@+id/submitButtonRecViewGrade"
             app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/100"
+            android:textColor="@color/black1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/gradeEditTextViewGrade"
+            app:layout_constraintStart_toEndOf="@+id/gradeEditTextViewGrade"
+            app:layout_constraintTop_toTopOf="@+id/gradeEditTextViewGrade" />
 
         <TextView
             android:id="@+id/studentIDGrade"
@@ -147,9 +157,9 @@
             android:hint="Grade"
             android:paddingHorizontal="5dp"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/gradeTextViewGrade"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/gradeTextViewGrade" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

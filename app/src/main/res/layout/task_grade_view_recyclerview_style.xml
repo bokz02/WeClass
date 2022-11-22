@@ -47,7 +47,7 @@
 
 
         <EditText
-            android:id="@+id/gradeTextViewGrade"
+            android:id="@+id/gradeEditTextViewGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
@@ -64,16 +64,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/firstNameRecViewGrade" />
 
-        <ImageButton
-            android:id="@+id/editGradeImageButtonTaskGradeRecView"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintBottom_toBottomOf="@+id/gradeTextViewGrade"
-            app:layout_constraintEnd_toStartOf="@+id/gradeTextViewGrade"
-            app:layout_constraintTop_toTopOf="@+id/gradeTextViewGrade" />
-
 
         <TextView
             android:id="@+id/studentIDGrade"
@@ -87,6 +77,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+
         <TextView
             android:id="@+id/taskNumberRecViewGrade"
             android:layout_width="wrap_content"
@@ -99,7 +91,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/idTextViewTaskGrade"
+            android:id="@+id/studentIdTextViewTaskGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="id"

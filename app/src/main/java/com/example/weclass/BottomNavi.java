@@ -313,15 +313,12 @@ public class BottomNavi extends AppCompatActivity {
                                     Cursor cursor = db.rawQuery(" SELECT * FROM "
                                             + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
                                             + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " ='"
-                                            + columns[0] + "'", null);
+                                            + columns[0] + "' AND "
+                                            + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                                            + parentID.getText().toString(), null);
 
                                     //if student number is already added, it will not save
-                                    if (cursor.moveToNext()){
-                                        Toast.makeText(this, "Skipping duplicate students", Toast.LENGTH_SHORT).show();
-                                        progressBar.setVisibility(View.VISIBLE);
-                                        loadingAfterImport();
-                                    }else {
-
+                                    if (!cursor.moveToFirst()){
                                         // else, save student number in this subject
                                         ContentValues cv = new ContentValues(3);
                                         cv.put(DataBaseHelper.COLUMN_PARENT_ID, parentID.getText().toString());
@@ -349,12 +346,9 @@ public class BottomNavi extends AppCompatActivity {
                                         cValues.put(DataBaseHelper.COLUMN_STUDENT_NUMBER_TODAY, columns[0]);
                                         db.insert(DataBaseHelper.TABLE_ATTENDANCE_TODAY, null, cValues);
                                         cursor.close();
-
-
-                                        progressBar.setVisibility(View.VISIBLE);
-                                        loadingAfterImport();
-
                                     }
+                                    progressBar.setVisibility(View.VISIBLE);
+                                    loadingAfterImport();
 
 
                                 }
@@ -381,6 +375,7 @@ public class BottomNavi extends AppCompatActivity {
             @Override
             public void run() {
                 progressBar.setVisibility(View.GONE);
+                Toast.makeText(BottomNavi.this, "Import complete", Toast.LENGTH_SHORT).show();
             }
         }, 3000);
     }

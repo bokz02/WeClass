@@ -46,6 +46,26 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.Item
         return view;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        initialize();
+        getDataFromTaskGradeActivity();
+        display();
+        initializeAdapter();
+        automaticSort();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initialize();
+        getDataFromTaskGradeActivity();
+        display();
+        initializeAdapter();
+        automaticSort();
+    }
+
     // initialize all views
     public void initialize(){
         extendedRecyclerView = view.findViewById(R.id.extendedRecViewTaskGrade);
@@ -82,38 +102,33 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.Item
     private ArrayList<TaskGradeItems> displayData(){
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
 
-        // MERGE 2 TABLES USING LEFT JOIN
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_MY_STUDENTS + " LEFT JOIN "
-                + DataBaseHelper.TABLE_MY_TASKS + " ON "
-                + DataBaseHelper.TABLE_MY_STUDENTS + "."
-                + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                + DataBaseHelper.TABLE_MY_TASKS + "."
-                + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " WHERE "
-                + DataBaseHelper.TABLE_MY_STUDENTS + "."
-                + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
+                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + _taskType.getText().toString() + "' AND "
-                + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
+                + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
                 + _taskNumber.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                + _gradingPeriod.getText().toString() + "'", null);
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " ='"
+                + _gradingPeriod.getText().toString() + "'AND "
+                + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + "="
+                + _subjectID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " = "
+                + 0, null);
 
         ArrayList<TaskGradeItems> taskGradeItems = new ArrayList<>();
 
         if (cursor.moveToFirst()){
             do {
                 taskGradeItems.add(new TaskGradeItems(
-                        cursor.getInt(1),
-                        cursor.getInt(2),
-                        cursor.getString(3),
+                        cursor.getString(1),
+                        cursor.getInt(3),
                         cursor.getString(4),
-                        cursor.getString(15),
-                        cursor.getInt(20),
-                        cursor.getString(21),
-                        cursor.getInt(13)));
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getInt(7),
+                        cursor.getString(9),
+                        cursor.getInt(2)));
             }while (cursor.moveToNext());
         }
         cursor.close();
