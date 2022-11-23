@@ -68,4 +68,5 @@
     <color name="ViewPagerIndicator">#da4e4e</color>
 
     <color name="menuBackGround">#ECECEC</color>
+    <color name="importTitle">#da4e4e</color>
 </resources>

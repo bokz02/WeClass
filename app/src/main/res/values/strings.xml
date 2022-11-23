@@ -10,5 +10,7 @@
     <string name="WeClass">W<font color="#da4e4e">ecc</font>lass </string>
     <string name="WeClass1">W<font color="#C62828">ecc</font>lass </string>
 
+    <string name="importTitle"><font color="#da4e4e">Import</font></string>
+
 
 </resources>

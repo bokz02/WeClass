@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
@@ -38,6 +40,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -51,6 +54,7 @@ import com.example.weclass.LockScreen;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.BufferedReader;
@@ -282,8 +286,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
                                 askForPermissions();
                                 break;
                             case R.id.importCSV:
-
-                                askForPermissionsBeforeImport();
+                                showHelp();
+                                //askForPermissionsBeforeImport();
                                 break;
                         }
                         return false;
@@ -313,6 +317,33 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         intent.setDataAndType(uri,"*/*");
         startActivityForResult(intent,1);
 
+    }
+
+    public void showHelp(){
+
+        if (getActivity()!=null) {
+            ImageView image = new ImageView(getActivity());
+
+            image.setImageResource(R.drawable.importhelp);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setIcon(R.drawable.ic_baseline_warning_24);
+            builder.setTitle("Import");
+            builder.setMessage("Before you import, make sure the file is CSV format and contains 3 columns only,\n\nStudent number, Last name and first name.\n");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    askForPermissionsBeforeImport();
+                }
+            }).setView(image);
+
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+            builder.show();
+        }
     }
 
 
