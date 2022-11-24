@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
@@ -27,6 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -96,36 +98,35 @@ public class AddSubjectActivity extends AppCompatActivity {
 
 
                 daysSelected = new ArrayList<>();
-                String[] daysOfWeek = {"Monday ", "Tuesday", "Wednesday ", "Thursday ", "Friday "};
+                String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
                 builder.setTitle("Select day");
                 builder.setMultiChoiceItems(daysOfWeek, null, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
-                        String selected[] = daysOfWeek;
 
                         if (isChecked)
                         {
-                            daysSelected.add(selected[i]);
+                            daysSelected.add(daysOfWeek[i]);
                         }
-                        else if (daysSelected.contains(selected[i]))
-                        {
-                            daysSelected.remove(selected[i]);
-                        }
+                        else daysSelected.remove(daysOfWeek[i]);
                     }
                 });
 
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String data = "";
-                        for (String item:daysSelected)
-                        {
-                            data = data +" "+ item;
+                        StringBuilder data = new StringBuilder();
+
+                        for (String a:daysSelected){
+                            data.append(a).append("/");
                         }
+                        String b = data.deleteCharAt(data.length() - 1 ).toString();
+                        dayTextView.setText(b);
+
 //                        Toast.makeText(AddSubjectActivity.this, data, Toast.LENGTH_SHORT).show();
-                        dayTextView.setText(data);
+
                     }
                 });
 
@@ -186,7 +187,7 @@ public class AddSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this);
-                builder.setTitle("Select day");
+                builder.setTitle("Select school year");
                 builder.setSingleChoiceItems(schoolYear, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

@@ -20,4 +20,6 @@
     <color name="ViewPagerIndicator">#da4e4e</color>
 
     <color name="menuBackGround">#494949</color>
+    <color name="editTextBackground">#454545</color>
+    <color name="cardViewBackground">#454545</color>
 </resources>

@@ -33,7 +33,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -44,6 +46,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     String selectedTask, selectedProgress, selectedPeriod;
     SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
+    DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,7 +251,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         final String[] tasks = new String[]{
                 "Activity",
                 "Assignment",
-                "Seatwork",
+                "Seat work",
                 "Quiz",
                 "Project",
                 "Exam",
@@ -305,8 +308,28 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         _dueTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+//                DialogFragment datePicker = new DatePickerFragment();
+//                datePicker.show(getSupportFragmentManager(), "date picker");
+
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+                datePickerDialog = new DatePickerDialog(AddTask.this);
+
+                datePickerDialog = new DatePickerDialog(AddTask.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        Date date = calendar.getTime();
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE, MMM d, yyyy");
+                        String a = simpleDateFormat.format(date);
+                        _dueTextView.setText(a);
+                    }
+                }, year, month, day);
+                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis() - 1000);
+                datePickerDialog.show();
             }
         });
     }
@@ -317,10 +340,15 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         _dueTextView.setText(currentDate);
+
+
+
     }
+
+
 
     public void cancelButton() {
         _cancel.setOnClickListener(new View.OnClickListener() {

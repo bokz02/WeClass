@@ -271,7 +271,7 @@
             android:clickable="true"
             android:fontFamily="@font/poppins_regular"
             android:hint="Select Day"
-            android:maxLength="30"
+            android:maxLength="45"
             android:maxLines="2"
             android:textColor="@color/black1"
             android:textSize="14sp"

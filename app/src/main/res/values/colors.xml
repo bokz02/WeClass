@@ -53,7 +53,7 @@
 
     <color name="text">#28908C</color>
     <color name="Red">#FF1100</color>
-    <color name="cardViewBackground">#42A5F5</color>
+
     <color name="splashScreenBackground">#00695C</color>
 
     <color name="absentWarning1">#FDF99F</color>
@@ -69,4 +69,7 @@
 
     <color name="menuBackGround">#ECECEC</color>
     <color name="importTitle">#da4e4e</color>
+
+    <color name="editTextBackground">#FFFFFFFF</color>
+    <color name="cardViewBackground">#FFFFFFFF</color>
 </resources>

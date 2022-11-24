@@ -42,7 +42,7 @@
 
     <!-- CardView Background color -->
     <style name="CardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/black3</item>
+        <item name="cardBackgroundColor">@color/cardViewBackground</item>
     </style>
     
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
