@@ -34,6 +34,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.ItemCallBack {
 
@@ -137,75 +138,12 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
 
     }
 
-    // INITIALIZE ADAPTER FOR RECYCLERVIEW
-    public void initializeAdapter(){
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(TaskGrade.this);
-        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, TaskGrade.this, this);
-        recyclerView.setAdapter(taskGradeAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(TaskGrade.this));
-        recyclerView.setEmptyView(_noStudentToGradeView, _noStudentToGradeTextView);
-        linearLayoutManager.setStackFromEnd(true);
-    }
-
-    // DATA TO BE DISPLAY IN RECYCLERVIEW
-    public void display(){
-        studentID = new ArrayList<>();
-        subjectID = new ArrayList<>();
-        taskGradeItems = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(TaskGrade.this);
-        taskGradeItems = displayData();
-    }
-
-    // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
-    private ArrayList<TaskGradeItems> displayData(){
-        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-
-        // MERGE 2 TABLES USING LEFT JOIN
-
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                        + DataBaseHelper.TABLE_MY_STUDENTS + " LEFT JOIN "
-                        + DataBaseHelper.TABLE_MY_TASKS + " ON "
-                        + DataBaseHelper.TABLE_MY_STUDENTS + "."
-                        + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                        + DataBaseHelper.TABLE_MY_TASKS + "."
-                        + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " WHERE "
-                        + DataBaseHelper.TABLE_MY_STUDENTS + "."
-                        + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                        + _subjectID.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
-                        + _taskType.getText().toString() + "' AND "
-                        + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
-                        + _taskNumber.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                        + _gradingPeriod.getText().toString() + "'", null);
-
-        ArrayList<TaskGradeItems> taskGradeItems = new ArrayList<>();
-
-        if (cursor.moveToFirst()){
-            do {
-                taskGradeItems.add(new TaskGradeItems(
-                        cursor.getString(1),
-                        cursor.getInt(2),
-                        cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(15),
-                        cursor.getInt(16),
-                        cursor.getString(21),
-                        cursor.getInt(13)));
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
-        return taskGradeItems;
-    }
-
-
-
     private void backToTask(){
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+                overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
             }
         });
     }
@@ -239,13 +177,6 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
 
 
     }
-
-    // AUTOMATIC SORT WHEN ACTIVITY OPEN
-    public void automaticSort(){
-        Collections.sort(taskGradeItems, TaskGradeItems.sortAtoZComparator);
-        initializeAdapter();
-    }
-
 
     // Method for tab layout and viewpager2
     public void fragmentManager(){
@@ -292,6 +223,37 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
                 }
             }
         });
+    }
+
+    public void getTotalAndGradedStudents(){
+        String getTotal = totalStudent.getText().toString();
+        String getGraded = gradedStudent.getText().toString();
+        int a = Integer.parseInt(getTotal);
+        int b = Integer.parseInt(getGraded);
+
+        if(a == b){
+            String completed = "Completed";
+            _progress.setText(completed);
+            DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+            SQLiteDatabase sqLite = dataBaseHelper.getWritableDatabase();
+            Cursor c = sqLite.rawQuery("select * from "
+                    + DataBaseHelper.TABLE_MY_TASKS + " where "
+                    + DataBaseHelper.COLUMN_ID4 + " = "
+                    + _taskId.getText().toString() + " and "
+                    + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
+                    + _subjectID.getText().toString(), null);
+
+            if (c.moveToFirst()){
+
+                dataBaseHelper.updateTaskProgress(_taskId.getText().toString(),
+                        _subjectID.getText().toString(),
+                        _progress.getText().toString());
+            }c.close();
+            dataBaseHelper.close();
+        }else {
+            String inProgress = "In-progress";
+            _progress.setText(inProgress);
+        }
     }
 
     // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
@@ -352,6 +314,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
                             public void run() {
 
                                 gradedStudent();
+                                getTotalAndGradedStudents();
 
                             }
                         });
@@ -423,11 +386,9 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
             }while (cursor.moveToNext());
 
         }cursor.close();
+        dbHelper.close();
 
 
     }
-
-
-
 
 }

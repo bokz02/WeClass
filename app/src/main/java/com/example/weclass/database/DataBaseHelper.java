@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -389,7 +390,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // ADD QUERY TO SUBJECT DATABASE
-    public void addToAttendanceToday(String parentId, String lastName, String firstName, String dateToday, byte[] picture, String present, String absent){
+    public void addToAttendanceToday(String parentId, String lastName, String firstName,
+                                     String dateToday, byte[] picture, String present, String absent,
+                                     String studentNumber){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -400,6 +403,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_PICTURE_TODAY, picture);
         contentValues.put(COLUMN_PRESENT_COUNT_TODAY, present);
         contentValues.put(COLUMN_ABSENT_COUNT_TODAY, absent);
+        contentValues.put(COLUMN_STUDENT_NUMBER_TODAY, studentNumber);
 
 
         long result = db.insert(TABLE_ATTENDANCE_TODAY, null, contentValues);
@@ -603,7 +607,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_PARENT_ID_TODAY, parentId);
         contentValues.put(COLUMN_DATE_TODAY, date);
 
-        long result = db.update(TABLE_ATTENDANCE_TODAY, contentValues, "student_number=" + "'"+id+"'"
+        long result = db.update(TABLE_ATTENDANCE_TODAY, contentValues, "student_number=" + "'"+id+"'" + " and "
+                + "parent_id=" + "'" + parentId + "'", null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // update task's progress
+    public void updateTaskProgress(String id, String parentId,String progress){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_ID4, id);
+        contentValues.put(COLUMN_PARENT_ID_SUBJECT, parentId);
+        contentValues.put(COLUMN_PROGRESS, progress);
+
+        long result = db.update(TABLE_MY_TASKS, contentValues, "id_number=" + "'"+id+"'" + " and "
                 + "parent_id=" + "'" + parentId + "'", null);
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();

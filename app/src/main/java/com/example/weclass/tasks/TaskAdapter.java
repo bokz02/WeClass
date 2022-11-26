@@ -28,7 +28,9 @@ import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> implements Filterable {
@@ -48,7 +50,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView _id, _parentTD, _taskType, _score, _description,_progress, _gradingPeriod, _due, _taskId;
+        TextView _id, _parentTD, _taskType, _score, _description,_progress,
+                _gradingPeriod, _due, _taskId;
         ImageButton _optionTask, _expand;
         OnNoteListener onNoteListener;
         ConstraintLayout constraintLayout;
@@ -70,6 +73,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             _gradingPeriod = itemView.findViewById(R.id.gradingPeriodTaskRecView);
             _due = itemView.findViewById(R.id.dueTextViewTaskRecView);
             _taskId = itemView.findViewById(R.id.idNumberTask);
+
 
             this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
@@ -104,7 +108,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder._gradingPeriod.setText(String.valueOf(taskItems.get(position).getGradingPeriod()));
         holder._due.setText(String.valueOf(taskItems.get(position).getDue()));
         holder._taskId.setText(String.valueOf(taskItems.get(position).getTaskID()));
-
 
         if(holder._progress.getText().toString().equals("Completed")){
             holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.lightText));
@@ -256,7 +259,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             taskItems.addAll((List)filterResults.values);
 
             if(taskItems.size()==0){
-                Toast.makeText(context, "Task doesn't exist" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "TasksS doesn't exist" , Toast.LENGTH_SHORT).show();
             }
 
             notifyDataSetChanged();

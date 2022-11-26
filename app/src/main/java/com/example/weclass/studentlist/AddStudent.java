@@ -266,7 +266,8 @@ public class AddStudent extends AppCompatActivity {
                                             _date.getText().toString().trim(),
                                             image,
                                             "0",
-                                            "0");
+                                            "0",
+                                            studentNumber.getText().toString().trim());
 
                                     Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
                                     lastName.setText("");
@@ -299,7 +300,8 @@ public class AddStudent extends AppCompatActivity {
                                                 _date.getText().toString().trim(),
                                                 inputData,
                                                 "0",
-                                                "0");
+                                                "0",
+                                                studentNumber.getText().toString());
 
 
                                         Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
