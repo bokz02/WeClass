@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
@@ -35,6 +36,7 @@ import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.ratings.Ratings;
 import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.studentlist.profile.image.DrawableUtils;
+import com.example.weclass.subject.Subject;
 import com.example.weclass.subject.SubjectItems;
 import com.example.weclass.tasks.Tasks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -69,13 +71,13 @@ public class BottomNavi extends AppCompatActivity {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(BottomNavi.this, R.color.titleBar));
         }else {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setStatusBarColor(ContextCompat.getColor(BottomNavi.this, R.color.red2));
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navi);

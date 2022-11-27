@@ -36,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:background="@color/titleBar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -69,7 +70,7 @@
                         android:layout_marginTop="3dp"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Settings"
-                        android:textColor="@color/black1"
+                        android:textColor="@color/white"
                         android:textSize="25sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -164,7 +165,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="@color/Fab"
                 app:layout_constraintBottom_toTopOf="@+id/guide8"
                 app:layout_constraintEnd_toStartOf="@+id/guide2"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -213,7 +213,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/guide2"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/guide2"
-                app:cardBackgroundColor="@color/Fab"
                 app:layout_constraintStart_toStartOf="@id/guide1"
                 app:layout_constraintTop_toTopOf="@+id/guide10">
 
@@ -265,7 +264,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/guide2"
                 app:layout_constraintStart_toStartOf="@id/guide1"
-                app:cardBackgroundColor="@color/Fab"
+
                 app:layout_constraintTop_toTopOf="@+id/guide12">
 
                 <ImageButton
@@ -314,7 +313,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/guide2"
                 app:layout_constraintStart_toStartOf="@id/guide1"
-                app:cardBackgroundColor="@color/Fab"
                 app:layout_constraintTop_toTopOf="@+id/guide14"
                 app:layout_constraintVertical_bias="0.0">
 
@@ -339,10 +337,11 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="60dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Help"
+                    android:text="FAQs"
                     android:textSize="13dp" />
 
                 <ImageView
+                    android:id="@+id/button2"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="end|center_vertical"

@@ -12,13 +12,12 @@
     app:cardElevation="5dp"
     style="@style/FloatingActionButton"
     app:cardCornerRadius="10dp"
-    app:rippleColor="@color/white1">
+    app:rippleColor="@color/red2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/studentListBackgroundRecView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-      >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/iDNumberStudentList"
@@ -48,13 +47,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/ic_subject_option"
-            android:backgroundTint="@color/black2"
+            android:backgroundTint="@color/red2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="@+id/studentLastnameRecView" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/studentImageRecView"
@@ -69,14 +66,27 @@
 
 
         <TextView
+            android:id="@+id/studentIDRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/studentFirstnameRecView"
+            android:layout_toEndOf="@id/studentImageRecView"
+            android:fontFamily="@font/poppins_regular"
+            android:text="00-000"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
+            android:paddingBottom="10dp"
+            app:layout_constraintStart_toStartOf="@+id/studentLastnameRecView"
+            app:layout_constraintTop_toBottomOf="@+id/studentFirstnameRecView" />
+
+        <TextView
             android:id="@+id/studentLastnameRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/studentFirstnameRecView"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/studentImageRecView"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Lastname"
             android:textColor="@color/darkText"
             android:textSize="16sp"
@@ -89,10 +99,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/studentImageRecView"
-            android:text="Firstname"
-            android:textSize="14sp"
             android:fontFamily="@font/poppins_regular"
+            android:text="Firstname"
             android:textColor="@color/darkText"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/studentLastnameRecView"
             app:layout_constraintTop_toBottomOf="@+id/studentLastnameRecView" />
 

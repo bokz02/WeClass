@@ -17,12 +17,17 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dirty_white">#E7E7E7</color>
 
+
     //light mode
     <color name="drawableTint">#131313</color>
     <color name="dialogBox">#FFFFFFFF</color>
     <color name="view">#ECECEC</color>
-    <color name="Fab">#FFFFFFFF</color>
+    <color name="Fab">#da4e4e</color>
     <color name="view1">#ECECEC</color>
+    <color name="bg">#FBF8F8</color>
+    <color name="titleBar">#da4e4e</color>
+    <color name="fabtint">#f4f4f4</color>
+
     //red
     <color name="red1">#C62828</color>
     <color name="red2">#da4e4e</color>
