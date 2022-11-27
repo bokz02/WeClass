@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ActionMode;
@@ -26,6 +27,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weclass.BottomNavi;
 import com.example.weclass.LockScreen;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
@@ -353,11 +355,24 @@ public class AddStudent extends AppCompatActivity {
             if (data != null) {
                 uri = data.getData();
                 profilePicture.setImageURI(uri);
+                progressBar.setVisibility(View.VISIBLE);
+                loadingAfterUpload();
             }
         }else if(resultCode == RESULT_CANCELED){
             Toast.makeText(AddStudent.this, "Canceled", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    public void loadingAfterUpload(){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(AddStudent.this, "Upload complete", Toast.LENGTH_SHORT).show();
+            }
+        }, 2000);
     }
 
 }

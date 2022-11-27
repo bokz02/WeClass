@@ -97,7 +97,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                     Intent intent = new Intent(Settings.this, Settings.class);
                     startActivity(intent);
                     finish();
-                    overridePendingTransition(R.transition.fade_in_out,R.transition.fade_in_out);
+                    overridePendingTransition(R.transition.fade_in_out,R.transition.fade_test);
                     getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
                 }else {
@@ -105,7 +105,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                     Intent intent = new Intent(Settings.this, Settings.class);
                     startActivity(intent);
                     finish();
-                    overridePendingTransition(R.transition.fade_in_out,R.transition.fade_in_out);
+                    overridePendingTransition(R.transition.fade_in_out,R.transition.fade_test);
                     getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
 

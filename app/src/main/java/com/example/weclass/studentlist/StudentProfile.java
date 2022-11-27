@@ -9,12 +9,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +54,7 @@ public class StudentProfile extends AppCompatActivity {
     Uri uri = null;
     CardView present, absentCardView, activities, quiz, assignment, seatWork, exams, projects;
     SharedPref sharedPref;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +140,7 @@ public class StudentProfile extends AppCompatActivity {
         assignment = findViewById(R.id._materialAssignment);
         activities = findViewById(R.id._materialActivity);
         studentNumber = findViewById(R.id.studentNumberProfile);
+        progressBar = findViewById(R.id.progressBarStudentProfile);
 
     }
 
@@ -326,7 +331,6 @@ public class StudentProfile extends AppCompatActivity {
 
     }
 
-
     //IMAGE PICKER THAT SELECT PHOTO FROM CAMERA OR GALLERY
     public void addPhoto(){
         _profileImage.setOnClickListener(new View.OnClickListener() {
@@ -354,6 +358,8 @@ public class StudentProfile extends AppCompatActivity {
                 finish();
                 startActivity(getIntent());
                 overridePendingTransition(R.transition.fade_no_fade,R.transition.fade_no_fade);
+
+                loadingAfterUpload();
             }
         }else {
             finish();
@@ -362,6 +368,17 @@ public class StudentProfile extends AppCompatActivity {
         }
 
 
+    }
+
+    public void loadingAfterUpload(){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(StudentProfile.this, "Upload complete", Toast.LENGTH_SHORT).show();
+            }
+        }, 2000);
     }
 
 

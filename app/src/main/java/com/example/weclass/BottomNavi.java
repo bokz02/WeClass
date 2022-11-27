@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
@@ -34,6 +35,7 @@ import com.example.weclass.archive.ArchiveItems;
 import com.example.weclass.attendance.Attendance;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.ratings.Ratings;
+import com.example.weclass.studentlist.StudentAdapter;
 import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.studentlist.profile.image.DrawableUtils;
 import com.example.weclass.subject.Subject;
@@ -45,6 +47,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -52,6 +55,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class BottomNavi extends AppCompatActivity {
     SharedPreferences sharedPreferences = null;
@@ -323,9 +327,32 @@ public class BottomNavi extends AppCompatActivity {
                                         cValues.put(DataBaseHelper.COLUMN_STUDENT_NUMBER_TODAY, columns[0]);
                                         db.insert(DataBaseHelper.TABLE_ATTENDANCE_TODAY, null, cValues);
                                         cursor.close();
+
                                     }
                                     progressBar.setVisibility(View.VISIBLE);
                                     loadingAfterImport();
+
+                                    Cursor cursor1 = db.rawQuery("select * from "
+                                            + DataBaseHelper.TABLE_MY_STUDENTS + " where "
+                                            + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " ='"
+                                            + columns[0] + "'",null);
+
+                                    if (cursor1.moveToFirst()){
+                                        byte[] pic = cursor1.getBlob(9);
+                                        Bitmap bitmap = BitmapFactory.decodeByteArray(pic, 0 , pic.length);
+                                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                                        byte[] dp = byteArrayOutputStream.toByteArray();
+
+                                        do {
+                                            dbHelper.updateProfilePicture(cursor1.getString(1),
+                                                    dp);
+
+                                            dbHelper.updateProfilePictureAttendanceToday(cursor1.getString(1),
+                                                    dp);
+                                        }while (cursor1.moveToNext());
+
+                                    }cursor1.close();
 
 
                                 }
@@ -335,7 +362,7 @@ public class BottomNavi extends AppCompatActivity {
                         }
                         db.setTransactionSuccessful();
                         db.endTransaction();
-
+                        db.close();
                     }else {
                         Toast.makeText(this, "Make sure the file is in CSV format" , Toast.LENGTH_SHORT).show();
                     }

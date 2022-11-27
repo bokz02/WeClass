@@ -108,6 +108,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         StudentItems item = studentItems.get(position);
+        DataBaseHelper db = new DataBaseHelper(context);
+        SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
 
         byte[] image = item.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
@@ -164,7 +166,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                                        DataBaseHelper db = new DataBaseHelper(context);
+
                                         db.deleteStudent(item.getStudentNumber(),
                                                 item.getParent_id());
                                         db.deleteAttendanceToday(item.getStudentNumber(),
@@ -172,7 +174,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                         db.deleteAttendance(item.getStudentNumber(),
                                                 item.getParent_id());
 
-                                        SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
                                         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
                                                 + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
                                                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + "='"
