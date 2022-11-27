@@ -8,7 +8,7 @@
                 android:top="1dp"
                 android:bottom="1dp"></padding>
             <solid android:color="@color/transparent" />
-            <stroke android:width="1dp" android:color="@color/progressColorToDo" />
+            <stroke android:width="1dp" android:color="@color/white" />
             <corners android:radius="30dp" />
         </shape>
     </item>
@@ -19,7 +19,7 @@
                 android:top="1dp"
                 android:bottom="1dp"></padding>
             <solid android:color="@color/transparent" />
-            <stroke android:width="1dp" android:color="@color/progressColorToDo" />
+            <stroke android:width="1dp" android:color="@color/white" />
             <corners android:radius="30dp" />
         </shape>
     </item>

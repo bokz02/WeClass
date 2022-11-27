@@ -69,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toBottomOf="@+id/absentTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
 
         <TextView
             android:id="@+id/parentIDAttendance"
@@ -116,117 +116,178 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".93" />
 
-
-        <TextView
-            android:id="@+id/presentTextView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/round_corner_calcell"
-            android:backgroundTint="#346751"
-            android:fontFamily="@font/poppins_regular"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="Present"
-            android:textColor="#346751"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@id/guide4"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-        <TextView
-            android:id="@+id/textView28"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Present: "
-            android:textSize="14sp"
-            android:textColor="@color/darkText"
-            android:layout_marginTop="10dp"
+            android:weightSum="3"
+            app:layout_constraintEnd_toStartOf="@+id/guide4"
             app:layout_constraintStart_toStartOf="@+id/guide3"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-        <TextView
-            android:id="@+id/presentTodayAttendance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="14sp"
-            android:textColor="@color/darkText"
-            android:fontFamily="@font/poppins_bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView28"
-            app:layout_constraintStart_toEndOf="@+id/textView28"
-            app:layout_constraintTop_toTopOf="@+id/textView28" />
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guide3"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Absent: "
-            android:textColor="@color/darkText"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/presentTodayAttendance"
-            app:layout_constraintStart_toEndOf="@+id/presentTodayAttendance"
-            app:layout_constraintTop_toTopOf="@+id/presentTodayAttendance" />
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Present: "
+                    android:textColor="@color/black2"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/guide3"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-        <TextView
-            android:id="@+id/absentTodayAttendance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:text="0"
-            android:textSize="14sp"
-            android:textColor="@color/darkText"
-            app:layout_constraintBottom_toBottomOf="@+id/textView29"
-            app:layout_constraintStart_toEndOf="@+id/textView29"
-            app:layout_constraintTop_toTopOf="@+id/textView29" />
+                <TextView
+                    android:id="@+id/presentTodayAttendance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="0"
+                    android:textColor="@color/black2"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView28"
+                    app:layout_constraintStart_toEndOf="@+id/textView28"
+                    app:layout_constraintTop_toTopOf="@+id/textView28" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/absentTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:background="@drawable/round_corner_calcell"
-            android:backgroundTint="#C84B31"
-            android:fontFamily="@font/poppins_regular"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="Absent"
-            android:textColor="#C84B31"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/presentTextView"
-            app:layout_constraintEnd_toStartOf="@+id/presentTextView"
-            app:layout_constraintTop_toTopOf="@+id/presentTextView"
-            app:layout_constraintVertical_bias="0.0" />
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout6">
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Absent: "
+                    android:textColor="@color/black2"
+                    android:textSize="14sp"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/absentTodayAttendance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="0"
+                    android:textColor="@color/black2"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView29"
+                    app:layout_constraintStart_toEndOf="@+id/textView29"
+                    app:layout_constraintTop_toTopOf="@+id/textView29" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout7"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout7">
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Late: "
+                    android:textColor="@color/black2"
+                    android:textSize="14sp"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/lateTodayAttendance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="0"
+                    android:textColor="@color/black2"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView30"
+                    app:layout_constraintStart_toEndOf="@+id/textView30"
+                    app:layout_constraintTop_toTopOf="@+id/textView30" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <com.example.weclass.ExtendedRecyclerView
             android:id="@+id/attendanceRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="@id/guide2"
             app:layout_constraintEnd_toEndOf="@id/guide4"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guide3"
-            app:layout_constraintTop_toBottomOf="@+id/presentTextView"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
             app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:textColor="@color/darkText"
-            android:id="@+id/subjectCodeRecords"
-            android:layout_width="wrap_content"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="216dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Attendance"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/guide3"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/red2"
+            app:elevation="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/subjectCodeRecords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Attendance"
+                android:textSize="23sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="50dp"
+                android:textColor="@color/white" />
+            <ImageButton
+                android:id="@+id/helpButtonAttendance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/help"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/white"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="45dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/optionButtonAttendance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_subject_option"
+                android:backgroundTint="@color/white"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="15dp"/>
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
         <TextView
             android:id="@+id/section"
@@ -245,33 +306,24 @@
             android:id="@+id/sortAttendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/sortaz"
             android:fontFamily="@font/poppins_regular"
-            android:gravity="center"
-            android:text="Sort"
-            style="@style/TextView"
+            android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/currentDateTextView"
             app:layout_constraintEnd_toStartOf="@+id/guide4"
-            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
+            app:layout_constraintTop_toTopOf="@+id/currentDateTextView" />
 
-        <ImageButton
-            android:id="@+id/optionButtonAttendance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="-10dp"
-            android:background="@drawable/ic_subject_option"
-            app:layout_constraintEnd_toStartOf="@+id/guide4"
-            app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <TextView
             android:id="@+id/subjectCodeAttendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="subjectCode"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -281,7 +333,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="course"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/subjectCodeAttendance"
             app:layout_constraintStart_toStartOf="@+id/subjectCodeAttendance"
             app:layout_constraintTop_toBottomOf="@+id/subjectCodeAttendance" />
@@ -291,22 +343,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="sy"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/courseAttendance"
             app:layout_constraintTop_toBottomOf="@+id/courseAttendance" />
 
         <TextView
-            android:textColor="@color/darkText"
             android:id="@+id/currentDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="Monday, Feb 15,2022"
             android:textAllCaps="false"
+            android:textColor="@color/darkText"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="@+id/guide3"
-            app:layout_constraintTop_toBottomOf="@+id/subjectCodeRecords" />
+            app:layout_constraintTop_toBottomOf="@+id/bottomNavigationView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

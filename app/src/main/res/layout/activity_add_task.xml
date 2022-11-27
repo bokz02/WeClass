@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context=".tasks.AddTask">
 
-
     <ImageButton
         android:id="@+id/backButtonAddTasks"
         android:layout_width="16dp"
@@ -268,14 +267,26 @@
             android:id="@+id/progressTaskEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:fontFamily="@font/poppins_regular"
             android:drawablePadding="5dp"
             android:textColor="@color/black1"
             android:drawableTint="@color/darkText"
             android:focusable="true"
+            android:visibility="gone"
             android:gravity="center_vertical"
-            android:hint="Select Progress"
+            android:hint="In-progress"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/darkText"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:text="In-progress"
+            android:textColor="@color/black1"
             android:textSize="15sp"/>
 
     </LinearLayout>

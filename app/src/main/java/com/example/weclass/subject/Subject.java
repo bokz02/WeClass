@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -61,11 +62,12 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     TextView noSubject;
     private FirebaseAuth mAuth;
     int lastFirstVisiblePosition;
-    SharedPref sharedPref;
+
 
     private StorageReference storageReference;
     FirebaseAuth fauth;
     ImageView profilepic;
+    SharedPref sharedPref;
     SharedPreferences sharedPreferences = null;
     SwitchMaterial toggleButton;
 
@@ -85,8 +87,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            window.setStatusBarColor(Color.WHITE);
+            window.setStatusBarColor(ContextCompat.getColor(Subject.this, R.color.titleBar));
         }
 
         //This will set the theme depends on save state of switch button

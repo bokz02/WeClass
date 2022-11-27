@@ -158,7 +158,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingHorizontal="5dp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gradingPeriodTaskRecView">
@@ -168,7 +167,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Instruction:"
+                    android:textColor="@color/red2"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -178,10 +179,10 @@
                     android:id="@+id/descriptionHiddenTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
                     android:maxLines="10"
-                    android:paddingHorizontal="5dp"
                     android:text="Expandable"
-                    app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
 
 

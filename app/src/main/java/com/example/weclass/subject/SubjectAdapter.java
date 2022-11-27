@@ -196,6 +196,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                 bundle1.putString("timeEnd", item.getTimeEndSubject());
                                 bundle1.putString("sem", item.getSemesterSubject());
                                 bundle1.putString("sy", item.getSchoolYearSubject());
+                                bundle1.putString("room", item.get_room());
+                                bundle1.putString("section", item.getSection());
+                                bundle1.putString("class_type", item.getClassType());
 
 
                                 intent1.putExtra("Userdata", bundle1);

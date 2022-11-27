@@ -1,11 +1,13 @@
 package com.example.weclass.attendance;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -21,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +48,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<AttendanceItems> attendanceItems, id, parentID;
     AttendanceAdapter attendanceAdapter;
-    ImageButton optionButton;
+    ImageButton optionButton, helpButton;
     DataBaseHelper dataBaseHelper;
     TextView _noStudentsTextView, _id, _parentID,
             dateTimeDisplay, _sortAttendance, _always0, _subjectCode,
@@ -75,7 +78,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         presentToday();
         absentToday();
         updatePresentToday();
-
+        help();
         return view;
 
 
@@ -108,7 +111,42 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         _course = view.findViewById(R.id.courseAttendance);
         present = view.findViewById(R.id.presentTodayAttendance);
         absent = view.findViewById(R.id.absentTodayAttendance);
+        helpButton = view.findViewById(R.id.helpButtonAttendance);
     }
+
+    public void help (){
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (getActivity()!=null) {
+                    ImageView image = new ImageView(getActivity());
+
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setIcon(R.drawable.ic_warning);
+                    builder.setTitle("Notice");
+                    builder.setMessage("Start taking attendance by tapping buttons. \n\nL stands for \"Late\"\nA stands for \"Absent\"\nP stands for \"Present\"\n");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+
+
+    }
+
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter() {

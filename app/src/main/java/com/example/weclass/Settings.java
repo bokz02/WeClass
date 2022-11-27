@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -23,6 +24,7 @@ import android.widget.ImageView;
 
 import com.example.weclass.archive.Archive;
 import com.example.weclass.calendar.CalendarEvents;
+import com.example.weclass.setting.FAQs;
 import com.example.weclass.subject.Subject;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
@@ -35,7 +37,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageView button, button1;
+    ImageView button, button1,button2;
     SwipeRefreshLayout refreshLayout;
     SwitchMaterial toggleButton;
     SharedPref sharedPref;
@@ -48,20 +50,16 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         sharedPref = new SharedPref(this);
 
         if (sharedPref.loadNightModeState()){
-
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else {
-
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.WHITE);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(Settings.this, R.color.titleBar));
         }
 
         super.onCreate(savedInstanceState);
@@ -72,6 +70,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         terms();
         aboutUs();
         refreshlayout();
+        faqs();
         setNightModeTheme(); // Button toggle for night mode
 
 
@@ -150,12 +149,23 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         });
     }
 
+    public void faqs() {
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, FAQs.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     public void initialize() {
         toolbar = findViewById(R.id.toolbarSettings);
         navigationView = findViewById(R.id.navViewSettings);
         drawerLayout = findViewById(R.id.drawerSettings);
         button = findViewById(R.id.button);
         button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
         refreshLayout = findViewById(R.id.refreshLayout);
         toggleButton = findViewById(R.id.darkModeButton);
 
