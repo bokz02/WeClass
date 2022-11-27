@@ -39,11 +39,6 @@
         <item name="colorPrimary">@color/black1</item>
 
     </style>
-
-    <!-- CardView Background color -->
-    <style name="CardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/cardViewBackground</item>
-    </style>
     
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/poppins_regular</item>

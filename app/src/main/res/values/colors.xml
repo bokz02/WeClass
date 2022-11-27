@@ -84,4 +84,9 @@
     <color name="AlertButtonColor">#da4e4e</color>
 
     <color name="TimePickerColor">#da4e4e</color>
+    <color name="CardViewEditTextCursor">#da4e4e</color>
+    <color name="TaskProgressTextColor">#da4e4e</color>
+
+    <color name="StudentProfileCardViewBg">#FFFFFFFF</color>
+
 </resources>

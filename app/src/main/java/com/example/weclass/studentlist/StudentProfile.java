@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
+import com.example.weclass.BottomNavi;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
@@ -331,7 +332,8 @@ public class StudentProfile extends AppCompatActivity {
         _profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ImagePicker.with(StudentProfile.this)
+                ImagePicker.Companion.with(StudentProfile.this)
+                        .galleryOnly()
                         .crop()	    			//Crop image(Optional), Check Customization for more option
                         .compress(1024)			//Final image size will be less than 1 MB(Optional)
                         .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
@@ -345,13 +347,21 @@ public class StudentProfile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(data != null) {
+        if(resultCode == RESULT_OK && data != null){
             uri = data.getData();
             if(saveImageInDB(uri)){
                 _profileImage.setImageURI(uri);
+                finish();
+                startActivity(getIntent());
+                overridePendingTransition(R.transition.fade_no_fade,R.transition.fade_no_fade);
             }
-
+        }else {
+            finish();
+            startActivity(getIntent());
+            overridePendingTransition(R.transition.fade_no_fade,R.transition.fade_no_fade);
         }
+
+
     }
 
 
@@ -391,6 +401,7 @@ public class StudentProfile extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
             _profileImage.setImageBitmap(bitmap);
             cursor.close();
+            db.close();
         }
 
     }

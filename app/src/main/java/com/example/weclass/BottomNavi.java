@@ -89,29 +89,22 @@ public class BottomNavi extends AppCompatActivity {
         displayData();  // GET DATA FROM SUBJECT ADAPTER (RECYCLERVIEW ITEM CLICK)
         fragmentStudentList();   // GET THE VALUES OF STRING IN displayData() method to PASS THE DATA WE GOT FROM SUBJECT ADAPTER TO STUDENT LIST FRAGMENT
 
-
-
-
-
     }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
         finish();
         overridePendingTransition(R.transition.animation_enter,R.transition.animation_leave);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-    }
 
     // GET DATA FROM SUBJECT ADAPTER (RECYCLERVIEW ITEM CLICK)
     public void displayData(){
 
-        if(getIntent().getParcelableExtra("Subject") != null){
+        if(getIntent().getParcelableExtra("Subject") != null) {
 
             Intent intent = getIntent();
             SubjectItems subjectItems = intent.getParcelableExtra("Subject");
@@ -125,25 +118,7 @@ public class BottomNavi extends AppCompatActivity {
             subjectCode.setText(codeSubject);
             courseName.setText(nameCourse);
             _schoolYear.setText(sy);
-
-        }else {
-            Intent intent = getIntent();
-            ArchiveItems archiveItems = intent.getParcelableExtra("Archive");
-
-            int idParent = archiveItems.getId_subject();
-            String codeSubject = archiveItems.getSubjectCode();
-            String nameCourse = archiveItems.getCourse();
-            String archive = getIntent().getStringExtra("archive_text");
-
-            parentID.setText(String.valueOf(idParent));
-            subjectCode.setText(codeSubject);
-            courseName.setText(nameCourse);
-            _archive.setText(archive);
-
         }
-
-
-
 
     }
 

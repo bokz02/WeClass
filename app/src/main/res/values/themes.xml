@@ -66,11 +66,12 @@
     <!-- for customizing material alert dialog -->
 
 
-
+    <!-- for customizing time picker dialog -->
     <style name="Theme.TimeDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
         <item name="colorAccent">@color/TimePickerColor</item>
         <item name="colorPrimary">@color/TimePickerColor</item>
-        <item name="colorSecondaryVariant">@color/darkText</item>
+        <item name="colorSecondaryVariant">@color/TimePickerColor</item>
+        <!-- for customizing time picker dialog -->
 
         <!-- Switch button -->
         <item name="colorControlActivated">#E57373</item>
@@ -99,9 +100,11 @@
     <style name="TextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/black1</item>
     </style>
+
     <!-- CardView Background color -->
     <style name="CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/white</item>
+        <item name="colorAccent">@color/CardViewEditTextCursor</item>
     </style>
 
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">

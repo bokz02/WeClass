@@ -7,22 +7,22 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="2dp"
+    android:orientation="vertical"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:rippleColor="@color/lightText"
-    android:orientation="vertical">
+    app:rippleColor="@color/lightText">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/parentConstraint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:animateLayoutChanges="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/idNumberTask"
@@ -36,29 +36,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/parentIDTaskRecView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="parentID"
-                android:textSize="16sp"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="@+id/idNumberTask"
-                app:layout_constraintTop_toTopOf="@+id/idNumberTask" />
+        <TextView
+            android:id="@+id/parentIDTaskRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="parentID"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/idNumberTask"
+            app:layout_constraintTop_toTopOf="@+id/idNumberTask" />
 
-            <TextView
-                android:id="@+id/gradingPeriodTaskRecView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Period"
-                android:textSize="16sp"
+        <TextView
+            android:id="@+id/gradingPeriodTaskRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Period"
+            android:textSize="16sp"
 
-                android:visibility="visible"
-                app:layout_constraintStart_toStartOf="@+id/scoreText"
-                app:layout_constraintTop_toBottomOf="@+id/scoreText" />
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/scoreText"
+            app:layout_constraintTop_toBottomOf="@+id/scoreText" />
 
         <ImageButton
             android:id="@+id/optionButtonTaskRecView"
@@ -70,128 +70,127 @@
             app:layout_constraintStart_toEndOf="@+id/progressTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/expandRecyclerView"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:backgroundTint="@color/transparent"
-                android:src="@drawable/ic_arrow_down1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <ImageButton
+            android:id="@+id/expandRecyclerView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:backgroundTint="@color/transparent"
+            android:src="@drawable/ic_arrow_down1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/courseTypeRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task type"
             android:fontFamily="@font/poppins_semibold"
+            android:text="Task type"
             android:textColor="@color/darkText"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/progressTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+        <TextView
+            android:id="@+id/progressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:text="In-progress"
+            android:textColor="@color/TaskProgressTextColor"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/optionButtonTaskRecView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/optionButtonTaskRecView" />
 
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/rounded_stroke"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Progress"
-                android:textColor="@color/darkText"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/optionButtonTaskRecView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/optionButtonTaskRecView" />
+        <TextView
+            android:id="@+id/taskNumberRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="number"
+            android:textColor="@color/darkText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/courseTypeRecView"
+            app:layout_constraintTop_toTopOf="@+id/courseTypeRecView" />
+
+        <TextView
+            android:id="@+id/scoreTextViewRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Score"
+            android:textColor="@color/lightText"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/scoreText"
+            app:layout_constraintTop_toTopOf="@+id/scoreText" />
+
+
+        <TextView
+            android:id="@+id/scoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Items:"
+            android:textColor="@color/lightText"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/courseTypeRecView"
+            app:layout_constraintTop_toBottomOf="@+id/courseTypeRecView" />
+
+        <TextView
+            android:id="@+id/dueTextViewTaskRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="due"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/parentIDTaskRecView"
+            app:layout_constraintTop_toBottomOf="@+id/parentIDTaskRecView" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/hiddenDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gradingPeriodTaskRecView">
 
             <TextView
-                android:id="@+id/taskNumberRecView"
+                android:id="@+id/descriptionTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="number"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/darkText"
-                android:textSize="16sp"
+                android:text="Instruction:"
+                android:textColor="@color/red2"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/courseTypeRecView"
-                app:layout_constraintTop_toTopOf="@+id/courseTypeRecView" />
-
-            <TextView
-                android:id="@+id/scoreTextViewRecView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Score"
-                android:textColor="@color/lightText"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/scoreText"
-                app:layout_constraintTop_toTopOf="@+id/scoreText" />
-
-
-            <TextView
-                android:id="@+id/scoreText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Score:"
-                android:textColor="@color/lightText"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/courseTypeRecView"
-                app:layout_constraintTop_toBottomOf="@+id/courseTypeRecView" />
-
-            <TextView
-                android:id="@+id/dueTextViewTaskRecView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="due"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/parentIDTaskRecView"
-                app:layout_constraintTop_toBottomOf="@+id/parentIDTaskRecView" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/hiddenDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gradingPeriodTaskRecView">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/descriptionTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Instruction:"
-                    android:textColor="@color/red2"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/descriptionHiddenTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:maxLines="10"
-                    android:text="Expandable"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/descriptionHiddenTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:maxLines="10"
+                android:text="Expandable"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
 
 

@@ -29,4 +29,9 @@
 
     <color name="AlertDialogTitleColor">#FBFBFB</color>
     <color name="AlertButtonColor">#BBDEFB</color>
+
+    <color name="TimePickerColor">#E57373</color>
+    <color name="CardViewEditTextCursor">#FBFBFB</color>
+    <color name="progressColorToDo">#EF9A9A</color>
+    <color name="StudentProfileCardViewBg">#454545</color>
 </resources>

@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/materialCardView2"
+    style="@style/FloatingActionButton"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="2dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardElevation="5dp"
-    style="@style/FloatingActionButton"
     app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
     app:rippleColor="@color/red2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,11 +73,10 @@
             android:layout_toEndOf="@id/studentImageRecView"
             android:fontFamily="@font/poppins_regular"
             android:text="00-000"
-            android:textColor="@color/darkText"
+            android:textColor="@color/black1"
             android:textSize="14sp"
-            android:paddingBottom="10dp"
             app:layout_constraintStart_toStartOf="@+id/studentLastnameRecView"
-            app:layout_constraintTop_toBottomOf="@+id/studentFirstnameRecView" />
+            app:layout_constraintTop_toBottomOf="@+id/studentLastnameRecView" />
 
         <TextView
             android:id="@+id/studentLastnameRecView"
@@ -85,26 +84,43 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/studentFirstnameRecView"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/studentImageRecView"
             android:fontFamily="@font/poppins_semibold"
             android:text="Lastname"
-            android:textColor="@color/darkText"
+            android:textColor="@color/black1"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/studentImageRecView"
             app:layout_constraintTop_toTopOf="@+id/studentImageRecView" />
 
+
         <TextView
             android:id="@+id/studentFirstnameRecView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="1"
+            android:text="Firstname"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/black1"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/studentLastnameRecView"
+            app:layout_constraintEnd_toStartOf="@+id/optionButtonSubject"
+            app:layout_constraintStart_toEndOf="@+id/textView33"
+            app:layout_constraintTop_toTopOf="@+id/studentLastnameRecView" />
+
+
+        <TextView
+            android:id="@+id/textView33"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/studentImageRecView"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Firstname"
-            android:textColor="@color/darkText"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/studentLastnameRecView"
-            app:layout_constraintTop_toBottomOf="@+id/studentLastnameRecView" />
+            android:text=","
+            app:layout_constraintBottom_toBottomOf="@+id/studentLastnameRecView"
+            app:layout_constraintStart_toEndOf="@id/studentLastnameRecView"
+            app:layout_constraintTop_toTopOf="@+id/studentLastnameRecView" />
 
 
         <TextView
