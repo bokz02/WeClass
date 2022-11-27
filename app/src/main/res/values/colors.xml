@@ -72,4 +72,11 @@
 
     <color name="editTextBackground">#FFFFFFFF</color>
     <color name="cardViewBackground">#FFFFFFFF</color>
+
+    <color name="AlertDialogTitleColor">#1E1E1E</color>
+
+    <!--Material 900-->
+    <color name="AlertButtonColor">#da4e4e</color>
+
+    <color name="TimePickerColor">#da4e4e</color>
 </resources>

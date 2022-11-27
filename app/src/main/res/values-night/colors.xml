@@ -22,4 +22,7 @@
     <color name="menuBackGround">#494949</color>
     <color name="editTextBackground">#454545</color>
     <color name="cardViewBackground">#454545</color>
+
+    <color name="AlertDialogTitleColor">#FBFBFB</color>
+    <color name="AlertButtonColor">#BBDEFB</color>
 </resources>
