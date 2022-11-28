@@ -49,12 +49,11 @@ public class AddStudent extends AppCompatActivity {
     ImageButton backButton;
     ImageView profilePicture;
     TextView genderTextview, parentID, _present, _absent, _finalGrade,
-            _midtermGrade, _finalRating, _date, studentNumber;
+            _midtermGrade, _finalRating, _date, studentNumber, _late;
     EditText lastName, firstName, middleName;
     String selectedGender;
     Uri uri = null;
     ProgressBar progressBar;
-    SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
 
     @Override
@@ -121,6 +120,7 @@ public class AddStudent extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         _date = findViewById(R.id.dateTodayAddStudent);
         studentNumber = findViewById(R.id.studentNumberAddStudent);
+        _late = findViewById(R.id.lateTextViewAddStudent);
     }
 
     public void backToStudentList(){
@@ -163,11 +163,8 @@ public class AddStudent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddStudent.this);
                 builder.setTitle("Confirm exit");
-
-
                 builder.setIcon(R.drawable.ic_baseline_warning_24);
                 builder.setMessage("All the fields will not be saved!");
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -259,8 +256,8 @@ public class AddStudent extends AppCompatActivity {
                                             _midtermGrade.getText().toString().trim(),
                                             _finalGrade.getText().toString().trim(),
                                             _finalRating.getText().toString().trim(),
-                                            studentNumber.getText().toString().trim());
-
+                                            studentNumber.getText().toString().trim(),
+                                            _late.getText().toString().trim());
 
                                     dbh.addToAttendanceToday(parentID.getText().toString().trim(),
                                             lastName.getText().toString().trim(),
@@ -269,7 +266,8 @@ public class AddStudent extends AppCompatActivity {
                                             image,
                                             "0",
                                             "0",
-                                            studentNumber.getText().toString().trim());
+                                            studentNumber.getText().toString().trim(),
+                                            _late.getText().toString().trim());
 
                                     Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
                                     lastName.setText("");
@@ -294,7 +292,8 @@ public class AddStudent extends AppCompatActivity {
                                                 _midtermGrade.getText().toString().trim(),
                                                 _finalGrade.getText().toString().trim(),
                                                 _finalRating.getText().toString().trim(),
-                                                studentNumber.getText().toString().trim());
+                                                studentNumber.getText().toString().trim(),
+                                                _late.getText().toString().trim());
 
                                         dbh.addToAttendanceToday(parentID.getText().toString().trim(),
                                                 lastName.getText().toString().trim(),
@@ -303,8 +302,8 @@ public class AddStudent extends AppCompatActivity {
                                                 inputData,
                                                 "0",
                                                 "0",
-                                                studentNumber.getText().toString());
-
+                                                studentNumber.getText().toString(),
+                                                _late.getText().toString().trim());
 
                                         Snackbar.make(createButton, "" + lastName.getText().toString() + ", " + firstName.getText().toString() + " successfully added!", Snackbar.LENGTH_LONG).show();
                                         lastName.setText("");
@@ -312,7 +311,6 @@ public class AddStudent extends AppCompatActivity {
                                         middleName.setText("");
                                         genderTextview.setText("");
                                         profilePicture.setImageResource(R.drawable.prof1);
-
 
                                     }catch (Exception e){
                                         DataBaseHelper dbh = new DataBaseHelper(AddStudent.this);

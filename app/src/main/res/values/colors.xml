@@ -61,8 +61,8 @@
 
     <color name="splashScreenBackground">#00695C</color>
 
-    <color name="absentWarning1">#FDF99F</color>
-    <color name="absentWarning2">#FF9C9C</color>
+    <color name="absentWarning1">#FFEE58</color>
+    <color name="absentWarning2">#EF5350</color>
 
     <color name="taskGradeBanner">#da4e4e</color>
     <color name="taskGradeTextBanner">#EAEAEA</color>

@@ -16,7 +16,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 54;
+    private static final int DATABASE_VERSION = 55;
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -46,6 +46,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_MIDTERM_GRADE_STUDENT = "midterm_grade";
     public static final String COLUMN_FINAL_GRADE_STUDENT = "final_grade";
     public static final String COLUMN_FINAL_RATING_STUDENT = "final_rating";
+    public static final String COLUMN_LATE_STUDENT = "late";
 
     public static final String TABLE_MY_SCHEDULE = "my_schedule";
     public static final String COLUMN_ID3 = "id_number";
@@ -85,6 +86,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PRESENT_ATTENDANCE = "present";
     public static final String COLUMN_ABSENT_ATTENDANCE = "absent";
     public static final String COLUMN_DATE_ATTENDANCE = "date";
+    public static final String COLUMN_LATE_ATTENDANCE = "late";
 
     public static final String TABLE_MY_ARCHIVE = "my_archive";
     public static final String COLUMN_ID_ARCHIVE = "id_number";
@@ -113,6 +115,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PRESENT_COUNT_TODAY = "present_count";
     public static final String COLUMN_ABSENT_COUNT_TODAY = "absent_count";
     public static final String COLUMN_STUDENT_NUMBER_TODAY = "student_number";
+    public static final String COLUMN_LATE_TODAY = "late";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -152,7 +155,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_PROFILE_PICTURE + " BLOB, " +
                 COLUMN_MIDTERM_GRADE_STUDENT + " TEXT," +
                 COLUMN_FINAL_GRADE_STUDENT + " TEXT," +
-                COLUMN_FINAL_RATING_STUDENT + " TEXT);";
+                COLUMN_FINAL_RATING_STUDENT + " TEXT, " +
+                COLUMN_LATE_STUDENT + " TEXT);";
 
 
         String query3 = "CREATE TABLE " + TABLE_MY_SCHEDULE +
@@ -191,7 +195,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_LAST_NAME_ATTENDANCE + " TEXT, " +
                 COLUMN_DATE_ATTENDANCE + " TEXT, " +
                 COLUMN_PRESENT_ATTENDANCE + " TEXT, " +
-                COLUMN_ABSENT_ATTENDANCE + " TEXT);";
+                COLUMN_ABSENT_ATTENDANCE + " TEXT, " +
+                COLUMN_LATE_ATTENDANCE + " TEXT);";
 
         String query7 = "CREATE TABLE " + TABLE_MY_ARCHIVE +
                 " (" + COLUMN_ID_ARCHIVE + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -219,7 +224,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_PRESENT_COUNT_TODAY + " TEXT, " +
                 COLUMN_ABSENT_COUNT_TODAY + " TEXT, " +
                 COLUMN_PICTURE_TODAY + " BLOB, " +
-                COLUMN_STUDENT_NUMBER_TODAY + " TEXT);";
+                COLUMN_STUDENT_NUMBER_TODAY + " TEXT, " +
+                COLUMN_LATE_TODAY + " TEXT);";
 
         db.execSQL(query4);
         db.execSQL(query3);
@@ -255,7 +261,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                            String gender, String present,
                            String absent, byte[] img,
                            String midtermGrade, String finalGrade,
-                           String finalRating, String studentNumber){
+                           String finalRating, String studentNumber,
+                           String late){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -272,6 +279,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_FINAL_GRADE_STUDENT, finalGrade);
         cv.put(COLUMN_FINAL_RATING_STUDENT, finalRating);
         cv.put(COLUMN_STUDENT_NUMBER_STUDENT, studentNumber);
+        cv.put(COLUMN_LATE_STUDENT, late);
 
         long result = db.insert(TABLE_MY_STUDENTS, null, cv);
         if(result == -1){
@@ -325,32 +333,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // ADD QUERY TO my_grades DATABASE
-    public void addGrade(String idStudent,String idTask, String idSubject, String lastName,
-                         String firstName, String taskType, String taskNumber,
-                         String grade, String period){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-
-
-        contentValues.put(COLUMN_STUDENT_ID_MY_GRADE, idStudent);
-        contentValues.put(COLUMN_TASK_ID_MY_GRADE, idTask);
-        contentValues.put(COLUMN_PARENT_ID_MY_GRADE, idSubject);
-        contentValues.put(COLUMN_LAST_NAME_MY_GRADE, lastName);
-        contentValues.put(COLUMN_FIRST_NAME_MY_GRADE, firstName);
-        contentValues.put(COLUMN_TASK_TYPE_MY_GRADE, taskType);
-        contentValues.put(COLUMN_TASK_NUMBER_MY_GRADE, taskNumber);
-        contentValues.put(COLUMN_GRADE_MY_GRADE, grade);
-        contentValues.put(COLUMN_GRADING_PERIOD_MY_GRADE, period);
-
-        long result = db.insert(TABLE_MY_GRADE, null, contentValues);
-        if(result == -1){
-            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     // ADD QUERY TO SUBJECT DATABASE
-    public void addAttendance(String idStudent, String idSubject, String lastName, String date, String present, String absent){
+    public void addAttendance(String idStudent, String idSubject, String lastName,
+                              String date, String present, String absent, String late){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -360,6 +345,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_DATE_ATTENDANCE, date);
         contentValues.put(COLUMN_PRESENT_ATTENDANCE, present);
         contentValues.put(COLUMN_ABSENT_ATTENDANCE, absent);
+        contentValues.put(COLUMN_LATE_ATTENDANCE, late);
 
         long result = db.insert(TABLE_ATTENDANCE, null, contentValues);
         if(result == -1){
@@ -392,7 +378,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // ADD QUERY TO SUBJECT DATABASE
     public void addToAttendanceToday(String parentId, String lastName, String firstName,
                                      String dateToday, byte[] picture, String present, String absent,
-                                     String studentNumber){
+                                     String studentNumber, String late){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -404,6 +390,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_PRESENT_COUNT_TODAY, present);
         contentValues.put(COLUMN_ABSENT_COUNT_TODAY, absent);
         contentValues.put(COLUMN_STUDENT_NUMBER_TODAY, studentNumber);
+        contentValues.put(COLUMN_LATE_TODAY, late);
 
 
         long result = db.insert(TABLE_ATTENDANCE_TODAY, null, contentValues);
@@ -479,6 +466,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_STUDENT_NUMBER_STUDENT, id);
         contentValues.put(COLUMN_PARENT_ID_SUBJECT, parentId);
         contentValues.put(COLUMN_ABSENT, absent);
+
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'"+id+"'"
+                + " and " + "parent_id=" + "'" + parentId + "'", null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // UPDATE late COLUMN OF STUDENT DATABASE
+    public void updateStudentLate(String id, String parentId,String late){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_STUDENT_NUMBER_STUDENT, id);
+        contentValues.put(COLUMN_PARENT_ID_SUBJECT, parentId);
+        contentValues.put(COLUMN_LATE_STUDENT, late);
 
         long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'"+id+"'"
                 + " and " + "parent_id=" + "'" + parentId + "'", null);

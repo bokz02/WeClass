@@ -262,7 +262,6 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         _courseTitle = view.findViewById(R.id.courseTitleStudentList);
         noFile_ = view.findViewById(R.id.noStudentTaskView);
         noStudentTextView = view.findViewById(R.id.noStudentTextView);
-        _id = view.findViewById(R.id.iDNumberStudentList);
         _studentSum = view.findViewById(R.id.summaryOfStudent);
         _archive = view.findViewById(R.id.archiveTextViewStudentList);
         optionButton = view.findViewById(R.id.optionButtonStudentList);
@@ -328,7 +327,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setIcon(R.drawable.ic_baseline_warning_24);
             builder.setTitle("Import");
-            builder.setMessage("Before you import, make sure the file is CSV format and contains 3 columns only,\n\nStudent number, Last name and first name.\n");
+            builder.setMessage("Before you import, make sure the file is CSV format and contains 4 columns only,\n\nstudent number, last name, first name,\nand middle name.");
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -416,8 +415,6 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
         intent.putExtra("course", _courseTitle.getText().toString());
         intent.putExtra("subject", _subjectCode.getText().toString());
-
-
         startActivity(intent);
     }
 
@@ -428,13 +425,11 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     }
 
-
     // AUTOMATIC SORT WHEN ACTIVITY OPEN
     public void automaticSort(){
         Collections.sort(studentItems, StudentItems.sortAtoZComparator);
         initializeAdapter();
     }
-
 
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
@@ -463,7 +458,6 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         }
     }
 
-
     private void exportDB() {
 
         DataBaseHelper dbHelper = new DataBaseHelper(getContext());
@@ -489,20 +483,21 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
             CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
             SQLiteDatabase db = dbHelper.getReadableDatabase();
-            String[] columns = {"Last name","First name","Gender", "Present", "Absences", "Midterm grade", "Finals grade", "Final rating"};
+            String[] columns = {"Student number","Last name","First name", "Middle name","Gender", "Present",
+                    "Late", "Absences", "Midterm grade", "Finals grade", "Final rating"};
 
             Cursor cursor = db.rawQuery("SELECT * FROM "
                     + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
                     + DataBaseHelper.COLUMN_PARENT_ID + "="
                     + parentID.getText().toString(),null);
 
-
             csvWrite.writeNext(columns);
             while(cursor.moveToNext())
             {
                 //Which column you want to export
-                String[] arrStr ={cursor.getString(2),cursor.getString(3), cursor.getString(5), cursor.getString(6)
-                        , cursor.getString(7), cursor.getString(9), cursor.getString(10), cursor.getString(11)};
+                String[] arrStr ={cursor.getString(1),cursor.getString(3),cursor.getString(4), cursor.getString(5), cursor.getString(6)
+                        ,cursor.getString(7), cursor.getString(13), cursor.getString(8), cursor.getString(10), cursor.getString(11),
+                        cursor.getString(12)};
                 csvWrite.writeNext(arrStr);
             }
             Toast.makeText(getContext(), "Downloaded to storage/downloads" , Toast.LENGTH_SHORT).show();

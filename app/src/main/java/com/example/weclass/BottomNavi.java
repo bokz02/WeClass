@@ -285,7 +285,7 @@ public class BottomNavi extends AppCompatActivity {
 
                             while ((line = bufferedReader.readLine()) != null){
                                 String[] columns = line.split(",");
-                                if (columns.length != 3){
+                                if (columns.length != 4){
                                     Toast.makeText(this, "Check column format", Toast.LENGTH_SHORT).show();
 
                                 }else {
@@ -307,13 +307,14 @@ public class BottomNavi extends AppCompatActivity {
                                         cv.put(DataBaseHelper.COLUMN_LAST_NAME, columns[1]);
                                         cv.put(DataBaseHelper.COLUMN_FIRST_NAME, columns[2]);
                                         cv.put(DataBaseHelper.COLUMN_PROFILE_PICTURE, image);
-                                        cv.put(DataBaseHelper.COLUMN_MIDDLE_NAME, "-");
+                                        cv.put(DataBaseHelper.COLUMN_MIDDLE_NAME, columns[3]);
                                         cv.put(DataBaseHelper.COLUMN_GENDER, "-");
                                         cv.put(DataBaseHelper.COLUMN_PRESENT, 0);
                                         cv.put(DataBaseHelper.COLUMN_ABSENT, 0);
                                         cv.put(DataBaseHelper.COLUMN_MIDTERM_GRADE_STUDENT, 0);
                                         cv.put(DataBaseHelper.COLUMN_FINAL_GRADE_STUDENT, 0);
                                         cv.put(DataBaseHelper.COLUMN_FINAL_RATING_STUDENT, 0);
+                                        cv.put(DataBaseHelper.COLUMN_LATE_STUDENT, 0);
                                         db.insert(DataBaseHelper.TABLE_MY_STUDENTS, null, cv);
 
                                         ContentValues cValues = new ContentValues(2);
@@ -325,6 +326,7 @@ public class BottomNavi extends AppCompatActivity {
                                         cValues.put(DataBaseHelper.COLUMN_PRESENT_COUNT_TODAY, 0);
                                         cValues.put(DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY, 0);
                                         cValues.put(DataBaseHelper.COLUMN_STUDENT_NUMBER_TODAY, columns[0]);
+                                        cValues.put(DataBaseHelper.COLUMN_LATE_TODAY, 0);
                                         db.insert(DataBaseHelper.TABLE_ATTENDANCE_TODAY, null, cValues);
                                         cursor.close();
 
@@ -332,6 +334,8 @@ public class BottomNavi extends AppCompatActivity {
                                     progressBar.setVisibility(View.VISIBLE);
                                     loadingAfterImport();
 
+
+                                    // query database if student exist, if exist, it will update its picture to other subjects
                                     Cursor cursor1 = db.rawQuery("select * from "
                                             + DataBaseHelper.TABLE_MY_STUDENTS + " where "
                                             + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " ='"
@@ -355,6 +359,7 @@ public class BottomNavi extends AppCompatActivity {
                                     }cursor1.close();
 
 
+
                                 }
                             }
                         } catch (IOException e) {
@@ -363,6 +368,7 @@ public class BottomNavi extends AppCompatActivity {
                         db.setTransactionSuccessful();
                         db.endTransaction();
                         db.close();
+                        dbHelper.close();
                     }else {
                         Toast.makeText(this, "Make sure the file is in CSV format" , Toast.LENGTH_SHORT).show();
                     }

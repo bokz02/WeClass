@@ -17,6 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
+            android:name=".studentlist.profile.attendance.Late"
+            android:exported="false"
+            android:parentActivityName=".studentlist.StudentProfile">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".setting.FAQs"
             android:exported="false">
             <meta-data

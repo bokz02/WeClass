@@ -7,12 +7,14 @@ import java.util.Comparator;
 public class AttendanceItems {
 
     String lastName, firstName, studentNumber;
-    int id, parentID, present, absent;
+    int id, parentID, present, absent, late;
     byte[] image;
 
 
 
-    public AttendanceItems(String studentNumber, int parentID, String lastName, String firstName, byte[] image, int present, int absent) {
+    public AttendanceItems(String studentNumber, int parentID, String lastName,
+                           String firstName, byte[] image, int present, int absent,
+                           int late) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.parentID = parentID;
@@ -20,6 +22,7 @@ public class AttendanceItems {
         this.studentNumber = studentNumber;
         this.present = present;
         this.absent = absent;
+        this.late = late;
 
     }
 
@@ -49,6 +52,10 @@ public class AttendanceItems {
 
     public int getAbsent() {
         return absent;
+    }
+
+    public int getLate(){
+        return late;
     }
 
     public static Comparator<AttendanceItems> sortAtoZComparator = new Comparator<AttendanceItems>() {

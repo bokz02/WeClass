@@ -124,16 +124,29 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                     <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Student number:"
+                        android:textColor="@color/black1"
+                        android:textSize="14sp"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toEndOf="@+id/studentProfilePicture"
+                        app:layout_constraintTop_toTopOf="@+id/studentProfilePicture" />
+
+                    <TextView
                         android:id="@+id/studentNumberProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="student number"
+                        android:text="number"
+                        android:layout_marginStart="5dp"
                         android:textColor="@color/black1"
                         android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@+id/studentProfilePicture"
-                        app:layout_constraintTop_toTopOf="@+id/studentProfilePicture" />
+                        app:layout_constraintStart_toEndOf="@+id/textView34"
+                        app:layout_constraintTop_toTopOf="@+id/textView34" />
 
                     <TextView
                         android:id="@+id/studLastnameProfile"
@@ -143,10 +156,10 @@
                         android:gravity="center_horizontal"
                         android:text="Lastname"
                         android:textColor="@color/black1"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/studentNumberProfile"
-                        app:layout_constraintTop_toBottomOf="@+id/studentNumberProfile" />
+                        app:layout_constraintStart_toStartOf="@+id/textView34"
+                        app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
                     <TextView
                         android:id="@+id/studFirstnameProfile"
@@ -161,6 +174,20 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/studLastnameProfile"
                         app:layout_constraintTop_toBottomOf="@+id/studLastnameProfile" />
+
+                    <TextView
+                        android:id="@+id/studentMiddleNameProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_horizontal"
+                        android:text="Middle name"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/studLastnameProfile"
+                        app:layout_constraintTop_toBottomOf="@+id/studFirstnameProfile" />
+
+
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide15"
@@ -199,30 +226,28 @@
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/_materialPresent"
                         android:layout_width="0dp"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="wrap_content"
                         android:clickable="true"
                         app:cardBackgroundColor="@color/StudentProfileCardViewBg"
-                        android:orientation="horizontal"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="10dp"
                         android:layout_marginEnd="10dp"
-                        app:layout_constraintEnd_toStartOf="@+id/guide15"
-                        app:layout_constraintHorizontal_bias="0.075"
+                        app:layout_constraintEnd_toStartOf="@+id/_materialLate"
                         app:layout_constraintStart_toStartOf="@+id/guide13"
-                        app:layout_constraintTop_toBottomOf="@+id/textView6">
+                        app:layout_constraintTop_toTopOf="@+id/_materialLate">
 
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginHorizontal="10dp">
 
                             <ImageView
                                 android:id="@+id/imageView7"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginStart="15dp"
                                 android:background="@drawable/iconattendance"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -232,12 +257,11 @@
                                 android:id="@+id/textView2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center"
-                                android:text="Present:  "
+                                android:text="Present:"
                                 android:textColor="@color/black1"
+                                android:textSize="14sp"
                                 app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                                 app:layout_constraintStart_toEndOf="@+id/imageView7"
                                 app:layout_constraintTop_toTopOf="@+id/imageView7" />
@@ -247,10 +271,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center"
                                 android:text="0"
+                                android:textSize="14sp"
                                 android:textColor="@color/black1"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView2"
                                 app:layout_constraintStart_toEndOf="@+id/textView2"
                                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
@@ -264,26 +291,27 @@
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/_materialAbsent"
                         android:layout_width="0dp"
-                        android:layout_height="56dp"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/StudentProfileCardViewBg"
+                        app:cardCornerRadius="10dp"
                         app:cardElevation="10dp"
                         android:layout_marginStart="10dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                         app:layout_constraintEnd_toStartOf="@+id/guide12"
-                        app:layout_constraintStart_toStartOf="@+id/guide15"
-                        app:layout_constraintTop_toTopOf="@+id/_materialPresent">
+                        app:layout_constraintStart_toEndOf="@+id/_materialLate"
+                        app:layout_constraintTop_toTopOf="@+id/_materialLate">
 
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginHorizontal="10dp">
 
                             <ImageView
                                 android:id="@+id/imageView3"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginStart="15dp"
                                 android:background="@drawable/iconattendance"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -296,8 +324,9 @@
                                 android:layout_gravity="center_vertical"
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center"
+                                android:text="Absent:"
+                                android:textSize="14sp"
                                 android:textColor="@color/black1"
-                                android:text="Absent:  "
                                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                                 app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -310,6 +339,8 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center"
                                 android:text="0"
+                                android:textSize="14sp"
+                                android:layout_marginStart="5dp"
                                 android:textColor="@color/black1"
                                 app:layout_constraintBottom_toBottomOf="@+id/textView18"
                                 app:layout_constraintStart_toEndOf="@+id/textView18" />
@@ -317,6 +348,70 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/_materialLate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/StudentProfileCardViewBg"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp"
+                        android:clickable="true"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/guide12"
+                        app:layout_constraintStart_toStartOf="@+id/guide13"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginVertical="10dp">
+
+                            <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/iconattendance"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView18"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center"
+                                android:textSize="14sp"
+                                android:text="Late:"
+                                android:textColor="@color/black1"
+                                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+                            <TextView
+                                android:id="@+id/lateTextViewProfile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textSize="14sp"
+                                android:textColor="@color/black1"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                                app:layout_constraintStart_toEndOf="@+id/textView18" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
 
                     <TextView
                         android:id="@+id/textView5"

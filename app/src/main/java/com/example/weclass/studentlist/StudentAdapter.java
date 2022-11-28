@@ -70,7 +70,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                     if (studentItems.getLastname().toLowerCase().contains(filterPattern) ||
                             studentItems.getFirstname().toLowerCase().contains(filterPattern) ||
                             studentItems.getMiddleName().toLowerCase().contains(filterPattern) ||
-                            studentItems.getGender().toLowerCase().contains(filterPattern)
+                            studentItems.getGender().toLowerCase().contains(filterPattern) ||
+                            studentItems.getStudentNumber().contains(filterPattern)
                     ){
 
                         filteredList.add(studentItems);
@@ -228,7 +229,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         public MyViewHolder(@NonNull View itemView, OnNoteListener mOnNoteListener, ItemCallback itemCallback) {
             super(itemView);
 
-            id = itemView.findViewById(R.id.iDNumberStudentList);
             parent_id = itemView.findViewById(R.id.parentIDStudentList);
             lastNameText = itemView.findViewById(R.id.studentLastnameRecView);
             middleNameText = itemView.findViewById(R.id.studentMiddleRecView);

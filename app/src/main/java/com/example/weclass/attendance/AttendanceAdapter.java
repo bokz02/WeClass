@@ -35,6 +35,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     private final Context context;
     private final OnNoteListener mOnNoteListener;
     private int c;
+    private final int a = 1;
 
     public AttendanceAdapter(Context context, ArrayList<AttendanceItems> attendanceItems, OnNoteListener mOnNoteListener) {
         this.attendanceItems = attendanceItems;
@@ -45,8 +46,9 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView lastName, firstName, gender, id, _present, _absent, _subjectID, _date, _always1, _always0;
-        ImageButton absentButton, presentButton;
+        TextView lastName, firstName, gender, id, _present,
+                _absent, _subjectID, _date, _always1, _always0, late;
+        ImageButton absentButton, presentButton, lateButton;
         OnNoteListener onNoteListener;
         ImageView image;
         ConstraintLayout background;
@@ -65,10 +67,10 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             _absent = itemView.findViewById(R.id.absentTextViewAttendanceRecView);
             _subjectID = itemView.findViewById(R.id.parentIdAttendanceRecView);
             _date = itemView.findViewById(R.id.dateTextViewAttendanceRecView);
-            _always1 = itemView.findViewById(R.id.always1AttendanceRecView);
-            _always0 = itemView.findViewById(R.id.always0AttendanceRecView);
             image = itemView.findViewById(R.id.pictureAttendanceRecView);
             background =itemView.findViewById(R.id.attendanceBackgroundRecView);
+            late = itemView.findViewById(R.id.lateTextViewAttendanceRecView);
+            lateButton = itemView.findViewById(R.id.lateButtonAttendanceRecView);
 
             this.onNoteListener = onNoteListener;
         }
@@ -104,6 +106,12 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder._subjectID.setText(String.valueOf(attendanceItems.get(position).getParentID()));
         holder.image.setImageBitmap(bitmap);
 
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE - MMM d, yyyy");
+        String date = dateFormat.format(calendar.getTime());
+        holder._date.setText(date);
+        DataBaseHelper db = new DataBaseHelper(context);
+
         // BACKGROUND COLOR WILL CHANGE IF IT HITS THE SPECIFIC COUNT
         int d = Integer.parseInt(holder._absent.getText().toString());
         if(d == 4) {
@@ -112,36 +120,60 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             holder.background.setBackgroundResource(R.color.absentWarning2);
         }
 
+        holder.lateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int late = Integer.parseInt(holder.late.getText().toString());
+                holder.late.setText(String.valueOf(a + late));
+
+                Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
+                        + holder.firstName.getText().toString() + " is late.", Snackbar.LENGTH_SHORT).show();
+
+                // ADD ATTENDANCE TO ATTENDANCE DATABASE
+                db.addAttendance(holder.id.getText().toString(),
+                        holder._subjectID.getText().toString(),
+                        holder.lastName.getText().toString(),
+                        holder._date.getText().toString(),
+                        "0",
+                        "0",
+                        "1");
+
+                db.updateStudentLate(holder.id.getText().toString(),
+                        holder._subjectID.getText().toString(),
+                        holder.late.getText().toString());
+
+                db.updateAttendanceToday(holder.id.getText().toString(),
+                        holder._subjectID.getText().toString(),
+                        holder._date.getText().toString());
+
+                c = holder.getAdapterPosition();
+                attendanceItems.remove(c);
+                notifyItemRemoved(c);
+            }
+        });
+
 
         // PRESENT BUTTON
         holder.presentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-                // SET THE CURRENT DATE OF A THE TEXTVIEW BEFORE STORING TO DATABASE
-                Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE - MMM d, yyyy");
-                String date = dateFormat.format(calendar.getTime());
-                holder._date.setText(date);
-
                 // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
-                int a = 1;
                 int b = Integer.parseInt(holder._present.getText().toString());
                 holder._present.setText(String.valueOf(a + b));
 
-                DataBaseHelper db = new DataBaseHelper(context);
 
                     Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
-                            + holder.firstName.getText().toString() + " is present!", Snackbar.LENGTH_SHORT).show();
+                            + holder.firstName.getText().toString() + " is present.", Snackbar.LENGTH_SHORT).show();
 
                     // ADD ATTENDANCE TO ATTENDANCE DATABASE
                     db.addAttendance(holder.id.getText().toString(),
                             holder._subjectID.getText().toString(),
                             holder.lastName.getText().toString(),
                             holder._date.getText().toString(),
-                            holder._always1.getText().toString(),
-                            holder._always0.getText().toString());
+                            "1",
+                            "0",
+                            "0");
 
                     // UPDATE STUDENT'S ATTENDANCE COUNT
                     db.updateStudentPresent(holder.id.getText().toString(),
@@ -166,29 +198,21 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             @Override
             public void onClick(View view) {
 
-                // SET THE CURRENT DATE OF A THE TEXTVIEW BEFORE STORING TO DATABASE
-                Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE - MMM d, yyyy");
-                String date = dateFormat.format(calendar.getTime());
-                holder._date.setText(date);
-
                 // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
-                int a = 1;
                 int b = Integer.parseInt(holder._absent.getText().toString());
                 holder._absent.setText(String.valueOf(a + b));
 
-                DataBaseHelper db = new DataBaseHelper(context);
-
                     Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + ", "
-                            + holder.firstName.getText().toString() + " is absent!", Snackbar.LENGTH_SHORT).show();
+                            + holder.firstName.getText().toString() + " is absent.", Snackbar.LENGTH_SHORT).show();
 
                     // ADD ATTENDANCE TO ATTENDANCE DATABASE
                     db.addAttendance(holder.id.getText().toString(),
                             holder._subjectID.getText().toString(),
                             holder.lastName.getText().toString(),
                             holder._date.getText().toString(),
-                            holder._always0.getText().toString(),
-                            holder._always1.getText().toString());
+                            "0",
+                            "1",
+                            "0");
 
                     // UPDATE STUDENT'S ATTENDANCE COUNT
                     db.updateStudentAbsent(holder.id.getText().toString(),

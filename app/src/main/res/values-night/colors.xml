@@ -12,8 +12,8 @@
     <color name="fabtint">#111111</color>
     <color name="titleBar">#272727</color>
 
-    <color name="absentWarning1">#97945F</color>
-    <color name="absentWarning2">#A56464</color>
+    <color name="absentWarning1">#FFF59D</color>
+    <color name="absentWarning2">#EF9A9A</color>
 
     <color name="taskGradeBanner">#777777</color>
     <color name="taskGradeTextBanner">#E4E4E4</color>

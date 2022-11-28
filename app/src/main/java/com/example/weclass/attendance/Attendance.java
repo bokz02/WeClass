@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Environment;
 import android.provider.Settings;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,12 +28,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weclass.CSVWriter;
-import com.example.weclass.EditTextSetMinMax;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.StudentItems;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -52,7 +48,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     DataBaseHelper dataBaseHelper;
     TextView _noStudentsTextView, _id, _parentID,
             dateTimeDisplay, _sortAttendance, _always0, _subjectCode,
-            _sy, _course, present, absent;
+            _sy, _course, present, absent, _late;
     View view;
     View _noStudentsView;
     EditText _search;
@@ -77,8 +73,10 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         optionButton();
         presentToday();
         absentToday();
-        updatePresentToday();
+        updateAttendanceToday();
         help();
+        lateToday();
+
         return view;
 
 
@@ -112,6 +110,8 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         present = view.findViewById(R.id.presentTodayAttendance);
         absent = view.findViewById(R.id.absentTodayAttendance);
         helpButton = view.findViewById(R.id.helpButtonAttendance);
+        _late = view.findViewById(R.id.lateTodayAttendance);
+
     }
 
     public void help (){
@@ -186,7 +186,8 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                         cursor.getString(3),
                         cursor.getBlob(7),
                         cursor.getInt(5),
-                        cursor.getInt(6)));
+                        cursor.getInt(6),
+                        cursor.getInt(9)));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -394,7 +395,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
 
             CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
             SQLiteDatabase db = dbhelper.getReadableDatabase();
-            String[] columns = {"Last name", "Date", "Present", "Absent"};
+            String[] columns = {"Student number","Last name", "Date", "Present", "Absent", "late"};
 
             Cursor cursor = db.rawQuery("SELECT * FROM "
                     + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
@@ -405,7 +406,8 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
             csvWrite.writeNext(columns);
             while (cursor.moveToNext()) {
                 //Which column you want to export
-                String[] arrStr = {cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)};
+                String[] arrStr = {cursor.getString(1),cursor.getString(3), cursor.getString(4), cursor.getString(5),
+                        cursor.getString(6), cursor.getString(7)};
                 csvWrite.writeNext(arrStr);
             }
             Toast.makeText(getContext(), "Downloaded to storage/downloads", Toast.LENGTH_SHORT).show();
@@ -451,7 +453,24 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         }
     }
 
-    public void updatePresentToday() {
+    public void lateToday() {
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
+                + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
+                + _parentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_LATE_ATTENDANCE + " = "
+                + "1" + " AND "
+                + DataBaseHelper.COLUMN_DATE_ATTENDANCE + " ='"
+                + dateTimeDisplay.getText().toString() + "'", null);
+
+        if (cursor.moveToFirst()) {
+            _late.setText(String.valueOf(cursor.getInt(0)));
+            cursor.close();
+        }
+    }
+
+    public void updateAttendanceToday() {
         Thread thread = new Thread(){
 
             @Override
@@ -466,6 +485,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                             public void run() {
                                 presentToday();
                                 absentToday();
+                                lateToday();
                             }
                         });
                     }

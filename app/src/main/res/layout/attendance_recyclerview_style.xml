@@ -53,29 +53,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/always1AttendanceRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
-            android:text="1"
-            android:textSize="16sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/idAttendanceRecView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/always0AttendanceRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
-            android:text="0"
-            android:textSize="16sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/idAttendanceRecView"
-            app:layout_constraintEnd_toStartOf="@+id/always1AttendanceRecView" />
-
 
         <TextView
             android:id="@+id/parentIdAttendanceRecView"
@@ -106,6 +83,17 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="5dp"
             android:text="absent"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/presentTextViewAttendanceRecView"
+            app:layout_constraintStart_toEndOf="@+id/parentIdAttendanceRecView" />
+
+        <TextView
+            android:id="@+id/lateTextViewAttendanceRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:text="0"
             android:textSize="16sp"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/presentTextViewAttendanceRecView"
@@ -161,23 +149,21 @@
             android:id="@+id/absentAttendanceRecView"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="4dp"
             android:background="@drawable/aa_absent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/presentAttendanceRecView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.488" />
+            android:layout_marginEnd="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lateButtonAttendanceRecView"
+            app:layout_constraintEnd_toStartOf="@+id/lateButtonAttendanceRecView"
+            app:layout_constraintTop_toTopOf="@+id/lateButtonAttendanceRecView" />
 
         <ImageButton
-            android:id="@+id/lateAttendanceRecView"
+            android:id="@+id/lateButtonAttendanceRecView"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="4dp"
             android:background="@drawable/aa_late"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/absentAttendanceRecView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.488" />
+            android:layout_marginEnd="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/presentAttendanceRecView"
+            app:layout_constraintEnd_toStartOf="@+id/presentAttendanceRecView"
+            app:layout_constraintTop_toTopOf="@+id/presentAttendanceRecView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -24,13 +24,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
-import com.example.weclass.BottomNavi;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.activities.Activities;
 import com.example.weclass.studentlist.profile.assignments.Assignments;
 import com.example.weclass.studentlist.profile.attendance.Absent;
+import com.example.weclass.studentlist.profile.attendance.Late;
 import com.example.weclass.studentlist.profile.attendance.Present;
 import com.example.weclass.studentlist.profile.exams.Exams;
 import com.example.weclass.studentlist.profile.image.ImageUtils;
@@ -48,11 +48,13 @@ public class StudentProfile extends AppCompatActivity {
     TextView _id, _subjectID, _lastName,
             _firstName, _presentTextview, _absentTextView,
             _courseTextView, _subjectTextView, _finalGrade,
-            _midtermGrade, _finalRating, studentNumber;
+            _midtermGrade, _finalRating, studentNumber, _middleName
+            ,_late;
     ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects, _profileImage;
     String selectedFinalGrade, selectedMidtermGrade, selectedFinalRating;
     Uri uri = null;
-    CardView present, absentCardView, activities, quiz, assignment, seatWork, exams, projects;
+    CardView present, absentCardView, activities, quiz,
+            assignment, seatWork, exams, projects, lateMaterial;
     SharedPref sharedPref;
     ProgressBar progressBar;
 
@@ -89,13 +91,12 @@ public class StudentProfile extends AppCompatActivity {
         goToAbsent(); // GO TO ABSENT ACTIVITY
         goToProjects(); // GO TO PROJECTS ACTIVITY
         goToExams();    // GO TO EXAMS ACTIVITY
+        goToLate(); // GO TO late ACTIVITY
         addPhoto();     // ADD PHOTO FEATURE
         displayImage(); // DISPLAY IMAGE FROM DATABASE
-        pickMidtermGrade();
-        pickFinalGrade();
-        pickFinalRating();
         countAbsent();
         countPresent();
+        countLate();
 
         
     }
@@ -141,6 +142,10 @@ public class StudentProfile extends AppCompatActivity {
         activities = findViewById(R.id._materialActivity);
         studentNumber = findViewById(R.id.studentNumberProfile);
         progressBar = findViewById(R.id.progressBarStudentProfile);
+        _middleName = findViewById(R.id.studentMiddleNameProfile);
+        lateMaterial = findViewById(R.id._materialLate);
+        _late = findViewById(R.id.lateTextViewProfile);
+
 
     }
 
@@ -179,8 +184,22 @@ public class StudentProfile extends AppCompatActivity {
             _presentTextview.setText(String.valueOf(cursor.getInt(7)));
             cursor.close();
         }
+    }
 
+    public void countLate(){
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+                + studentNumber.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                + _subjectID.getText().toString(), null);
 
+        if (cursor.moveToFirst()){
+            _late.setText(String.valueOf(cursor.getInt(13)));
+            cursor.close();
+        }
     }
 
 
@@ -288,6 +307,19 @@ public class StudentProfile extends AppCompatActivity {
         });
     }
 
+    public void goToLate(){
+        absentCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StudentProfile.this, Late.class);
+                intent.putExtra("studentID", studentNumber.getText().toString());
+                intent.putExtra("subjectID", _subjectID.getText().toString());
+                startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+            }
+        });
+    }
+
     public void backToStudentListActivity(){
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -315,6 +347,7 @@ public class StudentProfile extends AppCompatActivity {
         int present = studentItems.getPresent();
         int absent = studentItems.getAbsent();
         String studNumber = studentItems.getStudentNumber();
+        String middleName = studentItems.getMiddleName();
 
         //_id.setText(String.valueOf(studentID));
         _subjectID.setText(String.valueOf(subjectID));
@@ -328,6 +361,7 @@ public class StudentProfile extends AppCompatActivity {
         _finalGrade.setText(finalGrade_);
         _finalRating.setText(finalRating_);
         studentNumber.setText(studNumber);
+        _middleName.setText(middleName);
 
     }
 
