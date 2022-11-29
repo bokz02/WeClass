@@ -238,6 +238,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                 String filterPattern = charSequence.toString().toLowerCase().trim();
 
                 for (SubjectItems subjectItems: subjectItemsFull){
+                    String a = subjectItems.getCourse() + " " + subjectItems.getSection();
                     if (subjectItems.getCourse().toLowerCase().contains(filterPattern) ||
                             subjectItems.getSubjectCode().toLowerCase().contains(filterPattern) ||
                             subjectItems.getSubjectName().toLowerCase().contains(filterPattern) ||
@@ -247,7 +248,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                             subjectItems.getClassType().toLowerCase().contains(filterPattern) ||
                             subjectItems.get_room().toLowerCase().contains(filterPattern) ||
                             subjectItems.getSection().toLowerCase().contains(filterPattern) ||
-                            subjectItems.getTimeSubject().toLowerCase().contains(filterPattern)){
+                            subjectItems.getTimeSubject().toLowerCase().contains(filterPattern) ||
+                            a.contains(filterPattern)){
                         filteredList.add(subjectItems);
                     }
                 }

@@ -258,8 +258,12 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                 String filterPattern = charSequence.toString().toLowerCase().trim();
 
                 for (AttendanceItems attendanceItems: attendanceItemsFull){
+                    String a = attendanceItems.getFirstName() + " " + attendanceItems.getLastName();
+                    String b = attendanceItems.getLastName() + " " + attendanceItems.getFirstName();
                     if (attendanceItems.getLastName().toLowerCase().contains(filterPattern) ||
-                            attendanceItems.getFirstName().toLowerCase().contains(filterPattern)){
+                            attendanceItems.getFirstName().toLowerCase().contains(filterPattern) ||
+                            a.contains(filterPattern) ||
+                            b.contains(filterPattern)){
                         filteredList.add(attendanceItems);
                     }
                 }

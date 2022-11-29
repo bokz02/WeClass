@@ -67,12 +67,15 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                 String filterPattern = charSequence.toString().toLowerCase().trim();
 
                 for (StudentItems studentItems: studentItemsFull){
+                    String a = studentItems.getLastname() + " " + studentItems.getFirstname();
+                    String b = studentItems.getFirstname() + " " + studentItems.getLastname();
                     if (studentItems.getLastname().toLowerCase().contains(filterPattern) ||
                             studentItems.getFirstname().toLowerCase().contains(filterPattern) ||
                             studentItems.getMiddleName().toLowerCase().contains(filterPattern) ||
                             studentItems.getGender().toLowerCase().contains(filterPattern) ||
-                            studentItems.getStudentNumber().contains(filterPattern)
-                    ){
+                            studentItems.getStudentNumber().contains(filterPattern) ||
+                            a.contains(filterPattern) ||
+                            b.contains(filterPattern)){
 
                         filteredList.add(studentItems);
 
