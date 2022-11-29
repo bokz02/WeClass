@@ -73,14 +73,26 @@
             app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
 
         <TextView
+            android:id="@+id/textView36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="/100"
+            android:text="/"
             android:textColor="@color/black1"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/gradeEditTextViewGrade"
             app:layout_constraintStart_toEndOf="@+id/gradeEditTextViewGrade"
             app:layout_constraintTop_toTopOf="@+id/gradeEditTextViewGrade" />
+
+        <TextView
+            android:id="@+id/itemsTaskGradeRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textColor="@color/black1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView36"
+            app:layout_constraintStart_toEndOf="@+id/textView36"
+            app:layout_constraintTop_toTopOf="@+id/textView36" />
 
         <TextView
             android:id="@+id/studentIDGrade"
@@ -125,6 +137,15 @@
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/subjectIDTextViewRecViewGrade"
             app:layout_constraintTop_toBottomOf="@+id/subjectIDTextViewRecViewGrade" />
+
+        <TextView
+            android:id="@+id/totalItemsTaskGradeRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="task items"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/taskNumberRecViewGrade"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView

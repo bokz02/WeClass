@@ -133,6 +133,15 @@
             app:layout_constraintEnd_toStartOf="@+id/subjectIDTextViewRecViewGrade"
             app:layout_constraintTop_toBottomOf="@+id/taskTypeTextViewRecViewGrade" />
 
+        <TextView
+            android:id="@+id/totalItemTaskGradeViewRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/studentIdTextViewTaskGrade"
+            app:layout_constraintStart_toEndOf="@+id/studentIdTextViewTaskGrade" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

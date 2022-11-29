@@ -14,7 +14,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
 
@@ -31,37 +31,33 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="50dp"
+            android:layout_marginStart="28dp"
             android:background="@drawable/ic_simple_back"
             android:backgroundTint="@color/darkText"
-            app:layout_constraintStart_toStartOf="@+id/textView32"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Frequently Asked Questions"
             android:textColor="@color/darkText"
             android:textSize="23sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView6"
             app:layout_constraintTop_toBottomOf="@+id/imageView6"
             app:layout_constraintVertical_bias="0.371" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Our answer to teacher's common questions"
             android:textColor="@color/darkText"
             android:textSize="14sp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView32"
             app:layout_constraintTop_toBottomOf="@+id/textView32"
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -71,7 +67,8 @@
         android:id="@+id/cardView3"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_margin="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp"
         android:elevation="10dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,9 +113,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_margin="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
             android:elevation="10dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -163,9 +161,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView5"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_margin="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
             android:elevation="10dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -210,9 +209,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView6"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_margin="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
             android:elevation="10dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -257,11 +257,14 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView62"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_margin="20dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
             android:elevation="10dp"
             app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView6">
@@ -302,16 +305,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView62">
-
-
-        </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

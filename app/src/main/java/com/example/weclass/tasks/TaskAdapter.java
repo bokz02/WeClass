@@ -247,7 +247,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                             taskItems.getGradingPeriod().toLowerCase().contains(filterPattern) ||
                             String.valueOf(taskItems.getTaskNumber()).contains(filterPattern) ||
                             a.contains(filterPattern) ||
-                            b.contains(filterPattern)){
+                            b.contains(filterPattern) ||
+                            taskItems.getProgress().contains(filterPattern)){
                         filteredList.add(taskItems);
                     }
                 }

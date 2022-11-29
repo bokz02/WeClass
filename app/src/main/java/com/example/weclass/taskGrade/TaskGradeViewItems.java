@@ -5,10 +5,12 @@ import java.util.Comparator;
 public class TaskGradeViewItems {
 
     String lastName, firstName, taskType, id, gradingPeriod;
-    int taskNumber, grade, parentId;
+    int taskNumber, grade, parentId, totalItems;
 
 
-    public TaskGradeViewItems(String lastName, String firstName, String taskType, int taskNumber, int grade, String id, String gradingPeriod, int parentId) {
+    public TaskGradeViewItems(String lastName, String firstName, String taskType,
+                              int taskNumber, int grade, String id, String gradingPeriod,
+                              int parentId, int totalItems) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.taskType = taskType;
@@ -17,6 +19,7 @@ public class TaskGradeViewItems {
         this.id = id;
         this.gradingPeriod = gradingPeriod;
         this.parentId = parentId;
+        this.totalItems = totalItems;
     }
 
     public String getLastName() {
@@ -49,6 +52,10 @@ public class TaskGradeViewItems {
 
     public int getParentId(){
         return parentId;
+    }
+
+    public int getTotalItems(){
+        return totalItems;
     }
 
     public static Comparator<TaskGradeViewItems> sortAtoZComparator = new Comparator<TaskGradeViewItems>() {

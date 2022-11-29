@@ -3,6 +3,7 @@ package com.example.weclass.taskGrade;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.weclass.EditTextSetMinMax;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 
@@ -39,7 +41,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView lastName, firstName, studentID, subjectID, taskType,
-                taskNumber, gradingPeriod, taskId;
+                taskNumber, gradingPeriod, taskId, items, totalItems;
         ImageButton submitButtonGrade;
         EditText gradeEditText;
         OnNoteListener onNoteListener;
@@ -57,7 +59,8 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
             taskNumber = itemView.findViewById(R.id.taskNumberRecViewGrade);
             gradingPeriod = itemView.findViewById(R.id.gradingPeriodTextViewRecViewGrade);
             taskId = itemView.findViewById(R.id.taskIdTaskGradeRecView);
-            
+            items = itemView.findViewById(R.id.itemsTaskGradeRecView);
+            totalItems = itemView.findViewById(R.id.totalItemsTaskGradeRecView);
         }
 
     }
@@ -82,6 +85,18 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         holder.taskNumber.setText(String.valueOf(taskGradeItems.get(position).getTaskNumber()));
         holder.gradingPeriod.setText(String.valueOf(taskGradeItems.get(position).getGradingPeriod()));
         holder.taskId.setText(String.valueOf(taskGradeItems.get(position).getTaskId()));
+        holder.totalItems.setText(String.valueOf(taskGradeItems.get(position).getTotalItem()));
+
+        String taskType = holder.taskType.getText().toString();
+        String item = holder.totalItems.getText().toString();
+
+        if (taskType.equals("Quiz")){
+            holder.items.setText(item);
+        }
+
+        int totalItem = Integer.parseInt(holder.items.getText().toString());
+
+        holder.gradeEditText.setFilters(new InputFilter[]{ new EditTextSetMinMax(0,totalItem)});
 
         holder.submitButtonGrade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +126,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                     itemCallBack.updateStudentGrades();
                     Toast.makeText(context, "Do not submit empty grade" , Toast.LENGTH_SHORT).show();
 
-                }else if (a < 0 ||a > 100){
+                }else if (a < 0 ||a > totalItem){
                     Toast.makeText(context, "Grades must be within range" , Toast.LENGTH_SHORT).show();
 
                 }else if (cursor.moveToFirst()){

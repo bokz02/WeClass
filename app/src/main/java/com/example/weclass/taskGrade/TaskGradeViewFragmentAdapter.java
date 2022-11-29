@@ -35,7 +35,8 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView lastName, firstName, studentId, gradingPeriod, parentId, taskType, taskNumber;
+        TextView lastName, firstName, studentId, gradingPeriod,
+                parentId, taskType, taskNumber, totalItems;
         EditText grade;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -49,8 +50,7 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
             parentId = itemView.findViewById(R.id.subjectIDTextViewRecViewGrade);
             taskType = itemView.findViewById(R.id.taskTypeTextViewRecViewGrade);
             taskNumber = itemView.findViewById(R.id.taskNumberRecViewGrade);
-
-
+            totalItems = itemView.findViewById(R.id.totalItemTaskGradeViewRecView);
         }
     }
 
@@ -73,10 +73,20 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
         holder.gradingPeriod.setText(String.valueOf(taskGradeViewItems.get(position).getGradingPeriod()));
         holder.parentId.setText(String.valueOf(taskGradeViewItems.get(position).getParentId()));
         holder.studentId.setText(String.valueOf(taskGradeViewItems.get(position).getId()));
+        holder.totalItems.setText(String.valueOf(taskGradeViewItems.get(position).getTotalItems()));
+
+        String taskType = holder.taskType.getText().toString();
+        String totalItems = holder.totalItems.getText().toString();
+
+        if (taskType.equals("Quiz")){
+            holder.totalItems.setText(totalItems);
+        }
+
+        int toTalItem = Integer.parseInt(holder.totalItems.getText().toString());
 
         DataBaseHelper dbh = new DataBaseHelper(context);
 
-        holder.grade.setFilters(new InputFilter[]{ new EditTextSetMinMax(0,100)});
+        holder.grade.setFilters(new InputFilter[]{ new EditTextSetMinMax(0,toTalItem)});
         holder.grade.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

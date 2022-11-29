@@ -16,7 +16,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 55;
+    private static final int DATABASE_VERSION = 56;
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -76,6 +76,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TASK_NUMBER_MY_GRADE = "task_number";
     public static final String COLUMN_GRADE_MY_GRADE = "score";
     public static final String COLUMN_GRADING_PERIOD_MY_GRADE = "grading_period";
+    public static final String COLUMN_ITEMS_MY_GRADE = "items";
 
 
     public static final String TABLE_ATTENDANCE = "my_attendance";
@@ -186,7 +187,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_TASK_TYPE_MY_GRADE + " TEXT, " +
                 COLUMN_TASK_NUMBER_MY_GRADE + " TEXT," +
                 COLUMN_GRADE_MY_GRADE + " TEXT," +
-                COLUMN_GRADING_PERIOD_MY_GRADE + " TEXT);";
+                COLUMN_GRADING_PERIOD_MY_GRADE + " TEXT, " +
+                COLUMN_ITEMS_MY_GRADE + " TEXT);";
 
         String query6 = "CREATE TABLE " + TABLE_ATTENDANCE +
                 " (" + COLUMN_ID_ATTENDANCE + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

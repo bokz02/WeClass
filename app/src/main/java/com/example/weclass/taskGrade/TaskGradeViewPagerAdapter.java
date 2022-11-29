@@ -8,10 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.sql.Ref;
-import java.util.ArrayList;
-
-public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
+public class TaskGradeViewPagerAdapter extends FragmentStateAdapter {
 
     private final String string;
     private final String taskNumber;
@@ -19,8 +16,8 @@ public class TaskGradeFragmentAdapter extends FragmentStateAdapter {
     private final String subjectId;
     private final String taskId;
 
-    public TaskGradeFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, String string,
-                                    String taskNumber, String gradingPeriod, String subjectId, String taskId) {
+    public TaskGradeViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, String string,
+                                     String taskNumber, String gradingPeriod, String subjectId, String taskId) {
         super(fragmentManager, lifecycle);
         this.string = string;
         this.taskNumber = taskNumber;

@@ -2,9 +2,7 @@ package com.example.weclass.taskGrade;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.ContentValues;
@@ -14,27 +12,21 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.StudentItems;
 import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
 import com.example.weclass.tasks.TaskItems;
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 
 public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.ItemCallBack {
 
@@ -50,7 +42,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
     View _noStudentToGradeView;
     TabLayout _tabLayout;
     ViewPager2 _viewPager2;
-    TaskGradeFragmentAdapter taskGradeFragmentAdapter;
+    TaskGradeViewPagerAdapter taskGradeViewPagerAdapter;
     TaskGradeViewFragmentAdapter taskGradeViewFragmentAdapter;
     SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
@@ -190,10 +182,10 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
         String subjectId = _subjectID.getText().toString();
         String idTask = _taskId.getText().toString();
 
-        taskGradeFragmentAdapter = new TaskGradeFragmentAdapter(fragmentManager, getLifecycle(), taskType, taskNumber, gradingPeriod, subjectId, idTask);
+        taskGradeViewPagerAdapter = new TaskGradeViewPagerAdapter(fragmentManager, getLifecycle(), taskType, taskNumber, gradingPeriod, subjectId, idTask);
 
 
-        _viewPager2.setAdapter(taskGradeFragmentAdapter);
+        _viewPager2.setAdapter(taskGradeViewPagerAdapter);
 
         _tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -384,6 +376,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
                     cv.put(DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE, _taskNumber.getText().toString());
                     cv.put(DataBaseHelper.COLUMN_GRADE_MY_GRADE, "");
                     cv.put(DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE, _gradingPeriod.getText().toString());
+                    cv.put(DataBaseHelper.COLUMN_ITEMS_MY_GRADE, _score.getText().toString());
                     sqL.insert(DataBaseHelper.TABLE_MY_GRADE, null,cv);
                     c.close();
                 }

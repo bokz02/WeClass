@@ -133,7 +133,8 @@ public class TaskGradeViewFragment extends Fragment {
                         cursor.getInt(8),
                         cursor.getString(1),
                         cursor.getString(9),
-                        cursor.getInt(3)));
+                        cursor.getInt(3),
+                        cursor.getInt(10)));
             }while (cursor.moveToNext());
         }
         cursor.close();

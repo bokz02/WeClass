@@ -128,7 +128,8 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.Item
                         cursor.getString(6),
                         cursor.getInt(7),
                         cursor.getString(9),
-                        cursor.getInt(2)));
+                        cursor.getInt(2),
+                        cursor.getInt(10)));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -137,7 +138,7 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.Item
 
     // AUTOMATIC SORT WHEN ACTIVITY OPEN
     public void automaticSort(){
-        Collections.sort(taskGradeItems, TaskGradeItems.sortAtoZComparator);
+        taskGradeItems.sort(TaskGradeItems.sortAtoZComparator);
         initializeAdapter();
     }
 
