@@ -240,9 +240,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                 String filterPattern = charSequence.toString().toLowerCase().trim();
 
                 for (TaskItems taskItems: taskItemsFull){
+                    String a = taskItems.getTaskType().toLowerCase() + " " + taskItems.getTaskNumber();
+                    String b = taskItems.getTaskType().toLowerCase() + "" + taskItems.getTaskNumber();
                     if (taskItems.getTaskType().toLowerCase().contains(filterPattern) ||
                             taskItems.getTaskDescription().toLowerCase().contains(filterPattern) ||
-                            taskItems.getGradingPeriod().toLowerCase().contains(filterPattern)){
+                            taskItems.getGradingPeriod().toLowerCase().contains(filterPattern) ||
+                            String.valueOf(taskItems.getTaskNumber()).contains(filterPattern) ||
+                            a.contains(filterPattern) ||
+                            b.contains(filterPattern)){
                         filteredList.add(taskItems);
                     }
                 }
@@ -259,7 +264,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             taskItems.addAll((List)filterResults.values);
 
             if(taskItems.size()==0){
-                Toast.makeText(context, "TasksS doesn't exist" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Task doesn't exist" , Toast.LENGTH_SHORT).show();
             }
 
             notifyDataSetChanged();

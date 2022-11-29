@@ -10,36 +10,10 @@
         android:id="@+id/extendedRecViewAbsentFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="15dp"
-        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/studentNumberAbsentFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="studentNumber"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/parentIdLateFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="parent"
-        android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/studentNumberAbsentFragment"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="absent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

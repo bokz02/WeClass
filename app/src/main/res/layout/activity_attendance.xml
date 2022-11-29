@@ -109,7 +109,7 @@
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/white"
             app:tabTextAppearance="@style/tab_text"
-            app:tabTextColor="@color/black1">
+            app:tabTextColor="@color/ViewPagerTabText">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"

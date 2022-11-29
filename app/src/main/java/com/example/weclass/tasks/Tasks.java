@@ -254,8 +254,9 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
 
     // AUTOMATIC SORT WHEN ACTIVITY OPEN
     public void automaticSort() {
-        Collections.sort(taskItems, TaskItems.sortAtoZComparator);
-        Collections.sort(taskItems, TaskItems.sortZtoAComparator);
+        taskItems.sort(TaskItems.sortAtoZComparator);
+        taskItems.sort(TaskItems.sortZtoAComparator);
+        taskItems.sort(TaskItems.sortByTaskNumber);
         initializeAdapter();
     }
 

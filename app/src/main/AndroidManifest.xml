@@ -82,14 +82,6 @@
             android:theme="@style/Theme.Dialog"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".studentlist.profile.attendance.Absent"
-            android:exported="false"
-            android:theme="@style/Theme.Dialog" />
-        <activity
-            android:name=".studentlist.profile.attendance.Present"
-            android:exported="false"
-            android:theme="@style/Theme.Dialog" />
-        <activity
             android:name=".studentlist.profile.seatwork.SeatWork"
             android:exported="false"
             android:theme="@style/Theme.Dialog" />

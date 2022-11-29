@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,15 +25,12 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
-import com.example.weclass.BottomNavi;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.activities.Activities;
 import com.example.weclass.studentlist.profile.assignments.Assignments;
-import com.example.weclass.studentlist.profile.attendance.Absent;
 import com.example.weclass.studentlist.profile.attendance.AttendanceView;
-import com.example.weclass.studentlist.profile.attendance.Present;
 import com.example.weclass.studentlist.profile.exams.Exams;
 import com.example.weclass.studentlist.profile.image.ImageUtils;
 import com.example.weclass.studentlist.profile.projects.Projects;
@@ -56,8 +52,8 @@ public class StudentProfile extends AppCompatActivity {
     ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects, _profileImage;
     String selectedFinalGrade, selectedMidtermGrade, selectedFinalRating;
     Uri uri = null;
-    CardView present, absentCardView, activities, quiz,
-            assignment, seatWork, exams, projects, lateMaterial;
+    CardView absentCardView, activities, quiz,
+            assignment, seatWork, exams, projects;
     SharedPref sharedPref;
     ProgressBar progressBar;
     ConstraintLayout constraintButton;
@@ -136,8 +132,6 @@ public class StudentProfile extends AppCompatActivity {
         _midtermGradeButton = findViewById(R.id.midtermGradeButton);
         _finalGradeButton = findViewById(R.id.finalGradeButton);
         _finalRatingButton = findViewById(R.id.finalRatingButton);
-        present = findViewById(R.id._materialPresent);
-        absentCardView = findViewById(R.id._materialAbsent);
         exams = findViewById(R.id._materialExams);
         projects = findViewById(R.id._materialProject);
         quiz = findViewById(R.id._materialQuiz);
@@ -147,7 +141,6 @@ public class StudentProfile extends AppCompatActivity {
         studentNumber = findViewById(R.id.studentNumberProfile);
         progressBar = findViewById(R.id.progressBarStudentProfile);
         _middleName = findViewById(R.id.studentMiddleNameProfile);
-        lateMaterial = findViewById(R.id._materialLate);
         _late = findViewById(R.id.lateTextViewProfile);
         constraintButton = findViewById(R.id.constraintButtonToAttendance);
 

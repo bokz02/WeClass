@@ -151,4 +151,11 @@ public class TaskItems implements Parcelable {
             return t1.getGradingPeriod().compareTo(t2.getGradingPeriod());
         }
     };
+
+    public static Comparator<TaskItems> sortByTaskNumber = new Comparator<TaskItems>() {
+        @Override
+        public int compare(TaskItems t2, TaskItems t1) {
+            return t2.getTaskNumber() - t1.getTaskNumber();
+        }
+    };
 }
