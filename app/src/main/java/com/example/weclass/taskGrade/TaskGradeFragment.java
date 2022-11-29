@@ -113,8 +113,8 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.Item
                 + _gradingPeriod.getText().toString() + "'AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + "="
                 + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " = "
-                + 0, null);
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " = '"
+                + "" + "'", null);
 
         ArrayList<TaskGradeItems> taskGradeItems = new ArrayList<>();
 

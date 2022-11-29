@@ -119,7 +119,7 @@ public class TaskGradeViewFragment extends Fragment {
                 + _taskNumber.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
                 + _gradingPeriod.getText().toString() + "' AND "
-                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + "!=" + 0, null);
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + "!='" + "" + "'", null);
 
         ArrayList<TaskGradeViewItems> taskGradeViewItems = new ArrayList<>();
 

@@ -127,22 +127,25 @@ public class Activities extends AppCompatActivity {
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
-                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
-                + _studentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
+                + _studentID.getText().toString() + "' AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND  "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
                 + _activity.getText().toString() + "' AND "
-                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Midterm%'", null);
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
+                + "Midterm" + "' and "
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
+                + "" + "'", null);
 
         ArrayList<ActivitiesItems> activitiesItems = new ArrayList<>();
 
         if (cursor.moveToFirst()){
             do {
                 activitiesItems.add(new ActivitiesItems(
-                        cursor.getString(5),
-                        cursor.getInt(6),
-                        cursor.getInt(7)));
+                        cursor.getString(6),
+                        cursor.getInt(7),
+                        cursor.getInt(8)));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -192,8 +195,8 @@ public class Activities extends AppCompatActivity {
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
-                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
-                + _studentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
+                + _studentID.getText().toString() + "' AND "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND  "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
@@ -205,9 +208,9 @@ public class Activities extends AppCompatActivity {
         if (cursor.moveToFirst()){
             do {
                 activitiesItems2.add(new ActivitiesItems(
-                        cursor.getString(5),
-                        cursor.getInt(6),
-                        cursor.getInt(7)));
+                        cursor.getString(6),
+                        cursor.getInt(7),
+                        cursor.getInt(8)));
             }while (cursor.moveToNext());
         }
         cursor.close();

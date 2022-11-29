@@ -230,11 +230,12 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
         String getGraded = gradedStudent.getText().toString();
         int a = Integer.parseInt(getTotal);
         int b = Integer.parseInt(getGraded);
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
 
         if(a == b){
             String completed = "Completed";
             _progress.setText(completed);
-            DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+
             SQLiteDatabase sqLite = dataBaseHelper.getWritableDatabase();
             Cursor c = sqLite.rawQuery("select * from "
                     + DataBaseHelper.TABLE_MY_TASKS + " where "
@@ -253,6 +254,10 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
         }else {
             String inProgress = "In-progress";
             _progress.setText(inProgress);
+
+            dataBaseHelper.updateTaskProgress(_taskId.getText().toString(),
+                    _subjectID.getText().toString(),
+                    _progress.getText().toString());
         }
     }
 
@@ -283,7 +288,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
                 + _taskType.getText().toString() + "' AND "
                 + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
                 + _taskNumber.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != " + 0 + " AND "
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '" + "" + "' AND "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + "='"
                 + _gradingPeriod.getText().toString() + "'", null);
 
@@ -377,7 +382,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
                     cv.put(DataBaseHelper.COLUMN_FIRST_NAME_MY_GRADE, cursor.getString(4));
                     cv.put(DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE, _taskType.getText().toString());
                     cv.put(DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE, _taskNumber.getText().toString());
-                    cv.put(DataBaseHelper.COLUMN_GRADE_MY_GRADE, 0);
+                    cv.put(DataBaseHelper.COLUMN_GRADE_MY_GRADE, "");
                     cv.put(DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE, _gradingPeriod.getText().toString());
                     sqL.insert(DataBaseHelper.TABLE_MY_GRADE, null,cv);
                     c.close();
