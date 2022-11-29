@@ -23,7 +23,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
+import com.example.weclass.BottomNavi;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
@@ -57,6 +60,7 @@ public class StudentProfile extends AppCompatActivity {
             assignment, seatWork, exams, projects, lateMaterial;
     SharedPref sharedPref;
     ProgressBar progressBar;
+    ConstraintLayout constraintButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,20 +68,22 @@ public class StudentProfile extends AppCompatActivity {
 
         if (sharedPref.loadNightModeState()){
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(StudentProfile.this, R.color.titleBar));
 
         }else {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(StudentProfile.this, R.color.red2));
 
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        //status bar white background
-        Window window = getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        window.setStatusBarColor(Color.WHITE);
 
 
         initialize();   // INITIALIZE ALL VIEWS
@@ -87,11 +93,9 @@ public class StudentProfile extends AppCompatActivity {
         goToAssignments();  // GO TO ASSIGNMENTS ACTIVITY
         goToQuiz(); // GO TO QUIZZES ACTIVITY
         goToSeatWork(); // GO TO SEATWORK ACTIVITY
-        goToPresent();  // GO TO PRESENT ACTIVITY
-        goToAbsent(); // GO TO ABSENT ACTIVITY
         goToProjects(); // GO TO PROJECTS ACTIVITY
         goToExams();    // GO TO EXAMS ACTIVITY
-        goToLate(); // GO TO late ACTIVITY
+        goAttendance(); // GO TO late ACTIVITY
         addPhoto();     // ADD PHOTO FEATURE
         displayImage(); // DISPLAY IMAGE FROM DATABASE
         countAbsent();
@@ -145,6 +149,7 @@ public class StudentProfile extends AppCompatActivity {
         _middleName = findViewById(R.id.studentMiddleNameProfile);
         lateMaterial = findViewById(R.id._materialLate);
         _late = findViewById(R.id.lateTextViewProfile);
+        constraintButton = findViewById(R.id.constraintButtonToAttendance);
 
 
     }
@@ -281,34 +286,8 @@ public class StudentProfile extends AppCompatActivity {
         });
     }
 
-    public void goToPresent(){
-        present.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(StudentProfile.this, Present.class);
-                intent.putExtra("studentID", studentNumber.getText().toString());
-                intent.putExtra("subjectID", _subjectID.getText().toString());
-                startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
-            }
-        });
-    }
-
-    public void goToAbsent(){
-        absentCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(StudentProfile.this, Absent.class);
-                intent.putExtra("studentID", studentNumber.getText().toString());
-                intent.putExtra("subjectID", _subjectID.getText().toString());
-                startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
-            }
-        });
-    }
-
-    public void goToLate(){
-        lateMaterial.setOnClickListener(new View.OnClickListener() {
+    public void goAttendance(){
+        constraintButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, AttendanceView.class);

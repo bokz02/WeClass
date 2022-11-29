@@ -130,16 +130,19 @@ public class Quiz extends AppCompatActivity {
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " LIKE '%Quiz%' " + " AND "
-                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Midterm%'", null);
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
+                + "Midterm" + "' and "
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
+                + "" + "'", null);
 
         ArrayList<ActivitiesItems> activitiesItems = new ArrayList<>();
 
         if (cursor.moveToFirst()){
             do {
                 activitiesItems.add(new ActivitiesItems(
-                        cursor.getString(5),
-                        cursor.getInt(6),
-                        cursor.getInt(7)));
+                        cursor.getString(6),
+                        cursor.getInt(7),
+                        cursor.getInt(8)));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -193,16 +196,19 @@ public class Quiz extends AppCompatActivity {
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
                 + _subjectID.getText().toString() + " AND "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " LIKE '%Quiz%'"+ " AND "
-                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " LIKE '%Finals%'", null);
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
+                + "Finals" + "' and "
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
+                + "" + "'", null);
 
         ArrayList<ActivitiesItems> activitiesItems2 = new ArrayList<>();
 
         if (cursor.moveToFirst()){
             do {
                 activitiesItems2.add(new ActivitiesItems(
-                        cursor.getString(5),
-                        cursor.getInt(6),
-                        cursor.getInt(7)));
+                        cursor.getString(6),
+                        cursor.getInt(7),
+                        cursor.getInt(8)));
             }while (cursor.moveToNext());
         }
         cursor.close();

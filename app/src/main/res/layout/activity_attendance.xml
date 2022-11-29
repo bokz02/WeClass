@@ -99,15 +99,17 @@
             android:id="@+id/tabLayoutAttendanceView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/titleBar"
+            android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicatorColor="@color/ViewPagerIndicator"
-            app:tabIndicatorHeight="1dp"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="2dp"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/ViewPagerIndicator"
+            app:tabSelectedTextColor="@color/white"
             app:tabTextAppearance="@style/tab_text"
-            app:tabTextColor="@color/black3">
+            app:tabTextColor="@color/black1">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
