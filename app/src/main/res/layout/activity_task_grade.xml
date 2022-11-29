@@ -102,7 +102,20 @@
         android:layout_height="wrap_content"
         android:text="taskId"
         android:visibility="invisible"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@+id/subjectIDTextViewGrade"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/gradingPeriodTextViewTaskGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Period"
+        android:textColor="@color/black1"
+        android:textSize="14sp"
+        android:layout_marginEnd="10dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/taskIdTaskGrade"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
@@ -127,31 +140,19 @@
             android:paddingVertical="10dp">
 
             <TextView
-                android:id="@+id/proressTextViewGrade"
+                android:id="@+id/progressTextViewGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_progress1"
                 android:drawablePadding="5dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Progress"
+                android:text="In-progress"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/taskGradeTextBanner"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-
-            <TextView
-                android:id="@+id/gradingPeriodTextViewTaskGrade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Period"
-                android:textColor="@color/taskGradeTextBanner"
-                android:textSize="14sp"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/totalStudentTextViewTaskGrade"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <TextView
                 android:id="@+id/taskTypeTextViewGrade"
@@ -224,7 +225,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView15"
-                app:layout_constraintEnd_toEndOf="@+id/gradingPeriodTextViewTaskGrade"
+                app:layout_constraintEnd_toEndOf="@+id/totalStudentTextViewTaskGrade"
                 app:layout_constraintTop_toTopOf="@+id/textView15"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -238,7 +239,7 @@
                 android:textColor="@color/taskGradeTextBanner"
                 app:layout_constraintBottom_toBottomOf="@+id/proressTextViewGrade"
                 app:layout_constraintEnd_toStartOf="@+id/scoreTextViewGrade"
-                app:layout_constraintTop_toTopOf="@+id/proressTextViewGrade"
+                app:layout_constraintTop_toTopOf="@+id/progressTextViewGrade"
                 app:layout_constraintVertical_bias="0.045" />
 
             <TextView

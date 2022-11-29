@@ -13,12 +13,12 @@ import com.example.weclass.R;
 
 import java.util.ArrayList;
 
-public class PresentAndAbsentAdapter extends RecyclerView.Adapter<PresentAndAbsentAdapter.MyViewHolder> {
+public class AttendanceViewAdapter extends RecyclerView.Adapter<AttendanceViewAdapter.MyViewHolder> {
 
     private final ArrayList<PresentAndAbsentItems> presentAndAbsentItems;
     Context context;
 
-    public PresentAndAbsentAdapter(Context context,ArrayList<PresentAndAbsentItems> presentAndAbsentItems) {
+    public AttendanceViewAdapter(Context context, ArrayList<PresentAndAbsentItems> presentAndAbsentItems) {
         this.presentAndAbsentItems = presentAndAbsentItems;
         this.context = context;
     }

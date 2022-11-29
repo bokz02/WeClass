@@ -2,9 +2,6 @@ package com.example.weclass.tasks;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -12,23 +9,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.weclass.DatePickerFragment;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.subject.AddSubjectActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -95,7 +87,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         _cancel = findViewById(R.id.cancelButtonTaskEdit);
         _create = findViewById(R.id.updateButtonTaskEdit);
         parentID = findViewById(R.id.parentIDTask);
-        _progress = findViewById(R.id.progressTaskEditText);
+        _progress = findViewById(R.id.progressTaskTextView);
         _taskNumber = findViewById(R.id.taskNumberEditText);
         _gradingPeriod = findViewById(R.id.gradingPeriodTextViewAddTask);
         _examTextView = findViewById(R.id.examTextView);
@@ -171,15 +163,11 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                                                                    _gradingPeriod.getText().toString().trim(),
                                                                    _dueTextView.getText().toString().trim());
 
-
-
-
                                                            Snackbar.make(_create, "Task successfully created!", Snackbar.LENGTH_LONG).show();
 
                                                            taskType.setText("");
                                                            _score.setText("");
                                                            _description.setText("");
-                                                           _progress.setText("");
                                                            _taskNumber.setText("");
                                                            _gradingPeriod.setText("");
                                                            _dueTextView.setText("");

@@ -119,7 +119,7 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
 
     private void initialize() {
         backButton = findViewById(R.id.backToTaskButton);
-        _progress = findViewById(R.id.proressTextViewGrade);
+        _progress = findViewById(R.id.progressTextViewGrade);
         _score = findViewById(R.id.scoreTextViewGrade);
         _description = findViewById(R.id.descriptionTextViewGrade);
         _taskType = findViewById(R.id.taskTypeTextViewGrade);
@@ -355,18 +355,18 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
 
         if (cursor.moveToFirst()){
             do {
-                Cursor c = sqL.rawQuery("SELECT * FROM "
+                Cursor c = sqLiteDatabase.rawQuery("SELECT * FROM "
                         + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
                         + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                         + cursor.getString(1) + "'" + " AND "
                         + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
-                        + cursor.getInt(2) + " AND "
+                        + _subjectID.getText().toString() + " AND "
                         + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
-                        + cursor.getString(15) + "' AND "
+                        + _taskType.getText().toString() + "' AND "
                         + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
-                        + cursor.getInt(20) + " AND "
+                        + _taskNumber.getText().toString() + " AND "
                         + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " ='"
-                        + cursor.getString(21) + "'", null);
+                        + _gradingPeriod.getText().toString() + "'", null);
 
                 if (!c.moveToFirst()){
                     ContentValues cv = new ContentValues();
@@ -387,6 +387,8 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
 
         }cursor.close();
         dbHelper.close();
+        sqLiteDatabase.close();
+        sqL.close();
 
 
     }

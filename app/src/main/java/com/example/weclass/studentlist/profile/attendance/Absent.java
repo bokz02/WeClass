@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,7 +27,7 @@ public class Absent extends AppCompatActivity {
     TextView _studentID, _subjectID, noText, _always1;
     ImageButton _backButton;
     ExtendedRecyclerView extendedRecyclerView;
-    PresentAndAbsentAdapter presentAndAbsentAdapter;
+    AttendanceViewAdapter attendanceViewAdapter;
     ArrayList<PresentAndAbsentItems> presentAndAbsentItems;
     DataBaseHelper dataBaseHelper;
     View noView;
@@ -93,8 +92,8 @@ public class Absent extends AppCompatActivity {
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
-        presentAndAbsentAdapter = new PresentAndAbsentAdapter(Absent.this, presentAndAbsentItems);
-        extendedRecyclerView.setAdapter(presentAndAbsentAdapter);
+        attendanceViewAdapter = new AttendanceViewAdapter(Absent.this, presentAndAbsentItems);
+        extendedRecyclerView.setAdapter(attendanceViewAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(Absent.this));
         extendedRecyclerView.setEmptyView(noView, noText);
     }

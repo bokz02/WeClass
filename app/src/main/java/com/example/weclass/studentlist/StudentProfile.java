@@ -30,7 +30,7 @@ import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.activities.Activities;
 import com.example.weclass.studentlist.profile.assignments.Assignments;
 import com.example.weclass.studentlist.profile.attendance.Absent;
-import com.example.weclass.studentlist.profile.attendance.Late;
+import com.example.weclass.studentlist.profile.attendance.AttendanceView;
 import com.example.weclass.studentlist.profile.attendance.Present;
 import com.example.weclass.studentlist.profile.exams.Exams;
 import com.example.weclass.studentlist.profile.image.ImageUtils;
@@ -308,12 +308,12 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void goToLate(){
-        absentCardView.setOnClickListener(new View.OnClickListener() {
+        lateMaterial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentProfile.this, Late.class);
-                intent.putExtra("studentID", studentNumber.getText().toString());
-                intent.putExtra("subjectID", _subjectID.getText().toString());
+                Intent intent = new Intent(StudentProfile.this, AttendanceView.class);
+                intent.putExtra("studentNumber", studentNumber.getText().toString());
+                intent.putExtra("parentId", _subjectID.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
             }

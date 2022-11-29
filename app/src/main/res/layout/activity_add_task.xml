@@ -264,7 +264,7 @@
             android:textSize="13sp" />
 
         <TextView
-            android:id="@+id/progressTaskEditText"
+            android:id="@+id/progressTaskTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
@@ -274,7 +274,7 @@
             android:focusable="true"
             android:visibility="gone"
             android:gravity="center_vertical"
-            android:hint="In-progress"
+            android:text="In-progress"
             android:textSize="15sp"/>
 
         <TextView
