@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
-import com.example.weclass.SharedPref;
-import com.example.weclass.attendance.AttendanceItems;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.attendance.AttendanceViewAdapter;
 import com.example.weclass.studentlist.profile.attendance.PresentAndAbsentItems;
@@ -53,16 +51,16 @@ public class PresentFragment extends Fragment {
     }
 
     public void initialize(){
-        extendedRecyclerView = view.findViewById(R.id.extendedRecViewPresentFragment);
+        extendedRecyclerView = view.findViewById(R.id.extendedRecViewFinals);
         studentNumber = view.findViewById(R.id.studentNumberPresentFragment);
         parentId = view.findViewById(R.id.parentIdPresentFragment);
-        noView = view.findViewById(R.id.noStudentViewPresent);
-        noTextView = view.findViewById(R.id.noStudentTextViewPresent);
+        noView = view.findViewById(R.id.noStudentViewFinals);
+        noTextView = view.findViewById(R.id.noStudentTextViewFinals);
     }
 
     public void initializeAdapter(){
 
-        attendanceViewAdapter = new AttendanceViewAdapter(getContext(), presentAndAbsentItems);
+        attendanceViewAdapter = new AttendanceViewAdapter(presentAndAbsentItems, getContext());
         extendedRecyclerView.setAdapter(attendanceViewAdapter);
         extendedRecyclerView.setLayoutManager(new  LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(noView,noTextView);

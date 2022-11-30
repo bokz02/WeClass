@@ -153,7 +153,9 @@ public class StudentProfile extends AppCompatActivity {
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
                 + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
-                + studentNumber.getText().toString() + "'", null);
+                + studentNumber.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                + _subjectID.getText().toString(), null);
 
         if (cursor.moveToFirst()){
             _absentTextView.setText(String.valueOf(cursor.getInt(8)));

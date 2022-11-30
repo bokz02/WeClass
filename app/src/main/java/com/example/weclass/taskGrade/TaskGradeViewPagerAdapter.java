@@ -41,19 +41,20 @@ public class TaskGradeViewPagerAdapter extends FragmentStateAdapter {
             fragment.setArguments(bundle);
 
             return fragment;
+        }else {
+
+            Bundle bundle = new Bundle();
+            bundle.putString("TaskType", string);
+            bundle.putString("TaskNumber", taskNumber);
+            bundle.putString("GradingPeriod", gradingPeriod);
+            bundle.putString("SubjectId", subjectId);
+            bundle.putString("TaskId", taskId);
+            TaskGradeFragment taskGradeFragment = new TaskGradeFragment();
+            taskGradeFragment.setArguments(bundle);
+
+
+            return taskGradeFragment;
         }
-
-        Bundle bundle = new Bundle();
-        bundle.putString("TaskType", string);
-        bundle.putString("TaskNumber", taskNumber);
-        bundle.putString("GradingPeriod", gradingPeriod);
-        bundle.putString("SubjectId", subjectId);
-        bundle.putString("TaskId", taskId);
-        TaskGradeFragment taskGradeFragment= new TaskGradeFragment();
-        taskGradeFragment.setArguments(bundle);
-
-
-        return taskGradeFragment;
     }
 
     @Override

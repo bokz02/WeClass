@@ -311,9 +311,9 @@ public class BottomNavi extends AppCompatActivity {
                                         cv.put(DataBaseHelper.COLUMN_GENDER, "-");
                                         cv.put(DataBaseHelper.COLUMN_PRESENT, 0);
                                         cv.put(DataBaseHelper.COLUMN_ABSENT, 0);
-                                        cv.put(DataBaseHelper.COLUMN_MIDTERM_GRADE_STUDENT, 0);
-                                        cv.put(DataBaseHelper.COLUMN_FINAL_GRADE_STUDENT, 0);
-                                        cv.put(DataBaseHelper.COLUMN_FINAL_RATING_STUDENT, 0);
+                                        cv.put(DataBaseHelper.COLUMN_MIDTERM_GRADE_STUDENT, "-");
+                                        cv.put(DataBaseHelper.COLUMN_FINAL_GRADE_STUDENT, "-");
+                                        cv.put(DataBaseHelper.COLUMN_FINAL_RATING_STUDENT, "-");
                                         cv.put(DataBaseHelper.COLUMN_LATE_STUDENT, 0);
                                         db.insert(DataBaseHelper.TABLE_MY_STUDENTS, null, cv);
 

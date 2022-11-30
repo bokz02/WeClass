@@ -7,7 +7,7 @@
     tools:context=".studentlist.profile.attendance.attendanceviewpager.PresentFragment">
 
     <com.example.weclass.ExtendedRecyclerView
-        android:id="@+id/extendedRecViewPresentFragment"
+        android:id="@+id/extendedRecViewFinals"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/noStudentTextViewPresent"
+        android:id="@+id/noStudentTextViewFinals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No attendance to display"
@@ -42,18 +42,18 @@
         android:textSize="14sp"
         android:textStyle="italic"
         android:fontFamily="@font/poppins_regular"
-        app:layout_constraintBottom_toTopOf="@id/noStudentViewPresent"
-        app:layout_constraintEnd_toEndOf="@+id/noStudentViewPresent"
-        app:layout_constraintStart_toStartOf="@+id/noStudentViewPresent" />
+        app:layout_constraintBottom_toTopOf="@id/noStudentViewFinals"
+        app:layout_constraintEnd_toEndOf="@+id/noStudentViewFinals"
+        app:layout_constraintStart_toStartOf="@+id/noStudentViewFinals" />
 
     <View
-        android:id="@+id/noStudentViewPresent"
+        android:id="@+id/noStudentViewFinals"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/ic_no_file"
-        app:layout_constraintBottom_toBottomOf="@+id/extendedRecViewPresentFragment"
+        app:layout_constraintBottom_toBottomOf="@+id/extendedRecViewFinals"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/extendedRecViewPresentFragment" />
+        app:layout_constraintTop_toTopOf="@+id/extendedRecViewFinals" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

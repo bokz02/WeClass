@@ -1,11 +1,14 @@
 package com.example.weclass.ratings;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +18,20 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.ratings.fragments.RatingsViewPagerAdapter;
 import com.example.weclass.studentlist.StudentItems;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Ratings extends Fragment {
 
-    TextView _course, _subjectCode, _noViewTextView, _subjectID;
-    ExtendedRecyclerView extendedRecyclerView;
-    ArrayList<StudentItems> studentItems;
-    RatingAdapter ratingAdapter;
-    DataBaseHelper dataBaseHelper;
-    View view, _noView;
+    View view;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    RatingsViewPagerAdapter ratingsViewPagerAdapter;
+    String parentId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,9 +40,7 @@ public class Ratings extends Fragment {
 
         initialize();
         getDataFromBottomNaviActivity();
-        display();
-        initializeAdapter();
-        automaticSort();
+        viewPagerFragmentManager();
 
 
         return view;
@@ -47,81 +49,52 @@ public class Ratings extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        initializeAdapter();
+
     }
 
     public void initialize(){
-        extendedRecyclerView = view.findViewById(R.id.extendedRecViewRatings);
-        _noViewTextView = view.findViewById(R.id.noStudentTextViewRatings);
-        _noView = view.findViewById(R.id.noStudentViewCalendar);
-        _subjectID = view.findViewById(R.id.subjectIDRatings);
-        _subjectCode = view.findViewById(R.id.subjectCodeTextViewRatings);
-        _course = view.findViewById(R.id.courseTextViewRatings);
-    }
-
-
-    // INITIALIZE ADAPTER FOR RECYCLERVIEW
-    public void initializeAdapter(){
-
-        ratingAdapter = new RatingAdapter(getContext(), studentItems);
-        extendedRecyclerView.setAdapter(ratingAdapter);
-        extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        extendedRecyclerView.setEmptyView(_noView,_noViewTextView);
+        tabLayout = view.findViewById(R.id.tabLayoutRatings);
+        viewPager2 = view.findViewById(R.id.viewPagerRatings);
 
     }
 
-    // DATA TO BE DISPLAY IN RECYCLERVIEW
-    public void display(){
-        studentItems = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(getContext());
-        studentItems = displayData();
-    }
-
-    // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
-    private ArrayList<StudentItems> displayData(){
-        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
-                + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                + _subjectID.getText().toString(), null);
-
-        ArrayList<StudentItems> studentItems = new ArrayList<>();
-
-        if (cursor.moveToFirst()){
-            do {
-                studentItems.add(new StudentItems(
-                        cursor.getString(1),
-                        cursor.getInt(2),
-                        cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(5),
-                        cursor.getString(6),
-                        cursor.getInt(7),
-                        cursor.getInt(8),
-                        cursor.getBlob(9),
-                        cursor.getString(10),
-                        cursor.getString(11),
-                        cursor.getString(12)));
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
-        return studentItems;
-    }
 
     // GET DATA FROM BOTTOM NAVI THE NEEDS to DISPLAY SPECIFIC DATA FROM EACH SUBJECT
     public void getDataFromBottomNaviActivity() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            _subjectID.setText(bundle.getString("IDParent"));
-            _subjectCode.setText(bundle.getString("SubjectCode"));
-            _course.setText(bundle.getString("CourseCode"));
+            parentId = bundle.getString("IDParent");
+
         }
     }
 
-    // AUTOMATIC SORT WHEN ACTIVITY OPEN
-    public void automaticSort(){
-        Collections.sort(studentItems, StudentItems.sortAtoZComparator);
-        initializeAdapter();
+    public void viewPagerFragmentManager(){
+        ratingsViewPagerAdapter = new RatingsViewPagerAdapter(getParentFragmentManager(),getLifecycle(),parentId);
+        viewPager2.setAdapter(ratingsViewPagerAdapter);
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+        });
     }
 
 }

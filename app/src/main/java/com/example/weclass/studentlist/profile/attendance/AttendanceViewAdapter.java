@@ -18,7 +18,7 @@ public class AttendanceViewAdapter extends RecyclerView.Adapter<AttendanceViewAd
     private final ArrayList<PresentAndAbsentItems> presentAndAbsentItems;
     Context context;
 
-    public AttendanceViewAdapter(Context context, ArrayList<PresentAndAbsentItems> presentAndAbsentItems) {
+    public AttendanceViewAdapter(ArrayList<PresentAndAbsentItems> presentAndAbsentItems, Context context) {
         this.presentAndAbsentItems = presentAndAbsentItems;
         this.context = context;
     }

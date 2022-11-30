@@ -190,12 +190,12 @@ public class TaskGrade extends AppCompatActivity{
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                //Toast.makeText(TaskGrade.this,"Success", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                //Toast.makeText(TaskGrade.this,"Success", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -203,10 +203,6 @@ public class TaskGrade extends AppCompatActivity{
             @Override
             public void onPageSelected(int position) {
                 _tabLayout.selectTab(_tabLayout.getTabAt(position));
-
-                if(position == 1 ){
-                    //Toast.makeText(TaskGrade.this,"Success", Toast.LENGTH_SHORT).show();
-                }
             }
         });
     }

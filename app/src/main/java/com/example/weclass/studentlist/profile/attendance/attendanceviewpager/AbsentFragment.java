@@ -77,11 +77,11 @@ public class AbsentFragment extends Fragment {
 
     public void initializeAdapter(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        attendanceViewAdapter = new AttendanceViewAdapter(getContext(), presentAndAbsentItems);
+        attendanceViewAdapter = new AttendanceViewAdapter(presentAndAbsentItems, getContext());
         extendedRecyclerView.setAdapter(attendanceViewAdapter);
         extendedRecyclerView.setLayoutManager(new  LinearLayoutManager(getContext()));
-        linearLayoutManager.setStackFromEnd(true);
         extendedRecyclerView.setEmptyView(noView,noTextView);
+        linearLayoutManager.setStackFromEnd(true);
     }
 
     public void getDataFromProfile(){

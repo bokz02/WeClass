@@ -73,11 +73,12 @@ public class LateFragment extends Fragment {
     }
 
     public void initializeAdapter(){
-        attendanceViewAdapter = new AttendanceViewAdapter(getContext(), presentAndAbsentItems);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        attendanceViewAdapter = new AttendanceViewAdapter(presentAndAbsentItems, getContext());
         extendedRecyclerView.setAdapter(attendanceViewAdapter);
         extendedRecyclerView.setLayoutManager(new  LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(noView, noTextView);
-
+        linearLayoutManager.setStackFromEnd(true);
     }
 
     public void getDataFromProfile(){

@@ -6,34 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".studentlist.profile.attendance.AttendanceView">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".9" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".05" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".95" />
-
     <TextView
         android:id="@+id/studentNumberAttendanceView"
         android:layout_width="wrap_content"

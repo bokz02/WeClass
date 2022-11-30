@@ -6,15 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".studentlist.profile.attendance.attendanceviewpager.AbsentFragment">
 
-    <com.example.weclass.ExtendedRecyclerView
-        android:id="@+id/extendedRecViewAbsentFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/noStudentTextViewAbsent"
         android:layout_width="wrap_content"
@@ -23,6 +14,7 @@
         android:textColor="@color/cancelButtonPressed"
         android:textSize="14sp"
         android:textStyle="italic"
+        android:visibility="gone"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintBottom_toTopOf="@id/noStudentViewAbsent"
         app:layout_constraintEnd_toEndOf="@+id/noStudentViewAbsent"
@@ -32,7 +24,17 @@
         android:id="@+id/noStudentViewAbsent"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:visibility="gone"
         android:background="@drawable/ic_no_file"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.weclass.ExtendedRecyclerView
+        android:id="@+id/extendedRecViewAbsentFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
