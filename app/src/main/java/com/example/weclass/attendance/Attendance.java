@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
-public class Attendance extends Fragment implements AttendanceAdapter.OnNoteListener{
+public class Attendance extends Fragment implements AttendanceAdapter.OnNoteListener, AttendanceAdapter.UpdateRecView {
 
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<AttendanceItems> attendanceItems, id, parentID;
@@ -150,7 +150,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter() {
-        attendanceAdapter = new AttendanceAdapter(getContext(), attendanceItems, this);
+        attendanceAdapter = new AttendanceAdapter(getContext(), attendanceItems, this, this);
         extendedRecyclerView.setAdapter(attendanceAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noStudentsView, _noStudentsTextView);
@@ -494,5 +494,14 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
             }
         };
         thread.start();
+    }
+
+    @Override
+    public void updateRecView() {
+        initialize();
+        getDataFromBottomNaviActivity();
+        display();
+        initializeAdapter();
+        automaticSort();
     }
 }

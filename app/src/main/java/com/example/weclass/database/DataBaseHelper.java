@@ -728,5 +728,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void undoAttendance(String id, String parentId, String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_ATTENDANCE,"id_student=" + "'" + id + "'"
+                + " and " + "id_subject=" + "'" +parentId + "'" +" and " + "date=" + "'" + date + "'", null);
+
+    }
+
 
 }

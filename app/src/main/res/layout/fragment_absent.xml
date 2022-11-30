@@ -15,5 +15,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/noStudentTextViewAbsent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No attendance to display"
+        android:textColor="@color/cancelButtonPressed"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintBottom_toTopOf="@id/noStudentViewAbsent"
+        app:layout_constraintEnd_toEndOf="@+id/noStudentViewAbsent"
+        app:layout_constraintStart_toStartOf="@+id/noStudentViewAbsent" />
+
+    <View
+        android:id="@+id/noStudentViewAbsent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_no_file"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

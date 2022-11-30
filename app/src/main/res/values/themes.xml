@@ -26,7 +26,21 @@
     <style name="Theme.Dialog" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/black1</item>
         <item name="android:popupMenuStyle">@style/PopupMenu</item>
+
+
     </style>
+
+    <style name="SnackBar_Design" parent="@style/Widget.MaterialComponents.Button.TextButton.Snackbar">
+        <item name="android:textAppearance">@style/SnackBar_Button_Appearance</item>
+    </style>
+    <style name="SnackBar_Color" parent="@style/Widget.MaterialComponents.Snackbar.TextView">
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <style name="SnackBar_Button_Appearance" parent="@style/TextAppearance.MaterialComponents.Button">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
     <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
         <item name="android:popupBackground">@color/menuBackGround</item>
@@ -121,8 +135,9 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="colorAccent">@color/red2</item>
-
     </style>
+
+
 
 
     <!-- SplashScreen -->

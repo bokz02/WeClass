@@ -29,8 +29,6 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
     public TaskGradeViewFragmentAdapter(ArrayList<TaskGradeViewItems> taskGradeViewItems, Context context){
         this.taskGradeViewItems = taskGradeViewItems;
         this.context = context;
-
-
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -78,6 +76,7 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
         String taskType = holder.taskType.getText().toString();
         String totalItems = holder.totalItems.getText().toString();
 
+        // if task is quiz, total score is based to its total item
         if (taskType.equals("Quiz")){
             holder.totalItems.setText(totalItems);
         }
@@ -86,7 +85,10 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
 
         DataBaseHelper dbh = new DataBaseHelper(context);
 
+        // set min and max value of edit text
         holder.grade.setFilters(new InputFilter[]{ new EditTextSetMinMax(0,toTalItem)});
+
+        // automatic save the value in edit text
         holder.grade.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

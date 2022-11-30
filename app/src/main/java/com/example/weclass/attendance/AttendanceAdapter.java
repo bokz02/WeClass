@@ -13,6 +13,7 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -34,14 +35,17 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     private final ArrayList<AttendanceItems> attendanceItemsFull;
     private final Context context;
     private final OnNoteListener mOnNoteListener;
+    private final UpdateRecView updateRecView;
     private int c;
     private final int a = 1;
 
-    public AttendanceAdapter(Context context, ArrayList<AttendanceItems> attendanceItems, OnNoteListener mOnNoteListener) {
+    public AttendanceAdapter(Context context, ArrayList<AttendanceItems> attendanceItems,
+                             OnNoteListener mOnNoteListener, UpdateRecView updateRecView) {
         this.attendanceItems = attendanceItems;
         this.context = context;
         this.mOnNoteListener = mOnNoteListener;
         attendanceItemsFull = new ArrayList<>(attendanceItems);
+        this.updateRecView = updateRecView;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -124,10 +128,35 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             @Override
             public void onClick(View view) {
                 int late = Integer.parseInt(holder.late.getText().toString());
+                String notLate = String.valueOf(holder.late);
                 holder.late.setText(String.valueOf(a + late));
 
-                Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
-                        + holder.firstName.getText().toString() + " is late.", Snackbar.LENGTH_SHORT).show();
+
+                // undo button in snack bar
+                Snackbar snackbar = Snackbar.make(holder.lateButton, "" + holder.lastName.getText().toString() + ", "
+                        + holder.firstName.getText().toString() + " is late", Snackbar.LENGTH_LONG)
+                        .setActionTextColor(context.getColor(R.color.red2))
+                        .setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                db.undoAttendance(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString(),
+                                        date);
+
+                                db.updateStudentLate(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString(),
+                                        notLate);
+
+                                db.updateAttendanceToday(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString(),
+                                        "date");
+
+                                attendanceItems.add(c, itemsAttendance);
+                                notifyItemInserted(c);
+                            }
+                        });
+                snackbar.show();
 
                 // ADD ATTENDANCE TO ATTENDANCE DATABASE
                 db.addAttendance(holder.id.getText().toString(),
@@ -160,11 +189,35 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                 // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
                 int b = Integer.parseInt(holder._present.getText().toString());
+                String notLate = String.valueOf(holder._present);
                 holder._present.setText(String.valueOf(a + b));
 
 
-                    Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
-                            + holder.firstName.getText().toString() + " is present.", Snackbar.LENGTH_SHORT).show();
+                // undo button in snack bar
+                Snackbar snackbar = Snackbar.make(holder.presentButton, "" + holder.lastName.getText().toString() + ", "
+                                + holder.firstName.getText().toString() + " is present", Snackbar.LENGTH_LONG)
+                        .setActionTextColor(context.getColor(R.color.red2))
+                        .setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                db.undoAttendance(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString(),
+                                        date);
+
+                                db.updateStudentPresent(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString(),
+                                        notLate);
+
+                                db.updateAttendanceToday(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString(),
+                                        "date");
+
+                                 attendanceItems.add(c, itemsAttendance);
+                                 notifyItemInserted(c);
+                            }
+                        });
+                snackbar.show();
 
                     // ADD ATTENDANCE TO ATTENDANCE DATABASE
                     db.addAttendance(holder.id.getText().toString(),
@@ -200,10 +253,34 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                 // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
                 int b = Integer.parseInt(holder._absent.getText().toString());
+                String notLate = String.valueOf(holder._present);
                 holder._absent.setText(String.valueOf(a + b));
 
-                    Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + ", "
-                            + holder.firstName.getText().toString() + " is absent.", Snackbar.LENGTH_SHORT).show();
+                // undo button in snack bar
+                Snackbar snackbar = Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + ", "
+                                + holder.firstName.getText().toString() + " is absent", Snackbar.LENGTH_LONG)
+                        .setActionTextColor(context.getColor(R.color.red2))
+                        .setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                db.undoAttendance(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString(),
+                                        date);
+
+                                db.updateStudentPresent(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString(),
+                                        notLate);
+
+                                db.updateAttendanceToday(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString(),
+                                        "date");
+
+                                attendanceItems.add(c, itemsAttendance);
+                                notifyItemInserted(c);
+                            }
+                        });
+                snackbar.show();
 
                     // ADD ATTENDANCE TO ATTENDANCE DATABASE
                     db.addAttendance(holder.id.getText().toString(),
@@ -282,5 +359,9 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
         }
     };
+
+    public interface UpdateRecView{
+        void updateRecView();
+    }
 
 }

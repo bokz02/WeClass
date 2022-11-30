@@ -28,13 +28,9 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
-public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.ItemCallBack {
+public class TaskGrade extends AppCompatActivity{
 
     ExtendedRecyclerView recyclerView;
-    ArrayList<TaskGradeItems> taskGradeItems, studentID, subjectID;
-    ArrayList<ActivitiesItems> activitiesItems;
-    TaskGradeAdapter taskGradeAdapter;
-    DataBaseHelper dataBaseHelper;
     ImageView backButton;
     TextView _progress, _score, _description, _taskType, _taskNumber,
             _subjectID , _noStudentToGradeTextView, _gradingPeriod, _due,
@@ -43,8 +39,6 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
     TabLayout _tabLayout;
     ViewPager2 _viewPager2;
     TaskGradeViewPagerAdapter taskGradeViewPagerAdapter;
-    TaskGradeViewFragmentAdapter taskGradeViewFragmentAdapter;
-    SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,13 +282,6 @@ public class TaskGrade extends AppCompatActivity implements TaskGradeAdapter.Ite
             gradedStudent.setText(String.valueOf(cursor.getInt(0)));
             cursor.close();
         }
-
-    }
-
-
-
-    @Override
-    public void updateStudentGrades() {
 
     }
 

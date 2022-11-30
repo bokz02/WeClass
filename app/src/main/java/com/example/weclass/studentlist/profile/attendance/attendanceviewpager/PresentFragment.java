@@ -25,9 +25,9 @@ import java.util.ArrayList;
 
 public class PresentFragment extends Fragment {
 
-    View view;
+    View view, noView;
     ExtendedRecyclerView extendedRecyclerView;
-    TextView studentNumber, parentId;
+    TextView studentNumber, parentId, noTextView;
     AttendanceViewAdapter attendanceViewAdapter;
     ArrayList<PresentAndAbsentItems> presentAndAbsentItems;
     DataBaseHelper dbh;
@@ -46,18 +46,28 @@ public class PresentFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initializeAdapter();
+    }
+
     public void initialize(){
         extendedRecyclerView = view.findViewById(R.id.extendedRecViewPresentFragment);
         studentNumber = view.findViewById(R.id.studentNumberPresentFragment);
         parentId = view.findViewById(R.id.parentIdPresentFragment);
+        noView = view.findViewById(R.id.noStudentViewPresent);
+        noTextView = view.findViewById(R.id.noStudentTextViewPresent);
     }
 
     public void initializeAdapter(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
         attendanceViewAdapter = new AttendanceViewAdapter(getContext(), presentAndAbsentItems);
         extendedRecyclerView.setAdapter(attendanceViewAdapter);
         extendedRecyclerView.setLayoutManager(new  LinearLayoutManager(getContext()));
-        linearLayoutManager.setStackFromEnd(true);
+        extendedRecyclerView.setEmptyView(noView,noTextView);
+
+
     }
 
     public void getDataFromProfile(){

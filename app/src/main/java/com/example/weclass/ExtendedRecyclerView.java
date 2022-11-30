@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-// THIS EXTENDS RECYCLERVIEW FUNCTION IS ABOUT SHOWING TEXTVIEW AND VIEW WHEN RECYCLERVIEW IS EMPTY
+// THIS EXTENDS RECYCLERVIEW CLASS IS ABOUT SHOWING TEXTVIEW AND VIEW WHEN RECYCLERVIEW IS EMPTY
 public class ExtendedRecyclerView extends RecyclerView {
 
     private View emptyView1;

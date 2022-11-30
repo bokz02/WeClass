@@ -25,17 +25,11 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
     private final ArrayList<TaskGradeItems> taskGradeItems;
     private final Context context;
-    private final ItemCallBack itemCallBack;
-
     int a;
-    int c;
 
-
-    public TaskGradeAdapter(ArrayList<TaskGradeItems> taskGradeItems, Context context, ItemCallBack itemCallBack) {
+    public TaskGradeAdapter(ArrayList<TaskGradeItems> taskGradeItems, Context context) {
         this.taskGradeItems = taskGradeItems;
         this.context = context;
-        this.itemCallBack = itemCallBack;
-
     }
 
 
@@ -44,9 +38,8 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                 taskNumber, gradingPeriod, taskId, items, totalItems;
         ImageButton submitButtonGrade;
         EditText gradeEditText;
-        OnNoteListener onNoteListener;
 
-        public MyViewHolder(@NonNull View itemView, ItemCallBack itemCallBack) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             lastName = itemView.findViewById(R.id.lastNameRecViewGrade);
@@ -70,7 +63,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.task_grade_recycler_style, parent, false);
-        return new MyViewHolder(view, itemCallBack);
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -90,14 +83,17 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         String taskType = holder.taskType.getText().toString();
         String item = holder.totalItems.getText().toString();
 
+        // if the task is quiz, the score is set to its total items
         if (taskType.equals("Quiz")){
             holder.items.setText(item);
         }
-
+        // score of a task
         int totalItem = Integer.parseInt(holder.items.getText().toString());
 
+        // filter the min and max value of edit text
         holder.gradeEditText.setFilters(new InputFilter[]{ new EditTextSetMinMax(0,totalItem)});
 
+        // submit button
         holder.submitButtonGrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,6 +105,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                     a = Integer.parseInt(holder.gradeEditText.getText().toString());
                 }
 
+                // query database
                 Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
@@ -122,26 +119,13 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
                         + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
                         + holder.gradingPeriod.getText().toString() + "'", null);
 
-                if(holder.gradeEditText.getText().toString().equals("")) {
-                    itemCallBack.updateStudentGrades();
-                    Toast.makeText(context, "Do not submit empty grade" , Toast.LENGTH_SHORT).show();
-
-                }else if (a < 0 ||a > totalItem){
-                    Toast.makeText(context, "Grades must be within range" , Toast.LENGTH_SHORT).show();
-
-                }else if (cursor.moveToFirst()){
-
+                if (cursor.moveToFirst()){
 
                     Toast.makeText(context, "" + holder.lastName.getText().toString() + ", " + holder.firstName.getText().toString() + " already graded!" , Toast.LENGTH_SHORT).show();
                     cursor.close();
 
-                    b = holder.getAdapterPosition();
-                    taskGradeItems.remove(b);
-                    notifyItemRemoved(b);
-
-                }
-                else {
-
+                } else {
+                    // update students grade in database
                     db.updateGrade(holder.studentID.getText().toString().trim(),
                             holder.taskType.getText().toString().trim(),
                             holder.taskNumber.getText().toString().trim(),
@@ -151,16 +135,11 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
                     Toast.makeText(context, "" + holder.lastName.getText().toString() + ", " + holder.firstName.getText().toString() + " successfully graded" , Toast.LENGTH_SHORT).show();
 
-
-
-                    b = holder.getAdapterPosition();
-                    taskGradeItems.remove(b);
-                    notifyItemRemoved(b);
-
-
-
                 }
-
+                // remove item in recyclerview and database
+                b = holder.getAdapterPosition();
+                taskGradeItems.remove(b);
+                notifyItemRemoved(b);
             }
         });
     }
@@ -170,13 +149,6 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         return taskGradeItems.size();
     }
 
-    public interface OnNoteListener{
-        void OnNoteClick(int position);
-    }
-
-    public interface ItemCallBack{
-        void updateStudentGrades();
-    }
 
 
 }

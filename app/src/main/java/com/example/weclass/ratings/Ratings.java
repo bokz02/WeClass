@@ -68,7 +68,6 @@ public class Ratings extends Fragment {
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noView,_noViewTextView);
 
-
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW

@@ -118,8 +118,9 @@
             android:layout_height="wrap_content"
             android:text="Currently you don't have student, add one."
             android:textColor="@color/cancelButtonPressed"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="italic"
+            android:fontFamily="@font/poppins_regular"
             app:layout_constraintBottom_toTopOf="@id/noStudentViewCalendar"
             app:layout_constraintEnd_toEndOf="@+id/noStudentViewCalendar"
             app:layout_constraintStart_toStartOf="@+id/noStudentViewCalendar" />

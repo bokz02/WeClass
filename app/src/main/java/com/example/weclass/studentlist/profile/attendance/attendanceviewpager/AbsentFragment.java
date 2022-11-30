@@ -22,12 +22,13 @@ import java.util.ArrayList;
 
 public class AbsentFragment extends Fragment {
 
-    View view;
+    View view, noView;
     ExtendedRecyclerView extendedRecyclerView;
     String studentNumber, parentId;
     AttendanceViewAdapter attendanceViewAdapter;
     ArrayList<PresentAndAbsentItems> presentAndAbsentItems;
     DataBaseHelper dbh;
+    TextView noTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,8 +42,37 @@ public class AbsentFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        initialize();
+        getDataFromProfile();
+        initializeRecView();
+        initializeAdapter();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initialize();
+        getDataFromProfile();
+        initializeRecView();
+        initializeAdapter();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        initialize();
+        getDataFromProfile();
+        initializeRecView();
+        initializeAdapter();
+    }
+
     public void initialize(){
         extendedRecyclerView = view.findViewById(R.id.extendedRecViewAbsentFragment);
+        noTextView = view.findViewById(R.id.noStudentTextViewAbsent);
+        noView = view.findViewById(R.id.noStudentViewAbsent);
     }
 
     public void initializeAdapter(){
@@ -51,6 +81,7 @@ public class AbsentFragment extends Fragment {
         extendedRecyclerView.setAdapter(attendanceViewAdapter);
         extendedRecyclerView.setLayoutManager(new  LinearLayoutManager(getContext()));
         linearLayoutManager.setStackFromEnd(true);
+        extendedRecyclerView.setEmptyView(noView,noTextView);
     }
 
     public void getDataFromProfile(){

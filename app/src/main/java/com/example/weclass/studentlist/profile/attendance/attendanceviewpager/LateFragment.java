@@ -23,12 +23,13 @@ import java.util.ArrayList;
 
 public class LateFragment extends Fragment {
 
-    View view;
+    View view, noView;
     ExtendedRecyclerView extendedRecyclerView;
     String studentNumber, parentId;
     AttendanceViewAdapter attendanceViewAdapter;
     ArrayList<PresentAndAbsentItems> presentAndAbsentItems;
     DataBaseHelper dbh;
+    TextView noTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,16 +44,40 @@ public class LateFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        initialize();
+        getDataFromProfile();
+        initializeRecView();
+        initializeAdapter();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        initialize();
+        getDataFromProfile();
+        initializeRecView();
+        initializeAdapter();
+    }
+
+
     public void initialize(){
         extendedRecyclerView = view.findViewById(R.id.extendedRecViewLateFragment);
+        noView = view.findViewById(R.id.noStudentViewAbsent);
+        noTextView = view.findViewById(R.id.noStudentTextViewLate);
     }
 
     public void initializeAdapter(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         attendanceViewAdapter = new AttendanceViewAdapter(getContext(), presentAndAbsentItems);
         extendedRecyclerView.setAdapter(attendanceViewAdapter);
         extendedRecyclerView.setLayoutManager(new  LinearLayoutManager(getContext()));
-        linearLayoutManager.setStackFromEnd(true);
+        extendedRecyclerView.setEmptyView(noView, noTextView);
+
     }
 
     public void getDataFromProfile(){

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.ItemCallBack{
+public class TaskGradeFragment extends Fragment{
 
     View view, _noStudentTGradeViewFragment;
     TextView _taskType,_subjectID, _taskNumber, _gradingPeriod,
@@ -37,11 +37,11 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.Item
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_task_grade, container, false);
 
-        initialize();
-        getDataFromTaskGradeActivity();
-        display();
-        initializeAdapter();
-        automaticSort();
+        initialize();   // initialize views
+        getDataFromTaskGradeActivity(); // get data via bundles
+        display();      // get data via arraylist
+        initializeAdapter();    // initialize adapter of recyclerView
+        automaticSort();    // automatic sort arraylist of students when activity opens
 
         return view;
     }
@@ -82,7 +82,7 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.Item
     public void initializeAdapter(){
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, getContext(), this);
+        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, getContext());
         extendedRecyclerView.setAdapter(taskGradeAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noStudentTGradeViewFragment, _noStudentToGradeTextViewFragment);
@@ -164,8 +164,4 @@ public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.Item
         }
     }
 
-    @Override
-    public void updateStudentGrades() {
-
-    }
 }
