@@ -1,17 +1,21 @@
-package com.example.weclass.setting;
+package com.example.weclass.settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 
 public class FAQs extends AppCompatActivity {
-    SharedPreferences sharedPreferences = null;
+
     SharedPref sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -26,4 +30,6 @@ public class FAQs extends AppCompatActivity {
 
 
     }
+
+
 }

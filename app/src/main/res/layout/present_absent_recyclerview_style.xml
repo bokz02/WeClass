@@ -5,18 +5,18 @@
     android:layout_height="wrap_content">
 
 
-        <TextView
-            android:id="@+id/datePresentAndAbsentTextViewRecView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginStart="20dp"
-            android:text="Activity"
-            android:fontFamily="@font/poppins_regular"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/datePresentAndAbsentTextViewRecView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_marginStart="20dp"
+        android:text="Activity"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view11"

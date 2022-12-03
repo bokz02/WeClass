@@ -239,7 +239,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         final String[] tasks = new String[]{
                 "Activity",
                 "Assignment",
-                "Seat work",
+                "Seatwork",
                 "Quiz",
                 "Project",
                 "Exam",

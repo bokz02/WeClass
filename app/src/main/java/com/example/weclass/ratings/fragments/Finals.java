@@ -63,9 +63,9 @@ public class Finals extends Fragment {
     }
 
     public void initialize(){
-        noView = view.findViewById(R.id.noStudentViewFinals);
-        noTextView = view.findViewById(R.id.noStudentTextViewFinals);
-        extendedRecyclerView = view.findViewById(R.id.extendedRecViewFinals);
+        noView = view.findViewById(R.id.noStudentViewProfileAttendance);
+        noTextView = view.findViewById(R.id.noStudentTextViewProfileAttendance);
+        extendedRecyclerView = view.findViewById(R.id.extendedRecViewProfileAttendance);
 
     }
 

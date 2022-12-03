@@ -35,7 +35,7 @@ public class PresentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_present, container, false);
+        view = inflater.inflate(R.layout.fragment_profile_attendance, container, false);
 
         initialize();
         getDataFromProfile();
@@ -51,11 +51,11 @@ public class PresentFragment extends Fragment {
     }
 
     public void initialize(){
-        extendedRecyclerView = view.findViewById(R.id.extendedRecViewFinals);
-        studentNumber = view.findViewById(R.id.studentNumberPresentFragment);
-        parentId = view.findViewById(R.id.parentIdPresentFragment);
-        noView = view.findViewById(R.id.noStudentViewFinals);
-        noTextView = view.findViewById(R.id.noStudentTextViewFinals);
+        extendedRecyclerView = view.findViewById(R.id.extendedRecViewProfileAttendance);
+        studentNumber = view.findViewById(R.id.studentNumberProfileAttendance);
+        parentId = view.findViewById(R.id.parentIdProfileAttendance);
+        noView = view.findViewById(R.id.noStudentViewProfileAttendance);
+        noTextView = view.findViewById(R.id.noStudentTextViewProfileAttendance);
     }
 
     public void initializeAdapter(){

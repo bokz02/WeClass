@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".studentlist.profile.activities.fragments.ActivitiesMidtermFragment">
+
+    <com.example.weclass.ExtendedRecyclerView
+        android:id="@+id/extendedRecViewActivities"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/noStudentTextViewActivities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No scores to display"
+        android:textColor="@color/cancelButtonPressed"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:visibility="gone"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintBottom_toTopOf="@id/noStudentViewActivities"
+        app:layout_constraintEnd_toEndOf="@+id/noStudentViewActivities"
+        app:layout_constraintStart_toStartOf="@+id/noStudentViewActivities" />
+
+    <View
+        android:id="@+id/noStudentViewActivities"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_no_file"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/extendedRecViewActivities"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/extendedRecViewActivities" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

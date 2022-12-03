@@ -33,7 +33,7 @@ public class AbsentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view =  inflater.inflate(R.layout.fragment_absent, container, false);
+        view =  inflater.inflate(R.layout.fragment_profile_attendance, container, false);
 
         initialize();
         getDataFromProfile();
@@ -70,9 +70,9 @@ public class AbsentFragment extends Fragment {
     }
 
     public void initialize(){
-        extendedRecyclerView = view.findViewById(R.id.extendedRecViewAbsentFragment);
-        noTextView = view.findViewById(R.id.noStudentTextViewAbsent);
-        noView = view.findViewById(R.id.noStudentViewAbsent);
+        extendedRecyclerView = view.findViewById(R.id.extendedRecViewProfileAttendance);
+        noTextView = view.findViewById(R.id.noStudentTextViewProfileAttendance);
+        noView = view.findViewById(R.id.noStudentViewProfileAttendance);
     }
 
     public void initializeAdapter(){

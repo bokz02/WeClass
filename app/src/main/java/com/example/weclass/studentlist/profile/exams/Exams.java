@@ -2,42 +2,31 @@ package com.example.weclass.studentlist.profile.exams;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
-import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.profile.activities.ActivitiesFinalsAdapter;
-import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
-import com.example.weclass.studentlist.profile.activities.ActivitiesMidtermAdapter;
-import com.example.weclass.studentlist.profile.projects.Projects;
-
-import java.util.ArrayList;
+import com.example.weclass.studentlist.profile.exams.fragments.ExamViewPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class Exams extends AppCompatActivity {
 
-    TextView _studentID, _subjectID, _noText, _noText2;
-    ImageButton backButton;
-    ExtendedRecyclerView extendedRecyclerView, extendedRecyclerView2;
-    ActivitiesMidtermAdapter activitiesMidtermAdapter;
-    ActivitiesFinalsAdapter activitiesFinalsAdapter;
-    DataBaseHelper dataBaseHelper;
-    ArrayList<ActivitiesItems> activitiesItems, activitiesItems2;
-    View _view , _view2;
+    ImageButton _backButton;
+    ViewPager2 viewPager2;
+    TabLayout tabLayout;
     SharedPref sharedPref;
+    ExamViewPagerAdapter examViewPagerAdapter;
+    TextView type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,161 +39,40 @@ public class Exams extends AppCompatActivity {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.titleBar));
         }else {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            window.setStatusBarColor(Color.WHITE);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.red2));
         }
 
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exams);
-
-        //status bar white background
-        Window window = getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        window.setStatusBarColor(Color.WHITE);
-
+        setContentView(R.layout.activity_activities);
 
 
         initialize();
-        getDataFromProfile();
-        display();
-        initializeAdapter();
-        display2();
-        initializeAdapter2();
         backToStudentProfile();
+        fragmentManager();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initializeAdapter();
-        initializeAdapter2();
+    private void initialize(){
+
+        viewPager2 = findViewById(R.id.viewPagerActivities);
+        tabLayout = findViewById(R.id.tabLayoutActivities);
+        _backButton = findViewById(R.id.backButtonActivity);
+
+        type = findViewById(R.id.activityTypeTitle);
+        String activityTitle = "Exams";
+        type.setText(activityTitle);
+
     }
 
-    private void initialize() {
-        _studentID = findViewById(R.id.studentIDStudentExams);
-        _subjectID = findViewById(R.id.subjectIDStudentExams);
-        _noText = findViewById(R.id.noTextTextViewExams);
-        _noText2 = findViewById(R.id.noTextTextViewExams2);
-        backButton = findViewById(R.id.backButtonExams);
-        extendedRecyclerView = findViewById(R.id.studentExamsRecView);
-        extendedRecyclerView2 = findViewById(R.id.studentExamsRecView2);
-        _view = findViewById(R.id.noViewViewExams);
-        _view2 = findViewById(R.id.noViewViewExams2);
-    }
-
-    // INITIALIZE ADAPTER FOR RECYCLERVIEW
-    public void initializeAdapter(){
-        activitiesMidtermAdapter = new ActivitiesMidtermAdapter(Exams.this, activitiesItems);
-        extendedRecyclerView.setAdapter(activitiesMidtermAdapter);
-        extendedRecyclerView.setLayoutManager(new LinearLayoutManager(Exams.this));
-        extendedRecyclerView.setEmptyView(_view, _noText);
-    }
-
-    // DATA TO BE DISPLAY IN RECYCLERVIEW
-    public void display(){
-
-        activitiesItems = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(Exams.this);
-        activitiesItems = displayData();
-    }
-
-    // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
-    private ArrayList<ActivitiesItems> displayData(){
-        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
-                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
-                + _studentID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
-                + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " LIKE '%Exam%' " + " AND "
-                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Midterm" + "' and "
-                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
-                + "" + "'", null);
-
-        ArrayList<ActivitiesItems> activitiesItems = new ArrayList<>();
-
-        if (cursor.moveToFirst()){
-            do {
-                activitiesItems.add(new ActivitiesItems(
-                        cursor.getString(6),
-                        cursor.getInt(7),
-                        cursor.getInt(8)));
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
-        return activitiesItems;
-    }
-
-
-    // INITIALIZE ADAPTER FOR RECYCLERVIEW
-    public void initializeAdapter2(){
-        activitiesFinalsAdapter = new ActivitiesFinalsAdapter(activitiesItems2, Exams.this);
-        extendedRecyclerView2.setAdapter(activitiesFinalsAdapter);
-        extendedRecyclerView2.setLayoutManager(new LinearLayoutManager(Exams.this));
-        extendedRecyclerView2.setEmptyView(_view2, _noText2);
-    }
-
-    // DATA TO BE DISPLAY IN RECYCLERVIEW
-    public void display2(){
-
-        activitiesItems2 = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(Exams.this);
-        activitiesItems2 = displayData2();
-    }
-
-    // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
-    private ArrayList<ActivitiesItems> displayData2(){
-        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
-                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
-                + _studentID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
-                + _subjectID.getText().toString() + " AND "
-                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " LIKE '%Exam%' " + " AND "
-                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Finals" + "' and "
-                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
-                + "" + "'", null);
-
-        ArrayList<ActivitiesItems> activitiesItems2 = new ArrayList<>();
-
-        if (cursor.moveToFirst()){
-            do {
-                activitiesItems2.add(new ActivitiesItems(
-                        cursor.getString(6),
-                        cursor.getInt(7),
-                        cursor.getInt(8)));
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
-        return activitiesItems2;
-    }
-
-    public void getDataFromProfile(){
-        Intent intent = getIntent();
-        String studentID = intent.getStringExtra("studentID");
-        String subjectID = intent.getStringExtra("subjectID");
-
-        _studentID.setText(studentID);
-        _subjectID.setText(subjectID);
-    }
-
-    public void backToStudentProfile(){
-        backButton.setOnClickListener(new View.OnClickListener() {
+    private void backToStudentProfile(){
+        _backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -212,4 +80,41 @@ public class Exams extends AppCompatActivity {
             }
         });
     }
+
+    private void fragmentManager() {
+        Intent intent = getIntent();
+        String studentNumber = intent.getStringExtra("studentID");
+        String parentId = intent.getStringExtra("subjectID");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        examViewPagerAdapter = new ExamViewPagerAdapter(fragmentManager, getLifecycle(), studentNumber, parentId);
+
+        viewPager2.setAdapter(examViewPagerAdapter);
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+        });
+    }
+
+
 }

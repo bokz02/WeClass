@@ -26,8 +26,9 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".setting.FAQs"
-            android:exported="false">
+            android:name=".settings.FAQs"
+            android:exported="false"
+            android:parentActivityName=".Settings">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -62,10 +63,12 @@
             android:exported="false" />
         <activity
             android:name=".studentlist.profile.exams.Exams"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".studentlist.profile.projects.Projects"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".login.PasswordResetLinkSuceed"
             android:exported="false" />

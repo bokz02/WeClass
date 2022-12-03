@@ -6,217 +6,92 @@
     android:layout_height="match_parent"
     tools:context=".studentlist.profile.activities.Activities">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".5"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".05"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".95"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".55"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".9"/>
-
-    <TextView
-        android:id="@+id/textViewA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Activities"
-        android:textColor="@color/darkText"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:drawableStart="@color/darkText"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/backButtonActivity"
-        app:layout_constraintStart_toEndOf="@+id/backButtonActivity"
-        app:layout_constraintTop_toTopOf="@+id/backButtonActivity" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Midterm"
-        android:textColor="@color/darkText"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/guide1"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="@id/guide3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Finals"
-        android:layout_marginEnd="5dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/darkText"
-        android:textStyle="bold"
-        android:visibility="visible"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintBottom_toBottomOf="@id/guide5" />
-
-    <TextView
-        android:id="@+id/noTextTextViewActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Currently no activities to display."
-        android:textColor="@color/cancelButtonPressed"
-        android:textSize="16sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@id/noViewViewActivity"
-        app:layout_constraintEnd_toEndOf="@+id/noViewViewActivity"
-        app:layout_constraintStart_toStartOf="@+id/noViewViewActivity" />
-
-    <View
-        android:id="@+id/noViewViewActivity"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/ic_no_file"
-        app:layout_constraintBottom_toBottomOf="@id/guide2"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintTop_toTopOf="@id/guide1" />
-
-    <TextView
-        android:id="@+id/noTextTextViewActivity2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Currently no activities to display."
-        android:textColor="@color/cancelButtonPressed"
-        android:textSize="16sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/noViewViewActivity2"
-        app:layout_constraintEnd_toEndOf="@+id/noViewViewActivity2"
-        app:layout_constraintStart_toStartOf="@+id/noViewViewActivity2" />
-
-    <View
-        android:id="@+id/noViewViewActivity2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/ic_no_file"
-        app:layout_constraintBottom_toBottomOf="@id/guide6"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintTop_toTopOf="@id/guide5" />
-
-    <ImageButton
-        android:id="@+id/backButtonActivity"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="20dp"
-        android:backgroundTint="@color/darkText"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/ic_simple_back"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/titleBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/subjectIDStudentActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="subjectID"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/activityStudentActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activity"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subjectIDStudentActivity" />
+        <TextView
+            android:id="@+id/activityTypeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:drawableStart="@color/darkText"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Activities"
+            android:textColor="@color/white1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/backButtonActivity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/backButtonActivity" />
 
-    <TextView
-        android:id="@+id/midtermTextViewStudentActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Midterm"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/activityStudentActivity"
-        app:layout_constraintTop_toBottomOf="@+id/subjectIDStudentActivity" />
+        <ImageButton
+            android:id="@+id/backButtonActivity"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/ic_simple_back"
+            android:backgroundTint="@color/white1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/finalsTextViewStudentActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Finals"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/activityStudentActivity"
-        app:layout_constraintTop_toBottomOf="@+id/subjectIDStudentActivity" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/studentIDStudentActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="studentID"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.example.weclass.ExtendedRecyclerView
-        android:id="@+id/studentActivityRecView"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guide2"
-        app:layout_constraintEnd_toEndOf="@id/guide4"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintTop_toTopOf="@+id/guide1"
-        app:layout_constraintVertical_bias="0.0" />
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
-    <com.example.weclass.ExtendedRecyclerView
-        android:id="@+id/studentActivityRecView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@+id/guide5"
-        app:layout_constraintBottom_toBottomOf="@+id/guide6"
-        app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintEnd_toEndOf="@id/guide4"/>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutActivities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/titleBar"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextAppearance="@style/tab_text"
+            app:tabTextColor="@color/ViewPagerTabText">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Midterm" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Finals" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerActivities"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayoutActivities" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

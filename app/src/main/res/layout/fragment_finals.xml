@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/noStudentTextViewFinals"
+        android:id="@+id/noStudentTextViewProfileAttendance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No students to display"
@@ -16,12 +16,12 @@
         android:textSize="14sp"
         android:visibility="gone"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@id/noStudentViewFinals"
-        app:layout_constraintEnd_toEndOf="@+id/noStudentViewFinals"
-        app:layout_constraintStart_toStartOf="@+id/noStudentViewFinals" />
+        app:layout_constraintBottom_toTopOf="@id/noStudentViewProfileAttendance"
+        app:layout_constraintEnd_toEndOf="@+id/noStudentViewProfileAttendance"
+        app:layout_constraintStart_toStartOf="@+id/noStudentViewProfileAttendance" />
 
     <View
-        android:id="@+id/noStudentViewFinals"
+        android:id="@+id/noStudentViewProfileAttendance"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/ic_no_file"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.weclass.ExtendedRecyclerView
-        android:id="@+id/extendedRecViewFinals"
+        android:id="@+id/extendedRecViewProfileAttendance"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="15dp"

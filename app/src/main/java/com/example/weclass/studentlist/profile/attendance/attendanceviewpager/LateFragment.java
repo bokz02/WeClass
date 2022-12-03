@@ -35,7 +35,7 @@ public class LateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_late, container, false);
+        view = inflater.inflate(R.layout.fragment_profile_attendance, container, false);
 
         initialize();
         getDataFromProfile();
@@ -67,9 +67,9 @@ public class LateFragment extends Fragment {
 
 
     public void initialize(){
-        extendedRecyclerView = view.findViewById(R.id.extendedRecViewLateFragment);
-        noView = view.findViewById(R.id.noStudentViewAbsent);
-        noTextView = view.findViewById(R.id.noStudentTextViewLate);
+        extendedRecyclerView = view.findViewById(R.id.extendedRecViewProfileAttendance);
+        noView = view.findViewById(R.id.noStudentViewProfileAttendance);
+        noTextView = view.findViewById(R.id.noStudentTextViewProfileAttendance);
     }
 
     public void initializeAdapter(){

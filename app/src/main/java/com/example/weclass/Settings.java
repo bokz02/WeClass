@@ -10,10 +10,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,13 +22,11 @@ import android.widget.ImageView;
 
 import com.example.weclass.archive.Archive;
 import com.example.weclass.calendar.CalendarEvents;
-import com.example.weclass.setting.FAQs;
+import com.example.weclass.settings.FAQs;
 import com.example.weclass.subject.Subject;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-
-import java.util.Set;
 
 public class Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
