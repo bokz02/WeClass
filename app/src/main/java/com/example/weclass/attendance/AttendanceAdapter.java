@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.transition.Hold;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -115,12 +116,14 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         String date = dateFormat.format(calendar.getTime());
         holder._date.setText(date);
         DataBaseHelper db = new DataBaseHelper(context);
+        SQLiteDatabase sql = db.getWritableDatabase();
+
 
         // BACKGROUND COLOR WILL CHANGE IF IT HITS THE SPECIFIC COUNT
         int d = Integer.parseInt(holder._absent.getText().toString());
-        if(d == 4) {
+        if(d >= 1 && d <= 9) {
             holder.background.setBackgroundResource(R.color.absentWarning1);
-        }else if (d == 5){
+        }else if (d >= 10){
             holder.background.setBackgroundResource(R.color.absentWarning2);
         }
 
@@ -237,6 +240,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._subjectID.getText().toString(),
                             holder._date.getText().toString());
 
+
+
                     c = holder.getAdapterPosition();
                     attendanceItems.remove(c);
                     notifyItemRemoved(c);
@@ -250,6 +255,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.absentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
 
                 // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
                 int b = Integer.parseInt(holder._absent.getText().toString());
@@ -276,6 +282,15 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                                         holder._subjectID.getText().toString(),
                                         "date");
 
+                                db.undoAbsentToday(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString());
+
+                                sql.execSQL("update " + DataBaseHelper.TABLE_ATTENDANCE_TODAY + " set " + DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY + " = "
+                                        + DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY + " - " + "1" + " where " + DataBaseHelper.COLUMN_STUDENT_NUMBER_TODAY + " = '"
+                                        + holder.id.getText().toString() + "' and " + DataBaseHelper.COLUMN_PARENT_ID_TODAY + " = "
+                                        + holder._subjectID.getText().toString());
+
+
                                 attendanceItems.add(c, itemsAttendance);
                                 notifyItemInserted(c);
                             }
@@ -300,12 +315,20 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._subjectID.getText().toString(),
                             holder._date.getText().toString());
 
+
+                sql.execSQL("update " + DataBaseHelper.TABLE_ATTENDANCE_TODAY + " set " + DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY + " = "
+                        + DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY + " + " + "1" + " where " + DataBaseHelper.COLUMN_STUDENT_NUMBER_TODAY + " = '"
+                        + holder.id.getText().toString() + "' and " + DataBaseHelper.COLUMN_PARENT_ID_TODAY + " = "
+                        + holder._subjectID.getText().toString());
+
+
                     c = holder.getAdapterPosition();
                     attendanceItems.remove(c);
                     notifyItemRemoved(c);
                 }
 
         });
+
 
 
     }
@@ -363,5 +386,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     public interface UpdateRecView{
         void updateRecView();
     }
+
 
 }

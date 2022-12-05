@@ -16,7 +16,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 56;
+    private static final int DATABASE_VERSION = 59;
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -224,7 +224,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_FIRST_NAME_TODAY + " TEXT, " +
                 COLUMN_DATE_TODAY + " TEXT, " +
                 COLUMN_PRESENT_COUNT_TODAY + " TEXT, " +
-                COLUMN_ABSENT_COUNT_TODAY + " TEXT, " +
+                COLUMN_ABSENT_COUNT_TODAY + " INTEGER, " +
                 COLUMN_PICTURE_TODAY + " BLOB, " +
                 COLUMN_STUDENT_NUMBER_TODAY + " TEXT, " +
                 COLUMN_LATE_TODAY + " TEXT);";
@@ -635,6 +635,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
     // DELETE A SUBJECT
     public void deleteSubject(int row_id){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -735,6 +736,25 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + " and " + "id_subject=" + "'" +parentId + "'" +" and " + "date=" + "'" + date + "'", null);
 
     }
+
+    // update absent count on attendance today table
+    public void undoAbsentToday(String id, String parentId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_STUDENT_NUMBER_TODAY, id);
+        contentValues.put(COLUMN_PARENT_ID_TODAY, parentId);
+        contentValues.put(COLUMN_ABSENT_COUNT_TODAY, +1);
+
+        long result = db.update(TABLE_ATTENDANCE_TODAY, contentValues, "student_number=" + "'"+id+"'" + " and "
+                + "parent_id=" + "'" + parentId + "'", null);
+
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
 
 }
