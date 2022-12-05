@@ -99,8 +99,8 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="@+id/backButtonProfile"
-                    app:layout_constraintTop_toBottomOf="@+id/backButtonProfile" />
+                    app:layout_constraintBottom_toTopOf="@+id/studentIDProfile"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
 
                 <TextView
@@ -288,7 +288,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center_vertical"
-                            android:background="@drawable/iconattendance"
+                            android:background="@drawable/b_present"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -314,13 +314,12 @@
                             android:layout_marginStart="5dp"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="center"
-                            android:text="0"
+                            android:text="10"
                             android:textColor="@color/black1"
                             android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="@+id/textView2"
                             app:layout_constraintStart_toEndOf="@+id/textView2"
                             app:layout_constraintTop_toTopOf="@+id/textView2" />
-
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -347,17 +346,17 @@
                         android:layout_marginVertical="10dp">
 
                         <ImageView
-                            android:id="@+id/imageView3"
+                            android:id="@+id/imageView4"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center_vertical"
-                            android:background="@drawable/iconattendance"
+                            android:background="@drawable/b_absent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView18"
+                            android:id="@+id/textView19"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -366,9 +365,9 @@
                             android:text="Absent:"
                             android:textColor="@color/black1"
                             android:textSize="14sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                            app:layout_constraintStart_toEndOf="@+id/imageView3"
-                            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                            app:layout_constraintStart_toEndOf="@+id/imageView4"
+                            app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
                         <TextView
                             android:id="@+id/absentTextViewProfile"
@@ -378,12 +377,11 @@
                             android:layout_marginStart="5dp"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="center"
-                            android:text="0"
+                            android:text="2"
                             android:textColor="@color/black1"
                             android:textSize="14sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/textView18"
-                            app:layout_constraintStart_toEndOf="@+id/textView18" />
-
+                            app:layout_constraintBottom_toBottomOf="@+id/textView19"
+                            app:layout_constraintStart_toEndOf="@+id/textView19" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -413,7 +411,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center_vertical"
-                            android:background="@drawable/iconattendance"
+                            android:background="@drawable/b_late"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -440,7 +438,7 @@
                             android:layout_marginStart="5dp"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="center"
-                            android:text="0"
+                            android:text="3"
                             android:textColor="@color/black1"
                             android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="@+id/textView18"
@@ -538,18 +536,55 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/_materialExams"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/StudentProfileCardViewBg"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guide12"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guide13"
+                    app:layout_constraintTop_toBottomOf="@+id/_materialAssignment">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Exams"
+                        android:textColor="@color/black1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="19dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="View All"
+                        android:textColor="@color/black2" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/_materialSeatwork"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.916"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/_materialAssignment">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialExams">
 
 
                     <TextView
@@ -615,15 +650,15 @@
                     android:id="@+id/_materialProject"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.916"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/_materialQuiz">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialRecitation">
 
 
                     <TextView
@@ -648,20 +683,19 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/_materialExams"
+                    android:id="@+id/_materialRecitation"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/_materialProject">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialQuiz">
 
 
                     <TextView
@@ -670,7 +704,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Exams"
+                        android:text="Recitation"
                         android:textColor="@color/black1" />
 
                     <TextView
@@ -686,20 +720,20 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+
                 <TextView
                     android:id="@+id/textView31"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center_horizontal"
                     android:text="Grades"
-
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/darkText"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/_materialExams" />
+                    app:layout_constraintTop_toBottomOf="@+id/_materialProject" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/materialCardView15"
