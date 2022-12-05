@@ -1,21 +1,19 @@
-package com.example.weclass.setting;
+package com.example.weclass.settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
-
+import com.example.weclass.setting.StudentManagement;
+import com.example.weclass.setting.AttendanceManagement;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.example.weclass.R;
-import com.example.weclass.Settings;
 import com.example.weclass.SharedPref;
-import com.example.weclass.login.ForgotPassword;
-import com.example.weclass.subject.Subject;
+
 
 public class FAQs extends AppCompatActivity {
     SharedPreferences sharedPreferences = null;
@@ -42,7 +40,7 @@ public class FAQs extends AppCompatActivity {
     }
 
     public void ClassManage(View view) {
-        startActivity(new Intent(this, ClassManagement.class));
+        startActivity(new Intent(FAQs.this, com.example.weclass.setting.ClassManagement.class));
     }
 
     public void StudentManage(View view) {
