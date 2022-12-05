@@ -17,21 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass" >
         <activity
-            android:name=".setting.AttendanceManagement"
+            android:name=".settings.AttendanceManagement"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".setting.ClassManagement"
+            android:name=".settings.ClassManagement"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".setting.StudentManagement"
+            android:name=".settings.StudentManagement"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
@@ -47,7 +47,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".setting.FAQs"
+            android:name=".settings.FAQs"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
@@ -86,7 +86,8 @@
             android:exported="false" />
         <activity
             android:name=".studentlist.profile.projects.Projects"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Dialog"/>
         <activity
             android:name=".login.PasswordResetLinkSuceed"
             android:exported="false" />

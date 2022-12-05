@@ -3,8 +3,7 @@ package com.example.weclass.settings;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
-import com.example.weclass.setting.StudentManagement;
-import com.example.weclass.setting.AttendanceManagement;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -40,7 +39,7 @@ public class FAQs extends AppCompatActivity {
     }
 
     public void ClassManage(View view) {
-        startActivity(new Intent(FAQs.this, com.example.weclass.setting.ClassManagement.class));
+        startActivity(new Intent(FAQs.this, ClassManagement.class));
     }
 
     public void StudentManage(View view) {
