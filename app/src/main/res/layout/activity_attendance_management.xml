@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".setting.AttendanceManagement">
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="60dp"
+      android:layout_marginStart="25dp" >
+    <ImageView
+        android:id="@+id/backButtonTos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="center_vertical
+"
+        android:background="@drawable/ic_simple_back"
+        android:backgroundTint="@color/darkText" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/darkText"
+        android:layout_marginStart="5dp"
+        android:textSize="15sp"
+        android:text="Back"/>
+  </LinearLayout>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Attendance"
+      android:textSize="20dp"
+      android:fontFamily="@font/poppins_bold"
+      android:layout_marginTop="50dp"
+      android:layout_marginStart="30dp"
+      android:textStyle="bold"
+      android:textColor="@color/darkText"/>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Frequently Asked Question"
+      android:layout_marginStart="30dp"
+      android:fontFamily="@font/poppins_regular"
+      android:textColor="@color/darkText"/>
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="@color/view"
+      android:layout_marginTop="10dp"
+      android:layout_marginStart="30dp"
+      android:layout_marginEnd="40dp"/>
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="10dp"
+      android:layout_marginEnd="10dp"
+      android:fadeScrollbars="false"
+      android:layout_marginStart="10dp"
+      android:scrollbarStyle="insideInset"
+      android:scrollbarThumbVertical="@null"
+      android:scrollbarTrackVertical="@null">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="1.	What information is available on the Attendance tab?"
+          android:fontFamily="@font/poppins_bold"
+          android:layout_marginStart="30dp"
+          android:layout_marginEnd="30dp"
+          android:justificationMode="inter_word"
+          android:layout_marginTop="20dp"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="2.	How to take attendance?"
+          android:fontFamily="@font/poppins_bold"
+          android:layout_marginStart="30dp"
+          android:layout_marginEnd="30dp"
+          android:justificationMode="inter_word"
+          android:layout_marginTop="5dp"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="3.	How to view student attendance history?"
+          android:fontFamily="@font/poppins_bold"
+          android:layout_marginStart="30dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginTop="5dp"
+          android:justificationMode="inter_word"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="1.	What information is available on the Attendance tab?"
+          android:fontFamily="@font/poppins_bold"
+          android:justificationMode="inter_word"
+          android:layout_marginStart="30dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginTop="40dp"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="On the attendance page, you can see each student's name, and you can also type a student's name into the search field to find them. You can view the sum of the present, absent, and late users in the search bar's bottom section."
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="30dp"
+          android:layout_marginEnd="30dp"
+          android:justificationMode="inter_word"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="2.	How to take attendance?"
+          android:fontFamily="@font/poppins_bold"
+          android:layout_marginStart="30dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginTop="40dp"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="1)	Navigate to Classes from the main menu to view Attendance."
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="50dp"
+          android:layout_marginEnd="50dp"
+          android:layout_marginTop="5dp"
+          android:justificationMode="inter_word"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="2)	To assign student attendance, click on the class you created and then choose the student."
+          android:fontFamily="@font/poppins_semibold"
+          android:layout_marginStart="50dp"
+          android:layout_marginEnd="50dp"
+          android:justificationMode="inter_word"
+          android:layout_marginTop="5dp"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="3) There are three possible attendance options:"
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="50dp"
+          android:layout_marginEnd="50dp"
+          android:layout_marginTop="5dp"
+          android:justificationMode="inter_word"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="4)	The letters L, A, and P indicate if someone is late, absent, or present, accordingly.."
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="50dp"
+          android:justificationMode="inter_word"
+          android:layout_marginEnd="50dp"
+          android:layout_marginTop="5dp"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="5)	If you make a mistake after taking attendance, you can undo it by hitting the &quot;undo&quot; button at the bottom of the screen."
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="50dp"
+          android:layout_marginEnd="50dp"
+          android:justificationMode="inter_word"
+          android:layout_marginTop="5dp"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="3.	How to view student attendance history?"
+          android:fontFamily="@font/poppins_bold"
+          android:layout_marginStart="30dp"
+          android:justificationMode="inter_word"
+          android:layout_marginEnd="30dp"
+          android:layout_marginTop="40dp"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="1)	Choose a class in which the student is enrolled. "
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="50dp"
+          android:justificationMode="inter_word"
+          android:layout_marginEnd="50dp"
+          android:layout_marginTop="5dp"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="2)	Tap the student's name to view their attendance record."
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="50dp"
+          android:layout_marginEnd="50dp"
+          android:layout_marginTop="5dp"
+          android:justificationMode="inter_word"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="3)	The Student Profile page will load automatically."
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="50dp"
+          android:layout_marginEnd="50dp"
+          android:layout_marginTop="5dp"
+          android:justificationMode="inter_word"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="4)	It shows the student's attendance statistics, including the number of times they were present, late and absent."
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="50dp"
+          android:layout_marginEnd="50dp"
+          android:layout_marginTop="5dp"
+          android:justificationMode="inter_word"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="5)	By selecting &quot;View All&quot; you can switch between the &quot;Present&quot;, &quot;Late&quot;, and &quot;Absent&quot; sections. There, you can view a complete record of all past attendance dates."
+          android:fontFamily="@font/poppins_regular"
+          android:layout_marginStart="50dp"
+          android:layout_marginEnd="50dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginBottom="20dp"
+          android:justificationMode="inter_word"
+          android:textColor="@color/darkText"
+          android:textStyle="bold" />
+
+    </LinearLayout>
+  </ScrollView>
+
+
+  </LinearLayout>

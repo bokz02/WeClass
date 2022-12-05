@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.weclass">
+    package="com.example.weclass" >
 
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission
@@ -15,20 +15,40 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WeClass">
+        android:theme="@style/Theme.WeClass" >
         <activity
-            android:name=".studentlist.profile.attendance.AttendanceView"
-            android:exported="false"
-            android:parentActivityName=".studentlist.StudentProfile"
-            android:theme="@style/Theme.Dialog">
+            android:name=".setting.AttendanceManagement"
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".settings.FAQs"
+            android:name=".setting.ClassManagement"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".setting.StudentManagement"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".studentlist.profile.attendance.AttendanceView"
             android:exported="false"
-            android:parentActivityName=".Settings">
+            android:parentActivityName=".studentlist.StudentProfile"
+            android:theme="@style/Theme.Dialog" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".setting.FAQs"
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -36,14 +56,14 @@
         <activity
             android:name=".calendar.CalendarEvents"
             android:exported="false"
-            android:theme="@style/Theme.Calendar">
+            android:theme="@style/Theme.Calendar" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".login.LoginActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -51,7 +71,7 @@
         <activity
             android:name=".login.SplashScreen"
             android:exported="true"
-            android:theme="@style/SplashScreen">
+            android:theme="@style/SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,12 +83,10 @@
             android:exported="false" />
         <activity
             android:name=".studentlist.profile.exams.Exams"
-            android:exported="false"
-            android:theme="@style/Theme.Dialog" />
+            android:exported="false" />
         <activity
             android:name=".studentlist.profile.projects.Projects"
-            android:exported="false"
-            android:theme="@style/Theme.Dialog" />
+            android:exported="false" />
         <activity
             android:name=".login.PasswordResetLinkSuceed"
             android:exported="false" />
