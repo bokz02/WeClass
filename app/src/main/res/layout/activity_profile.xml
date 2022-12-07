@@ -122,10 +122,10 @@
                     android:id="@+id/studentProfilePicture"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
+                    android:layout_marginTop="20dp"
                     android:clickable="true"
                     android:elevation="10dp"
                     android:src="@drawable/prof1"
-                    android:layout_marginTop="20dp"
                     app:civ_border_color="@color/StudentProfileCardViewBg"
                     app:civ_border_width="1dp"
                     app:civ_circle_background_color="@color/StudentProfileCardViewBg"
@@ -246,10 +246,10 @@
                         android:id="@+id/textView35"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_vertical"
                         android:text="View all"
-                        android:layout_marginTop="2dp"
                         android:textColor="@color/black2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -391,7 +391,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
@@ -453,7 +453,7 @@
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center_horizontal"
                     android:text="Records"
@@ -467,7 +467,7 @@
                     android:id="@+id/_materialActivity"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
@@ -539,8 +539,8 @@
                     android:id="@+id/_materialExams"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:orientation="horizontal"
                     android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
@@ -577,14 +577,14 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
+                    android:layout_marginTop="8dp"
                     app:cardElevation="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.916"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/_materialExams">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialReport">
 
 
                     <TextView
@@ -614,14 +614,14 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
+                    android:layout_marginTop="8dp"
                     app:cardElevation="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/_materialReport">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialProject">
 
 
                     <TextView
@@ -658,7 +658,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/_materialSeatwork">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialRecitation">
 
 
                     <TextView
@@ -687,15 +687,15 @@
                     android:id="@+id/_materialProject"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:orientation="horizontal"
                     android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.916"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/_materialRecitation">
+                    app:layout_constraintTop_toBottomOf="@+id/_materialExams">
 
 
                     <TextView
@@ -725,10 +725,10 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
@@ -762,15 +762,15 @@
                     android:id="@+id/textView31"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center_horizontal"
                     android:text="Grades"
-                    android:layout_marginTop="8dp"
                     android:textColor="@color/darkText"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
-                    app:layout_constraintTop_toBottomOf="@+id/_materialProject" />
+                    app:layout_constraintTop_toBottomOf="@+id/_materialSeatwork" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/materialCardView15"
