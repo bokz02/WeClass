@@ -1,5 +1,6 @@
 package com.example.weclass.subject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -7,14 +8,17 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
@@ -34,9 +38,8 @@ public class EditSubjectActivity extends AppCompatActivity {
     Button updateButton, cancelEditButton;
     int t1Hour, t1Minute;
     ImageButton backButton;
-    String selectedDay, selectedSem, selectedSy, selectedSection, selectedClassType;
+    String selectedSem, selectedSy, selectedSection, selectedClassType;
     private List<String> daysSelected;
-    SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
 
     @Override
@@ -183,12 +186,19 @@ public class EditSubjectActivity extends AppCompatActivity {
         semesterTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this, R.style.CustomMaterialDialog);
                 builder.setTitle("Select day");
                 builder.setSingleChoiceItems(semester, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectedSem = semester[i];
+
+                    }
+                });
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         semesterTextView.setText(selectedSem);
                         dialogInterface.dismiss();
                     }
@@ -205,25 +215,64 @@ public class EditSubjectActivity extends AppCompatActivity {
                 "SY 2023 - 2024",
                 "SY 2024 - 2025",
                 "SY 2025 - 2026",
-                "SY 2026 - 2027",
-                "SY 2027 - 2028",
-                "SY 2028 - 2029",
-                "SY 2029 - 2030",
-
         };
 
         selectedSy = schoolYear[0];
         schoolYearTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
-                builder.setTitle("Select day");
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this, R.style.CustomMaterialDialog);
+                builder.setTitle("Select school year");
                 builder.setSingleChoiceItems(schoolYear, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectedSy = schoolYear[i];
+
+                    }
+                });
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         schoolYearTextView.setText(selectedSy);
                         dialogInterface.dismiss();
+                    }
+                });
+
+                // add custom school year
+                builder.setNegativeButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(EditSubjectActivity.this, R.style.CustomMaterialDialog);
+                        LayoutInflater inflater = getLayoutInflater();
+                        View dialogView = inflater.inflate(R.layout.add_sy_edit_text, null);
+                        EditText editText= (EditText) dialogView.findViewById(R.id.editTextAddSy);
+                        b.setView(dialogView);
+                        b.setTitle("Enter school year");
+                        b.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+
+                        // override the positive button to not dismiss the dialog if edit text is empty
+                        AlertDialog alertDialog = b.create();
+                        alertDialog.show();
+                        Button button = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String sy = editText.getText().toString();
+                                if (sy.length()==0){
+                                    Toast.makeText(EditSubjectActivity.this, "Do not leave the field blank" , Toast.LENGTH_SHORT).show();
+
+                                }else {
+                                    schoolYearTextView.setText(sy);
+                                    alertDialog.dismiss();
+                                }
+                            }
+                        });
                     }
                 });
                 builder.show();
@@ -237,38 +286,35 @@ public class EditSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 daysSelected = new ArrayList<>();
-                String[] daysOfWeek = {"Monday ", "Tuesday", "Wednesday ", "Thursday ", "Friday "};
+                String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this, R.style.CustomMaterialDialog);
                 builder.setTitle("Select day");
                 builder.setMultiChoiceItems(daysOfWeek, null, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
-                        String selected[] = daysOfWeek;
 
                         if (isChecked)
                         {
-                            daysSelected.add(selected[i]);
+                            daysSelected.add(daysOfWeek[i]);
                         }
-                        else if (daysSelected.contains(selected[i]))
-                        {
-                            daysSelected.remove(selected[i]);
-                        }
+                        else daysSelected.remove(daysOfWeek[i]);
                     }
                 });
 
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String data = "";
-                        for (String item:daysSelected)
-                        {
-                            data = data +" "+ item;
+                        StringBuilder data = new StringBuilder();
+
+                        // "/" is place as separator when multiple day is selected
+                        for (String a:daysSelected){
+                            data.append(a).append("/");
                         }
-//                        Toast.makeText(AddSubjectActivity.this, data, Toast.LENGTH_SHORT).show();
-                        dayTextView.setText(data);
+                        String b = data.deleteCharAt(data.length() - 1 ).toString();
+                        dayTextView.setText(b);
+
                     }
                 });
 
@@ -355,16 +401,14 @@ public class EditSubjectActivity extends AppCompatActivity {
                 "A",
                 "B",
                 "C",
-                "D",
-                "E",
-
+                "None",
         };
 
         selectedSection = section[0];
         _section.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this, R.style.CustomMaterialDialog);
                 builder.setTitle("Select section");
                 builder.setSingleChoiceItems(section, 0, new DialogInterface.OnClickListener() {
                     @Override
@@ -372,6 +416,14 @@ public class EditSubjectActivity extends AppCompatActivity {
                         selectedSection = section[i];
                         _section.setText(selectedSection);
                         dialogInterface.dismiss();
+                    }
+                });
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        _section.setText(selectedSection);
                     }
                 });
                 builder.show();
@@ -392,16 +444,23 @@ public class EditSubjectActivity extends AppCompatActivity {
         _classType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(EditSubjectActivity.this, R.style.CustomMaterialDialog);
                 builder.setTitle("Select class type");
                 builder.setSingleChoiceItems(classType, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectedClassType = classType[i];
-                        _classType.setText(selectedClassType);
-                        dialogInterface.dismiss();
                     }
                 });
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        _classType.setText(selectedClassType);
+                    }
+                });
+
                 builder.show();
             }
         });

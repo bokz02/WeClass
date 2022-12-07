@@ -49,7 +49,6 @@ public class AddSubjectActivity extends AppCompatActivity {
     int index;
     List<String> colors = new ArrayList<>();
     private List<String> daysSelected;
-    SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
 
     @Override
@@ -74,7 +73,6 @@ public class AddSubjectActivity extends AppCompatActivity {
         createButton(); // CREATE SUBJECT FUNCTION
         cancelButton(); // CANCEL BUTTON FUNCTION
         backButton();   // BACK BUTTON FUNCTION OF THE PHONE
-        //pickDate();     // DATE PICKER POP UP AFTER BUTTON CLICKED
         pickDay();
         pickSemester();
         pickSchoolYear();
@@ -101,8 +99,6 @@ public class AddSubjectActivity extends AppCompatActivity {
         dayTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Typeface typeface = getResources().getFont(R.font.poppins_regular);
-
 
                 daysSelected = new ArrayList<>();
                 String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
@@ -513,9 +509,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                 "A",
                 "B",
                 "C",
-                "D",
-                "E",
-
+                "None",
         };
 
         selectedSection = section[0];
@@ -532,6 +526,14 @@ public class AddSubjectActivity extends AppCompatActivity {
                         dialogInterface.dismiss();
                     }
                 });
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        _section.setText(selectedSection);
+                    }
+                });
                 builder.show();
             }
         });
@@ -542,8 +544,6 @@ public class AddSubjectActivity extends AppCompatActivity {
         final String[] classType = new String[]{
                 "Lecture",
                 "Laboratory",
-
-
         };
 
         selectedClassType = classType[0];
