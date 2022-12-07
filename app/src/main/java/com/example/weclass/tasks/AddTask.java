@@ -241,6 +241,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 "Assignment",
                 "Seatwork",
                 "Quiz",
+                "Recitation",
                 "Project",
                 "Exam",
         };

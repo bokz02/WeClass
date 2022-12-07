@@ -35,9 +35,12 @@ import com.example.weclass.studentlist.profile.exams.Exams;
 import com.example.weclass.studentlist.profile.image.ImageUtils;
 import com.example.weclass.studentlist.profile.projects.Projects;
 import com.example.weclass.studentlist.profile.quiz.Quiz;
+import com.example.weclass.studentlist.profile.recitation.Recitation;
+import com.example.weclass.studentlist.profile.reports.Report;
 import com.example.weclass.studentlist.profile.seatwork.SeatWork;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.database.core.Repo;
 
 import java.io.InputStream;
 
@@ -53,7 +56,8 @@ public class StudentProfile extends AppCompatActivity {
     String selectedFinalGrade, selectedMidtermGrade, selectedFinalRating;
     Uri uri = null;
     CardView absentCardView, activities, quiz,
-            assignment, seatWork, exams, projects;
+            assignment, seatWork, exams, projects, recitation,
+            reportButton;
     SharedPref sharedPref;
     ProgressBar progressBar;
     ConstraintLayout constraintButton;
@@ -96,6 +100,8 @@ public class StudentProfile extends AppCompatActivity {
         countAbsent();
         countPresent();
         countLate();
+        goToRecitations();
+        goToReports();
 
         
     }
@@ -142,6 +148,9 @@ public class StudentProfile extends AppCompatActivity {
         _middleName = findViewById(R.id.studentMiddleNameProfile);
         _late = findViewById(R.id.lateTextViewProfile);
         constraintButton = findViewById(R.id.constraintButtonToAttendance);
+        recitation = findViewById(R.id._materialRecitation);
+        absentCardView = findViewById(R.id._materialAbsent);
+        reportButton = findViewById(R.id._materialReport);
 
 
     }
@@ -272,6 +281,32 @@ public class StudentProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentProfile.this, Exams.class);
+                intent.putExtra("studentID", studentNumber.getText().toString());
+                intent.putExtra("subjectID", _subjectID.getText().toString());
+                startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+            }
+        });
+    }
+
+    public void goToRecitations(){
+        recitation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StudentProfile.this, Recitation.class);
+                intent.putExtra("studentID", studentNumber.getText().toString());
+                intent.putExtra("subjectID", _subjectID.getText().toString());
+                startActivity(intent);
+                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+            }
+        });
+    }
+
+    public void goToReports(){
+        reportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StudentProfile.this, Report.class);
                 intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);

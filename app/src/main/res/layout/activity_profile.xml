@@ -613,6 +613,43 @@
                     android:id="@+id/_materialQuiz"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/StudentProfileCardViewBg"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guide12"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guide13"
+                    app:layout_constraintTop_toBottomOf="@+id/_materialReport">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Quiz"
+                        android:textColor="@color/black1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="19dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="View All"
+                        android:textColor="@color/black2" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/_materialReport"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
@@ -630,7 +667,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Quiz"
+                        android:text="Report"
                         android:textColor="@color/black1" />
 
                     <TextView
