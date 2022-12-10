@@ -1,5 +1,6 @@
 package com.example.weclass.ratings.fragments;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
@@ -28,7 +30,9 @@ public class Midterm extends Fragment {
     RatingsAdapter ratingsAdapter;
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<RatingsModel> ratingsModel;
-    String parentId;
+    String parentId, classType;
+    @SuppressLint("StaticFieldLeak")
+    private static Midterm instance = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +45,7 @@ public class Midterm extends Fragment {
         initializeRecView();
         initializeAdapter();
 
-
+        instance = this;
         return view;
     }
 
@@ -74,19 +78,25 @@ public class Midterm extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle!=null){
             parentId = bundle.getString("parentId");
+            classType = bundle.getString("classType");
+
         }
+    }
+
+    public static Midterm getInstance() {
+        return instance;
     }
 
     public void initializeAdapter(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        ratingsAdapter = new RatingsAdapter(ratingsModel, getContext());
+        ratingsAdapter = new RatingsAdapter(ratingsModel, getContext(), classType);
         extendedRecyclerView.setAdapter(ratingsAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(noView, noTextView);
         linearLayoutManager.setStackFromEnd(true);
     }
 
-    private void initializeRecView(){
+    public void initializeRecView(){
 
         ratingsModel = new ArrayList<>();
         ratingsModel = getData();
@@ -109,9 +119,12 @@ public class Midterm extends Fragment {
                         cursor.getBlob(9),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getString(10)));
+                        cursor.getString(10),
+                        cursor.getString(1),
+                        cursor.getString(2)));
             }while (cursor.moveToNext());
         }
+        sqLiteDatabase.close();
         cursor.close();
         return ratingsModels;
     }

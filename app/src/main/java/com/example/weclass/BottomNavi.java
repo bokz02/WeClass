@@ -9,16 +9,13 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,14 +28,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.weclass.archive.ArchiveItems;
 import com.example.weclass.attendance.Attendance;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.ratings.Ratings;
-import com.example.weclass.studentlist.StudentAdapter;
 import com.example.weclass.studentlist.StudentList;
 import com.example.weclass.studentlist.profile.image.DrawableUtils;
-import com.example.weclass.subject.Subject;
 import com.example.weclass.subject.SubjectItems;
 import com.example.weclass.tasks.Tasks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,16 +42,11 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
-public class BottomNavi extends AppCompatActivity {
+public class BottomNavi extends AppCompatActivity implements MyProgressBar {
     SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
     FloatingActionButton floatingActionButton;
@@ -65,6 +54,7 @@ public class BottomNavi extends AppCompatActivity {
     TextView parentID, subjectCode, courseName, _archive
             , _schoolYear;
     ProgressBar progressBar;
+    String classType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +105,7 @@ public class BottomNavi extends AppCompatActivity {
 
             int idParent = subjectItems.getId();
             String codeSubject = subjectItems.getSubjectCode();
+            classType = subjectItems.getClassType();
             String nameCourse = subjectItems.getCourse();
             String sy = subjectItems.getSchoolYearSubject();
 
@@ -182,6 +173,7 @@ public class BottomNavi extends AppCompatActivity {
         bundle.putString("SubjectCode", subjectCode.getText().toString());
         bundle.putString("CourseCode", courseName.getText().toString());
         bundle.putString("sy", _schoolYear.getText().toString());
+        bundle.putString("classType", classType);
 
         ranking.setArguments(bundle);
         fragmentLoader(ranking);
@@ -328,6 +320,19 @@ public class BottomNavi extends AppCompatActivity {
                                         cValues.put(DataBaseHelper.COLUMN_STUDENT_NUMBER_TODAY, columns[0]);
                                         cValues.put(DataBaseHelper.COLUMN_LATE_TODAY, 0);
                                         db.insert(DataBaseHelper.TABLE_ATTENDANCE_TODAY, null, cValues);
+
+                                        ContentValues cva = new ContentValues(2);
+                                        cva.put(DataBaseHelper.column_parentId_lecture, parentID.getText().toString());
+                                        cva.put(DataBaseHelper.column_studentNumber_lecture, columns[0]);
+                                        cva.put(DataBaseHelper.column_lastName_lecture, columns[1]);
+                                        cva.put(DataBaseHelper.column_firstName_id_lecture, columns[2]);
+                                        cva.put(DataBaseHelper.column_writtenTasks_lecture, 0);
+                                        cva.put(DataBaseHelper.column_performanceTasks_lecture, 0);
+                                        cva.put(DataBaseHelper.column_teamAssessment_lecture, 0);
+                                        cva.put(DataBaseHelper.column_deportment_lecture, 0);
+                                        db.insert(DataBaseHelper.table_total_grades, null, cva);
+
+
                                         cursor.close();
 
                                     }
@@ -357,9 +362,6 @@ public class BottomNavi extends AppCompatActivity {
                                         }while (cursor1.moveToNext());
 
                                     }cursor1.close();
-
-
-
                                 }
                             }
                         } catch (IOException e) {
@@ -373,9 +375,6 @@ public class BottomNavi extends AppCompatActivity {
                         Toast.makeText(this, "Make sure the file is in CSV format" , Toast.LENGTH_SHORT).show();
                     }
 
-
-
-
             }
     }
 
@@ -388,5 +387,23 @@ public class BottomNavi extends AppCompatActivity {
                 Toast.makeText(BottomNavi.this, "Import complete", Toast.LENGTH_SHORT).show();
             }
         }, 3000);
+    }
+
+    @Override
+    public void showProgressBAr() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBAr() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(BottomNavi.this, "Computation complete", Toast.LENGTH_SHORT).show();
+            }
+        }, 3000);
+
     }
 }

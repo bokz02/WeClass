@@ -1,8 +1,6 @@
 package com.example.weclass.attendance;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -13,17 +11,14 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.transition.Hold;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,22 +32,25 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     private final Context context;
     private final OnNoteListener mOnNoteListener;
     private final UpdateRecView updateRecView;
+    private final String spinnerGradingPeriod;
     private int c;
     private final int a = 1;
 
     public AttendanceAdapter(Context context, ArrayList<AttendanceItems> attendanceItems,
-                             OnNoteListener mOnNoteListener, UpdateRecView updateRecView) {
+                             OnNoteListener mOnNoteListener, UpdateRecView updateRecView,
+                             String spinnerGradingPeriod) {
         this.attendanceItems = attendanceItems;
         this.context = context;
         this.mOnNoteListener = mOnNoteListener;
         attendanceItemsFull = new ArrayList<>(attendanceItems);
         this.updateRecView = updateRecView;
+        this.spinnerGradingPeriod = spinnerGradingPeriod;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView lastName, firstName, gender, id, _present,
-                _absent, _subjectID, _date, _always1, _always0, late;
+                _absent, _subjectID, _date, late;
         ImageButton absentButton, presentButton, lateButton;
         OnNoteListener onNoteListener;
         ImageView image;
@@ -116,8 +114,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         String date = dateFormat.format(calendar.getTime());
         holder._date.setText(date);
         DataBaseHelper db = new DataBaseHelper(context);
-        SQLiteDatabase sql = db.getWritableDatabase();
-
 
         // BACKGROUND COLOR WILL CHANGE IF IT HITS THE SPECIFIC COUNT
         int d = Integer.parseInt(holder._absent.getText().toString());
@@ -130,10 +126,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.lateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int late = Integer.parseInt(holder.late.getText().toString());
-                String notLate = String.valueOf(holder.late);
-                holder.late.setText(String.valueOf(a + late));
-
 
                 // undo button in snack bar
                 Snackbar snackbar = Snackbar.make(holder.lateButton, "" + holder.lastName.getText().toString() + ", "
@@ -147,9 +139,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                                         holder._subjectID.getText().toString(),
                                         date);
 
-                                db.updateStudentLate(holder.id.getText().toString(),
-                                        holder._subjectID.getText().toString(),
-                                        notLate);
+                                db.undoStudentLate(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString());
 
                                 db.updateAttendanceToday(holder.id.getText().toString(),
                                         holder._subjectID.getText().toString(),
@@ -168,12 +159,14 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                         holder._date.getText().toString(),
                         "0",
                         "0",
-                        "1");
+                        "1",
+                        spinnerGradingPeriod);
 
+                // update student late count
                 db.updateStudentLate(holder.id.getText().toString(),
-                        holder._subjectID.getText().toString(),
-                        holder.late.getText().toString());
+                        holder._subjectID.getText().toString());
 
+                // update the attendance today db
                 db.updateAttendanceToday(holder.id.getText().toString(),
                         holder._subjectID.getText().toString(),
                         holder._date.getText().toString());
@@ -181,6 +174,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                 c = holder.getAdapterPosition();
                 attendanceItems.remove(c);
                 notifyItemRemoved(c);
+
+                updateRecView.updateAttendanceRecView();
             }
         });
 
@@ -189,11 +184,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.presentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
-                int b = Integer.parseInt(holder._present.getText().toString());
-                String notLate = String.valueOf(holder._present);
-                holder._present.setText(String.valueOf(a + b));
 
 
                 // undo button in snack bar
@@ -208,9 +198,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                                         holder._subjectID.getText().toString(),
                                         date);
 
-                                db.updateStudentPresent(holder.id.getText().toString(),
-                                        holder._subjectID.getText().toString(),
-                                        notLate);
+                                db.undoStudentPresent(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString());
 
                                 db.updateAttendanceToday(holder.id.getText().toString(),
                                         holder._subjectID.getText().toString(),
@@ -218,6 +207,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                                  attendanceItems.add(c, itemsAttendance);
                                  notifyItemInserted(c);
+
+                                updateRecView.updateAttendanceRecView();
                             }
                         });
                 snackbar.show();
@@ -229,12 +220,12 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._date.getText().toString(),
                             "1",
                             "0",
-                            "0");
+                            "0",
+                            spinnerGradingPeriod);
 
-                    // UPDATE STUDENT'S ATTENDANCE COUNT
+
                     db.updateStudentPresent(holder.id.getText().toString(),
-                            holder._subjectID.getText().toString(),
-                            holder._present.getText().toString());
+                            holder._subjectID.getText().toString());
 
                     db.updateAttendanceToday(holder.id.getText().toString(),
                             holder._subjectID.getText().toString(),
@@ -246,21 +237,15 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                     attendanceItems.remove(c);
                     notifyItemRemoved(c);
 
+                updateRecView.updateAttendanceRecView();
+
                 }
-
-
         });
 
         // ABSENT BUTTON
         holder.absentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
-
-                // INCREMENT PRESENT COUNTS OF A STUDENT WHEN PRESENT BUTTON IS PRESSED
-                int b = Integer.parseInt(holder._absent.getText().toString());
-                String notLate = String.valueOf(holder._present);
-                holder._absent.setText(String.valueOf(a + b));
 
                 // undo button in snack bar
                 Snackbar snackbar = Snackbar.make(holder.absentButton, "" + holder.lastName.getText().toString() + ", "
@@ -274,25 +259,20 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                                         holder._subjectID.getText().toString(),
                                         date);
 
-                                db.updateStudentPresent(holder.id.getText().toString(),
-                                        holder._subjectID.getText().toString(),
-                                        notLate);
-
                                 db.updateAttendanceToday(holder.id.getText().toString(),
                                         holder._subjectID.getText().toString(),
                                         "date");
 
-                                db.undoAbsentToday(holder.id.getText().toString(),
+                                db.undoStudentAbsent(holder.id.getText().toString(),
                                         holder._subjectID.getText().toString());
 
-                                sql.execSQL("update " + DataBaseHelper.TABLE_ATTENDANCE_TODAY + " set " + DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY + " = "
-                                        + DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY + " - " + "1" + " where " + DataBaseHelper.COLUMN_STUDENT_NUMBER_TODAY + " = '"
-                                        + holder.id.getText().toString() + "' and " + DataBaseHelper.COLUMN_PARENT_ID_TODAY + " = "
-                                        + holder._subjectID.getText().toString());
-
+                                db.undoStudentAbsentToday(holder.id.getText().toString(),
+                                        holder._subjectID.getText().toString());
 
                                 attendanceItems.add(c, itemsAttendance);
                                 notifyItemInserted(c);
+
+                                updateRecView.updateAttendanceRecView();
                             }
                         });
                 snackbar.show();
@@ -304,33 +284,28 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                             holder._date.getText().toString(),
                             "0",
                             "1",
-                            "0");
+                            "0",
+                            spinnerGradingPeriod);
 
                     // UPDATE STUDENT'S ATTENDANCE COUNT
                     db.updateStudentAbsent(holder.id.getText().toString(),
-                            holder._subjectID.getText().toString(),
-                            holder._absent.getText().toString());
+                            holder._subjectID.getText().toString());
 
                     db.updateAttendanceToday(holder.id.getText().toString(),
                             holder._subjectID.getText().toString(),
                             holder._date.getText().toString());
 
-
-                sql.execSQL("update " + DataBaseHelper.TABLE_ATTENDANCE_TODAY + " set " + DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY + " = "
-                        + DataBaseHelper.COLUMN_ABSENT_COUNT_TODAY + " + " + "1" + " where " + DataBaseHelper.COLUMN_STUDENT_NUMBER_TODAY + " = '"
-                        + holder.id.getText().toString() + "' and " + DataBaseHelper.COLUMN_PARENT_ID_TODAY + " = "
-                        + holder._subjectID.getText().toString());
+                    db.updateStudentAbsentToday(holder.id.getText().toString(),
+                            holder._subjectID.getText().toString());
 
 
                     c = holder.getAdapterPosition();
                     attendanceItems.remove(c);
                     notifyItemRemoved(c);
+
+                updateRecView.updateAttendanceRecView();
                 }
-
         });
-
-
-
     }
 
     @Override
@@ -384,7 +359,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     };
 
     public interface UpdateRecView{
-        void updateRecView();
+        void updateAttendanceRecView();
     }
 
 

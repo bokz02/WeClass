@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Generate Midterm grades"
+        android:id="@+id/generateMidterm" />
+    <item android:title="Generate Finals grades"
+        android:id="@+id/generateFinals" />
+    <item android:title="Generate Final ratings"
+        android:id="@+id/generateFInalRating" />
+</menu>

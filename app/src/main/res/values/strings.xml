@@ -13,4 +13,8 @@
     <string name="importTitle"><font color="#da4e4e">Import</font></string>
 
 
+    <string-array name="gradingPeriod">
+        <item>Midterm</item>
+        <item>Finals</item>
+    </string-array>
 </resources>

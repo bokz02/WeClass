@@ -2,6 +2,7 @@ package com.example.weclass;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class SharedPref {
     private final SharedPreferences sharedPreferences;
@@ -19,4 +20,5 @@ public class SharedPref {
     public Boolean loadNightModeState(){
         return sharedPreferences.getBoolean("NightMode", false);
     }
+
 }

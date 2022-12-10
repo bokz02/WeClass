@@ -162,6 +162,7 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
 
             }
         cursor.close();
+        sql.close();
         //Toast.makeText(CalendarEvents.this, "Login successful" , Toast.LENGTH_SHORT).show();
         return calendarItems;
 

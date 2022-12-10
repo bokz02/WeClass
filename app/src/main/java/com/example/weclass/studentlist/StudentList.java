@@ -248,6 +248,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             }while (cursor.moveToNext());
         }
         cursor.close();
+        sqLiteDatabase.close();
         return studentItems;
     }
 
@@ -418,11 +419,10 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         startActivity(intent);
     }
 
-    // UPDATE SUM OF STUDENTS TEXTVIEW WHEN ITEM IS DELETE FROM RECYCLERVIEW
+    // UPDATE SUM OF STUDENTS TEXTVIEW WHEN ITEM IS DELETED FROM RECYCLERVIEW
     @Override
     public void updateTextView() {
         _studentSum.setText(String.valueOf(studentAdapter.getItemCount()));
-
     }
 
     // AUTOMATIC SORT WHEN ACTIVITY OPEN

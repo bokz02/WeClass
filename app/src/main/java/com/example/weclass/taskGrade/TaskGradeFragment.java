@@ -133,6 +133,7 @@ public class TaskGradeFragment extends Fragment{
             }while (cursor.moveToNext());
         }
         cursor.close();
+        sqLiteDatabase.close();
         return taskGradeItems;
     }
 

@@ -14,13 +14,14 @@ import com.example.weclass.studentlist.profile.attendance.attendanceviewpager.Pr
 
 public class RatingsViewPagerAdapter extends FragmentStateAdapter {
 
-    private final String parentId;
+    private final String parentId, classType;
 
     public RatingsViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle,
-                                   String parentId) {
+                                   String parentId, String classType) {
         super(fragmentManager, lifecycle);
 
         this.parentId = parentId;
+        this.classType = classType;
     }
 
     @NonNull
@@ -29,6 +30,7 @@ public class RatingsViewPagerAdapter extends FragmentStateAdapter {
         if (position == 0){
             Bundle bundle = new Bundle();
             bundle.putString("parentId", parentId);
+            bundle.putString("classType", classType);
             Midterm midterm= new Midterm();
             midterm.setArguments(bundle);
 
@@ -36,6 +38,7 @@ public class RatingsViewPagerAdapter extends FragmentStateAdapter {
         }else if (position == 1){
             Bundle bundle = new Bundle();
             bundle.putString("parentId", parentId);
+            bundle.putString("classType", classType);
             Finals finals= new Finals();
             finals.setArguments(bundle);
 
@@ -43,6 +46,7 @@ public class RatingsViewPagerAdapter extends FragmentStateAdapter {
         }else {
             Bundle bundle = new Bundle();
             bundle.putString("parentId", parentId);
+            bundle.putString("classType", classType);
             FinalRating finalRating= new FinalRating();
             finalRating.setArguments(bundle);
 

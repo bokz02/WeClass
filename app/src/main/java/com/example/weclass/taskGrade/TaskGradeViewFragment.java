@@ -138,6 +138,7 @@ public class TaskGradeViewFragment extends Fragment {
             }while (cursor.moveToNext());
         }
         cursor.close();
+        sqLiteDatabase.close();
         return taskGradeViewItems;
     }
 

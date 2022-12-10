@@ -24,10 +24,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weclass.LockScreen;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
-import com.example.weclass.studentlist.profile.image.ImageUtils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
@@ -176,6 +174,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                         db.deleteAttendanceToday(item.getStudentNumber(),
                                                 item.getParent_id());
                                         db.deleteAttendance(item.getStudentNumber(),
+                                                item.getParent_id());
+                                        db.deleteTotalGrades(item.getStudentNumber(),
                                                 item.getParent_id());
 
                                         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "

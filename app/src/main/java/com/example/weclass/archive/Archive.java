@@ -137,6 +137,7 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
             }while (cursor.moveToNext());
         }
         cursor.close();
+        sqLiteDatabase.close();
         return archiveItems;
     }
 

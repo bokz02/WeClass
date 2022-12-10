@@ -1,6 +1,9 @@
 package com.example.weclass.ratings;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -9,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weclass.R;
+import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.StudentItems;
 
 import java.util.ArrayList;
@@ -22,16 +27,21 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
 
     private final ArrayList<RatingsModel> ratingsModel;
     private final Context context;
+    private final String classType;
+    private int midtermTotal =0;
+    DataBaseHelper db;
+    SQLiteDatabase sql;
 
-    public RatingsAdapter(ArrayList<RatingsModel> ratingsModel, Context context) {
+    public RatingsAdapter(ArrayList<RatingsModel> ratingsModel, Context context, String classType) {
         this.ratingsModel = ratingsModel;
         this.context = context;
+        this.classType = classType;
 
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView _lastName, _firstName, _rating;
+        TextView _lastName, _firstName, _rating, studentNumber, parentId;
         ImageView _profilePicture;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -41,6 +51,8 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
             _firstName = itemView.findViewById(R.id.firstNameRatingsRecView);
             _rating = itemView.findViewById(R.id.finalRatingRatingsRecView);
             _profilePicture = itemView.findViewById(R.id.imageViewRatingsRecView);
+            studentNumber = itemView.findViewById(R.id.studentNumberRatings);
+            parentId = itemView.findViewById(R.id.parentIdRatings);
         }
     }
 
@@ -49,6 +61,7 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.ratings_recyclerview_style, parent, false);
+
         return new MyViewHolder(view);
     }
 
@@ -63,6 +76,8 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
         holder._lastName.setText(String.valueOf(ratingsModel.get(position).getLastName()));
         holder._firstName.setText(String.valueOf(ratingsModel.get(position).getFirstName()));
         holder._rating.setText(String.valueOf(ratingsModel.get(position).getGrade()));
+        holder.studentNumber.setText(String.valueOf(ratingsModel.get(position).getStudentNumber()));
+        holder.parentId.setText(String.valueOf(ratingsModel.get(position).getParentId()));
 
     }
 

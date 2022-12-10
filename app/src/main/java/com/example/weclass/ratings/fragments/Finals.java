@@ -28,7 +28,7 @@ public class Finals extends Fragment {
     RatingsAdapter ratingsAdapter;
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<RatingsModel> ratingsModel;
-    String parentId;
+    String parentId, classType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,11 +73,12 @@ public class Finals extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle!=null){
             parentId = bundle.getString("parentId");
+            classType = bundle.getString("classType");
         }
     }
 
     public void initializeAdapter(){
-        ratingsAdapter = new RatingsAdapter(ratingsModel, getContext());
+        ratingsAdapter = new RatingsAdapter(ratingsModel, getContext(), classType);
         extendedRecyclerView.setAdapter(ratingsAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(noView,noTextView);
@@ -106,10 +107,13 @@ public class Finals extends Fragment {
                         cursor.getBlob(9),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getString(11)));
+                        cursor.getString(11),
+                        cursor.getString(1),
+                        cursor.getString(2)));
             }while (cursor.moveToNext());
         }
         cursor.close();
+        sqLiteDatabase.close();
         return ratingsModels;
     }
 }

@@ -193,6 +193,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
             } while (cursor.moveToNext());
         }
         cursor.close();
+        sqLiteDatabase.close();
         return taskItems;
     }
 
