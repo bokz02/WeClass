@@ -22,6 +22,7 @@ import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.StudentItems;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHolder> {
 
@@ -75,10 +76,15 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
         holder._profilePicture.setImageBitmap(bitmap);
         holder._lastName.setText(String.valueOf(ratingsModel.get(position).getLastName()));
         holder._firstName.setText(String.valueOf(ratingsModel.get(position).getFirstName()));
-        holder._rating.setText(String.valueOf(ratingsModel.get(position).getGrade()));
+        holder._rating.setText(String.format( Locale.US,"%.2f", ratingsModel.get(position).getGrade()));
         holder.studentNumber.setText(String.valueOf(ratingsModel.get(position).getStudentNumber()));
         holder.parentId.setText(String.valueOf(ratingsModel.get(position).getParentId()));
 
+
+        String a = holder._rating.getText().toString();
+        if (a.equals("5.00")){
+            holder._rating.setTextColor(holder._rating.getContext().getResources().getColor(R.color.red2));
+        }
     }
 
     @Override

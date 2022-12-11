@@ -212,7 +212,7 @@ public class TaskGrade extends AppCompatActivity{
         String getGraded = gradedStudent.getText().toString();
         int a = Integer.parseInt(getTotal);
         int b = Integer.parseInt(getGraded);
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
 
         if(a == b){
             String completed = "Completed";
@@ -245,7 +245,7 @@ public class TaskGrade extends AppCompatActivity{
 
     // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
     public void getSumOfStudents(){
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
                 + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
@@ -260,7 +260,7 @@ public class TaskGrade extends AppCompatActivity{
 
     public void gradedStudent(){
 
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
                 + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
@@ -309,7 +309,7 @@ public class TaskGrade extends AppCompatActivity{
     }
 
     public void insertDataToTaskGrade(){
-        DataBaseHelper dbHelper = new DataBaseHelper(this);
+        DataBaseHelper dbHelper = DataBaseHelper.getInstance(this);
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
         SQLiteDatabase sqL = dbHelper.getWritableDatabase();
 

@@ -103,7 +103,7 @@ public class Midterm extends Fragment {
     }
 
     private ArrayList<RatingsModel> getData(){
-        DataBaseHelper dbh = new DataBaseHelper(getContext());
+        DataBaseHelper dbh = DataBaseHelper.getInstance(getContext());
         SQLiteDatabase sqLiteDatabase = dbh.getReadableDatabase();
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
@@ -119,7 +119,7 @@ public class Midterm extends Fragment {
                         cursor.getBlob(9),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getString(10),
+                        cursor.getDouble(10),
                         cursor.getString(1),
                         cursor.getString(2)));
             }while (cursor.moveToNext());

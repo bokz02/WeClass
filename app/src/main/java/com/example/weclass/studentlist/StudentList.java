@@ -214,7 +214,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     // DATA TO BE DISPLAY IN RECYCLERVIEW
     public void display(){
         studentItems = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(getContext());
+        dataBaseHelper = DataBaseHelper.getInstance(getContext());
         studentItems = displayData();
     }
 

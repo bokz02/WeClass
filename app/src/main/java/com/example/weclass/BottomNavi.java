@@ -266,7 +266,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar {
 
                         byte[] image = DrawableUtils.getBytes(BitmapFactory.decodeResource(getResources(), R.drawable.prof1));
 
-                        DataBaseHelper dbHelper = new DataBaseHelper(this);
+                        DataBaseHelper dbHelper = DataBaseHelper.getInstance(this);
                         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
                         try {

@@ -97,7 +97,7 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         holder.submitButtonGrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataBaseHelper db = new DataBaseHelper(context);
+                DataBaseHelper db = DataBaseHelper.getInstance(context);
                 SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
                 int b;
 

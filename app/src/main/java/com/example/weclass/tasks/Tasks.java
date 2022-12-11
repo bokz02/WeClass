@@ -107,7 +107,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
         id = new ArrayList<>();
         _parentID = new ArrayList<>();
         taskItems = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(getContext());
+        dataBaseHelper = DataBaseHelper.getInstance(getContext());
         taskItems = displayData();
     }
 

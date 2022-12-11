@@ -179,7 +179,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         id = new ArrayList<>();
         parentID = new ArrayList<>();
         attendanceItems = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(getContext());
+        dataBaseHelper = DataBaseHelper.getInstance(getContext());
         attendanceItems = displayData();
     }
 
@@ -544,7 +544,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                 spinnerPosition = spinner.getSelectedItemPosition();
                 saveSpinnerPosition();
                 initializeAdapter();
-                Log.d(tag, "" + spinnerGradingPeriod);
+
             }
 
             @Override
@@ -570,7 +570,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
             spinnerGradingPeriod = "Midterm";
 
         }else {
-            spinnerGradingPeriod = "FInals";
+            spinnerGradingPeriod = "Finals";
         }
     }
 

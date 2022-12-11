@@ -110,7 +110,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         StudentItems item = studentItems.get(position);
-        DataBaseHelper db = new DataBaseHelper(context);
+        DataBaseHelper db = DataBaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
 
         byte[] image = item.getImage();

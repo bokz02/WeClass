@@ -1,5 +1,6 @@
 package com.example.weclass.ratings.fragments;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class Finals extends Fragment {
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<RatingsModel> ratingsModel;
     String parentId, classType;
+    @SuppressLint("StaticFieldLeak")
+    private static Finals instance = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +44,7 @@ public class Finals extends Fragment {
         initializeRecView();
         initializeAdapter();
 
+        instance = this;
         return view;
     }
 
@@ -60,6 +64,10 @@ public class Finals extends Fragment {
         getBundleData();
         initializeRecView();
         initializeAdapter();
+    }
+
+    public static Finals getInstance() {
+        return instance;
     }
 
     public void initialize(){
@@ -84,14 +92,14 @@ public class Finals extends Fragment {
         extendedRecyclerView.setEmptyView(noView,noTextView);
     }
 
-    private void initializeRecView(){
+    public void initializeRecView(){
 
         ratingsModel = new ArrayList<>();
         ratingsModel = getData();
     }
 
     private ArrayList<RatingsModel> getData(){
-        DataBaseHelper dbh = new DataBaseHelper(getContext());
+        DataBaseHelper dbh = DataBaseHelper.getInstance(getContext());
         SQLiteDatabase sqLiteDatabase = dbh.getReadableDatabase();
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
@@ -107,7 +115,7 @@ public class Finals extends Fragment {
                         cursor.getBlob(9),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getString(11),
+                        cursor.getDouble(11),
                         cursor.getString(1),
                         cursor.getString(2)));
             }while (cursor.moveToNext());

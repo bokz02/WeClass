@@ -1,5 +1,6 @@
 package com.example.weclass.ratings.fragments;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.example.weclass.ratings.RatingsAdapter;
 import com.example.weclass.ratings.RatingsModel;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class FinalRating extends Fragment {
@@ -29,6 +31,8 @@ public class FinalRating extends Fragment {
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<RatingsModel> ratingsModel;
     String parentId, classType;
+    @SuppressLint("StaticFieldLeak")
+    private static FinalRating instance = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +45,7 @@ public class FinalRating extends Fragment {
         initializeRecView();
         initializeAdapter();
 
+        instance = this;
         return view;
     }
 
@@ -62,6 +67,10 @@ public class FinalRating extends Fragment {
         getData();
         initializeRecView();
         initializeAdapter();
+    }
+
+    public static FinalRating getInstance() {
+        return instance;
     }
 
     public void initialize(){
@@ -88,14 +97,14 @@ public class FinalRating extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
     }
 
-    private void initializeRecView(){
+    public void initializeRecView(){
 
         ratingsModel = new ArrayList<>();
         ratingsModel = getData();
     }
 
     private ArrayList<RatingsModel> getData(){
-        DataBaseHelper dbh = new DataBaseHelper(getContext());
+        DataBaseHelper dbh = DataBaseHelper.getInstance(getContext());
         SQLiteDatabase sqLiteDatabase = dbh.getReadableDatabase();
 
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
@@ -111,7 +120,7 @@ public class FinalRating extends Fragment {
                         cursor.getBlob(9),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getString(12),
+                        cursor.getDouble(12),
                         cursor.getString(1),
                         cursor.getString(2)));
             }while (cursor.moveToNext());

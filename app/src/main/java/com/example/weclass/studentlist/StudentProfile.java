@@ -156,7 +156,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     public void countAbsent(){
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "

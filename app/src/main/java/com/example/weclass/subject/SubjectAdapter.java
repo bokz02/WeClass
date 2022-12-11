@@ -120,7 +120,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                                        DataBaseHelper db = new DataBaseHelper(context);
+                                        DataBaseHelper db = DataBaseHelper.getInstance(context);
                                         db.deleteSubject(item.getId());
 
                                         int a = holder.getAdapterPosition();
@@ -149,7 +149,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
                                     public void onClick(DialogInterface dialogInterface, int i) {
 
 
-                                        DataBaseHelper db = new DataBaseHelper(context);
+                                        DataBaseHelper db = DataBaseHelper.getInstance(context);
 
                                         // ADD ATTENDANCE TO ATTENDANCE DATABASE
                                         db.addToArchive(holder.id.getText().toString(),

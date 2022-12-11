@@ -85,7 +85,7 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
         }
 
 
-        DataBaseHelper dbh = new DataBaseHelper(context);
+        DataBaseHelper dbh = DataBaseHelper.getInstance(context);
 
         // automatic save the value in edit text
         holder.grade.addTextChangedListener(new TextWatcher() {

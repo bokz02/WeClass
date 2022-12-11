@@ -212,7 +212,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     // DISPLAY DATA FROM DATABASE TO RECYCLERVIEW
     public void display(){
         subjectItems = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(this);
+        dataBaseHelper = DataBaseHelper.getInstance(this);
         subjectItems = displayData();
 
     }

@@ -3,9 +3,10 @@ package com.example.weclass.ratings;
 public class RatingsModel {
 
     byte[] image;
-    String lastName, firstName, grade, studentNumber, parentId;
+    String lastName, firstName, studentNumber, parentId;
+    double grade;
 
-    public RatingsModel(byte[] image, String lastName, String firstName, String grade, String studentNumber, String parentId) {
+    public RatingsModel(byte[] image, String lastName, String firstName, double grade, String studentNumber, String parentId) {
         this.image = image;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -26,7 +27,7 @@ public class RatingsModel {
         return firstName;
     }
 
-    public String getGrade() {
+    public double getGrade() {
         return grade;
     }
 

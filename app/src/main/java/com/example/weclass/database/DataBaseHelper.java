@@ -13,7 +13,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 61;
+    private static final int DATABASE_VERSION = 62;
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -127,6 +127,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String column_teamAssessment_lecture = "team_assessment";
     public static final String column_deportment_lecture = "deportment";
 
+    private static DataBaseHelper mInstance = null;
+
+    public static DataBaseHelper getInstance(Context ctx) {
+
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (mInstance == null) {
+            mInstance = new DataBaseHelper(ctx.getApplicationContext());
+        }
+        return mInstance;
+    }
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -164,9 +176,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_PRESENT + " TEXT, " +
                 COLUMN_ABSENT + " TEXT, " +
                 COLUMN_PROFILE_PICTURE + " BLOB, " +
-                COLUMN_MIDTERM_GRADE_STUDENT + " TEXT," +
-                COLUMN_FINAL_GRADE_STUDENT + " TEXT," +
-                COLUMN_FINAL_RATING_STUDENT + " TEXT, " +
+                COLUMN_MIDTERM_GRADE_STUDENT + " REAL," +
+                COLUMN_FINAL_GRADE_STUDENT + " REAL," +
+                COLUMN_FINAL_RATING_STUDENT + " REAL, " +
                 COLUMN_LATE_STUDENT + " TEXT);";
 
 
@@ -581,7 +593,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
-        db.close();
+
     }
 
     // UPDATE STUDENT'S PROFILE PICTURE IN PROFILE ACTIVITY OR EDIT STUDENT ACTIVITY
@@ -596,7 +608,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if(result == -1){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }
-        db.close();
     }
 
     // UPDATE STUDENT'S PROFILE FINAL RATING IN PROFILE ACTIVITY
@@ -662,6 +673,38 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_STUDENT_NUMBER_STUDENT, studentNumber);
         contentValues.put(COLUMN_PARENT_ID, parentId);
         contentValues.put(COLUMN_MIDTERM_GRADE_STUDENT, grade);
+
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'"+studentNumber+"'" + " and "
+                + "parent_id=" + "'" + parentId + "'", null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // update task's progress
+    public void updateFinalsGrade(String studentNumber, String parentId,double grade){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_STUDENT_NUMBER_STUDENT, studentNumber);
+        contentValues.put(COLUMN_PARENT_ID, parentId);
+        contentValues.put(COLUMN_FINAL_GRADE_STUDENT, grade);
+
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'"+studentNumber+"'" + " and "
+                + "parent_id=" + "'" + parentId + "'", null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // update task's progress
+    public void updateFinalRatingGrade(String studentNumber, String parentId,double grade){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_STUDENT_NUMBER_STUDENT, studentNumber);
+        contentValues.put(COLUMN_PARENT_ID, parentId);
+        contentValues.put(COLUMN_FINAL_RATING_STUDENT, grade);
 
         long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'"+studentNumber+"'" + " and "
                 + "parent_id=" + "'" + parentId + "'", null);

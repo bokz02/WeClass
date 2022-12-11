@@ -79,7 +79,7 @@ public class PresentFragment extends Fragment {
     public void initializeRecView(){
 
         presentAndAbsentItems = new ArrayList<>();
-        dbh = new DataBaseHelper(getContext());
+        dbh = DataBaseHelper.getInstance(getContext());
         presentAndAbsentItems = getData();
     }
 

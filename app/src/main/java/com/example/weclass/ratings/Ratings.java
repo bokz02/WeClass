@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
@@ -23,6 +22,8 @@ import com.example.weclass.BottomNavi;
 import com.example.weclass.MyProgressBar;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.ratings.fragments.FinalRating;
+import com.example.weclass.ratings.fragments.Finals;
 import com.example.weclass.ratings.fragments.Midterm;
 import com.example.weclass.ratings.fragments.RatingsViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -35,12 +36,12 @@ public class Ratings extends Fragment {
     RatingsViewPagerAdapter ratingsViewPagerAdapter;
     String parentId;
     ImageButton optionButton;
-    String classType;
+    String classType, midterm="Midterm", finals="Finals";
     DataBaseHelper db;
     SQLiteDatabase sql;
     int activityTotal=0, assignmentTotal=0, seatWorkTotal=0,quizTotal=0, reportTotal=0
             , presentCount=0, absentCount=0, lateCount=0, totalAttendance=0, quizTotalItems=0
-            , totalQuiz=0, project;
+            , totalQuiz=0, project, currentTotalAttendance=0;
     int writtenTotalCount, performanceTasksCount, recitationCountFinals;
     double computeExam=0, grade,exam=0, attendanceTotal, writtenTotalScore
             ,performanceTotalScore, recitationTotal;
@@ -80,8 +81,21 @@ public class Ratings extends Fragment {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Midterm.getInstance().initializeRecView();
-                Midterm.getInstance().initializeAdapter();
+                if (Midterm.getInstance() != null){
+                    Midterm.getInstance().initializeRecView();
+                    Midterm.getInstance().initializeAdapter();
+                }
+
+                if (Finals.getInstance() != null){
+                    Finals.getInstance().initializeRecView();
+                    Finals.getInstance().initializeAdapter();
+                }
+
+                if (FinalRating.getInstance() != null){
+                    FinalRating.getInstance().initializeRecView();
+                    FinalRating.getInstance().initializeAdapter();
+                }
+
             }
         }, 3000);
     }
@@ -100,17 +114,40 @@ public class Ratings extends Fragment {
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()){
                             case R.id.generateMidterm:
+                                if (classType.equals("Lecture")){
+                                    if (getActivity() instanceof MyProgressBar) {
+                                        wait3seconds();
+                                        ((BottomNavi) getActivity()).showProgressBAr();
+                                        ((BottomNavi) getActivity()).hideProgressBAr();
+                                        // pass the parameter string finals to method
+                                        computeLectureGrades(midterm);
+                                    }else{
+                                        computeLaboratoryGrades(midterm);
+                                    }
+
+                                }
+                                break;
                             case R.id.generateFinals:
+                                if (!classType.equals("Laboratory")){
+                                    if (getActivity() instanceof MyProgressBar) {
+                                        wait3seconds();
+                                        ((BottomNavi) getActivity()).showProgressBAr();
+                                        ((BottomNavi) getActivity()).hideProgressBAr();
+                                        // pass the parameter string finals to method
+                                        computeLectureGrades(finals);
+                                    }else {
+                                        computeLaboratoryGrades(finals);
+                                    }
+                                }
+                                break;
+                            case R.id.generateFInalRating:
                                 if (getActivity() instanceof MyProgressBar) {
                                     wait3seconds();
                                     ((BottomNavi) getActivity()).showProgressBAr();
                                     ((BottomNavi) getActivity()).hideProgressBAr();
-                                    compute();
-
+                                    // pass the parameter string finals to method
+                                    computeFinalRating();
                                 }
-                                break;
-                            case R.id.generateFInalRating:
-
                                 break;
                         }
                         return false;
@@ -164,86 +201,101 @@ public class Ratings extends Fragment {
         });
     }
 
-    private void compute(){
-        if (!classType.equals("Laboratory")){
-            computeMidtermGrades();
-        }else {
-            computeFinalsGrades();
-        }
-    }
-
-    private void computeMidtermGrades(){
-        db = new DataBaseHelper(getContext());
+    // method for computing lecture's midterm and finals grades
+    private void computeLectureGrades(String gradingPeriod){
+        db = DataBaseHelper.getInstance(getContext());
         sql = db.getReadableDatabase();
 
         // count all tasks
-        countTotalWritten();
-        countTotalPerformance();
+        countTotalWritten(gradingPeriod);
+        countTotalPerformance(gradingPeriod);
 
-        // total all attendance
+        currentTotalAttendance = 0;
 
         Cursor cursor = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_STUDENTS + " where "
                 + DataBaseHelper.COLUMN_PARENT_ID + " = '"
                 + parentId + "'",null);
 
+            if (cursor.moveToFirst()){
+                do {
+                    countAttendance(cursor, gradingPeriod);
+                    // total all attendance
+                    totalAttendance = presentCount + absentCount + lateCount;
+                    if(totalAttendance > currentTotalAttendance ){
+                        currentTotalAttendance = totalAttendance;
+
+                    }
+                }while (cursor.moveToNext());
+            }
+
             if (cursor.moveToFirst()) {
-
-                countAttendance(cursor);
-
-                // total all attendance
-                totalAttendance = presentCount + absentCount + lateCount;
 
                 do {
 
-                    computeActivity(cursor);
-                    computeAssignment(cursor);
-                    computeSeatWork(cursor);
+                    computeActivity(cursor, gradingPeriod);
+                    computeAssignment(cursor, gradingPeriod);
+                    computeSeatWork(cursor, gradingPeriod);
 
-                    computeQuiz(cursor);
-                    computeReport(cursor);
-                    computeRecitation(cursor);
-                    getPresent(cursor);
-                    getLate(cursor);
-                    getAbsent(cursor);
+                    computeQuiz(cursor, gradingPeriod);
+                    computeReport(cursor, gradingPeriod);
+                    computeRecitation(cursor, gradingPeriod);
+                    getPresent(cursor, gradingPeriod);
+                    getLate(cursor, gradingPeriod);
+                    getAbsent(cursor, gradingPeriod);
 
-                    getMidtermExamScore(cursor);
+                    getMidtermExamScore(cursor, gradingPeriod);
 
                     // get 10% of a student attendance
                     attendanceTotal = presentCount + lateCount;
-                    attendanceTotal = attendanceTotal / totalAttendance;
-                    attendanceTotal = attendanceTotal * 50;
-                    attendanceTotal = attendanceTotal + 50;
-                    attendanceTotal = attendanceTotal * .10;
+                    if (attendanceTotal!=0) {
+                        attendanceTotal = attendanceTotal / currentTotalAttendance;
+                    }
+                        attendanceTotal = attendanceTotal * 50;
+                        attendanceTotal = attendanceTotal + 50;
+                        attendanceTotal = attendanceTotal * .10;
 
                     /*get 30% midterm exam of a student */
-                    exam = exam *.3;
+                        exam = exam * .3;
 
                     /*compute 40% of total performance task of a student*/
                     performanceTotal1 = performanceTasksCount * 100;
                     performanceTotal1 = performanceTotal1 + quizTotalItems;
                     performanceTotalScore = quizTotal + recitationTotal + reportTotal;
-                    performanceTotalScore = performanceTotalScore / performanceTotal1;
-                    performanceTotalScore = performanceTotalScore * 50;
-                    performanceTotalScore = performanceTotalScore + 50;
-                    performanceTotalScore = performanceTotalScore * .4;
+                    if (performanceTotalScore!=0) {
+                        performanceTotalScore = performanceTotalScore / performanceTotal1;
+                    }
+                        performanceTotalScore = performanceTotalScore * 50;
+                        performanceTotalScore = performanceTotalScore + 50;
+                        performanceTotalScore = performanceTotalScore * .4;
+
 
                     /*compute 20% of total written task of a student*/
                     writtenTotal = writtenTotalCount * 100;
                     writtenTotalScore = activityTotal + assignmentTotal + seatWorkTotal;
-                    writtenTotalScore = writtenTotalScore / writtenTotal;
-                    writtenTotalScore = writtenTotalScore * 50;
-                    writtenTotalScore = writtenTotalScore + 50;
-                    writtenTotalScore = writtenTotalScore * .2;
+                    if (writtenTotalScore!=0) {
+                        writtenTotalScore = writtenTotalScore / writtenTotal;
+                    }
+                        writtenTotalScore = writtenTotalScore * 50;
+                        writtenTotalScore = writtenTotalScore + 50;
+                        writtenTotalScore = writtenTotalScore * .2;
+
 
                     // get the midterm grade
                     grade = attendanceTotal + exam + performanceTotalScore + writtenTotalScore;
 
-                    Log.d(TAG, ""+ writtenTotalCount);
 
-                    // insert midterm grade
-                    db.updateMidtermGrade(cursor.getString(1),
-                            parentId,
-                            grade);
+
+                    if (gradingPeriod.equals("Midterm")) {
+                        // insert midterm grade
+                        db.updateMidtermGrade(cursor.getString(1),
+                                parentId,
+                                grade);
+                    }else {
+                        db.updateFinalsGrade(cursor.getString(1),
+                                parentId,
+                                grade);
+                    }
+
 
                     activityTotal=0;
                     seatWorkTotal=0;
@@ -272,7 +324,7 @@ public class Ratings extends Fragment {
             sql.close();
     }
 
-    private void computeAssignment(@NonNull Cursor cursor){
+    private void computeAssignment(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -281,7 +333,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Assignment" + "'", null);
         if (cursor2.moveToNext()) {
@@ -294,7 +346,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeSeatWork(@NonNull Cursor cursor){
+    private void computeSeatWork(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -303,7 +355,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Seatwork" + "'", null);
         if (cursor2.moveToNext()) {
@@ -316,7 +368,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeActivity(@NonNull Cursor cursor){
+    private void computeActivity(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -325,7 +377,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Activity" + "'", null);
         if (cursor2.moveToNext()) {
@@ -339,7 +391,7 @@ public class Ratings extends Fragment {
     }
 
     // count total written tasks and multiply by 100 for getting average
-    private void countTotalWritten(){
+    private void countTotalWritten(String gradingPeriod){
         db = new DataBaseHelper(getContext());
         sql = db.getReadableDatabase();
 
@@ -347,7 +399,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = '"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
                 + "Activity" + "'or "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " ='"
@@ -360,7 +412,7 @@ public class Ratings extends Fragment {
     }
 
     // count total performance tasks and multiply by 100 for getting average
-    private void countTotalPerformance(){
+    private void countTotalPerformance(String gradingPeriod){
         db = new DataBaseHelper(getContext());
         sql = db.getReadableDatabase();
 
@@ -368,7 +420,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = '"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " ='"
                 + "Recitation" + "' or "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " ='"
@@ -378,7 +430,7 @@ public class Ratings extends Fragment {
         }cursor.close();
     }
 
-    private void computeQuiz(@NonNull Cursor cursor){
+    private void computeQuiz(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -387,7 +439,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Quiz" + "'", null);
         if (cursor2.moveToNext()) {
@@ -400,7 +452,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeRecitation(@NonNull Cursor cursor){
+    private void computeRecitation(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -409,7 +461,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Recitation" + "'", null);
         if (cursor2.moveToNext()) {
@@ -421,7 +473,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeReport(@NonNull Cursor cursor){
+    private void computeReport(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -430,7 +482,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Report" + "'", null);
         if (cursor2.moveToNext()) {
@@ -442,7 +494,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void getMidtermExamScore(@NonNull Cursor cursor){
+    private void getMidtermExamScore(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -451,7 +503,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Exam" + "'", null);
         if (cursor2.moveToNext()) {
@@ -463,14 +515,14 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void getPresent(@NonNull Cursor cursor){
+    private void getPresent(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "='"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
                 + cursor.getString(1) + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + "="
                 + 1, null);
         if (cursor2.moveToNext()) {
@@ -479,14 +531,14 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void getAbsent(@NonNull Cursor cursor){
+    private void getAbsent(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "='"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
                 + cursor.getString(1) + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + "="
                 + 1, null);
         if (cursor2.moveToNext()) {
@@ -495,14 +547,14 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void getLate(@NonNull Cursor cursor){
+    private void getLate(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "='"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
                 + cursor.getString(1) + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
-                + "Midterm" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_LATE_ATTENDANCE + "="
                 + 1, null);
         if (cursor2.moveToNext()) {
@@ -511,14 +563,14 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void countAttendance(@NonNull Cursor cursor){
+    private void countAttendance(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "='"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
                 + cursor.getString(1) + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
-                + "Midterm" + "'", null);
+                + gradingPeriod + "'", null);
 
         if (cursor2.moveToNext()) {
             presentCount = cursor2.getInt(0);
@@ -528,82 +580,103 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeFinalsGrades() {
+    private void computeLaboratoryGrades(String gradingPeriod) {
         db = new DataBaseHelper(getContext());
         sql = db.getReadableDatabase();
 
         // count all tasks
-        countTotalWrittenFinals();
-        countTotalPerformanceFinals();
-        countRecitationFinals();
+        countTotalWrittenLab(gradingPeriod);
+        countTotalPerformanceLab(gradingPeriod);
+        countRecitationLab(gradingPeriod);
 
         Cursor cursor = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_STUDENTS + " where "
                 + DataBaseHelper.COLUMN_PARENT_ID + " = '"
                 + parentId + "'",null);
 
+        if (cursor.moveToFirst()){
+            do {
+                countAttendance(cursor, gradingPeriod);
+                // total all attendance
+                totalAttendance = presentCount + absentCount + lateCount;
+                if(totalAttendance > currentTotalAttendance ){
+                    currentTotalAttendance = totalAttendance;
+                    Log.d(TAG, ""+cursor.getString(3) +" "+ currentTotalAttendance);
+                }
+            }while (cursor.moveToNext());
+        }
+
         if (cursor.moveToFirst()) {
-
-            countAttendanceFinals(cursor);
-
-            // total all attendance
-            totalAttendance = presentCount + absentCount + lateCount;
 
             do {
 
-                computeActivityFinals(cursor);
-                computeAssignmentFinals(cursor);
-                computeSeatWorkFinals(cursor);
-                computeQuizFinals(cursor);
-                computeReportFinals(cursor);
-                computeRecitationFinals(cursor);
-                computeProjectFinals(cursor);
-                getPresentFinals(cursor);
-                getLateFinals(cursor);
-                getAbsentFinals(cursor);
+                computeActivityLab(cursor, gradingPeriod);
+                computeAssignmentLab(cursor, gradingPeriod);
+                computeSeatWorkLab(cursor, gradingPeriod);
+                computeQuizLab(cursor, gradingPeriod);
+                computeReportLab(cursor, gradingPeriod);
+                computeRecitationLab(cursor, gradingPeriod);
+                computeProjectLab(cursor, gradingPeriod);
+                getPresentLab(cursor, gradingPeriod);
+                getLateLab(cursor, gradingPeriod);
+                getAbsentLab(cursor, gradingPeriod);
 
-                getFinalsExamScore(cursor);
+                getFinalsExamScore(cursor, gradingPeriod);
 
                 // get 10% of a student attendance
                 attendanceTotal = presentCount + lateCount;
-                attendanceTotal = attendanceTotal / totalAttendance;
-                attendanceTotal = attendanceTotal * 50;
-                attendanceTotal = attendanceTotal + 50;
-                attendanceTotal = attendanceTotal * .10;
+                if (currentTotalAttendance != 0) { // total will become infinite if the value is 0
+                    attendanceTotal = attendanceTotal / currentTotalAttendance;
+                }
+                    attendanceTotal = attendanceTotal * 50;
+                    attendanceTotal = attendanceTotal + 50;
+                    attendanceTotal = attendanceTotal * .10;
 
-                /*compute 10% of total written task of a student*/
-                writtenTotalCount = writtenTotalCount * 100;
-                writtenTotalCount = writtenTotalCount + quizTotalItems;
-                writtenTotalScore = quizTotal + assignmentTotal + seatWorkTotal;
-                writtenTotalScore = writtenTotalScore / writtenTotalCount;
-                writtenTotalScore = writtenTotalScore * 50;
-                writtenTotalScore = writtenTotalScore + 50;
-                writtenTotalScore = writtenTotalScore * .1;
+                    /*compute 10% of total written task of a student*/
+                    writtenTotalCount = writtenTotalCount * 100;
+                    writtenTotalCount = writtenTotalCount + quizTotalItems;
+                    writtenTotalScore = quizTotal + assignmentTotal + seatWorkTotal;
+                if (writtenTotalCount != 0) { // total will become infinite if the value is 0
+                    writtenTotalScore = writtenTotalScore / writtenTotalCount;
+                }
+                    writtenTotalScore = writtenTotalScore * 50;
+                    writtenTotalScore = writtenTotalScore + 50;
+                    writtenTotalScore = writtenTotalScore * .1;
 
-                /*get 30% midterm exam of a student */
-                computeExam = exam *.2;
+                    /*get 30% midterm exam of a student */
+                    computeExam = exam *.2;
 
-                /*compute 40% of total performance task of a student*/
-                performanceTotal1 = performanceTasksCount * 100;
-                performanceTotalScore = project + reportTotal + activityTotal;
-                performanceTotalScore = performanceTotalScore / performanceTotal1;
-                performanceTotalScore = performanceTotalScore * 50;
-                performanceTotalScore = performanceTotalScore + 50;
-                performanceTotalScore = performanceTotalScore * .5;
+                    /*compute 40% of total performance task of a student*/
+                    performanceTotal1 = performanceTasksCount * 100;
+                    performanceTotalScore = project + reportTotal + activityTotal;
+                if (performanceTotal1!=0) { // total will become infinite if the value is 0
+                    performanceTotalScore = performanceTotalScore / performanceTotal1;
+                }
+                    performanceTotalScore = performanceTotalScore * 50;
+                    performanceTotalScore = performanceTotalScore + 50;
+                    performanceTotalScore = performanceTotalScore * .5;
 
-                // formula for getting 10% recitation
-                recitationCountFinals = recitationCountFinals * 100;
-                recitationTotal = recitationTotal / recitationCountFinals;
-                recitationTotal = recitationTotal * 50;
-                recitationTotal = recitationTotal + 50;
-                recitationTotal = recitationTotal * .10;
+                    // formula for getting 10% recitation
+                    recitationCountFinals = recitationCountFinals * 100;
+                if (recitationCountFinals!=0) { // total will become infinite if the value is 0
+                    recitationTotal = recitationTotal / recitationCountFinals;
+                }
+                    recitationTotal = recitationTotal * 50;
+                    recitationTotal = recitationTotal + 50;
+                    recitationTotal = recitationTotal * .10;
 
                 // get the midterm grade
                 grade = attendanceTotal + computeExam + performanceTotalScore + recitationTotal + writtenTotalScore;
 
-                // insert midterm grade
-                db.updateMidtermGrade(cursor.getString(1),
-                        parentId,
-                        grade);
+                if (gradingPeriod.equals("Midterm")) {
+                    // insert midterm grade
+                    db.updateMidtermGrade(cursor.getString(1),
+                            parentId,
+                            grade);
+                }else {
+                    db.updateFinalsGrade(cursor.getString(1),
+                            parentId,
+                            grade);
+                }
 
                 activityTotal=0;
                 seatWorkTotal=0;
@@ -634,7 +707,7 @@ public class Ratings extends Fragment {
         }cursor.close();
     }
 
-    private void computeAssignmentFinals(@NonNull Cursor cursor){
+    private void computeAssignmentLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -643,7 +716,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Assignment" + "'", null);
         if (cursor2.moveToNext()) {
@@ -656,7 +729,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeQuizFinals(@NonNull Cursor cursor){
+    private void computeQuizLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -665,7 +738,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Quiz" + "'", null);
         if (cursor2.moveToNext()) {
@@ -678,7 +751,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeSeatWorkFinals(@NonNull Cursor cursor){
+    private void computeSeatWorkLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -687,7 +760,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Seatwork" + "'", null);
         if (cursor2.moveToNext()) {
@@ -700,7 +773,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeActivityFinals(@NonNull Cursor cursor){
+    private void computeActivityLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -709,7 +782,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Activity" + "'", null);
         if (cursor2.moveToNext()) {
@@ -722,7 +795,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeProjectFinals(@NonNull Cursor cursor){
+    private void computeProjectLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -731,7 +804,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Project" + "'", null);
         if (cursor2.moveToNext()) {
@@ -745,7 +818,7 @@ public class Ratings extends Fragment {
     }
 
     // count total written tasks and multiply by 100
-    private void countTotalWrittenFinals(){
+    private void countTotalWrittenLab(String gradingPeriod){
         db = new DataBaseHelper(getContext());
         sql = db.getReadableDatabase();
 
@@ -753,7 +826,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = '"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " ='"
                 + "Assignment" + "' or "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " ='"
@@ -764,7 +837,7 @@ public class Ratings extends Fragment {
     }
 
     // count total performance tasks and multiply by 100 for getting average
-    private void countTotalPerformanceFinals(){
+    private void countTotalPerformanceLab(String gradingPeriod){
         db = new DataBaseHelper(getContext());
         sql = db.getReadableDatabase();
 
@@ -772,7 +845,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = '"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
                 + "Activity" + "'or "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " ='"
@@ -785,7 +858,7 @@ public class Ratings extends Fragment {
     }
 
     // total all recitation of a student for getting average
-    private void computeRecitationFinals(@NonNull Cursor cursor){
+    private void computeRecitationLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -794,7 +867,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Recitation" + "'", null);
         if (cursor2.moveToNext()) {
@@ -807,12 +880,12 @@ public class Ratings extends Fragment {
     }
 
     // total all recitation of a student for getting average
-    private void countRecitationFinals(){
+    private void countRecitationLab(String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select count(*) from " + DataBaseHelper.TABLE_MY_TASKS + " where "
                 + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = '"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
                 + "Recitation" + "'", null);
         if (cursor2.moveToNext()) {
@@ -821,7 +894,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void computeReportFinals(@NonNull Cursor cursor){
+    private void computeReportLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -830,7 +903,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Report" + "'", null);
         if (cursor2.moveToNext()) {
@@ -842,7 +915,7 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void getFinalsExamScore(@NonNull Cursor cursor){
+    private void getFinalsExamScore(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select * from " + DataBaseHelper.TABLE_MY_GRADE + " where "
                 + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = '"
                 + cursor.getString(1) + "' and "
@@ -851,7 +924,7 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '"
                 + "" + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
                 + "Exam" + "'", null);
         if (cursor2.moveToNext()) {
@@ -863,14 +936,14 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void getPresentFinals(@NonNull Cursor cursor){
+    private void getPresentLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "='"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
                 + cursor.getString(1) + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + "="
                 + 1, null);
         if (cursor2.moveToNext()) {
@@ -879,14 +952,14 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void getAbsentFinals(@NonNull Cursor cursor){
+    private void getAbsentLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "='"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
                 + cursor.getString(1) + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + "="
                 + 1, null);
         if (cursor2.moveToNext()) {
@@ -895,14 +968,14 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void getLateFinals(@NonNull Cursor cursor){
+    private void getLateLab(@NonNull Cursor cursor, String gradingPeriod){
         Cursor cursor2 = sql.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
                 + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "='"
                 + parentId + "' and "
                 + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
                 + cursor.getString(1) + "' and "
                 + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
-                + "Finals" + "' and "
+                + gradingPeriod + "' and "
                 + DataBaseHelper.COLUMN_LATE_ATTENDANCE + "="
                 + 1, null);
         if (cursor2.moveToNext()) {
@@ -911,21 +984,63 @@ public class Ratings extends Fragment {
         cursor2.close();
     }
 
-    private void countAttendanceFinals(@NonNull Cursor cursor){
-        Cursor cursor2 = sql.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
-                + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "='"
-                + parentId + "' and "
-                + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
-                + cursor.getString(1) + "' and "
-                + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
-                + "Finals" + "'", null);
+    private void computeFinalRating(){
+        DataBaseHelper db = DataBaseHelper.getInstance(getContext());
+        SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + DataBaseHelper.TABLE_MY_STUDENTS + " where "
+                + DataBaseHelper.COLUMN_PARENT_ID + " = '"
+                + parentId + "'", null);
+        if (cursor.moveToNext()) {
 
-        if (cursor2.moveToNext()) {
-            presentCount = cursor2.getInt(0);
-            absentCount = cursor2.getInt(0);
-            lateCount = cursor2.getInt(0);
+            do {
+                double midterm=0;
+                double finals=0;
+                double finalRating=0;
+                double sum =0 ;
+                midterm = cursor.getDouble(10);
+                finals = cursor.getDouble(11);
+
+                String a = String.valueOf(midterm);
+                String b = String.valueOf(finals);
+
+                if (finals == 0 || midterm == 0 ) {
+                    Toast.makeText(getContext(),"Make sure student have their midterm and final grades",Toast.LENGTH_SHORT).show();
+                }else if (a.equals("-") || b.equals("-")){
+                    Toast.makeText(getContext(),"Make sure student have their midterm and final grades",Toast.LENGTH_SHORT).show();
+                }else {
+                    sum = midterm + finals;
+                    sum = sum / 200;
+                    sum = sum * 50;
+                    sum = sum + 50;
+
+                    if (sum >= 97 && sum<= 100){
+                        finalRating = 1.00;
+                    }else if (sum >= 94 && sum < 97){
+                        finalRating = 1.25;
+                    }else if (sum >= 91 && sum < 94){
+                        finalRating = 1.50;
+                    }else if (sum >= 88 && sum < 91){
+                        finalRating = 1.75;
+                    }else if (sum >= 85 && sum < 88){
+                        finalRating = 2.05;
+                    }else if (sum >= 82 && sum < 85){
+                        finalRating = 2.25;
+                    }else if (sum >= 79 && sum < 82){
+                        finalRating = 2.50;
+                    }else if (sum > 75 && sum <= 79){
+                        finalRating = 2.75;
+                    }else if (sum == 75){
+                        finalRating = 3.00;
+                    }else{
+                        finalRating = 5.00;
+                    }
+                    Log.d(TAG,"" + cursor.getString(3) + " " + finalRating );
+                    db.updateFinalRatingGrade(cursor.getString(1),
+                            parentId,
+                            finalRating);
+                }
+            } while (cursor.moveToNext());
         }
-        cursor2.close();
+        cursor.close();
     }
-
 }

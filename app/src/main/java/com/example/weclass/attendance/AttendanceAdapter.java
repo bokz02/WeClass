@@ -113,7 +113,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE - MMM d, yyyy");
         String date = dateFormat.format(calendar.getTime());
         holder._date.setText(date);
-        DataBaseHelper db = new DataBaseHelper(context);
+        DataBaseHelper db = DataBaseHelper.getInstance(context);
 
         // BACKGROUND COLOR WILL CHANGE IF IT HITS THE SPECIFIC COUNT
         int d = Integer.parseInt(holder._absent.getText().toString());

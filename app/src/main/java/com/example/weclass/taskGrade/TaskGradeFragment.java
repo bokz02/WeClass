@@ -94,7 +94,7 @@ public class TaskGradeFragment extends Fragment{
         studentID = new ArrayList<>();
         subjectID = new ArrayList<>();
         taskGradeItems = new ArrayList<>();
-        dataBaseHelper = new DataBaseHelper(getContext());
+        dataBaseHelper = DataBaseHelper.getInstance(getContext());
         taskGradeItems = displayData();
     }
 
