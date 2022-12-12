@@ -126,7 +126,6 @@ public class FinalRating extends Fragment {
             }while (cursor.moveToNext());
         }
         cursor.close();
-        sqLiteDatabase.close();
         return ratingsModels;
     }
 }
