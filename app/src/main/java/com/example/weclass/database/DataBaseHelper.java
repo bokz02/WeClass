@@ -631,6 +631,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    // UPDATE STUDENT'S PROFILE FINAL RATING IN PROFILE ACTIVITY
+    public void updateGradeItem(String taskType, String taskNumber, String gradingPeriod, String items){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_TASK_TYPE_MY_GRADE, taskType);
+        contentValues.put(COLUMN_TASK_NUMBER_MY_GRADE, taskNumber);
+        contentValues.put(COLUMN_GRADING_PERIOD_MY_GRADE, gradingPeriod);
+        contentValues.put(COLUMN_ITEMS_MY_GRADE, items);
+
+        long result = db.update(TABLE_MY_GRADE, contentValues, "task_type=" + "'" +taskType+ "'"
+                + " and " + "task_number=" + "'"+taskNumber+"'" + " and " + "grading_period=" + "'" + gradingPeriod + "'", null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+        db.close();
+    }
+
     // UPDATE STUDENT'S attendance today
     public void updateAttendanceToday(String id, String parentId,String date){
         SQLiteDatabase db = this.getWritableDatabase();

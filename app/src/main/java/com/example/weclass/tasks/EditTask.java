@@ -112,7 +112,7 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
                 // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
                 if (cursor.moveToFirst()) {
 
-                    DataBaseHelper dbh = new DataBaseHelper(EditTask.this);
+                    DataBaseHelper dbh = DataBaseHelper.getInstance(EditTask.this);
                     dbh.updateTask(
                             _idTask.getText().toString().trim(),
                             _taskType.getText().toString().trim(),
@@ -123,8 +123,14 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
                             _gradingPeriod.getText().toString().trim(),
                             _due.getText().toString().trim());
 
+                    dbh.updateGradeItem(_taskType.getText().toString().trim(),
+                            _taskNumber.getText().toString().trim(),
+                            _gradingPeriod.getText().toString().trim(),
+                            _score.getText().toString().trim());
+
                     Snackbar.make(_update, "Task information successfully updated!", Snackbar.LENGTH_LONG).show();
                 }
+                cursor.close();
             }
         });
 
