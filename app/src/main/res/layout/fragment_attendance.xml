@@ -302,15 +302,6 @@
             app:layout_constraintEnd_toStartOf="@+id/guide4"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/spinnerAttendance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"
-            android:popupBackground="@drawable/spinner_popup_bg"
-            android:backgroundTint="@color/black1"
-            app:layout_constraintBottom_toBottomOf="@+id/sortAttendance"
-            app:layout_constraintEnd_toStartOf="@+id/sortAttendance" />
 
         <TextView
             android:id="@+id/sortAttendance"

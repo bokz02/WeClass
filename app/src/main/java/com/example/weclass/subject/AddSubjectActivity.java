@@ -454,27 +454,31 @@ public class AddSubjectActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this, R.style.CustomMaterialDialog);
-                builder.setTitle("Confirm exit");
-                builder.setIcon(R.drawable.ic_baseline_warning_24);
-                builder.setMessage("All the fields will not be saved!");
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
+                if (semesterTextView.getText().toString().isEmpty() && schoolYearTextView.getText().toString().isEmpty() && timeTextView.getText().toString().isEmpty() &&
+                timeEndTextView.getText().toString().isEmpty() && dayTextView.getText().toString().isEmpty() && subjectCodeEditText.getText().toString().isEmpty() &&
+                _classType.getText().toString().isEmpty() && subjectNameEditText.getText().toString().isEmpty() && courseEditText.getText().toString().isEmpty() &&
+                _section.getText().toString().isEmpty() && roomEditText.getText().toString().isEmpty()){
+                    finish();
+                }else {
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddSubjectActivity.this, R.style.CustomMaterialDialog);
+                    builder.setTitle("Confirm exit");
+                    builder.setIcon(R.drawable.ic_baseline_warning_24);
+                    builder.setMessage("All the fields will not be saved!");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
 
-                    }
-                });
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-
-                builder.show();
+                        }
+                    });
+                    builder.show();
+                }
             }
         });
     }

@@ -223,14 +223,13 @@
             android:id="@+id/gradingPeriodTextViewAddTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:fontFamily="@font/poppins_regular"
             android:drawablePadding="5dp"
             android:textColor="@color/black1"
             android:drawableTint="@color/darkText"
             android:focusable="true"
             android:gravity="center_vertical"
-            android:hint="Select Grading Period"
+            android:text="grading period"
             android:textSize="15sp"/>
     </LinearLayout>
 

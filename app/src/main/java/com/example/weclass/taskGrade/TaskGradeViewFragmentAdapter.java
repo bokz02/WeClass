@@ -24,11 +24,14 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
 
     private final ArrayList<TaskGradeViewItems> taskGradeViewItems;
     private final android.content.Context context;
+    private final UpdateTaskGradeView update;
 
 
-    public TaskGradeViewFragmentAdapter(ArrayList<TaskGradeViewItems> taskGradeViewItems, Context context){
+    public TaskGradeViewFragmentAdapter(ArrayList<TaskGradeViewItems> taskGradeViewItems, Context context,
+                                        UpdateTaskGradeView update){
         this.taskGradeViewItems = taskGradeViewItems;
         this.context = context;
+        this.update = update;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -102,6 +105,8 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
                         holder.gradingPeriod.getText().toString(),
                         holder.grade.getText().toString(),
                         holder.parentId.getText().toString());
+
+                update.updateRecView();
             }
 
             @Override
@@ -116,4 +121,7 @@ public class TaskGradeViewFragmentAdapter extends RecyclerView.Adapter<TaskGrade
         return taskGradeViewItems.size();
     }
 
+    public interface UpdateTaskGradeView{
+        void updateRecView();
+    }
 }

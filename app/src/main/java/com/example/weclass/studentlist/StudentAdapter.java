@@ -38,14 +38,20 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     private final Context context;
     private final OnNoteListener mOnNoteListener;
     private final ItemCallback itemCallback;
+    private final String gradingPeriod;
+    private final UpdateStudentList update;
+    int absentCount;
 
 
-    public StudentAdapter(Context context, ArrayList<StudentItems> studentItems, OnNoteListener onNoteListener, ItemCallback itemCallback){
+    public StudentAdapter(Context context, ArrayList<StudentItems> studentItems, OnNoteListener onNoteListener, ItemCallback itemCallback,
+                          String gradingPeriod, UpdateStudentList update){
         this.context = context;
         this.studentItems = studentItems;
         this.mOnNoteListener = onNoteListener;
         this.itemCallback = itemCallback;
         studentItemsFull = new ArrayList<>(studentItems);
+        this.gradingPeriod = gradingPeriod;
+        this.update = update;
 
     }
 
@@ -125,11 +131,23 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         holder.studentNumber.setText(String.valueOf(studentItems.get(position).getStudentNumber()));
         holder.studentImage.setImageBitmap(bitmap);
 
+        Cursor cursor = sqLiteDatabase.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
+                + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
+                + holder.studentNumber.getText().toString() + "' and "
+                + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + "='"
+                + holder.parent_id.getText().toString() + "' and "
+                + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + "="
+                + 1 + " and "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
+                + gradingPeriod + "'", null);
 
-        int a = Integer.parseInt(holder.absences.getText().toString());
-        if(a == 4){
+        if (cursor.moveToFirst()){
+            absentCount = cursor.getInt(0);
+        }cursor.close();
+
+        if(absentCount == 4){
             holder.background.setBackgroundResource(R.color.absentWarning1);
-        }else if (a == 5){
+        }else if (absentCount == 5){
             holder.background.setBackgroundResource(R.color.absentWarning2);
         }
 
@@ -192,7 +210,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                         studentItems.remove(a);
                                         notifyItemRemoved(a);
                                         itemCallback.updateTextView();
-
+                                        update.updateRecView();
                                     }
                                 });
 
@@ -263,6 +281,10 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     // UPDATE SUM OF STUDENTS IN STUDENT LIST FRAGMENT
     public interface ItemCallback{
         void updateTextView();
+    }
+
+    public interface UpdateStudentList{
+        void updateRecView();
     }
 
 }

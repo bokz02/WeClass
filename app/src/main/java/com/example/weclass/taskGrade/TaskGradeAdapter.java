@@ -25,11 +25,13 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
     private final ArrayList<TaskGradeItems> taskGradeItems;
     private final Context context;
+    private final UpdateTaskGradeRecView update;
     int a;
 
-    public TaskGradeAdapter(ArrayList<TaskGradeItems> taskGradeItems, Context context) {
+    public TaskGradeAdapter(ArrayList<TaskGradeItems> taskGradeItems, Context context, UpdateTaskGradeRecView update) {
         this.taskGradeItems = taskGradeItems;
         this.context = context;
+        this.update = update;
     }
 
 
@@ -98,33 +100,13 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
             @Override
             public void onClick(View view) {
                 DataBaseHelper db = DataBaseHelper.getInstance(context);
-                SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+
                 int b;
 
                 if(!holder.gradeEditText.getText().toString().equals("")) {
                     a = Integer.parseInt(holder.gradeEditText.getText().toString());
                 }
 
-                // query database
-                Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
-                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + " = "
-                + holder.studentID.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
-                        + holder.subjectID.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " = '"
-                        + holder.taskType.getText().toString() + "' AND "
-                        + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
-                        + holder.taskNumber.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + " = '"
-                        + holder.gradingPeriod.getText().toString() + "'", null);
-
-                if (cursor.moveToFirst()){
-
-                    Toast.makeText(context, "" + holder.lastName.getText().toString() + ", " + holder.firstName.getText().toString() + " already graded!" , Toast.LENGTH_SHORT).show();
-                    cursor.close();
-
-                } else {
                     // update students grade in database
                     db.updateGrade(holder.studentID.getText().toString().trim(),
                             holder.taskType.getText().toString().trim(),
@@ -135,11 +117,12 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
 
                     Toast.makeText(context, "" + holder.lastName.getText().toString() + ", " + holder.firstName.getText().toString() + " successfully graded" , Toast.LENGTH_SHORT).show();
 
-                }
                 // remove item in recyclerview and database
                 b = holder.getAdapterPosition();
                 taskGradeItems.remove(b);
                 notifyItemRemoved(b);
+
+                update.updateRecView();
             }
         });
     }
@@ -149,6 +132,9 @@ public class TaskGradeAdapter extends RecyclerView.Adapter<TaskGradeAdapter.MyVi
         return taskGradeItems.size();
     }
 
+    public interface UpdateTaskGradeRecView{
+        void updateRecView();
+    }
 
 
 }

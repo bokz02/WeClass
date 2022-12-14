@@ -34,7 +34,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     private final UpdateRecView updateRecView;
     private final String spinnerGradingPeriod;
     private int c;
-    private final int a = 1;
 
     public AttendanceAdapter(Context context, ArrayList<AttendanceItems> attendanceItems,
                              OnNoteListener mOnNoteListener, UpdateRecView updateRecView,
@@ -148,6 +147,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                                 attendanceItems.add(c, itemsAttendance);
                                 notifyItemInserted(c);
+
+                                updateRecView.updateAttendanceRecView();
                             }
                         });
                 snackbar.show();
@@ -176,6 +177,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                 notifyItemRemoved(c);
 
                 updateRecView.updateAttendanceRecView();
+
             }
         });
 
@@ -238,7 +240,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                     notifyItemRemoved(c);
 
                 updateRecView.updateAttendanceRecView();
-
                 }
         });
 

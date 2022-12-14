@@ -128,6 +128,17 @@
             app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toBottomOf="@+id/bottomNavigationView" />
 
+        <Spinner
+            android:id="@+id/spinnerStudentList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black1"
+            android:popupBackground="@drawable/spinner_popup_bg"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toBottomOf="@+id/sortStudentList"
+            app:layout_constraintEnd_toStartOf="@+id/sortStudentList"
+            app:layout_constraintTop_toTopOf="@+id/sortStudentList" />
+
         <TextView
             android:id="@+id/sortStudentList"
             android:layout_width="wrap_content"

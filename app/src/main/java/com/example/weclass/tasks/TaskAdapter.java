@@ -39,12 +39,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     private final Context context;
     private final OnNoteListener mOnNoteListener;
     private final ArrayList<TaskItems> taskItemsFull;
+    private final UpdateRecView updateRecView;
 
-    public TaskAdapter(Context context, ArrayList<TaskItems> taskItems,OnNoteListener onNoteListener) {
+    public TaskAdapter(Context context, ArrayList<TaskItems> taskItems,OnNoteListener onNoteListener,
+                       UpdateRecView updateRecView) {
         this.context = context;
         this.taskItems = taskItems;
         this.mOnNoteListener = onNoteListener;
         taskItemsFull = new ArrayList<>(taskItems);
+        this.updateRecView = updateRecView;
 
     }
 
@@ -102,12 +105,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder._parentTD.setText(String.valueOf(taskItems.get(position).getParentID()));
         holder._taskType.setText(String.valueOf(taskItems.get(position).getTaskType()));
         holder._score.setText(String.valueOf(taskItems.get(position).getScore()));
-        holder._description.setText(String.valueOf(taskItems.get(position).getTaskDescription()));
         holder._progress.setText(String.valueOf(taskItems.get(position).getProgress()));
         holder._id.setText(String.valueOf(taskItems.get(position).getTaskNumber()));
         holder._gradingPeriod.setText(String.valueOf(taskItems.get(position).getGradingPeriod()));
         holder._due.setText(String.valueOf(taskItems.get(position).getDue()));
         holder._taskId.setText(String.valueOf(taskItems.get(position).getTaskID()));
+
+        String b = String.valueOf(taskItems.get(position).getTaskDescription());
+        String a = "                       ";
+        String c = a + b;
+        holder._description.setText(c);
 
         if(holder._progress.getText().toString().equals("Completed")){
             holder._progress.setTextColor(holder._progress.getContext().getResources().getColor(R.color.lightText));
@@ -121,22 +128,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             @Override
             public void onClick(View view) {
 
-
-
                 //cardView.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
-
                 if(holder.constraintLayout.getVisibility() == View.GONE){
                     TransitionManager.beginDelayedTransition(holder.cardView, new AutoTransition());
                     holder.constraintLayout.setVisibility(View.VISIBLE);
                     holder._expand.setImageResource(R.drawable.ic_up);
                 }
                 else {
-
                     holder.constraintLayout.setVisibility(View.GONE);
                     holder._expand.setImageResource(R.drawable.ic_arrow_down1);
+                    notifyDataSetChanged();
                 }
-                notifyDataSetChanged();
-
 
             }
         });
@@ -267,10 +269,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             if(taskItems.size()==0){
                 Toast.makeText(context, "Task doesn't exist" , Toast.LENGTH_SHORT).show();
             }
-
             notifyDataSetChanged();
-
         }
     };
+
+    public interface UpdateRecView{
+        void updateTaskRecView();
+    }
 
 }

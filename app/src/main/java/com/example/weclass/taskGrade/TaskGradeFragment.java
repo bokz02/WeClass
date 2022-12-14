@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class TaskGradeFragment extends Fragment{
+public class TaskGradeFragment extends Fragment implements TaskGradeAdapter.UpdateTaskGradeRecView {
 
     View view, _noStudentTGradeViewFragment;
     TextView _taskType,_subjectID, _taskNumber, _gradingPeriod,
@@ -82,7 +82,7 @@ public class TaskGradeFragment extends Fragment{
     public void initializeAdapter(){
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, getContext());
+        taskGradeAdapter = new TaskGradeAdapter(taskGradeItems, getContext(), this);
         extendedRecyclerView.setAdapter(taskGradeAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noStudentTGradeViewFragment, _noStudentToGradeTextViewFragment);
@@ -165,4 +165,10 @@ public class TaskGradeFragment extends Fragment{
         }
     }
 
+    @Override
+    public void updateRecView() {
+        if (taskGradeAdapter.getItemCount() ==0){
+            initializeAdapter();
+        }
+    }
 }

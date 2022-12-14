@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.Editable;
@@ -33,11 +34,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weclass.BottomNavi;
 import com.example.weclass.CSVWriter;
 import com.example.weclass.ExtendedRecyclerView;
+import com.example.weclass.MyProgressBar;
 import com.example.weclass.R;
 import com.example.weclass.SpinnerAdapter;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.ratings.fragments.FinalRating;
+import com.example.weclass.ratings.fragments.Finals;
+import com.example.weclass.ratings.fragments.Midterm;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -60,12 +66,10 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     View view;
     View _noStudentsView;
     EditText _search;
-    Spinner spinner;
-    String[] gradingPeriod = {"Midterm", "Finals"};
-    SharedPreferences sharedPreferences;
-    int spinnerPosition;
-    String spinnerGradingPeriod;
+    String gradingPeriod;
     private static final String tag = "Attendance";
+
+
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
@@ -77,8 +81,6 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         view = inflater.inflate(R.layout.fragment_attendance, container, false);
 
         initialize();
-        selectGradingPeriod();
-        loadSpinnerPosition();
         getDataFromBottomNaviActivity();
         display();
         initializeAdapter();
@@ -128,7 +130,6 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         absent = view.findViewById(R.id.absentTodayAttendance);
         helpButton = view.findViewById(R.id.helpButtonAttendance);
         _late = view.findViewById(R.id.lateTodayAttendance);
-        spinner = view.findViewById(R.id.spinnerAttendance);
 
     }
 
@@ -168,7 +169,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter() {
-        attendanceAdapter = new AttendanceAdapter(getContext(), attendanceItems, this, this, spinnerGradingPeriod);
+        attendanceAdapter = new AttendanceAdapter(getContext(), attendanceItems, this, this, gradingPeriod);
         extendedRecyclerView.setAdapter(attendanceAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noStudentsView, _noStudentsTextView);
@@ -229,6 +230,8 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
             _subjectCode.setText(bundle.getString("SubjectCode"));
             _sy.setText(bundle.getString("sy"));
             _course.setText(bundle.getString("CourseCode"));
+            gradingPeriod = bundle.getString("gradingPeriod");
+
         }
     }
 
@@ -517,61 +520,14 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
 
     @Override
     public void updateAttendanceRecView() {
-        initialize();
-        getDataFromBottomNaviActivity();
-        display();
-        initializeAdapter();
-        automaticSort();
-    }
-
-    // method for spinner
-    private void selectGradingPeriod(){
-
-        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(requireContext(), android.R.layout.simple_spinner_item, gradingPeriod);
-        spinner.setAdapter(spinnerAdapter);
-        spinner.post(new Runnable() {
-            @Override
-            public void run() {
-                spinner.setDropDownVerticalOffset(spinner.getDropDownVerticalOffset() + spinner.getHeight());
-            }
-        });
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                // when item in dropdown selected
-                spinnerGradingPeriod = adapterView.getItemAtPosition(position).toString();
-                spinnerPosition = spinner.getSelectedItemPosition();
-                saveSpinnerPosition();
-                initializeAdapter();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-    }
-
-    public void saveSpinnerPosition(){
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("position", spinnerPosition);
-        editor.apply();
-    }
-
-    public void loadSpinnerPosition(){
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        int position= sharedPreferences .getInt("position", 0);
-        spinner.setSelection(position);
-        if(position == 0) {
-            spinnerGradingPeriod = "Midterm";
-
-        }else {
-            spinnerGradingPeriod = "Finals";
+        if (attendanceAdapter.getItemCount() == 0) {
+            initialize();
+            getDataFromBottomNaviActivity();
+            display();
+            initializeAdapter();
+            automaticSort();
         }
     }
+
 
 }

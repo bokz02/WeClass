@@ -53,7 +53,7 @@ public class StudentProfile extends AppCompatActivity {
             _midtermGrade, _finalRating, studentNumber, _middleName
             ,_late;
     ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects, _profileImage;
-    String selectedFinalGrade, selectedMidtermGrade, selectedFinalRating;
+    String gradingPeriod;
     Uri uri = null;
     CardView absentCardView, activities, quiz,
             assignment, seatWork, exams, projects, recitation,
@@ -61,6 +61,7 @@ public class StudentProfile extends AppCompatActivity {
     SharedPref sharedPref;
     ProgressBar progressBar;
     ConstraintLayout constraintButton;
+    int absentCount=0, presentCount=0, lateCount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,56 +159,71 @@ public class StudentProfile extends AppCompatActivity {
     public void countAbsent(){
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
-                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT count(*) FROM "
+                + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + " = '"
                 + studentNumber.getText().toString() + "' AND "
-                + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                + _subjectID.getText().toString(), null);
+                + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
+                + _subjectID.getText().toString() + " and "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
+                + gradingPeriod + "'and "
+                + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + "="
+                + 1, null);
 
         if (cursor.moveToFirst()){
-            _absentTextView.setText(String.valueOf(cursor.getInt(8)));
+            absentCount = cursor.getInt(0);
             cursor.close();
         }
 
-        int a = Integer.parseInt(_absentTextView.getText().toString());
-        if(a == 4){
+        if(absentCount == 4){
             absentCardView.setCardBackgroundColor(getResources().getColor(R.color.absentWarning1));
-        }else if(a >= 5 ){
+        }else if(absentCount >= 5 ){
             absentCardView.setCardBackgroundColor(getResources().getColor(R.color.absentWarning2));
         }
+        _absentTextView.setText(String.valueOf(absentCount));
     }
 
     public void countPresent(){
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
-                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT count(*) FROM "
+                + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + " = '"
                 + studentNumber.getText().toString() + "' AND "
-                + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                + _subjectID.getText().toString(), null);
+                + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
+                + _subjectID.getText().toString() + " and "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
+                + gradingPeriod + "' and "
+                + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + "="
+                + 1, null);
 
         if (cursor.moveToFirst()){
-            _presentTextview.setText(String.valueOf(cursor.getInt(7)));
+            presentCount = cursor.getInt(0);
             cursor.close();
         }
+        _presentTextview.setText(String.valueOf(presentCount));
     }
 
     public void countLate(){
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
-                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
-                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT count(*) FROM "
+                + DataBaseHelper.TABLE_ATTENDANCE + " WHERE "
+                + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + " = '"
                 + studentNumber.getText().toString() + "' AND "
-                + DataBaseHelper.COLUMN_PARENT_ID + " = "
-                + _subjectID.getText().toString(), null);
+                + DataBaseHelper.COLUMN_SUBJECT_ID_ATTENDANCE + " = "
+                + _subjectID.getText().toString() + " and "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_ATTENDANCE + "='"
+                + gradingPeriod + "'and "
+                + DataBaseHelper.COLUMN_LATE_ATTENDANCE + "="
+                + 1, null);
 
         if (cursor.moveToFirst()){
-            _late.setText(String.valueOf(cursor.getInt(13)));
+            lateCount = cursor.getInt(0);
             cursor.close();
         }
+        _late.setText(String.valueOf(lateCount));
     }
 
 
@@ -343,6 +359,7 @@ public class StudentProfile extends AppCompatActivity {
 
         String subjectCode = intent.getStringExtra("subject");
         String course = intent.getStringExtra("course");
+        gradingPeriod = intent.getStringExtra("gradingPeriod");
 
         //int studentID = studentItems.getId();
         int subjectID = studentItems.getParent_id();

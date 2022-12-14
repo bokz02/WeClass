@@ -39,6 +39,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
     DatePickerDialog datePickerDialog;
+    String gradingPeriod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         cancelButton(); // CANCEL BUTTON
         getDataFromStudentListFragment(); // SET THE ID FOR PARENT ID TEXT
         createTask();       // CREATE A TASK BUTTON
-        pickGradingPeriod();
+        //pickGradingPeriod();
         examTrapping();
     }
 
@@ -191,36 +192,38 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     }
 
 
-    // SEMESTER PICKER WILL OPEN WHEN PRESSED
-    public void pickGradingPeriod() {
-        final String[] gradingPeriod = new String[]{
-                "Midterm",
-                "Finals",
-
-        };
-
-        selectedPeriod = gradingPeriod[0];
-        _gradingPeriod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
-                builder.setTitle("Select grading period");
-                builder.setSingleChoiceItems(gradingPeriod, 0, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        selectedPeriod = gradingPeriod[i];
-                        _gradingPeriod.setText(selectedPeriod);
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.show();
-            }
-        });
-    }
+//    // SEMESTER PICKER WILL OPEN WHEN PRESSED
+//    public void pickGradingPeriod() {
+//        final String[] gradingPeriod = new String[]{
+//                "Midterm",
+//                "Finals",
+//
+//        };
+//
+//        selectedPeriod = gradingPeriod[0];
+//        _gradingPeriod.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
+//                builder.setTitle("Select grading period");
+//                builder.setSingleChoiceItems(gradingPeriod, 0, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        selectedPeriod = gradingPeriod[i];
+//                        _gradingPeriod.setText(selectedPeriod);
+//                        dialogInterface.dismiss();
+//                    }
+//                });
+//                builder.show();
+//            }
+//        });
+//    }
 
     public void getDataFromStudentListFragment() {
         Intent intent = getIntent();
         String a = intent.getStringExtra("id");
+        gradingPeriod = intent.getStringExtra("gradingPeriod");
+        _gradingPeriod.setText(gradingPeriod);
         parentID.setText(a);
     }
 
@@ -346,25 +349,31 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         _cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
-                builder.setTitle("Confirm exit");
-                builder.setIcon(R.drawable.ic_baseline_warning_24);
-                builder.setMessage("All the fields will not be saved!");
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
 
-                    }
-                });
+                if (_taskNumber.getText().toString().isEmpty() && taskType.getText().toString().isEmpty() && _description.getText().toString().isEmpty() &&
+                _dueTextView.getText().toString().isEmpty() && _score.getText().toString().isEmpty()){
+                    finish();
+                }else {
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
+                    builder.setTitle("Confirm exit");
+                    builder.setIcon(R.drawable.ic_baseline_warning_24);
+                    builder.setMessage("All the fields will not be saved!");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
 
-                    }
-                });
-                builder.show();
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    builder.show();
+                }
             }
         });
     }

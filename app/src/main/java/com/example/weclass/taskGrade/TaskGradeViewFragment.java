@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class TaskGradeViewFragment extends Fragment {
+public class TaskGradeViewFragment extends Fragment implements TaskGradeViewFragmentAdapter.UpdateTaskGradeView {
 
 
     TextView _taskType, _taskNumber, _gradingPeriod, _subjectId, _noStudentToGradeTextViewFragment;
@@ -88,7 +88,7 @@ public class TaskGradeViewFragment extends Fragment {
     public void initializeAdapter(){
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        taskGradeViewFragmentAdapter = new TaskGradeViewFragmentAdapter(taskGradeViewItems, getContext());
+        taskGradeViewFragmentAdapter = new TaskGradeViewFragmentAdapter(taskGradeViewItems, getContext(), this);
         extendedRecyclerView.setAdapter(taskGradeViewFragmentAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noStudentTGradeViewFragment, _noStudentToGradeTextViewFragment);
@@ -169,4 +169,10 @@ public class TaskGradeViewFragment extends Fragment {
         }
     }
 
+    @Override
+    public void updateRecView() {
+        if (taskGradeViewFragmentAdapter.getItemCount()==0){
+            initializeAdapter();
+        }
+    }
 }

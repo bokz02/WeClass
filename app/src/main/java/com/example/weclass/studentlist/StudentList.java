@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.security.identity.ResultData;
 import android.text.Editable;
@@ -37,12 +38,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,8 +54,10 @@ import com.example.weclass.BottomNavi;
 import com.example.weclass.CSVWriter;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.LockScreen;
+import com.example.weclass.MyProgressBar;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
+import com.example.weclass.SpinnerAdapter;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -69,7 +74,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class StudentList extends Fragment implements StudentAdapter.OnNoteListener, StudentAdapter.ItemCallback{
+public class StudentList extends Fragment implements StudentAdapter.OnNoteListener, StudentAdapter.ItemCallback, StudentAdapter.UpdateStudentList {
 
     ExtendedRecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
@@ -84,8 +89,12 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     EditText searchStudent;
     View noFile_;
     ProgressBar progressBar;
-    Context context;
-    Uri uri = null;
+    Spinner spinner;
+    String[] gradingPeriod = {"Midterm", "Finals"};
+    SharedPreferences sharedPreferences;
+    int spinnerPosition;
+    String spinnerGradingPeriod;
+    PassData passData;
 
     int lastFirstVisiblePosition;
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
@@ -97,6 +106,8 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     view = inflater.inflate(R.layout.fragment_student_list, container, false);
 
         initialize();       // INITIALIZE ALL VIEWS
+        selectGradingPeriod();
+        loadSpinnerPosition();
         addStudent();       // ADD STUDENT BUTTON
         getDataFromBottomNaviActivity(); // GET DATA FROM BOTTOM NAVI THE NEEDS to DISPLAY SPECIFIC DATA FROM EACH SUBJECT
         display();              // DATA TO BE DISPLAY IN RECYCLERVIEW
@@ -141,6 +152,13 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         lastFirstVisiblePosition = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
     }
 
+    // interface that pass data from this fragment to bottom navigation
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        passData = (PassData) context;
+    }
+
     // SORT STUDENT LIST
     public void sortList(){
         _sort.setOnClickListener(new View.OnClickListener() {
@@ -171,9 +189,6 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         });
     }
 
-
-
-
     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
     public void showHideFloatingActionButton(){
 
@@ -202,10 +217,9 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         });
     }
 
-
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
-        studentAdapter = new StudentAdapter(getContext(), studentItems, this, this);
+        studentAdapter = new StudentAdapter(getContext(), studentItems, this, this, spinnerGradingPeriod, this);
         recyclerView.setAdapter(studentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setEmptyView(noFile_, noStudentTextView);
@@ -268,6 +282,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         optionButton = view.findViewById(R.id.optionButtonStudentList);
         _schoolYear = view.findViewById(R.id.schoolYearStudentList);
         progressBar = view.findViewById(R.id.progressBarStudentList);
+        spinner = view.findViewById(R.id.spinnerStudentList);
 
     }
 
@@ -416,6 +431,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
         intent.putExtra("course", _courseTitle.getText().toString());
         intent.putExtra("subject", _subjectCode.getText().toString());
+        intent.putExtra("gradingPeriod", spinnerGradingPeriod);
         startActivity(intent);
     }
 
@@ -510,4 +526,81 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             Toast.makeText(getContext(), "Error occurred" , Toast.LENGTH_SHORT).show();
         }
     }
+
+    // method for spinner
+    private void selectGradingPeriod(){
+
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(requireContext(), android.R.layout.simple_spinner_item, gradingPeriod);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.post(new Runnable() {
+            @Override
+            public void run() {
+                spinner.setDropDownVerticalOffset(spinner.getDropDownVerticalOffset() + spinner.getHeight());
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                // when item in dropdown selected
+                spinnerGradingPeriod = adapterView.getItemAtPosition(position).toString();
+                spinnerPosition = spinner.getSelectedItemPosition();
+                saveSpinnerPosition();
+                OnPassData(spinnerGradingPeriod);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }
+
+    private void loading1second(){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initializeAdapter();
+            }
+        }, 3000);
+    }
+
+    public void saveSpinnerPosition(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("position", spinnerPosition);
+        editor.apply();
+    }
+
+    public void loadSpinnerPosition(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int position= sharedPreferences .getInt("position", 0);
+        spinner.setSelection(position);
+        if(position == 0) {
+            spinnerGradingPeriod = "Midterm";
+        }else {
+            spinnerGradingPeriod = "Finals";
+        }
+        OnPassData(spinnerGradingPeriod);
+    }
+
+    @Override
+    public void updateRecView() {
+        if (studentAdapter.getItemCount()==0){
+            initializeAdapter();
+        }
+    }
+
+    // interface that pass data from this fragment to bottom navigation
+    public interface PassData {
+        void onPassData(String data);
+    }
+
+    public void OnPassData(String data){
+        passData.onPassData(data);
+    }
+
 }

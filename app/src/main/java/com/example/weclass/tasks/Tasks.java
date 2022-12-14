@@ -42,7 +42,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
+public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskAdapter.UpdateRecView {
 
     DataBaseHelper dataBaseHelper;
     ArrayList<TaskItems> taskItems, id, _parentID;
@@ -55,6 +55,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
     View view;
     View _noFile;
     int lastFirstVisiblePosition;
+    String gradingPeriod;
 
 
     @Override
@@ -93,13 +94,12 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter() {
-
-        taskAdapter = new TaskAdapter(getContext(), taskItems, this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        taskAdapter = new TaskAdapter(getContext(), taskItems, this, this);
         extendedRecyclerView.setAdapter(taskAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noFile, noFileTextView);
-
-
+        linearLayoutManager.setStackFromEnd(true);
     }
 
     // DATA TO BE DISPLAY IN RECYCLERVIEW
@@ -173,7 +173,9 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM "
                 + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
                 + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
-                + parentID.getText().toString(), null);
+                + parentID.getText().toString() + " and "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + "='"
+                + gradingPeriod + "'", null);
 
         ArrayList<TaskItems> taskItems = new ArrayList<>();
 
@@ -205,6 +207,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
             _taskSubjectCode.setText(bundle.getString("SubjectCode"));
             _course.setText(bundle.getString("CourseCode"));
             _sy.setText(bundle.getString("sy"));
+            gradingPeriod = bundle.getString("gradingPeriod");
         }
     }
 
@@ -215,6 +218,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), AddTask.class);
                 intent.putExtra("id", parentID.getText().toString());
+                intent.putExtra("gradingPeriod", gradingPeriod);
                 startActivity(intent);
             }
         });
@@ -257,7 +261,6 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
     public void automaticSort() {
         taskItems.sort(TaskItems.sortAtoZComparator);
         taskItems.sort(TaskItems.sortZtoAComparator);
-        taskItems.sort(TaskItems.sortByTaskNumber);
         initializeAdapter();
     }
 
@@ -341,5 +344,11 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener {
             Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
             Toast.makeText(getContext(), "Error occurred", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void updateTaskRecView() {
+        initialize();
+        initializeAdapter();
     }
 }

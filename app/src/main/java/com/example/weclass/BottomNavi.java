@@ -19,6 +19,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -46,15 +47,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class BottomNavi extends AppCompatActivity implements MyProgressBar {
-    SharedPreferences sharedPreferences = null;
+public class BottomNavi extends AppCompatActivity implements MyProgressBar, StudentList.PassData {
+
     SharedPref sharedPref;
-    FloatingActionButton floatingActionButton;
     BottomNavigationView bottomNavigationView;
     TextView parentID, subjectCode, courseName, _archive
             , _schoolYear;
     ProgressBar progressBar;
-    String classType;
+    String classType, gradingPeriod;
+    private static final String tag = "BotNav";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +149,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar {
         bundle.putString("SubjectCode", subjectCode.getText().toString());
         bundle.putString("CourseCode", courseName.getText().toString());
         bundle.putString("sy", _schoolYear.getText().toString());
+        bundle.putString("gradingPeriod", gradingPeriod);
         record.setArguments(bundle);
         fragmentLoader(record);
     }
@@ -160,6 +162,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar {
         bundle.putString("SubjectCode", subjectCode.getText().toString());
         bundle.putString("sy", _schoolYear.getText().toString());
         bundle.putString("CourseCode", courseName.getText().toString());
+        bundle.putString("gradingPeriod", gradingPeriod);
 
         attendance.setArguments(bundle);
         fragmentLoader(attendance);
@@ -401,9 +404,14 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar {
             @Override
             public void run() {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(BottomNavi.this, "Computation complete", Toast.LENGTH_SHORT).show();
             }
         }, 3000);
 
+    }
+
+    // interface that get data from student list fragment to this class
+    @Override
+    public void onPassData(String data) {
+        gradingPeriod = data;
     }
 }

@@ -153,26 +153,30 @@ public class AddStudent extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (studentNumber.getText().toString().isEmpty() && lastName.getText().toString().isEmpty() && firstName.getText().toString().isEmpty() &&
+                genderTextview.getText().toString().isEmpty()){
+                    finish();
+                }else {
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddStudent.this);
+                    builder.setTitle("Confirm exit");
+                    builder.setIcon(R.drawable.ic_baseline_warning_24);
+                    builder.setMessage("All the fields will not be saved!");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
 
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddStudent.this);
-                builder.setTitle("Confirm exit");
-                builder.setIcon(R.drawable.ic_baseline_warning_24);
-                builder.setMessage("All the fields will not be saved!");
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
+                        }
+                    });
 
-                    }
-                });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                builder.show();
+                        }
+                    });
+                    builder.show();
+                }
             }
         });
     }
