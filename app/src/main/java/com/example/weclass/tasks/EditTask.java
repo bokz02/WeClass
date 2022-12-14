@@ -95,24 +95,8 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
             @Override
             public void onClick(View view) {
 
-                DataBaseHelper dataBaseHelper = new DataBaseHelper(EditTask.this);
-                SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+                DataBaseHelper dbh = new DataBaseHelper(EditTask.this);
 
-                Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-                        + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
-                        + DataBaseHelper.COLUMN_ID4 + " = "
-                        + _idTask.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
-                        + _taskType.getText().toString() + "' AND "
-                        + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
-                        + _taskNumber.getText().toString() + " AND "
-                        + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                        + _gradingPeriod.getText().toString() + "'", null);
-
-                // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
-                if (cursor.moveToFirst()) {
-
-                    DataBaseHelper dbh = DataBaseHelper.getInstance(EditTask.this);
                     dbh.updateTask(
                             _idTask.getText().toString().trim(),
                             _taskType.getText().toString().trim(),
@@ -129,8 +113,7 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
                             _score.getText().toString().trim());
 
                     Snackbar.make(_update, "Task information successfully updated!", Snackbar.LENGTH_LONG).show();
-                }
-                cursor.close();
+
             }
         });
 
