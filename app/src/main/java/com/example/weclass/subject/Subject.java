@@ -21,6 +21,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -62,16 +63,9 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     TextView noSubject;
     private FirebaseAuth mAuth;
     int lastFirstVisiblePosition;
-
-
-    private StorageReference storageReference;
-    FirebaseAuth fauth;
-    ImageView profilepic;
     SharedPref sharedPref;
-    SharedPreferences sharedPreferences = null;
-    SwitchMaterial toggleButton;
-
-    private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
+    String notArchive = "Not Archive";
+    private final String tag = "subject activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,7 +176,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
-        subjectAdapter = new SubjectAdapter(Subject.this, subjectItems, this);
+        subjectAdapter = new SubjectAdapter(Subject.this, subjectItems, this, notArchive);
         recyclerView.setAdapter(subjectAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Subject.this));
         recyclerView.setEmptyView(noFile, noSubject);
@@ -341,6 +335,7 @@ public class Subject extends AppCompatActivity implements NavigationView.OnNavig
     public void onNoteClick(int position) {
         Intent intent = new Intent(this, BottomNavi.class);
         intent.putExtra("Subject", subjectItems.get(position));
+        intent.putExtra("NotArchive", notArchive);
         startActivity(intent);
         overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
     }

@@ -170,7 +170,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                                                            _score.setText("");
                                                            _description.setText("");
                                                            _taskNumber.setText("");
-                                                           _gradingPeriod.setText("");
+                                                           _gradingPeriod.setText(gradingPeriod);
                                                            _dueTextView.setText("");
                                                        }
                                                    });

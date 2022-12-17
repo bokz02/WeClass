@@ -8,7 +8,7 @@
     app:cardElevation="5dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardBackgroundColor="@color/Fab"
+    app:cardBackgroundColor="@color/white1"
     app:rippleColor="@color/lightText"
     android:layout_margin="5dp">
 
@@ -26,7 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:visibility="invisible"/>
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/courseRecViewArchive"
@@ -68,6 +68,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
             android:background="@drawable/ic_baseline_access_time_24"
             android:backgroundTint="@color/darkText"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +83,7 @@
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/darkText"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/imageView2Archive"
             app:layout_constraintTop_toTopOf="@+id/imageView2Archive" />
 
@@ -95,6 +97,7 @@
             android:text="8:00 AM"
             android:textColor="@color/darkText"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/imageView2Archive"
             app:layout_constraintTop_toBottomOf="@+id/dateTextViewRecViewArchive" />
 
@@ -104,6 +107,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="5dp"
             android:text="-"
+            android:visibility="gone"
             android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/timeTextViewRecViewArchive"
@@ -118,6 +122,7 @@
             android:text="8:00 AM"
             android:textColor="@color/darkText"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/separator"
             app:layout_constraintTop_toTopOf="@+id/timeTextViewRecViewArchive" />
 

@@ -55,7 +55,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
     View view;
     View _noFile;
     int lastFirstVisiblePosition;
-    String gradingPeriod;
+    String gradingPeriod, notArchive;
 
 
     @Override
@@ -64,8 +64,8 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
         view = inflater.inflate(R.layout.fragment_record, container, false);
 
         initialize(); // INITIALIZE VIEWS
-        showHideFloatingActionButton(); // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
         getDataFromBottomNaviActivity(); // GET DATA FROM BOTTOM NAVI THE NEEDS to DISPLAY SPECIFIC DATA FROM EACH REPORTS
+        showHideFloatingActionButton(); // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
         moveToAddTask(); // MOVE TO ADD TASK ACTIVITY
         display();      // DATA TO BE DISPLAY IN RECYCLERVIEW
         initializeAdapter();        // INITIALIZE ADAPTER FOR RECYCLERVIEW
@@ -137,34 +137,37 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
 
     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
     public void showHideFloatingActionButton() {
-
-        extendedRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    floatingActionButton.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            floatingActionButton.show();
-                        }
-                    }, 2000);
+        if (notArchive.equals("Archive")){
+            floatingActionButton.hide();
+        }else {
+            extendedRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        floatingActionButton.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                floatingActionButton.show();
+                            }
+                        }, 2000);
+                    }
+                    super.onScrollStateChanged(recyclerView, newState);
                 }
-                super.onScrollStateChanged(recyclerView, newState);
-            }
 
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
 //                if(dy > 0 || dy < 0 && floatingActionButton.isShown()){
 //                    floatingActionButton.hide();
 //                }
 
-                if (dy > 0) {
-                    floatingActionButton.hide();
+                    if (dy > 0) {
+                        floatingActionButton.hide();
 //                }else if (dy < 0){
 //                    floatingActionButton.show();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     // GET DATA FROM DATABASE DEPEND ON THE PARENT'S ID
@@ -208,6 +211,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
             _course.setText(bundle.getString("CourseCode"));
             _sy.setText(bundle.getString("sy"));
             gradingPeriod = bundle.getString("gradingPeriod");
+            notArchive = bundle.getString("NotArchive");
         }
     }
 

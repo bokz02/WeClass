@@ -93,8 +93,9 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     String[] gradingPeriod = {"Midterm", "Finals"};
     SharedPreferences sharedPreferences;
     int spinnerPosition;
-    String spinnerGradingPeriod;
+    String spinnerGradingPeriod, notArchive;
     PassData passData;
+    private final String tag = "Student list";
 
     int lastFirstVisiblePosition;
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
@@ -192,29 +193,33 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     // HIDE FLOATING ACTION BUTTON WHEN RECYCLERVIEW IS SCROLLING
     public void showHideFloatingActionButton(){
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                    floatingActionButton.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            floatingActionButton.show();
-                        }
-                    }, 2000);
+        if (notArchive.equals("Archive")){
+            floatingActionButton.hide();
+        }else {
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        floatingActionButton.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                floatingActionButton.show();
+                            }
+                        }, 2000);
+                    }
+                    super.onScrollStateChanged(recyclerView, newState);
                 }
-                super.onScrollStateChanged(recyclerView, newState);
-            }
 
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if(dy > 0){
-                    floatingActionButton.hide();
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    if (dy > 0) {
+                        floatingActionButton.hide();
 //                }else if (dy < 0){
 //                    floatingActionButton.show();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
@@ -405,6 +410,9 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             _courseTitle.setText(bundle.getString("CourseCode"));
             _archive.setText(bundle.getString("archive_text"));
             _schoolYear.setText(bundle.getString("sy"));
+            notArchive = bundle.getString("NotArchive");
+            Log.d(tag, " "+ notArchive);
+
         }
     }
 
@@ -556,16 +564,6 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
             }
         });
 
-    }
-
-    private void loading1second(){
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                initializeAdapter();
-            }
-        }, 3000);
     }
 
     public void saveSpinnerPosition(){

@@ -32,6 +32,7 @@ import com.example.weclass.Settings;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.subject.Subject;
+import com.example.weclass.subject.SubjectItems;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,12 +48,13 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
     DataBaseHelper dataBaseHelper;
     ArrayList<ArchiveItems> archiveItems;
     ArchiveAdapter archiveAdapter;
-    EditText searchEditText;
     View noFile;
     TextView noSubject;
     private FirebaseAuth mAuth;
-    SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
+    String archive = "Archive";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -218,8 +220,8 @@ public class Archive extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     public void onNoteClick(int position) {
         Intent intent = new Intent(this, BottomNavi.class);
-        intent.putExtra("archive_text", "archive");
         intent.putExtra("Archive", archiveItems.get(position));
+        intent.putExtra("NotArchive", archive);
         startActivity(intent);
         overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
     }

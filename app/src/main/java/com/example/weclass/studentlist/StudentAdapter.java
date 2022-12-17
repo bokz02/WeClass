@@ -42,7 +42,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     private final UpdateStudentList update;
     int absentCount;
 
-
     public StudentAdapter(Context context, ArrayList<StudentItems> studentItems, OnNoteListener onNoteListener, ItemCallback itemCallback,
                           String gradingPeriod, UpdateStudentList update){
         this.context = context;

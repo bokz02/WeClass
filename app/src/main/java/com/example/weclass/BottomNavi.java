@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weclass.archive.ArchiveItems;
 import com.example.weclass.attendance.Attendance;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.ratings.Ratings;
@@ -54,7 +55,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
     TextView parentID, subjectCode, courseName, _archive
             , _schoolYear;
     ProgressBar progressBar;
-    String classType, gradingPeriod;
+    String classType, gradingPeriod, notArchive;
     private static final String tag = "BotNav";
 
     @Override
@@ -83,7 +84,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
         backButton();   // BACK BUTTON
         displayData();  // GET DATA FROM SUBJECT ADAPTER (RECYCLERVIEW ITEM CLICK)
         fragmentStudentList();   // GET THE VALUES OF STRING IN displayData() method to PASS THE DATA WE GOT FROM SUBJECT ADAPTER TO STUDENT LIST FRAGMENT
-
+        //Log.d(tag, " " + notArchive);
     }
 
 
@@ -98,22 +99,40 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
 
     // GET DATA FROM SUBJECT ADAPTER (RECYCLERVIEW ITEM CLICK)
     public void displayData(){
+        Intent intent = getIntent();
+        notArchive = intent.getStringExtra("NotArchive");
+        if (notArchive.equals("Not Archive")) {
 
-        if(getIntent().getParcelableExtra("Subject") != null) {
+            if (getIntent().getParcelableExtra("Subject") != null) {
 
-            Intent intent = getIntent();
-            SubjectItems subjectItems = intent.getParcelableExtra("Subject");
 
-            int idParent = subjectItems.getId();
-            String codeSubject = subjectItems.getSubjectCode();
-            classType = subjectItems.getClassType();
-            String nameCourse = subjectItems.getCourse();
-            String sy = subjectItems.getSchoolYearSubject();
+                SubjectItems subjectItems = intent.getParcelableExtra("Subject");
 
-            parentID.setText(String.valueOf(idParent));
-            subjectCode.setText(codeSubject);
-            courseName.setText(nameCourse);
-            _schoolYear.setText(sy);
+                int idParent = subjectItems.getId();
+                String codeSubject = subjectItems.getSubjectCode();
+                classType = subjectItems.getClassType();
+                String nameCourse = subjectItems.getCourse();
+                String sy = subjectItems.getSchoolYearSubject();
+
+
+                parentID.setText(String.valueOf(idParent));
+                subjectCode.setText(codeSubject);
+                courseName.setText(nameCourse);
+                _schoolYear.setText(sy);
+            }
+        }else {
+            if ((getIntent().getParcelableExtra("Archive") != null)) {
+                ArchiveItems archiveItems = intent.getParcelableExtra("Archive");
+                int parentId = archiveItems.getId_subject();
+                String subjectCode2 = archiveItems.getSubjectCode();
+                String course = archiveItems.getCourse();
+                String sy = archiveItems.getSchoolYear();
+
+                parentID.setText(String.valueOf(parentId));
+                subjectCode.setText(subjectCode2);
+                courseName.setText(course);
+                _schoolYear.setText(sy);
+            }
         }
 
     }
@@ -136,6 +155,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
         bundle.putString("CourseCode", courseName.getText().toString());
         bundle.putString("archive_text", _archive.getText().toString());
         bundle.putString("sy", _schoolYear.getText().toString());
+        bundle.putString("NotArchive", notArchive);
 
         studentList.setArguments(bundle);
         fragmentLoader(studentList);
@@ -150,6 +170,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
         bundle.putString("CourseCode", courseName.getText().toString());
         bundle.putString("sy", _schoolYear.getText().toString());
         bundle.putString("gradingPeriod", gradingPeriod);
+        bundle.putString("NotArchive", notArchive);
         record.setArguments(bundle);
         fragmentLoader(record);
     }
@@ -163,6 +184,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
         bundle.putString("sy", _schoolYear.getText().toString());
         bundle.putString("CourseCode", courseName.getText().toString());
         bundle.putString("gradingPeriod", gradingPeriod);
+        bundle.putString("NotArchive", notArchive);
 
         attendance.setArguments(bundle);
         fragmentLoader(attendance);
@@ -177,7 +199,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
         bundle.putString("CourseCode", courseName.getText().toString());
         bundle.putString("sy", _schoolYear.getText().toString());
         bundle.putString("classType", classType);
-
+        bundle.putString("NotArchive", notArchive);
         ranking.setArguments(bundle);
         fragmentLoader(ranking);
     }

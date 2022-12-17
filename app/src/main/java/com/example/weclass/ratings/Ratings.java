@@ -2,6 +2,7 @@ package com.example.weclass.ratings;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.opengl.Visibility;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class Ratings extends Fragment {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     RatingsViewPagerAdapter ratingsViewPagerAdapter;
-    String parentId;
+    String parentId, notArchive;
     ImageButton optionButton;
     String classType, midterm="Midterm", finals="Finals";
     DataBaseHelper db;
@@ -56,6 +57,7 @@ public class Ratings extends Fragment {
         getDataFromBottomNaviActivity();
         viewPagerFragmentManager();
         optionButton();
+        hideOptionButton();
 
         return view;
     }
@@ -70,6 +72,14 @@ public class Ratings extends Fragment {
         tabLayout = view.findViewById(R.id.tabLayoutRatings);
         viewPager2 = view.findViewById(R.id.viewPagerRatings);
         optionButton = view.findViewById(R.id.optionButtonRatings);
+    }
+
+    private void hideOptionButton(){
+        if (notArchive.equals("Archive")){
+            if (optionButton.getVisibility() == View.VISIBLE){
+                optionButton.setVisibility(View.GONE);
+            }
+        }
     }
 
     private void wait3seconds(){
@@ -172,6 +182,7 @@ public class Ratings extends Fragment {
         if (bundle != null) {
             parentId = bundle.getString("IDParent");
             classType = bundle.getString("classType");
+            notArchive = bundle.getString("NotArchive");
 
         }
     }
