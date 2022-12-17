@@ -32,18 +32,19 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     private final Context context;
     private final OnNoteListener mOnNoteListener;
     private final UpdateRecView updateRecView;
-    private final String spinnerGradingPeriod;
+    private final String spinnerGradingPeriod, notArchive;
     private int c;
 
     public AttendanceAdapter(Context context, ArrayList<AttendanceItems> attendanceItems,
                              OnNoteListener mOnNoteListener, UpdateRecView updateRecView,
-                             String spinnerGradingPeriod) {
+                             String spinnerGradingPeriod, String notArchive) {
         this.attendanceItems = attendanceItems;
         this.context = context;
         this.mOnNoteListener = mOnNoteListener;
         attendanceItemsFull = new ArrayList<>(attendanceItems);
         this.updateRecView = updateRecView;
         this.spinnerGradingPeriod = spinnerGradingPeriod;
+        this.notArchive = notArchive;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -107,6 +108,9 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder._absent.setText(String.valueOf(attendanceItems.get(position).getAbsent()));
         holder._subjectID.setText(String.valueOf(attendanceItems.get(position).getParentID()));
         holder.image.setImageBitmap(bitmap);
+
+        // hide buttons in archive
+        hideOptionButton(holder);
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE - MMM d, yyyy");
@@ -363,5 +367,17 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         void updateAttendanceRecView();
     }
 
+    // hide buttons in archive
+    public void hideOptionButton(MyViewHolder holder){
+        if (notArchive.equals("Archive")){
+            if (holder.presentButton.getVisibility() == View.VISIBLE && holder.lateButton.getVisibility() == View.VISIBLE &&
+            holder.absentButton.getVisibility() == View.VISIBLE){
+                holder.presentButton.setVisibility(View.GONE);
+                holder.absentButton.setVisibility(View.GONE);
+                holder.lateButton.setVisibility(View.GONE);
+            }
+        }
+
+    }
 
 }

@@ -50,7 +50,7 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
     ExtendedRecyclerView extendedRecyclerView;
     ImageButton optionButton;
     TaskAdapter taskAdapter;
-    TextView parentID, subjectCode, noFileTextView, _taskSubjectCode, _course, _sy;
+    TextView parentID, subjectCode, noFileTextView, _taskSubjectCode, _course, _sy, gradingPeriodTextView;
     EditText searchEditText;
     View view;
     View _noFile;
@@ -71,7 +71,8 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
         initializeAdapter();        // INITIALIZE ADAPTER FOR RECYCLERVIEW
         textListener();     // SEARCH FUNCTION FOR LIST OF STUDENTS
         automaticSort(); // SORT LISTS WHEN ACTIVITY OPENS
-        optionButton();
+        optionButton(); // function for option button
+        hideOption(); // hide option button when archived
 
         return view;
     }
@@ -90,12 +91,13 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
         searchEditText = view.findViewById(R.id.searchEditTextTask);
         optionButton = view.findViewById(R.id.optionButtonTasks);
         _sy = view.findViewById(R.id.schoolYearTasks);
+        gradingPeriodTextView = view.findViewById(R.id.gradingPeriodTextViewTask);
     }
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        taskAdapter = new TaskAdapter(getContext(), taskItems, this, this);
+        taskAdapter = new TaskAdapter(getContext(), taskItems, this, this, notArchive);
         extendedRecyclerView.setAdapter(taskAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noFile, noFileTextView);
@@ -132,6 +134,15 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
         // RESUME RECYCLERVIEW SCROLL POSITION
         lastFirstVisiblePosition = ((LinearLayoutManager) extendedRecyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
         super.onPause();
+    }
+
+    // hide option button when archived
+    public void hideOption(){
+        if (notArchive.equals("Archive")){
+            if (optionButton.getVisibility() == View.VISIBLE){
+                optionButton.setVisibility(View.GONE);
+            }
+        }
     }
 
 
@@ -212,6 +223,8 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
             _sy.setText(bundle.getString("sy"));
             gradingPeriod = bundle.getString("gradingPeriod");
             notArchive = bundle.getString("NotArchive");
+
+            gradingPeriodTextView.setText(gradingPeriod);
         }
     }
 
@@ -278,10 +291,12 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        switch (menuItem.getItemId()){
-                            case R.id.exportCSV:
+                        if (menuItem.getItemId() == R.id.exportCSV) {
+                            if (taskAdapter.getItemCount() == 0){
+                                Toast.makeText(getContext(), "Task list is empty", Toast.LENGTH_SHORT).show();
+                            }else {
                                 askForPermissions();
-                                break;
+                            }
                         }
                         return false;
                     }
@@ -352,7 +367,10 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
 
     @Override
     public void updateTaskRecView() {
-        initialize();
-        initializeAdapter();
+        if (taskAdapter.getItemCount() == 0){
+            initialize();
+            initializeAdapter();
+            automaticSort();
+        }
     }
 }

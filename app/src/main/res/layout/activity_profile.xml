@@ -159,40 +159,45 @@
 
                 <TextView
                     android:id="@+id/studLastnameProfile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:fontFamily="@font/poppins_bold"
-                    android:gravity="center_horizontal"
                     android:text="Lastname"
                     android:textColor="@color/black1"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintStart_toStartOf="@+id/textView34"
                     app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
                 <TextView
                     android:id="@+id/studFirstnameProfile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:gravity="center_horizontal"
                     android:text="Firstname"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/studLastnameProfile"
+                    app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/studLastnameProfile"
                     app:layout_constraintTop_toBottomOf="@+id/studLastnameProfile" />
 
                 <TextView
                     android:id="@+id/studentMiddleNameProfile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:gravity="center_horizontal"
                     android:text="Middle name"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:textSize="14sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintStart_toStartOf="@+id/studLastnameProfile"
                     app:layout_constraintTop_toBottomOf="@+id/studFirstnameProfile" />
 

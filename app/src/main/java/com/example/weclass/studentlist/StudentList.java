@@ -139,6 +139,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         textListener();         // SEARCH BAR FOR LIST OF STUDENTS
         getSumOfStudents();     // GET SUM OF ALL STUDENTS BASED ON THEIR SUBJECT ID
         automaticSort();    //AUTOMATIC SORT
+        hideOptionButton();
 
 
         // SAVE RECYCLERVIEW SCROLL POSITION
@@ -158,6 +159,14 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         passData = (PassData) context;
+    }
+
+    public void hideOptionButton(){
+        if (notArchive.equals("Archive")){
+            if (optionButton.getVisibility() == View.VISIBLE){
+                optionButton.setVisibility(View.GONE);
+            }
+        }
     }
 
     // SORT STUDENT LIST
@@ -224,7 +233,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter(){
-        studentAdapter = new StudentAdapter(getContext(), studentItems, this, this, spinnerGradingPeriod, this);
+        studentAdapter = new StudentAdapter(getContext(), studentItems, this, this, spinnerGradingPeriod, this, notArchive);
         recyclerView.setAdapter(studentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setEmptyView(noFile_, noStudentTextView);
@@ -303,7 +312,11 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()){
                             case R.id.exportCSV:
-                                askForPermissions();
+                                if (studentAdapter.getItemCount() == 0){
+                                    Toast.makeText(getContext(),"Student list is empty", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    askForPermissions();
+                                }
                                 break;
                             case R.id.importCSV:
                                 showHelp();
@@ -482,6 +495,7 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
         }
     }
 
+    // download student list as csv file
     private void exportDB() {
 
         DataBaseHelper dbHelper = new DataBaseHelper(getContext());

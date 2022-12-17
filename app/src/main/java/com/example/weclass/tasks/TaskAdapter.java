@@ -40,14 +40,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     private final OnNoteListener mOnNoteListener;
     private final ArrayList<TaskItems> taskItemsFull;
     private final UpdateRecView updateRecView;
+    private final String notArchive;
 
     public TaskAdapter(Context context, ArrayList<TaskItems> taskItems,OnNoteListener onNoteListener,
-                       UpdateRecView updateRecView) {
+                       UpdateRecView updateRecView, String notArchive) {
         this.context = context;
         this.taskItems = taskItems;
         this.mOnNoteListener = onNoteListener;
         taskItemsFull = new ArrayList<>(taskItems);
         this.updateRecView = updateRecView;
+        this.notArchive = notArchive;
 
     }
 
@@ -110,6 +112,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder._gradingPeriod.setText(String.valueOf(taskItems.get(position).getGradingPeriod()));
         holder._due.setText(String.valueOf(taskItems.get(position).getDue()));
         holder._taskId.setText(String.valueOf(taskItems.get(position).getTaskID()));
+
+        // hide option button in archive
+        hideOptionButton(holder);
 
         String b = String.valueOf(taskItems.get(position).getTaskDescription());
         String a = "                       ";
@@ -193,6 +198,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                                         taskItems.remove(a);
                                         notifyItemRemoved(a);
 
+                                        updateRecView.updateTaskRecView();
 
                                     }
                                 });
@@ -277,4 +283,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         void updateTaskRecView();
     }
 
+    // hide option button in archive
+    public void hideOptionButton(MyViewHolder holder){
+        if (notArchive.equals("Archive")){
+            if (holder._optionTask.getVisibility() == View.VISIBLE){
+                holder._optionTask.setVisibility(View.GONE);
+            }
+        }
+    }
 }

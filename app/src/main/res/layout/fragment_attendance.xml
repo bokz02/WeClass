@@ -316,7 +316,18 @@
             app:layout_constraintEnd_toStartOf="@+id/guide4"
             app:layout_constraintTop_toTopOf="@+id/currentDateTextView" />
 
-
+        <TextView
+            android:id="@+id/gradingPeriodTextViewAttendance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="period"
+            android:textSize="14sp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black1"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/sortAttendance"
+            app:layout_constraintEnd_toStartOf="@+id/sortAttendance"
+            app:layout_constraintTop_toTopOf="@+id/sortAttendance" />
 
 
         <TextView

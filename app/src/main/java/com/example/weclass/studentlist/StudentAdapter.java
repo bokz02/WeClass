@@ -28,6 +28,7 @@ import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,12 +39,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     private final Context context;
     private final OnNoteListener mOnNoteListener;
     private final ItemCallback itemCallback;
-    private final String gradingPeriod;
+    private final String gradingPeriod, notArchive;
     private final UpdateStudentList update;
     int absentCount;
 
     public StudentAdapter(Context context, ArrayList<StudentItems> studentItems, OnNoteListener onNoteListener, ItemCallback itemCallback,
-                          String gradingPeriod, UpdateStudentList update){
+                          String gradingPeriod, UpdateStudentList update, String notArchive){
         this.context = context;
         this.studentItems = studentItems;
         this.mOnNoteListener = onNoteListener;
@@ -51,6 +52,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         studentItemsFull = new ArrayList<>(studentItems);
         this.gradingPeriod = gradingPeriod;
         this.update = update;
+        this.notArchive = notArchive;
 
     }
 
@@ -121,6 +123,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         byte[] image = item.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
 
+
         holder.parent_id.setText(String.valueOf(studentItems.get(position).getParent_id()));
         holder.lastNameText.setText(String.valueOf(studentItems.get(position).getLastname()));
         holder.firstNameText.setText(String.valueOf(studentItems.get(position).getFirstname()));
@@ -129,6 +132,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         holder.absences.setText(String.valueOf(studentItems.get(position).getAbsent()));
         holder.studentNumber.setText(String.valueOf(studentItems.get(position).getStudentNumber()));
         holder.studentImage.setImageBitmap(bitmap);
+
+        // hide option button in archive
+        hideOptionButton(holder);
 
         Cursor cursor = sqLiteDatabase.rawQuery("select count(*) from " + DataBaseHelper.TABLE_ATTENDANCE + " where "
                 + DataBaseHelper.COLUMN_ID_STUDENT_ATTENDANCE + "='"
@@ -163,6 +169,10 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                         switch (menuItem.getItemId()){
                             case R.id.edit_subject:
 
+//                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//                                byte[] dp = stream.toByteArray();
+
                                 Intent intent = new Intent(context, EditStudent.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putString("parent_id", String.valueOf(item.getParent_id()));
@@ -171,6 +181,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                 bundle.putString("middle_name", String.valueOf(item.getMiddleName()));
                                 bundle.putString("gender", String.valueOf(item.getGender()));
                                 bundle.putString("studentNumber", String.valueOf(item.getStudentNumber()));
+
+                                //intent.putExtra("image",dp);
                                 intent.putExtra("Student", bundle);
                                 context.startActivity(intent);
 
@@ -284,6 +296,15 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
 
     public interface UpdateStudentList{
         void updateRecView();
+    }
+
+    // hide option button in archive
+    public void hideOptionButton(MyViewHolder holder){
+        if (notArchive.equals("Archive")){
+            if(holder.optionStudent.getVisibility() == View.VISIBLE){
+                holder.optionStudent.setVisibility(View.GONE);
+            }
+        }
     }
 
 }

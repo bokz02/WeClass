@@ -610,6 +610,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void updateInfoAttendanceToday(String id, String lastName, String firstName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_STUDENT_NUMBER_TODAY, id);
+        contentValues.put(COLUMN_LAST_NAME_TODAY, lastName);
+        contentValues.put(COLUMN_FIRST_NAME_TODAY, firstName);
+
+        long result = db.update(TABLE_ATTENDANCE_TODAY, contentValues, "student_number=" + "'"+id+"'", null);
+        if(result == -1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
     // UPDATE STUDENT'S PROFILE FINAL RATING IN PROFILE ACTIVITY
     public void updateGrade(String id, String taskType, String taskNumber, String gradingPeriod, String grade, String parentId){
         SQLiteDatabase db = this.getWritableDatabase();

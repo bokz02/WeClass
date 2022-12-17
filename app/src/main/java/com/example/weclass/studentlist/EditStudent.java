@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
@@ -31,6 +32,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 public class EditStudent extends AppCompatActivity {
@@ -44,6 +46,7 @@ public class EditStudent extends AppCompatActivity {
     Uri uri = null;
     SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
+    byte[] image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +104,10 @@ public class EditStudent extends AppCompatActivity {
 
                     if(uri==null) {
 
-                        byte[] image = DrawableUtils.getBytes(BitmapFactory.decodeResource(getResources(), R.drawable.prof1));
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] dp = stream.toByteArray();
 
                             DataBaseHelper dbh = new DataBaseHelper(EditStudent.this);
                             dbh.updateStudent(
@@ -110,18 +116,23 @@ public class EditStudent extends AppCompatActivity {
                                     _firstName.getText().toString().trim(),
                                     _middleName.getText().toString().trim(),
                                     _gender.getText().toString().trim(),
-                                    image);
+                                    dp);
 
                             dbh.updateProfilePictureAttendanceToday(
                                     studentNumber.getText().toString().trim(),
-                                    image);
+                                    dp);
 
-                            Snackbar.make(updateButton, "Student information successfully updated!", Snackbar.LENGTH_LONG).show();
+                        dbh.updateInfoAttendanceToday(studentNumber.getText().toString(),
+                                _lastName.getText().toString().trim(),
+                                _firstName.getText().toString().trim());
+
+                        Toast.makeText(EditStudent.this, "Student information successfully updated!", Toast.LENGTH_SHORT).show();
                         }else {
                             try {
 
                                 InputStream inputStream = getContentResolver().openInputStream(uri);
                                 byte[] inputData = ImageUtils.getBytes(inputStream);
+
                                 DataBaseHelper dbh = new DataBaseHelper(EditStudent.this);
                                 dbh.updateStudent(
                                         studentNumber.getText().toString().trim(),
@@ -135,15 +146,17 @@ public class EditStudent extends AppCompatActivity {
                                         studentNumber.getText().toString().trim(),
                                         inputData);
 
+                                dbh.updateInfoAttendanceToday(studentNumber.getText().toString(),
+                                        _lastName.getText().toString().trim(),
+                                        _firstName.getText().toString().trim());
+
                                 Snackbar.make(updateButton, "Student information successfully updated!", Snackbar.LENGTH_LONG).show();
                             }catch (Exception e){
                                 DataBaseHelper dbh = new DataBaseHelper(EditStudent.this);
                                 dbh.close();
 
                             }
-
                       }
-
                    }
             }
         });
@@ -202,12 +215,16 @@ public class EditStudent extends AppCompatActivity {
     public void displayData(){
         if (getIntent().getBundleExtra("Student") != null){
             Bundle bundle = getIntent().getBundleExtra("Student");
+            Bundle pic = getIntent().getExtras();
             _id.setText(bundle.getString("id"));
             _lastName.setText(bundle.getString("last_name"));
             _firstName.setText(bundle.getString("first_name"));
             _middleName.setText(bundle.getString("middle_name"));
             _gender.setText(bundle.getString("gender"));
             studentNumber.setText(bundle.getString("studentNumber"));
+            //image = pic.getByteArray("image");
+//            Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+//            profilePic.setImageBitmap(bitmap);
         }
     }
 
@@ -272,7 +289,7 @@ public class EditStudent extends AppCompatActivity {
                 + studentNumber.getText().toString().trim() + "'", null);
 
         if (cursor.moveToFirst()){
-            byte[] image = cursor.getBlob(9);
+            image = cursor.getBlob(9);
             Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
             profilePic.setImageBitmap(bitmap);
             cursor.close();

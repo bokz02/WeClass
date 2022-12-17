@@ -62,11 +62,11 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
     DataBaseHelper dataBaseHelper;
     TextView _noStudentsTextView, _id, _parentID,
             dateTimeDisplay, _sortAttendance, _always0, _subjectCode,
-            _sy, _course, present, absent, _late;
+            _sy, _course, present, absent, _late, gradingPeriodTextView;
     View view;
     View _noStudentsView;
     EditText _search;
-    String gradingPeriod;
+    String gradingPeriod, notArchive;
     private static final String tag = "Attendance";
 
 
@@ -80,25 +80,23 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_attendance, container, false);
 
-        initialize();
-        getDataFromBottomNaviActivity();
+        initialize();   // initialize all views
+        getDataFromBottomNaviActivity(); // get data from bottom navigation
         display();
-        initializeAdapter();
-        textListener();
-        displayDate();
-        sortAttendance();
-        automaticSort();
-        optionButton();
-        presentToday();
-        absentToday();
-        updateAttendanceToday();
-        help();
-        lateToday();
-
+        initializeAdapter(); // initialize adapter for recyclerview
+        textListener(); // function for search
+        displayDate();  // display current date
+        sortAttendance();   // sort student list
+        automaticSort();    // sort when fragment open
+        optionButton(); // option button
+        presentToday(); // count total present today
+        absentToday();  // count total absent today
+        updateAttendanceToday();    // update attendance today table
+        help(); // help button
+        lateToday();    // count total late today
+        hideOptionButton(); // hide option button
 
         return view;
-
-
     }
 
     @Override
@@ -130,17 +128,28 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
         absent = view.findViewById(R.id.absentTodayAttendance);
         helpButton = view.findViewById(R.id.helpButtonAttendance);
         _late = view.findViewById(R.id.lateTodayAttendance);
+        gradingPeriodTextView = view.findViewById(R.id.gradingPeriodTextViewAttendance);
+
 
     }
 
-    public void help (){
+    // hide option button when archived
+    public void hideOptionButton(){
+        if (notArchive.equals("Archive")){
+            if (optionButton.getVisibility() == View.VISIBLE && helpButton.getVisibility() == View.VISIBLE){
+                optionButton.setVisibility(View.GONE);
+                helpButton.setVisibility(View.GONE);
+            }
+        }
+    }
 
+    // help button
+    public void help (){
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (getActivity()!=null) {
                     ImageView image = new ImageView(getActivity());
-
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setIcon(R.drawable.ic_warning);
@@ -152,24 +161,16 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                         }
                     });
 
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                        }
-                    });
                     builder.show();
                 }
             }
         });
-
-
     }
 
 
     // INITIALIZE ADAPTER FOR RECYCLERVIEW
     public void initializeAdapter() {
-        attendanceAdapter = new AttendanceAdapter(getContext(), attendanceItems, this, this, gradingPeriod);
+        attendanceAdapter = new AttendanceAdapter(getContext(), attendanceItems, this, this, gradingPeriod, notArchive);
         extendedRecyclerView.setAdapter(attendanceAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(_noStudentsView, _noStudentsTextView);
@@ -231,7 +232,9 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
             _sy.setText(bundle.getString("sy"));
             _course.setText(bundle.getString("CourseCode"));
             gradingPeriod = bundle.getString("gradingPeriod");
+            notArchive = bundle.getString("NotArchive");
 
+            gradingPeriodTextView.setText(gradingPeriod);
         }
     }
 

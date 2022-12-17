@@ -67,6 +67,18 @@
             app:layout_constraintStart_toStartOf="@+id/guide3"
             app:layout_constraintTop_toBottomOf="@+id/bottomNavigationView" />
 
+        <TextView
+            android:id="@+id/gradingPeriodTextViewTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="period"
+            android:textColor="@color/black1"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/taskSubjectTextView"
+            app:layout_constraintEnd_toStartOf="@+id/guide4"
+            app:layout_constraintTop_toTopOf="@+id/taskSubjectTextView" />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"

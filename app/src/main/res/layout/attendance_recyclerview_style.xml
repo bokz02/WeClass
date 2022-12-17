@@ -17,27 +17,34 @@
 
         <TextView
             android:id="@+id/lastNameAttendanceRecView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Lastname"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/black1"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/absentAttendanceRecView"
             app:layout_constraintStart_toEndOf="@+id/pictureAttendanceRecView"
-            app:layout_constraintTop_toTopOf="@+id/pictureAttendanceRecView"
-            app:layout_constraintVertical_bias="0.146" />
+            app:layout_constraintTop_toTopOf="@+id/pictureAttendanceRecView" />
 
         <TextView
             android:id="@+id/firstNameAttendanceRecView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="Firstname"
             android:textColor="@color/black1"
             android:textSize="14sp"
+            android:maxLines="1"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toStartOf="@+id/absentAttendanceRecView"
             app:layout_constraintStart_toStartOf="@+id/lastNameAttendanceRecView"
             app:layout_constraintTop_toBottomOf="@+id/lastNameAttendanceRecView" />
 

@@ -46,7 +46,7 @@ public class Ratings extends Fragment {
     double activityTotal, grade,exam, attendanceTotal, writtenTotalScore
             ,performanceTotalScore, recitationTotal, assignmentTotal
             , seatWorkTotal, quizTotal, reportTotal, projectTotal, quizCount;
-    private static final String TAG = "MyAppTag";
+    private static final String TAG = "Ratings";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -267,65 +267,77 @@ public class Ratings extends Fragment {
 
                     // get 10% of a student attendance
                     attendanceTotal = presentCount + lateCount;
-                    if (attendanceTotal!=0) {
+                    if (currentTotalAttendance!=0) {
                         attendanceTotal = attendanceTotal / currentTotalAttendance;
-                    }
                         attendanceTotal = attendanceTotal * 50;
                         attendanceTotal = attendanceTotal + 50;
                         attendanceTotal = attendanceTotal * .10;
-                    //Log.d(TAG,"" + cursor.getString(3) + " " + attendanceTotal + " " + currentTotalAttendance);
+                    } else {
+                        attendanceTotal =0;
+                    }
 
                     /*get 30% midterm exam of a student */
                         exam = exam * .3;
 
                     // get total quiz
-                    if(quizCount!=0){
+                    if(quizCount!=0) {
                         quizTotal = quizTotal / quizCount;
+                        quizTotal = quizTotal * 50;
+                        quizTotal = quizTotal + 50;
+                    }else {
+                        quizTotal =0;
                     }
-                    quizTotal = quizTotal * 50;
-                    quizTotal = quizTotal + 50;
-                    //Log.d(TAG,"" + cursor.getString(3) + " " + quizTotal + " " + quizCount);
 
                     // get total recitation
                     if (recitationCount!=0) {
                         recitationTotal = recitationTotal / recitationCount;
+                        recitationTotal = recitationTotal * 50;
+                        recitationTotal = recitationTotal + 50;
+                    } else {
+                        recitationTotal=0;
                     }
-                    recitationTotal = recitationTotal * 50;
-                    recitationTotal = recitationTotal + 50;
 
                     // get total reports
                     if (reportCount!=0) {
                         reportTotal = reportTotal / reportCount;
+                        reportTotal = reportTotal * 50;
+                        reportTotal = reportTotal + 50;
+                    } else {
+                        reportTotal=0;
                     }
-                    reportTotal = reportTotal * 50;
-                    reportTotal = reportTotal + 50;
 
                     // compute 40% of the performance tasks of a student
                     performanceTotalScore = quizTotal + reportTotal + recitationTotal + projectTotal;
                     performanceTotalScore = performanceTotalScore / 4;
                     performanceTotalScore = performanceTotalScore * .4;
-                    Log.d(TAG,"" + cursor.getString(3) + " " + recitationTotal + " " + quizTotal + " " + reportTotal + " " + projectTotal);
+
                     // get total assignment
                     if (assignmentCount!=0) {
                         assignmentTotal = assignmentTotal / assignmentCount;
+                        assignmentTotal = assignmentTotal * 50;
+                        assignmentTotal = assignmentTotal + 50;
+                    }else {
+                        assignmentTotal =0;
                     }
-                    assignmentTotal = assignmentTotal * 50;
-                    assignmentTotal = assignmentTotal + 50;
 
                     // get total seatWork
                     if (seatWorkCount!=0) {
                         seatWorkTotal = seatWorkTotal / seatWorkCount;
+                        seatWorkTotal = seatWorkTotal * 50;
+                        seatWorkTotal = seatWorkTotal + 50;
+                    }else {
+                        seatWorkTotal=0;
                     }
-                    seatWorkTotal = seatWorkTotal * 50;
-                    seatWorkTotal = seatWorkTotal + 50;
-                    //Log.d(TAG,"" + cursor.getString(3) + " " + seatWorkTotal + " " + seatWorkCount);
+
                     // get total activity
                     if (activityCount!=0) {
                         activityTotal = activityTotal / activityCount;
                         //Log.d(TAG,"" + cursor.getString(3) + " " + activityCount);
+                        activityTotal = activityTotal * 50;
+                        activityTotal = activityTotal + 50;
+                    }else {
+                        activityTotal=0;
                     }
-                    activityTotal = activityTotal * 50;
-                    activityTotal = activityTotal + 50;
 
                     // compute 20% of the written tasks of a student
                     writtenTotalScore = assignmentTotal + seatWorkTotal + activityTotal;
@@ -736,31 +748,39 @@ public class Ratings extends Fragment {
                 attendanceTotal = presentCount + lateCount;
                 if (currentTotalAttendance != 0) { // total will become infinite if the value is 0
                     attendanceTotal = attendanceTotal / currentTotalAttendance;
-                }
                     attendanceTotal = attendanceTotal * 50;
                     attendanceTotal = attendanceTotal + 50;
                     attendanceTotal = attendanceTotal * .10;
+                }else {
+                    attendanceTotal =0;
+                }
 
                 // get total assignment
                 if (assignmentCount!=0) {
                     assignmentTotal = assignmentTotal / assignmentCount;
+                    assignmentTotal = assignmentTotal * 50;
+                    assignmentTotal = assignmentTotal + 50;
+                }else {
+                    assignmentTotal = 0;
                 }
-                assignmentTotal = assignmentTotal * 50;
-                assignmentTotal = assignmentTotal + 50;
 
                 // get total seatWork
                 if (seatWorkCount!=0) {
                     seatWorkTotal = seatWorkTotal / seatWorkCount;
+                    seatWorkTotal = seatWorkTotal * 50;
+                    seatWorkTotal = seatWorkTotal + 50;
+                }else {
+                    seatWorkTotal =0;
                 }
-                seatWorkTotal = seatWorkTotal * 50;
-                seatWorkTotal = seatWorkTotal + 50;
 
                 // get total quiz
-                if(quizCount!=0){
+                if(quizCount!=0) {
                     quizTotal = quizTotal / quizCount;
+                    quizTotal = quizTotal * 50;
+                    quizTotal = quizTotal + 50;
+                }else {
+                    quizTotal =0;
                 }
-                quizTotal = quizTotal * 50;
-                quizTotal = quizTotal + 50;
 
                 // compute 10% of the written tasks of a student
                 writtenTotalScore = assignmentTotal + seatWorkTotal + quizTotal;
@@ -770,18 +790,22 @@ public class Ratings extends Fragment {
                 // get total activity
                 if (activityCount!=0) {
                     activityTotal = activityTotal / activityCount;
+                    activityTotal = activityTotal * 50;
+                    activityTotal = activityTotal + 50;
+                }else {
+                    activityTotal =0;
                 }
-                activityTotal = activityTotal * 50;
-                activityTotal = activityTotal + 50;
 
                 // get total project
 
                 // get total reports
                 if (reportCount!=0) {
                     reportTotal = reportTotal / reportCount;
+                    reportTotal = reportTotal * 50;
+                    reportTotal = reportTotal + 50;
+                }else {
+                    reportTotal =0;
                 }
-                reportTotal = reportTotal * 50;
-                reportTotal = reportTotal + 50;
 
                 // compute 50% of the performance tasks of a student
                 performanceTotalScore = activityTotal + reportTotal + projectTotal;
@@ -794,10 +818,12 @@ public class Ratings extends Fragment {
                 // get 10% of recitation of a student
                 if (reportCount!=0) {
                     recitationTotal = recitationTotal / recitationCount;
+                    recitationTotal = recitationTotal * 50;
+                    recitationTotal = recitationTotal + 50;
+                    recitationTotal = recitationTotal * .1;
+                }else {
+                    recitationTotal =0;
                 }
-                recitationTotal = recitationTotal * 50;
-                recitationTotal = recitationTotal + 50;
-                recitationTotal = recitationTotal * .1;
 
                 // get the midterm grade
                 grade = attendanceTotal + exam + performanceTotalScore + recitationTotal + writtenTotalScore;
