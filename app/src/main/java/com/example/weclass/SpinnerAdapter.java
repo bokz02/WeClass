@@ -28,8 +28,8 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
         ((TextView) view).setTypeface(font);
         ((TextView) view).setTextSize(14);
         ((TextView) view).getResources().getColor(R.color.black1);
-        view.setPadding(30,0,0,0);
-        view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
+        view.setPadding(10,0,10,0);
+        view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.SpinnerBgColor));
         return view;
     }
 
@@ -38,7 +38,8 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
         View view = super.getDropDownView(position, convertView, parent);
         ((TextView) view).setTypeface(font);
         ((TextView) view).setTextSize(16);
-        ((TextView) view).setTextColor(ContextCompat.getColor(getContext(), R.color.black1));
+        ((TextView) view).setTextColor(ContextCompat.getColor(getContext(), R.color.SpinnerBgColor));
+        ((TextView) view).getResources().getColor(R.color.black1);
 
         return view;
     }

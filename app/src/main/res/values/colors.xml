@@ -91,4 +91,8 @@
 
     <color name="ViewPagerTabText">#404040</color>
 
+    <color name="SpinnerBgColor">#FFFFFF</color>
+
+    <color name="ArchiveBg">#f4f4f4</color>
+
 </resources>
