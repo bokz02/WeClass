@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -45,5 +46,9 @@ public class AttendanceManagement extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void backToFaqs(View view) {
+        startActivity(new Intent(this, FAQs.class));
     }
 }

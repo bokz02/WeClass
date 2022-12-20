@@ -16,39 +16,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
-
         <activity
-        android:name=".studentlist.profile.reports.Report"
-        android:exported="false"
-        android:theme="@style/Theme.Dialog">
-        <meta-data
-            android:name="android.app.lib_name"
-            android:value="" />
-         </activity>
-        <activity
-            android:name=".studentlist.profile.recitation.Recitation"
-            android:exported="false"
-            android:theme="@style/Theme.Dialog">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".settings.AttendanceManagement"
+            android:name=".setting.TaskManagement"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".settings.ClassManagement"
+            android:name=".setting.Report"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".settings.StudentManagement"
+            android:name=".setting.AttendanceManagement"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".setting.ClassManagement"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".setting.StudentManagement"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -64,7 +61,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".settings.FAQs"
+            android:name=".setting.FAQs"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -103,8 +100,7 @@
             android:exported="false" />
         <activity
             android:name=".studentlist.profile.projects.Projects"
-            android:exported="false"
-            android:theme="@style/Theme.Dialog" />
+            android:exported="false" />
         <activity
             android:name=".login.PasswordResetLinkSuceed"
             android:exported="false" />

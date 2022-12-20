@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".settings.ClassManagement">
+    tools:context=".setting.Report">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,13 +13,13 @@
         android:layout_marginTop="60dp"
         android:layout_marginStart="25dp" >
         <ImageView
-            android:id="@+id/backButtonClassManagement"
+            android:id="@+id/backButtonTos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="backToFaqs"
             android:layout_gravity="center_vertical"
+            android:onClick="backToFaqs"
             android:background="@drawable/ic_simple_back"
             android:backgroundTint="@color/darkText" />
 
@@ -33,11 +33,10 @@
             android:textSize="15sp"
             android:text="Back"/>
     </LinearLayout>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Classroom Management"
+        android:text="Reports"
         android:textSize="20dp"
         android:fontFamily="@font/poppins_bold"
         android:layout_marginTop="50dp"
@@ -61,6 +60,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="40dp"/>
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -79,37 +79,27 @@
 
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1.     How to add class?"
-            android:fontFamily="@font/poppins_bold"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/darkText"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2.    Actions on Classes?"
-            android:fontFamily="@font/poppins_bold"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/darkText"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.    Student List Summary"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3.    How to edit class?"
+                android:text="2.   Attendance Summary"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
+                android:justificationMode="inter_word"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
@@ -118,8 +108,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Adding a new class into Wecclass can only be done in one way."
-                android:fontFamily="@font/poppins_regular"
+                android:text="3.   Task List Summary"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="5dp"
+                android:justificationMode="inter_word"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Student List Summary"
+                android:fontFamily="@font/poppins_bold"
+                android:justificationMode="inter_word"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginTop="40dp"
@@ -129,340 +133,62 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.	How to Create a New Class:"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:justificationMode="inter_word"
-                android:text="1)	When you launch Wecclass, you'll be taken straight to the main screen, where you can see all of your classes."
+                android:text="The Student Summary report allows you to export your class roster."
                 android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/class1"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2)	Tap the plus sign “+” and enter your subject details."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/class2"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3)	A subject code, section, course, and room number are necessary. You may select either lectures or laboratory from the available course category."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4)	Besides choosing the academic year and semester, you can also choose the days and times of your classes."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5)	Alternatively, you can make a remark in the subject description."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/classadd"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2.	Actions on Classes"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Here are the actions you can make on the classes:"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1)    Information of your class"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="30dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2)    Edit your class "
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="30dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3)    Delete your class"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="30dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4)    Archive"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="30dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="How to do this:"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="From the app's main screen (Classes View), select the three-dot button that appears in the upper right corner of the subject container. This menu offers four different options."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1)	To see more about the topic, use the &quot;Info&quot; option."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/classoption"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/classinfo"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2)	To change the subject details, select the &quot;edit&quot; option."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:justificationMode="inter_word"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/classoption2"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3)	The &quot;Edit Class&quot; dialog will be displayed."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="30dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/classedit"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4)	Make your changes and tap Save so that changes take effects."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5)	If you no longer wish to discuss this matter, select the &quot;delete&quot; option."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/classoption3"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="6)	Select the &quot;archive&quot; option if you'd want to save the course for later viewing."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/classoption4"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3.	How to edit class? "
-                android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:justificationMode="inter_word"
-                android:layout_marginTop="20dp"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit your class data directly from the view of your classes."
+                android:justificationMode="inter_word"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:text="How to generate it:"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
+                android:text="1)   Open your class"
+                android:justificationMode="inter_word"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1)	From &quot;My Classes&quot; View (the initial screen displayed when you launch the app)."
+                android:text="2) Select the three dots located in the upper right corner"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
+                android:justificationMode="inter_word"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:src="@drawable/studsum2"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2)	Choose the class you wish to modify."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
+                android:text="3) Click Export the student list as a CSV file."
+                android:justificationMode="inter_word"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
@@ -470,7 +196,73 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/classview"
+                android:src="@drawable/studsum1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2.	Attendance Summary"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You can export either today's or all-time attendance from your class using the Attendance Summary report."
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="30dp"
+                android:justificationMode="inter_word"
+                android:layout_marginEnd="30dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How to generate it?"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="50dp"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1) Open your class"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="15dp"
+                android:justificationMode="inter_word"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2)	Go to the &quot;Attendance tab&quot;"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:src="@drawable/atten2"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
@@ -478,18 +270,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3)	Select the &quot;Edit&quot; option shown by three dots."
+                android:text="3)	Select the three dots located in the upper rightnt profile."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
+                android:justificationMode="inter_word"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/classoption2"
+                android:src="@drawable/atten1"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
@@ -497,18 +290,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4)	The &quot;Edit Class&quot; dialogue box will appear."
+                android:text="4)	You have two options: \nExport today’s attendance as CSV File. \nExport all time attendance as cs file."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
+                android:justificationMode="inter_word"
                 android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/classedit"
+                android:src="@drawable/atten3"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
@@ -516,22 +310,112 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5)	Then hit &quot;Save&quot; for the changes to take effect."
+                android:text="3.	Task List"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="30dp"
+                android:justificationMode="inter_word"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="With the help of the classwork summary report, you can easily export your students' tasks and their grades for those tasks."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
+                android:justificationMode="inter_word"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:text="How to generate it:"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1)    Open your class"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:justificationMode="inter_word"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2)	 Go to the &quot;Classwork&quot; tab"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:justificationMode="inter_word"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:src="@drawable/cw2"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3)	Select the three dots located in the upper right"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:justificationMode="inter_word"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:src="@drawable/cw1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4)	Click “Export task list as CSV file”"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:justificationMode="inter_word"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/classsave"
+                android:src="@drawable/cw3"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
+
 
         </LinearLayout>
     </ScrollView>

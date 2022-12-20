@@ -19,8 +19,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:layout_gravity="center_vertical
-"
+        android:layout_gravity="center_vertical"
+        android:onClick="backToFaqs"
         android:background="@drawable/ic_simple_back"
         android:backgroundTint="@color/darkText" />
 

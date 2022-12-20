@@ -49,4 +49,16 @@ public class FAQs extends AppCompatActivity {
     public void AttendanceManage(View view) {
         startActivity(new Intent(this, AttendanceManagement.class));
     }
+
+    public void report(View view) {
+        startActivity(new Intent(this, Report.class));
+    }
+
+    public void Classwork(View view) {
+        startActivity(new Intent(this, TaskManagement.class));
+    }
+
+    public void backToFaqs(View view) {
+        startActivity(new Intent(this, Settings.class));
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.weclass.settings;
+package com.example.weclass.setting;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -10,17 +10,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 
-public class StudentManagement extends AppCompatActivity {
-    SharedPref sharedPref;
+public class Report extends AppCompatActivity {
     SharedPreferences sharedPreferences = null;
-    ImageView back;
+    SharedPref sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -31,23 +28,13 @@ public class StudentManagement extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         }else {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            Window window = getWindow();
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO); Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.titleBar));
         }
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_management);
-
-        back = findViewById(R.id.backButtonTos);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        setContentView(R.layout.activity_report);
     }
 
     public void backToFaqs(View view) {
