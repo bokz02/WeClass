@@ -12,12 +12,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.weclass.R;
-import com.example.weclass.Settings;
 import com.example.weclass.SharedPref;
-import com.example.weclass.login.ForgotPassword;
-import com.example.weclass.subject.Subject;
 
-public class FAQs extends AppCompatActivity {
+public class TaskManagement extends AppCompatActivity {
     SharedPreferences sharedPreferences = null;
     SharedPref sharedPref;
     @Override
@@ -36,32 +33,10 @@ public class FAQs extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.titleBar));
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faqs);
-
-
-    }
-
-    public void ClassManage(View view) {
-        startActivity(new Intent(this, ClassManagement.class));
-    }
-
-    public void StudentManage(View view) {
-        startActivity(new Intent(this, StudentManagement.class));
-    }
-
-    public void AttendanceManage(View view) {
-        startActivity(new Intent(this, AttendanceManagement.class));
-    }
-
-    public void report(View view) {
-        startActivity(new Intent(this, Report.class));
-    }
-
-    public void Classwork(View view) {
-        startActivity(new Intent(this, TaskManagement.class));
+        setContentView(R.layout.activity_task_management);
     }
 
     public void backToFaqs(View view) {
-        startActivity(new Intent(this, Settings.class));
+        startActivity(new Intent(this, FAQs.class));
     }
 }

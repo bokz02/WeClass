@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".setting.StudentManagement">
+    tools:context=".setting.TaskManagement">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Student Management"
+        android:text="Classwork"
         android:textSize="20dp"
         android:fontFamily="@font/poppins_bold"
         android:layout_marginTop="50dp"
@@ -82,7 +82,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.     How to Add Students?"
+                android:text="1.     How to Add Task?"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
@@ -95,7 +95,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2.    How to Add  Change Student Photo?"
+                android:text="2.    How to Edit task??"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
@@ -108,7 +108,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3.    How to delete a student?"
+                android:text="3.    How to Delete a student?"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
@@ -120,7 +120,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.    How to View the Student Profile?"
+                android:text="4.    How to Grade student?"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
@@ -132,7 +132,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5.    How to Sort Students list?"
+                android:text="5.    How Wecclass compute grade?"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
@@ -145,7 +145,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.	How to do add a student?"
+                android:text="1.	How to do add task?"
                 android:fontFamily="@font/poppins_bold"
                 android:justificationMode="inter_word"
                 android:layout_marginStart="30dp"
@@ -157,7 +157,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tap on a class from the &quot; My Classes&quot; View to access it (which contains all your classes created in Wecclass)."
+                android:text="Creating classwork and grading student allows teachers to keep tabs on students in a streamlined fashion."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
@@ -167,21 +167,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:justificationMode="inter_word"
-                android:fontFamily="@font/poppins_semibold"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:text="Add New Student"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:text="1)   Fill out the form and add a student."
+                android:text="1)   Open a class by pressing it in the &quot;My Classes&quot; View (which contains all your classes created in Wecclass)"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2)  Go to the &quot;Classwork&quot; tab."
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
                 android:justificationMode="inter_word"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/darkText"
@@ -190,28 +191,18 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/stud1"
+                android:src="@drawable/addt1"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2) The Personal Info section is the only required field when adding a new student."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:text="3) Simply enter the student's student number, last name, first name, middle name, photo, and gender."
+                android:text="3) Tap the plus sign &quot;+&quot; and enter your task details."
                 android:justificationMode="inter_word"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/darkText"
@@ -220,79 +211,47 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/stud2"
+                android:src="@drawable/addt2"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="20dp"
-                android:text="Import student"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:text="1)	Additionally, you can import students straight into your class."
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:text="2)	Tap the button with three dots in the upper right corner, then tap &quot; Import Student List. &quot;"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/stud3"
+                android:src="@drawable/addt3"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:text="3) After entering your details, click &quot;Save&quot;"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
+                android:text="Note: When a teacher has finished grading all of his or her students for a certain task, the task's progress will immediately change to &quot;Completed&quot;."
                 android:justificationMode="inter_word"
-                android:text="Note: Ensure that the file is in CSV format and has no more than four columns.
-                \nStudent number, Last name, First name and Middle name"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="100dp"
-                android:src="@drawable/importhelp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2.	How to add / change student photo?"
+                android:text="2.	How to edit task?"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
@@ -300,30 +259,7 @@
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wecclass made it simple for teachers to include images of their students, making it easier to recall them.
-                \n\nHere’s how you can add a photo of your students:"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="30dp"
-                android:justificationMode="inter_word"
-                android:layout_marginEnd="30dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Option 1:"
-                android:fontFamily="@font/poppins_semibold"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -338,7 +274,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2)	The class will open on the Roster view, where all students added to the class will be displayed."
+                android:text="2)	Go to the &quot;Classwork&quot; tab."
                 android:fontFamily="@font/poppins_semibold"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
@@ -346,22 +282,12 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3)	Tap on any student to view his or her student profile."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="15dp"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
+
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/stud4"
+                android:src="@drawable/addt1"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
@@ -369,7 +295,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4)	Tap the photo to change it."
+                android:text="3)	Tap the &quot;Edit&quot; option shown by three dots."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:justificationMode="inter_word"
@@ -381,7 +307,7 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/stud5"
+                android:src="@drawable/delete2"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
@@ -389,7 +315,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5)	You can choose image from your gallery."
+                android:text="4)	The &quot;Edit Task&quot; dialogue box will appear."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
@@ -401,15 +327,7 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/stud6"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/stud7"
+                android:src="@drawable/edit2"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
@@ -418,115 +336,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 2:"
-                android:fontFamily="@font/poppins_semibold"
-                android:layout_marginStart="30dp"
-                android:justificationMode="inter_word"
+                android:text="5)	 Then hit &quot;Save&quot; for the changes to take effect."
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
+                android:justificationMode="inter_word"
                 android:layout_marginTop="15dp"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1)	Open a class by pressing it in the &quot;My Classes&quot; View (which contains all your classes created in Wecclass)"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2)	The class will open on the Roster view, where all students added to the class will be displayed."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3)	The &quot;edit&quot; option can be accessed in the student cardview by selecting the &quot; three dots&quot;  option."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/stud10"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4)	Tap the photo to change it."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/stud11"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5)	You have the option of using the camera or choosing an image from your gallery."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/stud13"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/stud12"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3.	How to delete a student?"
+                android:text="3.	How to delete task?"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:justificationMode="inter_word"
@@ -538,7 +361,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="To remove an existing student from a class, take these steps:"
+                android:text="To remove an existing student from a task, take these steps:"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
@@ -550,7 +373,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1)	Open the class that the student is enrolled in."
+                android:text="1)	Open the class that the task is created."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:justificationMode="inter_word"
@@ -562,28 +385,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2)	Click the three dots located to the left of the student's name."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:justificationMode="inter_word"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/stud15"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3)	Select the Delete option."
+                android:text="2)	Click the three dots located to the left of the task number."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
@@ -596,7 +398,28 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="300dp"
-                android:src="@drawable/stud14"
+                android:src="@drawable/delete2"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3)	Select the &quot;Delete&quot; option."
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:justificationMode="inter_word"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:src="@drawable/delete1"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
@@ -605,7 +428,154 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.	How to View the Student Profile?"
+                android:text="4.	How to grade student?"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1) Select a course by clicking on it in the &quot;My Classes&quot; tab (which contains all your classes created in Wecclass)"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:justificationMode="inter_word"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2)	 Select the &quot;Classwork&quot; tab."
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:justificationMode="inter_word"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:src="@drawable/addt1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3)	Select Task you want to grade."
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:justificationMode="inter_word"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4)	Use the blanks to insert your grades."
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:justificationMode="inter_word"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:src="@drawable/task1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4)	Select &quot;✓ &quot; to save it"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:justificationMode="inter_word"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:src="@drawable/task2"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5)	You can view the graded list of the student by selecting the &quot;Grades&quot; tab"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:justificationMode="inter_word"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/task3"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6)	You can see a complete list of students along with their grades."
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="50dp"
+                android:justificationMode="inter_word"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/darkText"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:src="@drawable/task4"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.	How Wecclass compute grade?"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
@@ -617,219 +587,77 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wecclass is not only concerned with facilitating the management of your courses, but also with delivering this information in a visually appealing manner to assist you monitor class performance."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="You may track the progress (Attendance, Records, and Grade) of each student in your class using Wecclass."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1)	Tap a class to open it from the &quot;My Classes&quot; View (which contains all your classes created in Wecclass)."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2)	The class will open on the Roster view, where all students added to the class will be displayed."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginTop="5dp"
+                android:text="Once all the tasks in the Task Category have been made, Wecclass will automatically generate them for the Midterm and Final grade (Activity, Assignment, Seatwork, Quiz, Project, and Exam)."
                 android:justificationMode="inter_word"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3)	Tap on any student to view his or her student profile."
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginTop="5dp"
+                android:text="Assuming both the midterm and final grades are entered, the final ratings will be calculated automatically."
                 android:justificationMode="inter_word"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/studprof"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4)	Verify Personal Information, Attendance, Records, and Grades."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/studprof1"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="In the Attendance section, it displays your student's total absences and presences. You may easily view your student's attendance and absence record by tapping on it."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:justificationMode="inter_word"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/studprof3"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="In the Record section, You can view the student's midterm and final task history as well as the mark by tapping (Activity, Assignments, Seatwork, Quizzes, Projects, and Exams)."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/studprof2"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4. How to sort Student list?"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sometimes it is necessary to see your students organized in a particular manner. Wecclass can facilitate the smooth modification of this."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="How it works:"
                 android:fontFamily="@font/poppins_semibold"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1)	Tap a class to open it from the &quot;Classes&quot; View (which contains all your classes created in Wecclass)."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/darkText"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2)	The class will open on the Roster view, where all students added to the class will be displayed."
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="5dp"
+                android:text="The lecture grade is calculated as follows:"
+                android:justificationMode="inter_word"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/studsort"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:src="@drawable/lecture"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3)	Tap the sort icon and select how you would like to sort your students."
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/poppins_semibold"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginTop="5dp"
+                android:text="The laboratory grade is calculated as follows:"
+                android:justificationMode="inter_word"
                 android:textColor="@color/darkText"
                 android:textStyle="bold" />
 
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="300dp"
-                android:src="@drawable/studsort1"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:src="@drawable/laboratoty"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
+
+
         </LinearLayout>
     </ScrollView>
+
 
 
 </LinearLayout>
