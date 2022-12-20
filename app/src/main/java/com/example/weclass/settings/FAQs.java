@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import com.example.weclass.R;
+import com.example.weclass.Settings;
 import com.example.weclass.SharedPref;
 
 

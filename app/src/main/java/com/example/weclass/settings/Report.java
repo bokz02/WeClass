@@ -1,4 +1,4 @@
-package com.example.weclass.setting;
+package com.example.weclass.settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;

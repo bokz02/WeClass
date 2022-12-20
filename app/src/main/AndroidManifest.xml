@@ -17,35 +17,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeClass">
         <activity
-            android:name=".setting.TaskManagement"
+            android:name=".settings.TaskManagement"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".setting.Report"
+            android:name=".settings.Report"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".setting.AttendanceManagement"
+            android:name=".settings.AttendanceManagement"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".setting.ClassManagement"
+            android:name=".settings.ClassManagement"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".setting.StudentManagement"
+            android:name=".settings.StudentManagement"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -61,7 +61,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".setting.FAQs"
+            android:name=".settings.FAQs"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
