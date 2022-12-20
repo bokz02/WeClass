@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,9 +29,7 @@ import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> implements Filterable {
@@ -41,6 +40,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     private final ArrayList<TaskItems> taskItemsFull;
     private final UpdateRecView updateRecView;
     private final String notArchive;
+    private int gradedStudent;
+    private int totalStudent;
+    private static String tag = "TaskAdapter";
 
     public TaskAdapter(Context context, ArrayList<TaskItems> taskItems,OnNoteListener onNoteListener,
                        UpdateRecView updateRecView, String notArchive) {
@@ -55,7 +57,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView _id, _parentTD, _taskType, _score, _description,_progress,
+        TextView taskNumber, _parentID, _taskType, _score, _description,_progress,
                 _gradingPeriod, _due, _taskId;
         ImageButton _optionTask, _expand;
         OnNoteListener onNoteListener;
@@ -65,13 +67,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
-            _id = itemView.findViewById(R.id.taskNumberRecView);
+            taskNumber = itemView.findViewById(R.id.taskNumberRecView);
             _taskType = itemView.findViewById(R.id.courseTypeRecView);
             _score = itemView.findViewById(R.id.scoreTextViewRecView);
             _description = itemView.findViewById(R.id.descriptionHiddenTextView);
             _optionTask = itemView.findViewById(R.id.optionButtonTaskRecView);
             _expand = itemView.findViewById(R.id.expandRecyclerView);
-            _parentTD = itemView.findViewById(R.id.parentIDTaskRecView);
+            _parentID = itemView.findViewById(R.id.parentIDTaskRecView);
             _progress = itemView.findViewById(R.id.progressTextView);
             constraintLayout = itemView.findViewById(R.id.hiddenDescription);
             cardView = itemView.findViewById(R.id.cardViewRecView);
@@ -104,17 +106,25 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         TaskItems itemsTask = taskItems.get(position);
 
-        holder._parentTD.setText(String.valueOf(taskItems.get(position).getParentID()));
+
+        holder._parentID.setText(String.valueOf(taskItems.get(position).getParentID()));
         holder._taskType.setText(String.valueOf(taskItems.get(position).getTaskType()));
         holder._score.setText(String.valueOf(taskItems.get(position).getScore()));
         holder._progress.setText(String.valueOf(taskItems.get(position).getProgress()));
-        holder._id.setText(String.valueOf(taskItems.get(position).getTaskNumber()));
+        holder.taskNumber.setText(String.valueOf(taskItems.get(position).getTaskNumber()));
         holder._gradingPeriod.setText(String.valueOf(taskItems.get(position).getGradingPeriod()));
         holder._due.setText(String.valueOf(taskItems.get(position).getDue()));
         holder._taskId.setText(String.valueOf(taskItems.get(position).getTaskID()));
 
         // hide option button in archive
         hideOptionButton(holder);
+
+        // count graded students and total students
+        getGradedStudents(holder);
+        getSumOfStudents(holder);
+        getTotalAndGradedStudents(holder);
+
+        Log.d(tag,"" + gradedStudent + " / " + totalStudent);
 
         String b = String.valueOf(taskItems.get(position).getTaskDescription());
         String a = "                       ";
@@ -289,6 +299,63 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             if (holder._optionTask.getVisibility() == View.VISIBLE){
                 holder._optionTask.setVisibility(View.GONE);
             }
+        }
+    }
+
+    public void getGradedStudents(MyViewHolder holder){
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(context);
+        SQLiteDatabase sql = dataBaseHelper.getWritableDatabase();
+        Cursor cursor = sql.rawQuery(" SELECT COUNT(*) FROM "
+                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
+                + DataBaseHelper.COLUMN_PARENT_ID_MY_GRADE + " = "
+                + holder._parentID.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_TASK_TYPE_MY_GRADE + " ='"
+                + holder._taskType.getText().toString() + "' AND "
+                + DataBaseHelper.COLUMN_TASK_NUMBER_MY_GRADE + " = "
+                + holder.taskNumber.getText().toString() + " AND "
+                + DataBaseHelper.COLUMN_GRADE_MY_GRADE + " != '" + "" + "' AND "
+                + DataBaseHelper.COLUMN_GRADING_PERIOD_MY_GRADE + "='"
+                + holder._gradingPeriod.getText().toString() + "'", null);
+
+        if (cursor.moveToFirst() ){
+            gradedStudent = cursor.getInt(0);
+            cursor.close();
+        }
+    }
+
+    public void getSumOfStudents(MyViewHolder holder){
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(context);
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" SELECT COUNT(*) FROM "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.COLUMN_PARENT_ID + " = "
+                + holder._parentID.getText().toString(), null);
+
+        if (cursor.moveToFirst() ){
+            totalStudent = cursor.getInt(0);
+            cursor.close();
+        }
+    }
+
+    public void getTotalAndGradedStudents(MyViewHolder holder){
+
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(context);
+
+        if(gradedStudent == totalStudent){
+            String completed = "Completed";
+            holder._progress.setText(completed);
+
+            dataBaseHelper.updateTaskProgress(holder._taskId.getText().toString(),
+                    holder._parentID.getText().toString(),
+                    completed);
+
+        }else  {
+            String inProgress = "In-progress";
+            holder._progress.setText(inProgress);
+
+            dataBaseHelper.updateTaskProgress(holder._taskId.getText().toString(),
+                    holder._parentID.getText().toString(),
+                    inProgress);
         }
     }
 }

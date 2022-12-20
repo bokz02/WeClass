@@ -25,6 +25,9 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Last"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:maxWidth="200dp"
             android:textColor="@color/darkText"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,9 +40,13 @@
             android:layout_marginStart="5dp"
             android:fontFamily="@font/poppins_regular"
             android:text="First"
+            android:layout_marginEnd="15dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/lastNameRecViewGrade"
+            app:layout_constraintEnd_toStartOf="@+id/gradeEditTextViewGrade"
             app:layout_constraintStart_toEndOf="@+id/lastNameRecViewGrade"
             app:layout_constraintTop_toTopOf="@+id/lastNameRecViewGrade" />
 

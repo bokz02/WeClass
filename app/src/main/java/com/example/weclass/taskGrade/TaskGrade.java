@@ -218,28 +218,17 @@ public class TaskGrade extends AppCompatActivity{
             String completed = "Completed";
             _progress.setText(completed);
 
-            SQLiteDatabase sqLite = dataBaseHelper.getWritableDatabase();
-            Cursor c = sqLite.rawQuery("select * from "
-                    + DataBaseHelper.TABLE_MY_TASKS + " where "
-                    + DataBaseHelper.COLUMN_ID4 + " = "
-                    + _taskId.getText().toString() + " and "
-                    + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
-                    + _subjectID.getText().toString(), null);
+            dataBaseHelper.updateTaskProgress(_taskId.getText().toString(),
+                    _subjectID.getText().toString(),
+                    completed);
 
-            if (c.moveToFirst()){
-
-                dataBaseHelper.updateTaskProgress(_taskId.getText().toString(),
-                        _subjectID.getText().toString(),
-                        _progress.getText().toString());
-            }c.close();
-            dataBaseHelper.close();
-        }else {
+        }else  {
             String inProgress = "In-progress";
             _progress.setText(inProgress);
 
             dataBaseHelper.updateTaskProgress(_taskId.getText().toString(),
                     _subjectID.getText().toString(),
-                    _progress.getText().toString());
+                    inProgress);
         }
     }
 
@@ -299,7 +288,7 @@ public class TaskGrade extends AppCompatActivity{
                             }
                         });
                     }
-                } catch (InterruptedException e){
+                } catch (InterruptedException ignored){
 
                 }
             }

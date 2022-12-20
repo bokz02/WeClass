@@ -119,6 +119,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         StudentItems item = studentItems.get(position);
         DataBaseHelper db = DataBaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
+        SQLiteDatabase sql = db.getReadableDatabase();
 
         byte[] image = item.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
@@ -148,7 +149,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
 
         if (cursor.moveToFirst()){
             absentCount = cursor.getInt(0);
-        }cursor.close();
+        } cursor.close();
 
         if(absentCount == 4){
             holder.background.setBackgroundResource(R.color.absentWarning1);
@@ -169,9 +170,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                         switch (menuItem.getItemId()){
                             case R.id.edit_subject:
 
-//                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//                                byte[] dp = stream.toByteArray();
 
                                 Intent intent = new Intent(context, EditStudent.class);
                                 Bundle bundle = new Bundle();
@@ -206,16 +204,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
                                                 item.getParent_id());
                                         db.deleteTotalGrades(item.getStudentNumber(),
                                                 item.getParent_id());
-
-                                        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-                                                + DataBaseHelper.TABLE_MY_GRADE + " WHERE "
-                                                + DataBaseHelper.COLUMN_STUDENT_ID_MY_GRADE + "='"
-                                                + item.getStudentNumber() + "'",null);
-
-                                        if (cursor.moveToNext()){
-                                            db.deleteStudentGrade(item.getStudentNumber(),
+                                        db.deleteStudentGrade(item.getStudentNumber(),
                                                     item.getParent_id());
-                                        }
 
                                         int a = holder.getAdapterPosition();
                                         studentItems.remove(a);
