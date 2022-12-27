@@ -30,7 +30,7 @@
             android:id="@+id/imageView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:layout_marginStart="28dp"
             android:onClick="backToFaqs"
             android:background="@drawable/ic_simple_back"
@@ -39,10 +39,23 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/darkText"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Back"
+            android:textColor="@color/darkText"
+            android:layout_marginStart="5dp"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+        <TextView
             android:id="@+id/textView32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Frequently Asked Questions"
             android:textColor="@color/darkText"
