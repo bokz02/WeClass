@@ -280,15 +280,22 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
             if (resultCode == RESULT_OK && data != null){
                 Uri uri = data.getData();
                 String path = uri.getPath();
                 String[] format = null;
                 format = path.split("");
+                StringBuilder csv = new StringBuilder();
+
+                for (int i=format.length-3; i < format.length; i++){
+                    csv.append(format[i]);
+                }
+                String checkCsv = csv.toString();
 
                     // here we want to check if the file format is CSV
-                    if (format[format.length-1].equals("v")){
-
+                    if (checkCsv.equals("csv")){
+                        //Toast.makeText(this, " " + format[format.length-1], Toast.LENGTH_SHORT).show();
                         byte[] image = DrawableUtils.getBytes(BitmapFactory.decodeResource(getResources(), R.drawable.prof1));
 
                         DataBaseHelper dbHelper = DataBaseHelper.getInstance(this);
