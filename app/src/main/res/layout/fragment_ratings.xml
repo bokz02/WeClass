@@ -59,6 +59,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bottomNavigationView">
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent=".9"
+                android:orientation="horizontal"/>
+
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayoutRatings"
                 android:layout_width="match_parent"
@@ -96,7 +103,7 @@
                 android:id="@+id/viewPagerRatings"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/guide1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tabLayoutRatings" />

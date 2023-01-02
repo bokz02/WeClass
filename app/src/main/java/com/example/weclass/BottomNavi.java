@@ -9,9 +9,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.CursorLoader;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -19,7 +20,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -39,11 +41,11 @@ import com.example.weclass.subject.SubjectItems;
 import com.example.weclass.tasks.Tasks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -280,18 +282,20 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        String[] format=null;
+        StringBuilder csv = new StringBuilder();
 
             if (resultCode == RESULT_OK && data != null){
                 Uri uri = data.getData();
-                String path = uri.getPath();
-                String[] format = null;
-                format = path.split("");
-                StringBuilder csv = new StringBuilder();
+                String realPath = FileUtils.getReadablePathFromUri(this,uri);
+                assert realPath != null;
+                format = realPath.split("");
 
-                for (int i=format.length-3; i < format.length; i++){
+                for (int i = format.length-3; i < format.length; i++){
                     csv.append(format[i]);
                 }
                 String checkCsv = csv.toString();
+                //Toast.makeText(this, "" + checkCsv, Toast.LENGTH_SHORT).show();
 
                     // here we want to check if the file format is CSV
                     if (checkCsv.equals("csv")){
@@ -404,7 +408,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
                         db.close();
                         dbHelper.close();
                     }else {
-                        Toast.makeText(this, "Make sure the file is in CSV format" , Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(this, "Make sure the file is in CSV format" , Toast.LENGTH_SHORT).show();
                     }
 
             }
@@ -442,5 +446,16 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
     @Override
     public void onPassData(String data) {
         gradingPeriod = data;
+    }
+
+    private String getPathFromUri(Uri uri){
+        String[] proj = { MediaStore.Downloads.DATA };
+        CursorLoader loader = new CursorLoader(this, uri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Downloads.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
     }
 }

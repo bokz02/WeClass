@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.89" />
+            app:layout_constraintGuide_percent="0.9" />
 
         <TextView
             android:id="@+id/parentIDBottomNavi"
@@ -105,12 +105,11 @@
             android:id="@+id/cardView2"
             android:layout_width="300dp"
             android:layout_height="55dp"
-            android:layout_marginBottom="30dp"
             android:foregroundGravity="center_horizontal"
             app:cardBackgroundColor="@color/lightText"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guide1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 

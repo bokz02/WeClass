@@ -341,15 +341,16 @@ public class StudentList extends Fragment implements StudentAdapter.OnNoteListen
                 return;
             }
             openStorage();
+        }else {
+            openStorage();
         }
     }
 
     public void openStorage(){
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath());
         intent.setDataAndType(uri,"*/*");
         startActivityForResult(intent,1);
-
     }
 
     public void showHelp(){
