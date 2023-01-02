@@ -38,6 +38,7 @@
     <color name="ViewPagerTabText">#C1C1C1</color>
 
     <color name="SpinnerBgColor">#111111</color>
+    <color name="SpinnerDropDownText">#f0f0f0</color>
 
     <color name="ArchiveBg">#454545</color>
 </resources>

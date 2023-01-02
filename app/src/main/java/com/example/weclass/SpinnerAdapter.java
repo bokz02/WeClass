@@ -38,8 +38,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
         View view = super.getDropDownView(position, convertView, parent);
         ((TextView) view).setTypeface(font);
         ((TextView) view).setTextSize(16);
-        ((TextView) view).setTextColor(ContextCompat.getColor(getContext(), R.color.SpinnerBgColor));
-        ((TextView) view).getResources().getColor(R.color.black1);
+        ((TextView) view).setTextColor(ContextCompat.getColor(getContext(), R.color.spinnerDropDownText));
 
         return view;
     }

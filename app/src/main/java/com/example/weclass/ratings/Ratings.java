@@ -11,12 +11,14 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weclass.BottomNavi;
@@ -268,10 +270,14 @@ public class Ratings extends Fragment {
                     // get 10% of a student attendance
                     attendanceTotal = presentCount + lateCount;
                     if (currentTotalAttendance!=0) {
-                        attendanceTotal = attendanceTotal / currentTotalAttendance;
-                        attendanceTotal = attendanceTotal * 50;
-                        attendanceTotal = attendanceTotal + 50;
-                        attendanceTotal = attendanceTotal * .10;
+                        if (attendanceTotal!=0){
+                            attendanceTotal = attendanceTotal / currentTotalAttendance;
+                            attendanceTotal = attendanceTotal * 50;
+                            attendanceTotal = attendanceTotal + 50;
+                            attendanceTotal = attendanceTotal * .10;
+                        }else {
+                            attendanceTotal =0;
+                        }
                     } else {
                         attendanceTotal =0;
                     }
@@ -281,27 +287,39 @@ public class Ratings extends Fragment {
 
                     // get total quiz
                     if(quizCount!=0) {
-                        quizTotal = quizTotal / quizCount;
-                        quizTotal = quizTotal * 50;
-                        quizTotal = quizTotal + 50;
+                        if (quizTotal!=0) {
+                            quizTotal = quizTotal / quizCount;
+                            quizTotal = quizTotal * 50;
+                            quizTotal = quizTotal + 50;
+                        }else {
+                            quizTotal =0;
+                        }
                     }else {
                         quizTotal =0;
                     }
 
                     // get total recitation
                     if (recitationCount!=0) {
-                        recitationTotal = recitationTotal / recitationCount;
-                        recitationTotal = recitationTotal * 50;
-                        recitationTotal = recitationTotal + 50;
+                        if (recitationTotal!=0) {
+                            recitationTotal = recitationTotal / recitationCount;
+                            recitationTotal = recitationTotal * 50;
+                            recitationTotal = recitationTotal + 50;
+                        } else {
+                            recitationTotal =0;
+                        }
                     } else {
                         recitationTotal=0;
                     }
 
                     // get total reports
                     if (reportCount!=0) {
-                        reportTotal = reportTotal / reportCount;
-                        reportTotal = reportTotal * 50;
-                        reportTotal = reportTotal + 50;
+                        if (reportTotal!=0) {
+                            reportTotal = reportTotal / reportCount;
+                            reportTotal = reportTotal * 50;
+                            reportTotal = reportTotal + 50;
+                        } else {
+                            reportTotal=0;
+                        }
                     } else {
                         reportTotal=0;
                     }
@@ -313,28 +331,39 @@ public class Ratings extends Fragment {
 
                     // get total assignment
                     if (assignmentCount!=0) {
-                        assignmentTotal = assignmentTotal / assignmentCount;
-                        assignmentTotal = assignmentTotal * 50;
-                        assignmentTotal = assignmentTotal + 50;
+                        if (assignmentTotal!=0) {
+                            assignmentTotal = assignmentTotal / assignmentCount;
+                            assignmentTotal = assignmentTotal * 50;
+                            assignmentTotal = assignmentTotal + 50;
+                        } else {
+                            assignmentTotal=0;
+                        }
                     }else {
                         assignmentTotal =0;
                     }
 
                     // get total seatWork
                     if (seatWorkCount!=0) {
-                        seatWorkTotal = seatWorkTotal / seatWorkCount;
-                        seatWorkTotal = seatWorkTotal * 50;
-                        seatWorkTotal = seatWorkTotal + 50;
+                        if (seatWorkTotal!=0) {
+                            seatWorkTotal = seatWorkTotal / seatWorkCount;
+                            seatWorkTotal = seatWorkTotal * 50;
+                            seatWorkTotal = seatWorkTotal + 50;
+                        } else {
+                            seatWorkTotal=0;
+                        }
                     }else {
                         seatWorkTotal=0;
                     }
 
                     // get total activity
                     if (activityCount!=0) {
-                        activityTotal = activityTotal / activityCount;
-                        //Log.d(TAG,"" + cursor.getString(3) + " " + activityCount);
-                        activityTotal = activityTotal * 50;
-                        activityTotal = activityTotal + 50;
+                        if (activityTotal!=0) {
+                            activityTotal = activityTotal / activityCount;
+                            activityTotal = activityTotal * 50;
+                            activityTotal = activityTotal + 50;
+                        } else {
+                            activityTotal=0;
+                        }
                     }else {
                         activityTotal=0;
                     }
@@ -346,7 +375,6 @@ public class Ratings extends Fragment {
                     //Log.d(TAG,"" + cursor.getString(3) + " " + assignmentTotal + " " + seatWorkTotal + " " + activityTotal);
                     // get the midterm grade
                     grade = attendanceTotal + exam + performanceTotalScore + writtenTotalScore;
-                    //Log.d(TAG,"" + cursor.getString(3) + " " + attendanceTotal + " " + exam + " " + performanceTotalScore + " " +writtenTotalScore);
 
                     if (gradingPeriod.equals("Midterm")) {
                         // insert midterm grade
@@ -747,37 +775,53 @@ public class Ratings extends Fragment {
                 // get 10% of a student attendance
                 attendanceTotal = presentCount + lateCount;
                 if (currentTotalAttendance != 0) { // total will become infinite if the value is 0
-                    attendanceTotal = attendanceTotal / currentTotalAttendance;
-                    attendanceTotal = attendanceTotal * 50;
-                    attendanceTotal = attendanceTotal + 50;
-                    attendanceTotal = attendanceTotal * .10;
+                    if (attendanceTotal!=0) {
+                        attendanceTotal = attendanceTotal / currentTotalAttendance;
+                        attendanceTotal = attendanceTotal * 50;
+                        attendanceTotal = attendanceTotal + 50;
+                        attendanceTotal = attendanceTotal * .10;
+                    } else {
+                        attendanceTotal=0;
+                    }
                 }else {
                     attendanceTotal =0;
                 }
 
                 // get total assignment
                 if (assignmentCount!=0) {
-                    assignmentTotal = assignmentTotal / assignmentCount;
-                    assignmentTotal = assignmentTotal * 50;
-                    assignmentTotal = assignmentTotal + 50;
+                    if (assignmentTotal!=0) {
+                        assignmentTotal = assignmentTotal / assignmentCount;
+                        assignmentTotal = assignmentTotal * 50;
+                        assignmentTotal = assignmentTotal + 50;
+                    } else {
+                        assignmentTotal=0;
+                    }
                 }else {
                     assignmentTotal = 0;
                 }
 
                 // get total seatWork
                 if (seatWorkCount!=0) {
-                    seatWorkTotal = seatWorkTotal / seatWorkCount;
-                    seatWorkTotal = seatWorkTotal * 50;
-                    seatWorkTotal = seatWorkTotal + 50;
+                    if (seatWorkTotal!=0) {
+                        seatWorkTotal = seatWorkTotal / seatWorkCount;
+                        seatWorkTotal = seatWorkTotal * 50;
+                        seatWorkTotal = seatWorkTotal + 50;
+                    } else {
+                        seatWorkTotal=0;
+                    }
                 }else {
                     seatWorkTotal =0;
                 }
 
                 // get total quiz
                 if(quizCount!=0) {
-                    quizTotal = quizTotal / quizCount;
-                    quizTotal = quizTotal * 50;
-                    quizTotal = quizTotal + 50;
+                    if (quizTotal!=0) {
+                        quizTotal = quizTotal / quizCount;
+                        quizTotal = quizTotal * 50;
+                        quizTotal = quizTotal + 50;
+                    } else {
+                        quizTotal=0;
+                    }
                 }else {
                     quizTotal =0;
                 }
@@ -789,9 +833,13 @@ public class Ratings extends Fragment {
 
                 // get total activity
                 if (activityCount!=0) {
-                    activityTotal = activityTotal / activityCount;
-                    activityTotal = activityTotal * 50;
-                    activityTotal = activityTotal + 50;
+                    if (activityTotal!=0) {
+                        activityTotal = activityTotal / activityCount;
+                        activityTotal = activityTotal * 50;
+                        activityTotal = activityTotal + 50;
+                    } else {
+                        activityTotal=0;
+                    }
                 }else {
                     activityTotal =0;
                 }
@@ -800,9 +848,13 @@ public class Ratings extends Fragment {
 
                 // get total reports
                 if (reportCount!=0) {
-                    reportTotal = reportTotal / reportCount;
-                    reportTotal = reportTotal * 50;
-                    reportTotal = reportTotal + 50;
+                    if (reportTotal!=0) {
+                        reportTotal = reportTotal / reportCount;
+                        reportTotal = reportTotal * 50;
+                        reportTotal = reportTotal + 50;
+                    } else {
+                        reportTotal=0;
+                    }
                 }else {
                     reportTotal =0;
                 }
@@ -817,10 +869,14 @@ public class Ratings extends Fragment {
 
                 // get 10% of recitation of a student
                 if (reportCount!=0) {
-                    recitationTotal = recitationTotal / recitationCount;
-                    recitationTotal = recitationTotal * 50;
-                    recitationTotal = recitationTotal + 50;
-                    recitationTotal = recitationTotal * .1;
+                    if (recitationTotal!=0) {
+                        recitationTotal = recitationTotal / recitationCount;
+                        recitationTotal = recitationTotal * 50;
+                        recitationTotal = recitationTotal + 50;
+                        recitationTotal = recitationTotal * .1;
+                    } else {
+                        recitationTotal=0;
+                    }
                 }else {
                     recitationTotal =0;
                 }
@@ -899,10 +955,13 @@ public class Ratings extends Fragment {
                 String a = String.valueOf(midterm);
                 String b = String.valueOf(finals);
 
-                if (finals == 0 || midterm == 0 ) {
-                    Toast.makeText(getContext(),"Make sure student have their midterm and final grades",Toast.LENGTH_SHORT).show();
-                }else if (a.equals("-") || b.equals("-")){
-                    Toast.makeText(getContext(),"Make sure student have their midterm and final grades",Toast.LENGTH_SHORT).show();
+                if (a.equals("-") || b.equals("-")){
+                    Toast toast = Toast.makeText(getContext(),"Make sure student have their midterm and final grades",Toast.LENGTH_SHORT);
+                    TextView text = (TextView) toast.getView().findViewById(android.R.id.message);
+                    if (text!=null){
+                        text.setGravity(Gravity.CENTER);
+                    }
+                    toast.show();
                 }else {
                     sum = midterm + finals;
                     sum = sum / 200;

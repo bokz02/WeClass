@@ -73,13 +73,14 @@
             android:layout_marginEnd="10dp"
             android:ellipsize="end"
             android:fontFamily="@font/poppins_regular"
-            android:text="Last name"
             android:maxLines="1"
+            android:text="Last name"
             android:textColor="@color/lightText"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/lastNameRatingsRecView"
             app:layout_constraintEnd_toStartOf="@+id/finalRatingRatingsRecView"
-            app:layout_constraintStart_toEndOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/lastNameRatingsRecView" />
 
         <TextView
             android:id="@+id/finalRatingRatingsRecView"
