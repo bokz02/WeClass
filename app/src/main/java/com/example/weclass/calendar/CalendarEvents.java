@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -53,6 +54,8 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
     DataBaseHelper dataBaseHelper;
     CalendarAdapter calendarAdapter;
     ArrayList<CalendarItems> calendarItems;
+    String date;
+    String currentDate;
 
 
     @Override
@@ -79,11 +82,12 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
         setContentView(R.layout.activity_calendar_events);
 
         initialize();
+        displayDate();
         navigationOpen();
         setDate();
         setData();
         initializeAdapter();
-        displayDate();
+
     }
 
     @Override
@@ -145,7 +149,7 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
                 + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " WHERE "
                 + DataBaseHelper.TABLE_MY_TASKS + "."
                 + DataBaseHelper.COLUMN_DUE_DATE + " = '"
-                + currentDateTextView.getText().toString() +"'", null);
+                + currentDate + "'", null);
 
         ArrayList<CalendarItems> calendarItems = new ArrayList<>();
 
@@ -163,7 +167,7 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
             }
         cursor.close();
         sql.close();
-        //Toast.makeText(CalendarEvents.this, "Login successful" , Toast.LENGTH_SHORT).show();
+
         return calendarItems;
 
     }
@@ -171,9 +175,12 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
     public void displayDate(){
         Calendar calendar = Calendar.getInstance();
 
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM d, yyyy");
-        String date = dateFormat.format(calendar.getTime());
+        date = dateFormat.format(calendar.getTime());
         currentDateTextView.setText(date);
+        currentDate = date;
+        //Toast.makeText(this," " + currentDateTextView,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -182,8 +189,9 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-
+        currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM d, yyyy");
+        currentDate = dateFormat.format(calendar.getTime());
         currentDateTextView.setText(currentDate);
 
         setData();
