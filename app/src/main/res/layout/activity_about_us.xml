@@ -73,7 +73,7 @@
                 android:justificationMode="inter_word"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/darkText"
-                android:text="WeClass is a class record management application. You can easily keep track of your students' attendance, grades, and behavior as well as manage the class. It also adding impact to your work."/>
+                android:text="Wecclass is a class record management application. You can easily keep track of your students' attendance, grades, and behavior as well as manage the class. It also adding impact to your work."/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                 android:justificationMode="inter_word"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/darkText"
-                android:text="WeClass Class Record Application will provide efficiency in class record management, cater to all faculty/teachers with different mobile phones in different Android version, allow for easy application management, and is appropriate Higher Education Faculty, and corporate trainers."/>
+                android:text="Wecclass Class Record Application will provide efficiency in class record management, cater to all faculty/teachers with different mobile phones in different Android version, allow for easy application management, and is appropriate Higher Education Faculty, and corporate trainers."/>
 
 
             <TextView
@@ -136,6 +136,19 @@
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_baseline_circle_24"
                 android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Generate grades"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:textColor="@color/darkText"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/ic_baseline_circle_24"
+                        android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
