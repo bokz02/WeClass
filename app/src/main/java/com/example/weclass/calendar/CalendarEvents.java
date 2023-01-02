@@ -40,6 +40,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class CalendarEvents extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -176,7 +177,7 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
         Calendar calendar = Calendar.getInstance();
 
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM d, yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM d, yyyy", Locale.ENGLISH);
         date = dateFormat.format(calendar.getTime());
         currentDateTextView.setText(date);
         currentDate = date;
@@ -190,7 +191,7 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM d, yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM d, yyyy", Locale.ENGLISH);
         currentDate = dateFormat.format(calendar.getTime());
         currentDateTextView.setText(currentDate);
 
