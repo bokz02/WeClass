@@ -161,9 +161,9 @@
                     android:id="@+id/studLastnameProfile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:maxLines="2"
                     android:ellipsize="end"
                     android:fontFamily="@font/poppins_bold"
+                    android:maxLines="2"
                     android:text="Lastname"
                     android:textColor="@color/black1"
                     android:textSize="18sp"
@@ -176,10 +176,10 @@
                     android:id="@+id/studFirstnameProfile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Firstname"
-                    android:maxLines="2"
                     android:ellipsize="end"
+                    android:fontFamily="@font/poppins_regular"
+                    android:maxLines="2"
+                    android:text="Firstname"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
@@ -191,10 +191,10 @@
                     android:id="@+id/studentMiddleNameProfile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Middle name"
-                    android:maxLines="2"
                     android:ellipsize="end"
+                    android:fontFamily="@font/poppins_regular"
+                    android:maxLines="2"
+                    android:text="Middle name"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
@@ -581,10 +581,10 @@
                     android:id="@+id/_materialSeatwork"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
-                    android:layout_marginTop="8dp"
                     app:cardElevation="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.916"
@@ -618,10 +618,10 @@
                     android:id="@+id/_materialQuiz"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
-                    android:layout_marginTop="8dp"
                     app:cardElevation="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -729,11 +729,11 @@
                     android:id="@+id/_materialRecitation"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     app:cardBackgroundColor="@color/StudentProfileCardViewBg"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
-                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toStartOf="@+id/guide12"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guide13"
@@ -797,9 +797,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginTop="19dp"
-                        android:layout_marginEnd="48dp"
+                        android:layout_marginEnd="30dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Grade" />
+                        android:text="Grade"
+                        android:textColor="@color/black1" />
 
 
                     <TextView
@@ -808,18 +809,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Midterm Grade" />
-
-                    <ImageButton
-                        android:id="@+id/midtermGradeButton"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="25dp"
-                        android:background="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:clickable="true"
-                        android:focusable="true" />
+                        android:text="Midterm Grade"
+                        android:textColor="@color/black1" />
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -845,9 +836,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginTop="19dp"
-                        android:layout_marginEnd="48dp"
+                        android:layout_marginEnd="30dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Grade" />
+                        android:text="Grade"
+                        android:textColor="@color/black1" />
 
 
                     <TextView
@@ -856,18 +848,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Final Grade" />
-
-                    <ImageButton
-                        android:id="@+id/finalGradeButton"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="25dp"
-                        android:background="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:clickable="true"
-                        android:focusable="true" />
+                        android:text="Final Grade"
+                        android:textColor="@color/black1" />
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -887,24 +869,16 @@
                     app:layout_constraintStart_toStartOf="@+id/guide13"
                     app:layout_constraintTop_toBottomOf="@+id/materialCardView18">
 
-
-                    <!--                    <ImageView-->
-                    <!--                        android:layout_width="30dp"-->
-                    <!--                        android:layout_height="30dp"-->
-                    <!--                        android:layout_gravity="center_vertical"-->
-                    <!--                        android:layout_marginStart="10dp"-->
-                    <!--                        android:background="@drawable/iconpuzzle"-->
-                    <!--                        android:backgroundTint="@color/white" />-->
-
                     <TextView
                         android:id="@+id/finalRatingTextViewProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginTop="19dp"
-                        android:layout_marginEnd="48dp"
+                        android:layout_marginEnd="30dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Grade" />
+                        android:text="Grade"
+                        android:textColor="@color/black1" />
 
 
                     <TextView
@@ -913,19 +887,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Final Rating" />
-
-                    <ImageButton
-                        android:id="@+id/finalRatingButton"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="25dp"
-                        android:background="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:clickable="true"
-                        android:focusable="true" />
-
+                        android:text="Final Rating"
+                        android:textColor="@color/black1" />
 
                 </com.google.android.material.card.MaterialCardView>
 

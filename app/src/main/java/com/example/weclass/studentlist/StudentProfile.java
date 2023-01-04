@@ -50,9 +50,8 @@ public class StudentProfile extends AppCompatActivity {
     TextView _id, _subjectID, _lastName,
             _firstName, _presentTextview, _absentTextView,
             _courseTextView, _subjectTextView, _finalGrade,
-            _midtermGrade, _finalRating, studentNumber, _middleName
-            ,_late;
-    ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams , _projects, _profileImage;
+            _midtermGrade, _finalRating, studentNumber, _middleName, _late;
+    ImageView _activities, _quiz, _assignments, _seatWork, _present, _absent, _exams, _projects, _profileImage;
     String gradingPeriod;
     Uri uri = null;
     CardView absentCardView, activities, quiz,
@@ -61,20 +60,20 @@ public class StudentProfile extends AppCompatActivity {
     SharedPref sharedPref;
     ProgressBar progressBar;
     ConstraintLayout constraintButton;
-    int absentCount=0, presentCount=0, lateCount=0;
+    int absentCount = 0, presentCount = 0, lateCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
 
-        if (sharedPref.loadNightModeState()){
+        if (sharedPref.loadNightModeState()) {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(StudentProfile.this, R.color.titleBar));
 
-        }else {
+        } else {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -103,8 +102,9 @@ public class StudentProfile extends AppCompatActivity {
         countLate();
         goToRecitations();
         goToReports();
+        displayGrade(); // display grade of the student
 
-        
+
     }
 
     @Override
@@ -113,7 +113,7 @@ public class StudentProfile extends AppCompatActivity {
         finish();
     }
 
-    public void initialize(){
+    public void initialize() {
         backButton = findViewById(R.id.backButtonProfile);
         _id = findViewById(R.id.studentIDProfile);
         _subjectID = findViewById(R.id.subjectIDProfile);
@@ -135,9 +135,7 @@ public class StudentProfile extends AppCompatActivity {
         _midtermGrade = findViewById(R.id.midtermGradeTextViewProfile);
         _finalGrade = findViewById(R.id.finalGradeTextViewProfile);
         _finalRating = findViewById(R.id.finalRatingTextViewProfile);
-        _midtermGradeButton = findViewById(R.id.midtermGradeButton);
         _finalGradeButton = findViewById(R.id.finalGradeButton);
-        _finalRatingButton = findViewById(R.id.finalRatingButton);
         exams = findViewById(R.id._materialExams);
         projects = findViewById(R.id._materialProject);
         quiz = findViewById(R.id._materialQuiz);
@@ -156,7 +154,7 @@ public class StudentProfile extends AppCompatActivity {
 
     }
 
-    public void countAbsent(){
+    public void countAbsent() {
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
 
@@ -171,20 +169,20 @@ public class StudentProfile extends AppCompatActivity {
                 + DataBaseHelper.COLUMN_ABSENT_ATTENDANCE + "="
                 + 1, null);
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             absentCount = cursor.getInt(0);
             cursor.close();
         }
 
-        if(absentCount == 4){
+        if (absentCount == 4) {
             absentCardView.setCardBackgroundColor(getResources().getColor(R.color.absentWarning1));
-        }else if(absentCount >= 5 ){
+        } else if (absentCount >= 5) {
             absentCardView.setCardBackgroundColor(getResources().getColor(R.color.absentWarning2));
         }
         _absentTextView.setText(String.valueOf(absentCount));
     }
 
-    public void countPresent(){
+    public void countPresent() {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT count(*) FROM "
@@ -198,14 +196,14 @@ public class StudentProfile extends AppCompatActivity {
                 + DataBaseHelper.COLUMN_PRESENT_ATTENDANCE + "="
                 + 1, null);
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             presentCount = cursor.getInt(0);
             cursor.close();
         }
         _presentTextview.setText(String.valueOf(presentCount));
     }
 
-    public void countLate(){
+    public void countLate() {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
         SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(" SELECT count(*) FROM "
@@ -219,7 +217,7 @@ public class StudentProfile extends AppCompatActivity {
                 + DataBaseHelper.COLUMN_LATE_ATTENDANCE + "="
                 + 1, null);
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             lateCount = cursor.getInt(0);
             cursor.close();
         }
@@ -227,7 +225,7 @@ public class StudentProfile extends AppCompatActivity {
     }
 
 
-    public void goToActivities(){
+    public void goToActivities() {
         activities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -235,12 +233,12 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+                overridePendingTransition(R.transition.slide_right, R.transition.slide_left);
             }
         });
     }
 
-    public void goToAssignments(){
+    public void goToAssignments() {
         assignment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -248,12 +246,12 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+                overridePendingTransition(R.transition.slide_right, R.transition.slide_left);
             }
         });
     }
 
-    public void goToQuiz(){
+    public void goToQuiz() {
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -261,12 +259,12 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+                overridePendingTransition(R.transition.slide_right, R.transition.slide_left);
             }
         });
     }
 
-    public void goToSeatWork(){
+    public void goToSeatWork() {
         seatWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -274,12 +272,12 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+                overridePendingTransition(R.transition.slide_right, R.transition.slide_left);
             }
         });
     }
 
-    public void goToProjects(){
+    public void goToProjects() {
         projects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -287,12 +285,12 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+                overridePendingTransition(R.transition.slide_right, R.transition.slide_left);
             }
         });
     }
 
-    public void goToExams(){
+    public void goToExams() {
         exams.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -300,12 +298,12 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+                overridePendingTransition(R.transition.slide_right, R.transition.slide_left);
             }
         });
     }
 
-    public void goToRecitations(){
+    public void goToRecitations() {
         recitation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -313,12 +311,12 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+                overridePendingTransition(R.transition.slide_right, R.transition.slide_left);
             }
         });
     }
 
-    public void goToReports(){
+    public void goToReports() {
         reportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -326,12 +324,12 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentID", studentNumber.getText().toString());
                 intent.putExtra("subjectID", _subjectID.getText().toString());
                 startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+                overridePendingTransition(R.transition.slide_right, R.transition.slide_left);
             }
         });
     }
 
-    public void goAttendance(){
+    public void goAttendance() {
         constraintButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -339,12 +337,12 @@ public class StudentProfile extends AppCompatActivity {
                 intent.putExtra("studentNumber", studentNumber.getText().toString());
                 intent.putExtra("parentId", _subjectID.getText().toString());
                 startActivity(intent);
-                overridePendingTransition(R.transition.slide_right,R.transition.slide_left);
+                overridePendingTransition(R.transition.slide_right, R.transition.slide_left);
             }
         });
     }
 
-    public void backToStudentListActivity(){
+    public void backToStudentListActivity() {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -353,7 +351,7 @@ public class StudentProfile extends AppCompatActivity {
         });
     }
 
-    public void getDataFromStudentListRecView(){
+    public void getDataFromStudentListRecView() {
         Intent intent = getIntent();
         StudentItems studentItems = intent.getParcelableExtra("Student");
 
@@ -391,15 +389,15 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     //IMAGE PICKER THAT SELECT PHOTO FROM CAMERA OR GALLERY
-    public void addPhoto(){
+    public void addPhoto() {
         _profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ImagePicker.Companion.with(StudentProfile.this)
                         .galleryOnly()
-                        .crop()	    			//Crop image(Optional), Check Customization for more option
-                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .crop()                    //Crop image(Optional), Check Customization for more option
+                        .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
                         .start();
             }
         });
@@ -410,26 +408,26 @@ public class StudentProfile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == RESULT_OK && data != null){
+        if (resultCode == RESULT_OK && data != null) {
             uri = data.getData();
-            if(saveImageInDB(uri)){
+            if (saveImageInDB(uri)) {
                 _profileImage.setImageURI(uri);
                 finish();
                 startActivity(getIntent());
-                overridePendingTransition(R.transition.fade_no_fade,R.transition.fade_no_fade);
+                overridePendingTransition(R.transition.fade_no_fade, R.transition.fade_no_fade);
 
                 loadingAfterUpload();
             }
-        }else {
+        } else {
             finish();
             startActivity(getIntent());
-            overridePendingTransition(R.transition.fade_no_fade,R.transition.fade_no_fade);
+            overridePendingTransition(R.transition.fade_no_fade, R.transition.fade_no_fade);
         }
 
 
     }
 
-    public void loadingAfterUpload(){
+    public void loadingAfterUpload() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -456,7 +454,7 @@ public class StudentProfile extends AppCompatActivity {
             return true;
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             DataBaseHelper dbh = new DataBaseHelper(StudentProfile.this);
             dbh.close();
             return false;
@@ -464,21 +462,36 @@ public class StudentProfile extends AppCompatActivity {
     }
 
     // DISPLAY IMAGE IN PROFILE FROM DATABASE
-    private void displayImage(){
+    private void displayImage() {
         DataBaseHelper db = new DataBaseHelper(StudentProfile.this);
         SQLiteDatabase sqL = db.getWritableDatabase();
         Cursor cursor = sqL.rawQuery("SELECT * FROM "
-                        + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
-                        + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
-                        + studentNumber.getText().toString().trim() + "'", null);
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+                + studentNumber.getText().toString().trim() + "'", null);
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             byte[] image = cursor.getBlob(9);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
             _profileImage.setImageBitmap(bitmap);
             cursor.close();
             db.close();
         }
+    }
 
+    private void displayGrade() {
+        DataBaseHelper db = new DataBaseHelper(StudentProfile.this);
+        SQLiteDatabase sqL = db.getWritableDatabase();
+        Cursor cursor = sqL.rawQuery("SELECT * FROM "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+                + studentNumber.getText().toString().trim() + "'", null);
+
+        if (cursor.moveToFirst()) {
+            _midtermGrade.setText(cursor.getString(10));
+            _finalGrade.setText(cursor.getString(11));
+            _finalRating.setText(cursor.getString(12));
+            cursor.close();
+        }
     }
 }
