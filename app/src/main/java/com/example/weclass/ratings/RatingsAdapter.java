@@ -28,24 +28,22 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
 
     private final ArrayList<RatingsModel> ratingsModel;
     private final Context context;
-    private final String classType;
-    private int midtermTotal =0;
-    DataBaseHelper db;
-    SQLiteDatabase sql;
+    OnStudentClick onStudentClick;
 
-    public RatingsAdapter(ArrayList<RatingsModel> ratingsModel, Context context, String classType) {
+    public RatingsAdapter(ArrayList<RatingsModel> ratingsModel, Context context, String classType, OnStudentClick onStudentClick) {
         this.ratingsModel = ratingsModel;
         this.context = context;
-        this.classType = classType;
+        this.onStudentClick = onStudentClick;
 
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView _lastName, _firstName, _rating, studentNumber, parentId;
         ImageView _profilePicture;
+        OnStudentClick onStudentClick;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnStudentClick onStudentClick) {
             super(itemView);
 
             _lastName = itemView.findViewById(R.id.lastNameRatingsRecView);
@@ -54,6 +52,14 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
             _profilePicture = itemView.findViewById(R.id.imageViewRatingsRecView);
             studentNumber = itemView.findViewById(R.id.studentNumberRatings);
             parentId = itemView.findViewById(R.id.parentIdRatings);
+
+            this.onStudentClick = onStudentClick;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            onStudentClick.onStudentClick(getAdapterPosition());
         }
     }
 
@@ -63,7 +69,7 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.ratings_recyclerview_style, parent, false);
 
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, onStudentClick);
     }
 
     @Override
@@ -90,6 +96,10 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
     @Override
     public int getItemCount() {
         return ratingsModel.size();
+    }
+
+    public interface OnStudentClick{
+        void onStudentClick(int position);
     }
 
 }

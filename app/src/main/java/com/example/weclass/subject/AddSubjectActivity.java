@@ -527,7 +527,6 @@ public class AddSubjectActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectedSection = section[i];
                         _section.setText(selectedSection);
-                        dialogInterface.dismiss();
                     }
                 });
 

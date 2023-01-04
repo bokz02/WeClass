@@ -1,6 +1,7 @@
 package com.example.weclass.ratings.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -18,18 +19,19 @@ import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.ratings.RatingsAdapter;
 import com.example.weclass.ratings.RatingsModel;
+import com.example.weclass.studentlist.StudentProfile;
 
 import java.util.ArrayList;
 
 
-public class Finals extends Fragment {
+public class Finals extends Fragment implements RatingsAdapter.OnStudentClick {
 
     View view, noView;
     TextView noTextView;
     RatingsAdapter ratingsAdapter;
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<RatingsModel> ratingsModel;
-    String parentId, classType;
+    String parentId, classType, gradingPeriod;
     @SuppressLint("StaticFieldLeak")
     private static Finals instance = null;
 
@@ -82,11 +84,12 @@ public class Finals extends Fragment {
         if (bundle!=null){
             parentId = bundle.getString("parentId");
             classType = bundle.getString("classType");
+            gradingPeriod = bundle.getString("gradingPeriod");
         }
     }
 
     public void initializeAdapter(){
-        ratingsAdapter = new RatingsAdapter(ratingsModel, getContext(), classType);
+        ratingsAdapter = new RatingsAdapter(ratingsModel, getContext(), classType, this);
         extendedRecyclerView.setAdapter(ratingsAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(noView,noTextView);
@@ -123,5 +126,13 @@ public class Finals extends Fragment {
         cursor.close();
         sqLiteDatabase.close();
         return ratingsModels;
+    }
+
+    @Override
+    public void onStudentClick(int position) {
+        Intent intent = new Intent(getContext(), StudentProfile.class);
+        intent.putExtra("Profile", ratingsModel.get(position));
+        intent.putExtra("gradingPeriod", gradingPeriod);
+        startActivity(intent);
     }
 }

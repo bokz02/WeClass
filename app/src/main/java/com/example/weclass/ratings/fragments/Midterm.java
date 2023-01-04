@@ -1,6 +1,7 @@
 package com.example.weclass.ratings.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,21 +17,24 @@ import android.widget.Toast;
 
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
+import com.example.weclass.calendar.CalendarEvents;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.ratings.RatingsAdapter;
 import com.example.weclass.ratings.RatingsModel;
+import com.example.weclass.studentlist.StudentProfile;
+import com.example.weclass.taskGrade.TaskGrade;
 
 import java.util.ArrayList;
 
 
-public class Midterm extends Fragment {
+public class Midterm extends Fragment implements RatingsAdapter.OnStudentClick {
 
     View view, noView;
     TextView noTextView;
     RatingsAdapter ratingsAdapter;
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<RatingsModel> ratingsModel;
-    String parentId, classType;
+    String parentId, classType, gradingPeriod;
     @SuppressLint("StaticFieldLeak")
     private static Midterm instance = null;
 
@@ -79,6 +83,7 @@ public class Midterm extends Fragment {
         if (bundle!=null){
             parentId = bundle.getString("parentId");
             classType = bundle.getString("classType");
+            gradingPeriod = bundle.getString("gradingPeriod");
 
         }
     }
@@ -89,7 +94,7 @@ public class Midterm extends Fragment {
 
     public void initializeAdapter(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        ratingsAdapter = new RatingsAdapter(ratingsModel, getContext(), classType);
+        ratingsAdapter = new RatingsAdapter(ratingsModel, getContext(), classType, this);
         extendedRecyclerView.setAdapter(ratingsAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(noView, noTextView);
@@ -130,4 +135,11 @@ public class Midterm extends Fragment {
     }
 
 
+    @Override
+    public void onStudentClick(int position) {
+        Intent intent = new Intent(getContext(), StudentProfile.class);
+        intent.putExtra("Profile", ratingsModel.get(position));
+        intent.putExtra("gradingPeriod", gradingPeriod);
+        startActivity(intent);
+    }
 }

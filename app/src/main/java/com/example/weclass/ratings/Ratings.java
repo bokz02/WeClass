@@ -39,7 +39,7 @@ public class Ratings extends Fragment {
     RatingsViewPagerAdapter ratingsViewPagerAdapter;
     String parentId, notArchive;
     ImageButton optionButton;
-    String classType, midterm="Midterm", finals="Finals";
+    String classType, midterm="Midterm", finals="Finals", gradingPeriod;
     DataBaseHelper db;
     SQLiteDatabase sql;
     int presentCount=0, absentCount=0, lateCount=0, totalAttendance=0,
@@ -185,12 +185,13 @@ public class Ratings extends Fragment {
             parentId = bundle.getString("IDParent");
             classType = bundle.getString("classType");
             notArchive = bundle.getString("NotArchive");
+            gradingPeriod = bundle.getString("gradingPeriod");
 
         }
     }
 
     public void viewPagerFragmentManager(){
-        ratingsViewPagerAdapter = new RatingsViewPagerAdapter(getParentFragmentManager(),getLifecycle(),parentId, classType);
+        ratingsViewPagerAdapter = new RatingsViewPagerAdapter(getParentFragmentManager(),getLifecycle(),parentId, classType,gradingPeriod);
         viewPager2.setAdapter(ratingsViewPagerAdapter);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -201,6 +201,7 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
         bundle.putString("CourseCode", courseName.getText().toString());
         bundle.putString("sy", _schoolYear.getText().toString());
         bundle.putString("classType", classType);
+        bundle.putString("gradingPeriod", gradingPeriod);
         bundle.putString("NotArchive", notArchive);
         ranking.setArguments(bundle);
         fragmentLoader(ranking);
@@ -448,14 +449,4 @@ public class BottomNavi extends AppCompatActivity implements MyProgressBar, Stud
         gradingPeriod = data;
     }
 
-    private String getPathFromUri(Uri uri){
-        String[] proj = { MediaStore.Downloads.DATA };
-        CursorLoader loader = new CursorLoader(this, uri, proj, null, null, null);
-        Cursor cursor = loader.loadInBackground();
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Downloads.DATA);
-        cursor.moveToFirst();
-        String result = cursor.getString(column_index);
-        cursor.close();
-        return result;
-    }
 }

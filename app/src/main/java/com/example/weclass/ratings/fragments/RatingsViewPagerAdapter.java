@@ -14,14 +14,15 @@ import com.example.weclass.studentlist.profile.attendance.attendanceviewpager.Pr
 
 public class RatingsViewPagerAdapter extends FragmentStateAdapter {
 
-    private final String parentId, classType;
+    private final String parentId, classType, gradingPeriod;
 
     public RatingsViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle,
-                                   String parentId, String classType) {
+                                   String parentId, String classType, String gradingPeriod) {
         super(fragmentManager, lifecycle);
 
         this.parentId = parentId;
         this.classType = classType;
+        this.gradingPeriod = gradingPeriod;
     }
 
     @NonNull
@@ -31,6 +32,7 @@ public class RatingsViewPagerAdapter extends FragmentStateAdapter {
             Bundle bundle = new Bundle();
             bundle.putString("parentId", parentId);
             bundle.putString("classType", classType);
+            bundle.putString("gradingPeriod", gradingPeriod);
             Midterm midterm= new Midterm();
             midterm.setArguments(bundle);
 
@@ -39,6 +41,7 @@ public class RatingsViewPagerAdapter extends FragmentStateAdapter {
             Bundle bundle = new Bundle();
             bundle.putString("parentId", parentId);
             bundle.putString("classType", classType);
+            bundle.putString("gradingPeriod", gradingPeriod);
             Finals finals= new Finals();
             finals.setArguments(bundle);
 
@@ -47,6 +50,7 @@ public class RatingsViewPagerAdapter extends FragmentStateAdapter {
             Bundle bundle = new Bundle();
             bundle.putString("parentId", parentId);
             bundle.putString("classType", classType);
+            bundle.putString("gradingPeriod", gradingPeriod);
             FinalRating finalRating= new FinalRating();
             finalRating.setArguments(bundle);
 

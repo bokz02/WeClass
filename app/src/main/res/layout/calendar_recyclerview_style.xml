@@ -11,7 +11,7 @@
     app:cardElevation="5dp"
     style="@style/FloatingActionButton"
     app:cardCornerRadius="10dp"
-    app:rippleColor="@color/black1">
+    app:rippleColor="@color/red2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.ratings.RatingsModel;
 import com.example.weclass.studentlist.profile.activities.Activities;
 import com.example.weclass.studentlist.profile.assignments.Assignments;
 import com.example.weclass.studentlist.profile.attendance.AttendanceView;
@@ -43,6 +44,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.core.Repo;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class StudentProfile extends AppCompatActivity {
 
@@ -224,7 +226,6 @@ public class StudentProfile extends AppCompatActivity {
         _late.setText(String.valueOf(lateCount));
     }
 
-
     public void goToActivities() {
         activities.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -354,37 +355,71 @@ public class StudentProfile extends AppCompatActivity {
     public void getDataFromStudentListRecView() {
         Intent intent = getIntent();
         StudentItems studentItems = intent.getParcelableExtra("Student");
+        RatingsModel ratingsModel = intent.getParcelableExtra("Profile");
 
         String subjectCode = intent.getStringExtra("subject");
         String course = intent.getStringExtra("course");
         gradingPeriod = intent.getStringExtra("gradingPeriod");
 
-        //int studentID = studentItems.getId();
-        int subjectID = studentItems.getParent_id();
+        if (studentItems!=null) {
+            //int studentID = studentItems.getId();
+            int subjectID = studentItems.getParent_id();
 
-        String lastName = studentItems.getLastname();
-        String firstName = studentItems.getFirstname();
-        String midtermGrade_ = studentItems.getMidtermGrade();
-        String finalGrade_ = studentItems.getFinalGrade();
-        String finalRating_ = studentItems.getFinalRating();
-        int present = studentItems.getPresent();
-        int absent = studentItems.getAbsent();
-        String studNumber = studentItems.getStudentNumber();
-        String middleName = studentItems.getMiddleName();
+            String lastName = studentItems.getLastname();
+            String firstName = studentItems.getFirstname();
+            String midtermGrade_ = studentItems.getMidtermGrade();
+            String finalGrade_ = studentItems.getFinalGrade();
+            String finalRating_ = studentItems.getFinalRating();
+            int present = studentItems.getPresent();
+            int absent = studentItems.getAbsent();
+            String studNumber = studentItems.getStudentNumber();
+            String middleName = studentItems.getMiddleName();
 
-        //_id.setText(String.valueOf(studentID));
-        _subjectID.setText(String.valueOf(subjectID));
-        _lastName.setText(lastName);
-        _firstName.setText(firstName);
-        _presentTextview.setText(String.valueOf(present));
-        _absentTextView.setText(String.valueOf(absent));
-        _courseTextView.setText(course);
-        _subjectTextView.setText(subjectCode);
-        _midtermGrade.setText(midtermGrade_);
-        _finalGrade.setText(finalGrade_);
-        _finalRating.setText(finalRating_);
-        studentNumber.setText(studNumber);
-        _middleName.setText(middleName);
+            //_id.setText(String.valueOf(studentID));
+            _subjectID.setText(String.valueOf(subjectID));
+            _lastName.setText(lastName);
+            _firstName.setText(firstName);
+            _presentTextview.setText(String.valueOf(present));
+            _absentTextView.setText(String.valueOf(absent));
+            _courseTextView.setText(course);
+            _subjectTextView.setText(subjectCode);
+            _midtermGrade.setText(midtermGrade_);
+            _finalGrade.setText(finalGrade_);
+            _finalRating.setText(finalRating_);
+            studentNumber.setText(studNumber);
+            _middleName.setText(middleName);
+        } else {
+            String studentNumber = ratingsModel.getStudentNumber();
+            String parentId = ratingsModel.getParentId();
+            getDataFromDB(studentNumber, parentId);
+        }
+
+    }
+
+    private void getDataFromDB(String studentNumber_, String parentId){
+        DataBaseHelper db = new DataBaseHelper(StudentProfile.this);
+        SQLiteDatabase sqL = db.getWritableDatabase();
+        Cursor cursor = sqL.rawQuery("SELECT * FROM "
+                + DataBaseHelper.TABLE_MY_STUDENTS + " WHERE "
+                + DataBaseHelper.COLUMN_STUDENT_NUMBER_STUDENT + " = '"
+                + studentNumber_ + "' and "
+                + DataBaseHelper.COLUMN_PARENT_ID + " = '"
+                + parentId + "'", null);
+        if (cursor.moveToFirst()){
+
+            studentNumber.setText(cursor.getString(1));
+            _lastName.setText(cursor.getString(3));
+            _firstName.setText(cursor.getString(4));
+            _middleName.setText(cursor.getString(5));
+            _presentTextview.setText(String.valueOf(cursor.getString(7)));
+            _absentTextView.setText(String.valueOf(cursor.getString(8)));
+            _midtermGrade.setText(cursor.getString(10));
+            _finalGrade.setText(cursor.getString(11));
+            _finalRating.setText(cursor.getString(12));
+            _subjectID.setText(String.valueOf(cursor.getInt(2)));
+
+            cursor.close();
+        }
 
     }
 

@@ -28,6 +28,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -45,9 +46,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
 
-        if (sharedPref.loadNightModeState()){
+        if (sharedPref.loadNightModeState()) {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else {
+        } else {
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
         super.onCreate(savedInstanceState);
@@ -59,11 +60,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width*.8),(int) (height*.67));
+        getWindow().setLayout((int) (width * .8), (int) (height * .67));
         getWindow().setBackgroundDrawableResource(R.drawable.dialogbox_bg);
         getWindow().setElevation(20);
-
-
 
 
         initialize();   // INITIALIZE ALL VIEWS
@@ -99,109 +98,108 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     // CREATE A TASK METHOD
     public void createTask() {
         _create.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-                                           // IF ANY OF THE FIELDS IS EMPTY, AN ERROR WILL POP UP
-                                           if (taskType.getText().toString().isEmpty() || _score.getText().toString().isEmpty()
-                                                   || _taskNumber.getText().toString().isEmpty()
-                                                   || _gradingPeriod.getText().toString().isEmpty() || _dueTextView.getText().toString().isEmpty()) {
+                // IF ANY OF THE FIELDS IS EMPTY, AN ERROR WILL POP UP
+                if (taskType.getText().toString().isEmpty() || _score.getText().toString().isEmpty()
+                        || _taskNumber.getText().toString().isEmpty()
+                        || _gradingPeriod.getText().toString().isEmpty() || _dueTextView.getText().toString().isEmpty()) {
 
-                                               MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
-                                               builder.setTitle("Error");
-                                               builder.setIcon(R.drawable.ic_baseline_warning_24);
-                                               builder.setMessage("Don't leave empty fields!");
-                                               builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                                   @Override
-                                                   public void onClick(DialogInterface dialogInterface, int i) {
-                                                   }
-                                               });
-                                               builder.show();
-                                           }
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
+                    builder.setTitle("Error");
+                    builder.setIcon(R.drawable.ic_baseline_warning_24);
+                    builder.setMessage("Don't leave empty fields!");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    builder.show();
+                }
 
 
+                //IF FIELDS ARE FILLED, IT WILL ADD TO DATABASE
+                else {
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(AddTask.this);
+                    SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
 
-                                           //IF FIELDS ARE FILLED, IT WILL ADD TO DATABASE
-                                           else {
-                                               DataBaseHelper dataBaseHelper = new DataBaseHelper(AddTask.this);
-                                               SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+                    Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
+                            + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
+                            + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
+                            + parentID.getText().toString() + " AND "
+                            + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                            + taskType.getText().toString() + "' AND "
+                            + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
+                            + _taskNumber.getText().toString() + " AND "
+                            + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
+                            + _gradingPeriod.getText().toString() + "'", null);
 
-                                               Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "
-                                                       + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
-                                                       + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
-                                                       + parentID.getText().toString() + " AND "
-                                                       + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
-                                                       + taskType.getText().toString() + "' AND "
-                                                       + DataBaseHelper.COLUMN_TASK_NUMBER + " = "
-                                                       + _taskNumber.getText().toString() + " AND "
-                                                       + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                                                       + _gradingPeriod.getText().toString() + "'", null);
+                    // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
+                    if (cursor.moveToFirst()) {
+                        Snackbar.make(_create, "" + taskType.getText().toString() + " "
+                                + _taskNumber.getText().toString() + " is already in tasks list!", Snackbar.LENGTH_SHORT).show();
+                        cursor.close();
 
-                                               // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
-                                               if (cursor.moveToFirst()) {
-                                                   Snackbar.make(_create, "" + taskType.getText().toString() + " "
-                                                           + _taskNumber.getText().toString() + " is already in tasks list!", Snackbar.LENGTH_SHORT).show();
-                                                   cursor.close ();
+                    } else {
 
-                                               } else {
+                        Cursor cursor2 = sqLiteDatabase.rawQuery("SELECT * FROM "
+                                + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
+                                + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
+                                + parentID.getText().toString() + " AND "
+                                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                                + "Exam" + "' AND "
+                                + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
+                                + _gradingPeriod.getText().toString() + "'", null);
 
-                                                   Cursor cursor2 = sqLiteDatabase.rawQuery("SELECT * FROM "
-                                                           + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
-                                                           + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
-                                                           + parentID.getText().toString() + " AND "
-                                                           + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
-                                                           + "Exam" + "' AND "
-                                                           + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                                                           + _gradingPeriod.getText().toString() + "'", null);
+                        // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
+                        if (cursor2.moveToFirst()) {
+                            Snackbar.make(_create, "You can only have 1 exam in per semester", Snackbar.LENGTH_SHORT).show();
+                            cursor2.close();
+                        } else {
 
-                                                   // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
-                                                   if (cursor2.moveToFirst()) {
-                                                       Snackbar.make(_create, "You can only have 1 exam in per semester", Snackbar.LENGTH_SHORT).show();
-                                                       cursor2.close();
-                                                   }else {
+                            // DATA WILL SAVE TO DATABASE IF ALL FIELDS ARE CORRECT
+                            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
+                            builder.setTitle("Please confirm");
+                            builder.setIcon(R.drawable.ic_baseline_warning_24);
+                            builder.setMessage("Are you sure all the information are correct?");
+                            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                                                       // DATA WILL SAVE TO DATABASE IF ALL FIELDS ARE CORRECT
-                                                       MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
-                                                       builder.setTitle("Please confirm");
-                                                       builder.setIcon(R.drawable.ic_baseline_warning_24);
-                                                       builder.setMessage("Are you sure all the information are correct?");
-                                                       builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                                           @Override
-                                                           public void onClick(DialogInterface dialog, int which) {
+                                    dataBaseHelper.addTask(parentID.getText().toString().trim(),
+                                            taskType.getText().toString().trim(),
+                                            _score.getText().toString().trim(),
+                                            _description.getText().toString().trim(),
+                                            _progress.getText().toString().trim(),
+                                            _taskNumber.getText().toString().trim(),
+                                            _gradingPeriod.getText().toString().trim(),
+                                            _dueTextView.getText().toString().trim());
 
-                                                               dataBaseHelper.addTask(parentID.getText().toString().trim(),
-                                                                       taskType.getText().toString().trim(),
-                                                                       _score.getText().toString().trim(),
-                                                                       _description.getText().toString().trim(),
-                                                                       _progress.getText().toString().trim(),
-                                                                       _taskNumber.getText().toString().trim(),
-                                                                       _gradingPeriod.getText().toString().trim(),
-                                                                       _dueTextView.getText().toString().trim());
+                                    Snackbar.make(_create, "Task successfully created!", Snackbar.LENGTH_LONG).show();
 
-                                                               Snackbar.make(_create, "Task successfully created!", Snackbar.LENGTH_LONG).show();
+                                    taskType.setText("");
+                                    _score.setText("");
+                                    _description.setText("");
+                                    _taskNumber.setText("");
+                                    _gradingPeriod.setText(gradingPeriod);
+                                    _dueTextView.setText("");
+                                }
+                            });
 
-                                                               taskType.setText("");
-                                                               _score.setText("");
-                                                               _description.setText("");
-                                                               _taskNumber.setText("");
-                                                               _gradingPeriod.setText(gradingPeriod);
-                                                               _dueTextView.setText("");
-                                                           }
-                                                       });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
 
-                                                       builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                                           @Override
-                                                           public void onClick(DialogInterface dialogInterface, int i) {
+                                }
+                            });
+                            builder.show();
+                        }
+                    }
 
-                                                           }
-                                                       });
-                                                       builder.show();
-                                                   }
-                                               }
+                }
 
-                                           }
-
-                                       }
+            }
                                    }
         );
     }
@@ -243,20 +241,27 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         taskType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this, R.style.CustomMaterialDialog);
                 builder.setTitle("Choose task");
                 builder.setSingleChoiceItems(tasks, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectedTask = tasks[i];
                         taskType.setText(selectedTask);
-                        dialogInterface.dismiss();
 
-                        if(selectedTask.equals("Exam")){
+                        if (selectedTask.equals("Exam")) {
                             _taskNumber.setText("1");
                         }
                     }
                 });
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
                 builder.show();
             }
         });
@@ -294,14 +299,11 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         _dueTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                DialogFragment datePicker = new DatePickerFragment();
-//                datePicker.show(getSupportFragmentManager(), "date picker");
 
                 Calendar calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
                 datePickerDialog = new DatePickerDialog(AddTask.this);
 
@@ -309,7 +311,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
                         Date date = calendar.getTime();
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE, MMM d, yyyy");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE, MMM d, yyyy", Locale.ENGLISH);
                         String a = simpleDateFormat.format(date);
                         _dueTextView.setText(a);
                     }
@@ -331,9 +333,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         _dueTextView.setText(currentDate);
 
 
-
     }
-
 
 
     public void cancelButton() {
@@ -342,9 +342,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             public void onClick(View view) {
 
                 if (_taskNumber.getText().toString().isEmpty() && taskType.getText().toString().isEmpty() && _description.getText().toString().isEmpty() &&
-                _dueTextView.getText().toString().isEmpty() && _score.getText().toString().isEmpty()){
+                        _dueTextView.getText().toString().isEmpty() && _score.getText().toString().isEmpty()) {
                     finish();
-                }else {
+                } else {
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
                     builder.setTitle("Confirm exit");
                     builder.setIcon(R.drawable.ic_baseline_warning_24);
@@ -369,11 +369,11 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         });
     }
 
-    public void examTrapping(){
-        if(taskType.getText().toString().equals("Exam")){
+    public void examTrapping() {
+        if (taskType.getText().toString().equals("Exam")) {
             _taskNumber.setText("1");
             _taskNumber.setEnabled(false);
-        }else {
+        } else {
             _taskNumber.setEnabled(true);
         }
     }
