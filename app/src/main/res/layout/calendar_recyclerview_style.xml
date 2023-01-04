@@ -27,7 +27,6 @@
             android:fontFamily="@font/poppins_regular"
             android:text="Activity"
             android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,7 +59,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BSCS 3"
-            android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/sectionTextViewCalendarRecView"
@@ -74,7 +72,6 @@
             android:fontFamily="@font/poppins_regular"
             android:text="A"
             android:textSize="14sp"
-            android:textStyle="bold"
             android:layout_marginEnd="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/courseTextViewCalendarRecView"
             app:layout_constraintEnd_toStartOf="@+id/progressTextViewCalendar"
