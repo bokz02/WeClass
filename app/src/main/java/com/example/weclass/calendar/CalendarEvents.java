@@ -32,6 +32,7 @@ import com.example.weclass.SharedPref;
 import com.example.weclass.archive.Archive;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.subject.Subject;
+import com.example.weclass.taskGrade.TaskGrade;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
@@ -42,7 +43,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class CalendarEvents extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class CalendarEvents extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, CalendarAdapter.OnClickListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -114,7 +115,7 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
     }
 
     public void initializeAdapter(){
-        calendarAdapter = new CalendarAdapter(this, calendarItems);
+        calendarAdapter = new CalendarAdapter(this, calendarItems, this);
         recyclerView.setAdapter(calendarAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setEmptyView(noView,noTextView);
@@ -161,7 +162,10 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
                         cursor.getString(15),
                         cursor.getString(20),
                         cursor.getString(1),
-                        cursor.getString(18)));
+                        cursor.getString(18),
+                        cursor.getInt(13),
+                        cursor.getString(21),
+                        cursor.getString(6)));
 
             }while (cursor.moveToNext());
 
@@ -246,6 +250,10 @@ public class CalendarEvents extends AppCompatActivity implements DatePickerDialo
     }
 
 
-
-
+    @Override
+    public void onNoteClick(int position) {
+        Intent intent = new Intent(CalendarEvents.this, TaskGrade.class);
+        intent.putExtra("Calendar", calendarItems.get(position));
+        startActivity(intent);
+    }
 }

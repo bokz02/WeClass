@@ -11,7 +11,7 @@
     app:cardElevation="5dp"
     style="@style/FloatingActionButton"
     app:cardCornerRadius="10dp"
-    app:rippleColor="@color/white1">
+    app:rippleColor="@color/black1">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:id="@+id/taskTextViewCalendarRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Activity"
@@ -44,6 +44,18 @@
             app:layout_constraintTop_toTopOf="@+id/taskTextViewCalendarRecView" />
 
         <TextView
+            android:id="@+id/progressTextViewCalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="In-progress"
+            android:textColor="@color/TaskProgressTextColor"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/courseTextViewCalendarRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,13 +71,13 @@
             android:id="@+id/sectionTextViewCalendarRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:fontFamily="@font/poppins_regular"
             android:text="A"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:layout_marginEnd="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/courseTextViewCalendarRecView"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/progressTextViewCalendar"
             app:layout_constraintTop_toTopOf="@+id/courseTextViewCalendarRecView"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -75,6 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:text="Instruction: "
+            android:layout_marginTop="5dp"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_semibold"
             app:layout_constraintStart_toStartOf="@+id/taskTextViewCalendarRecView"

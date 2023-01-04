@@ -17,16 +17,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
+import com.example.weclass.calendar.CalendarItems;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.studentlist.profile.activities.ActivitiesItems;
 import com.example.weclass.tasks.TaskItems;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TaskGrade extends AppCompatActivity{
 
@@ -138,30 +141,63 @@ public class TaskGrade extends AppCompatActivity{
         Intent intent = getIntent();
         TaskItems taskItems = intent.getParcelableExtra("Task");
         String subjectID = intent.getStringExtra("id");
+        CalendarItems calendarItems = intent.getParcelableExtra("Calendar");
 
+        if (taskItems!=null) {
+            String progress = taskItems.getProgress();
+            String score = taskItems.getScore();
+            String description = taskItems.getTaskDescription();
+            String taskType = taskItems.getTaskType();
+            String period = taskItems.getGradingPeriod();
+            String due = taskItems.getDue();
+            int taskId = taskItems.getTaskID();
+            int taskNumber = taskItems.getTaskNumber();
+            String a = "                        ";
+            String c = a + description;
 
-        String progress =taskItems.getProgress();
-        String score = taskItems.getScore();
-        String description = taskItems.getTaskDescription();
-        String taskType = taskItems.getTaskType();
-        String period = taskItems.getGradingPeriod();
-        String due = taskItems.getDue();
-        int taskId = taskItems.getTaskID();
-        int taskNumber = taskItems.getTaskNumber();
-        String a = "                        ";
-        String c = a + description;
+            _progress.setText(progress);
+            _score.setText(score);
+            _description.setText(c);
+            _taskType.setText(taskType);
+            _taskNumber.setText(String.valueOf(taskNumber));
+            _subjectID.setText(subjectID);
+            _gradingPeriod.setText(period);
+            _due.setText(due);
+            _taskId.setText(String.valueOf(taskId));
+        } else {
+            int taskId = calendarItems.getTaskId();
+            int parentId = calendarItems.getParentId();
 
-        _progress.setText(progress);
-        _score.setText(score);
-        _description.setText(c);
-        _taskType.setText(taskType);
-        _taskNumber.setText(String.valueOf(taskNumber));
-        _subjectID.setText(subjectID);
-        _gradingPeriod.setText(period);
-        _due.setText(due);
-        _taskId.setText(String.valueOf(taskId));
+            getDataFromDb(parentId, taskId);
 
+        }
+    }
 
+    // this method display data from database
+    private void getDataFromDb(int parentId, int taskId){
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" select * from "
+                + DataBaseHelper.TABLE_MY_TASKS + " where "
+                + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
+                + parentId + " and "
+                + DataBaseHelper.COLUMN_ID4 + " = "
+                + taskId, null);
+        if (cursor.moveToFirst()){
+            _progress.setText(cursor.getString(6));
+            _score.setText(cursor.getString(4));
+            _description.setText(cursor.getString(5));
+            _taskType.setText(cursor.getString(2));
+            _taskNumber.setText(cursor.getString(7));
+            _gradingPeriod.setText(cursor.getString(8));
+             _due.setText(cursor.getString(3));
+            _subjectID.setText(String.valueOf(cursor.getInt(1)));
+            String a = "                        ";
+            String desc = cursor.getString(5);
+            String b = a + desc;
+            _description.setText(b);
+            cursor.close();
+        }
     }
 
     // Method for tab layout and viewpager2

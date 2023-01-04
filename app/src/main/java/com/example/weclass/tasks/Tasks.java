@@ -265,8 +265,6 @@ public class Tasks extends Fragment implements TaskAdapter.OnNoteListener, TaskA
     @Override
     public void onNoteClick(int position) {
 
-
-
         Intent intent = new Intent(getContext(), TaskGrade.class);
         intent.putExtra("Task", taskItems.get(position));
         intent.putExtra("id", parentID.getText().toString());
