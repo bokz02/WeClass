@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
@@ -143,58 +144,30 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
                     } else {
 
-                        Cursor cursor2 = sqLiteDatabase.rawQuery("SELECT * FROM "
-                                + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
-                                + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
-                                + parentID.getText().toString() + " AND "
-                                + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
-                                + "Exam" + "' AND "
-                                + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
-                                + _gradingPeriod.getText().toString() + "'", null);
+                        if (taskType.getText().toString().equals("Exam")) {
 
-                        // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
-                        if (cursor2.moveToFirst()) {
-                            Snackbar.make(_create, "You can only have 1 exam in per semester", Snackbar.LENGTH_SHORT).show();
-                            cursor2.close();
-                        } else {
+                            Cursor cursor2 = sqLiteDatabase.rawQuery("SELECT * FROM "
+                                    + DataBaseHelper.TABLE_MY_TASKS + " WHERE "
+                                    + DataBaseHelper.COLUMN_PARENT_ID_SUBJECT + " = "
+                                    + parentID.getText().toString() + " AND "
+                                    + DataBaseHelper.COLUMN_TASK_TYPE + " = '"
+                                    + "Exam" + "' AND "
+                                    + DataBaseHelper.COLUMN_GRADING_PERIOD_TASK + " = '"
+                                    + _gradingPeriod.getText().toString() + "'", null);
 
-                            // DATA WILL SAVE TO DATABASE IF ALL FIELDS ARE CORRECT
-                            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
-                            builder.setTitle("Please confirm");
-                            builder.setIcon(R.drawable.ic_baseline_warning_24);
-                            builder.setMessage("Are you sure all the information are correct?");
-                            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                            // DUPLICATE TASK TYPE AND TASK NUMBER IS NOT ALLOWED TO STORE
+                            if (cursor2.moveToFirst()) {
+                                Snackbar.make(_create, "You can only have 1 exam per semester", Snackbar.LENGTH_SHORT).show();
+                                cursor2.close();
 
-                                    dataBaseHelper.addTask(parentID.getText().toString().trim(),
-                                            taskType.getText().toString().trim(),
-                                            _score.getText().toString().trim(),
-                                            _description.getText().toString().trim(),
-                                            _progress.getText().toString().trim(),
-                                            _taskNumber.getText().toString().trim(),
-                                            _gradingPeriod.getText().toString().trim(),
-                                            _dueTextView.getText().toString().trim());
+                            }else {
+                                saveDataToDB();
+                            }
 
-                                    Snackbar.make(_create, "Task successfully created!", Snackbar.LENGTH_LONG).show();
+                            } else {
+                                saveDataToDB();
+                            }
 
-                                    taskType.setText("");
-                                    _score.setText("");
-                                    _description.setText("");
-                                    _taskNumber.setText("");
-                                    _gradingPeriod.setText(gradingPeriod);
-                                    _dueTextView.setText("");
-                                }
-                            });
-
-                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-
-                                }
-                            });
-                            builder.show();
-                        }
                     }
 
                 }
@@ -202,6 +175,47 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             }
                                    }
         );
+    }
+
+    public void saveDataToDB(){
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(AddTask.this);
+        SQLiteDatabase sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        // DATA WILL SAVE TO DATABASE IF ALL FIELDS ARE CORRECT
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(AddTask.this);
+        builder.setTitle("Please confirm");
+        builder.setIcon(R.drawable.ic_baseline_warning_24);
+        builder.setMessage("Are you sure all the information are correct?");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dataBaseHelper.addTask(parentID.getText().toString().trim(),
+                        taskType.getText().toString().trim(),
+                        _score.getText().toString().trim(),
+                        _description.getText().toString().trim(),
+                        _progress.getText().toString().trim(),
+                        _taskNumber.getText().toString().trim(),
+                        _gradingPeriod.getText().toString().trim(),
+                        _dueTextView.getText().toString().trim());
+
+                Snackbar.make(_create, "Task successfully created!", Snackbar.LENGTH_LONG).show();
+
+                taskType.setText("");
+                _score.setText("");
+                _description.setText("");
+                _taskNumber.setText("");
+                _gradingPeriod.setText(gradingPeriod);
+                _dueTextView.setText("");
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.show();
     }
 
     public void getDataFromStudentListFragment() {
@@ -233,8 +247,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 "Recitation",
                 "Report",
                 "Seatwork",
-
-
         };
 
         selectedTask = tasks[0];
