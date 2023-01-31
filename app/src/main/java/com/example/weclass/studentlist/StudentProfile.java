@@ -48,7 +48,7 @@ import java.util.ArrayList;
 
 public class StudentProfile extends AppCompatActivity {
 
-    ImageButton backButton, _finalGradeButton, _midtermGradeButton, _finalRatingButton;
+    ImageButton backButton, _finalGradeButton;
     TextView _id, _subjectID, _lastName,
             _firstName, _presentTextview, _absentTextView,
             _courseTextView, _subjectTextView, _finalGrade,

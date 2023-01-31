@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.database.DataBaseHelper;
+import com.example.weclass.ratings.FinalRatingsAdapter;
 import com.example.weclass.ratings.RatingsAdapter;
 import com.example.weclass.ratings.RatingsModel;
 import com.example.weclass.studentlist.StudentProfile;
@@ -25,11 +26,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 
-public class FinalRating extends Fragment implements RatingsAdapter.OnStudentClick {
+public class FinalRating extends Fragment implements FinalRatingsAdapter.OnStudentClick {
 
     View view, noView;
     TextView noTextView;
-    RatingsAdapter ratingsAdapter;
+    FinalRatingsAdapter finalRatingsAdapter;
     ExtendedRecyclerView extendedRecyclerView;
     ArrayList<RatingsModel> ratingsModel;
     String parentId, classType, gradingPeriod;
@@ -93,8 +94,8 @@ public class FinalRating extends Fragment implements RatingsAdapter.OnStudentCli
 
     public void initializeAdapter() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        ratingsAdapter = new RatingsAdapter(ratingsModel, getContext(), classType, this);
-        extendedRecyclerView.setAdapter(ratingsAdapter);
+        finalRatingsAdapter = new FinalRatingsAdapter(ratingsModel, getContext(), this);
+        extendedRecyclerView.setAdapter(finalRatingsAdapter);
         extendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         extendedRecyclerView.setEmptyView(noView, noTextView);
         linearLayoutManager.setStackFromEnd(true);

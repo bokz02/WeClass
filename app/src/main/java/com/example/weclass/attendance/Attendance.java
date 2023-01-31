@@ -40,6 +40,7 @@ import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.MyProgressBar;
 import com.example.weclass.R;
 import com.example.weclass.SpinnerAdapter;
+import com.example.weclass.attendance.summary.AttendanceSummary;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.ratings.fragments.FinalRating;
 import com.example.weclass.ratings.fragments.Finals;
@@ -317,6 +318,13 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
                                 break;
                             case R.id.exportCSV:
                                 askForPermissionsToday();
+                                break;
+                            case R.id.summary:
+                                Intent intent = new Intent(getContext(), AttendanceSummary.class);
+                                intent.putExtra("parentId", _parentID.getText().toString());
+                                intent.putExtra("date", date);
+                                intent.putExtra("gradingPeriod", gradingPeriod);
+                                startActivity(intent);
                                 break;
                         }
                         return false;

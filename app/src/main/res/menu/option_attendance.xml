@@ -4,4 +4,6 @@
         android:id="@+id/exportCSV" />
     <item android:title="Export all time attendance as CSV file"
         android:id="@+id/exportAllCSV" />
+    <item android:title="Summary of today's Attendance"
+        android:id="@+id/summary" />
 </menu>
