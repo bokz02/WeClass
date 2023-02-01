@@ -14,7 +14,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
     private static final String DATABASE_NAME = "weClass.db";
-    private static final int DATABASE_VERSION = 62;
+    private static final int DATABASE_VERSION = 63;
     public static final String TABLE_MY_SUBJECTS = "my_subjects";
     public static final String COLUMN_ID = "id_number";
     public static final String COLUMN_COURSE = "course";
@@ -116,6 +116,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ABSENT_COUNT_TODAY = "absent_count";
     public static final String COLUMN_STUDENT_NUMBER_TODAY = "student_number";
     public static final String COLUMN_LATE_TODAY = "late";
+    public static final String COLUMN_STATUS_TODAY = "status";
 
     public static final String table_total_grades = "my_lecture_grades";
     public static final String column_id_lecture = "id";
@@ -251,7 +252,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_ABSENT_COUNT_TODAY + " INTEGER, " +
                 COLUMN_PICTURE_TODAY + " BLOB, " +
                 COLUMN_STUDENT_NUMBER_TODAY + " TEXT, " +
-                COLUMN_LATE_TODAY + " TEXT);";
+                COLUMN_LATE_TODAY + " TEXT, " +
+                COLUMN_STATUS_TODAY + " TEXT);";
 
         String lecture = "CREATE TABLE " + table_total_grades +
                 " (" + column_id_lecture + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -663,13 +665,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     // UPDATE STUDENT'S attendance today
-    public void updateAttendanceToday(String id, String parentId, String date) {
+    public void updateAttendanceToday(String id, String parentId, String date, String status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_STUDENT_NUMBER_TODAY, id);
         contentValues.put(COLUMN_PARENT_ID_TODAY, parentId);
         contentValues.put(COLUMN_DATE_TODAY, date);
+        contentValues.put(COLUMN_STATUS_TODAY, status);
 
         long result = db.update(TABLE_ATTENDANCE_TODAY, contentValues, "student_number=" + "'" + id + "'" + " and "
                 + "parent_id=" + "'" + parentId + "'", null);

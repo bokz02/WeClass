@@ -147,7 +147,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                                 db.updateAttendanceToday(holder.id.getText().toString(),
                                         holder._subjectID.getText().toString(),
-                                        "date");
+                                        "date",
+                                        "");
 
                                 attendanceItems.add(c, itemsAttendance);
                                 notifyItemInserted(c);
@@ -174,7 +175,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                 // update the attendance today db
                 db.updateAttendanceToday(holder.id.getText().toString(),
                         holder._subjectID.getText().toString(),
-                        holder._date.getText().toString());
+                        holder._date.getText().toString(),
+                        "Late");
 
                 c = holder.getAdapterPosition();
                 attendanceItems.remove(c);
@@ -209,7 +211,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                                 db.updateAttendanceToday(holder.id.getText().toString(),
                                         holder._subjectID.getText().toString(),
-                                        "date");
+                                        "date",
+                                        "");
 
                                  attendanceItems.add(c, itemsAttendance);
                                  notifyItemInserted(c);
@@ -235,7 +238,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                     db.updateAttendanceToday(holder.id.getText().toString(),
                             holder._subjectID.getText().toString(),
-                            holder._date.getText().toString());
+                            holder._date.getText().toString(),
+                            "Present");
 
 
 
@@ -266,7 +270,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                                 db.updateAttendanceToday(holder.id.getText().toString(),
                                         holder._subjectID.getText().toString(),
-                                        "date");
+                                        "date",
+                                        "");
 
                                 db.undoStudentAbsent(holder.id.getText().toString(),
                                         holder._subjectID.getText().toString());
@@ -298,7 +303,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
 
                     db.updateAttendanceToday(holder.id.getText().toString(),
                             holder._subjectID.getText().toString(),
-                            holder._date.getText().toString());
+                            holder._date.getText().toString(),
+                            "Absent");
 
                     db.updateStudentAbsentToday(holder.id.getText().toString(),
                             holder._subjectID.getText().toString());

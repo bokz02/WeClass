@@ -96,4 +96,8 @@
 
     <color name="ArchiveBg">#f4f4f4</color>
 
+    <color name="summaryPresent">#A5D6A7</color>
+    <color name="summaryLate">#FFF59D</color>
+    <color name="summaryAbsent">#EF9A9A</color>
+
 </resources>

@@ -293,7 +293,7 @@ public class Attendance extends Fragment implements AttendanceAdapter.OnNoteList
 
     // AUTOMATIC SORT WHEN ACTIVITY OPEN
     public void automaticSort() {
-        Collections.sort(attendanceItems, AttendanceItems.sortAtoZComparator);
+        attendanceItems.sort(AttendanceItems.sortAtoZComparator);
         initializeAdapter();
     }
 

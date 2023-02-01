@@ -19,12 +19,14 @@ import android.widget.Toast;
 import com.example.weclass.ExtendedRecyclerView;
 import com.example.weclass.R;
 import com.example.weclass.SharedPref;
+import com.example.weclass.attendance.AttendanceItems;
 import com.example.weclass.database.DataBaseHelper;
 import com.example.weclass.ratings.RatingsAdapter;
 import com.example.weclass.ratings.RatingsModel;
 import com.example.weclass.studentlist.StudentProfile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AttendanceSummary extends AppCompatActivity {
 
@@ -64,6 +66,7 @@ public class AttendanceSummary extends AppCompatActivity {
         getDataFromAttendance();
         initializeRecView();
         initializeAdapter();
+        automaticSort();
     }
 
     private void initialize () {
@@ -123,11 +126,18 @@ public class AttendanceSummary extends AppCompatActivity {
                         cursor.getString(2),
                         cursor.getString(3),
                         cursor.getInt(1),
-                        cursor.getBlob(7)));
+                        cursor.getBlob(7),
+                        cursor.getString(10)));
             }while (cursor.moveToNext());
         }
         sqLiteDatabase.close();
         cursor.close();
         return attendanceSummaryModel;
+    }
+
+    // AUTOMATIC SORT WHEN ACTIVITY OPEN
+    public void automaticSort() {
+        attendanceSummaryModel.sort(AttendanceSummaryModel.sortAtoZComparator);
+        initializeAdapter();
     }
 }
