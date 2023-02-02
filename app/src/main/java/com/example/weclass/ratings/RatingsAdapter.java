@@ -29,6 +29,7 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
     private final ArrayList<RatingsModel> ratingsModel;
     private final Context context;
     OnStudentClick onStudentClick;
+    String notGraded;
 
     public RatingsAdapter(ArrayList<RatingsModel> ratingsModel, Context context, String classType, OnStudentClick onStudentClick) {
         this.ratingsModel = ratingsModel;
@@ -78,20 +79,33 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.MyViewHo
 
         byte[] image = model.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
-        double grade = ratingsModel.get(position).getGrade();
-        double roundedGrade = Math.round(grade);
 
-        holder._profilePicture.setImageBitmap(bitmap);
-        holder._lastName.setText(String.valueOf(ratingsModel.get(position).getLastName()));
-        holder._firstName.setText(String.valueOf(ratingsModel.get(position).getFirstName()));
-        holder._rating.setText(String.format( Locale.US,"%.0f", roundedGrade));
-        holder.studentNumber.setText(String.valueOf(ratingsModel.get(position).getStudentNumber()));
-        holder.parentId.setText(String.valueOf(ratingsModel.get(position).getParentId()));
+        notGraded = String.valueOf(ratingsModel.get(position).getGrade());
+        if (notGraded.equals("-")){
+
+            holder._profilePicture.setImageBitmap(bitmap);
+            holder._lastName.setText(String.valueOf(ratingsModel.get(position).getLastName()));
+            holder._firstName.setText(String.valueOf(ratingsModel.get(position).getFirstName()));
+            holder._rating.setText(ratingsModel.get(position).getGrade());
+            holder.studentNumber.setText(String.valueOf(ratingsModel.get(position).getStudentNumber()));
+            holder.parentId.setText(String.valueOf(ratingsModel.get(position).getParentId()));
+
+        } else {
+            double grade = Double.parseDouble(ratingsModel.get(position).getGrade());
+            double roundedGrade = Math.round(grade);
+
+            holder._profilePicture.setImageBitmap(bitmap);
+            holder._lastName.setText(String.valueOf(ratingsModel.get(position).getLastName()));
+            holder._firstName.setText(String.valueOf(ratingsModel.get(position).getFirstName()));
+            holder._rating.setText(String.format(Locale.US, "%.0f", roundedGrade));
+            holder.studentNumber.setText(String.valueOf(ratingsModel.get(position).getStudentNumber()));
+            holder.parentId.setText(String.valueOf(ratingsModel.get(position).getParentId()));
 
 
-        String a = holder._rating.getText().toString();
-        if (a.equals("5.00")){
-            holder._rating.setTextColor(holder._rating.getContext().getResources().getColor(R.color.red2));
+            String a = holder._rating.getText().toString();
+            if (a.equals("5.00")) {
+                holder._rating.setTextColor(holder._rating.getContext().getResources().getColor(R.color.red2));
+            }
         }
     }
 

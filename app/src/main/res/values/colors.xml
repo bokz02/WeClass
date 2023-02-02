@@ -100,4 +100,7 @@
     <color name="summaryLate">#FFF59D</color>
     <color name="summaryAbsent">#EF9A9A</color>
 
+    <color name="remarksPassed">#66BB6A</color>
+    <color name="remarksFailed">#EF5350</color>
+
 </resources>

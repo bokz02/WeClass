@@ -36,7 +36,9 @@
             android:id="@+id/imageViewRatingsRecView"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
             android:src="@drawable/add_profile_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,16 +91,27 @@
             android:id="@+id/finalRatingRatingsRecView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
             android:fontFamily="@font/poppins_regular"
+            android:maxLength="5"
+            android:maxLines="1"
             android:text="-"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:maxLength="5"
-            android:maxLines="1"
-            app:layout_constraintBottom_toBottomOf="@+id/firstNameRatingsRecView"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/firstNameRatingsRecView" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/remarksTextViewRatings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text=" "
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/finalRatingRatingsRecView"
+            app:layout_constraintEnd_toEndOf="@+id/finalRatingRatingsRecView"
+            app:layout_constraintStart_toStartOf="@+id/finalRatingRatingsRecView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

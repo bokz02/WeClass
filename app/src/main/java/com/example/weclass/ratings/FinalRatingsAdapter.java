@@ -22,6 +22,8 @@ public class FinalRatingsAdapter extends RecyclerView.Adapter<FinalRatingsAdapte
     private final ArrayList<RatingsModel> ratingsModel;
     private final Context context;
     OnStudentClick onStudentClick;
+    Double finalGrade;
+    String notGraded;
 
     public FinalRatingsAdapter(ArrayList<RatingsModel> ratingsModel, Context context, OnStudentClick onStudentClick) {
         this.ratingsModel = ratingsModel;
@@ -32,7 +34,7 @@ public class FinalRatingsAdapter extends RecyclerView.Adapter<FinalRatingsAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView _lastName, _firstName, _rating, studentNumber, parentId;
+        TextView _lastName, _firstName, _rating, studentNumber, parentId, remarks;
         ImageView _profilePicture;
         OnStudentClick onStudentClick;
 
@@ -45,6 +47,7 @@ public class FinalRatingsAdapter extends RecyclerView.Adapter<FinalRatingsAdapte
             _profilePicture = itemView.findViewById(R.id.imageViewRatingsRecView);
             studentNumber = itemView.findViewById(R.id.studentNumberRatings);
             parentId = itemView.findViewById(R.id.parentIdRatings);
+            remarks = itemView.findViewById(R.id.remarksTextViewRatings);
 
             this.onStudentClick = onStudentClick;
             itemView.setOnClickListener(this);
@@ -72,17 +75,39 @@ public class FinalRatingsAdapter extends RecyclerView.Adapter<FinalRatingsAdapte
         byte[] image = model.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0 , image.length);
 
-        holder._profilePicture.setImageBitmap(bitmap);
-        holder._lastName.setText(String.valueOf(ratingsModel.get(position).getLastName()));
-        holder._firstName.setText(String.valueOf(ratingsModel.get(position).getFirstName()));
-        holder._rating.setText(String.format( Locale.US,"%.2f", ratingsModel.get(position).getGrade()));
-        holder.studentNumber.setText(String.valueOf(ratingsModel.get(position).getStudentNumber()));
-        holder.parentId.setText(String.valueOf(ratingsModel.get(position).getParentId()));
+        notGraded = String.valueOf(ratingsModel.get(position).getGrade());
+        if (notGraded.equals("-") || notGraded.equals("INC") || notGraded.equals("DRP")){
 
+            holder._profilePicture.setImageBitmap(bitmap);
+            holder._lastName.setText(String.valueOf(ratingsModel.get(position).getLastName()));
+            holder._firstName.setText(String.valueOf(ratingsModel.get(position).getFirstName()));
+            holder._rating.setText(ratingsModel.get(position).getGrade());
+            holder.studentNumber.setText(String.valueOf(ratingsModel.get(position).getStudentNumber()));
+            holder.parentId.setText(String.valueOf(ratingsModel.get(position).getParentId()));
 
-        String a = holder._rating.getText().toString();
-        if (a.equals("5.00")){
-            holder._rating.setTextColor(holder._rating.getContext().getResources().getColor(R.color.red2));
+        } else {
+
+            finalGrade = Double.parseDouble(ratingsModel.get(position).getGrade());
+
+            holder._profilePicture.setImageBitmap(bitmap);
+            holder._lastName.setText(String.valueOf(ratingsModel.get(position).getLastName()));
+            holder._firstName.setText(String.valueOf(ratingsModel.get(position).getFirstName()));
+            holder._rating.setText(String.format(Locale.US, "%.2f", finalGrade));
+            holder.studentNumber.setText(String.valueOf(ratingsModel.get(position).getStudentNumber()));
+            holder.parentId.setText(String.valueOf(ratingsModel.get(position).getParentId()));
+
+            String a = holder._rating.getText().toString();
+            if (a.equals("5.00")) {
+                holder._rating.setTextColor(holder._rating.getContext().getResources().getColor(R.color.red2));
+            }
+
+            if (finalGrade >= 1.00 && finalGrade <= 3.00) {
+                holder.remarks.setText("Passed");
+                holder.remarks.setTextColor(holder.remarks.getContext().getResources().getColor(R.color.remarksPassed));
+            } else if (finalGrade >= 3.10 && finalGrade <= 5.00) {
+                holder.remarks.setText("Failed");
+                holder.remarks.setTextColor(holder.remarks.getContext().getResources().getColor(R.color.remarksFailed));
+            }
         }
     }
 

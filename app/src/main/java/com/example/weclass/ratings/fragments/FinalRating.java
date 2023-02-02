@@ -124,7 +124,7 @@ public class FinalRating extends Fragment implements FinalRatingsAdapter.OnStude
                         cursor.getBlob(9),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getDouble(12),
+                        cursor.getString(12),
                         cursor.getString(1),
                         cursor.getString(2)));
             } while (cursor.moveToNext());

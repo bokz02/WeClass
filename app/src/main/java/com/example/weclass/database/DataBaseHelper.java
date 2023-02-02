@@ -747,6 +747,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void updateRemarks(String studentNumber, int parentId, String midterm, String finals, String finalRatings){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_STUDENT_NUMBER_STUDENT, studentNumber);
+        contentValues.put(COLUMN_PARENT_ID, parentId);
+        contentValues.put(COLUMN_MIDTERM_GRADE_STUDENT, midterm);
+        contentValues.put(COLUMN_FINAL_GRADE_STUDENT, finals);
+        contentValues.put(COLUMN_FINAL_RATING_STUDENT, finalRatings);
+
+        long result = db.update(TABLE_MY_STUDENTS, contentValues, "student_number=" + "'" + studentNumber + "'" + " and "
+                + "parent_id=" + parentId, null);
+        if (result == -1) {
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     // DELETE A SUBJECT
     public void deleteSubject(int row_id) {

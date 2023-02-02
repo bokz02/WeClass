@@ -3,6 +3,7 @@ package com.example.weclass.ratings;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.opengl.Visibility;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -944,27 +945,28 @@ public class Ratings extends Fragment {
                 + DataBaseHelper.COLUMN_PARENT_ID + " = '"
                 + parentId + "'", null);
         if (cursor.moveToNext()) {
-
             do {
-                double midterm=0;
-                double finals=0;
                 double finalRating=0;
                 double sum =0 ;
-                midterm = cursor.getDouble(10);
-                finals = cursor.getDouble(11);
 
-                String a = String.valueOf(midterm);
-                String b = String.valueOf(finals);
+                String midterm = cursor.getString(10);
+                String finals = cursor.getString(11);
 
-                if (a.equals("-") || b.equals("-")){
-                    Toast toast = Toast.makeText(getContext(),"Make sure student have their midterm and final grades",Toast.LENGTH_SHORT);
-                    TextView text = (TextView) toast.getView().findViewById(android.R.id.message);
-                    if (text!=null){
-                        text.setGravity(Gravity.CENTER);
+                if (midterm.equals("-") || finals.equals("-")){
+                    Toast toast = Toast.makeText(getContext(), "Make sure student have their midterm and final grades", Toast.LENGTH_SHORT);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                        TextView text = (TextView) toast.getView().findViewById(android.R.id.message);
+                        if (text != null) {
+                            text.setGravity(Gravity.CENTER);
+                        }
                     }
                     toast.show();
                 }else {
-                    sum = midterm + finals;
+
+                    Double midtermDouble = cursor.getDouble(10);
+                    Double finalsDouble = cursor.getDouble(11);
+
+                    sum = midtermDouble + finalsDouble;
                     sum = sum / 200;
                     sum = sum * 50;
                     sum = sum + 50;

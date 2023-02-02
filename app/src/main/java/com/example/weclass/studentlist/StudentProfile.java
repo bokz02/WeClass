@@ -6,14 +6,24 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +72,7 @@ public class StudentProfile extends AppCompatActivity {
     SharedPref sharedPref;
     ProgressBar progressBar;
     ConstraintLayout constraintButton;
+    ImageButton optionButton;
     int absentCount = 0, presentCount = 0, lateCount = 0;
 
     @Override
@@ -105,7 +116,7 @@ public class StudentProfile extends AppCompatActivity {
         goToRecitations();
         goToReports();
         displayGrade(); // display grade of the student
-
+        option();
 
     }
 
@@ -152,6 +163,7 @@ public class StudentProfile extends AppCompatActivity {
         recitation = findViewById(R.id._materialRecitation);
         absentCardView = findViewById(R.id._materialAbsent);
         reportButton = findViewById(R.id._materialReport);
+        optionButton = findViewById(R.id.optionButtonProfile);
 
 
     }
@@ -528,5 +540,60 @@ public class StudentProfile extends AppCompatActivity {
             _finalRating.setText(cursor.getString(12));
             cursor.close();
         }
+    }
+
+    private void option(){
+        DataBaseHelper db = new DataBaseHelper(StudentProfile.this);
+        int parentId = Integer.parseInt(_subjectID.getText().toString());
+        optionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(StudentProfile.this, optionButton);
+                popupMenu.getMenuInflater().inflate(R.menu.option_profile, popupMenu.getMenu());
+                Menu setItemAs = popupMenu.getMenu();
+                SubMenu s = setItemAs.findItem(R.id.markAs).getSubMenu();
+                SpannableString title = new SpannableString(setItemAs.findItem(R.id.markAs).getTitle());
+                title.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black1)), 0, title.length(), 0);
+                s.setHeaderTitle(title);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.inc:
+                                db.updateRemarks(studentNumber.getText().toString(),
+                                        parentId,
+                                        "-",
+                                        "-",
+                                        "INC");
+
+                                Toast.makeText(StudentProfile.this,"Marked as incomplete", Toast.LENGTH_SHORT).show();
+
+
+                                _midtermGrade.setText("-");
+                                _finalGrade.setText("-");
+                                _finalRating.setText("INC");
+
+                                break;
+                            case R.id.drp:
+                                db.updateRemarks(studentNumber.getText().toString(),
+                                        parentId,
+                                        "-",
+                                        "-",
+                                        "DRP");
+
+                                Toast.makeText(StudentProfile.this,"Marked as dropped", Toast.LENGTH_SHORT).show();
+
+                                _midtermGrade.setText("-");
+                                _finalGrade.setText("-");
+                                _finalRating.setText("INC");
+
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
     }
 }

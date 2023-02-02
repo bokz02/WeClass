@@ -6,10 +6,9 @@ import android.os.Parcelable;
 public class RatingsModel implements Parcelable {
 
     byte[] image;
-    String lastName, firstName, studentNumber, parentId;
-    double grade;
+    String lastName, firstName, studentNumber, parentId, grade;
 
-    public RatingsModel(byte[] image, String lastName, String firstName, double grade, String studentNumber, String parentId) {
+    public RatingsModel(byte[] image, String lastName, String firstName, String grade, String studentNumber, String parentId) {
         this.image = image;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -19,12 +18,11 @@ public class RatingsModel implements Parcelable {
     }
 
     protected RatingsModel(Parcel in) {
-        image = in.createByteArray();
         lastName = in.readString();
         firstName = in.readString();
         studentNumber = in.readString();
         parentId = in.readString();
-        grade = in.readDouble();
+        grade = in.readString();
     }
 
     public static final Creator<RatingsModel> CREATOR = new Creator<RatingsModel>() {
@@ -51,7 +49,7 @@ public class RatingsModel implements Parcelable {
         return firstName;
     }
 
-    public double getGrade() {
+    public String getGrade() {
         return grade;
     }
 
@@ -71,11 +69,10 @@ public class RatingsModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeByteArray(image);
         parcel.writeString(lastName);
         parcel.writeString(firstName);
         parcel.writeString(studentNumber);
         parcel.writeString(parentId);
-        parcel.writeDouble(grade);
+        parcel.writeString(grade);
     }
 }

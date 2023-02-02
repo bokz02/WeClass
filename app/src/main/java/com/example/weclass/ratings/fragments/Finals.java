@@ -118,7 +118,7 @@ public class Finals extends Fragment implements RatingsAdapter.OnStudentClick {
                         cursor.getBlob(9),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getDouble(11),
+                        cursor.getString(11),
                         cursor.getString(1),
                         cursor.getString(2)));
             }while (cursor.moveToNext());
